@@ -29,7 +29,6 @@
         "paperSize": "a4"
     },
     "plugins": [
-        "ga",
         "mathjax"
     ],
     "pluginsConfig": {
