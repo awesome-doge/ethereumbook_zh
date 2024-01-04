@@ -1,0 +1,38 @@
+name: Publish AsciiDoc to GitHub Pages
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.0'
+
+    - name: Install Asciidoctor
+      run: gem install asciidoctor
+
+    - name: Convert AsciiDoc to HTML
+      run: |
+        asciidoctor -b html5 -D output book.asciidoc
+        mv output/book.html output/index.html
+
+    - name: Copy Images
+      run: cp -r images output/
+
+    - name: Create CNAME File
+      run: echo 'mastering-ethereum.doge.tg' > output/CNAME
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./output
