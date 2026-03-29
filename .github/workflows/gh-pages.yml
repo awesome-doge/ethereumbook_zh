@@ -18,10 +18,14 @@ jobs:
         ruby-version: '3.3'
 
     - name: Install Asciidoctor
-      run: gem install asciidoctor -v '~> 2.0'
+      run: |
+        gem install asciidoctor -v '~> 2.0'
+        gem install rouge
 
     - name: Convert AsciiDoc to HTML
       run: |
+        # 生成 Rouge 語法高亮 CSS
+        rougify style github > rouge-github.css
         asciidoctor -b html5 -a stylesheet=custom.css -a linkcss -D output book.asciidoc
         mv output/book.html output/index.html
 
@@ -40,7 +44,9 @@ jobs:
         done
 
     - name: Copy CSS
-      run: cp custom.css output/
+      run: |
+        cp custom.css output/
+        cp rouge-github.css output/
 
     - name: Create CNAME File
       run: echo 'mastering-ethereum.doge.tg' > output/CNAME
