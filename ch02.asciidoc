@@ -242,7 +242,7 @@ image::images/block_explorer_account_history.png["Address Transaction History on
 
 你現在已經創建好一個錢包，也能傳送與接收 ether了，到目前為止，我們已經將以太坊視為一種密碼貨幣 (cryptocurrency)。但是以太坊的功能其實比這些多太多了。事實上，整個乙太坊是一個去中心化的世界計算機 (World Computer)，而密碼貨幣的功能則是從屬於以太坊的功能。一個執行於以太坊虛擬機器 (Ethereum Virtual Machine, EVM) 中的電腦程式，它稱之為智能合約，它就是這個世界計算機的電腦程式，當你執行這程式時，就是用乙太幣用來支付執行費用。
 
-EVM 是一個全域單例 (global singleton) ，這意味著它的運作方式就好像它是一個全域的單一實體計算機，無處不在。以太坊網路上的每個節點運行 EVM 副本於本地，用以驗證合約執行，而以太坊區塊鏈上，記錄著這台世界計算機處理的交易以及智能合約上的狀態 (State) 之變化紀錄。更多更棒的細節我們可以在 <<第十四章#,以太坊虛擬機>> 這一章看到。
+EVM 是一個全域單例 (global singleton) ，這意味著它的運作方式就好像它是一個全域的單一實體計算機，無處不在。以太坊網路上的每個節點運行 EVM 副本於本地，用以驗證合約執行，而以太坊區塊鏈上，記錄著這台世界計算機處理的交易以及智能合約上的狀態 (State) 之變化紀錄。更多更棒的細節我們可以在 <<evm_chapter,以太坊虛擬機>> 這一章看到。
 
 [[EOA_contracts]]
 === 外部擁有帳戶（EOAs）和合約
@@ -381,7 +381,7 @@ image::images/remix_faucet_load.png["Copy the Faucet example code into the new t
 
 [[remix_compile]]
 .Remix successfully compiles the Faucet.sol contract
-image::images/remix_compile.png[""]
+image::images/remix_compile.png["Remix 編譯"]
 
 如果出現問題，最可能的問題是Remix IDE正在使用與+0.4.19+版本不同的Solidity編譯器。在這種情況下，我們的編譯指示將阻止+Faucet.sol+編譯。要更改編譯器版本，請轉到“Settings”選項卡，並重試。
 
@@ -458,7 +458,7 @@ image::images/etherscan_contract_address.png["View the Faucet contract address i
 
 [[metamask_send_to_contract]]
 .Send 1 ether to the contract address
-image::images/metamask_send_to_contract.png[""]
+image::images/metamask_send_to_contract.png["MetaMask 發送到合約"]
 
 一分鐘後，如果你刷新etherscan區塊瀏覽器，它會向合約地址顯示另一個交易，並更新1 ether的餘額。
 
@@ -496,7 +496,7 @@ image::images/remix_contract_interact.png["The withdraw function of Faucet.sol, 
 
 [[remix_withdraw]]
 .Click "withdraw" in Remix to create a withdrawal transaction
-image::images/remix_withdraw.png[""]
+image::images/remix_withdraw.png["Remix 提款"]
 
 MetaMask將彈出一個交易視窗供你批准。點擊“Submit”將你的提款通知發送至合約：
 

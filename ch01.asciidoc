@@ -240,7 +240,7 @@ DApps的概念旨在將全球資訊網引入其下一個自然演進，將去中
 
 [[web_suite]]
 .Web3: A suite of decentralized application components for the next evolution of the web
-image::images/web3suite.png[]
+image::images/web3suite.png["Web3 Suite"]
 
 [[development_culture]]
 === 以太坊的開發文化

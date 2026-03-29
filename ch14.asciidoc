@@ -202,7 +202,19 @@ contract example {
 
 [[opcode_output]]
 ----
-PUSH1 0x60 PUSH1 0x40 MSTORE CALLVALUE ISZERO PUSH1 0xE JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST CALLER PUSH1 0x0 DUP1 PUSH2 0x100 EXP DUP2 SLOAD DUP2 PUSH20 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF MUL NOT AND SWAP1 DUP4 PUSH20 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF AND MUL OR SWAP1 SSTORE POP PUSH1 0x35 DUP1 PUSH1 0x5B PUSH1 0x0 CODECOPY PUSH1 0x0 RETURN STOP PUSH1 0x60 PUSH1 0x40 MSTORE PUSH1 0x0 DUP1 REVERT STOP LOG1 PUSH6 0x627A7A723058 KECCAK256 JUMP 0xb9 SWAP14 0xcb 0x1e 0xdd RETURNDATACOPY 0xec 0xe0 0x1f 0x27 0xc9 PUSH5 0x9C5ABCC14A NUMBER 0x5e INVALID EXTCODESIZE 0xdb 0xcf EXTCODESIZE 0x27 EXTCODESIZE 0xe2 0xb8 SWAP10 0xed 0x
+PUSH1 0x60 PUSH1 0x40 MSTORE CALLVALUE ISZERO PUSH1 0xE JUMPI
+PUSH1 0x0 DUP1 REVERT JUMPDEST CALLER PUSH1 0x0 DUP1
+PUSH2 0x100 EXP DUP2 SLOAD DUP2
+PUSH20 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+MUL NOT AND SWAP1 DUP4
+PUSH20 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+AND MUL OR SWAP1 SSTORE POP PUSH1 0x35 DUP1 PUSH1 0x5B
+PUSH1 0x0 CODECOPY PUSH1 0x0 RETURN STOP PUSH1 0x60
+PUSH1 0x40 MSTORE PUSH1 0x0 DUP1 REVERT STOP LOG1
+PUSH6 0x627A7A723058 KECCAK256 JUMP 0xb9 SWAP14 0xcb 0x1e
+0xdd RETURNDATACOPY 0xec 0xe0 0x1f 0x27 0xc9
+PUSH5 0x9C5ABCC14A NUMBER 0x5e INVALID EXTCODESIZE 0xdb 0xcf
+EXTCODESIZE 0x27 EXTCODESIZE 0xe2 0xb8 SWAP10 0xed 0x
 ----
 
 使用_--asm_選項編譯範例會在_BytecodeDir_目錄中生成一個檔案 _example.evm_。這包含詳細的EVM機器語言說明：
@@ -396,7 +408,7 @@ JUMPI
 "PUSH1 0x4" 將0x4置於堆疊頂部，棧初始為空。“CALLDATASIZE”獲取接收到的交易的calldata的大小（以字節為單位）並將其推送到堆疊中。當前堆疊如下所示：
 
 .Current stack
-[width="40%",frame="topbot",options="header,footer"]
+[frame="topbot",options="header,footer"]
 |======================
 |Stack
 |0x4
@@ -419,7 +431,7 @@ keccak256("withdraw(uint256)") = 0x2e1a7d4d...
 “PUSH1 0x3f”指令將字節“0x3f”壓入堆疊。在此指令之後，堆疊如下所示：
 
 .Current stack
-[width="40%",frame="topbot",options="header,footer"]
+[frame="topbot",options="header,footer"]
 |======================
 |Stack
 |1
@@ -467,7 +479,7 @@ calldataload(p) // call data starting from position p (32 bytes)
 由於0是從PUSH1 0x0命令傳遞給它的索引，因此CALLDATALOAD從字節0開始讀取32字節的calldata，然後將其推送到堆疊的頂部（在彈出原始0x0之後）。在“PUSH29 0x1000000 ...”指令之後，堆疊如下所示：
 
 .Current stack
-[width="40%",frame="topbot",options="header,footer"]
+[frame="topbot",options="header,footer"]
 |======================
 |Stack
 |32 bytes of calldata starting at byte 0
@@ -477,7 +489,7 @@ calldataload(p) // call data starting from position p (32 bytes)
 “SWAP1”用它後面的_第i個_元素交換堆疊頂部元素。在這裡，它與密鑰數據交換0x1000000 ... 新堆疊如下所示：
 
 .Current stack
-[width="40%",frame="topbot",options="header,footer"]
+[frame="topbot",options="header,footer"]
 |======================
 |Stack
 |0x1000000... (29 bytes in length)
@@ -500,7 +512,7 @@ div(x, y) // x / y
 DIV（函數識別碼）的結果被推送到堆疊上，我們的新堆疊如下：
 
 .Current stack
-[width="40%",frame="topbot",options="header,footer"]
+[frame="topbot",options="header,footer"]
 |======================
 |Stack
 |function identifier sent in msg.data
@@ -509,7 +521,7 @@ DIV（函數識別碼）的結果被推送到堆疊上，我們的新堆疊如�
 由於“PUSH4 0xffffffff”和“AND”指令是冗餘的，我們可以完全忽略它們，因為堆疊在完成後將保持不變。“DUP1”指令複製堆疊上的1^st^項，這是函數識別碼。下一條指令“PUSH4 0x2e1a7d4d”將抽取（uint256）函數的計算函數識別碼推送到堆疊。堆疊現在看起來如下：
 
 .Current stack
-[width="40%",frame="topbot",options="header,footer"]
+[frame="topbot",options="header,footer"]
 |======================
 |Stack
 |function identifier sent in msg.data
@@ -522,7 +534,7 @@ DIV（函數識別碼）的結果被推送到堆疊上，我們的新堆疊如�
 假設發送給我們合約的交易確實以withdraw（uint256）的函數識別碼開頭，我們的新棧看起來如下：
 
 .Current stack
-[width="40%",frame="topbot",options="header,footer"]
+[frame="topbot",options="header,footer"]
 |======================
 |Stack
 |function identifier sent in msg.data
@@ -532,7 +544,7 @@ DIV（函數識別碼）的結果被推送到堆疊上，我們的新堆疊如�
 接下來，我們有“PUSH1 0x41”，這是withdraw（uint256）函數在合約中的地址。在此指令之後，堆疊如下所示：
 
 .Current stack
-[width="40%",frame="topbot",options="header,footer"]
+[frame="topbot",options="header,footer"]
 |======================
 |Stack
 |function identifier sent in msg.data

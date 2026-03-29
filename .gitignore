@@ -1,5 +1,8 @@
 *~
 _book
+book.json
 .DS_Store
 node_modules
 output/
+CLAUDE.md
+.claude/

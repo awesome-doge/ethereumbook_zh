@@ -49,16 +49,8 @@
 [[on_chain_vs_off_chain_data_sec]]
 ===== 上鏈 vs. 脫鏈
 
-////
-TODO
-////
-
 [[ipfs_sec]]
 ===== IPFS
-
-////
-TODO
-////
 
 [[swarm_sec]]
 ===== Swarm

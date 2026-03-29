@@ -1,0 +1,60 @@
+name: Build & Release eBooks
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-ebooks:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.3'
+
+    - name: Install Dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y fonts-noto-cjk fonts-noto-cjk-extra
+        gem install asciidoctor -v '~> 2.0'
+        gem install asciidoctor-pdf -v '~> 2.3'
+        gem install asciidoctor-epub3 -v '~> 2.1'
+
+    - name: Build PDF
+      run: |
+        asciidoctor-pdf \
+          -a pdf-theme=pdf-theme.yml \
+          -a pdf-fontsdir=fonts \
+          -a scripts=cjk \
+          -a allow-uri-read \
+          -D output book.asciidoc
+        mv output/book.pdf "output/Mastering-Ethereum-繁中.pdf"
+
+    - name: Build EPUB
+      run: |
+        asciidoctor-epub3 \
+          -a ebook-validate \
+          -a scripts=cjk \
+          -D output book.asciidoc
+        mv output/book.epub "output/Mastering-Ethereum-繁中.epub"
+
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: ebooks
+        path: output/Mastering-Ethereum-繁中.*
+
+    - name: Create Release
+      uses: softprops/action-gh-release@v2
+      with:
+        files: |
+          output/Mastering-Ethereum-繁中.pdf
+          output/Mastering-Ethereum-繁中.epub
+        generate_release_notes: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

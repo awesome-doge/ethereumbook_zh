@@ -7,6 +7,7 @@
 :source-highlighter: rouge
 :pdf-fontsdir: .
 :stem: latexmath
+:docinfo: shared-footer
 
 ++++
 <script type="text/javascript" async
@@ -36,3 +37,4 @@ include::ch15.asciidoc[]
 include::ch16.asciidoc[]
 include::ch17.asciidoc[]
 include::ch18.asciidoc[]
+include::ch19.asciidoc[]

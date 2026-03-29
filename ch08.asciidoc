@@ -1486,16 +1486,8 @@ https://medium.com/zeppelin-blog/the-hitchhikers-guide-to-smart-contracts-in-eth
 [[deploying_smart_contracts_sec]]
 === 部署智能合約
 
-////
-TODO: add paragraph
-////
-
 [[testing_frameworks]]
 === 測試智能合約
-
-////
-TODO: add paragraph
-////
 
 
 [[testing_frameworks_sec]]
@@ -1505,9 +1497,6 @@ TODO: add paragraph
 
 Truffle Test:: Truffle框架的一部分，Truffle允許使用JavaScript（基於Mocha）或Solidity編寫單元測試。這些測試是針對TestRPC/Ganache運行的。編寫這些測試的更多細節位於 <<truffle>>。
 
-////
-TODO: add anchor for <<truffle>>
-////
 
 Embark Framework Testing:: Embark與Mocha集成，運行用JavaScript編寫的單元測試。這些測試使用在TestRPC/Ganache上部署的合約執行。Embark框架自動部署智能合約，並在合約被更改時自動重新部署它們。它還跟蹤已部署的合約，並在真正需要時部署合約。Embark包括一個測試庫，它可以在EVM中快速運行和測試你的合約，並使用assert.equal()等函數。Embark測試將在目錄測試下運行任何測試檔案。
 

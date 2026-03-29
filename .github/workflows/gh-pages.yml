@@ -10,29 +10,43 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
 
     - name: Setup Ruby
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: '3.0'
+        ruby-version: '3.3'
 
     - name: Install Asciidoctor
-      run: gem install asciidoctor
+      run: gem install asciidoctor -v '~> 2.0'
 
     - name: Convert AsciiDoc to HTML
       run: |
-        asciidoctor -b html5 -D output book.asciidoc
+        asciidoctor -b html5 -a stylesheet=custom.css -a linkcss -D output book.asciidoc
         mv output/book.html output/index.html
 
-    - name: Copy Images
-      run: cp -r images output/
+    - name: Optimize Images
+      run: |
+        sudo apt-get update -qq
+        sudo apt-get install -y -qq pngquant optipng
+        mkdir -p output/images
+        for f in images/*.png; do
+          pngquant --quality=65-80 --speed 1 --output "output/$f" "$f" 2>/dev/null || cp "$f" "output/$f"
+          optipng -quiet -o2 "output/$f" 2>/dev/null || true
+        done
+        # Copy non-PNG files as-is
+        for f in images/*.jpg images/*.svg images/*.jpeg images/*.gif; do
+          [ -f "$f" ] && cp "$f" "output/$f" || true
+        done
+
+    - name: Copy CSS
+      run: cp custom.css output/
 
     - name: Create CNAME File
       run: echo 'mastering-ethereum.doge.tg' > output/CNAME
 
     - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
+      uses: peaceiris/actions-gh-pages@v4
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./output
