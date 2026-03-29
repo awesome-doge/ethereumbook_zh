@@ -1,0 +1,114 @@
+/* EPUB 排版優化 — 覆蓋預設樣式 */
+
+/* ===== 基礎排版 ===== */
+body {
+  line-height: 1.8;
+}
+
+body p, li, dt, dd, footer {
+  line-height: 1.8;
+}
+
+body p {
+  margin: 0.8em 0 0 0;
+}
+
+/* ===== 程式碼區塊 ===== */
+pre {
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  word-break: break-all;
+  font-size: 0.75em;
+  line-height: 1.5;
+  padding: 0.8em 1em;
+  margin: 1em 0;
+  border: 1px solid #C8C8C8;
+  border-radius: 4px;
+  background-color: #F5F5F5;
+}
+
+/* 行內程式碼 */
+code.literal {
+  word-wrap: break-word;
+  word-break: break-all;
+  font-size: 0.85em;
+  padding: 0.1em 0.3em;
+  background-color: #F0F0F0;
+  border-radius: 3px;
+}
+
+/* ===== 圖片 ===== */
+figure.image {
+  margin: 1.5em 0;
+  text-align: center;
+}
+
+figure.image img {
+  max-width: 100%;
+  height: auto;
+}
+
+figure.image figcaption {
+  font-size: 0.85em;
+  color: #666;
+  margin-top: 0.5em;
+  font-style: italic;
+}
+
+/* ===== 標題 ===== */
+h1, h2 {
+  margin-top: 1.5em;
+  margin-bottom: 0.3em;
+  line-height: 1.3;
+}
+
+h3 {
+  margin-top: 1.2em;
+  margin-bottom: 0.2em;
+}
+
+/* ===== 提示區塊 ===== */
+aside.admonition {
+  margin: 1.2em 0.5em;
+  padding: 0.8em;
+  border-radius: 4px;
+}
+
+aside.admonition > div.content {
+  font-size: 0.9em;
+  line-height: 1.7;
+}
+
+/* ===== 表格 ===== */
+table.table th,
+table.table td {
+  padding: 0.4em 0.5em;
+  line-height: 1.5;
+  font-size: 0.8em;
+}
+
+/* ===== 側邊欄 ===== */
+aside.sidebar {
+  border-radius: 4px;
+  padding: 0.8em 1.2em;
+  margin: 1.2em 0;
+}
+
+/* ===== 定義列表 ===== */
+dt > span.term {
+  font-weight: bold;
+}
+
+dd {
+  margin-bottom: 0.5em;
+}
+
+/* ===== 章節標題樣式 ===== */
+.chapter-header {
+  margin-bottom: 2em;
+}
+
+h1.chapter-title .subtitle {
+  font-size: 1.3em;
+  line-height: 1.3;
+}

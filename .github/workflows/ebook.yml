@@ -38,19 +38,25 @@ jobs:
     - name: Build PDF
       run: |
         mkdir -p output
+        # 先用自訂主題嘗試
         asciidoctor-pdf \
           -a pdf-theme=pdf-theme.yml \
           -a pdf-fontsdir=GEM_FONTS_DIR \
           -a scripts=cjk \
           -a allow-uri-read \
           -a front-cover-image=image:cover.jpg[fit=contain] \
-          -D output book.asciidoc
+          -D output book.asciidoc 2>&1 | tee /tmp/pdf-build.log
         mv output/book.pdf "output/Mastering-Ethereum-Traditional-Chinese.pdf"
+        # 驗證 PDF 有文字內容
+        PAGE_COUNT=$(grep -c '/Type /Page' output/Mastering-Ethereum-Traditional-Chinese.pdf || echo 0)
+        FILE_SIZE=$(stat -c%s output/Mastering-Ethereum-Traditional-Chinese.pdf)
+        echo "Pages: $PAGE_COUNT, Size: $FILE_SIZE bytes"
 
     - name: Build EPUB
       run: |
         asciidoctor-epub3 \
           -a ebook-cover-image=cover.jpg \
+          -a epub3-stylesdir=epub-styles \
           -D output book.asciidoc
         mv output/book.epub "output/Mastering-Ethereum-Traditional-Chinese.epub"
 
