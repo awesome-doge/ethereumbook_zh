@@ -1,3 +1,4 @@
+[[glossary]]
 [preface]
 == 快速術語表
 

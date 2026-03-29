@@ -16,6 +16,7 @@
 :note-caption: 備註
 :tip-caption: 提示
 :warning-caption: 警告
+:front-cover-image: image:cover.jpg[Front Cover,fit=contain]
 
 ++++
 <script type="text/javascript" async

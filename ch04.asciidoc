@@ -1,4 +1,4 @@
-[[testnets]]
+[[testnets_chapter]]
 == 以太坊測試網（Testnets）
 
 === 什麼是測試網？
