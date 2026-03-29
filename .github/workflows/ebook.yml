@@ -17,42 +17,77 @@ jobs:
       with:
         ruby-version: '3.3'
 
-    - name: Install Dependencies
+    - name: Install Asciidoctor
       run: |
-        sudo apt-get update
-        sudo apt-get install -y fonts-noto-cjk fonts-noto-cjk-extra
         gem install asciidoctor -v '~> 2.0'
         gem install asciidoctor-pdf -v '~> 2.3'
         gem install asciidoctor-epub3 -v '~> 2.1'
 
+    - name: Download CJK Fonts
+      run: |
+        # 下載 Noto Sans TC (OTF 獨立檔案，asciidoctor-pdf 相容)
+        FONT_DIR="$(gem environment gemdir)/gems/asciidoctor-pdf-$(gem list asciidoctor-pdf --exact | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')/data/fonts"
+        echo "Font dir: $FONT_DIR"
+
+        # Noto Sans TC Regular & Bold
+        curl -sL "https://github.com/notofonts/noto-cjk/raw/main/Sans/OTF/TraditionalChinese/NotoSansCJKtc-Regular.otf" \
+          -o "$FONT_DIR/notosanstc-regular.otf"
+        curl -sL "https://github.com/notofonts/noto-cjk/raw/main/Sans/OTF/TraditionalChinese/NotoSansCJKtc-Bold.otf" \
+          -o "$FONT_DIR/notosanstc-bold.otf"
+
+        # M PLUS 1 Code (等寬字體，支援 CJK)
+        curl -sL "https://github.com/coz-m/MPLUS_FONTS/raw/master/fonts/ttf/Mplus1Code-Regular.ttf" \
+          -o "$FONT_DIR/mplus1code-regular.ttf"
+        curl -sL "https://github.com/coz-m/MPLUS_FONTS/raw/master/fonts/ttf/Mplus1Code-Bold.ttf" \
+          -o "$FONT_DIR/mplus1code-bold.ttf"
+
+        ls -lh "$FONT_DIR"/noto* "$FONT_DIR"/mplus* 2>/dev/null || echo "WARNING: fonts not found"
+
     - name: Build PDF
       run: |
+        mkdir -p output
         asciidoctor-pdf \
           -a pdf-theme=pdf-theme.yml \
-          -a pdf-fontsdir=fonts \
+          -a pdf-fontsdir=GEM_FONTS_DIR \
           -a scripts=cjk \
           -a allow-uri-read \
+          -a front-cover-image=image:cover.jpg[fit=contain] \
           -D output book.asciidoc
-        mv output/book.pdf "output/Mastering-Ethereum-繁中.pdf"
+        mv output/book.pdf "output/Mastering-Ethereum-Traditional-Chinese.pdf"
 
     - name: Build EPUB
       run: |
         asciidoctor-epub3 \
+          -a ebook-cover-image=cover.jpg \
           -D output book.asciidoc
-        mv output/book.epub "output/Mastering-Ethereum-繁中.epub"
+        mv output/book.epub "output/Mastering-Ethereum-Traditional-Chinese.epub"
 
     - name: Upload Artifacts
       uses: actions/upload-artifact@v4
       with:
         name: ebooks
-        path: output/Mastering-Ethereum-繁中.*
+        path: output/Mastering-Ethereum-Traditional-Chinese.*
 
     - name: Create Release
       uses: softprops/action-gh-release@v2
       with:
+        name: "${{ github.ref_name }} — 精通以太坊 繁體中文版"
         files: |
-          output/Mastering-Ethereum-繁中.pdf
-          output/Mastering-Ethereum-繁中.epub
-        generate_release_notes: true
+          output/Mastering-Ethereum-Traditional-Chinese.pdf
+          output/Mastering-Ethereum-Traditional-Chinese.epub
+        body: |
+          ## 精通以太坊 — Mastering Ethereum 繁體中文版
+
+          由 Andreas M. Antonopoulos 和 Gavin Wood 著作，Dr. Awesome Doge 翻譯。
+
+          ### 下載
+          - **PDF** — 適合電腦、平板閱讀和列印 (A4)
+          - **EPUB** — 適合電子書閱讀器 (Kindle, Apple Books, Kobo 等)
+
+          ### 線上閱讀
+          👉 [mastering-ethereum.doge.tg](https://mastering-ethereum.doge.tg/)
+
+          ### 內容
+          涵蓋以太坊基礎、密鑰與地址、錢包、交易、智能合約、Solidity、DApps、Oracles、Gas、EVM、共識、Vyper、DevP2P、以太坊標準和分叉歷史等 19 章完整內容。
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
