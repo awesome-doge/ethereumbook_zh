@@ -1,41 +1,75 @@
-[**電子書線上看**](https://cypherpunks-core.github.io/ethereumbook_zh/)、[**電子書下載**](https://github.com/cypherpunks-core/ethereumbook_zh/releases)、[**本倉庫位置**](https://github.com/cypherpunks-core/ethereumbook_zh)    
-# Mastering Ethereum - 繁中
-<center>
-<img src="/images/cover.png" width="40%" height="40%" />
-</center>
+# 精通以太坊 — Mastering Ethereum 繁體中文版
+
+<p align="center">
+  <img src="images/cover.png" width="320" alt="Mastering Ethereum Cover" />
+</p>
+
+<p align="center">
+  <a href="https://mastering-ethereum.doge.tg/"><strong>線上閱讀</strong></a> ·
+  <a href="https://github.com/awesome-doge/ethereumbook_zh/releases/latest">電子書下載</a> ·
+  <a href="https://github.com/awesome-doge/ethereumbook_zh">GitHub</a>
+</p>
+
+---
+
+由 **Andreas M. Antonopoulos** 和 **Dr. Gavin Wood** 著作，**Dr. Awesome Doge** 翻譯。
+
+本書是 [Mastering Ethereum](https://github.com/ethereumbook/ethereumbook) 的繁體中文翻譯，涵蓋以太坊的完整技術細節。
+
+## 閱讀方式
+
+| 格式 | 說明 |
+|------|------|
+| [線上閱讀](https://mastering-ethereum.doge.tg/) | 響應式網頁版，支援桌面和手機 |
+| [PDF 下載](https://github.com/awesome-doge/ethereumbook_zh/releases/latest) | A4 排版，適合電腦、平板和列印 |
+| [EPUB 下載](https://github.com/awesome-doge/ethereumbook_zh/releases/latest) | 適合 Kindle、Apple Books、Kobo 等電子書閱讀器 |
 
 ## 目錄
 
-[前言](preface.asciidoc)    
-[術語](glossary.asciidoc)    
-[第1章 什麼是以太坊](ch01.asciidoc)    
-[第2章 以太坊基礎](ch02.asciidoc)    
-[第3章 以太坊客戶端](ch03.asciidoc)    
-[第4章 以太坊測試網](ch04.asciidoc)    
-[第5章 密鑰和地址](ch05.asciidoc)    
-[第6章 錢包](ch06.asciidoc)    
-[第7章 交易](ch07.asciidoc)    
-[第8章 智能合約](ch08.asciidoc)    
-[第9章 開發工具，框架和庫](ch09.asciidoc)    
-[第10章 代幣（Tokens）](ch10.asciidoc)    
-[第11章 去中心化應用（DApps）](ch11.asciidoc)    
-[第12章 預言機（Oracles）](ch12.asciidoc)    
-[第13章 燃氣（Gas）](ch13.asciidoc)    
-[第14章 以太坊虛擬機](ch14.asciidoc)    
-[第15章 共識](ch15.asciidoc)    
-[第16章 Vyper：面向合約的程式語言](ch16.asciidoc)    
-[第17章 DevP2P協議](ch17.asciidoc)    
-[第18章 以太坊標準](ch18.asciidoc)    
-[第19章 以太坊分叉歷史](ch19.asciidoc)    
+| 章節 | 主題 |
+|------|------|
+| [前言](preface.asciidoc) | 封面上的蜜蜂有什麼含義？ |
+| [術語](glossary.asciidoc) | 快速術語表 |
+| [第 1 章](ch01.asciidoc) | 什麼是以太坊 |
+| [第 2 章](ch02.asciidoc) | 以太坊基礎 |
+| [第 3 章](ch03.asciidoc) | 以太坊客戶端 |
+| [第 4 章](ch04.asciidoc) | 以太坊測試網 |
+| [第 5 章](ch05.asciidoc) | 密鑰和地址 |
+| [第 6 章](ch06.asciidoc) | 錢包 |
+| [第 7 章](ch07.asciidoc) | 交易 |
+| [第 8 章](ch08.asciidoc) | 智能合約 |
+| [第 9 章](ch09.asciidoc) | 開發工具、框架和庫 |
+| [第 10 章](ch10.asciidoc) | 代幣 (Tokens) |
+| [第 11 章](ch11.asciidoc) | 去中心化應用 (DApps) |
+| [第 12 章](ch12.asciidoc) | 預言機 (Oracles) |
+| [第 13 章](ch13.asciidoc) | 燃氣 (Gas) |
+| [第 14 章](ch14.asciidoc) | 以太坊虛擬機 (EVM) |
+| [第 15 章](ch15.asciidoc) | 共識 |
+| [第 16 章](ch16.asciidoc) | Vyper |
+| [第 17 章](ch17.asciidoc) | DevP2P 協議 |
+| [第 18 章](ch18.asciidoc) | 以太坊標準 |
+| [第 19 章](ch19.asciidoc) | 以太坊分叉歷史 |
 
-## Source and license
+## 構建
 
-The [first edition](https://github.com/ethereumbook/ethereumbook/tree/first_edition_first_print) of this book, as printed and sold by O'Reilly Media, is available in this repository.
+本書使用 [AsciiDoc](https://asciidoc.org/) 格式撰寫，以 [Asciidoctor](https://asciidoctor.org/) 構建。
 
-Mastering Ethereum is released under the Creative Commons CC-BY-NC-ND license, which allows sharing the source code for personal use only. You may read this book for free. You may not create derivatives (such as PDF copies), or distribute the book commercially. The full terms of the license can be found here:
+```bash
+# 安裝
+gem install asciidoctor rouge
+
+# 構建 HTML
+asciidoctor -b html5 book.asciidoc
+
+# 構建 PDF（需要額外安裝）
+gem install asciidoctor-pdf
+asciidoctor-pdf -a pdf-theme=pdf-theme.yml book.asciidoc
+```
+
+推送到 `master` 分支會自動透過 GitHub Actions 部署網頁版。推送 `v*` tag 會自動構建 PDF/EPUB 並發布到 GitHub Releases。
+
+## 授權
+
+本書以 [Creative Commons CC-BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/) 授權釋出。
 
 [![Creative Commons License](https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
-
-<span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Mastering Ethereum</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://antonopoulos.com/" property="cc:attributionName" rel="cc:attributionURL">The Ethereum Book LLC and Gavin Wood</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.
-
-It is expected that the book will be released under a more permissive CC-BY-SA license within a year of publication.
