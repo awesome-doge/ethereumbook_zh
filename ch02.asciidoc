@@ -478,7 +478,7 @@ function () public payable {}
 
 返回到Remix選項卡並在“Run”選項卡下查看合約。你應該看到一個標記為 +withdraw+ 的紅色框，其中帶有一個標記為 +uint256 withdraw_amount+：
 
-[[remix_contract_interact]]
+[[remix_contract_withdraw]]
 .The withdraw function of Faucet.sol, in Remix
 image::images/remix_contract_interact.png["The withdraw function of Faucet.sol, in Remix"]
 

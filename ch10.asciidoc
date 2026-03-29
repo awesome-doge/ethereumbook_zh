@@ -327,7 +327,7 @@ https://github.com/ethereumbook/ethereumbook/blob/develop/code/truffle/METoken/c
 .METoken.sol : A Solidity contract implementing an ERC20 Token
 [source,solidity,linenums]
 ----
-include::code/METoken/contracts/METoken.sol[]
+include::code/truffle/METoken/contracts/METoken.sol[]
 ----
 
 在這裡，我們定義可選變數+name+，+symbol+和+decimals+。我們還定義了一個+_initial_supply+變數，設置為2,100萬個Token，以及兩個小數細分（總共21億）。在契約的初始化（構造函數）函數中，我們將+totalSupply+設置為等於+_initial_supply+，並將所有+_initial_supply+分配給創建 +METoken+ 契約的帳戶餘額（+msg.sender+）。
@@ -359,14 +359,7 @@ https://github.com/ethereumbook/ethereumbook/blob/develop/code/truffle/METoken/m
 .2_deploy_contracts: Migration to deploy METoken
 [source,javascript,linenums]
 ----
-include::code/METoken/migrations/2_deploy_contracts.js[]
-
-var METoken = artifacts.require("METoken");
-
-module.exports = function(deployer) {
-  // Deploy the METoken contract as our only task
-  deployer.deploy(METoken);
-};
+include::code/truffle/METoken/migrations/2_deploy_contracts.js[]
 ----
 
 在我們部署其中一個以太坊測試網路之前，讓我們開始一個本地區塊鏈來測試一切。正如我們在<<using_ganache>>中所做的那樣，從 +ganache-cli+ 的命令行或從圖形用戶界面啟動 +ganache+ 區塊鏈。
@@ -420,7 +413,7 @@ truffle(ganache)> METoken
 { [Function: TruffleContract]
   _static_methods:
 
-[...]
+\[...]
 
 currentProvider:
  HttpProvider {

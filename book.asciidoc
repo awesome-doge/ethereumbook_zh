@@ -9,6 +9,13 @@
 :stem: latexmath
 :docinfo: shared-footer
 :lang: zh-Hant
+:toc-title: 目錄
+:last-update-label: 最後更新：
+:caution-caption: 小心
+:important-caption: 重要
+:note-caption: 備註
+:tip-caption: 提示
+:warning-caption: 警告
 
 ++++
 <script type="text/javascript" async

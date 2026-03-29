@@ -26,6 +26,15 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: #b3d9ff;
+  color: #1a252f;
+}
+
 /* ===== 基礎排版 ===== */
 body {
   font-family: var(--body-font);
@@ -45,13 +54,9 @@ body.toc2.toc-left {
   padding-left: var(--toc-width);
 }
 
-body.toc2.toc-left #header {
-  padding-left: var(--toc-width);
-}
-
 /* ===== 頁首 ===== */
 #header {
-  max-width: calc(var(--max-content-width) + 4rem);
+  max-width: var(--max-content-width);
   margin: 0 auto;
   padding: 2.5rem 2rem 1rem;
 }
@@ -330,20 +335,7 @@ pre code {
   font-size: inherit;
 }
 
-/* ===== Rouge 語法高亮顏色 (GitHub 風格) ===== */
-.rouge .c1, .rouge .c, .rouge .cm, .rouge .cs { color: #6a737d; font-style: italic; }
-.rouge .kd, .rouge .kc, .rouge .kr, .rouge .k { color: #d73a49; font-weight: 600; }
-.rouge .kn { color: #d73a49; }
-.rouge .nb { color: #005cc5; }
-.rouge .nf, .rouge .nx { color: #6f42c1; }
-.rouge .s1, .rouge .s2, .rouge .s, .rouge .dl { color: #032f62; }
-.rouge .mi, .rouge .mf, .rouge .mh { color: #005cc5; }
-.rouge .na { color: #005cc5; }
-.rouge .nl { color: #005cc5; }
-.rouge .nv { color: #e36209; }
-.rouge .o, .rouge .p { color: var(--text-color); }
-.rouge .w { color: var(--text-color); }
-.rouge .err { color: #b31d28; }
+/* Rouge 語法高亮由 rouge-github.css 提供 */
 
 /* ===== 表格 ===== */
 table.tableblock,
@@ -450,8 +442,16 @@ img {
   padding-top: 1.1rem;
 }
 
+/* 隱藏 FA 的空圖標，用 ::before 顯示實際圖標 */
 .admonitionblock td.icon i {
-  font-size: 1.4rem;
+  font-size: 0;
+  display: block;
+  text-align: center;
+}
+
+.admonitionblock td.icon i::before {
+  font-size: 1.5rem;
+  display: block;
 }
 
 .admonitionblock td.icon i::after {
@@ -459,7 +459,9 @@ img {
   font-style: normal;
   font-size: 0.7rem;
   display: block;
-  margin-top: 0.2rem;
+  margin-top: 0.3rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
 }
 
 /* TIP */
@@ -468,6 +470,7 @@ img {
   border-left: 4px solid #4caf50;
 }
 .admonitionblock.tip td.icon i { color: #2e7d32; }
+.admonitionblock.tip td.icon i::before { content: "\f0eb"; font-family: FontAwesome; }
 .admonitionblock.tip td.icon i::after { content: "提示"; color: #2e7d32; }
 
 /* NOTE */
@@ -476,7 +479,8 @@ img {
   border-left: 4px solid #2196f3;
 }
 .admonitionblock.note td.icon i { color: #1565c0; }
-.admonitionblock.note td.icon i::after { content: "注意"; color: #1565c0; }
+.admonitionblock.note td.icon i::before { content: "\f05a"; font-family: FontAwesome; }
+.admonitionblock.note td.icon i::after { content: "備註"; color: #1565c0; }
 
 /* WARNING */
 .admonitionblock.warning > table {
@@ -484,6 +488,7 @@ img {
   border-left: 4px solid #ff9800;
 }
 .admonitionblock.warning td.icon i { color: #e65100; }
+.admonitionblock.warning td.icon i::before { content: "\f071"; font-family: FontAwesome; }
 .admonitionblock.warning td.icon i::after { content: "警告"; color: #e65100; }
 
 /* IMPORTANT */
@@ -492,6 +497,7 @@ img {
   border-left: 4px solid #e91e63;
 }
 .admonitionblock.important td.icon i { color: #c62828; }
+.admonitionblock.important td.icon i::before { content: "\f06a"; font-family: FontAwesome; }
 .admonitionblock.important td.icon i::after { content: "重要"; color: #c62828; }
 
 /* CAUTION */
@@ -500,7 +506,8 @@ img {
   border-left: 4px solid #ffc107;
 }
 .admonitionblock.caution td.icon i { color: #f57f17; }
-.admonitionblock.caution td.icon i::after { content: "注意"; color: #f57f17; }
+.admonitionblock.caution td.icon i::before { content: "\f06d"; font-family: FontAwesome; }
+.admonitionblock.caution td.icon i::after { content: "小心"; color: #f57f17; }
 
 /* ===== 列表 ===== */
 .ulist ul,
@@ -641,10 +648,6 @@ hr {
 
   /* 取消 TOC 側邊欄佈局 */
   body.toc2.toc-left {
-    padding-left: 0;
-  }
-
-  body.toc2.toc-left #header {
     padding-left: 0;
   }
 
