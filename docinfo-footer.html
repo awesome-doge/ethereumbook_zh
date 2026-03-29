@@ -319,8 +319,13 @@
 
     var currentHighlight = null;
 
+    // 注入高亮樣式
+    var hlStyle = document.createElement('style');
+    hlStyle.textContent = '#toc a.toc-active { background: #dbeafe !important; color: #1d4ed8 !important; border-radius: 4px; font-weight: 600; border-left: 3px solid #2980b9; padding-left: 0.4rem; }';
+    document.head.appendChild(hlStyle);
+
     function highlightToc() {
-      var scrollPos = window.pageYOffset + 80;
+      var scrollPos = window.pageYOffset + 100;
       var current = null;
 
       for (var i = headingIds.length - 1; i >= 0; i--) {
@@ -333,13 +338,19 @@
 
       if (current !== currentHighlight) {
         if (currentHighlight) {
-          currentHighlight.style.background = '';
-          currentHighlight.style.color = '';
+          currentHighlight.classList.remove('toc-active');
         }
         if (current) {
-          current.style.background = '#e3f2fd';
-          current.style.color = '#1565c0';
-          current.style.borderRadius = '4px';
+          current.classList.add('toc-active');
+          // 確保高亮項在可視範圍
+          var tocEl = document.getElementById('toc');
+          if (tocEl) {
+            var linkRect = current.getBoundingClientRect();
+            var tocRect = tocEl.getBoundingClientRect();
+            if (linkRect.top < tocRect.top + 60 || linkRect.bottom > tocRect.bottom - 20) {
+              current.scrollIntoView({ block: 'center', behavior: 'smooth' });
+            }
+          }
         }
         currentHighlight = current;
       }

@@ -7,7 +7,7 @@
 :source-highlighter: rouge
 :pdf-fontsdir: .
 :stem: latexmath
-:docinfo: shared-footer
+:docinfo: shared
 :lang: zh-Hant
 :toc-title: 目錄
 :last-update-label: 最後更新：

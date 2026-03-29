@@ -442,26 +442,33 @@ img {
   padding-top: 1.1rem;
 }
 
-/* 隱藏 FA 的空圖標，用 ::before 顯示實際圖標 */
+/* 隱藏 FA 原始空圖標文字，用 ::before 顯示實際圖標 */
 .admonitionblock td.icon i {
-  font-size: 0;
   display: block;
   text-align: center;
+  width: 100%;
+  height: 0;
+  overflow: visible;
+  font-size: 1px;
+  color: transparent;
 }
 
 .admonitionblock td.icon i::before {
-  font-size: 1.5rem;
   display: block;
+  font-size: 1.5rem;
+  height: auto;
+  color: inherit;
 }
 
 .admonitionblock td.icon i::after {
+  display: block;
   font-family: var(--body-font);
   font-style: normal;
-  font-size: 0.7rem;
-  display: block;
-  margin-top: 0.3rem;
+  font-size: 0.72rem;
+  margin-top: 0.35rem;
   font-weight: 600;
   letter-spacing: 0.05em;
+  height: auto;
 }
 
 /* TIP */
