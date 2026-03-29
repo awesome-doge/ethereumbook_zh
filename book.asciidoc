@@ -18,11 +18,13 @@
 :warning-caption: 警告
 :front-cover-image: image:cover.jpg[Front Cover,fit=contain]
 
+ifdef::backend-html5[]
 ++++
-<script type="text/javascript" async
+<script type="text/javascript" async="async"
   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.min.js">
 </script>
 ++++
+endif::[]
 
 本書由 Dr. Awesome Doge 翻譯。
 
