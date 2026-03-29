@@ -17,31 +17,65 @@ jobs:
       with:
         ruby-version: '3.3'
 
-    - name: Install Asciidoctor
+    - name: Install Dependencies
       run: |
+        sudo apt-get update
+        sudo apt-get install -y fonts-noto-cjk fonts-noto-cjk-extra python3-fonttools
         gem install asciidoctor -v '~> 2.0'
         gem install asciidoctor-pdf -v '~> 2.3'
         gem install asciidoctor-epub3 -v '~> 2.1'
+        gem install rouge
 
-    - name: Download CJK Fonts
+    - name: Prepare CJK Fonts for PDF
       run: |
-        # 下載 Noto Sans TC (OTF 獨立檔案，asciidoctor-pdf 相容)
         FONT_DIR="$(gem environment gemdir)/gems/asciidoctor-pdf-$(gem list asciidoctor-pdf --exact | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')/data/fonts"
         echo "Font dir: $FONT_DIR"
 
-        # Noto Sans TC Regular & Bold
-        curl -sL "https://github.com/notofonts/noto-cjk/raw/main/Sans/OTF/TraditionalChinese/NotoSansCJKtc-Regular.otf" \
-          -o "$FONT_DIR/notosanstc-regular.otf"
-        curl -sL "https://github.com/notofonts/noto-cjk/raw/main/Sans/OTF/TraditionalChinese/NotoSansCJKtc-Bold.otf" \
-          -o "$FONT_DIR/notosanstc-bold.otf"
+        # 用 fonttools 從 .ttc 提取獨立 .ttf
+        # Noto Sans CJK TC 在 .ttc 中的 index: 0=Regular, 需要用 ttx 確認
+        python3 -c "
+from fontTools.ttLib import TTCollection
+import sys
 
-        # M PLUS 1 Code (等寬字體，支援 CJK)
-        curl -sL "https://github.com/coz-m/MPLUS_FONTS/raw/master/fonts/ttf/Mplus1Code-Regular.ttf" \
-          -o "$FONT_DIR/mplus1code-regular.ttf"
-        curl -sL "https://github.com/coz-m/MPLUS_FONTS/raw/master/fonts/ttf/Mplus1Code-Bold.ttf" \
-          -o "$FONT_DIR/mplus1code-bold.ttf"
+for src, variants in [
+    ('/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc', 'regular'),
+    ('/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc', 'bold'),
+]:
+    tc = TTCollection(src)
+    # 找 Traditional Chinese variant (通常 index 1 = TC)
+    for i, font in enumerate(tc):
+        name = font['name'].getDebugName(1) or ''
+        if 'TC' in name or 'Traditional Chinese' in name:
+            out = f'$FONT_DIR/notosanstc-{variants}.ttf'
+            font.save(out)
+            print(f'Extracted {name} (index {i}) -> {out}')
+            break
+    else:
+        # fallback: use index 1 (usually TC)
+        idx = min(1, len(tc) - 1)
+        out = f'$FONT_DIR/notosanstc-{variants}.ttf'
+        tc[idx].save(out)
+        print(f'Fallback: index {idx} -> {out}')
+"
+        # M PLUS 1 Code 從 Google Fonts 下載
+        curl -sL "https://fonts.google.com/download?family=M+PLUS+1+Code" -o /tmp/mplus.zip || true
+        if [ -f /tmp/mplus.zip ] && file /tmp/mplus.zip | grep -q Zip; then
+          unzip -q -o /tmp/mplus.zip -d /tmp/mplus
+          find /tmp/mplus -name "*Regular*" -name "*.ttf" | head -1 | xargs -I{} cp {} "$FONT_DIR/mplus1code-regular.ttf"
+          find /tmp/mplus -name "*Bold*" -name "*.ttf" | head -1 | xargs -I{} cp {} "$FONT_DIR/mplus1code-bold.ttf"
+        fi
 
-        ls -lh "$FONT_DIR"/noto* "$FONT_DIR"/mplus* 2>/dev/null || echo "WARNING: fonts not found"
+        # 如果 M PLUS 下載失敗，用 Noto Sans TC 作為等寬 fallback
+        if [ ! -f "$FONT_DIR/mplus1code-regular.ttf" ]; then
+          cp "$FONT_DIR/notosanstc-regular.ttf" "$FONT_DIR/mplus1code-regular.ttf"
+          cp "$FONT_DIR/notosanstc-bold.ttf" "$FONT_DIR/mplus1code-bold.ttf"
+          echo "M PLUS not available, using Noto Sans TC as code font fallback"
+        fi
+
+        echo "=== Installed fonts ==="
+        ls -lh "$FONT_DIR"/noto* "$FONT_DIR"/mplus* 2>/dev/null
+        echo "=== Verify font files ==="
+        file "$FONT_DIR"/notosanstc-regular.ttf
 
     - name: Build PDF
       run: |
@@ -54,6 +88,7 @@ jobs:
           -a front-cover-image=image:cover.jpg[fit=contain] \
           -D output book.asciidoc
         mv output/book.pdf "output/Mastering-Ethereum-Traditional-Chinese.pdf"
+        echo "PDF size: $(du -h output/Mastering-Ethereum-Traditional-Chinese.pdf | cut -f1)"
 
     - name: Build EPUB
       run: |
@@ -61,6 +96,7 @@ jobs:
           -a ebook-cover-image=cover.jpg \
           -D output book.asciidoc
         mv output/book.epub "output/Mastering-Ethereum-Traditional-Chinese.epub"
+        echo "EPUB size: $(du -h output/Mastering-Ethereum-Traditional-Chinese.epub | cut -f1)"
 
     - name: Upload Artifacts
       uses: actions/upload-artifact@v4
@@ -85,7 +121,7 @@ jobs:
           - **EPUB** — 適合電子書閱讀器 (Kindle, Apple Books, Kobo 等)
 
           ### 線上閱讀
-          👉 [mastering-ethereum.doge.tg](https://mastering-ethereum.doge.tg/)
+          [mastering-ethereum.doge.tg](https://mastering-ethereum.doge.tg/)
 
           ### 內容
           涵蓋以太坊基礎、密鑰與地址、錢包、交易、智能合約、Solidity、DApps、Oracles、Gas、EVM、共識、Vyper、DevP2P、以太坊標準和分叉歷史等 19 章完整內容。

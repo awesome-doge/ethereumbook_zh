@@ -4,10 +4,10 @@ font:
   catalog:
     merge: true
     Noto Sans TC:
-      normal: GEM_FONTS_DIR/notosanstc-regular.otf
-      bold: GEM_FONTS_DIR/notosanstc-bold.otf
-      italic: GEM_FONTS_DIR/notosanstc-regular.otf
-      bold_italic: GEM_FONTS_DIR/notosanstc-bold.otf
+      normal: GEM_FONTS_DIR/notosanstc-regular.ttf
+      bold: GEM_FONTS_DIR/notosanstc-bold.ttf
+      italic: GEM_FONTS_DIR/notosanstc-regular.ttf
+      bold_italic: GEM_FONTS_DIR/notosanstc-bold.ttf
     M Plus 1 Code:
       normal: GEM_FONTS_DIR/mplus1code-regular.ttf
       bold: GEM_FONTS_DIR/mplus1code-bold.ttf
