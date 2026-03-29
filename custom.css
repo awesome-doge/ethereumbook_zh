@@ -234,6 +234,8 @@ a {
   color: var(--link-color);
   text-decoration: none;
   transition: color 0.15s;
+  word-break: break-all;
+  overflow-wrap: break-word;
 }
 
 a:hover {
