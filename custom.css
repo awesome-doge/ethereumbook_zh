@@ -1,0 +1,449 @@
+/* ===== 基礎排版 ===== */
+:root {
+  --text-color: #2c3e50;
+  --bg-color: #ffffff;
+  --code-bg: #f6f8fa;
+  --border-color: #e1e4e8;
+  --link-color: #3498db;
+  --heading-color: #1a252f;
+  --sidebar-width: 280px;
+  --max-content-width: 860px;
+  --font-size-base: 17px;
+  --line-height: 1.85;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", "Helvetica Neue", Arial, sans-serif;
+  font-size: var(--font-size-base);
+  line-height: var(--line-height);
+  color: var(--text-color);
+  background: var(--bg-color);
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ===== 內容容器 ===== */
+#content {
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+
+/* ===== 標題 ===== */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--heading-color);
+  font-weight: 700;
+  line-height: 1.3;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+h1 { font-size: 2rem; border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem; }
+h2 { font-size: 1.65rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.4rem; }
+h3 { font-size: 1.35rem; }
+h4 { font-size: 1.15rem; }
+h5, h6 { font-size: 1rem; }
+
+/* ===== 段落與文字 ===== */
+p {
+  margin: 0.8rem 0;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+a {
+  color: var(--link-color);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+strong { font-weight: 700; }
+em { font-style: italic; }
+
+/* ===== 程式碼 ===== */
+code {
+  font-family: "JetBrains Mono", "Fira Code", "Source Code Pro", "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.88em;
+  background: var(--code-bg);
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+}
+
+pre {
+  background: var(--code-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1rem 1.2rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  line-height: 1.55;
+  margin: 1.2rem 0;
+  font-size: 0.85em;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  font-size: inherit;
+  white-space: pre;
+  word-break: normal;
+  overflow-wrap: normal;
+}
+
+/* 行號 */
+.listingblock .content pre .line-numbers {
+  border-right: 1px solid var(--border-color);
+  padding-right: 0.8em;
+  margin-right: 0.8em;
+  color: #999;
+  user-select: none;
+}
+
+/* ===== 表格 ===== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  display: block;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+table thead th {
+  background: #f0f3f6;
+  font-weight: 700;
+  text-align: left;
+  padding: 0.7rem 0.8rem;
+  border: 1px solid var(--border-color);
+  white-space: nowrap;
+}
+
+table td {
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--border-color);
+  vertical-align: top;
+}
+
+table tbody tr:nth-child(even) {
+  background: #fafbfc;
+}
+
+/* ===== 圖片 ===== */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 1.5rem auto;
+  border-radius: 4px;
+}
+
+.imageblock {
+  margin: 1.5rem 0;
+  text-align: center;
+}
+
+.imageblock .title {
+  font-size: 0.9em;
+  color: #666;
+  margin-top: 0.5rem;
+  font-style: italic;
+}
+
+/* ===== 提示/警告區塊 (Admonitions) ===== */
+.admonitionblock {
+  margin: 1.5rem 0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.admonitionblock table {
+  display: table;
+  overflow: visible;
+  margin: 0;
+  background: #f8f9fa;
+  border: none;
+}
+
+.admonitionblock table td {
+  border: none;
+  padding: 1rem;
+}
+
+.admonitionblock td.icon {
+  width: 50px;
+  text-align: center;
+  vertical-align: middle;
+  font-weight: 700;
+}
+
+/* TIP */
+.admonitionblock.tip table {
+  background: #e8f5e9;
+  border-left: 4px solid #4caf50;
+}
+.admonitionblock.tip td.icon { color: #2e7d32; }
+
+/* NOTE */
+.admonitionblock.note table {
+  background: #e3f2fd;
+  border-left: 4px solid #2196f3;
+}
+.admonitionblock.note td.icon { color: #1565c0; }
+
+/* WARNING */
+.admonitionblock.warning table {
+  background: #fff3e0;
+  border-left: 4px solid #ff9800;
+}
+.admonitionblock.warning td.icon { color: #e65100; }
+
+/* IMPORTANT */
+.admonitionblock.important table {
+  background: #fce4ec;
+  border-left: 4px solid #e91e63;
+}
+.admonitionblock.important td.icon { color: #c62828; }
+
+/* CAUTION */
+.admonitionblock.caution table {
+  background: #fff8e1;
+  border-left: 4px solid #ffc107;
+}
+.admonitionblock.caution td.icon { color: #f57f17; }
+
+/* ===== 列表 ===== */
+ul, ol {
+  padding-left: 1.8rem;
+  margin: 0.8rem 0;
+}
+
+li {
+  margin: 0.3rem 0;
+}
+
+li > p {
+  margin: 0.3rem 0;
+}
+
+/* 定義列表 */
+dl dt {
+  font-weight: 700;
+  margin-top: 1rem;
+}
+
+dl dd {
+  margin-left: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* ===== 引用區塊 ===== */
+blockquote, .quoteblock {
+  border-left: 4px solid var(--border-color);
+  margin: 1.2rem 0;
+  padding: 0.5rem 1.2rem;
+  color: #555;
+  background: #fafbfc;
+  border-radius: 0 4px 4px 0;
+}
+
+/* ===== 側邊欄 (Sidebar blocks) ===== */
+.sidebarblock {
+  background: #f8f9fa;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1.2rem;
+  margin: 1.5rem 0;
+}
+
+.sidebarblock .title {
+  font-weight: 700;
+  font-size: 1.05em;
+  margin-bottom: 0.5rem;
+}
+
+/* ===== 目錄 (TOC) ===== */
+#toc {
+  background: #f8f9fa;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+}
+
+#toc .title, #toctitle {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+#toc ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+#toc ul ul {
+  padding-left: 1.2rem;
+}
+
+#toc li {
+  margin: 0.3rem 0;
+  line-height: 1.5;
+}
+
+#toc a {
+  color: var(--text-color);
+  transition: color 0.2s;
+}
+
+#toc a:hover {
+  color: var(--link-color);
+}
+
+/* ===== 腳註 ===== */
+.footnote {
+  font-size: 0.85em;
+  color: #666;
+}
+
+/* ===== 水平線 ===== */
+hr {
+  border: none;
+  border-top: 1px solid var(--border-color);
+  margin: 2rem 0;
+}
+
+/* ===== 回到頂部的錨點樣式 ===== */
+.sect1, .sect2 {
+  scroll-margin-top: 1rem;
+}
+
+/* ===== 手機版 (< 768px) ===== */
+@media screen and (max-width: 768px) {
+  :root {
+    --font-size-base: 16px;
+    --line-height: 1.75;
+  }
+
+  #content {
+    padding: 1rem 1rem 3rem;
+  }
+
+  h1 { font-size: 1.6rem; }
+  h2 { font-size: 1.35rem; }
+  h3 { font-size: 1.15rem; }
+  h4 { font-size: 1.05rem; }
+
+  pre {
+    padding: 0.8rem;
+    font-size: 0.8em;
+    border-radius: 6px;
+  }
+
+  /* 表格在手機上可水平捲動 */
+  table {
+    font-size: 0.9em;
+  }
+
+  table thead th {
+    padding: 0.5rem;
+  }
+
+  table td {
+    padding: 0.4rem 0.5rem;
+  }
+
+  /* admonition 在手機上更緊湊 */
+  .admonitionblock td.icon {
+    width: 36px;
+    padding: 0.6rem;
+  }
+
+  .admonitionblock td.content {
+    padding: 0.6rem;
+  }
+
+  /* TOC 更緊湊 */
+  #toc {
+    padding: 1rem;
+  }
+
+  /* 圖片標題 */
+  .imageblock .title {
+    font-size: 0.85em;
+  }
+
+  /* 列表縮排減少 */
+  ul, ol {
+    padding-left: 1.3rem;
+  }
+}
+
+/* ===== 小手機 (< 480px) ===== */
+@media screen and (max-width: 480px) {
+  :root {
+    --font-size-base: 15px;
+  }
+
+  #content {
+    padding: 0.8rem 0.8rem 2rem;
+  }
+
+  h1 { font-size: 1.4rem; }
+  h2 { font-size: 1.2rem; }
+
+  pre {
+    font-size: 0.75em;
+    padding: 0.6rem;
+  }
+}
+
+/* ===== 寬螢幕 (> 1200px) ===== */
+@media screen and (min-width: 1200px) {
+  :root {
+    --font-size-base: 18px;
+  }
+
+  #content {
+    padding: 3rem 2rem 5rem;
+  }
+}
+
+/* ===== 列印樣式 ===== */
+@media print {
+  body {
+    font-size: 12pt;
+    line-height: 1.6;
+    color: #000;
+  }
+
+  #toc {
+    page-break-after: always;
+  }
+
+  pre {
+    border: 1px solid #ccc;
+    page-break-inside: avoid;
+  }
+
+  img {
+    max-width: 100%;
+    page-break-inside: avoid;
+  }
+
+  h1, h2, h3, h4 {
+    page-break-after: avoid;
+  }
+
+  .admonitionblock {
+    page-break-inside: avoid;
+  }
+}
