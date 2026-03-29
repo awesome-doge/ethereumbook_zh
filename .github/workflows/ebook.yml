@@ -54,9 +54,13 @@ jobs:
 
     - name: Build EPUB
       run: |
+        # 複製 gem 預設樣式並附加自訂覆蓋
+        EPUB_STYLES="$(gem environment gemdir)/gems/asciidoctor-epub3-$(gem list asciidoctor-epub3 --exact | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')/data/styles"
+        cp -r "$EPUB_STYLES" epub-build-styles
+        cat epub-styles/epub3-css3-only.css >> epub-build-styles/epub3-css3-only.scss
         asciidoctor-epub3 \
           -a ebook-cover-image=cover.jpg \
-          -a epub3-stylesdir=epub-styles \
+          -a epub3-stylesdir=epub-build-styles \
           -D output book.asciidoc
         mv output/book.epub "output/Mastering-Ethereum-Traditional-Chinese.epub"
 
