@@ -37,16 +37,7 @@ jobs:
 
     - name: Build EPUB
       run: |
-        # 複製系統 CJK 字體到 epub3 gem 期望的位置
-        EPUB_FONTS=$(gem contents asciidoctor-epub3 | grep 'data/fonts$' | head -1)
-        if [ -n "$EPUB_FONTS" ]; then
-          cp /usr/share/fonts/opentype/noto/NotoSerifCJK-Regular.ttc "$EPUB_FONTS/notoserif-regular-cjk.ttf" 2>/dev/null || true
-          cp /usr/share/fonts/opentype/noto/NotoSerifCJK-Bold.ttc "$EPUB_FONTS/notoserif-bold-cjk.ttf" 2>/dev/null || true
-          cp /usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc "$EPUB_FONTS/notosans-regular-cjk.ttf" 2>/dev/null || true
-          cp /usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc "$EPUB_FONTS/notosans-bold-cjk.ttf" 2>/dev/null || true
-        fi
         asciidoctor-epub3 \
-          -a scripts=cjk \
           -D output book.asciidoc
         mv output/book.epub "output/Mastering-Ethereum-繁中.epub"
 
