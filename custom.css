@@ -1,23 +1,34 @@
-/* ===== 基礎排版 ===== */
+/* ============================================================
+   精通以太坊 — 自訂樣式表
+   針對 Asciidoctor HTML5 輸出 (body.book.toc2.toc-left)
+   ============================================================ */
+
+/* ===== CSS 變數 ===== */
 :root {
   --text-color: #2c3e50;
+  --text-secondary: #555;
   --bg-color: #ffffff;
+  --bg-secondary: #f8f9fa;
   --code-bg: #f6f8fa;
   --border-color: #e1e4e8;
-  --link-color: #3498db;
+  --link-color: #2980b9;
+  --link-hover: #1a5276;
   --heading-color: #1a252f;
-  --sidebar-width: 280px;
-  --max-content-width: 860px;
+  --toc-width: 300px;
+  --max-content-width: 880px;
   --font-size-base: 17px;
   --line-height: 1.85;
+  --mono-font: "JetBrains Mono", "Fira Code", "Source Code Pro", "SF Mono", Menlo, Consolas, monospace;
+  --body-font: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", -apple-system, "Segoe UI", Arial, sans-serif;
 }
 
-* {
+*, *::before, *::after {
   box-sizing: border-box;
 }
 
+/* ===== 基礎排版 ===== */
 body {
-  font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--body-font);
   font-size: var(--font-size-base);
   line-height: var(--line-height);
   color: var(--text-color);
@@ -25,59 +36,235 @@ body {
   margin: 0;
   padding: 0;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
 }
 
-/* ===== 內容容器 ===== */
+/* ===== 桌面版：左側固定 TOC 佈局 ===== */
+body.toc2.toc-left {
+  padding-left: var(--toc-width);
+}
+
+body.toc2.toc-left #header {
+  padding-left: var(--toc-width);
+}
+
+/* ===== 頁首 ===== */
+#header {
+  max-width: calc(var(--max-content-width) + 4rem);
+  margin: 0 auto;
+  padding: 2.5rem 2rem 1rem;
+}
+
+#header h1 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--heading-color);
+  margin: 0 0 0.5rem;
+  line-height: 1.2;
+  border-bottom: 3px solid var(--heading-color);
+  padding-bottom: 0.6rem;
+}
+
+/* ===== 左側 TOC 側邊欄 ===== */
+body.toc2.toc-left #toc {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--toc-width);
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: var(--bg-secondary);
+  border-right: 1px solid var(--border-color);
+  padding: 1.5rem 1rem 2rem;
+  z-index: 100;
+  font-size: 0.88rem;
+  -webkit-overflow-scrolling: touch;
+}
+
+body.toc2.toc-left #toc::-webkit-scrollbar {
+  width: 4px;
+}
+
+body.toc2.toc-left #toc::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 2px;
+}
+
+#toctitle {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--heading-color);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--border-color);
+}
+
+#toc ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+#toc ul ul {
+  padding-left: 0.9rem;
+}
+
+#toc ul ul ul {
+  padding-left: 0.8rem;
+}
+
+#toc li {
+  margin: 0;
+  line-height: 1.4;
+}
+
+#toc a {
+  display: block;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  transition: background 0.15s, color 0.15s;
+  word-break: break-word;
+}
+
+#toc a:hover {
+  background: #e8ecf0;
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+/* TOC 層級區分 */
+#toc .sectlevel1 > li > a {
+  font-weight: 600;
+  color: var(--heading-color);
+  padding: 0.35rem 0.5rem;
+  margin-top: 0.3rem;
+}
+
+#toc .sectlevel2 > li > a {
+  font-size: 0.85rem;
+}
+
+#toc .sectlevel3 > li > a,
+#toc .sectlevel4 > li > a {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+/* ===== 主要內容區 ===== */
 #content {
   max-width: var(--max-content-width);
   margin: 0 auto;
-  padding: 2rem 1.5rem 4rem;
+  padding: 1.5rem 2rem 5rem;
+}
+
+/* ===== 前言區 ===== */
+#preamble .sectionbody {
+  font-size: 1.05em;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* ===== 章節結構 ===== */
+.sect1 {
+  padding-top: 1rem;
+  scroll-margin-top: 1rem;
+}
+
+.sect1 + .sect1 {
+  border-top: 1px solid var(--border-color);
+  margin-top: 2rem;
+}
+
+.sect2 {
+  scroll-margin-top: 1rem;
 }
 
 /* ===== 標題 ===== */
 h1, h2, h3, h4, h5, h6 {
+  font-family: var(--body-font);
   color: var(--heading-color);
   font-weight: 700;
   line-height: 1.3;
-  margin-top: 2.5rem;
-  margin-bottom: 1rem;
+  margin-top: 2.2rem;
+  margin-bottom: 0.8rem;
 }
 
-h1 { font-size: 2rem; border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem; }
-h2 { font-size: 1.65rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.4rem; }
-h3 { font-size: 1.35rem; }
-h4 { font-size: 1.15rem; }
-h5, h6 { font-size: 1rem; }
+h2 {
+  font-size: 1.7rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 2px solid var(--border-color);
+}
 
-/* ===== 段落與文字 ===== */
+h3 {
+  font-size: 1.35rem;
+  padding-bottom: 0.2rem;
+  border-bottom: 1px solid #eee;
+}
+
+h4 {
+  font-size: 1.15rem;
+}
+
+h5, h6 {
+  font-size: 1rem;
+  color: var(--text-secondary);
+}
+
+/* ===== 段落 ===== */
+.paragraph p,
 p {
-  margin: 0.8rem 0;
+  margin: 0.75rem 0;
   word-break: break-word;
   overflow-wrap: break-word;
 }
 
+/* ===== 連結 ===== */
 a {
   color: var(--link-color);
   text-decoration: none;
+  transition: color 0.15s;
 }
+
 a:hover {
+  color: var(--link-hover);
   text-decoration: underline;
 }
 
-strong { font-weight: 700; }
-em { font-style: italic; }
-
-/* ===== 程式碼 ===== */
+/* ===== 行內程式碼 ===== */
 code {
-  font-family: "JetBrains Mono", "Fira Code", "Source Code Pro", "SF Mono", Menlo, Consolas, monospace;
+  font-family: var(--mono-font);
   font-size: 0.88em;
   background: var(--code-bg);
-  padding: 0.15em 0.4em;
+  padding: 0.15em 0.45em;
   border-radius: 4px;
+  border: 1px solid #eaeef2;
+  word-break: break-word;
 }
 
+/* ===== 程式碼區塊 (Listing Blocks) ===== */
+.listingblock,
+.literalblock {
+  margin: 1.5rem 0;
+}
+
+.listingblock > .title {
+  font-size: 0.85em;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 0.4rem;
+  font-style: italic;
+}
+
+.listingblock .content pre,
+.literalblock .content pre,
 pre {
+  font-family: var(--mono-font);
   background: var(--code-bg);
   border: 1px solid var(--border-color);
   border-radius: 8px;
@@ -85,12 +272,14 @@ pre {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   line-height: 1.55;
-  margin: 1.2rem 0;
+  margin: 0;
   font-size: 0.85em;
+  tab-size: 4;
 }
 
 pre code {
   background: none;
+  border: none;
   padding: 0;
   border-radius: 0;
   font-size: inherit;
@@ -99,64 +288,140 @@ pre code {
   overflow-wrap: normal;
 }
 
-/* 行號 */
-.listingblock .content pre .line-numbers {
-  border-right: 1px solid var(--border-color);
-  padding-right: 0.8em;
-  margin-right: 0.8em;
-  color: #999;
+/* Rouge 行號表格 */
+.listingblock pre.rouge.highlight table.linenotable {
+  display: table;
+  width: 100%;
+  border: none;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  overflow: visible;
+}
+
+.listingblock pre.rouge.highlight table.linenotable td {
+  border: none;
+  padding: 0;
+  vertical-align: top;
+}
+
+.listingblock pre.rouge.highlight .linenos.gl {
+  width: 1%;
+  white-space: nowrap;
+  padding-right: 1rem;
   user-select: none;
 }
 
+.listingblock pre.rouge.highlight .linenos.gl pre.lineno {
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  color: #aaa;
+  text-align: right;
+  font-size: inherit;
+}
+
+.listingblock pre.rouge.highlight td.code pre {
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font-size: inherit;
+}
+
+/* ===== Rouge 語法高亮顏色 (GitHub 風格) ===== */
+.rouge .c1, .rouge .c, .rouge .cm, .rouge .cs { color: #6a737d; font-style: italic; }
+.rouge .kd, .rouge .kc, .rouge .kr, .rouge .k { color: #d73a49; font-weight: 600; }
+.rouge .kn { color: #d73a49; }
+.rouge .nb { color: #005cc5; }
+.rouge .nf, .rouge .nx { color: #6f42c1; }
+.rouge .s1, .rouge .s2, .rouge .s, .rouge .dl { color: #032f62; }
+.rouge .mi, .rouge .mf, .rouge .mh { color: #005cc5; }
+.rouge .na { color: #005cc5; }
+.rouge .nl { color: #005cc5; }
+.rouge .nv { color: #e36209; }
+.rouge .o, .rouge .p { color: var(--text-color); }
+.rouge .w { color: var(--text-color); }
+.rouge .err { color: #b31d28; }
+
 /* ===== 表格 ===== */
+table.tableblock,
 table {
   width: 100%;
   border-collapse: collapse;
   margin: 1.5rem 0;
-  display: block;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
+  font-size: 0.95em;
 }
 
+/* 不要把表格設為 display:block，否則會破壞佈局 */
+table.tableblock {
+  display: table;
+}
+
+table.tableblock thead th,
 table thead th {
   background: #f0f3f6;
   font-weight: 700;
   text-align: left;
-  padding: 0.7rem 0.8rem;
+  padding: 0.65rem 0.8rem;
   border: 1px solid var(--border-color);
-  white-space: nowrap;
 }
 
+table.tableblock td,
 table td {
-  padding: 0.6rem 0.8rem;
+  padding: 0.55rem 0.8rem;
   border: 1px solid var(--border-color);
   vertical-align: top;
 }
 
+table.tableblock tbody tr:nth-child(even),
 table tbody tr:nth-child(even) {
   background: #fafbfc;
+}
+
+/* 表格響應式容器 */
+.tableblock-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 1.5rem 0;
 }
 
 /* ===== 圖片 ===== */
 img {
   max-width: 100%;
   height: auto;
-  display: block;
-  margin: 1.5rem auto;
-  border-radius: 4px;
 }
 
 .imageblock {
-  margin: 1.5rem 0;
+  margin: 1.8rem 0;
   text-align: center;
 }
 
-.imageblock .title {
-  font-size: 0.9em;
-  color: #666;
-  margin-top: 0.5rem;
-  font-style: italic;
+.imageblock .content {
+  display: inline-block;
+  max-width: 100%;
 }
+
+.imageblock .content img {
+  display: block;
+  margin: 0 auto;
+  border-radius: 4px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+.imageblock > .title {
+  font-size: 0.88em;
+  color: #888;
+  margin-top: 0.6rem;
+  font-style: italic;
+  text-align: center;
+}
+
+/* 圖片尺寸變體 */
+.imageblock.smallerthirty .content img { max-width: 30%; }
+.imageblock.smallersixty .content img { max-width: 60%; }
+.imageblock.smallerseventy .content img { max-width: 70%; }
 
 /* ===== 提示/警告區塊 (Admonitions) ===== */
 .admonitionblock {
@@ -165,153 +430,188 @@ img {
   overflow: hidden;
 }
 
-.admonitionblock table {
+.admonitionblock > table {
   display: table;
-  overflow: visible;
+  width: 100%;
   margin: 0;
-  background: #f8f9fa;
   border: none;
+  border-radius: 8px;
 }
 
-.admonitionblock table td {
+.admonitionblock > table td {
   border: none;
-  padding: 1rem;
+  padding: 1rem 1.2rem;
 }
 
 .admonitionblock td.icon {
-  width: 50px;
+  width: 52px;
   text-align: center;
-  vertical-align: middle;
-  font-weight: 700;
+  vertical-align: top;
+  padding-top: 1.1rem;
+}
+
+.admonitionblock td.icon i {
+  font-size: 1.4rem;
+}
+
+.admonitionblock td.icon i::after {
+  font-family: var(--body-font);
+  font-style: normal;
+  font-size: 0.7rem;
+  display: block;
+  margin-top: 0.2rem;
 }
 
 /* TIP */
-.admonitionblock.tip table {
-  background: #e8f5e9;
+.admonitionblock.tip > table {
+  background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 100%);
   border-left: 4px solid #4caf50;
 }
-.admonitionblock.tip td.icon { color: #2e7d32; }
+.admonitionblock.tip td.icon i { color: #2e7d32; }
+.admonitionblock.tip td.icon i::after { content: "提示"; color: #2e7d32; }
 
 /* NOTE */
-.admonitionblock.note table {
-  background: #e3f2fd;
+.admonitionblock.note > table {
+  background: linear-gradient(135deg, #e3f2fd 0%, #e8eaf6 100%);
   border-left: 4px solid #2196f3;
 }
-.admonitionblock.note td.icon { color: #1565c0; }
+.admonitionblock.note td.icon i { color: #1565c0; }
+.admonitionblock.note td.icon i::after { content: "注意"; color: #1565c0; }
 
 /* WARNING */
-.admonitionblock.warning table {
-  background: #fff3e0;
+.admonitionblock.warning > table {
+  background: linear-gradient(135deg, #fff3e0 0%, #fff8e1 100%);
   border-left: 4px solid #ff9800;
 }
-.admonitionblock.warning td.icon { color: #e65100; }
+.admonitionblock.warning td.icon i { color: #e65100; }
+.admonitionblock.warning td.icon i::after { content: "警告"; color: #e65100; }
 
 /* IMPORTANT */
-.admonitionblock.important table {
-  background: #fce4ec;
+.admonitionblock.important > table {
+  background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
   border-left: 4px solid #e91e63;
 }
-.admonitionblock.important td.icon { color: #c62828; }
+.admonitionblock.important td.icon i { color: #c62828; }
+.admonitionblock.important td.icon i::after { content: "重要"; color: #c62828; }
 
 /* CAUTION */
-.admonitionblock.caution table {
-  background: #fff8e1;
+.admonitionblock.caution > table {
+  background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%);
   border-left: 4px solid #ffc107;
 }
-.admonitionblock.caution td.icon { color: #f57f17; }
+.admonitionblock.caution td.icon i { color: #f57f17; }
+.admonitionblock.caution td.icon i::after { content: "注意"; color: #f57f17; }
 
 /* ===== 列表 ===== */
-ul, ol {
-  padding-left: 1.8rem;
-  margin: 0.8rem 0;
+.ulist ul,
+.olist ol {
+  padding-left: 1.6rem;
+  margin: 0.6rem 0;
 }
 
-li {
+.ulist li,
+.olist li {
   margin: 0.3rem 0;
 }
 
-li > p {
-  margin: 0.3rem 0;
+.ulist li > p,
+.olist li > p {
+  margin: 0.2rem 0;
 }
 
 /* 定義列表 */
-dl dt {
+.dlist dt,
+.hdlist1 {
   font-weight: 700;
-  margin-top: 1rem;
+  margin-top: 0.8rem;
+  color: var(--heading-color);
 }
 
-dl dd {
+.dlist dd {
   margin-left: 1.5rem;
   margin-bottom: 0.5rem;
 }
 
 /* ===== 引用區塊 ===== */
-blockquote, .quoteblock {
-  border-left: 4px solid var(--border-color);
+.quoteblock {
+  border-left: 4px solid #ddd;
   margin: 1.2rem 0;
-  padding: 0.5rem 1.2rem;
-  color: #555;
-  background: #fafbfc;
-  border-radius: 0 4px 4px 0;
+  padding: 0.8rem 1.2rem;
+  background: var(--bg-secondary);
+  border-radius: 0 6px 6px 0;
 }
 
-/* ===== 側邊欄 (Sidebar blocks) ===== */
+.quoteblock blockquote {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+}
+
+.quoteblock .attribution {
+  font-size: 0.85em;
+  color: #888;
+  margin-top: 0.5rem;
+}
+
+/* ===== 側邊欄區塊 ===== */
 .sidebarblock {
-  background: #f8f9fa;
+  background: var(--bg-secondary);
   border: 1px solid var(--border-color);
   border-radius: 8px;
-  padding: 1.2rem;
-  margin: 1.5rem 0;
+  padding: 1.2rem 1.5rem;
+  margin: 1.8rem 0;
 }
 
-.sidebarblock .title {
+.sidebarblock > .content > .title {
   font-weight: 700;
-  font-size: 1.05em;
+  font-size: 1.08em;
+  color: var(--heading-color);
+  margin-bottom: 0.6rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* ===== 範例區塊 ===== */
+.exampleblock {
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1rem 1.2rem;
+  margin: 1.5rem 0;
+  background: #fdfdfe;
+}
+
+.exampleblock > .title {
+  font-weight: 600;
+  font-size: 0.9em;
+  color: var(--text-secondary);
   margin-bottom: 0.5rem;
 }
 
-/* ===== 目錄 (TOC) ===== */
-#toc {
-  background: #f8f9fa;
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  padding: 1.5rem;
-  margin: 2rem 0;
+/* ===== 數學公式 ===== */
+.stemblock {
+  margin: 1.5rem 0;
+  overflow-x: auto;
 }
 
-#toc .title, #toctitle {
-  font-size: 1.3rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
+/* ===== 頁尾 ===== */
+#footer {
+  max-width: var(--max-content-width);
+  margin: 3rem auto 0;
+  padding: 1.5rem 2rem;
+  border-top: 1px solid var(--border-color);
+  text-align: center;
 }
 
-#toc ul {
-  list-style: none;
-  padding-left: 0;
-}
-
-#toc ul ul {
-  padding-left: 1.2rem;
-}
-
-#toc li {
-  margin: 0.3rem 0;
-  line-height: 1.5;
-}
-
-#toc a {
-  color: var(--text-color);
-  transition: color 0.2s;
-}
-
-#toc a:hover {
-  color: var(--link-color);
+#footer-text {
+  font-size: 0.85em;
+  color: #999;
 }
 
 /* ===== 腳註 ===== */
 .footnote {
   font-size: 0.85em;
-  color: #666;
+  color: #888;
 }
 
 /* ===== 水平線 ===== */
@@ -321,69 +621,111 @@ hr {
   margin: 2rem 0;
 }
 
-/* ===== 回到頂部的錨點樣式 ===== */
-.sect1, .sect2 {
-  scroll-margin-top: 1rem;
+/* ================================================================
+   響應式設計
+   ================================================================ */
+
+/* ===== 平板 (769px ~ 1100px)：TOC 收窄 ===== */
+@media screen and (max-width: 1100px) {
+  :root {
+    --toc-width: 250px;
+  }
 }
 
-/* ===== 手機版 (< 768px) ===== */
+/* ===== 手機版 (< 769px)：TOC 隱藏，全寬內容 ===== */
 @media screen and (max-width: 768px) {
   :root {
     --font-size-base: 16px;
     --line-height: 1.75;
   }
 
+  /* 取消 TOC 側邊欄佈局 */
+  body.toc2.toc-left {
+    padding-left: 0;
+  }
+
+  body.toc2.toc-left #header {
+    padding-left: 0;
+  }
+
+  /* 隱藏原生 TOC（用浮動面板替代）*/
+  body.toc2.toc-left #toc {
+    position: static;
+    width: 100%;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+    max-height: none;
+    display: none;
+  }
+
+  #header {
+    padding: 1.5rem 1rem 0.8rem;
+  }
+
+  #header h1 {
+    font-size: 1.6rem;
+  }
+
   #content {
     padding: 1rem 1rem 3rem;
   }
 
-  h1 { font-size: 1.6rem; }
-  h2 { font-size: 1.35rem; }
-  h3 { font-size: 1.15rem; }
-  h4 { font-size: 1.05rem; }
+  h2 { font-size: 1.4rem; }
+  h3 { font-size: 1.2rem; }
+  h4 { font-size: 1.08rem; }
 
+  /* 程式碼區塊 */
+  .listingblock .content pre,
+  .literalblock .content pre,
   pre {
     padding: 0.8rem;
     font-size: 0.8em;
     border-radius: 6px;
   }
 
-  /* 表格在手機上可水平捲動 */
-  table {
-    font-size: 0.9em;
+  /* 表格水平捲動 */
+  table.tableblock {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
-  table thead th {
+  table.tableblock thead th {
     padding: 0.5rem;
+    white-space: nowrap;
   }
 
-  table td {
+  table.tableblock td {
     padding: 0.4rem 0.5rem;
   }
 
-  /* admonition 在手機上更緊湊 */
+  /* Admonition 更緊湊 */
   .admonitionblock td.icon {
-    width: 36px;
-    padding: 0.6rem;
+    width: 40px;
+    padding: 0.7rem 0.5rem;
   }
 
   .admonitionblock td.content {
-    padding: 0.6rem;
+    padding: 0.7rem;
   }
 
-  /* TOC 更緊湊 */
-  #toc {
-    padding: 1rem;
+  /* 圖片尺寸變體在手機上全寬 */
+  .imageblock.smallerthirty .content img,
+  .imageblock.smallersixty .content img,
+  .imageblock.smallerseventy .content img {
+    max-width: 100%;
   }
 
-  /* 圖片標題 */
-  .imageblock .title {
-    font-size: 0.85em;
-  }
-
-  /* 列表縮排減少 */
-  ul, ol {
+  /* 列表 */
+  .ulist ul,
+  .olist ol {
     padding-left: 1.3rem;
+  }
+
+  /* 章節間距 */
+  .sect1 + .sect1 {
+    margin-top: 1.5rem;
   }
 }
 
@@ -397,41 +739,66 @@ hr {
     padding: 0.8rem 0.8rem 2rem;
   }
 
-  h1 { font-size: 1.4rem; }
-  h2 { font-size: 1.2rem; }
+  #header {
+    padding: 1rem 0.8rem 0.5rem;
+  }
 
+  #header h1 {
+    font-size: 1.35rem;
+  }
+
+  h2 { font-size: 1.25rem; }
+  h3 { font-size: 1.1rem; }
+
+  .listingblock .content pre,
   pre {
     font-size: 0.75em;
     padding: 0.6rem;
+    border-radius: 4px;
+  }
+
+  .admonitionblock td.icon i::after {
+    display: none;
   }
 }
 
-/* ===== 寬螢幕 (> 1200px) ===== */
-@media screen and (min-width: 1200px) {
+/* ===== 寬螢幕 (> 1400px) ===== */
+@media screen and (min-width: 1400px) {
   :root {
     --font-size-base: 18px;
-  }
-
-  #content {
-    padding: 3rem 2rem 5rem;
+    --toc-width: 320px;
+    --max-content-width: 920px;
   }
 }
 
 /* ===== 列印樣式 ===== */
 @media print {
+  body.toc2.toc-left {
+    padding-left: 0;
+  }
+
+  body.toc2.toc-left #toc {
+    position: static;
+    width: 100%;
+    height: auto;
+    border: 1px solid #ddd;
+    page-break-after: always;
+  }
+
   body {
-    font-size: 12pt;
-    line-height: 1.6;
+    font-size: 11pt;
+    line-height: 1.5;
     color: #000;
   }
 
-  #toc {
-    page-break-after: always;
+  #content {
+    max-width: 100%;
   }
 
   pre {
     border: 1px solid #ccc;
     page-break-inside: avoid;
+    font-size: 9pt;
   }
 
   img {
@@ -443,7 +810,7 @@ hr {
     page-break-after: avoid;
   }
 
-  .admonitionblock {
+  .admonitionblock, .sidebarblock {
     page-break-inside: avoid;
   }
 }
