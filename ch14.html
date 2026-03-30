@@ -199,7 +199,7 @@ gtag('config', 'G-ZVVQYEKMPF');
 <div class="content">
 <img src="images/evm-architecture.png" alt="以太坊虛擬機 (EVM) 架構與執行脈落">
 </div>
-<div class="title">Figure 43. 以太坊虛擬機 (EVM) 架構與執行脈落</div>
+<div class="title">Figure 41. 以太坊虛擬機 (EVM) 架構與執行脈落</div>
 </div>
 <div class="sect3">
 <h4 id="evm_comparison">16.1.1. 與現有的虛擬機科技作比較</h4>
@@ -694,7 +694,7 @@ contract Faucet {
 <div class="content">
 <img src="images/Faucet_disassembled.png" alt="Faucet.sol runtime bytecode disassembled">
 </div>
-<div class="title">Figure 44. Disassembling the Faucet runtime bytecode</div>
+<div class="title">Figure 42. Disassembling the Faucet runtime bytecode</div>
 </div>
 <div class="paragraph">
 <p>當你將交易發送到智能合約時，交易首先會與該智能合約的<strong>調度員（dispatcher）</strong>進行交互。調度程式讀入交易的數據欄位並將其發送到適當的函數。</p>
@@ -791,7 +791,7 @@ JUMPI</pre>
 <div class="content">
 <img src="images/Faucet_jumpi_instruction.png" alt="JUMPI instruction leading to fallback function">
 </div>
-<div class="title">Figure 45. JUMPI instruction leading to fallback function</div>
+<div class="title">Figure 43. JUMPI instruction leading to fallback function</div>
 </div>
 <div class="paragraph">
 <p>我們來看一下調度員的核心程式碼塊。假設我們收到的長度大於4個字節的calldata，“JUMPI”指令不會跳轉到回退函數。相反，程式碼執行將遵循下一條指令：</p>
@@ -1135,7 +1135,7 @@ JUMPI</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-最後更新： 2026-03-30 08:28:57 UTC
+最後更新： 2026-03-30 08:44:08 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
