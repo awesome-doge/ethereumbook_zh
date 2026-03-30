@@ -26,8 +26,10 @@ jobs:
       run: |
         # 生成 Rouge 語法高亮 CSS
         rougify style github > rouge-github.css
+        # 構建單頁 HTML
         asciidoctor -b html5 -a stylesheet=custom.css -a linkcss -D output book.asciidoc
-        mv output/book.html output/index.html
+        # 分割為多頁（生成 index.html, ch*.html, all.html, sitemap.xml）
+        python3 scripts/split-html.py output
 
     - name: Optimize Images
       run: |
@@ -51,30 +53,14 @@ jobs:
     - name: Create CNAME File
       run: echo 'mastering-ethereum.doge.tg' > output/CNAME
 
-    - name: Generate SEO Files
+    - name: Generate robots.txt
       run: |
-        # robots.txt
-        cat > output/robots.txt << 'ROBOTS'
+        cat > output/robots.txt << 'EOF'
         User-agent: *
         Allow: /
         Sitemap: https://mastering-ethereum.doge.tg/sitemap.xml
-        ROBOTS
+        EOF
         sed -i 's/^        //' output/robots.txt
-
-        # sitemap.xml
-        LASTMOD=$(date -u +%Y-%m-%d)
-        cat > output/sitemap.xml << SITEMAP
-        <?xml version="1.0" encoding="UTF-8"?>
-        <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-          <url>
-            <loc>https://mastering-ethereum.doge.tg/</loc>
-            <lastmod>${LASTMOD}</lastmod>
-            <changefreq>monthly</changefreq>
-            <priority>1.0</priority>
-          </url>
-        </urlset>
-        SITEMAP
-        sed -i 's/^        //' output/sitemap.xml
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v4
