@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://mastering-ethereum.doge.tg/sitemap.xml
