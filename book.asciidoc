@@ -1,4 +1,4 @@
-= 精通以太坊
+= 精通以太坊 Mastering Ethereum 繁體中文版
 :doctype: book
 :toc: left
 :toclevels: 3
