@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.26">
-<title>精通以太坊 Mastering Ethereum 繁體中文版</title>
+<title>燃氣 Gas — 精通以太坊 Mastering Ethereum 繁體中文版</title>
 <link rel="stylesheet" href="./custom.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="./rouge-github.css">
@@ -31,7 +31,7 @@ gtag('config', 'G-ZVVQYEKMPF');
 <meta name="author" content="Andreas M. Antonopoulos, Gavin Wood, Dr. Awesome Doge">
 
 <!-- SEO: Canonical -->
-<link rel="canonical" href="https://mastering-ethereum.doge.tg/">
+
 
 <!-- SEO: Language Alternatives -->
 <link rel="alternate" hreflang="zh-Hant" href="https://mastering-ethereum.doge.tg/">
@@ -141,75 +141,195 @@ gtag('config', 'G-ZVVQYEKMPF');
 }
 </script>
 
+<link rel="canonical" href="https://mastering-ethereum.doge.tg/ch13.html">
+<meta name="description" content="精通以太坊：燃氣 Gas。以太坊完整技術指南繁體中文版，免費線上閱讀。">
 <style>
-.landing{max-width:880px;margin:0 auto;padding:2rem 1.5rem}
-.landing-header{text-align:center;margin-bottom:2rem}
-.landing-header h1{font-size:2.2rem;color:#1a252f;margin-bottom:0.3rem}
-.landing-header .subtitle{color:#555;font-size:1.15rem}
-.landing-header .author{color:#888;margin-top:0.5rem;font-size:0.95rem}
-.landing-cover{text-align:center;margin:2rem 0}
-.landing-cover img{max-width:280px;border-radius:8px;box-shadow:0 4px 20px rgba(0,0,0,0.12)}
-.landing-dl{display:flex;justify-content:center;gap:1rem;margin:2rem 0;flex-wrap:wrap}
-.landing-dl a{display:inline-block;padding:0.7rem 1.5rem;border-radius:6px;text-decoration:none;font-weight:600;font-size:0.95rem;transition:opacity 0.2s}
-.landing-dl a:hover{opacity:0.85}
-.btn-p{background:#2980b9;color:#fff}
-.btn-s{background:#f0f3f6;color:#2c3e50;border:1px solid #e1e4e8}
-.landing-toc{margin:2.5rem 0}
-.landing-toc h2{font-size:1.4rem;color:#1a252f;border-bottom:2px solid #e1e4e8;padding-bottom:0.4rem}
-.landing-toc ol{padding-left:1.5rem;line-height:2.2}
-.landing-toc a{color:#2980b9;text-decoration:none;font-size:1.05rem}
-.landing-toc a:hover{text-decoration:underline}
-.landing-ft{color:#888;font-size:0.85rem;text-align:center;margin-top:2rem;padding-top:1rem;border-top:1px solid #e1e4e8}
-.landing-all{text-align:center;margin:1.5rem 0}
-.landing-all a{color:#888;font-size:0.9rem}
+.chapter-nav{display:flex;justify-content:space-between;align-items:center;padding:1rem 0;border-top:1px solid #e1e4e8;border-bottom:1px solid #e1e4e8;margin:2rem 0;gap:0.8rem;flex-wrap:wrap}
+.chapter-nav a{color:#2980b9;text-decoration:none;font-size:0.9rem;padding:0.4rem 0.8rem;border-radius:4px;transition:background 0.2s}
+.chapter-nav a:hover{background:#f0f3f6}
+.chapter-nav .nav-prev{text-align:left;max-width:40%}
+.chapter-nav .nav-next{text-align:right;max-width:40%}
+.chapter-nav .nav-home{font-weight:600}
+@media(max-width:768px){.chapter-nav{font-size:0.82rem}.chapter-nav a{padding:0.3rem 0.5rem}}
 </style>
 </head>
-<body>
-<div class="landing">
-  <div class="landing-header">
-    <h1>精通以太坊</h1>
-    <div class="subtitle">Mastering Ethereum — 繁體中文完整版</div>
-    <p class="author">Andreas M. Antonopoulos &amp; Dr. Gavin Wood 著 · Dr. Awesome Doge 譯</p>
-  </div>
-  <div class="landing-cover">
-    <img src="images/cover.png" alt="Mastering Ethereum 封面" width="280" height="368" />
-  </div>
-  <div class="landing-dl">
-    <a href="https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.pdf" class="btn-p">下載 PDF</a>
-    <a href="https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.epub" class="btn-p">下載 EPUB</a>
-    <a href="https://github.com/awesome-doge/ethereumbook_zh" class="btn-s">GitHub</a>
-  </div>
-  <div class="landing-toc">
-    <h2>目錄</h2>
-    <ol>
-    <li><a href="preface.html">前言</a></li>
-    <li><a href="glossary.html">快速術語表</a></li>
-    <li><a href="ch01.html">什麼是以太坊</a></li>
-    <li><a href="ch02.html">以太坊基礎</a></li>
-    <li><a href="ch03.html">以太坊客戶端</a></li>
-    <li><a href="ch04.html">以太坊測試網</a></li>
-    <li><a href="ch05.html">密鑰和地址</a></li>
-    <li><a href="ch06.html">錢包</a></li>
-    <li><a href="ch07.html">交易</a></li>
-    <li><a href="ch08.html">智能合約</a></li>
-    <li><a href="ch09.html">開發工具、框架和庫</a></li>
-    <li><a href="ch10.html">代幣 Tokens</a></li>
-    <li><a href="ch11.html">去中心化應用 DApps</a></li>
-    <li><a href="ch12.html">預言機 Oracles</a></li>
-    <li><a href="ch13.html">燃氣 Gas</a></li>
-    <li><a href="ch14.html">以太坊虛擬機 EVM</a></li>
-    <li><a href="ch15.html">共識</a></li>
-    <li><a href="ch17.html">DevP2P 協議</a></li>
-    <li><a href="ch18.html">以太坊標準</a></li>
-    <li><a href="ch19.html">以太坊分叉歷史</a></li>
-    </ol>
-  </div>
-  <div class="landing-all">
-    <a href="all.html">單頁完整版（適合搜尋和列印）</a>
-  </div>
-  <div class="landing-ft">
-    以 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a> 授權釋出
-  </div>
+<body class="book">
+<div id="header">
+<h1><a href="index.html" style="color:inherit;text-decoration:none">精通以太坊 Mastering Ethereum 繁體中文版</a></h1>
+</div>
+<div id="content">
+<nav class="chapter-nav"><a href="ch12.html" class="nav-prev">&larr; 預言機 Oracles</a><a href="index.html" class="nav-home">首頁</a><a href="ch14.html" class="nav-next">以太坊虛擬機 EVM &rarr;</a></nav>
+<div class="sect1">
+<h2 id="gas">15. gas（Gas）</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>Gas</strong>是以太坊用於衡量程式執行一個或一組動作所需計算量的單位。交易或合約執行的每項操作都需要一定數量的gas; 所需的gas數量與正在執行的計算步驟的類型和數量有關。與僅以千字節（kB）計算交易規模的比特幣交易費相比，以太坊交易費必須考慮智能合約程式碼可以執行的任意數量的計算步驟。程式執行的操作數越多，運行完成的成本就越高。</p>
+</div>
+<div class="paragraph">
+<p>每次操作都需要固定量的gas。以太坊黃皮書的的一些例子：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>添加兩個數字需要3個gas</p>
+</li>
+<li>
+<p>計算Keccak256雜湊值，需要30個gas+ 每256位數據被雜湊6個gas</p>
+</li>
+<li>
+<p>發送交易成本為21000 gas</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>gas是以太坊的重要組成部分，具有雙重作用。一，作為以太坊價格（具有波動性）和礦工對其工作的獎勵之間的抽象層。另一種是抵禦拒絕服務攻擊。為了防止網路中的意外或惡意無限迴圈或其他計算浪費，每個交易的發起者需要設置他們願意花費在gas上的金額的限制。因此，gas系統阻止攻擊者發送垃圾郵件交易，因為他們必須按比例支付他們消耗的計算，帶寬和儲存資源。</p>
+</div>
+<div class="sect2">
+<h3 id="_停機問題">15.1. 停機問題</h3>
+<div class="paragraph">
+<p>交易費和會計的想法似乎很實用，但你可能想知道為什麼以太坊首先需要gas。gas是關鍵，因為它不僅可以解決停機問題，而且對安全和活力也至關重要。什麼是停機問題，安全和活力，為什麼要關心？</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_支付gas">15.2. 支付gas</h3>
+<div class="paragraph">
+<p>雖然gas有價格，但它不能“擁有”也不能“花”。gas僅存在於以太坊虛擬機（EVM）內部，作為計算工作量的計數。發起方被收取ether交易費，然後轉換為gas，然後轉回到ether，作為礦工的塊獎勵。這些轉換步驟用於將計算的價格（與“工作量”相關）與ether的價格（與市場波動相關）分開。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_gas成本與gas價格">15.3. gas成本與gas價格</h3>
+<div class="paragraph">
+<p>雖然<strong>gas成本</strong>是EVM中執行的操作步驟的度量，但gas本身也具有以ether測量的<strong>gas價格</strong>。在執行交易時，發起方指定他們願意為每個gas單位支付的gas價格（以ether為單位），允許市場決定ether的價格與計算操作的成本之間的關係（以gas衡量） 。</p>
+</div>
+<div class="paragraph">
+<p><code>total gas used * gas price paid = transaction fee</code>，以ether為單位</p>
+</div>
+<div class="paragraph">
+<p>此金額將在交易執行開始時從發起方的帳戶中扣除。發起方不是設置“total gas used”，而是設置<strong>gas limit</strong>，該限制應足以覆蓋執行交易所需的gas量。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_gas成本限制和gas耗盡">15.4. gas成本限制和gas耗盡</h3>
+<div class="paragraph">
+<p>在發送交易之前，發起方必須指定<strong>gas limit</strong>  - 他們願意購買的最大gas數量。他們還必須指定<strong>gas price</strong> - 他們願意為每單位gas支付的以太價格。</p>
+</div>
+<div class="paragraph">
+<p>以ether計算的`gas limit * gas price`在交易執行開始時從發起方的帳戶中扣除作為存款。這是為了防止發送者在執行中期“破產”並且無法支付gas費用。由於這個原因，用戶也無法設置超出其帳戶餘額的gas限制。</p>
+</div>
+<div class="paragraph">
+<p>理想情況下，發起方將設置一個高於或等於實際使用的gas的gas限制。如果gas限制設置高於消耗的gas量，發貨人將收到超額金額的退款，因為礦工只獲得他們實際工作的補償。</p>
+</div>
+<div class="paragraph">
+<p>在這種情況下：</p>
+</div>
+<div class="paragraph">
+<p><code>(gas limit - excess gas) * gas price</code> ether作為礦工的區塊獎勵</p>
+</div>
+<div class="paragraph">
+<p><code>excess gas * gas price</code> ether退回發起方</p>
+</div>
+<div class="paragraph">
+<p>但是，如果使用的gas超過規定的gas限制，即如果在執行期間交易“runs out of gas”，則操作終止。雖然交易不成功，但由於礦工已經完成了計算工作，不會退回發送人的交易費用，礦工因此得到補償。</p>
+</div>
+<div class="sect3">
+<h4 id="_範例">15.4.1. 範例</h4>
+<div class="paragraph">
+<p>如果交易是從外部擁有帳戶（EOA）發送的，則從EOA的餘額中扣除gas費。換句話說，交易的發起人正在支付gas費。發起人為交易消耗的總gas以及隨後的任何子執行提供資金。這意味著如果發起者X附加1000個gas來調用合約A，其在計算上花費500個gas然後向合約B發送另一個消息，則A用於將消息發送到B的gas也會再已開始從X的gas限制中扣除。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code>EOA帳戶X啟動交易並調用合約帳戶A上的功能，附帶1000個gas
+
+合約A在計算上花費500gas，並向合約B發送消耗100gas的消息
+
+合約B在計算上花費300個gas並完成交易。
+
+100個gas退還給X.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>因此，如果該交易的發起人在開始時沒有附加足夠高的gas費，那麼在交易中執行一部分操作的中間合約（例如，在我們的範例中為合約A）理論上可以耗盡gas。如果合約在執行中期用完，除了gas費支付外，所有狀態變更都會被撤銷。</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_估算_gas">15.5. 估算 Gas</h3>
+<div class="paragraph">
+<p>通過假裝交易已經被包含在區塊鏈中來估算gas，然後返回如果操作是真實的那麼可以收取的確切gas量。換句話說，它使用與礦工用來計算實際費用但從未開採過區塊鏈的完全相同的程式。</p>
+</div>
+<div class="paragraph">
+<p>請注意，由於各種原因（包括EVM機制和節點性能），估計值可能遠遠超過交易實際使用的gas量。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">web3</span><span class="p">.</span><span class="nx">eth</span><span class="p">.</span><span class="nf">estimateGas</span><span class="p">({</span>
+    <span class="na">to</span><span class="p">:</span> <span class="dl">"</span><span class="s2">0xc4abd0339eb8d57087278718986382264244252f</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">data</span><span class="p">:</span> <span class="dl">"</span><span class="s2">0xc6888fa10000000000000000000000000000000000000000000000000000000000000003</span><span class="dl">"</span>
+<span class="p">});</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span> <span class="c1">// "0x0000000000000000000000000000000000000000000000000000000000000015"</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_gas價格和交易優先順序">15.6. gas價格和交易優先順序</h3>
+<div class="paragraph">
+<p>gas價格是交易發起方願意為每個gas單位支付的ether量。開採下一個區塊的礦工決定要包括哪些交易。由於gas價格被計入他們將作為獎勵的交易費中，他們更可能首先包括具有最高gas價格的交易。如果發起方將gas價格設置得太低，他們可能需要等待很長時間才能將其交易進入一個區塊。</p>
+</div>
+<div class="paragraph">
+<p>礦工還可以決定塊中包含交易的順序。由於多個礦工競爭將其區塊附加到區塊鏈，因此區塊內的交易順序由“獲勝”礦工任意決定，然後其他礦工用該訂單核實。雖然可以任意排列來自不同帳戶的交易，但是來自個人帳戶的交易是按照自動遞增的隨機數的順序執行的。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_區塊gas限制">15.7. 區塊gas限制</h3>
+<div class="paragraph">
+<p>區塊gas限制是區塊中允許的最大gas量，用於確定區塊中可以容納的交易數量。例如，假設我們有5個交易，其中每個交易的gas限制為10,20,30,40和50.如果區塊gas限制為100，那麼前四個交易可以適合該區塊，而交易5必須等待未來的區塊。如前所述，礦工決定在一個區塊中包含哪些交易。不同的礦工可以嘗試包括塊中的最後2個交易（50 + 40），並且它們僅具有包括第一個交易（10）的空間。如果你嘗試包含的交易需要的gas量超過當前的gas限制，則網路將拒絕該交易，你的以太坊客戶將向你發送消息“交易超過區塊gas限制。根據https://etherscan.io的數據，目前區塊的gas限制在500萬左右。即一個區塊可以容納約238個交易，每個交易消耗21000個gas。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_誰來決定區塊gas限制是多少">15.8. 誰來決定區塊gas限制是多少？</h3>
+<div class="paragraph">
+<p>網路上的礦工決定區塊gas限制是什麼。想要在以太坊網路上挖礦的個人使用挖礦程式，例如ethminer，它連接到Geth或Parity Ethereum客戶端。以太坊協議有一個內建機制，礦工可以對gas限制進行投票，因此無需在硬分叉上進行協調就可以增加容量。塊的礦工能夠在任一方向上將塊氣限制調整1/1024（0.0976％）。其結果是根據當時網路的需要調整塊大小。這一機制與預設的開採策略結合在一起，礦工預設將投票決定至少470萬的gas限制，但如果這一數字更高的話，將把目標對準最近的(1024區塊指數移動)平均gas的150%，從而使數量有機地增加。礦工們可以選擇改變這一點，但是他們中的許多人不這樣做，並保留預設值。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_gas退款">15.9. gas退款</h3>
+<div class="paragraph">
+<p>以太坊通過退還高達一半的gas費用來鼓勵刪除儲存的變數。
+EVM中有2個負的gas操作：</p>
+</div>
+<div class="paragraph">
+<p>清理合約是-24,000（SELFDESTRUCT）
+清理儲存為-15,000（SSTORE [x] = 0）</p>
+</div>
+<div class="sect3">
+<h4 id="_gastoken">15.9.1. GasToken</h4>
+<div class="paragraph">
+<p>GasToken是一種符合ERC20標準的token，允許任何人在gas價格低時“儲存”gas，並在gas價格高時使用gas。通過使其成為可交易的資產，它基本上創造了一個gas市場。
+它的工作原理是利用前面描述的gas退款機制。</p>
+</div>
+<div class="paragraph">
+<p>你可以在 <a href="https://gastoken.io/">gastoken.io</a> 瞭解計算盈利能力以及如何使用釋放gas所涉及的數學</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_租金">15.10. 租金</h3>
+<div class="paragraph">
+<p>目前，以太坊社區提出了一項關於向智能合約收取“租金”以保持活力的建議。</p>
+</div>
+<div class="paragraph">
+<p>在沒有支付租金的情況下，智能合約將被“睡眠”，即使是簡單的讀取操作也無法獲得數據。需要通過支付租金和提交Merkle證據來喚醒進入睡眠狀態的合約。</p>
+</div>
+<div class="paragraph">
+<p><a href="https://github.com/ethereum/EIPs/issues/35">https://github.com/ethereum/EIPs/issues/35</a>
+<a href="https://ethresear.ch/t/a-simple-and-principled-way-to-compute-rent-fees/1455">https://ethresear.ch/t/a-simple-and-principled-way-to-compute-rent-fees/1455</a>
+<a href="https://ethresear.ch/t/improving-the-ux-of-rent-with-a-sleeping-waking-mechanism/1480">https://ethresear.ch/t/improving-the-ux-of-rent-with-a-sleeping-waking-mechanism/1480</a></p>
+</div>
+</div>
+</div>
+</div>
+
+<nav class="chapter-nav"><a href="ch12.html" class="nav-prev">&larr; 預言機 Oracles</a><a href="index.html" class="nav-home">首頁</a><a href="ch14.html" class="nav-next">以太坊虛擬機 EVM &rarr;</a></nav>
 </div>
 <div id="footer">
 <div id="footer-text">

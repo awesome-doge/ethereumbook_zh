@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.26">
+<title>共識 — 精通以太坊 Mastering Ethereum 繁體中文版</title>
+<link rel="stylesheet" href="./custom.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./rouge-github.css">
+<!-- Google Analytics 4 -->
+<script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-ZVVQYEKMPF"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-ZVVQYEKMPF');
+</script>
+
+<!-- Favicon -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2B21;</text></svg>" type="image/svg+xml">
+
+<!-- SEO: Title Override -->
+<meta name="title" content="精通以太坊 Mastering Ethereum — 繁體中文完整版 | 智能合約、DApps、EVM、Solidity 技術指南">
+
+<!-- SEO: Description -->
+<meta name="description" content="精通以太坊（Mastering Ethereum）繁體中文版，由 Andreas M. Antonopoulos 和 Gavin Wood 著作。完整涵蓋以太坊基礎、智能合約、Solidity、DApps、EVM、Gas、密鑰管理、錢包、交易、預言機、共識機制等 19 章內容。免費線上閱讀，提供 PDF 和 EPUB 電子書下載。">
+<meta name="keywords" content="以太坊, Ethereum, 智能合約, Smart Contract, Solidity, DApp, EVM, 區塊鏈, Blockchain, 加密貨幣, Web3, DeFi, 精通以太坊, Mastering Ethereum, 繁體中文, 教學, 技術指南">
+<meta name="author" content="Andreas M. Antonopoulos, Gavin Wood, Dr. Awesome Doge">
+
+<!-- SEO: Canonical -->
+
+
+<!-- SEO: Language Alternatives -->
+<link rel="alternate" hreflang="zh-Hant" href="https://mastering-ethereum.doge.tg/">
+<link rel="alternate" hreflang="en" href="https://github.com/ethereumbook/ethereumbook">
+
+<!-- Google Fonts: Noto Sans TC -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap">
+
+<!-- Open Graph -->
+<meta property="og:type" content="book">
+<meta property="og:title" content="精通以太坊 Mastering Ethereum — 繁體中文完整版">
+<meta property="og:description" content="以太坊完整技術指南，涵蓋智能合約、Solidity、DApps、EVM 等 19 章。免費線上閱讀 + PDF/EPUB 下載。">
+<meta property="og:image" content="https://mastering-ethereum.doge.tg/images/cover.png">
+<meta property="og:image:width" content="1050">
+<meta property="og:image:height" content="1378">
+<meta property="og:image:alt" content="Mastering Ethereum 書籍封面">
+<meta property="og:url" content="https://mastering-ethereum.doge.tg/">
+<meta property="og:site_name" content="精通以太坊 繁體中文版">
+<meta property="og:locale" content="zh_TW">
+<meta property="book:author" content="Andreas M. Antonopoulos">
+<meta property="book:author" content="Gavin Wood">
+<meta property="book:tag" content="Ethereum">
+<meta property="book:tag" content="Blockchain">
+<meta property="book:tag" content="Smart Contracts">
+<meta property="book:tag" content="Solidity">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="精通以太坊 Mastering Ethereum — 繁體中文完整版">
+<meta name="twitter:description" content="以太坊完整技術指南，涵蓋智能合約、Solidity、DApps、EVM 等 19 章。免費線上閱讀 + PDF/EPUB 下載。">
+<meta name="twitter:image" content="https://mastering-ethereum.doge.tg/images/cover.png">
+<meta name="twitter:image:alt" content="Mastering Ethereum 書籍封面">
+
+<!-- JSON-LD Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Book",
+  "name": "精通以太坊 Mastering Ethereum 繁體中文版",
+  "alternateName": "Mastering Ethereum: Building Smart Contracts and DApps",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Andreas M. Antonopoulos",
+      "url": "https://aantonop.com/"
+    },
+    {
+      "@type": "Person",
+      "name": "Gavin Wood"
+    }
+  ],
+  "translator": {
+    "@type": "Person",
+    "name": "Dr. Awesome Doge"
+  },
+  "inLanguage": "zh-Hant",
+  "url": "https://mastering-ethereum.doge.tg/",
+  "image": "https://mastering-ethereum.doge.tg/images/cover.png",
+  "description": "以太坊完整技術指南繁體中文版，涵蓋智能合約、Solidity、DApps、EVM、Gas、密鑰管理等 19 章內容。",
+  "genre": ["Technology", "Blockchain", "Cryptocurrency"],
+  "bookFormat": "https://schema.org/EBook",
+  "numberOfPages": 257,
+  "publisher": {
+    "@type": "Organization",
+    "name": "O'Reilly Media"
+  },
+  "license": "https://creativecommons.org/licenses/by-nc-nd/4.0/",
+  "isAccessibleForFree": true,
+  "encoding": [
+    {
+      "@type": "MediaObject",
+      "encodingFormat": "application/pdf",
+      "contentUrl": "https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.pdf"
+    },
+    {
+      "@type": "MediaObject",
+      "encodingFormat": "application/epub+zip",
+      "contentUrl": "https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.epub"
+    }
+  ],
+  "about": [
+    {"@type": "Thing", "name": "Ethereum"},
+    {"@type": "Thing", "name": "Smart Contracts"},
+    {"@type": "Thing", "name": "Blockchain"},
+    {"@type": "Thing", "name": "Solidity"},
+    {"@type": "Thing", "name": "Decentralized Applications"},
+    {"@type": "Thing", "name": "EVM"}
+  ]
+}
+</script>
+
+<!-- BreadcrumbList for search results -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "精通以太坊",
+      "item": "https://mastering-ethereum.doge.tg/"
+    }
+  ]
+}
+</script>
+
+<link rel="canonical" href="https://mastering-ethereum.doge.tg/ch15.html">
+<meta name="description" content="精通以太坊：共識。以太坊完整技術指南繁體中文版，免費線上閱讀。">
+<style>
+.chapter-nav{display:flex;justify-content:space-between;align-items:center;padding:1rem 0;border-top:1px solid #e1e4e8;border-bottom:1px solid #e1e4e8;margin:2rem 0;gap:0.8rem;flex-wrap:wrap}
+.chapter-nav a{color:#2980b9;text-decoration:none;font-size:0.9rem;padding:0.4rem 0.8rem;border-radius:4px;transition:background 0.2s}
+.chapter-nav a:hover{background:#f0f3f6}
+.chapter-nav .nav-prev{text-align:left;max-width:40%}
+.chapter-nav .nav-next{text-align:right;max-width:40%}
+.chapter-nav .nav-home{font-weight:600}
+@media(max-width:768px){.chapter-nav{font-size:0.82rem}.chapter-nav a{padding:0.3rem 0.5rem}}
+</style>
+</head>
+<body class="book">
+<div id="header">
+<h1><a href="index.html" style="color:inherit;text-decoration:none">精通以太坊 Mastering Ethereum 繁體中文版</a></h1>
+</div>
+<div id="content">
+<nav class="chapter-nav"><a href="ch14.html" class="nav-prev">&larr; 以太坊虛擬機 EVM</a><a href="index.html" class="nav-home">首頁</a><a href="ch17.html" class="nav-next">DevP2P 協議 &rarr;</a></nav>
+<div class="sect1">
+<h2 id="_以太坊的共識">18. 以太坊的共識</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_ethash簡介">18.1. Ethash簡介</h3>
+<div class="paragraph">
+<p>Ethash是以太坊*工作量證明（PoW）演算法*，它依賴於數據集的初始紀元的生成，該數據集的大小約爲1GB，稱爲有向無環圖（<strong>DAG</strong>）。<strong>DAG*使用</strong> Dagger-Hashimoto演算法*的版本，它是*Vitalik Buterin的Dagger演算法*和*Thaddeus Dryja的Hashimoto演算法*的組合。* Dagger-Hashimoto演算法*是以太坊1.0使用的挖掘演算法。隨着時間的推移，<strong>DAG*線性增長，每*紀元</strong>（30,000塊，125小時）更新一次。</p>
+</div>
+<div class="sect3">
+<h4 id="_種子緩存數據生成">18.1.1. 種子，緩存，數據生成</h4>
+<div class="paragraph">
+<p><strong>PoW演算法*涉及：<br>
+- 通過掃描*DAG*的先前塊頭來計算每個塊的*Seed</strong>。+
+- <strong>Cache</strong> 是一個16MB的僞隨機緩存，根據種子計算，用於輕量級客戶端中的儲存。<br>
+- 來自cache的*DAG* <strong>Data Generation</strong> 在完整客戶端和礦工上用於儲存 (數據集中的每一項只依賴cache中的一小部分項目）+
+- *礦工*通過隨機抽取數據集的片段並將它們混合在一起進行挖掘。可以使用儲存的緩存和低記憶體進行驗證，以重新生成所需的數據集的特定部分。</p>
+</div>
+<div class="ulist">
+<div class="title">參考：</div>
+<ul>
+<li>
+<p>Ethash-DAG: <a href="https://github.com/ethereum/wiki/wiki/Ethash-DAG" class="bare">https://github.com/ethereum/wiki/wiki/Ethash-DAG</a></p>
+</li>
+<li>
+<p>Ethash Specification: <a href="https://github.com/ethereum/wiki/wiki/Ethash" class="bare">https://github.com/ethereum/wiki/wiki/Ethash</a></p>
+</li>
+<li>
+<p>Mining Ethash DAG: <a href="https://github.com/ethereum/wiki/wiki/Mining#ethash-dag" class="bare">https://github.com/ethereum/wiki/wiki/Mining#ethash-dag</a></p>
+</li>
+<li>
+<p>Dagger-Hashimoto Algorithm: <a href="https://github.com/ethereum/wiki/blob/master/Dagger-Hashimoto.md" class="bare">https://github.com/ethereum/wiki/blob/master/Dagger-Hashimoto.md</a></p>
+</li>
+<li>
+<p>DAG Explanation and Images: <a href="https://ethereum.stackexchange.com/questions/1993/what-actually-is-a-dag" class="bare">https://ethereum.stackexchange.com/questions/1993/what-actually-is-a-dag</a></p>
+</li>
+<li>
+<p>Ethash in Ethereum Yellowpaper: <a href="https://ethereum.github.io/yellowpaper/paper.pdf#appendix.J" class="bare">https://ethereum.github.io/yellowpaper/paper.pdf#appendix.J</a></p>
+</li>
+<li>
+<p>Ethash C API Example Usage: <a href="https://github.com/ethereum/wiki/wiki/Ethash-C-API" class="bare">https://github.com/ethereum/wiki/wiki/Ethash-C-API</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_polkadot簡介">18.2. Polkadot簡介</h3>
+<div class="paragraph">
+<p>Polkadot是一種鏈間區塊鏈協議，包括與權益證明（PoS）鏈的整合，允許Parachain在沒有內部共識的情況下獲得共識。</p>
+</div>
+<div class="ulist">
+<div class="title">Polkadot包括：</div>
+<ul>
+<li>
+<p><strong>Relay-Chains</strong> 連接到所有Parachains並協調區塊鏈之間的共識和交易傳遞，並使用*驗證函數*通過驗證PoV候選塊的正確性來促進Parachain交易的最終確定。</p>
+</li>
+<li>
+<p><strong>Parachains</strong>（跨網路的並行鏈），它們是區塊鏈，用於收集和並行處理交易以實現可伸縮性。</p>
+</li>
+<li>
+<p>無需信任，交易直接在區塊鏈之間轉移，而不是通過中間人或分散交易所。</p>
+</li>
+<li>
+<p><strong>彙總安全</strong>，根據共識協議規則（<strong>Rules</strong>）檢查Parachain交易有效性。通過結合由動態治理系統確定的每個集團成員的一定比例的權益token資本來實現安全性。羣組成員資格需要綁定來自Validators和Nominators的賭注token的輸入，如果出現不良行爲，可以在試驗中使用不當行爲證明進行扣除。</p>
+</li>
+<li>
+<p><strong>Bridges</strong> 通過解耦具有不同共識架構機制的區塊鏈網路之間的鏈接來提供可擴展性。</p>
+</li>
+<li>
+<p><strong>Collators</strong> 負責監管和維護特定的Parachain，方法是將其可用交易整理爲有效性證明（PoV）候選塊，向Validators報告以證明交易有效並在塊中正確執行。如果它有winning ticket（由最接近Golden Ticket的Polkadot地址的Collator簽名）並且變得規範和最終確定，則通過支付他們從創建PoV候選區塊所收集的任何交易費來激勵他們。Collators被給予Polkadot地址。膠合劑不與鉚接標記粘合。</p>
+</li>
+<li>
+<p>*Golden Ticket*是包含獎勵的每個Parachain的每個區塊中的特定Polkadot地址。Collators被賦予一個Polkadot地址，並向Validator提供由Collator簽名的PoV候選塊。獎勵的獲獎者在PoV候選區塊中有一個Collator Polkadot地址，該區域最接近Golden Ticket Polkadot地址</p>
+</li>
+<li>
+<p><strong>Fisherman</strong> 監控Polkadot網路交易，以發現Polkadot社區的不良行爲。將驗證者帶到法庭並證明他們表現得很糟糕的Fisherman會被確認者的債券激勵，因爲債券被用作懲罰不良行爲的懲罰。</p>
+</li>
+<li>
+<p><strong>驗證者</strong> 是Parachain社區中的維護者，他們被部署到不同的Parachains來監管系統。驗證者同意Merkle Trees的根源。驗證者必須使交易可用。漁民可以將驗證員帶到法庭，因爲沒有進行交易，相關的Collat​​ors可能會質疑該交易是否可以作爲整理證明。</p>
+</li>
+<li>
+<p><strong>提名者</strong>（類似於PoW挖掘）被動監督並投票給他們認爲可以通過賭注代幣資助他們認可的確認者。</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Polkadot的Relay-Chains使用*Proof of Stake（PoS*系統，其中結構化狀態機（SM）並行執行多個拜占庭容錯（BFT）共識，以便SM過程收斂于越多個Parachain維度的包含有效候選者的解決方案跨的塊。每個Parachain中的有效候選塊是根據交易的可用性和有效性確定的，因爲根據共識機制，目標驗證者（下一個塊）只有在具有足夠的交易資訊時才能從源驗證者（前一個塊）執行傳入消息。可用和有效。驗證人投票選擇Collators使用規則達成共識的有效候選區塊。</p>
+</div>
+<div class="ulist">
+<div class="title">參考</div>
+<ul>
+<li>
+<p>Polkadot link: <a href="https://polkadot.network" class="bare">https://polkadot.network</a></p>
+</li>
+<li>
+<p>Polkadot presentation at Berlin Parity Ethereum link: <a href="https://www.youtube.com/watch?v=gbXEcNTgNco" class="bare">https://www.youtube.com/watch?v=gbXEcNTgNco</a>
+== Vyper: 面向合約的程式語言</p>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">研究表明，具有跟蹤漏洞的智能合約可能導致意外執行。https://arxiv.org/pdf/1802.06038.pdf[最近的一項研究] 分析了970,898份合約。它概述了跟蹤漏洞的三個基本類別（已經導致以太坊用戶的災難性資金損失）。這些類別包括</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>自殺合約。可以被任意地址殺死的合約</p>
+</li>
+<li>
+<p>貪婪的合約，在某個執行狀態後無法釋放ether</p>
+</li>
+<li>
+<p>浪費合約，不經意地將ether釋放到任意地址</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Vyper是一種面向合約的實驗性程式語言，面向以太坊虛擬機（EVM）。Vyper致力於通過簡化程式碼並使其對人類可讀而提供卓越的審計能力。Vyper的一個原則是讓開發人員幾乎不可能編寫誤導性程式碼。這可以通過多種方式完成，我們將在下面介紹。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="comparison_to_solidity_sec">18.3. 與 Solidity 比較</h3>
+<div class="paragraph">
+<p>本節是那些正在考慮使用Vyper程式語言開發智能合約的人的參考。該部分主要對比了Vyper與Solidity的對比； 概覽，合理的推理，為什麼Vyper不包括以下傳統的物件導向編程（OOP）概念：</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Modifiers</dt>
+<dd>
+<p>在Solidity中，你可以使用修飾器編寫函數。例如，以下函數`changeOwner`將在一個名為`onlyBy`的修飾器中運行程式碼，作為其執行的一部分。</p>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">function</span> <span class="nf">changeOwner</span><span class="p">(</span><span class="nx">address</span> <span class="nx">_newOwner</span><span class="p">)</span>
+    <span class="kr">public</span>
+    <span class="nf">onlyBy</span><span class="p">(</span><span class="nx">owner</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nx">owner</span> <span class="o">=</span> <span class="nx">_newOwner</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>正如我們在下面看到的，名為`onlyBy`的修飾器強制執行與所有權相關的規則。雖然修飾器很強大（能夠改變函數體中發生的事情），但它們也可能導致誤導性的程式碼執行。例如，確保`changeOwner`函數邏輯的唯一方法是每次實現程式碼時檢查並測試`onlyBy`修飾器。顯然，如果將來更改修改器，則調用它的函數可能會產生與最初預期不同的結果。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="nx">modifier</span> <span class="nf">onlyBy</span><span class="p">(</span><span class="nx">address</span> <span class="nx">_account</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nf">require</span><span class="p">(</span><span class="nx">msg</span><span class="p">.</span><span class="nx">sender</span> <span class="o">==</span> <span class="nx">_account</span><span class="p">);</span>
+    <span class="nx">_</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>總的來說，修飾器的通常用例是在函數執行之前執行單個檢查。鑑於這種情況，Vyper的建議是完全取消修飾器，並簡單地使用內聯檢查和斷言作為函數的一部分。這樣做將提高審計能力和可讀性，因為Vyper函數將在明顯的視線中遵循邏輯內聯序列，而不必引用已在別處編寫的修飾器程式碼。</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">類繼承</dt>
+<dd>
+<p>繼承允許開發者通過從現有軟體庫中獲取預先存在的功能，屬性和行為來利用預先編寫的程式碼。繼承功能強大，可以促進程式碼的重用。Solidity支持多重繼承以及多態，雖然這些被認為是物件導向編程的一些最重要的特性，但Vyper並不支持它們。Vyper堅持認為繼承的實現要求編碼人員和審計人員在多個檔案之間跳轉，以便了解程式正在做什麼。Vyper還了解優先級規則以及多個繼承如何使程式碼過於複雜而無法理解。鑑於Solidity <a href="https://github.com/ethereum/solidity/blob/release/docs/contracts#inheritance">關於繼承的文件</a>給出了多重繼承為何有問題的例子，這是一個公平的陳述。</p>
+</dd>
+<dt class="hdlist1">內聯彙編</dt>
+<dd>
+<p>內聯彙編為開發人員提供了以低級別訪問以太坊虛擬機（EVM）的機會。使用內聯彙編程式碼（在更高級別的源程式碼中）時，開發人員可以通過直接訪問EVM操作碼指令來執行操作。例如，以下內聯彙編程式碼通過使用EVM操作碼mload在記憶體位置0x80處添加3。</p>
+<div class="literalblock">
+<div class="content">
+<pre>3 0x80 mload add 0x80 mstore</pre>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>如前所述，Vyper致力於為開發人員和程式碼審計人員提供最易讀的程式碼。雖然內聯彙編可以提供強大的細粒度控制，但Vyper程式語言不支持它。</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">函數重載</dt>
+<dd>
+<p>具有相同名稱和不同參數選項的多個函數定義會導致在任何給定時間調用哪個函數時會產生很多混淆。隨著函數重載，編寫誤導程式碼會更容易（ foo（“hello”）記錄“hello”但foo（“hello”，“world”）竊取你的資金。）函數重載的另一個問題是它使程式碼更難以搜索，因為你必須跟蹤哪個調用指的是哪個功能。</p>
+</dd>
+<dt class="hdlist1">變數類型轉換</dt>
+<dd>
+<p>類型轉換是一種允許開發者將變數從一種數據類型轉換為另一種數據類型的機制。</p>
+</dd>
+<dt class="hdlist1">前置條件和後置條件</dt>
+<dd>
+<p>Vyper明確處理前置條件，後置條件和狀態更改。雖然這會產生冗餘程式碼，但它也允許最大的可讀性和安全性。在Vyper中編寫智能合約時，開發人員應遵守以下3點。理想情況下，應仔細考慮3個點中的每個點，然後在程式碼中進行詳細記錄。這樣做將改進程式碼的設計，最終使程式碼更具可讀性和可審計性。</p>
+<div class="ulist">
+<ul>
+<li>
+<p>條件 - 以太坊狀態變數的當前狀態/條件是什麼</p>
+</li>
+<li>
+<p>效果 - 這個智能合約程式碼對執行狀態變數的條件有什麼影響，即什麼會影響，什麼不會受到影響？這些影響是否與智能合約的意圖一致？</p>
+</li>
+<li>
+<p>交互 - 現在已經詳盡地處理了前兩個步驟，現在是運行程式碼的時候了。在部署之前，邏輯上逐步執行程式碼並考慮執行程式碼的所有可能的永久結果，後果和方案，包括與其他合約的交互。</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="a_new_programming_paradigm_sec">18.4. 一種新的編程範式</h3>
+<div class="paragraph">
+<p>Vyper的創作為新的編程範式打開了大門。例如，Vyper正在刪除類繼承以及其他功能，因此可以說Vyper偏離了傳統的物件導向編程（OOP）範例，這很好。</p>
+</div>
+<div class="paragraph">
+<p>歷史上，OOP提供了一種表示現實世界物件的機制。例如，OOP允許實例化可以從person類繼承的employee物件。然而，從價值轉移和/或智能合約的角度來看，那些渴望功能性編程範式的人會同意，交易性編程絕不適合上述傳統的OOP範式。簡而言之，交易計算是與現實世界物件分開的世界。例如，你最後一次持有交易或正向鏈接業務規則的時間是什麼時候？</p>
+</div>
+<div class="paragraph">
+<p>似乎Vyper沒有與OOP範例或函數式編程範例完全一致（完整的原因列表超出了本章的範圍）。出於這個原因，在開發的早期階段，我們能夠如此大膽地推出新的軟體開發範例嗎？一個致力於未來證明區塊鏈可執行程式碼的人。一個可以防止在不可改變的環境中造成災難性資金損失的人。區塊鏈革命中經歷的過去事件有機地為這一領域的進一步研究和發展創造了新的機會。也許這種研究和開發的結果最終可能導致軟體開發的新的不變性範式分類。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="decorators_sec">18.5. 裝飾符</h3>
+<div class="paragraph">
+<p>向 <code>@private</code> <code>@public</code> <code>@constant</code> <code>@payable</code> 這樣的裝飾符在每個函數的開頭宣告。</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Private</dt>
+<dd>
+<p><code>@private</code> 使合約外部的函數無法訪問此函數。</p>
+</dd>
+<dt class="hdlist1">Public</dt>
+<dd>
+<p><code>@public</code> 使該函數公開可見和可執行。例如，即使是以太坊錢包也會在查看合約時顯示公共函數。</p>
+</dd>
+<dt class="hdlist1">Constant</dt>
+<dd>
+<p>以 <code>@constant</code> 開始的函數不允許狀態變數的改變，實際上，如果函數嘗試更改狀態變數，編譯器將拒絕整個程式（帶有適當的警告）。如果該函數用於更改狀態變數，則不要在函數的開頭使用`@ constant`。</p>
+</dd>
+<dt class="hdlist1">Payable</dt>
+<dd>
+<p>只有以 <code>@payable</code> 開頭宣告的函數才能接收價值。</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>Vyper明確地實現了裝飾符的邏輯。例如，如果一個函數前面有一個`@appay`裝飾符和一個`@ constant`裝飾符，那麼Vyper程式碼編譯過程就會失敗。當然，這是有道理的，因為常量函數（僅從全局狀態讀取的函數）永遠不需要參與值的轉移。此外，每個Vyper函數必須以`@ public`或`@private`裝飾符開頭，以避免編譯失敗。同時使用`@public`裝飾符和`@private`裝飾符的Vyper函數也會導致編譯失敗。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="online_code_editor_and_compiler_sec">18.6. 在線程式碼編輯器和編譯器</h3>
+<div class="paragraph">
+<p>Vyper在以下URL &lt;<a href="https://vyper.online" class="bare">https://vyper.online</a>&gt; 上有自己的在線程式碼編輯器和編譯器。這個Vyper在線編譯器允許你僅使用Web瀏覽器編寫智能合約，然後將其編譯為 Bytecode ，ABI和LLL。Vyper在線編譯器具有各種預先編寫的智能合約，以方便你使用。這些包括簡單的公開拍賣，安全的遠程購買，ERC20 token等。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="compiling_using_the_command_line_sec">18.7. 使用命令行編譯</h3>
+<div class="paragraph">
+<p>每個Vyper合約都保存在擴展名為.v.py的單個檔案中。
+安裝完成後，Vyper可以通過運行以下命令來編譯和提供 Bytecode</p>
+</div>
+<div class="paragraph">
+<p>vyper ~/hello_world.v.py</p>
+</div>
+<div class="paragraph">
+<p>通過運行以下命令可以獲得人類可讀的ABI程式碼（JSON格式）</p>
+</div>
+<div class="paragraph">
+<p>vyper -f json ~/hello_world.v.py</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="reading_and_writing_data_sec">18.8. 讀寫數據</h3>
+<div class="paragraph">
+<p>智能合約可以將數據寫入兩個地方，即以太坊的全球狀態查找樹或以太坊的鏈數據。雖然儲存，讀取和修改數據的成本很高，但這些儲存操作是大多數智能合約的必要組成部分。</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">全局狀態</dt>
+<dd>
+<p>給定智能合約中的狀態變數儲存在以太坊的全局狀態查找樹中，給定的智能合約只能儲存，讀取和修改與該合約地址相關的數據（即智能合約無法讀取或寫入其他智能合約）。</p>
+</dd>
+<dt class="hdlist1">Log</dt>
+<dd>
+<p>如前所述，智能合約也可以通過日誌事件寫入以太坊的鏈數據。雖然Vyper最初使用 __log__ 語法來宣告這些事件，但已經進行了更新，使Vyper的事件宣告更符合Solidity的原始語法。例如，Vyper宣告的一個名為MyLog的事件最初是 <code>MyLog: __log__({arg1: indexed(bytes[3])})</code>，Vyper的語法現在變為 <code>MyLog: event({arg1: indexed(bytes[3])})</code>。需要注意的是，在Vyper中執行日誌事件仍然是如下 <code>log.MyLog("123")</code>。</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>雖然智能合約可以寫入以太坊的鏈數據（通過日誌事件），但智能合約無法讀取他們創建的鏈上日誌事件。儘管如此，通過日誌事件寫入以太坊的鏈數據的一個好處是，可以在公共鏈上由輕客戶端發現和讀取日誌。例如，挖到的塊中的logsBloom值可以指示是否存在日誌事件。一旦建立，就可以通過日誌路徑獲取 logs &#8594; data inside a given transaction receipt。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="erc20_token_interface_implementation_sec">18.9. ERC20令牌接口實現</h3>
+<div class="paragraph">
+<p>Vyper已將ERC20實施為預編譯合約，並允許預設使用它。
+Vyper中的合約必須宣告為全域變數。宣告ERC20變數的範例可以是</p>
+</div>
+<div class="paragraph">
+<p>token: address(ERC20)</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="opcodes_sec">18.10. 操作碼（OPCODES）</h3>
+<div class="paragraph">
+<p>智能合約的程式碼主要使用Solidity或Vyper等高階語言編寫。編譯器負責獲取高級程式碼並創建它的低級解釋，然後可以在以太坊虛擬機（EVM）上執行。編譯器可以提取程式碼的最低表示（在EVM執行之前）是操作碼。在這種情況下，需要高階語言（如Vyper）的每個實現來提供適當的編譯機制（編譯器）以允許（除其他之外）將高級程式碼編譯到通用預定義的EVM操作碼中。一個很好的例子是Vyper實現了以太坊的分片操作碼。</p>
+</div>
+</div>
+</div>
+</div>
+
+<nav class="chapter-nav"><a href="ch14.html" class="nav-prev">&larr; 以太坊虛擬機 EVM</a><a href="index.html" class="nav-home">首頁</a><a href="ch17.html" class="nav-next">DevP2P 協議 &rarr;</a></nav>
+</div>
+<div id="footer">
+<div id="footer-text">
+最後更新： 2026-03-30 08:28:57 UTC
+</div>
+</div>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "none" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<style>
+/* 浮動目錄按鈕 — 僅手機版顯示 */
+.toc-toggle {
+  position: fixed;
+  bottom: 5rem;
+  right: 1.2rem;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #2980b9;
+  color: #fff;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, transform 0.2s;
+}
+.toc-toggle:hover { background: #1a6fa0; }
+.toc-toggle:active { transform: scale(0.95); }
+
+/* 回到頂部按鈕 */
+.back-to-top {
+  position: fixed;
+  bottom: 1.8rem;
+  right: 1.2rem;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: rgba(85,85,85,0.85);
+  color: #fff;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s, background 0.2s, transform 0.2s;
+  pointer-events: none;
+}
+.back-to-top:hover { background: rgba(50,50,50,0.9); }
+.back-to-top:active { transform: scale(0.95); }
+.back-to-top.visible {
+  display: flex;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* 浮動目錄面板 */
+.toc-panel {
+  position: fixed;
+  top: 0;
+  right: -340px;
+  width: 320px;
+  max-width: 85vw;
+  height: 100vh;
+  background: #fff;
+  border-left: 1px solid #e1e4e8;
+  box-shadow: -4px 0 20px rgba(0,0,0,0.12);
+  z-index: 1001;
+  transition: right 0.3s ease;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 0;
+}
+.toc-panel.open { right: 0; }
+
+.toc-panel-header {
+  position: sticky;
+  top: 0;
+  background: #fff;
+  padding: 1.2rem 1rem 0.8rem;
+  border-bottom: 1px solid #e1e4e8;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1;
+}
+
+.toc-panel-header h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #1a252f;
+}
+
+.toc-panel .close-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #888;
+  padding: 0 0.3rem;
+  line-height: 1;
+  transition: color 0.15s;
+}
+.toc-panel .close-btn:hover { color: #333; }
+
+.toc-panel-body {
+  padding: 0.8rem 1rem 2rem;
+}
+
+.toc-panel-body ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.toc-panel-body ul ul {
+  padding-left: 0.9rem;
+}
+
+.toc-panel-body li {
+  margin: 0;
+}
+
+.toc-panel-body a {
+  color: #555;
+  text-decoration: none;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  display: block;
+  padding: 0.3rem 0.5rem;
+  border-radius: 4px;
+  transition: background 0.12s, color 0.12s;
+}
+.toc-panel-body a:hover {
+  background: #f0f3f6;
+  color: #2980b9;
+}
+
+/* 遮罩 */
+.toc-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.35);
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+.toc-overlay.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* 閱讀進度條 */
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #2980b9, #3498db);
+  z-index: 1002;
+  transition: width 0.1s;
+  will-change: width;
+}
+
+/* 手機版顯示浮動按鈕 */
+@media screen and (max-width: 768px) {
+  .toc-toggle {
+    display: flex;
+  }
+  .back-to-top {
+    display: flex;
+  }
+}
+
+/* 桌面版也顯示回到頂部 */
+@media screen and (min-width: 769px) {
+  .back-to-top {
+    display: flex;
+  }
+  .reading-progress {
+    left: var(--toc-width, 300px);
+  }
+}
+/* 電子書下載橫幅 */
+.ebook-banner {
+  background: linear-gradient(135deg, #1a252f 0%, #2c3e50 100%);
+  color: #fff;
+  padding: 0.7rem 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  font-size: 0.88rem;
+  position: relative;
+  z-index: 50;
+}
+
+.ebook-banner a {
+  color: #fff;
+  background: rgba(255,255,255,0.15);
+  padding: 0.35rem 0.9rem;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+
+.ebook-banner a:hover {
+  background: rgba(255,255,255,0.25);
+}
+
+.ebook-banner .banner-text {
+  opacity: 0.9;
+}
+
+.ebook-banner .banner-close {
+  position: absolute;
+  right: 0.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.5);
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0.2rem 0.4rem;
+}
+
+.ebook-banner .banner-close:hover {
+  color: #fff;
+}
+
+/* 桌面版橫幅在 TOC 右邊 */
+@media screen and (min-width: 769px) {
+  .ebook-banner {
+    margin-left: var(--toc-width, 300px);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .ebook-banner {
+    font-size: 0.82rem;
+    padding: 0.6rem 0.8rem;
+    gap: 0.8rem;
+  }
+}
+</style>
+
+<!-- 電子書下載橫幅 -->
+<div class="ebook-banner" id="ebookBanner">
+  <span class="banner-text">下載電子書離線閱讀</span>
+  <a href="https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.pdf">PDF</a>
+  <a href="https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.epub">EPUB</a>
+  <a href="https://github.com/awesome-doge/ethereumbook_zh/releases/latest">GitHub Releases</a>
+  <button class="banner-close" id="bannerClose" aria-label="關閉">&times;</button>
+</div>
+
+<!-- 閱讀進度條 -->
+<div class="reading-progress" id="readingProgress"></div>
+
+<!-- 浮動按鈕 -->
+<button class="toc-toggle" id="tocToggle" aria-label="開啟目錄">&#9776;</button>
+<button class="back-to-top" id="backToTop" aria-label="回到頂部">&#8593;</button>
+
+<!-- 目錄面板（手機版） -->
+<div class="toc-overlay" id="tocOverlay"></div>
+<div class="toc-panel" id="tocPanel" role="navigation" aria-label="目錄">
+  <div class="toc-panel-header">
+    <h3>目錄</h3>
+    <button class="close-btn" id="tocClose" aria-label="關閉目錄">&times;</button>
+  </div>
+  <div class="toc-panel-body" id="tocContent"></div>
+</div>
+
+<script>
+(function() {
+  'use strict';
+
+  // === 電子書橫幅：移到頁面頂部 + 關閉/記憶 ===
+  var banner = document.getElementById('ebookBanner');
+  var bannerClose = document.getElementById('bannerClose');
+  if (banner) {
+    // 如果用戶之前關閉過，隱藏
+    if (localStorage.getItem('ebookBannerClosed')) {
+      banner.style.display = 'none';
+    } else {
+      // 移到 body 最前面（在 header 之前）
+      document.body.insertBefore(banner, document.body.firstChild);
+    }
+    if (bannerClose) {
+      bannerClose.addEventListener('click', function() {
+        banner.style.display = 'none';
+        localStorage.setItem('ebookBannerClosed', '1');
+      });
+    }
+  }
+
+  // === 生成手機版目錄 ===
+  var tocContent = document.getElementById('tocContent');
+  var nativeToc = document.getElementById('toc');
+
+  if (tocContent && nativeToc) {
+    // 從原生 TOC 複製結構
+    var nativeList = nativeToc.querySelector('ul.sectlevel1');
+    if (nativeList) {
+      tocContent.appendChild(nativeList.cloneNode(true));
+    }
+  }
+
+  // === 目錄開關 ===
+  var tocToggle = document.getElementById('tocToggle');
+  var tocPanel = document.getElementById('tocPanel');
+  var tocOverlay = document.getElementById('tocOverlay');
+  var tocClose = document.getElementById('tocClose');
+
+  function openToc() {
+    tocPanel.classList.add('open');
+    tocOverlay.classList.add('visible');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeToc() {
+    tocPanel.classList.remove('open');
+    tocOverlay.classList.remove('visible');
+    document.body.style.overflow = '';
+  }
+
+  if (tocToggle) tocToggle.addEventListener('click', openToc);
+  if (tocOverlay) tocOverlay.addEventListener('click', closeToc);
+  if (tocClose) tocClose.addEventListener('click', closeToc);
+
+  // 點擊目錄連結後關閉面板
+  if (tocContent) {
+    tocContent.addEventListener('click', function(e) {
+      if (e.target.tagName === 'A') {
+        closeToc();
+      }
+    });
+  }
+
+  // ESC 關閉
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeToc();
+  });
+
+  // === 回到頂部 ===
+  var backToTop = document.getElementById('backToTop');
+  if (backToTop) {
+    backToTop.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  // === 閱讀進度條 + 回到頂部顯示 ===
+  var progressBar = document.getElementById('readingProgress');
+  var ticking = false;
+
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function() {
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      var docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+
+      // 回到頂部
+      if (backToTop) {
+        if (scrollTop > 400) {
+          backToTop.classList.add('visible');
+        } else {
+          backToTop.classList.remove('visible');
+        }
+      }
+
+      // 進度條
+      if (progressBar && docHeight > 0) {
+        progressBar.style.width = ((scrollTop / docHeight) * 100) + '%';
+      }
+
+      ticking = false;
+    });
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // === 表格響應式包裝 ===
+  document.querySelectorAll('table.tableblock').forEach(function(table) {
+    if (!table.parentElement.classList.contains('tableblock-wrapper')) {
+      var wrapper = document.createElement('div');
+      wrapper.style.overflowX = 'auto';
+      wrapper.style.WebkitOverflowScrolling = 'touch';
+      wrapper.style.margin = '1.5rem 0';
+      table.parentNode.insertBefore(wrapper, table);
+      wrapper.appendChild(table);
+      table.style.margin = '0';
+    }
+  });
+
+  // === 桌面版：TOC 當前章節高亮 ===
+  if (window.innerWidth > 768 && nativeToc) {
+    var tocLinks = nativeToc.querySelectorAll('a');
+    var headingIds = [];
+    tocLinks.forEach(function(link) {
+      var id = link.getAttribute('href');
+      if (id && id.startsWith('#')) {
+        headingIds.push({ id: id.substring(1), el: link });
+      }
+    });
+
+    var currentHighlight = null;
+
+    // 注入高亮樣式
+    var hlStyle = document.createElement('style');
+    hlStyle.textContent = '#toc a.toc-active { background: #dbeafe !important; color: #1d4ed8 !important; border-radius: 4px; font-weight: 600; border-left: 3px solid #2980b9; padding-left: 0.4rem; }';
+    document.head.appendChild(hlStyle);
+
+    function highlightToc() {
+      var scrollPos = window.pageYOffset + 100;
+      var current = null;
+
+      for (var i = headingIds.length - 1; i >= 0; i--) {
+        var target = document.getElementById(headingIds[i].id);
+        if (target && target.offsetTop <= scrollPos) {
+          current = headingIds[i].el;
+          break;
+        }
+      }
+
+      if (current !== currentHighlight) {
+        if (currentHighlight) {
+          currentHighlight.classList.remove('toc-active');
+        }
+        if (current) {
+          current.classList.add('toc-active');
+          // 確保高亮項在可視範圍
+          var tocEl = document.getElementById('toc');
+          if (tocEl) {
+            var linkRect = current.getBoundingClientRect();
+            var tocRect = tocEl.getBoundingClientRect();
+            if (linkRect.top < tocRect.top + 60 || linkRect.bottom > tocRect.bottom - 20) {
+              current.scrollIntoView({ block: 'center', behavior: 'smooth' });
+            }
+          }
+        }
+        currentHighlight = current;
+      }
+    }
+
+    window.addEventListener('scroll', function() {
+      requestAnimationFrame(highlightToc);
+    }, { passive: true });
+
+    highlightToc();
+  }
+})();
+</script>
+</body>
+</html>
+</body>
+</html>

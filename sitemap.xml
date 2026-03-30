@@ -1,9 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://mastering-ethereum.doge.tg/</loc>
-    <lastmod>2026-03-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
-  </url>
+  <url><loc>https://mastering-ethereum.doge.tg/</loc><lastmod>2026-03-30</lastmod><priority>1.0</priority></url>
+  <url><loc>https://mastering-ethereum.doge.tg/all.html</loc><lastmod>2026-03-30</lastmod><priority>0.5</priority></url>
+  <url><loc>https://mastering-ethereum.doge.tg/preface.html</loc><lastmod>2026-03-30</lastmod><priority>0.8</priority></url>
+  <url><loc>https://mastering-ethereum.doge.tg/glossary.html</loc><lastmod>2026-03-30</lastmod><priority>0.8</priority></url>
+  <url><loc>https://mastering-ethereum.doge.tg/ch01.html</loc><lastmod>2026-03-30</lastmod><priority>0.8</priority></url>
+  <url><loc>https://mastering-ethereum.doge.tg/ch02.html</loc><lastmod>2026-03-30</lastmod><priority>0.8</priority></url>
+  <url><loc>https://mastering-ethereum.doge.tg/ch03.html</loc><lastmod>2026-03-30</lastmod><priority>0.8</priority></url>
+  <url><loc>https://mastering-ethereum.doge.tg/ch04.html</loc><lastmod>2026-03-30</lastmod><priority>0.8</priority></url>
+  <url><loc>https://mastering-ethereum.doge.tg/ch05.html</loc><lastmod>2026-03-30</lastmod><priority>0.8</priority></url>
+  <url><loc>https://mastering-ethereum.doge.tg/ch06.html</loc><lastmod>2026-03-30</lastmod><priority>0.8</priority></url>
+  <url><loc>https://mastering-ethereum.doge.tg/ch07.html</loc><lastmod>2026-03-30</lastmod><priority>0.8</priority></url>
+  <url><loc>https://mastering-ethereum.doge.tg/ch08.html</loc><lastmod>2026-03-30</lastmod><priority>0.8</priority></url>
+  <url><loc>https://mastering-ethereum.doge.tg/ch09.html</loc><lastmod>2026-03-30</lastmod><priority>0.8</priority></url>
+  <url><loc>https://mastering-ethereum.doge.tg/ch10.html</loc><lastmod>2026-03-30</lastmod><priority>0.8</priority></url>
+  <url><loc>https://mastering-ethereum.doge.tg/ch11.html</loc><lastmod>2026-03-30</lastmod><priority>0.8</priority></url>
+  <url><loc>https://mastering-ethereum.doge.tg/ch12.html</loc><lastmod>2026-03-30</lastmod><priority>0.8</priority></url>
+  <url><loc>https://mastering-ethereum.doge.tg/ch13.html</loc><lastmod>2026-03-30</lastmod><priority>0.8</priority></url>
+  <url><loc>https://mastering-ethereum.doge.tg/ch14.html</loc><lastmod>2026-03-30</lastmod><priority>0.8</priority></url>
+  <url><loc>https://mastering-ethereum.doge.tg/ch15.html</loc><lastmod>2026-03-30</lastmod><priority>0.8</priority></url>
+  <url><loc>https://mastering-ethereum.doge.tg/ch17.html</loc><lastmod>2026-03-30</lastmod><priority>0.8</priority></url>
+  <url><loc>https://mastering-ethereum.doge.tg/ch18.html</loc><lastmod>2026-03-30</lastmod><priority>0.8</priority></url>
+  <url><loc>https://mastering-ethereum.doge.tg/ch19.html</loc><lastmod>2026-03-30</lastmod><priority>0.8</priority></url>
 </urlset>

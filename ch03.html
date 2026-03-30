@@ -1,0 +1,1793 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.26">
+<title>以太坊客戶端 — 精通以太坊 Mastering Ethereum 繁體中文版</title>
+<link rel="stylesheet" href="./custom.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./rouge-github.css">
+<!-- Google Analytics 4 -->
+<script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-ZVVQYEKMPF"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-ZVVQYEKMPF');
+</script>
+
+<!-- Favicon -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2B21;</text></svg>" type="image/svg+xml">
+
+<!-- SEO: Title Override -->
+<meta name="title" content="精通以太坊 Mastering Ethereum — 繁體中文完整版 | 智能合約、DApps、EVM、Solidity 技術指南">
+
+<!-- SEO: Description -->
+<meta name="description" content="精通以太坊（Mastering Ethereum）繁體中文版，由 Andreas M. Antonopoulos 和 Gavin Wood 著作。完整涵蓋以太坊基礎、智能合約、Solidity、DApps、EVM、Gas、密鑰管理、錢包、交易、預言機、共識機制等 19 章內容。免費線上閱讀，提供 PDF 和 EPUB 電子書下載。">
+<meta name="keywords" content="以太坊, Ethereum, 智能合約, Smart Contract, Solidity, DApp, EVM, 區塊鏈, Blockchain, 加密貨幣, Web3, DeFi, 精通以太坊, Mastering Ethereum, 繁體中文, 教學, 技術指南">
+<meta name="author" content="Andreas M. Antonopoulos, Gavin Wood, Dr. Awesome Doge">
+
+<!-- SEO: Canonical -->
+
+
+<!-- SEO: Language Alternatives -->
+<link rel="alternate" hreflang="zh-Hant" href="https://mastering-ethereum.doge.tg/">
+<link rel="alternate" hreflang="en" href="https://github.com/ethereumbook/ethereumbook">
+
+<!-- Google Fonts: Noto Sans TC -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap">
+
+<!-- Open Graph -->
+<meta property="og:type" content="book">
+<meta property="og:title" content="精通以太坊 Mastering Ethereum — 繁體中文完整版">
+<meta property="og:description" content="以太坊完整技術指南，涵蓋智能合約、Solidity、DApps、EVM 等 19 章。免費線上閱讀 + PDF/EPUB 下載。">
+<meta property="og:image" content="https://mastering-ethereum.doge.tg/images/cover.png">
+<meta property="og:image:width" content="1050">
+<meta property="og:image:height" content="1378">
+<meta property="og:image:alt" content="Mastering Ethereum 書籍封面">
+<meta property="og:url" content="https://mastering-ethereum.doge.tg/">
+<meta property="og:site_name" content="精通以太坊 繁體中文版">
+<meta property="og:locale" content="zh_TW">
+<meta property="book:author" content="Andreas M. Antonopoulos">
+<meta property="book:author" content="Gavin Wood">
+<meta property="book:tag" content="Ethereum">
+<meta property="book:tag" content="Blockchain">
+<meta property="book:tag" content="Smart Contracts">
+<meta property="book:tag" content="Solidity">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="精通以太坊 Mastering Ethereum — 繁體中文完整版">
+<meta name="twitter:description" content="以太坊完整技術指南，涵蓋智能合約、Solidity、DApps、EVM 等 19 章。免費線上閱讀 + PDF/EPUB 下載。">
+<meta name="twitter:image" content="https://mastering-ethereum.doge.tg/images/cover.png">
+<meta name="twitter:image:alt" content="Mastering Ethereum 書籍封面">
+
+<!-- JSON-LD Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Book",
+  "name": "精通以太坊 Mastering Ethereum 繁體中文版",
+  "alternateName": "Mastering Ethereum: Building Smart Contracts and DApps",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Andreas M. Antonopoulos",
+      "url": "https://aantonop.com/"
+    },
+    {
+      "@type": "Person",
+      "name": "Gavin Wood"
+    }
+  ],
+  "translator": {
+    "@type": "Person",
+    "name": "Dr. Awesome Doge"
+  },
+  "inLanguage": "zh-Hant",
+  "url": "https://mastering-ethereum.doge.tg/",
+  "image": "https://mastering-ethereum.doge.tg/images/cover.png",
+  "description": "以太坊完整技術指南繁體中文版，涵蓋智能合約、Solidity、DApps、EVM、Gas、密鑰管理等 19 章內容。",
+  "genre": ["Technology", "Blockchain", "Cryptocurrency"],
+  "bookFormat": "https://schema.org/EBook",
+  "numberOfPages": 257,
+  "publisher": {
+    "@type": "Organization",
+    "name": "O'Reilly Media"
+  },
+  "license": "https://creativecommons.org/licenses/by-nc-nd/4.0/",
+  "isAccessibleForFree": true,
+  "encoding": [
+    {
+      "@type": "MediaObject",
+      "encodingFormat": "application/pdf",
+      "contentUrl": "https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.pdf"
+    },
+    {
+      "@type": "MediaObject",
+      "encodingFormat": "application/epub+zip",
+      "contentUrl": "https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.epub"
+    }
+  ],
+  "about": [
+    {"@type": "Thing", "name": "Ethereum"},
+    {"@type": "Thing", "name": "Smart Contracts"},
+    {"@type": "Thing", "name": "Blockchain"},
+    {"@type": "Thing", "name": "Solidity"},
+    {"@type": "Thing", "name": "Decentralized Applications"},
+    {"@type": "Thing", "name": "EVM"}
+  ]
+}
+</script>
+
+<!-- BreadcrumbList for search results -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "精通以太坊",
+      "item": "https://mastering-ethereum.doge.tg/"
+    }
+  ]
+}
+</script>
+
+<link rel="canonical" href="https://mastering-ethereum.doge.tg/ch03.html">
+<meta name="description" content="精通以太坊：以太坊客戶端。以太坊完整技術指南繁體中文版，免費線上閱讀。">
+<style>
+.chapter-nav{display:flex;justify-content:space-between;align-items:center;padding:1rem 0;border-top:1px solid #e1e4e8;border-bottom:1px solid #e1e4e8;margin:2rem 0;gap:0.8rem;flex-wrap:wrap}
+.chapter-nav a{color:#2980b9;text-decoration:none;font-size:0.9rem;padding:0.4rem 0.8rem;border-radius:4px;transition:background 0.2s}
+.chapter-nav a:hover{background:#f0f3f6}
+.chapter-nav .nav-prev{text-align:left;max-width:40%}
+.chapter-nav .nav-next{text-align:right;max-width:40%}
+.chapter-nav .nav-home{font-weight:600}
+@media(max-width:768px){.chapter-nav{font-size:0.82rem}.chapter-nav a{padding:0.3rem 0.5rem}}
+</style>
+</head>
+<body class="book">
+<div id="header">
+<h1><a href="index.html" style="color:inherit;text-decoration:none">精通以太坊 Mastering Ethereum 繁體中文版</a></h1>
+</div>
+<div id="content">
+<nav class="chapter-nav"><a href="ch02.html" class="nav-prev">&larr; 以太坊基礎</a><a href="index.html" class="nav-home">首頁</a><a href="ch04.html" class="nav-next">以太坊測試網 &rarr;</a></nav>
+<div class="sect1">
+<h2 id="ethereum_clients_chapter">3. 以太坊客戶端</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>以太坊客戶端 (Ethereum client) 是一隻軟體應用程式，它依以太坊協定標準實現，並且在點對點網路 (peer-to-pper network) 上與其它以太坊客戶端溝通。不同的以太坊客戶端只要遵守這些協定及通訊，就可以互相操作。雖然不同的以太坊客戶端由不同的團隊或不同的程式語言來實現，而它們說的是相同的語言並且遵照相同規定；因此，在同一個以太坊網路下，這些客戶端可以彼此操作與互動。</p>
+</div>
+<div class="paragraph">
+<p>以太坊是一個開放原始碼 (open source) 專案，原始碼可在開源授權（LGPL v3.0）許可下使用，可免費下載並用於任何目的。開放原始碼意味著不僅僅是免費使用。這也意味著以太坊由開源社群的志願者所開發，任何人都可以修改。越多人關注此專案，它的程式碼就越可以被信賴。</p>
+</div>
+<div class="paragraph">
+<p>一個名為"黃皮書 (Yellow Paper)" 的正式標準定義了以太坊。(請見以太坊黃皮書，連結：https://ethereum.github.io/yellowpaper/paper.pdf)</p>
+</div>
+<div class="paragraph">
+<p>這與比特幣相反，比特幣沒有任何正式的定義。比特幣的“規範”是比特幣核心的參考實現，以太坊的規範定義在一篇結合了英文和數學的（正式的）規範的論文中。
+這個正式的規範，除了各種以太坊改進建議之外，還定義了以太坊客戶端的標準行為。隨著對以太坊的重大改變，黃皮書會定期更新。</p>
+</div>
+<div class="paragraph">
+<p>作為以太坊明確的正式規範的結果，以太坊客戶端有許多獨立開發的，可互操作的軟體實現。以太坊在網路上運行的實現方式比任何其他區塊鏈都多。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_以太坊網路">4. 以太坊網路</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>現今存在各式各樣基於乙太坊的網路，它們雖然大程度符合以太坊黃皮書 (Ethereum Yellow Paper) 的正式規範。但它們之間並不一定能互相操作。</p>
+</div>
+<div class="paragraph">
+<p>這些基於以太坊的網路有：Ethereum、Ethereum Classic、Ella，Expanse、Ubiq、Musicoin 等等。雖然它們幾乎相容於乙太坊協議(Ethereum protocol)，但這些網路通常各自有一些特別功能及屬性，而乙太坊用戶端 (Ethereum client) 軟體為了支持這些不同網路，需要為各別網路進行小修改才有辦法達成。因此，並非每個版本的乙太坊用戶端 (Ethereum client) 軟體總能夠支持所有基於以太坊的網路。</p>
+</div>
+<div class="paragraph">
+<p>目前，乙太坊協議 (Ethereum protocol) 有六種實作，以不同的程式語言編寫完成：Go 語言編寫的 Geth、Rust 語言編寫的 parity、C++ 編寫的 cpp-ethereum、Python 編寫的 pyethereum 、Scala 編寫的 mantis 以及 Java 編寫的harmony。</p>
+</div>
+<div class="paragraph">
+<p>在本節中，我們將看看兩個最常見的乙太坊客戶端，Geth 和 Parity。我們將學習如何使用它們的客戶端去啟動節點(node)，並且探索它們的命令列(command-line options) 操作方式以及應用程式編程介面（API）。</p>
+</div>
+<div class="sect2">
+<h3 id="full_node_importance">4.1. 我應該運行一個全節點 (full node) 嗎？</h3>
+<div class="paragraph">
+<p>區塊鏈的健康、彈性以及抗審查性，需要依靠大量分佈於世界各地並且獨立運作的全節點 (full node) 。每個全節點會協助新節點取得區塊資料，這麼作不僅能幫助營運的新節點取得受到公信力及獨立性驗證過的合約及交易資料，也能讓新節點能自行完整的營運。</p>
+</div>
+<div class="paragraph">
+<p>但是，運行完整的節點會導致硬體資源和帶寬的巨大成本。完整的節點必須下載超過80GB的數據（截至2018年4月;取決於客戶端）並將其儲存在本地硬碟上。隨著新的交易和區塊的添加，這種數據負擔每天都會迅速增加。<a href="#requirements">完整節點的硬體要求</a> 中有關於此主題的更多資訊。</p>
+</div>
+<div class="paragraph">
+<p>在以太坊開發中，運行在活躍網路（主網）上的完整節點不是必需的。你可以使用_testnet_節點（它儲存小型公共測試區塊鏈的副本），或本地私有區塊鏈（參見 <a href="#ganache">[ganache]</a>），或服務提供商提供的基於雲的以太坊客戶端（參見 <a href="#infura">[infura]</a>），做幾乎任何事。</p>
+</div>
+<div class="paragraph">
+<p>你還可以選擇運行輕量級客戶端，該客戶端不會儲存區塊鏈的本地副本或驗證塊和交易。這些客戶端提供錢包的功能，並可以創建和廣播交易。</p>
+</div>
+<div class="paragraph">
+<p>輕量級客戶端可用於連接到現有網路，例如你自己的完整節點，公共區塊鏈，公開或許可的（PoA）測試網或私有本地區塊鏈。在實踐中，你可能會使用輕量級客戶端，如MetaMask、Emerald Wallet、MyEtherWallet或MyCrypto作為在所有不同節點選項之間切換的便捷方式。</p>
+</div>
+<div class="paragraph">
+<p>儘管存在一些差異，術語“輕量級客戶端”和“錢包”可以互換使用。通常，輕量級客戶端除了提供錢包的交易功能外，還提供API（如web3js API）。</p>
+</div>
+<div class="paragraph">
+<p>不要將以太坊中輕量級錢包的概念與比特幣中簡化支付驗證（SPV）客戶端的概念混淆。SPV客戶驗證區塊頭並使用merkle證明來驗證區塊鏈中是否包含交易。以太坊輕量級客戶端通常不驗證區塊頭或交易。他們完全信任由第三方運營的完整客戶端，讓他們通過RPC訪問區塊鏈。</p>
+</div>
+<div class="sect3">
+<h4 id="full_node_adv_disadv">4.1.1. 完整節點的優點和缺點</h4>
+<div class="paragraph">
+<p>選擇運行一個完整的節點可以幫助各種基於以太坊的網路，但也會給你帶來一些溫和的或適中的成本。我們來看看一些優點和缺點。</p>
+</div>
+<div class="paragraph">
+<p><strong>優點：</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>支持基於以太坊的網路的彈性和抗審查。</p>
+</li>
+<li>
+<p>權威性驗證所有交易。</p>
+</li>
+<li>
+<p>可以與公共區塊鏈上的任何合約進行交互（無需中介）。</p>
+</li>
+<li>
+<p>如有必要，可以離線查詢（只讀）區塊鏈狀態（帳戶、合約等）。</p>
+</li>
+<li>
+<p>可以在不讓第三方知道你正在讀取的資訊的情況下查詢區塊鏈。</p>
+</li>
+<li>
+<p>可以直接將自己的合約部署到公共區塊鏈中（無需中介）。</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>缺點：</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>需要大量且不斷增長的硬體和帶寬資源。</p>
+</li>
+<li>
+<p>需要幾個小時或幾天才能完成第一次初始下載的同步。</p>
+</li>
+<li>
+<p>必須維護，升級並保持聯機才能保持同步。</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="pub_test_adv_disadv">4.1.2. 公共測試網的優點和缺點</h4>
+<div class="paragraph">
+<p>無論你是否選擇運行完整節點，你可能都需要運行公共testnet節點。我們來看看使用公共測試網的一些優點和缺點。</p>
+</div>
+<div class="paragraph">
+<p><strong>優點：</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>測試網路節點需要同步並儲存少得多的數據，根據網路大小約為10GB（截至2018年4月）。</p>
+</li>
+<li>
+<p>測試網路節點可以在幾個小時內完全同步。</p>
+</li>
+<li>
+<p>部署合約或進行交易需要測試ether，它沒有價值，可以從幾個“faucet”免費獲得。</p>
+</li>
+<li>
+<p>Testnets是與其他許多用戶和合約共享的區塊鏈，運行“live”。</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>缺點：</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>你不能在測試網上使用“真實”的錢，它以測試ether運轉。</p>
+</li>
+<li>
+<p>因此，你無法針對真正對手進行安全性測試，因為沒有任何風險。</p>
+</li>
+<li>
+<p>公共區塊鏈的某些方面無法在testnet上真實地測試。例如，交易費雖然是發送交易所必需的，但由於gas是免費的，因此不需要在測試網上考慮。測試網不會像公共網路那樣經歷網路擁塞。</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="testRPC_adv_disadv">4.1.3. 本地實例（TestRPC）的優點和缺點</h4>
+<div class="paragraph">
+<p>對於許多測試目的，最好的選擇是使用 testrpc 節點啟動一個實例私有區塊鏈。TestRPC創建一個本地私有區塊鏈，你可以與之交互，而無需任何其他參與者。它分享了公共測試網的許多優點和缺點，但也有一些差異。</p>
+</div>
+<div class="paragraph">
+<p><strong>優點：</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>不同步，硬碟上幾乎沒有數據。你自己挖掘第一塊。</p>
+</li>
+<li>
+<p>無需測試ether，你可以將挖礦獎勵“獎勵”給自己，用於測試。</p>
+</li>
+<li>
+<p>沒有其他用戶，只有你。</p>
+</li>
+<li>
+<p>沒有其他合約，只有你啟動後部署的合約。</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>缺點：</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>沒有其他用戶意味著它不像公共區塊鏈一樣。沒有交易空間或交易排序的競爭。</p>
+</li>
+<li>
+<p>除你之外沒有礦工意味著採礦更具可預測性，因此你無法測試公開區塊鏈上發生的一些情況。</p>
+</li>
+<li>
+<p>沒有其他合約意味著你必須部署所有你想測試的內容，包括依賴項和合約庫。</p>
+</li>
+<li>
+<p>你不能重新創建一些公共合約及其地址來測試一些場景（例如DAO合約）。</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="running_client">4.2. 運行以太坊客戶端</h3>
+<div class="paragraph">
+<p>如果你有時間和資源，你應該嘗試運行一個完整的節點，即使只是為了更多地瞭解這個過程。在接下來的幾節中，我們將下載，編譯和運行以太坊客戶Go-Ethereum（Geth）和Parity。這需要熟悉在作業系統上使用命令行界面。無論你選擇將它們作為完整節點，作為testnet節點還是作為本地私有區塊鏈的客戶端運行，都值得安裝這些客戶端。</p>
+</div>
+<div class="sect3">
+<h4 id="requirements">4.2.1. 完整節點的硬體要求</h4>
+<div class="paragraph">
+<p>在我們開始之前，你應該確保你有一臺具有足夠資源的計算機來運行以太坊完整節點。你將需要至少80GB的硬碟空間來儲存以太坊區塊鏈的完整副本。如果你還想在以太坊測試網上運行完整節點，則至少需要額外的15GB。下載80GB的區塊鏈數據可能需要很長時間，因此建議你使用快速的Internet連接。</p>
+</div>
+<div class="paragraph">
+<p>同步以太坊區塊鏈是非常密集的輸入輸出（I / O）。最好有一個固態硬碟（SSD）。如果你有機械硬碟驅動器（HDD），則至少需要8GB的RAM能用作緩存。否則，你可能會發現你的系統速度太慢，無法完全保持同步。</p>
+</div>
+<div class="paragraph">
+<p><strong>最低要求：</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>2核心CPU。</p>
+</li>
+<li>
+<p>固態硬碟（SSD），至少80GB可用空間。</p>
+</li>
+<li>
+<p>最小4GB記憶體，如果你使用HDD而不是SSD，則至少8GB。</p>
+</li>
+<li>
+<p>8+ MBit/sec下載速度的互聯網。</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>這些是同步基於以太坊的區塊鏈的完整（但已修剪）副本的最低要求。</p>
+</div>
+<div class="paragraph">
+<p>在編寫本文時（2018年4月），Parity程式碼庫的資源往往更輕，如果你使用有限的硬體運行，那麼使用Parity可能會看到最好的結果。</p>
+</div>
+<div class="paragraph">
+<p>如果你想在合理的時間內同步並儲存我們在本書中討論的所有開發工具，庫，客戶端和區塊鏈，你將需要一臺功能更強大的計算機。</p>
+</div>
+<div class="paragraph">
+<p><strong>推薦規格：</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>4個以上核心的快速CPU。</p>
+</li>
+<li>
+<p>16GB+ RAM。</p>
+</li>
+<li>
+<p>至少有500GB可用空間的快速SSD。</p>
+</li>
+<li>
+<p>25+ MBit/sec下載速度的互聯網。</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>很難預測區塊鏈的大小會增加多快，以及何時需要更多的硬碟空間，所以建議你在開始同步之前檢查區塊鏈的最新大小。</p>
+</div>
+<div class="paragraph">
+<p><strong>以太坊：</strong> <a href="https://bitinfocharts.com/ethereum/" class="bare">https://bitinfocharts.com/ethereum/</a></p>
+</div>
+<div class="paragraph">
+<p><strong>以太坊經典：</strong> <a href="https://bitinfocharts.com/ethereum%20classic/" class="bare">https://bitinfocharts.com/ethereum%20classic/</a></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="sw_reqs">4.2.2. 構建和運行客戶端（節點）的軟體要求</h4>
+<div class="paragraph">
+<p>本節介紹Geth和Parity客戶端軟體。並假設你正在使用類Unix的命令行環境。這些範例顯示了在運行Bash shell（命令行執行環境）的Ubuntu Linux作業系統上輸入的輸出和命令。</p>
+</div>
+<div class="paragraph">
+<p>通常，每個區塊鏈都有自己的Geth版本，而Parity支持多個以太坊區塊鏈（Ethereum、Ethereum Classic、Ellaism、Expanse、Musicoin）。</p>
+</div>
+<div class="paragraph">
+<p>在我們開始之前，我們可能需要滿足一些先決條件。如果你從未在你當前使用的計算機上進行任何軟體開發，則可能需要安裝一些基本工具。對於以下範例，你需要安裝 git，源程式碼管理系統; Golang，Go程式語言和標準庫; 和Rust，一種系統程式語言。</p>
+</div>
+<div class="paragraph">
+<p>可以按照以下說明安裝Git：
+<a href="https://git-scm.com/" class="bare">https://git-scm.com/</a></p>
+</div>
+<div class="paragraph">
+<p>可以按照以下說明安裝Go：
+<a href="https://golang.org/" class="bare">https://golang.org/</a></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="備註"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Geth的要求各不相同，但如果你堅持使用Go版本1.10或更高版本，你應該能夠編譯你想要的任何版本的Geth。當然，你應該總是參考你選擇的Geth的文件。</p>
+</div>
+<div class="paragraph">
+<p>如果安裝在你的作業系統上的Golang版本或者從系統的軟體包管理器中獲得的版本遠遠早於1.10，請將其刪除並從golang.org安裝最新版本。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Rust可以按照以下說明進行安裝：
+<a href="https://www.rustup.rs/" class="bare">https://www.rustup.rs/</a></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="備註"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Parity需要Rust版本1.24或更高版本。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Parity還需要一些軟體庫，例如OpenSSL和libudev。要在Linux（Debian）兼容系統上安裝，請執行以下操作：</p>
+</div>
+<div id="install_parity_dependencies" class="listingblock">
+<div class="content">
+<pre>$ sudo apt-get install openssl libssl-dev libudev-dev</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>對於其他作業系統，請使用作業系統的軟體包管理器或遵循Wiki說明（https://github.com/paritytech/parity/wiki/Setup）來安裝所需的庫。</p>
+</div>
+<div class="paragraph">
+<p>現在你已經安裝了 git、golang、rust 和必要的庫，讓我們開始工作吧！</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="parity">4.2.3. Parity</h4>
+<div class="paragraph">
+<p>Parity是完整節點以太坊客戶端和DApp瀏覽器的實現。Parity是由Rust從頭開始編寫的，系統程式語言是為了構建一個模塊化，安全和可擴展的以太坊客戶端。Parity由英國公司Parity Tech開發，並以GPLv3開源許可證發佈。</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="備註"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>披露：本書的作者之一Gavin Wood是Parity Tech的創始人，並撰寫了大部分Parity客戶端。Parity代表了約28%的以太坊客戶端。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>要安裝Parity，你可以使用Rust包管理器+cargo+或從GitHub下載源程式碼。軟體包管理器也下載源程式碼，所以兩種選擇之間沒有太大區別。在下一節中，我們將向你展示如何自己下載和編譯Parity。</p>
+</div>
+<div class="sect4">
+<h5 id="install_parity">安裝 Parity</h5>
+<div class="paragraph">
+<p>Parity Wiki提供了在不同環境和容器中構建Parity的說明：</p>
+</div>
+<div class="paragraph">
+<p><a href="https://github.com/paritytech/parity/wiki/Setup" class="bare">https://github.com/paritytech/parity/wiki/Setup</a></p>
+</div>
+<div class="paragraph">
+<p>我們將從源程式碼構建奇偶校驗。這假定你已經使用 rustup 安裝了Rust（見 <a href="#sw_reqs">構建和運行客戶端（節點）的軟體要求</a>）。</p>
+</div>
+<div class="paragraph">
+<p>首先，讓我們從GitHub獲取源程式碼：</p>
+</div>
+<div id="git_clone_parity" class="listingblock">
+<div class="content">
+<pre>$ git clone https://github.com/paritytech/parity</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>現在，我們轉到+parity+目錄並使用+cargo+構建可執行檔案：</p>
+</div>
+<div id="parity_build" class="listingblock">
+<div class="content">
+<pre>$ cd parity
+$ cargo build</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>如果一切順利，你應該看到如下所示的內容：</p>
+</div>
+<div id="parity_build_status" class="listingblock">
+<div class="content">
+<pre>$ cargo build
+    Updating git repository `https://github.com/paritytech/js-precompiled.git`
+ Downloading log v0.3.7
+ Downloading isatty v0.1.1
+ Downloading regex v0.2.1
+
+ [...]
+
+Compiling parity-ipfs-api v1.7.0
+Compiling parity-rpc v1.7.0
+Compiling parity-rpc-client v1.4.0
+Compiling rpc-cli v1.4.0 (file:///home/aantonop/Dev/parity/rpc_cli)
+Finished dev [unoptimized + debuginfo] target(s) in 479.12 secs
+$</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>讓我們通過調用+--version+選項來運行+parity+以查看它是否已安裝：</p>
+</div>
+<div id="run_parity" class="listingblock">
+<div class="content">
+<pre>$ parity --version
+Parity
+  version Parity/v1.7.0-unstable-02edc95-20170623/x86_64-linux-gnu/rustc1.18.0
+Copyright 2015, 2016, 2017 Parity Technologies (UK) Ltd
+License GPLv3+: GNU GPL version 3 or later &lt;http://gnu.org/licenses/gpl.html&gt;.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+By Wood/Paronyan/Kotewicz/Drwięga/Volf
+   Habermeier/Czaban/Greeff/Gotchac/Redmann
+$</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>現在已安裝了Parity，我們可以同步區塊鏈並開始使用一些基本的命令行選項。</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="go_ethereum_geth">4.2.4. Go-Ethereum (Geth)</h4>
+<div class="paragraph">
+<p>Geth是Go語言實現的，它被積極開發並被視為以太坊客戶端的“官方”實現。通常情況下，每個基於以太坊的區塊鏈都會有自己的Geth實現。如果你正在運行Geth，那麼你需要確保使用以下某個儲存庫鏈接為區塊鏈獲取正確的版本。</p>
+</div>
+<div class="sect4">
+<h5 id="_版本庫鏈接">版本庫鏈接</h5>
+<div class="paragraph">
+<p><strong>Ethereum:</strong> <a href="https://github.com/ethereum/go-ethereum" class="bare">https://github.com/ethereum/go-ethereum</a> (or <a href="https://geth.ethereum.org/" class="bare">https://geth.ethereum.org/</a>)</p>
+</div>
+<div class="paragraph">
+<p><strong>Ethereum Classic:</strong> <a href="https://github.com/ethereumproject/go-ethereum" class="bare">https://github.com/ethereumproject/go-ethereum</a></p>
+</div>
+<div class="paragraph">
+<p><strong>Ellaism:</strong> <a href="https://github.com/ellaism/go-ellaism" class="bare">https://github.com/ellaism/go-ellaism</a></p>
+</div>
+<div class="paragraph">
+<p><strong>Expanse:</strong> <a href="https://github.com/expanse-org/go-expanse" class="bare">https://github.com/expanse-org/go-expanse</a></p>
+</div>
+<div class="paragraph">
+<p><strong>Musicoin:</strong> <a href="https://github.com/Musicoin/go-musicoin" class="bare">https://github.com/Musicoin/go-musicoin</a></p>
+</div>
+<div class="paragraph">
+<p><strong>Ubiq:</strong> <a href="https://github.com/ubiq/go-ubiq" class="bare">https://github.com/ubiq/go-ubiq</a></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="備註"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>你也可以跳過這些說明併為你選擇的平臺安裝預編譯的二進制檔案。預編譯的版本安裝起來更容易，可以在上面版本庫的“版本”部分找到。但是，你可以通過自己下載和編譯軟體來了解更多資訊。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="cloning_repo">複製儲存庫</h5>
+<div class="paragraph">
+<p>我們的第一步是複製git倉庫，以獲得源程式碼的副本。</p>
+</div>
+<div class="paragraph">
+<p>要創建此儲存庫的本地副本，請使用 git 命令，如下所示，在你的主目錄或用於開發的任何目錄下：</p>
+</div>
+<div id="git_clone_geth" class="listingblock">
+<div class="content">
+<pre>$ git clone &lt;Repository Link&gt;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>在將儲存庫複製到本地系統時，你應該看到進度報告：</p>
+</div>
+<div id="cloning_status" class="listingblock">
+<div class="content">
+<pre>Cloning into 'go-ethereum'...
+remote: Counting objects: 62587, done.
+remote: Compressing objects: 100% (26/26), done.
+remote: Total 62587 (delta 10), reused 13 (delta 4), pack-reused 62557
+Receiving objects: 100% (62587/62587), 84.51 MiB | 1.40 MiB/s, done.
+Resolving deltas: 100% (41554/41554), done.
+Checking connectivity... done.</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>現在我們有了Geth的本地副本，我們可以為我們的平臺編譯一個可執行檔案。</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="build_geth_src">從源程式碼構建Geth</h5>
+<div class="paragraph">
+<p>要構建Geth，切換到下載源程式碼的目錄並使用 make 命令：</p>
+</div>
+<div id="making_geth" class="listingblock">
+<div class="content">
+<pre>$ cd go-ethereum
+$ make geth</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>如果一切順利，你將看到Go編譯器構建每個組件，直到它生成+ geth +可執行檔案：</p>
+</div>
+<div id="making_geth_status" class="listingblock">
+<div class="content">
+<pre>build/env.sh go run build/ci.go install ./cmd/geth
+&gt;&gt;&gt; /usr/local/go/bin/go install -ldflags -X main.gitCommit=58a1e13e6dd7f52a1d5e67bee47d23fd6cfdee5c -v ./cmd/geth
+github.com/ethereum/go-ethereum/common/hexutil
+github.com/ethereum/go-ethereum/common/math
+github.com/ethereum/go-ethereum/crypto/sha3
+github.com/ethereum/go-ethereum/rlp
+github.com/ethereum/go-ethereum/crypto/secp256k1
+github.com/ethereum/go-ethereum/common
+[...]
+github.com/ethereum/go-ethereum/cmd/utils
+github.com/ethereum/go-ethereum/cmd/geth
+Done building.
+Run "build/bin/geth" to launch geth.
+$</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>讓我們在停止並更改它的配置之前運行 geth 以確保它工作：</p>
+</div>
+<div id="run_geth" class="listingblock">
+<div class="content">
+<pre>$ ./build/bin/geth version
+
+Geth
+Version: 1.6.6-unstable
+Git Commit: 58a1e13e6dd7f52a1d5e67bee47d23fd6cfdee5c
+Architecture: amd64
+Protocol Versions: [63 62]
+Network Id: 1
+Go Version: go1.8.3
+Operating System: linux
+GOPATH=/usr/local/src/gocode/
+GOROOT=/usr/local/go</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>你的 geth version 命令可能會稍微不同，但你應該看到類似上面的版本報告。</p>
+</div>
+<div class="paragraph">
+<p>最後，我們可能希望將 geth 命令複製到作業系統的應用程式目錄（或命令行執行路徑上的目錄）。在Linux上，我們使用以下命令：</p>
+</div>
+<div id="copy_geth_binary" class="listingblock">
+<div class="content">
+<pre>$ sudo cp ./build/bin/geth /usr/local/bin</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>先不要開始運行 geth，因為它會以“緩慢的方式”開始將區塊鏈同步，這將花費太長的時間（幾周）。<a href="#first_sync">基於以太坊的區塊鏈首次同步</a> 解釋了以太坊區塊鏈的初始同步帶來的挑戰。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="first_sync">4.3. 基於以太坊的區塊鏈首次同步</h3>
+<div class="paragraph">
+<p>通常，在同步以太坊區塊鏈時，你的客戶端將下載並驗證自創世區塊以來的每個區塊和每個交易。</p>
+</div>
+<div class="paragraph">
+<p>雖然可以通過這種方式完整同步區塊鏈，但同步會花費很長時間並且對計算資源要求較高（RAM更多，儲存速度更快）。</p>
+</div>
+<div class="paragraph">
+<p>許多基於以太坊的區塊鏈在2016年底遭受了拒絕服務（DoS）攻擊。受此攻擊影響的區塊鏈在進行完全同步時傾向於緩慢同步。</p>
+</div>
+<div class="paragraph">
+<p>例如，在以太坊中，新客戶端在到達區塊2,283,397之前會進展迅速。該塊在2016年9月18日開採，標誌著DoS攻擊的開始。從這個區塊到2,700,031區塊（2016年11月26日），交易驗證變得非常緩慢，記憶體密集並且I/O密集。這導致每塊的驗證時間超過1分鐘。以太坊使用硬分叉實施了一系列升級，以解決在拒絕服務中被利用的底層漏洞。這些升級還通過刪除由垃圾郵件交易創建的大約2000萬個空帳戶來清理區塊鏈。&lt;&lt;[1]&gt;&gt;</p>
+</div>
+<div class="paragraph">
+<p>如果你正在使用完整驗證進行同步，則客戶端會放慢速度並可能需要幾天或更長時間才能驗證受此DoS攻擊影響的任何塊。</p>
+</div>
+<div class="paragraph">
+<p>大多數以太坊客戶端包括一個選項，可以執行“快速”同步，跳過交易的完整驗證，同步到區塊鏈的頂端後，再恢復完整驗證。</p>
+</div>
+<div class="paragraph">
+<p>對於Geth，啟用快速同步的選項通常稱為 --fast。你可能需要參考你選擇的以太坊鏈的具體說明。</p>
+</div>
+<div class="paragraph">
+<p>對於Parity，較舊版本（&lt;1.6），該選項為 --warp，較新版本（&gt;=1.6）上預設啟用（無需設置配置選項）。</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="備註"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Geth和Parity只能在空的區塊資料庫啟動時進行快速同步。如果你已經開始沒有“快速”模式的同步，則Geth和Parity無法切換。刪除區塊鏈數據目錄並從頭開始“快速”同步比繼續完整驗證同步更快。刪除區塊鏈數據時請小心不要刪除任何錢包！</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="json_rpc">4.3.1. JSON-RPC接口</h4>
+<div class="paragraph">
+<p>以太坊客戶端提供應用程式編程接口（API）和一組遠程過程調用（RPC）命令，這些命令被編碼為JavaScript物件表示法（JSON）。這被稱為_JSON-RPC API_。本質上，JSON-RPC API是一個接口，允許我們將使用以太坊客戶端的程式作為_gateway_編寫到以太坊網路和區塊鏈中。</p>
+</div>
+<div class="paragraph">
+<p>通常，RPC接口作為連接埠+8545+上的HTTP服務提供。出於安全原因，預設情況下，它僅受限於從本地主機（你自己的計算機的IP地址為+127.0.0.1+）接受連接。</p>
+</div>
+<div class="paragraph">
+<p>要訪問JSON-RPC API，可以使用專門的庫，用你選擇的程式語言編寫，它提供與每個可用的RPC命令相對應的“樁（stub）”函數調用。或者，你可以手動構建HTTP請求併發送/接收JSON編碼的請求。你甚至可以使用通用命令行HTTP客戶端（如 curl ）來調用RPC接口。讓我們嘗試一下（確保你已經配置並運行了Geth）：</p>
+</div>
+<div id="curl_web3" class="listingblock">
+<div class="title">Using curl to call the web3_clientVersion function over JSON-RPC</div>
+<div class="content">
+<pre>$ curl -X POST -H "Content-Type: application/json" --data \
+'{"jsonrpc":"2.0","method":"web3_clientVersion","params":[],"id":1}' \
+http://localhost:8545
+
+{"jsonrpc":"2.0","id":1,
+"result":"Geth/v1.8.0-unstable-02aeb3d7/linux-amd64/go1.8.3"}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>在這個例子中，我們使用 curl 建立一個HTTP連接來訪問 http://localhost:8545。我們已經運行了 geth，它將JSON-RPC API作為連接埠8545上的HTTP服務提供。我們指示 curl 使用HTTP POST 命令並將內容標識為 Content-Type: application/json。最後，我們傳遞一個JSON編碼的請求作為我們HTTP請求的+data+部分。我們的大多數命令行只是設置 curl 來正確地建立HTTP連接。有趣的部分是我們發佈的實際的JSON-RPC命令：</p>
+</div>
+<div id="JSON_RPC_command" class="listingblock">
+<div class="content">
+<pre>{"jsonrpc":"2.0","method":"web3_clientVersion","params":[],"id":4192}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>JSON-RPC請求根據JSON-RPC 2.0規範格式化，你可以在這裡看到：
+<a href="http://www.jsonrpc.org/specification" class="bare">http://www.jsonrpc.org/specification</a></p>
+</div>
+<div class="paragraph">
+<p>每個請求包含4個元素：</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">jsonrpc</dt>
+<dd>
+<p>JSON-RPC協議的版本。這_必須_是“2.0”。</p>
+</dd>
+<dt class="hdlist1">method</dt>
+<dd>
+<p>要調用的方法的名稱。</p>
+</dd>
+<dt class="hdlist1">params</dt>
+<dd>
+<p>一個結構化值，用於保存在調用方法期間要使用的參數值。該元素可以省略。</p>
+</dd>
+<dt class="hdlist1">id</dt>
+<dd>
+<p>由客戶端建立的識別碼，必須包含字串，數字或NULL值（如果包含）。如果包含，伺服器必須在Response物件中使用相同的值進行回覆。該元素用於關聯兩個物件之間的上下文。</p>
+</dd>
+</dl>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="提示"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>id 參數主要用於在單個JSON-RPC調用中進行多個請求的情況，這種做法稱為_批處理_。批處理用於避免每個請求的新HTTP和TCP連接的開銷。例如，在以太坊環境中，如果我們想要在一個HTTP連接中查詢數千個交易，我們將使用批處理。批處理時，為每個請求設置不同的 id，然後將其與來自JSON-RPC伺服器的每個響應中的+id+進行匹配。實現這個最簡單的方法是維護一個計數器併為每個請求增加值。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="JSON_RPC_response" class="paragraph">
+<p>The response we receive is:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>{"jsonrpc":"2.0","id":4192,
+"result":"Geth/v1.8.0-unstable-02aeb3d7/linux-amd64/go1.8.3"}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>這告訴我們JSON-RPC API由Geth客戶端版本1.8.0提供服務。</p>
+</div>
+<div class="paragraph">
+<p>讓我們嘗試一些更有趣的事情。在下一個例子中，我們要求JSON-RPC API獲取當前的gas價格，以wei為單位：</p>
+</div>
+<div id="curl_current_gas_price" class="listingblock">
+<div class="content">
+<pre>$ curl -X POST -H "Content-Type: application/json" --data \
+'{"jsonrpc":"2.0","method":"eth_gasPrice","params":[],"id":4213}' \
+http://localhost:8545
+
+{"jsonrpc":"2.0","id":4213,"result":"0x430e23400"}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>響應 0x430e23400 告訴我們，當前的gas價格是1.8wei（gigawei或十億wei）。</p>
+</div>
+<div class="paragraph">
+<p><a href="https://github.com/ethereum/wiki/wiki/JSON-RPC" class="bare">https://github.com/ethereum/wiki/wiki/JSON-RPC</a></p>
+</div>
+<div class="sect4">
+<h5 id="parity_compatibility_mode">Parity的Geth兼容模式</h5>
+<div class="paragraph">
+<p>有一個特殊的“Geth兼容模式”，它提供了一個與+geth+相同的JSON-RPC API。要在Geth兼容模式下運行奇偶校驗，請使用+--geth+開關：</p>
+</div>
+<div id="parity_geth" class="listingblock">
+<div class="content">
+<pre>$ parity --geth</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="lw_eth_clients">4.4. 輕量級以太坊客戶</h3>
+<div class="paragraph">
+<p>輕量級客戶端提供了完整客戶端的一部分功能。他們不儲存完整的以太坊區塊鏈，因此它們的啟動速度更快，所需的數據儲存量也更少。</p>
+</div>
+<div class="paragraph">
+<p>輕量級客戶端提供以下一項或多項功能：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>管理錢包中的私鑰和以太坊地址。</p>
+</li>
+<li>
+<p>創建、簽署和廣播交易。</p>
+</li>
+<li>
+<p>使用數據與智能合約進行交互。</p>
+</li>
+<li>
+<p>瀏覽並與DApps交互。</p>
+</li>
+<li>
+<p>提供到區塊瀏覽器等外部服務的鏈接。</p>
+</li>
+<li>
+<p>轉換ether單位並從外部來源查詢匯率。</p>
+</li>
+<li>
+<p>將web3實例作為JavaScript物件注入到Web瀏覽器中。</p>
+</li>
+<li>
+<p>使用另一個客戶端提供/注入瀏覽器的web3實例。</p>
+</li>
+<li>
+<p>在本地或遠程以太網節點上訪問RPC服務。</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>一些輕量級客戶端（例如行動（智慧型手機）錢包）僅提供基本的錢包功能。其他輕量級客戶端是完全開發的DApp瀏覽器。輕量級客戶端通常提供完整節點以太坊客戶端的某些功能，而無需同步以太坊區塊鏈的本地副本。</p>
+</div>
+<div class="paragraph">
+<p>我們來看看一些最受歡迎的輕量級客戶端及其提供的功能。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="mobile_wallets">4.5. 行動（智慧型手機）錢包</h3>
+<div class="paragraph">
+<p>所有的行動錢包都是輕量級的客戶端，因為智慧型手機沒有足夠的資源來運行完整的以太坊客戶端。</p>
+</div>
+<div class="paragraph">
+<p>流行的行動錢包包括Jaxx，Status和Trust Wallet。我們列舉這些作為流行手機錢包的例子（不是對這些錢包的安全或功能的認可）。</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Jaxx </dt>
+<dd>
+<p>基於BIP39助記種子的多幣種手機錢包，支持比特幣、萊特幣、以太坊、以太坊經典、ZCash、各種ERC20代幣和許多其他貨幣。Jaxx可在Android、iOS上作為瀏覽器插件錢包使用，桌面錢包可用於各種作業系統。可以在https://jaxx.io找到它。</p>
+</dd>
+<dt class="hdlist1">Status</dt>
+<dd>
+<p>行動錢包和DApp瀏覽器，支持各種代幣和流行的DApps。適用於iOS和Android智慧型手機。可以在https://status.im找到它。</p>
+</dd>
+<dt class="hdlist1">Trust Wallet</dt>
+<dd>
+<p>支持ERC20和ERC223代幣的行動以太坊，以太坊經典錢包。Trust Wallet適用於iOS和Android智慧型手機。可以在https://trustwalletapp.com/找到它。</p>
+</dd>
+<dt class="hdlist1">Cipher Browser</dt>
+<dd>
+<p>全功能的啟用以太坊的行動DApp瀏覽器和錢包。允許與以太坊應用程式和代幣集成。可以在https://www.cipherbrowser.com找到它</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="browser_wallets">4.6. 瀏覽器錢包</h3>
+<div class="paragraph">
+<p>各種錢包和DApp瀏覽器可用作瀏覽器的插件或擴展，例如Chrome和Firefox：運行在瀏覽器內的輕量級客戶端。</p>
+</div>
+<div class="paragraph">
+<p>一些比較流行的是MetaMask、Jaxx和MyEtherWallet/MyCrypto。</p>
+</div>
+<div class="sect3">
+<h4 id="MetaMask">4.6.1. MetaMask</h4>
+<div class="paragraph">
+<p>MetaMask 在 <a href="#intro">[intro]</a> 中介紹，它是一個多功能的基於瀏覽器的錢包，RPC客戶端和基本合約瀏覽器。它可用於Chrome、Firefox、Opera和Brave Browser。在以下位置找到MetaMask：</p>
+</div>
+<div class="paragraph">
+<p><a href="https://metamask.io" class="bare">https://metamask.io</a></p>
+</div>
+<div class="paragraph">
+<p>乍看，MetaMask是一款基於瀏覽器的錢包。但是，與其他瀏覽器錢包不同，MetaMask將web3實例注入瀏覽器，作為連接到各種以太坊區塊鏈（例如mainnet、Ropsten testnet、Kovan testnet、本地RPC節點等）的RPC客戶端。能夠注入web3實例並充當外部RPC服務的入口，使MetaMask成為開發人員和用戶非常強大的工具。例如，它可以與MyEtherWallet或MyCrypto相結合，充當這些工具的web3提供者和RPC網關。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="Jaxx">4.6.2. Jaxx</h4>
+<div class="paragraph">
+<p>在 <a href="#mobile_wallets">行動（智慧型手機）錢包</a> 中作為行動錢包介紹的Jaxx也可用作Chrome和Firefox擴展。可以在這裡找到：</p>
+</div>
+<div class="paragraph">
+<p><a href="https://jaxx.io" class="bare">https://jaxx.io</a></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="MEW">4.6.3. MyEtherWallet (MEW)</h4>
+<div class="paragraph">
+<p>MyEtherWallet是一款基於瀏覽器的JavaScript輕量級客戶端，提供：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>在JavaScript中運行的軟體錢包。</p>
+</li>
+<li>
+<p>通往諸如Trezor和Ledger等流行硬體錢包的橋樑。</p>
+</li>
+<li>
+<p>一個web3界面，可以連接到另一個客戶端注入的web3實例（例如MetaMask）。</p>
+</li>
+<li>
+<p>可以連接到以太坊完整客戶端的RPC客戶端。</p>
+</li>
+<li>
+<p>給定合約地址和應用程式二進制接口（ABI），可以與智能合約交互的基本接口。</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>MyEtherWallet對於測試和作為硬體錢包界面非常有用。它不應該被用作主要的軟體錢包，因為它在瀏覽器環境中會受到威脅，並且不是一個安全的密鑰儲存系統。</p>
+</div>
+<div class="paragraph">
+<p>訪問MyEtherWallet和其他基於瀏覽器的JavaScript錢包時，你必須非常小心，因為它們經常是釣魚攻擊的目標。始終使用書籤而不是搜索引擎或鏈接訪問正確的網址。MyEtherWallet可以在以下網址找到：</p>
+</div>
+<div class="paragraph">
+<p><a href="https://MyEtherWallet.com" class="bare">https://MyEtherWallet.com</a></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="MyCrypto">4.6.4. MyCrypto</h4>
+<div class="paragraph">
+<p>就在本書第一版出版之前，MyEtherWallet項目分為由兩個獨立開發團隊主導的競爭實現：一個“分叉”，就像在開源開發中所稱的那樣。這兩個項目被稱為MyEtherWallet（原始品牌）和MyCrypto。在拆分時，MyCrypto提供與MyEtherWallet相同的功能。由於兩個開發團隊採取不同的目標和優先事項，這兩個項目可能會出現分歧。</p>
+</div>
+<div class="paragraph">
+<p>與MyEtherWallet一樣，在瀏覽器中訪問MyCrypto時必須非常小心。始終使用書籤，或者非常小心地輸入URL（然後將其書籤以備將來使用）。</p>
+</div>
+<div class="paragraph">
+<p>MyCrypto可以在以下網址找到：</p>
+</div>
+<div class="paragraph">
+<p><a href="https://MyCrypto.com" class="bare">https://MyCrypto.com</a></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="Mist">4.6.5. Mist</h4>
+<div class="paragraph">
+<p>Mist是以太坊基金會創建的第一個啟用以太坊的瀏覽器。它還包含一個基於瀏覽器的錢包，這是有史以來第一個實現ERC20代幣標準的（Fabian Vogelsteller，ERC20的作者也是Mist的主要開發人員）。Mist也是第一個引入camelCase校驗和的軟體包（EIP-155，參見 <a href="#eip-155">[eip-155]</a> ）。Mist運行一個完整的節點，並提供完整的DApp瀏覽器，支持基於Swarm的儲存和ENS地址。可以在以下網址找到：</p>
+</div>
+<div class="paragraph">
+<p><a href="https://github.com/ethereum/mist" class="bare">https://github.com/ethereum/mist</a></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_references">References</h3>
+<div class="ulist bibliography">
+<ul class="bibliography">
+<li>
+<p>[[[1]]] EIP-161: <a href="http://eips.ethereum.org/EIPS/eip-161" class="bare">http://eips.ethereum.org/EIPS/eip-161</a>
+== 以太坊測試網（Testnets）</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_什麼是測試網">4.7. 什麼是測試網？</h3>
+<div class="paragraph">
+<p>測試網路（簡稱testnet）用於模擬以太網主網的行為。有一些公開的測試網路可以替代以太坊區塊鏈。這些網路上的貨幣毫無價值，但它們仍然很有用，因為合約和協議變更的功能可以在不中斷以太網主網或使用真實貨幣的情況下進行測試。當主網（簡稱mainnet）即將包含對以太坊協議的任何重大改變時，其測試主要在這些測試網路上完成。這些測試網路也被大量開發人員用於在部署到主網之前測試應用程式。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_使用_testnets">4.8. 使用 Testnets</h3>
+<div class="paragraph">
+<p>你可以連接到公共可用的測試網路或創建你自己的私人測試網路。首先，讓我們使用公共測試網來更簡單地起步。要使用公共測試網路，需要一些測試網路以及到該網路的連接。對於testnet ether，使用“faucet”，faucet緩慢地分配測試ether，向任何詢問的人“滴送”少量ether。要連接到一個測試網路，你需要一個以太坊客戶端，完整的客戶端，比如geth，或者完整的客戶端的網關，比如MetaMask。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_獲取測試以太網">4.9. 獲取測試以太網</h3>
+<div class="paragraph">
+<p>由於測試網不以真正的金錢運作，礦工保護測試網的動機很弱。因此，測試網必須保護自己免受濫用和攻擊。因此，為這些測試網創建了水龍頭，以受控的方式向開發人員分發免費的測試ether（大多數faucet每隔幾秒左右"滴注"ether）。這種以太網的受控分配可防止用戶濫用鏈，因為提供有限的ether供應可防止他們向鏈中寫入過多內容或執行太多交易。另外，一些testnets已經實施了認證證明（Proof of Authentication）方案，使用faucet需要具有適當社交媒體網站的認證的憑證。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_連接到testnets">4.10. 連接到Testnets</h3>
+<div class="sect3">
+<h4 id="_metamask">4.10.1. Metamask</h4>
+<div class="paragraph">
+<p>Metamask完全支持Ropsten，Kovan和Rinkeby測試網，但也可以連接到其他測試網和本地網。在Metamask中，只需單擊“main network”下拉菜單，即可切換網路。MetaMask還提供了一個“buy”測試ether的選項，該選項將你引導至你可以請求免費測試以太網的faucet。如果使用Ropsten測試網，則可以從Ropsten測試faucet服務中獲取ether。你可以從此頁面訪問此faucet。它需要Metamask擴展才能工作。https://faucet.metamask.io/</p>
+</div>
+<div class="sect4">
+<h5 id="_infura">Infura</h5>
+<div class="paragraph">
+<p>當MetaMask連接到測試網路時，它使用Infura服務提供商來訪問JSON-RPC接口。Infura誕生的目的是為ConsenSys內部項目提供穩定可靠的RPC訪問。除了JSON-RPC API之外，Infura還提供REST（表述性狀態轉移）API、IPFS（星際檔案系統，即去中心化儲存）API和Websockets（即流式傳輸）API。</p>
+</div>
+<div class="paragraph">
+<p>Infura為Ethereum主網，Ropsten、Kovan、Rinkeby和INFURAnet（用於Infura的定製測試網路）提供網關API。</p>
+</div>
+<div class="paragraph">
+<p>要通過MetaMask使用Infura進行較低級別的活動，你不需要帳戶。要直接使用API，你需要註冊一個帳戶並使用Infura提供的API密鑰。</p>
+</div>
+<div class="paragraph">
+<p>有關Infura的更多資訊，請訪問：</p>
+</div>
+<div class="paragraph">
+<p><a href="https://infura.io/" class="bare">https://infura.io/</a></p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_remix集成開發環境ide">4.10.2. Remix集成開發環境（IDE）</h4>
+<div class="paragraph">
+<p>Remix IDE可用於在主網和測試網上部署和交互智能合約，包括Ropsten、Rinkeby和Kovan（Web3提供者使用Infura地址和API密鑰或通過Injected Web3使用MetaMask中選擇的網路）和Ganache（ Web3提供端點http://localhost:8545）</p>
+</div>
+<div class="paragraph">
+<p><a href="https://github.com/ethereum/remix/blob/master/docs/run_tab.rst" class="bare">https://github.com/ethereum/remix/blob/master/docs/run_tab.rst</a>
+<a href="https://medium.com/swlh/deploy-smart-contracts-on-ropsten-testnet-through-ethereum-remix-233cd1494b4b" class="bare">https://medium.com/swlh/deploy-smart-contracts-on-ropsten-testnet-through-ethereum-remix-233cd1494b4b</a></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_geth">4.10.3. Geth</h4>
+<div class="paragraph">
+<p>Geth本身支持Ropsten和Rinkeby網路。要連接到Ropsten網路，請使用命令行參數：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>geth --testnet</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>這將開始同步Ropsten區塊鏈。名為 testnet 的新目錄將在你的主Ethereum數據目錄中創建。一個 keystore 目錄將在 testnet 內部創建，並將儲存你的testnet帳戶的私鑰。在撰寫本文時，Ropsten區塊鏈比以太坊主區塊鏈小得多：大約14GB的數據。由於測試網需要的資源較少，因此首先在測試網上設置並測試你的程式碼會更簡單。</p>
+</div>
+<div class="paragraph">
+<p>與testnet的交互與mainnet類似。你可以使用控制台啟動Geth testnet，方法是運行：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>geth --testnet console</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>這使得執行操作成為可能，例如開設新賬戶、檢查餘額、檢查其他以太坊地址的餘額等。
+在Geth控制台之外運行時，只需將`--testnet`參數添加到命令行指令中，就可以執行類似於在主網上執行的操作。作為列舉所有可用的testnet帳戶及其地址的範例，請運行：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>geth --testnet account list</pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="提示"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>雖然小得多，但測試網仍需要一些時間才能完全同步。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>你可以通過在geth交互式控制台中運行以下命令來檢查geth是否已完成同步測試網路：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>eth.getBlock("latest").number</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>一旦你的testnet節點完全同步，這應該返回一個非0的數字。你可以將該編號與已知的testnet區塊瀏覽器中的最新區塊進行比較，例如https://ropsten.etherscan.io/</p>
+</div>
+<div class="paragraph">
+<p>同樣，要連接到Rinkeby測試網路，請使用命令行參數：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>geth --rinkeby</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_parity">4.10.4. Parity</h4>
+<div class="paragraph">
+<p>Parity客戶端支持Ropsten和Kovan測試網路。你可以用+chain+參數選擇你要連接的網路。例如，要同步Ropsten測試網路：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>parity --chain ropsten</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>同樣，要同步Kovan測試網路，請使用：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>parity --chain kovan</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_深入以太坊testnets">5. 深入以太坊Testnets</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>在這個階段你可能會想：“我明白我為什麼要使用測試網路，但為什麼會有這麼多呢？”</p>
+</div>
+<div class="paragraph">
+<p><a href="https://www.ethnews.com/ropsten-to-kovan-to-rinkeby-ethereums-testnet-troubles" class="bare">https://www.ethnews.com/ropsten-to-kovan-to-rinkeby-ethereums-testnet-troubles</a></p>
+</div>
+<div class="sect2">
+<h3 id="_工作量證明挖礦proof_of_work_mining_與_權威證明聯合簽名proof_of_authority_federated_signing">5.1. 工作量證明（挖礦）Proof-of-Work (Mining) 與 權威證明（聯合簽名）Proof-of-Authority (Federated Signing)</h3>
+<div class="paragraph">
+<p><a href="https://github.com/ethereum/guide/blob/master/poa.md" class="bare">https://github.com/ethereum/guide/blob/master/poa.md</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_morden原始測試網">5.2. Morden（原始測試網）</h3>
+<div class="paragraph">
+<p><a href="https://blog.ethereum.org/2016/11/20/from-morden-to-ropsten/" class="bare">https://blog.ethereum.org/2016/11/20/from-morden-to-ropsten/</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_ropsten">5.3. Ropsten</h3>
+<div class="paragraph">
+<p>如果你想開始在Ropsten網路上測試合約，有幾個faucet可以供給你Ropsten的ether。如果faucet不起作用，請嘗試不同的faucet。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://faucet.ropsten.be:3001/" class="bare">http://faucet.ropsten.be:3001/</a>
+這個faucet提供了應該排隊接收測試以太的地址的可能性。</p>
+</li>
+<li>
+<p>bitfwd Ropsten Faucet
+<a href="https://faucet.bitfwd.xyz/。" class="bare">https://faucet.bitfwd.xyz/。</a></p>
+</li>
+<li>
+<p>Kyber Network Ropsten Faucet
+<a href="https://faucet.kyber.network/。" class="bare">https://faucet.kyber.network/。</a></p>
+</li>
+<li>
+<p>MetaMask Ropsten Faucet
+<a href="https://faucet.metamask.io/" class="bare">https://faucet.metamask.io/</a></p>
+</li>
+<li>
+<p>Ropsten Testnet Mining Pool
+<a href="http://pool.ropsten.ethereum.org/" class="bare">http://pool.ropsten.ethereum.org/</a></p>
+</li>
+<li>
+<p>Etherscan Ropsten Pool
+<a href="https://ropsten.etherscan.io/" class="bare">https://ropsten.etherscan.io/</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_rinkeby">5.4. Rinkeby</h3>
+<div class="paragraph">
+<p>Rinkeby水龍頭位於https://faucet.rinkeby.io/。
+要請求測試ether，有必要在Twitter，Google Plus或Facebook上發佈公開資訊。https://www.rinkeby.io/
+<a href="https://rinkeby.etherscan.io/" class="bare">https://rinkeby.etherscan.io/</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_kovan">5.5. Kovan</h3>
+<div class="paragraph">
+<p>Kovan testnet支持各種方法來請求測試ether。
+更多資訊可以在 <a href="https://github.com/kovan-testnet/faucet/blob/master/README.md" class="bare">https://github.com/kovan-testnet/faucet/blob/master/README.md</a> 找到。</p>
+</div>
+<div class="paragraph">
+<p><a href="https://medium.com/@Digix/announcing-kovan-a-stable-ethereum-public-testnet-10ac7cb6c85f" class="bare">https://medium.com/@Digix/announcing-kovan-a-stable-ethereum-public-testnet-10ac7cb6c85f</a></p>
+</div>
+<div class="paragraph">
+<p><a href="https://kovan-testnet.github.io/website/" class="bare">https://kovan-testnet.github.io/website/</a></p>
+</div>
+<div class="paragraph">
+<p><a href="https://kovan.etherscan.io/" class="bare">https://kovan.etherscan.io/</a></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_以太坊經典testnets">6. 以太坊經典Testnets</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_morden">6.1. Morden</h3>
+<div class="paragraph">
+<p>以太坊經典目前運行著Morden測試網的一個變體，與以太坊經典活躍網路保持功能相同。你可以通過gastracker RPC或者為`geth`或`parity`提供一個標誌來連接它.</p>
+</div>
+<div class="paragraph">
+<p><strong>Faucet:</strong> <a href="http://testnet.epool.io/" class="bare">http://testnet.epool.io/</a></p>
+</div>
+<div class="paragraph">
+<p><strong>Gastracker RPC:</strong> <a href="https://web3.gastracker.io/morden" class="bare">https://web3.gastracker.io/morden</a></p>
+</div>
+<div class="paragraph">
+<p><strong>Block Explorer:</strong> <a href="http://mordenexplorer.ethertrack.io/home" class="bare">http://mordenexplorer.ethertrack.io/home</a></p>
+</div>
+<div class="paragraph">
+<p><strong>Geth flag:</strong> <code>geth --chain=morden</code></p>
+</div>
+<div class="paragraph">
+<p><strong>Parity flag:</strong> <code>parity --chain=classic-testnet</code></p>
+</div>
+</div>
+
+<nav class="chapter-nav"><a href="ch02.html" class="nav-prev">&larr; 以太坊基礎</a><a href="index.html" class="nav-home">首頁</a><a href="ch04.html" class="nav-next">以太坊測試網 &rarr;</a></nav>
+</div>
+<div id="footer">
+<div id="footer-text">
+最後更新： 2026-03-30 08:28:57 UTC
+</div>
+</div>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "none" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<style>
+/* 浮動目錄按鈕 — 僅手機版顯示 */
+.toc-toggle {
+  position: fixed;
+  bottom: 5rem;
+  right: 1.2rem;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #2980b9;
+  color: #fff;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, transform 0.2s;
+}
+.toc-toggle:hover { background: #1a6fa0; }
+.toc-toggle:active { transform: scale(0.95); }
+
+/* 回到頂部按鈕 */
+.back-to-top {
+  position: fixed;
+  bottom: 1.8rem;
+  right: 1.2rem;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: rgba(85,85,85,0.85);
+  color: #fff;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s, background 0.2s, transform 0.2s;
+  pointer-events: none;
+}
+.back-to-top:hover { background: rgba(50,50,50,0.9); }
+.back-to-top:active { transform: scale(0.95); }
+.back-to-top.visible {
+  display: flex;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* 浮動目錄面板 */
+.toc-panel {
+  position: fixed;
+  top: 0;
+  right: -340px;
+  width: 320px;
+  max-width: 85vw;
+  height: 100vh;
+  background: #fff;
+  border-left: 1px solid #e1e4e8;
+  box-shadow: -4px 0 20px rgba(0,0,0,0.12);
+  z-index: 1001;
+  transition: right 0.3s ease;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 0;
+}
+.toc-panel.open { right: 0; }
+
+.toc-panel-header {
+  position: sticky;
+  top: 0;
+  background: #fff;
+  padding: 1.2rem 1rem 0.8rem;
+  border-bottom: 1px solid #e1e4e8;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1;
+}
+
+.toc-panel-header h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #1a252f;
+}
+
+.toc-panel .close-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #888;
+  padding: 0 0.3rem;
+  line-height: 1;
+  transition: color 0.15s;
+}
+.toc-panel .close-btn:hover { color: #333; }
+
+.toc-panel-body {
+  padding: 0.8rem 1rem 2rem;
+}
+
+.toc-panel-body ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.toc-panel-body ul ul {
+  padding-left: 0.9rem;
+}
+
+.toc-panel-body li {
+  margin: 0;
+}
+
+.toc-panel-body a {
+  color: #555;
+  text-decoration: none;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  display: block;
+  padding: 0.3rem 0.5rem;
+  border-radius: 4px;
+  transition: background 0.12s, color 0.12s;
+}
+.toc-panel-body a:hover {
+  background: #f0f3f6;
+  color: #2980b9;
+}
+
+/* 遮罩 */
+.toc-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.35);
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+.toc-overlay.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* 閱讀進度條 */
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #2980b9, #3498db);
+  z-index: 1002;
+  transition: width 0.1s;
+  will-change: width;
+}
+
+/* 手機版顯示浮動按鈕 */
+@media screen and (max-width: 768px) {
+  .toc-toggle {
+    display: flex;
+  }
+  .back-to-top {
+    display: flex;
+  }
+}
+
+/* 桌面版也顯示回到頂部 */
+@media screen and (min-width: 769px) {
+  .back-to-top {
+    display: flex;
+  }
+  .reading-progress {
+    left: var(--toc-width, 300px);
+  }
+}
+/* 電子書下載橫幅 */
+.ebook-banner {
+  background: linear-gradient(135deg, #1a252f 0%, #2c3e50 100%);
+  color: #fff;
+  padding: 0.7rem 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  font-size: 0.88rem;
+  position: relative;
+  z-index: 50;
+}
+
+.ebook-banner a {
+  color: #fff;
+  background: rgba(255,255,255,0.15);
+  padding: 0.35rem 0.9rem;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+
+.ebook-banner a:hover {
+  background: rgba(255,255,255,0.25);
+}
+
+.ebook-banner .banner-text {
+  opacity: 0.9;
+}
+
+.ebook-banner .banner-close {
+  position: absolute;
+  right: 0.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.5);
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0.2rem 0.4rem;
+}
+
+.ebook-banner .banner-close:hover {
+  color: #fff;
+}
+
+/* 桌面版橫幅在 TOC 右邊 */
+@media screen and (min-width: 769px) {
+  .ebook-banner {
+    margin-left: var(--toc-width, 300px);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .ebook-banner {
+    font-size: 0.82rem;
+    padding: 0.6rem 0.8rem;
+    gap: 0.8rem;
+  }
+}
+</style>
+
+<!-- 電子書下載橫幅 -->
+<div class="ebook-banner" id="ebookBanner">
+  <span class="banner-text">下載電子書離線閱讀</span>
+  <a href="https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.pdf">PDF</a>
+  <a href="https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.epub">EPUB</a>
+  <a href="https://github.com/awesome-doge/ethereumbook_zh/releases/latest">GitHub Releases</a>
+  <button class="banner-close" id="bannerClose" aria-label="關閉">&times;</button>
+</div>
+
+<!-- 閱讀進度條 -->
+<div class="reading-progress" id="readingProgress"></div>
+
+<!-- 浮動按鈕 -->
+<button class="toc-toggle" id="tocToggle" aria-label="開啟目錄">&#9776;</button>
+<button class="back-to-top" id="backToTop" aria-label="回到頂部">&#8593;</button>
+
+<!-- 目錄面板（手機版） -->
+<div class="toc-overlay" id="tocOverlay"></div>
+<div class="toc-panel" id="tocPanel" role="navigation" aria-label="目錄">
+  <div class="toc-panel-header">
+    <h3>目錄</h3>
+    <button class="close-btn" id="tocClose" aria-label="關閉目錄">&times;</button>
+  </div>
+  <div class="toc-panel-body" id="tocContent"></div>
+</div>
+
+<script>
+(function() {
+  'use strict';
+
+  // === 電子書橫幅：移到頁面頂部 + 關閉/記憶 ===
+  var banner = document.getElementById('ebookBanner');
+  var bannerClose = document.getElementById('bannerClose');
+  if (banner) {
+    // 如果用戶之前關閉過，隱藏
+    if (localStorage.getItem('ebookBannerClosed')) {
+      banner.style.display = 'none';
+    } else {
+      // 移到 body 最前面（在 header 之前）
+      document.body.insertBefore(banner, document.body.firstChild);
+    }
+    if (bannerClose) {
+      bannerClose.addEventListener('click', function() {
+        banner.style.display = 'none';
+        localStorage.setItem('ebookBannerClosed', '1');
+      });
+    }
+  }
+
+  // === 生成手機版目錄 ===
+  var tocContent = document.getElementById('tocContent');
+  var nativeToc = document.getElementById('toc');
+
+  if (tocContent && nativeToc) {
+    // 從原生 TOC 複製結構
+    var nativeList = nativeToc.querySelector('ul.sectlevel1');
+    if (nativeList) {
+      tocContent.appendChild(nativeList.cloneNode(true));
+    }
+  }
+
+  // === 目錄開關 ===
+  var tocToggle = document.getElementById('tocToggle');
+  var tocPanel = document.getElementById('tocPanel');
+  var tocOverlay = document.getElementById('tocOverlay');
+  var tocClose = document.getElementById('tocClose');
+
+  function openToc() {
+    tocPanel.classList.add('open');
+    tocOverlay.classList.add('visible');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeToc() {
+    tocPanel.classList.remove('open');
+    tocOverlay.classList.remove('visible');
+    document.body.style.overflow = '';
+  }
+
+  if (tocToggle) tocToggle.addEventListener('click', openToc);
+  if (tocOverlay) tocOverlay.addEventListener('click', closeToc);
+  if (tocClose) tocClose.addEventListener('click', closeToc);
+
+  // 點擊目錄連結後關閉面板
+  if (tocContent) {
+    tocContent.addEventListener('click', function(e) {
+      if (e.target.tagName === 'A') {
+        closeToc();
+      }
+    });
+  }
+
+  // ESC 關閉
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeToc();
+  });
+
+  // === 回到頂部 ===
+  var backToTop = document.getElementById('backToTop');
+  if (backToTop) {
+    backToTop.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  // === 閱讀進度條 + 回到頂部顯示 ===
+  var progressBar = document.getElementById('readingProgress');
+  var ticking = false;
+
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function() {
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      var docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+
+      // 回到頂部
+      if (backToTop) {
+        if (scrollTop > 400) {
+          backToTop.classList.add('visible');
+        } else {
+          backToTop.classList.remove('visible');
+        }
+      }
+
+      // 進度條
+      if (progressBar && docHeight > 0) {
+        progressBar.style.width = ((scrollTop / docHeight) * 100) + '%';
+      }
+
+      ticking = false;
+    });
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // === 表格響應式包裝 ===
+  document.querySelectorAll('table.tableblock').forEach(function(table) {
+    if (!table.parentElement.classList.contains('tableblock-wrapper')) {
+      var wrapper = document.createElement('div');
+      wrapper.style.overflowX = 'auto';
+      wrapper.style.WebkitOverflowScrolling = 'touch';
+      wrapper.style.margin = '1.5rem 0';
+      table.parentNode.insertBefore(wrapper, table);
+      wrapper.appendChild(table);
+      table.style.margin = '0';
+    }
+  });
+
+  // === 桌面版：TOC 當前章節高亮 ===
+  if (window.innerWidth > 768 && nativeToc) {
+    var tocLinks = nativeToc.querySelectorAll('a');
+    var headingIds = [];
+    tocLinks.forEach(function(link) {
+      var id = link.getAttribute('href');
+      if (id && id.startsWith('#')) {
+        headingIds.push({ id: id.substring(1), el: link });
+      }
+    });
+
+    var currentHighlight = null;
+
+    // 注入高亮樣式
+    var hlStyle = document.createElement('style');
+    hlStyle.textContent = '#toc a.toc-active { background: #dbeafe !important; color: #1d4ed8 !important; border-radius: 4px; font-weight: 600; border-left: 3px solid #2980b9; padding-left: 0.4rem; }';
+    document.head.appendChild(hlStyle);
+
+    function highlightToc() {
+      var scrollPos = window.pageYOffset + 100;
+      var current = null;
+
+      for (var i = headingIds.length - 1; i >= 0; i--) {
+        var target = document.getElementById(headingIds[i].id);
+        if (target && target.offsetTop <= scrollPos) {
+          current = headingIds[i].el;
+          break;
+        }
+      }
+
+      if (current !== currentHighlight) {
+        if (currentHighlight) {
+          currentHighlight.classList.remove('toc-active');
+        }
+        if (current) {
+          current.classList.add('toc-active');
+          // 確保高亮項在可視範圍
+          var tocEl = document.getElementById('toc');
+          if (tocEl) {
+            var linkRect = current.getBoundingClientRect();
+            var tocRect = tocEl.getBoundingClientRect();
+            if (linkRect.top < tocRect.top + 60 || linkRect.bottom > tocRect.bottom - 20) {
+              current.scrollIntoView({ block: 'center', behavior: 'smooth' });
+            }
+          }
+        }
+        currentHighlight = current;
+      }
+    }
+
+    window.addEventListener('scroll', function() {
+      requestAnimationFrame(highlightToc);
+    }, { passive: true });
+
+    highlightToc();
+  }
+})();
+</script>
+</body>
+</html>
+</body>
+</html>

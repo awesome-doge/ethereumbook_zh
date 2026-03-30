@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.26">
-<title>精通以太坊 Mastering Ethereum 繁體中文版</title>
+<title>DevP2P 協議 — 精通以太坊 Mastering Ethereum 繁體中文版</title>
 <link rel="stylesheet" href="./custom.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="./rouge-github.css">
@@ -31,7 +31,7 @@ gtag('config', 'G-ZVVQYEKMPF');
 <meta name="author" content="Andreas M. Antonopoulos, Gavin Wood, Dr. Awesome Doge">
 
 <!-- SEO: Canonical -->
-<link rel="canonical" href="https://mastering-ethereum.doge.tg/">
+
 
 <!-- SEO: Language Alternatives -->
 <link rel="alternate" hreflang="zh-Hant" href="https://mastering-ethereum.doge.tg/">
@@ -141,75 +141,237 @@ gtag('config', 'G-ZVVQYEKMPF');
 }
 </script>
 
+<link rel="canonical" href="https://mastering-ethereum.doge.tg/ch17.html">
+<meta name="description" content="精通以太坊：DevP2P 協議。以太坊完整技術指南繁體中文版，免費線上閱讀。">
 <style>
-.landing{max-width:880px;margin:0 auto;padding:2rem 1.5rem}
-.landing-header{text-align:center;margin-bottom:2rem}
-.landing-header h1{font-size:2.2rem;color:#1a252f;margin-bottom:0.3rem}
-.landing-header .subtitle{color:#555;font-size:1.15rem}
-.landing-header .author{color:#888;margin-top:0.5rem;font-size:0.95rem}
-.landing-cover{text-align:center;margin:2rem 0}
-.landing-cover img{max-width:280px;border-radius:8px;box-shadow:0 4px 20px rgba(0,0,0,0.12)}
-.landing-dl{display:flex;justify-content:center;gap:1rem;margin:2rem 0;flex-wrap:wrap}
-.landing-dl a{display:inline-block;padding:0.7rem 1.5rem;border-radius:6px;text-decoration:none;font-weight:600;font-size:0.95rem;transition:opacity 0.2s}
-.landing-dl a:hover{opacity:0.85}
-.btn-p{background:#2980b9;color:#fff}
-.btn-s{background:#f0f3f6;color:#2c3e50;border:1px solid #e1e4e8}
-.landing-toc{margin:2.5rem 0}
-.landing-toc h2{font-size:1.4rem;color:#1a252f;border-bottom:2px solid #e1e4e8;padding-bottom:0.4rem}
-.landing-toc ol{padding-left:1.5rem;line-height:2.2}
-.landing-toc a{color:#2980b9;text-decoration:none;font-size:1.05rem}
-.landing-toc a:hover{text-decoration:underline}
-.landing-ft{color:#888;font-size:0.85rem;text-align:center;margin-top:2rem;padding-top:1rem;border-top:1px solid #e1e4e8}
-.landing-all{text-align:center;margin:1.5rem 0}
-.landing-all a{color:#888;font-size:0.9rem}
+.chapter-nav{display:flex;justify-content:space-between;align-items:center;padding:1rem 0;border-top:1px solid #e1e4e8;border-bottom:1px solid #e1e4e8;margin:2rem 0;gap:0.8rem;flex-wrap:wrap}
+.chapter-nav a{color:#2980b9;text-decoration:none;font-size:0.9rem;padding:0.4rem 0.8rem;border-radius:4px;transition:background 0.2s}
+.chapter-nav a:hover{background:#f0f3f6}
+.chapter-nav .nav-prev{text-align:left;max-width:40%}
+.chapter-nav .nav-next{text-align:right;max-width:40%}
+.chapter-nav .nav-home{font-weight:600}
+@media(max-width:768px){.chapter-nav{font-size:0.82rem}.chapter-nav a{padding:0.3rem 0.5rem}}
 </style>
 </head>
-<body>
-<div class="landing">
-  <div class="landing-header">
-    <h1>精通以太坊</h1>
-    <div class="subtitle">Mastering Ethereum — 繁體中文完整版</div>
-    <p class="author">Andreas M. Antonopoulos &amp; Dr. Gavin Wood 著 · Dr. Awesome Doge 譯</p>
-  </div>
-  <div class="landing-cover">
-    <img src="images/cover.png" alt="Mastering Ethereum 封面" width="280" height="368" />
-  </div>
-  <div class="landing-dl">
-    <a href="https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.pdf" class="btn-p">下載 PDF</a>
-    <a href="https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.epub" class="btn-p">下載 EPUB</a>
-    <a href="https://github.com/awesome-doge/ethereumbook_zh" class="btn-s">GitHub</a>
-  </div>
-  <div class="landing-toc">
-    <h2>目錄</h2>
-    <ol>
-    <li><a href="preface.html">前言</a></li>
-    <li><a href="glossary.html">快速術語表</a></li>
-    <li><a href="ch01.html">什麼是以太坊</a></li>
-    <li><a href="ch02.html">以太坊基礎</a></li>
-    <li><a href="ch03.html">以太坊客戶端</a></li>
-    <li><a href="ch04.html">以太坊測試網</a></li>
-    <li><a href="ch05.html">密鑰和地址</a></li>
-    <li><a href="ch06.html">錢包</a></li>
-    <li><a href="ch07.html">交易</a></li>
-    <li><a href="ch08.html">智能合約</a></li>
-    <li><a href="ch09.html">開發工具、框架和庫</a></li>
-    <li><a href="ch10.html">代幣 Tokens</a></li>
-    <li><a href="ch11.html">去中心化應用 DApps</a></li>
-    <li><a href="ch12.html">預言機 Oracles</a></li>
-    <li><a href="ch13.html">燃氣 Gas</a></li>
-    <li><a href="ch14.html">以太坊虛擬機 EVM</a></li>
-    <li><a href="ch15.html">共識</a></li>
-    <li><a href="ch17.html">DevP2P 協議</a></li>
-    <li><a href="ch18.html">以太坊標準</a></li>
-    <li><a href="ch19.html">以太坊分叉歷史</a></li>
-    </ol>
-  </div>
-  <div class="landing-all">
-    <a href="all.html">單頁完整版（適合搜尋和列印）</a>
-  </div>
-  <div class="landing-ft">
-    以 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a> 授權釋出
-  </div>
+<body class="book">
+<div id="header">
+<h1><a href="index.html" style="color:inherit;text-decoration:none">精通以太坊 Mastering Ethereum 繁體中文版</a></h1>
+</div>
+<div id="content">
+<nav class="chapter-nav"><a href="ch15.html" class="nav-prev">&larr; 共識</a><a href="index.html" class="nav-home">首頁</a><a href="ch18.html" class="nav-next">以太坊標準 &rarr;</a></nav>
+<div class="sect1">
+<h2 id="communications_between_nodes">19. 節點間的通信 —— 一個簡單的視角</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>以太坊節點之間通過簡單的線路協議進行通信，形成一個虛擬或覆蓋良好的網路
+為實現這一目標，該協議稱為*ÐΞVp2p*，使用*RLP*等技術和標準。</p>
+</div>
+<div class="sect2">
+<h3 id="transport_protocol">19.1. 傳輸協議</h3>
+<div class="paragraph">
+<p>為了提供機密性並防止網路中斷，<strong>ÐΞVp2p*節點使用*RLPx*消息，一種加密且經過身份驗證的_transport協議。
+*RLPx*使用類似於*Kademlia*的路由演算法，*Kademlia*是用於分散的對等計算機網路的分佈式雜湊表（</strong> DHT <strong>）。
+*RLPx</strong>，作為底層傳輸協議，允許_“節點發現和網路形成”<em>。
+*RLPx*的另一個顯著特徵是通過單個連接支持_多個協議</em>。</p>
+</div>
+<div class="paragraph">
+<p>當*ÐΞVp2p*節點通過Internet進行通信時（通常情況下），它們使用TCP，它提供面向連接的介質，但實際上*ÐΞVp2p*節點通過使用底層傳輸協議*RLPx*所提供的所謂設施（或消息），以數據包通信，允許它們通信發送和接收數據包。</p>
+</div>
+<div class="paragraph">
+<p>數據包是 <em>動態構建</em> <em>dynamicically framed</em>，前綴為_RLP_編碼標頭，經過加密和驗證。通過幀頭實現多路複用，幀頭指定分組的目的協議。</p>
+</div>
+<div class="sect3">
+<h4 id="_加密握手">19.1.1. 加密握手</h4>
+<div class="paragraph">
+<p>通過握手建立連接，並且一旦建立，就將數據包加密並封裝為幀。</p>
+</div>
+<div class="paragraph">
+<p>此握手將分兩個階段進行，第一階段涉及密鑰交換，第二階段將執行身份驗證，作為*DEVp2p*的一部分，還將交換每個節點的功能。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_安全_基本考慮因素">19.1.2. 安全 - 基本考慮因素</h4>
+<div class="paragraph">
+<p>所有加密操作都基於*secp256k1*，並且每個節點都應該維護一個靜態私鑰，該私鑰在會話之間保存和恢復。</p>
+</div>
+<div class="paragraph">
+<p>在實施加密之前，數據包具有時間戳屬性，以減少執行重放攻擊的時間視窗。
+建議接收方只接受最近3秒內創建的數據包。</p>
+</div>
+<div class="paragraph">
+<p>數據包被簽名。通過從簽名中恢復公鑰並檢查它是否與預期值匹配來執行驗證。</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="devp2p_messages_subprotocols">19.2. ÐΞVp2p 消息和子協議</h3>
+<div class="paragraph">
+<p>使用*RLP*，我們可以編碼不同類型的數據，其類型由RLP的第一個條目中使用的整數值確定。
+這樣，<strong>ÐΞVp2p</strong>，<em>基礎線路協議</em> <em>basic wire protocol</em>，支持_任意的子協議_。</p>
+</div>
+<div class="paragraph">
+<p>`0x00-0x10`之間的_Message IDs_保留用於*ÐΞVp2p*消息。因此，假定_sub-protocols_的消息ID從“0x10”開始。</p>
+</div>
+<div class="paragraph">
+<p>未在對等節點之間共享的子協議是_忽略的_。
+如果共享相同（同名）子協議的多個版本，則數字最高的勝出。</p>
+</div>
+<div class="sect3">
+<h4 id="_基本建立通信_基本ðξvp2p消息">19.2.1. 基本建立通信 - 基本ÐΞVp2p消息</h4>
+<div class="paragraph">
+<p>作為一個非常基本的例子，當兩個對等節點發起他們的通信時，每個對等節點用另一個稱為*“Hello”<strong>的特殊*ÐΞVp2p*消息來迎接另一個，該消息由“0x00”消息ID標識。
+通過這個特定的*ÐΞVp2p</strong> *“Hello”*消息，每個節點將向其對等的相關數據公開，從而允許通信以非常基本的級別開始。</p>
+</div>
+<div class="paragraph">
+<p>在此步驟中，每個對等方將知道有關其對等方的以下資訊。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>P2P協議的實現*版本*。現在必須是'1`。</p>
+</li>
+<li>
+<p><strong>客戶端軟體標識</strong>，作為人類可讀的字串（例如`Ethereum（++）/ 1.0.0`）。</p>
+</li>
+<li>
+<p>對等節點的*capability name*為長度為3的ASCII字串。當前支持的能力名稱為“eth”和“shh”。</p>
+</li>
+<li>
+<p>對等節點的*capability version*為正整數。目前支持的版本是`eth`為`34`，<code>shh`為`1</code>。</p>
+</li>
+<li>
+<p>客戶端正在偵聽的*連接埠*。如果為“0”則表示客戶端沒有收聽。</p>
+</li>
+<li>
+<p>*節點的唯一標識*指定為512位雜湊。</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_斷開連接_基本ðξvp2p消息">19.2.2. 斷開連接 - 基本ÐΞVp2p消息</h4>
+<div class="paragraph">
+<p>要執行有序的斷開連接，要斷開連接的節點將發送名為*“Disconnect”<strong>的*ÐΞVp2p*消息，該消息由_“0x01”_消息ID標識。此外，節點使用參數</strong>“reason”*指定斷開的原因。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>“reason”<strong>參數可以取值從“0x00”到“0x10”，例如“0x00”表示原因</strong>“請求斷開連接”<strong>和“0x04”表示</strong>“太多對等節點”*。</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_狀態_以太坊子協議範例">19.2.3. 狀態 - 以太坊子協議範例</h4>
+<div class="paragraph">
+<p>該子協議由`+0x00`消息-id標識。</p>
+</div>
+<div class="paragraph">
+<p>此消息應在初始握手之後和任何與以太坊相關的消息之前發送，並通知其當前狀態。</p>
+</div>
+<div class="paragraph">
+<p>為此，節點向其對等方公開以下數據;</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Protocol version</strong></p>
+</li>
+<li>
+<p><strong>Network Id</strong></p>
+</li>
+<li>
+<p><strong>Total Difficulty of the best chain</strong></p>
+</li>
+<li>
+<p><strong>Hash of the best known block</strong></p>
+</li>
+<li>
+<p><strong>Hash of the Genesis block</strong></p>
+</li>
+</ul>
+</div>
+<div class="sect4">
+<h5 id="known_current_networks">已知的當前網路ID</h5>
+<div class="paragraph">
+<p>這裡是目前已知的網路ID列表：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>0: <strong>Olympic</strong>; 以太坊公共預發佈測試網</p>
+</li>
+<li>
+<p>1: <strong>Frontier</strong>; Homestead，Metropolis，以太坊公共主網</p>
+</li>
+<li>
+<p>1: <strong>Classic</strong>; (un)forked 公共以太坊Classic主網路，鏈ID 61</p>
+</li>
+<li>
+<p>1: <strong>Expanse</strong>; 另一個以太坊實現，鏈ID 2</p>
+</li>
+<li>
+<p>2: <strong>Morden</strong>; 公共以太坊測試網，現在是以太坊經典測試網</p>
+</li>
+<li>
+<p>3: <strong>Ropsten</strong>; 公共跨客戶端以太坊測試網</p>
+</li>
+<li>
+<p>4: <strong>Rinkeby</strong>: 公共Geth以太坊測試網</p>
+</li>
+<li>
+<p>42: <strong>Kovan</strong>; 公共Parity以太坊測試網</p>
+</li>
+<li>
+<p>77: <strong>Sokol</strong>; 公共POA測試網</p>
+</li>
+<li>
+<p>99: <strong>POA</strong>; 公共權威證明（PoA）以太網網路</p>
+</li>
+<li>
+<p>7762959: <strong>Musicoin</strong>; 音樂區塊鏈</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_getblocks_另一個子協議範例">19.2.4. GetBlocks - 另一個子協議範例</h4>
+<div class="paragraph">
+<p>該子協議由`+ 0x05` message-id標識。</p>
+</div>
+<div class="paragraph">
+<p>通過此消息，節點通過其自己的雜湊向其對等方請求指定的塊。</p>
+</div>
+<div class="paragraph">
+<p>請求節點的方式是通過包含它們所有雜湊值的列表，將消息採用以下形式;</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>[+0x05: P, hash_0: B_32, hash_1: B_32, ...]</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>請求節點必須沒有包含所有請求的塊的響應消息，在這種情況下，它必須再次請求那些尚未由其對等方發送的消息。</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_節點標識和聲譽">19.3. 節點標識和聲譽</h3>
+<div class="paragraph">
+<p>*ÐΞVp2p*節點的標識是*secp256k1*公鑰。</p>
+</div>
+<div class="paragraph">
+<p>客戶端可以自由標記新節點並使用節點ID作為_決定節點的信譽_的方法。</p>
+</div>
+<div class="paragraph">
+<p>他們可以儲存給定ID的評級並相應地給予優先權。</p>
+</div>
+</div>
+</div>
+</div>
+
+<nav class="chapter-nav"><a href="ch15.html" class="nav-prev">&larr; 共識</a><a href="index.html" class="nav-home">首頁</a><a href="ch18.html" class="nav-next">以太坊標準 &rarr;</a></nav>
 </div>
 <div id="footer">
 <div id="footer-text">

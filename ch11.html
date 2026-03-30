@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.26">
-<title>精通以太坊 Mastering Ethereum 繁體中文版</title>
+<title>去中心化應用 DApps — 精通以太坊 Mastering Ethereum 繁體中文版</title>
 <link rel="stylesheet" href="./custom.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="./rouge-github.css">
@@ -31,7 +31,7 @@ gtag('config', 'G-ZVVQYEKMPF');
 <meta name="author" content="Andreas M. Antonopoulos, Gavin Wood, Dr. Awesome Doge">
 
 <!-- SEO: Canonical -->
-<link rel="canonical" href="https://mastering-ethereum.doge.tg/">
+
 
 <!-- SEO: Language Alternatives -->
 <link rel="alternate" hreflang="zh-Hant" href="https://mastering-ethereum.doge.tg/">
@@ -141,75 +141,384 @@ gtag('config', 'G-ZVVQYEKMPF');
 }
 </script>
 
+<link rel="canonical" href="https://mastering-ethereum.doge.tg/ch11.html">
+<meta name="description" content="精通以太坊：去中心化應用 DApps。以太坊完整技術指南繁體中文版，免費線上閱讀。">
 <style>
-.landing{max-width:880px;margin:0 auto;padding:2rem 1.5rem}
-.landing-header{text-align:center;margin-bottom:2rem}
-.landing-header h1{font-size:2.2rem;color:#1a252f;margin-bottom:0.3rem}
-.landing-header .subtitle{color:#555;font-size:1.15rem}
-.landing-header .author{color:#888;margin-top:0.5rem;font-size:0.95rem}
-.landing-cover{text-align:center;margin:2rem 0}
-.landing-cover img{max-width:280px;border-radius:8px;box-shadow:0 4px 20px rgba(0,0,0,0.12)}
-.landing-dl{display:flex;justify-content:center;gap:1rem;margin:2rem 0;flex-wrap:wrap}
-.landing-dl a{display:inline-block;padding:0.7rem 1.5rem;border-radius:6px;text-decoration:none;font-weight:600;font-size:0.95rem;transition:opacity 0.2s}
-.landing-dl a:hover{opacity:0.85}
-.btn-p{background:#2980b9;color:#fff}
-.btn-s{background:#f0f3f6;color:#2c3e50;border:1px solid #e1e4e8}
-.landing-toc{margin:2.5rem 0}
-.landing-toc h2{font-size:1.4rem;color:#1a252f;border-bottom:2px solid #e1e4e8;padding-bottom:0.4rem}
-.landing-toc ol{padding-left:1.5rem;line-height:2.2}
-.landing-toc a{color:#2980b9;text-decoration:none;font-size:1.05rem}
-.landing-toc a:hover{text-decoration:underline}
-.landing-ft{color:#888;font-size:0.85rem;text-align:center;margin-top:2rem;padding-top:1rem;border-top:1px solid #e1e4e8}
-.landing-all{text-align:center;margin:1.5rem 0}
-.landing-all a{color:#888;font-size:0.9rem}
+.chapter-nav{display:flex;justify-content:space-between;align-items:center;padding:1rem 0;border-top:1px solid #e1e4e8;border-bottom:1px solid #e1e4e8;margin:2rem 0;gap:0.8rem;flex-wrap:wrap}
+.chapter-nav a{color:#2980b9;text-decoration:none;font-size:0.9rem;padding:0.4rem 0.8rem;border-radius:4px;transition:background 0.2s}
+.chapter-nav a:hover{background:#f0f3f6}
+.chapter-nav .nav-prev{text-align:left;max-width:40%}
+.chapter-nav .nav-next{text-align:right;max-width:40%}
+.chapter-nav .nav-home{font-weight:600}
+@media(max-width:768px){.chapter-nav{font-size:0.82rem}.chapter-nav a{padding:0.3rem 0.5rem}}
 </style>
 </head>
-<body>
-<div class="landing">
-  <div class="landing-header">
-    <h1>精通以太坊</h1>
-    <div class="subtitle">Mastering Ethereum — 繁體中文完整版</div>
-    <p class="author">Andreas M. Antonopoulos &amp; Dr. Gavin Wood 著 · Dr. Awesome Doge 譯</p>
-  </div>
-  <div class="landing-cover">
-    <img src="images/cover.png" alt="Mastering Ethereum 封面" width="280" height="368" />
-  </div>
-  <div class="landing-dl">
-    <a href="https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.pdf" class="btn-p">下載 PDF</a>
-    <a href="https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.epub" class="btn-p">下載 EPUB</a>
-    <a href="https://github.com/awesome-doge/ethereumbook_zh" class="btn-s">GitHub</a>
-  </div>
-  <div class="landing-toc">
-    <h2>目錄</h2>
-    <ol>
-    <li><a href="preface.html">前言</a></li>
-    <li><a href="glossary.html">快速術語表</a></li>
-    <li><a href="ch01.html">什麼是以太坊</a></li>
-    <li><a href="ch02.html">以太坊基礎</a></li>
-    <li><a href="ch03.html">以太坊客戶端</a></li>
-    <li><a href="ch04.html">以太坊測試網</a></li>
-    <li><a href="ch05.html">密鑰和地址</a></li>
-    <li><a href="ch06.html">錢包</a></li>
-    <li><a href="ch07.html">交易</a></li>
-    <li><a href="ch08.html">智能合約</a></li>
-    <li><a href="ch09.html">開發工具、框架和庫</a></li>
-    <li><a href="ch10.html">代幣 Tokens</a></li>
-    <li><a href="ch11.html">去中心化應用 DApps</a></li>
-    <li><a href="ch12.html">預言機 Oracles</a></li>
-    <li><a href="ch13.html">燃氣 Gas</a></li>
-    <li><a href="ch14.html">以太坊虛擬機 EVM</a></li>
-    <li><a href="ch15.html">共識</a></li>
-    <li><a href="ch17.html">DevP2P 協議</a></li>
-    <li><a href="ch18.html">以太坊標準</a></li>
-    <li><a href="ch19.html">以太坊分叉歷史</a></li>
-    </ol>
-  </div>
-  <div class="landing-all">
-    <a href="all.html">單頁完整版（適合搜尋和列印）</a>
-  </div>
-  <div class="landing-ft">
-    以 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a> 授權釋出
-  </div>
+<body class="book">
+<div id="header">
+<h1><a href="index.html" style="color:inherit;text-decoration:none">精通以太坊 Mastering Ethereum 繁體中文版</a></h1>
+</div>
+<div id="content">
+<nav class="chapter-nav"><a href="ch10.html" class="nav-prev">&larr; 代幣 Tokens</a><a href="index.html" class="nav-home">首頁</a><a href="ch12.html" class="nav-next">預言機 Oracles &rarr;</a></nav>
+<div class="sect1">
+<h2 id="decentralized_applications_chap">13. 去中心化應用 (DApps)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>點對點（P2P，peer-to-peer）運動使數百萬互聯網用戶能夠連接在一起。USENET是被稱為第一個點對點架構的一種分佈式消息傳遞系統，它於1979年成立，是第一個“互聯網”ARPANET的繼承者。ARPANET是一個客戶端 - 伺服器網路，參與者運行節點請求和提供內容，但由於除了簡單的基於地址的路由，缺乏提供任何上下文的能力，USENET很有希望實施一個分散的控制模型，即客戶端 - 伺服器模型，分別從用戶或客戶角度為新聞組伺服器提供自組織方法。</p>
+</div>
+<div class="paragraph">
+<p>1999年，著名的音樂和檔案共享應用程式Napster出現了。Napster是點對點網路運動演變為BitTorrent的開始，參與用戶建立了一個虛擬網路，完全獨立於物理網路，無需遵守任何管理機構或限制。</p>
+</div>
+<div class="paragraph">
+<p>由於點對點機制可用於訪問任何類型的分佈式資源，因此它們在去中心化應用程式中起著核心作用。</p>
+</div>
+<div class="sect2">
+<h3 id="what_is_a_dapp_sec">13.1. 什麼是DApp？</h3>
+<div class="paragraph">
+<p>與傳統應用程式不同，去中心化應用（DApp）不僅屬於單個提供者或伺服器，而是整個棧將在P2P網路上以分佈式方式部署和操作。</p>
+</div>
+<div class="paragraph">
+<p>典型的DApp棧包括前端，後端和數據儲存。創建DApp有許多優點，典型集中式架構無法提供：</p>
+</div>
+<div class="paragraph">
+<p>1）彈性：在智能合約上編寫業務邏輯意味著DApp後端將在區塊鏈上完全分發和管理。與在中央伺服器上部署應用程式不同，DApp不會有停機時間，只要區塊鏈仍在運行，它就會繼續存在。</p>
+</div>
+<div class="paragraph">
+<p>2）透明性：DApp的開源特性允許任何人分叉程式碼並在區塊鏈上運行相同的應用程式。同樣，任何與區塊鏈的互動都將永久儲存，任何擁有區塊鏈副本的人都可以獲得對它的訪問權限。值得注意的是，可能無法將 Bytecode 反編譯為源碼並完全理解合約的程式碼。尋求提供合約行為完全透明的開發人員必須發佈供用戶閱讀，編譯和驗證的源程式碼。</p>
+</div>
+<div class="paragraph">
+<p>3）抗審查：只要用戶可以訪問以太坊節點，用戶將始終能夠與DApp交互而不受集中機構控制的干擾。一旦在網路上部署程式碼，任何服務提供商，甚至智能合約的所有者都不能更改程式碼。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="components_of_a_dapp_sec">13.2. DApp的組件</h3>
+<div class="sect3">
+<h4 id="blockchain_smart_contracts_sec">13.2.1. 區塊鏈（智能合約）</h4>
+<div class="paragraph">
+<p>智能合約用於儲存去中心化應用程式的業務邏輯，狀態和計算; 將智能合約視為常規應用程式中的伺服器端組件。</p>
+</div>
+<div class="paragraph">
+<p>在以太坊智能合約上部署伺服器端邏輯的一個優點是，你可以構建一個更復雜的架構，智能合約可以在其中相互讀取和寫入數據。部署智能合約後，未來許多其他開發人員都可以使用你的業務邏輯，而無需你管理和維護程式碼。</p>
+</div>
+<div class="paragraph">
+<p>將智能合約作為核心業務邏輯功能運行的一個主要問題是在部署程式碼後無法更改程式碼。此外，一個非常龐大的智能合約可能需要耗費大量gas來部署和運行。因此，某些應用程式可能會選擇離線計算和外部數據源。請記住，DApp的核心業務邏輯依賴於外部數據或伺服器意味著你的用戶必須信任這些外部事物。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="front_end_web_ui_cec">13.2.2. 前端（Web用戶界面(UI)）</h4>
+<div class="paragraph">
+<p>與DApp的業務邏輯需要開發人員瞭解EVM和新語言（如Solidity）不同，DApp的客戶端界面使用基本的Web前端技術（HTML，CSS，JavaScript）。這允許傳統的Web開發人員使用他們熟悉的工具，庫和框架。與DApp的交互（例如簽名消息，發送交易和密鑰管理）通常通過瀏覽器本身使用Mist瀏覽器或Metamask瀏覽器擴展等工具進行。</p>
+</div>
+<div class="paragraph">
+<p>雖然也可以創建行動DApp，但由於缺少可用作具有密鑰管理功能的輕客戶端的行動客戶端，目前沒有創建行動DApp前端的最佳實踐。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="data_storage_sec">13.2.3. 數據儲存</h4>
+<div class="paragraph">
+<p>由於gas成本高，智能合約目前不適合儲存大量數據。因此，大多數DApps將利用去中心化儲存（如IPFS或Swarm）來儲存和分發大型靜態資產，如圖像，視頻和客戶端應用程式（HTML，CSS，JavaScript）。</p>
+</div>
+<div class="paragraph">
+<p>內容的雜湊值通常使用鍵值映射儲存為智能合約中的字節。然後，通過你的前端應用程式調用智能合約查詢資產，以獲取每個資產的URL。</p>
+</div>
+<div class="sect4">
+<h5 id="on_chain_vs_off_chain_data_sec">上鏈 vs. 脫鏈</h5>
+
+</div>
+<div class="sect4">
+<h5 id="ipfs_sec">IPFS</h5>
+
+</div>
+<div class="sect4">
+<h5 id="swarm_sec">Swarm</h5>
+<div class="paragraph">
+<p>Swarm主頁: <a href="http://swarm-gateways.net/bzz:/theswarm.eth/" class="bare">http://swarm-gateways.net/bzz:/theswarm.eth/</a></p>
+</div>
+<div class="paragraph">
+<p>閱讀文件: <a href="https://swarm-guide.readthedocs.io/en/latest/index.html" class="bare">https://swarm-guide.readthedocs.io/en/latest/index.html</a></p>
+</div>
+<div class="paragraph">
+<p>Swarm開發人員的入門指南: <a href="https://github.com/ethersphere/swarm/wiki/swarm" class="bare">https://github.com/ethersphere/swarm/wiki/swarm</a></p>
+</div>
+<div class="paragraph">
+<p>Swarm討論組: <a href="https://gitter.im/ethersphere/orange-lounge" class="bare">https://gitter.im/ethersphere/orange-lounge</a></p>
+</div>
+<div class="paragraph">
+<p>Ethereum&#8217;s Swarm 和 IPFS 的相似之處與不同之處; <a href="https://github.com/ethersphere/go-ethereum/wiki/IPFS-&amp;-SWARM" class="bare">https://github.com/ethersphere/go-ethereum/wiki/IPFS-&amp;-SWARM</a></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="centralized_db_sec">中心化數據</h5>
+<div class="paragraph">
+<p>集中式資料庫是伺服器上的數據儲存，其特徵與描述相關聯。它們使用客戶端 - 伺服器網路架構，這允許客戶端或用戶修改儲存在集中式伺服器上的數據。資料庫的控制權仍由指定的管理員進行，管理員在提供對資料庫的訪問之前對客戶端的憑據進行身份驗證。如果管理員的安全性受到損害，則可以更改甚至刪除數據，因為管理員是唯一負責管理資料庫的人。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="dapp_frameworks_sec">13.3. DApp框架</h3>
+<div class="paragraph">
+<p>有許多不同的開發框架和庫，以多種語言編寫，使得開發人員可以在創建和部署DApp時獲得更好的體驗。</p>
+</div>
+<div class="sect3">
+<h4 id="truffle_sec">13.3.1. Truffle</h4>
+<div class="paragraph">
+<p>Truffle是一種流行的選擇，為以太坊提供可管理的開發環境，測試框架和資產管道。</p>
+</div>
+<div class="paragraph">
+<p>有了Truffle，你會得到：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>內建智能合約編譯，鏈接，部署和二進制管理。</p>
+</li>
+<li>
+<p>與Mocha和Chai進行自動合約測試。</p>
+</li>
+<li>
+<p>可配置的構建管道，支持自定義構建過程。</p>
+</li>
+<li>
+<p>可編寫腳本的部署和遷移框架。</p>
+</li>
+<li>
+<p>用於部署到許多公共和專用網路的網路管理。</p>
+</li>
+<li>
+<p>直接與合約溝通的交互式控制台。</p>
+</li>
+<li>
+<p>在開發過程中即時重建資產。</p>
+</li>
+<li>
+<p>在Truffle環境中執行腳本的外部腳本運行器。</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>入門和文件：http://truffleframework.com/docs</p>
+</div>
+<div class="paragraph">
+<p>Github：https://github.com/trufflesuite/truffle</p>
+</div>
+<div class="paragraph">
+<p>Website：https://truffleframework.com</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="embark_sec">13.3.2. Embark Embark框架專注於使用以太坊，IPFS和其他平臺的無伺服器去中心化應用。Embark目前與EVM區塊鏈（Ethereum），去中心化儲存（IPFS）和去中心化通信平臺（Whisper和Orbit）集成。</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>區塊鏈（以太坊）</p>
+<div class="ulist">
+<ul>
+<li>
+<p>自動部署合約並使其在JS程式碼中可用。啟動監視更改，如果你更新合約，Embark將自動重新部署合約（如果需要）和DApp。</p>
+</li>
+<li>
+<p>JS通過Promises使用合約。</p>
+</li>
+<li>
+<p>使用Javascript與合約進行測試驅動開發。</p>
+</li>
+<li>
+<p>跟蹤已部署的合約; 只在真正需要時部署。</p>
+</li>
+<li>
+<p>管理不同的鏈（例如，測試網，私人網，livenet）</p>
+</li>
+<li>
+<p>輕鬆管理相互依賴合約的複雜系統。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>去中心化儲存（IPFS）</p>
+<div class="ulist">
+<ul>
+<li>
+<p>通過EmbarkJS輕鬆儲存和查詢DApp上的數據，包括上傳和查詢檔案。</p>
+</li>
+<li>
+<p>將完整的應用程式部署到IPFS或Swarm。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>去中心化通信 (Whisper, Orbit)</p>
+<div class="ulist">
+<ul>
+<li>
+<p>通過Whisper或Orbit輕鬆通過P2P渠道發送/接收消息。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>網路技術</p>
+<div class="ulist">
+<ul>
+<li>
+<p>與任何網路技術集成，包括React，Foundation等。</p>
+</li>
+<li>
+<p>使用你想要的任何構建管道或工具，包括grunt，gulp和webpack。</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>入門和文件：https://embark.readthedocs.io</p>
+</div>
+<div class="paragraph">
+<p>Github：https://github.com/embark-framework/embark</p>
+</div>
+<div class="paragraph">
+<p>Website：https://github.com/embark-framework/embark</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_emerald">13.3.3. Emerald</h4>
+<div class="paragraph">
+<p>Emerald Platform 是一個框架和工具集，用於簡化Dapps的開發以及現有服務與基於以太坊的區塊鏈的集成。</p>
+</div>
+<div class="paragraph">
+<p>Emerald提供：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Javascript庫和React組件構建Dapp</p>
+</li>
+<li>
+<p>區塊鏈項目常見的SVG圖示</p>
+</li>
+<li>
+<p>用於管理私鑰的Rust庫，包括硬體錢包和簽名交易</p>
+</li>
+<li>
+<p>可以集成到現有app命令行或JSON RPC API中的現成的組件和服務</p>
+</li>
+<li>
+<p>SputnikVM，一個獨立的EVM實現，可用於開發和測試</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>它與平臺無關，為各種目標提供工具：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>與Electron捆綁的桌面應用程式</p>
+</li>
+<li>
+<p>行動應用程式</p>
+</li>
+<li>
+<p>網路應用程式</p>
+</li>
+<li>
+<p>命令行應用程式和腳本工具</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>入門和文件：https://docs.etcdevteam.com</p>
+</div>
+<div class="paragraph">
+<p>Github：https://github.com/etcdevteam/emerald-platform</p>
+</div>
+<div class="paragraph">
+<p>Website：https://emeraldplatform.io</p>
+</div>
+<div class="paragraph">
+<p>[[dapp_develotment_tool_sec]
+==== DApp（開發工具）
+DApp是一個用於智能合約開發的簡單命令行工具。它支持以下常見用例：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>包管理</p>
+</li>
+<li>
+<p>源程式碼構建</p>
+</li>
+<li>
+<p>單元測試</p>
+</li>
+<li>
+<p>簡單的合約部署</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>入門和文件：https://dapp.readthedocs.io/en/latest/</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="live_dapps_sec">13.4. 活躍的DApps</h3>
+<div class="paragraph">
+<p>以下列出了以太坊網路上的活躍DApp：</p>
+</div>
+<div class="sect3">
+<h4 id="ethpm_sec">13.4.1. EthPM</h4>
+<div class="paragraph">
+<p>一個旨在將包管理帶入以太坊生態系統的項目。</p>
+</div>
+<div class="paragraph">
+<p>Website：https://www.ethpm.com/</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="radar_relay_sec">13.4.2. Radar Relay</h4>
+<div class="paragraph">
+<p>DEX（去中心化交易所）專注於直接從錢包到錢包交易基於以太坊的tokens。</p>
+</div>
+<div class="paragraph">
+<p>Website：https://radarrelay.com/</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="cryptokitties_sec">13.4.3. CryptoKitties</h4>
+<div class="paragraph">
+<p>在以太坊上部署的遊戲，允許玩家購買，收集，繁殖和銷售各種類型的虛擬貓
+它代表了為休閒和悠閒目的部署區塊鏈技術的最早嘗試之一。</p>
+</div>
+<div class="paragraph">
+<p>Website：https://www.cryptokitties.co</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="ethlance_sec">13.4.4. Ethlance</h4>
+<div class="paragraph">
+<p>Ethlance是一個連接自由職業者和開發者的平臺，用ether支付和收款。</p>
+</div>
+<div class="paragraph">
+<p>Website：https://ethlance.com/</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="decentraland_sec">13.4.5. Decentraland</h4>
+<div class="paragraph">
+<p>Decentraland是以太坊區塊鏈支持的虛擬現實平臺。用戶可以創建，體驗內容和應用程式並從中獲利。</p>
+</div>
+<div class="paragraph">
+<p>Website：https://decentraland.org/</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<nav class="chapter-nav"><a href="ch10.html" class="nav-prev">&larr; 代幣 Tokens</a><a href="index.html" class="nav-home">首頁</a><a href="ch12.html" class="nav-next">預言機 Oracles &rarr;</a></nav>
 </div>
 <div id="footer">
 <div id="footer-text">

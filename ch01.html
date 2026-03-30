@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.26">
+<title>什麼是以太坊 — 精通以太坊 Mastering Ethereum 繁體中文版</title>
+<link rel="stylesheet" href="./custom.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./rouge-github.css">
+<!-- Google Analytics 4 -->
+<script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-ZVVQYEKMPF"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-ZVVQYEKMPF');
+</script>
+
+<!-- Favicon -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2B21;</text></svg>" type="image/svg+xml">
+
+<!-- SEO: Title Override -->
+<meta name="title" content="精通以太坊 Mastering Ethereum — 繁體中文完整版 | 智能合約、DApps、EVM、Solidity 技術指南">
+
+<!-- SEO: Description -->
+<meta name="description" content="精通以太坊（Mastering Ethereum）繁體中文版，由 Andreas M. Antonopoulos 和 Gavin Wood 著作。完整涵蓋以太坊基礎、智能合約、Solidity、DApps、EVM、Gas、密鑰管理、錢包、交易、預言機、共識機制等 19 章內容。免費線上閱讀，提供 PDF 和 EPUB 電子書下載。">
+<meta name="keywords" content="以太坊, Ethereum, 智能合約, Smart Contract, Solidity, DApp, EVM, 區塊鏈, Blockchain, 加密貨幣, Web3, DeFi, 精通以太坊, Mastering Ethereum, 繁體中文, 教學, 技術指南">
+<meta name="author" content="Andreas M. Antonopoulos, Gavin Wood, Dr. Awesome Doge">
+
+<!-- SEO: Canonical -->
+
+
+<!-- SEO: Language Alternatives -->
+<link rel="alternate" hreflang="zh-Hant" href="https://mastering-ethereum.doge.tg/">
+<link rel="alternate" hreflang="en" href="https://github.com/ethereumbook/ethereumbook">
+
+<!-- Google Fonts: Noto Sans TC -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap">
+
+<!-- Open Graph -->
+<meta property="og:type" content="book">
+<meta property="og:title" content="精通以太坊 Mastering Ethereum — 繁體中文完整版">
+<meta property="og:description" content="以太坊完整技術指南，涵蓋智能合約、Solidity、DApps、EVM 等 19 章。免費線上閱讀 + PDF/EPUB 下載。">
+<meta property="og:image" content="https://mastering-ethereum.doge.tg/images/cover.png">
+<meta property="og:image:width" content="1050">
+<meta property="og:image:height" content="1378">
+<meta property="og:image:alt" content="Mastering Ethereum 書籍封面">
+<meta property="og:url" content="https://mastering-ethereum.doge.tg/">
+<meta property="og:site_name" content="精通以太坊 繁體中文版">
+<meta property="og:locale" content="zh_TW">
+<meta property="book:author" content="Andreas M. Antonopoulos">
+<meta property="book:author" content="Gavin Wood">
+<meta property="book:tag" content="Ethereum">
+<meta property="book:tag" content="Blockchain">
+<meta property="book:tag" content="Smart Contracts">
+<meta property="book:tag" content="Solidity">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="精通以太坊 Mastering Ethereum — 繁體中文完整版">
+<meta name="twitter:description" content="以太坊完整技術指南，涵蓋智能合約、Solidity、DApps、EVM 等 19 章。免費線上閱讀 + PDF/EPUB 下載。">
+<meta name="twitter:image" content="https://mastering-ethereum.doge.tg/images/cover.png">
+<meta name="twitter:image:alt" content="Mastering Ethereum 書籍封面">
+
+<!-- JSON-LD Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Book",
+  "name": "精通以太坊 Mastering Ethereum 繁體中文版",
+  "alternateName": "Mastering Ethereum: Building Smart Contracts and DApps",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Andreas M. Antonopoulos",
+      "url": "https://aantonop.com/"
+    },
+    {
+      "@type": "Person",
+      "name": "Gavin Wood"
+    }
+  ],
+  "translator": {
+    "@type": "Person",
+    "name": "Dr. Awesome Doge"
+  },
+  "inLanguage": "zh-Hant",
+  "url": "https://mastering-ethereum.doge.tg/",
+  "image": "https://mastering-ethereum.doge.tg/images/cover.png",
+  "description": "以太坊完整技術指南繁體中文版，涵蓋智能合約、Solidity、DApps、EVM、Gas、密鑰管理等 19 章內容。",
+  "genre": ["Technology", "Blockchain", "Cryptocurrency"],
+  "bookFormat": "https://schema.org/EBook",
+  "numberOfPages": 257,
+  "publisher": {
+    "@type": "Organization",
+    "name": "O'Reilly Media"
+  },
+  "license": "https://creativecommons.org/licenses/by-nc-nd/4.0/",
+  "isAccessibleForFree": true,
+  "encoding": [
+    {
+      "@type": "MediaObject",
+      "encodingFormat": "application/pdf",
+      "contentUrl": "https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.pdf"
+    },
+    {
+      "@type": "MediaObject",
+      "encodingFormat": "application/epub+zip",
+      "contentUrl": "https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.epub"
+    }
+  ],
+  "about": [
+    {"@type": "Thing", "name": "Ethereum"},
+    {"@type": "Thing", "name": "Smart Contracts"},
+    {"@type": "Thing", "name": "Blockchain"},
+    {"@type": "Thing", "name": "Solidity"},
+    {"@type": "Thing", "name": "Decentralized Applications"},
+    {"@type": "Thing", "name": "EVM"}
+  ]
+}
+</script>
+
+<!-- BreadcrumbList for search results -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "精通以太坊",
+      "item": "https://mastering-ethereum.doge.tg/"
+    }
+  ]
+}
+</script>
+
+<link rel="canonical" href="https://mastering-ethereum.doge.tg/ch01.html">
+<meta name="description" content="精通以太坊：什麼是以太坊。以太坊完整技術指南繁體中文版，免費線上閱讀。">
+<style>
+.chapter-nav{display:flex;justify-content:space-between;align-items:center;padding:1rem 0;border-top:1px solid #e1e4e8;border-bottom:1px solid #e1e4e8;margin:2rem 0;gap:0.8rem;flex-wrap:wrap}
+.chapter-nav a{color:#2980b9;text-decoration:none;font-size:0.9rem;padding:0.4rem 0.8rem;border-radius:4px;transition:background 0.2s}
+.chapter-nav a:hover{background:#f0f3f6}
+.chapter-nav .nav-prev{text-align:left;max-width:40%}
+.chapter-nav .nav-next{text-align:right;max-width:40%}
+.chapter-nav .nav-home{font-weight:600}
+@media(max-width:768px){.chapter-nav{font-size:0.82rem}.chapter-nav a{padding:0.3rem 0.5rem}}
+</style>
+</head>
+<body class="book">
+<div id="header">
+<h1><a href="index.html" style="color:inherit;text-decoration:none">精通以太坊 Mastering Ethereum 繁體中文版</a></h1>
+</div>
+<div id="content">
+<nav class="chapter-nav"><a href="glossary.html" class="nav-prev">&larr; 快速術語表</a><a href="index.html" class="nav-home">首頁</a><a href="ch02.html" class="nav-next">以太坊基礎 &rarr;</a></nav>
+<div class="sect1">
+<h2 id="whatis_chapter">1. 什麼是以太坊</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>「世界的計算機」是對於以太坊平臺常見的一種描述。但那是什麼意思呢？讓我們首先從關注計算機科學的描述開始，然後對以太坊的功能和特性進行更實際的解讀，並將其與比特幣和其他分散式帳本技術（簡單起見，我們將經常使用「區塊鏈」指代）進行對比。</p>
+</div>
+<div class="paragraph">
+<p>從計算機科學的角度來說，以太坊是一種確定性 (deterministic) 但實際上無界 (unbounded) 的狀態機。它有兩個基本功能，第一個是全球可存取的單例狀態，第二個是對狀態進行更改的虛擬機。</p>
+</div>
+<div class="paragraph">
+<p>從更實際的角度來說，以太坊是一個開源的、全球的去中心化計算架構，上面可以拿來執行的程式碼稱之為 <em>智能合約</em>(<em>smart contracts)。它運用區塊鏈來作到資料同步以及紀錄系統上狀態值的變化，也紀錄了稱為 _ether</em> 的密碼貨幣，用來計劃並且限制執行資源的花費。</p>
+</div>
+<div class="paragraph">
+<p>以太坊讓開發者能夠利用內建的經濟學方法來構建強大的去中心化應用程式。去中心化應用程能提供了高可用性、可審計性、透明度及中立性，因此也就能夠降低對於審查制度之依賴，並且能有效降低合約它方之違約風險。</p>
+</div>
+<div class="sect2">
+<h3 id="bitcoin_comparison">1.1. 與比特幣的比較</h3>
+<div class="paragraph">
+<p>很多之前有一些密碼貨幣的經驗人會加入以太坊，特別是比特幣。以太坊與其他開放區塊鏈共享許多通用元素：連接參與者的對等網路，用於狀態同步（工作量證明）的共識演算法，數位貨幣（以太）和全局帳本（區塊鏈）。</p>
+</div>
+<div class="sect3">
+<h4 id="blockchain_components">1.1.1. 區塊鏈的組件</h4>
+<div class="paragraph">
+<p>開源、公開的區塊鏈通常包括以下組件：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>一個連接參與者，並傳播交易和包含已驗證交易的區塊的點對點網路，基於標準的“gossip“協議。</p>
+</li>
+<li>
+<p>狀態機中實現的一系列共識規則。</p>
+</li>
+<li>
+<p>消息，以交易的形式表示，代表狀態轉移。</p>
+</li>
+<li>
+<p>根據共識規則處理交易的狀態機。</p>
+</li>
+<li>
+<p>分佈式資料庫，區塊鏈，記錄所有狀態轉移的日誌。</p>
+</li>
+<li>
+<p>共識演算法（例如，Proof-of-Work），通過強制參與者競爭並使用共識規則約束他們，來分散區塊鏈的控制權。</p>
+</li>
+<li>
+<p>上述內容的一個或多個開源軟體實現。</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>所有或大部分這些組件通常組合在一個軟體客戶端中。例如，在比特幣中，參考實現由 <em>Bitcoin Core</em> 開源項目開發，並作為 bitcoind 客戶端實現。在以太坊中，沒有參考實現，而是 <em>參考規範</em>，是在 <a href="#yellowpaper">[yellowpaper]</a> 中對系統的數學描述。有許多客戶端根據參考規範建造。</p>
+</div>
+<div class="paragraph">
+<p>過去，我們使用術語“區塊鏈”來表示上述所有組件，作為包含上述所有特性的技術組合的簡稱。然而，今天，區塊鏈這個詞已經被營銷商和姦商所淡化，他們期待炒作他們的項目併為其創業公司實現不切實際的估值。它自己實際上是毫無意義的。我們需要限定詞來幫助我們理解這些區塊鏈的特徵，例如 _開源、公開、全球、分散、中立和抗審查_等，以確定這些組件給予“區塊鏈”系統的重要湧現特徵。</p>
+</div>
+<div class="paragraph">
+<p>並不是所有的區塊鏈都是相同的。當你被告知某樣東西是區塊鏈時，你還沒有得到答案，你需要問很多問題來澄清“區塊鏈”是什麼意思。首先詢問上面組件的描述，然後詢問這個“區塊鏈”是否顯示了 <em>開源、公開</em> 等特性。</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ethereum_development">1.2. 以太坊的開發</h3>
+<div class="paragraph">
+<p>以太坊的目標和構建在很多方面都和之前的開源區塊鏈有所不同，包括比特幣。</p>
+</div>
+<div class="paragraph">
+<p>以太坊的目的主要不是數位貨幣支付網路。但數位貨幣_ether_對於以太坊的運作來說既是不可或缺的也是必要的，以太也被視為一種_實用貨幣_來支付以太坊平臺的使用。</p>
+</div>
+<div class="paragraph">
+<p>與具有非常有限的腳本語言的比特幣不同，以太坊被設計成一個通用可編程區塊鏈，運行一個_虛擬機_，能夠執行任意和無限複雜的程式碼。比特幣的腳本語言故意被限制為簡單的真/假消費條件判斷，以太坊的語言是_圖靈完備的_，這意味著它相當於一臺通用計算機，可以運行理論圖靈機可以運行的任何計算。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ethereum_birth">1.3. 以太坊的誕生</h3>
+<div class="paragraph">
+<p>所有偉大的創新都解決了真正的問題，以太坊也不例外。當人們認識到比特幣模型的力量，並試圖超越密碼貨幣應用，轉向其他項目時，人們構思出了以太坊。但開發人員面臨著一個難題：要麼在比特幣之上構建，要麼啟動一個新的區塊鏈。以比特幣為基礎意味著處於網路的有意約束之中，並試圖找到解決方法。數據儲存的有限類型和大小似乎限制了可以在其上作為第二層解決方案運行的應用程式的類型。開發者需要構建僅使用有限的變數，交易類型和數據集的系統。對於需要更多自由度和更大靈活性的項目，啟動新的區塊鏈是唯一的選擇。但開始一個新的區塊鏈意味著要構建所有的基礎設施元素，測試等。</p>
+</div>
+<div class="paragraph">
+<p>2013年底，年輕開發者和比特幣愛好者Vitalik Buterin開始考慮進一步擴展比特幣和Mastercoin（一種擴展比特幣，提供基本智能合約的疊加協議）的功能。 2013年10月，Vitalik向Mastercoin團隊提出了一個更通用的方法，該方案允許用靈活且可編寫腳本（但不是圖靈完備的）的合約取代Mastercoin的專業合約語言。雖然Mastercoin團隊印象深刻，但這一提議太過激進，無法適應他們的發展路線圖。</p>
+</div>
+<div class="paragraph">
+<p>2013年12月，Vitalik開始分享一份白皮書，描述了以太坊背後的想法：一個圖靈完備的可編程和通用區塊鏈。幾十個人看到了這個早期的草案，並向Vitalik提供了反饋，幫助他逐漸提出提案。</p>
+</div>
+<div class="paragraph">
+<p>本書的兩位作者都收到了白皮書的初稿，並對其進行了評論。Andreas M. Antonopoulos 對這個想法很感興趣，並向Vitalik詢問了很多關於使用單獨的區塊鏈實施智能合約執行的共識規則以及圖靈完備語言的影響等問題。Andreas非常關注以太坊的進展，但他正在寫作“Mastering Bitcoin”一書的早期階段，直到很久以後才直接參與以太坊。然而，Gavin Wood博士是第一批接觸Vitalik並提供幫助提供C ++編程技能的人員之一。Gavin成為了以太坊的聯合創始人，聯合設計師和CTO。</p>
+</div>
+<div class="paragraph">
+<p>正如Vitalik在他的 <a href="https://vitalik.ca/general/2017/09/14/prehistory.html">"Ethereum Prehistory"</a> 中所述:</p>
+</div>
+<div class="paragraph">
+<p>當時的以太坊協議完全是我自己的創作。然而，從這裡開始，新的參與者開始加入。迄今為止協議方面最突出的是Gavin Wood。</p>
+</div>
+<div class="paragraph">
+<p>&#8230;&#8203;</p>
+</div>
+<div class="paragraph">
+<p>將以太坊視為構建可編程金錢的平臺而帶來的微妙變化也可以歸功於Gavin，基於區塊鏈的合約可以保存數字資產並根據預設規則將其轉移到通用計算平臺。這起始於著重點和術語的細微變化，隨著對“Web 3”體系的日益重視，這種影響變得更加強烈，這種體系將Ethereum看作是一套去中心化技術的組成部分，另外兩個是Whisper和Swarm。</p>
+</div>
+<div class="paragraph">
+<p>從2013年12月開始，Vitalik和Gavin完善並發展了這個想法，共同構建了形成以太坊的協議層。</p>
+</div>
+<div class="paragraph">
+<p>以太坊的創始人們正在考慮一個並非針對特定目的的區塊鏈，而是通過成為_可編程的_來支持各種各樣的應用。這個想法是，通過使用像以太坊這樣的通用區塊鏈，開發人員可以編寫他們的特定應用程式，而不必開發對等網路，區塊鏈，共識演算法等底層機制。以太坊平臺旨在抽象這些詳細資訊併為去中心化區塊鏈應用程式提供確定性和安全的編程環境。</p>
+</div>
+<div class="paragraph">
+<p>就像Satoshi一樣，Vitalik和Gavin不僅僅發明了一種新技術，他們以新穎的方式將新發明與現有技術結合起來，並提供了原型程式碼以向世界證明他們的想法。</p>
+</div>
+<div class="paragraph">
+<p>創始人多年來一直致力於構建和完善願景。2015年7月30日，第一個以太坊地塊被開採。世界計算機開始為世界服務&#8230;&#8203;&#8230;&#8203;</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>Vitalik Buterin的文章“以太坊史前史”於2017年9月出版，提供了以太坊最早時刻的迷人第一人稱視角。</p>
+</div>
+<div class="paragraph">
+<p>你可以在 <a href="https://vitalik.ca/general/2017/09/14/prehistory.html" class="bare">https://vitalik.ca/general/2017/09/14/prehistory.html</a> 閱讀。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="development_stages">1.4. 以太坊開發的四個階段</h3>
+<div class="paragraph">
+<p>以太坊的誕生是第一階段的啟動，名為“前沿（Frontier）”。以太坊的發展計劃分四個階段進行，每個新階段都會發生重大變化。每個階段都可能包含子版本，稱為“硬分叉”，它們以不向後兼容的方式改變功能。</p>
+</div>
+<div class="paragraph">
+<p>四個主要的發展階段代號為前沿（Frontier），家園（Homestead），大都會（Metropolis）和寧靜（Serenity）。中間的硬分叉代號為“冰河時代（Ice Age）”，“DAO”，“蜜桔前哨（Tangerine Whistle）”，“假龍（Spurious Dragon）”，“拜占庭（Byzantium）”和“君士坦丁堡（Constantinople）”。它們在下面列出，以及硬分叉發生的塊號：</p>
+</div>
+<div class="sect3">
+<h4 id="past_transitions">1.4.1. 之前的過渡</h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Block #0</dt>
+<dd>
+<p><strong>"Frontier"</strong> - 以太坊的初始階段, 從2015年7月30日持續到2016年3月。</p>
+</dd>
+<dt class="hdlist1">Block #200,000</dt>
+<dd>
+<p>"Ice Age" - 引入指數級難度增長的一個難題，激勵了到權益證明的過渡。</p>
+</dd>
+<dt class="hdlist1">Block #1,150,000</dt>
+<dd>
+<p><strong>"Homestead"</strong> - 以太坊的第二階段，2016年3月啟動。</p>
+</dd>
+<dt class="hdlist1">Block #1,192,000</dt>
+<dd>
+<p>"DAO" - 恢復被破壞的DAO合約的硬分叉，導致以太坊和以太坊經典分成兩個競爭系統。</p>
+</dd>
+<dt class="hdlist1">Block #2,463,000</dt>
+<dd>
+<p>"Tangerine Whistle" - 改變某些IO密集操作的燃氣計算方法和清除拒絕服務攻擊（利用這些操作的低燃氣成本）累積狀態的硬分叉。</p>
+</dd>
+<dt class="hdlist1">Block #2,675,000</dt>
+<dd>
+<p>"Spurious Dragon" - 解決更多拒絕服務攻擊向量和另一種狀態清除的硬分叉，還包括轉播攻擊保護機制。</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="current_state">1.4.2. 當前狀態</h4>
+<div class="paragraph">
+<p>我們目前位於_Metropolis_階段，該階段計劃為兩個次級版本的硬分叉 (參見 <a href="#hard_fork">[hard_fork]</a>) ，代號 <em>Byzantium</em> 我 <em>Constantinople</em>。拜占庭於2017年10月生效，君士坦丁堡預計將在2018年中期。</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Block #4,370,000</dt>
+<dd>
+<p><strong>“大都會拜占庭”</strong>  - 大都會是以太坊的第三階段，正是撰寫本書的時間，於2017年10月啟動。拜占庭是Metropolis的兩個硬分叉中的第一個。</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="future_plans">1.4.3. 未來的計劃</h4>
+<div class="paragraph">
+<p>在大都會拜占庭硬分叉之後，大都會還有一個硬分叉計劃。大都會之後是以太坊部署的最後階段，代號為Serenity。</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Constantinople</dt>
+<dd>
+<p>- 大都會階段的第二部分，計劃在2018年中期。預計將包括切換到混合的工作證明/權益證明共識演算法，以及其他變更。</p>
+</dd>
+<dt class="hdlist1">Serenity</dt>
+<dd>
+<p>以太坊的第四個也是最後一個階段。寧靜尚未有計劃的發佈日期。</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="general_purpose_blockchain">1.5. 以太坊：通用的區塊鏈</h3>
+<div class="paragraph">
+<p>原始區塊鏈（比特幣的區塊鏈）追蹤比特幣單位的狀態及其所有權。你可以將比特幣視為分佈式共識 <em>狀態機</em>，其中交易引起全局的_狀態轉移 _，從而更改比特幣的所有權。狀態轉移受共識規則的制約，允許所有參與者（最終）在開採數個區塊後在系統的共同（共識）狀態上匯合。</p>
+</div>
+<div class="paragraph">
+<p>以太坊也是一個分佈式狀態機。但是，不僅僅追蹤貨幣所有權的狀態，以太坊追蹤通用數據儲存的狀態轉換。通常我們指的是任何可以表示為 <em>鍵值對</em> <em>key-value tuple_的數據。鍵值數據儲存簡單地儲存任何通過某個鍵引用的值。例如，儲存由“Book Title”鍵引用的值“Mastering Ethereum”。在某些方面，這與通用計算機使用的 _Random訪問儲存器（RAM）</em> 的數據儲存模型具有相同的用途。以太坊有 <em>memory</em> 儲存程式碼和數據，它使用以太坊區塊鏈來跟蹤這些記憶體隨著時間的變化。就像通用的儲存程式的計算機一樣，以太坊可以將程式碼加載到其狀態機中並運行該程式碼，將結果狀態更改儲存在其區塊鏈中。與通用計算機的兩個重要差異在於，以太坊狀態的變化受共識規則的支配，並且狀態通過共享帳本全球分佈。以太坊回答了這樣一個問題：“跟蹤任何狀態並對狀態機進行編程，以創建一個在共識之下運行的全球計算機會怎樣？”。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ethereum_components">1.6. 以太坊的組件</h3>
+<div class="paragraph">
+<p>在Ethereum中，<a href="#blockchain_components">區塊鏈的組件</a> 中描述的區塊鏈系統組件包括：</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">P2P Network</dt>
+<dd>
+<p>以太坊在 <em>以太坊主網</em> 上運行，可以通過TCP連接埠30303訪問，運行稱作  <em>ÐΞVp2p</em> 的協議。</p>
+</dd>
+<dt class="hdlist1">Consensus rules</dt>
+<dd>
+<p>以太坊的共識規則，在參考規範，即 <a href="#yellowpaper">[yellowpaper]</a> 中定義。</p>
+</dd>
+<dt class="hdlist1">Transactions</dt>
+<dd>
+<p>Ethereum交易（參見<a href="#transactions">[transactions]</a>）是網路消息，包括發送者，接收者，值和數據負載等。</p>
+</dd>
+<dt class="hdlist1">State Machine</dt>
+<dd>
+<p>以太坊的狀態轉移由 <em>Ethereum虛擬機（EVM）</em> 處理，這是一個執行 <em>bytecode</em>（機器語言指令）的基於棧的虛擬機。稱為“智能合約”的EVM程式以高階語言（如Solidity）編寫，並編譯為 Bytecode 以便在EVM上執行。</p>
+</dd>
+<dt class="hdlist1">Data structures</dt>
+<dd>
+<p>節點上使用本地端的資料庫 (<em>database</em>) 來儲存以太坊的狀態，大部份的節點通常是使用 Google 的 LevelDB ，交易紀錄以及系統狀態是經過序列並雜湊化成一個資料結構後，才存於資料庫內，而這個資料構的名稱為 <em>梅克爾帕特里夏樹</em> (<em>Merkle Patricia Tree</em>)。</p>
+</dd>
+<dt class="hdlist1">Consensus Algorithm</dt>
+<dd>
+<p>以太坊使用的共識演算法是比特幣的「中本聰共識(Nakamoto Consensus)」，也就是使用連續的單一簽名區塊，透過 PoW 的權重來決定最長鏈，並以此當作全網最新狀態。然而，計劃在不久的將來，將過渡到稱為_Casper_的權益證明（Proof-of-Stake）系統。</p>
+</dd>
+<dt class="hdlist1">Economic security</dt>
+<dd>
+<p>以太坊目前使用名為_Ethash_的工作量證明（PoW）演算法，但在未來將會改為使用權益證明（PoS）。</p>
+</dd>
+<dt class="hdlist1">Clients</dt>
+<dd>
+<p>以太坊有幾個可互操作的客戶端軟體實現，其中最突出的是 <em>Go-Ethereum（Geth）_和_Parity</em>。</p>
+</dd>
+</dl>
+</div>
+<div class="sect3">
+<h4 id="references">1.6.1. 其他參考文獻</h4>
+<div class="paragraph">
+<p>以太坊黃皮書:
+<a href="https://ethereum.github.io/yellowpaper/paper.pdf" class="bare">https://ethereum.github.io/yellowpaper/paper.pdf</a></p>
+</div>
+<div class="paragraph">
+<p>”褐皮書”：為更廣泛的讀者以不太正式的語言重寫了“黃皮書”：
+<a href="https://github.com/chronaeon/beigepaper" class="bare">https://github.com/chronaeon/beigepaper</a></p>
+</div>
+<div class="paragraph">
+<p>ÐΞVp2p 網路協議:
+<a href="https://github.com/ethereum/wiki/wiki/%C3%90%CE%9EVp2p-Wire-Protocol" class="bare">https://github.com/ethereum/wiki/wiki/%C3%90%CE%9EVp2p-Wire-Protocol</a></p>
+</div>
+<div class="paragraph">
+<p>以太坊狀態機 —— 一個“Awesome”資源列表
+<a href="https://github.com/ethereum/wiki/wiki/Ethereum-Virtual-Machine-(EVM)-Awesome-List" class="bare">https://github.com/ethereum/wiki/wiki/Ethereum-Virtual-Machine-(EVM)-Awesome-List</a></p>
+</div>
+<div class="paragraph">
+<p>LevelDB 資料庫 (最經常用於儲存區塊鏈本地副本):
+<a href="http://leveldb.org" class="bare">http://leveldb.org</a></p>
+</div>
+<div class="paragraph">
+<p>Merkle Patricia Trees:
+<a href="https://github.com/ethereum/wiki/wiki/Patricia-Tree" class="bare">https://github.com/ethereum/wiki/wiki/Patricia-Tree</a></p>
+</div>
+<div class="paragraph">
+<p>Ethash 工作量證明共識演算法：
+<a href="https://github.com/ethereum/wiki/wiki/Ethash" class="bare">https://github.com/ethereum/wiki/wiki/Ethash</a></p>
+</div>
+<div class="paragraph">
+<p>Casper 權益證明 v1 實現指南:
+<a href="https://github.com/ethereum/research/wiki/Casper-Version-1-Implementation-Guide" class="bare">https://github.com/ethereum/research/wiki/Casper-Version-1-Implementation-Guide</a></p>
+</div>
+<div class="paragraph">
+<p>Go-Ethereum (Geth) 客戶端:
+<a href="https://geth.ethereum.org/" class="bare">https://geth.ethereum.org/</a></p>
+</div>
+<div class="paragraph">
+<p>Parity 以太坊客戶端:
+<a href="https://parity.io/" class="bare">https://parity.io/</a></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="turing_completeness">1.7. 以太坊和圖靈完整性</h3>
+<div class="paragraph">
+<p>只要你開始閱讀關於以太坊的資訊，你將立即聽到“圖靈完備”一詞。他們說，與比特幣不同，以太坊是“圖靈完備”。這到底是什麼意思呢？</p>
+</div>
+<div class="paragraph">
+<p>術語“圖靈完備”是以英國數學家阿蘭圖靈（Alan Turing）的名字命名的，他被認為是計算機科學之父。1936年，他創建了一個計算機的數學模型，該計算機由一個狀態機構成，該狀態機通過讀寫順序儲存器（類似於無限長度的磁帶）來操縱符號。通過這個構造，Alan Turing繼續提供了一個來回答（否定的）關於 <em>通用可計算性</em>（是否可以解決所有問題）問題的數學基礎。他證明了存在一些不可計算的問題。具體來說，他證明 <em>停機問題</em> <em>Halting Problem</em>（試圖評估程式是否最終會停止運行）是不可解決的。</p>
+</div>
+<div class="paragraph">
+<p>Alan Turing進一步將系統定義為_Turing Complete_，如果它可以用來模擬任何圖靈機。這樣的系統被稱為 <em>通用圖靈機</em> <em>Universal Turing Machine（UTM）</em>。</p>
+</div>
+<div class="paragraph">
+<p>以太坊在一個名為以太坊虛擬機的狀態機中執行儲存程式，在記憶體中讀寫數據的能力，使其成為一個圖靈完整系統，因此是一臺通用圖靈機。對於有限的儲存，以太坊可以計算任何圖靈機可以計算的演算法。</p>
+</div>
+<div class="paragraph">
+<p>以太坊的突破性創新是將儲存程式計算機的通用計算架構與去中心化區塊鏈相結合，從而創建分佈式單狀態（單例）世界計算機。以太坊程式“到處”運行，但卻產生了共識規則所保證的共同（共識）狀態。</p>
+</div>
+<div class="sect3">
+<h4 id="turing_completeness_feature">1.7.1. 圖靈完備是一個“特性”</h4>
+<div class="paragraph">
+<p>聽說以太坊是圖靈完備的，你可能會得出這樣的結論：這是一個圖靈不完備系統中缺乏的功能。相反，情況恰恰相反。需要努力來限制一個系統，使它不是 <strong>Turing Complete</strong> 的。即使是最簡單的狀態機也會出現圖靈完備性。事實上，已知最簡單的Turing Complete狀態機（Rogozhin，1996）具有4個狀態並使用6個符號，狀態定義只有22個指令長。</p>
+</div>
+<div class="paragraph">
+<p>圖靈完備不僅可以最簡單的系統中實現，而且有意設計為受限制的圖靈不完備的系統通常被認為是“意外圖靈完備的”。圖靈不完備的約束系統更難設計，必須仔細維護，以保持圖靈不完備。</p>
+</div>
+<div class="paragraph">
+<p>關於“意外圖靈完備的”的有趣的參考資料可以在這裡找到：
+<a href="http://beza1e1.tuxen.de/articles/accidentally_turing_complete.html" class="bare">http://beza1e1.tuxen.de/articles/accidentally_turing_complete.html</a></p>
+</div>
+<div class="paragraph">
+<p>以太坊是圖靈完備的事實意味著任何複雜的程式都可以在以太坊中計算。但是這種靈活性帶來了一些棘手的安全和資源管理問題。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="turing_completeness_implications">1.7.2. 圖靈完備的含義</h4>
+<div class="paragraph">
+<p>圖靈證明，你無法通過在計算機上模擬程式來預測程式是否會終止。簡而言之，我們無法預測程式的運行路徑。圖靈完備系統可以在“無限迴圈”中運行，這是一個用於描述不終止程式的術語（過分簡化地說）。創建一個運行永不結束的迴圈的程式是微不足道的。但由於起始條件和程式碼之間存在複雜的相互作用，無意識的無限迴圈可能會在沒有警告的情況下產生。在以太坊中，這提出了一個挑戰：每個參與節點（客戶端）必須驗證每個交易，運行它所調用的任何智能合約。但正如圖靈證明的那樣，以太坊在沒有實際運行（可能永遠運行）時，無法預測智能合約是否會終止，或者運行多久。可以意外，或有意地，創建智能合約，使其在節點嘗試驗證它時永久運行，實際上是拒絕服務攻擊。當然，在需要毫秒驗證的程式和永遠運行的程式之間，存在無限範圍的令人討厭的資源浪費，記憶體膨脹，CPU過熱程式，這些程式只會浪費資源。在世界計算機中，濫用資源的程式會濫用世界資源。如果以太坊無法預測資源使用情況，以太坊如何限制智能合約使用的資源？</p>
+</div>
+<div class="paragraph">
+<p>為了應對這一挑戰，以太坊引入了稱為 <em>燃氣</em> _gas_的計量機制。隨著EVM執行智能合約，它會仔細考慮每條指令（計算、數據訪問等）。每條指令都有一個以燃氣為單位的預定成本。當交易觸發智能合約的執行時，它必須包含一定量的燃氣，用以設定運行智能合約可消耗的計算上限。如果計算所消耗的燃氣量超過交易中可用的天然氣量，則EVM將終止執行。Gas是以太坊用於允許圖靈完備計算的機制，同時限制任何程式可以使用的資源。</p>
+</div>
+<div class="paragraph">
+<p>2015年，攻擊者利用了一個成本遠低於應有成本的EVM指令。這允許攻擊者創建使用大量記憶體的交易，並花幾分鐘時間進行驗證。為了解決這一攻擊，以太坊必須在不向前兼容（硬分叉）的更改中改變特定指令的燃氣核算公式。但是，即使有這種變化，以太坊客戶端也不得不跳過驗證這些交易或浪費數週的時間來驗證這些交易。</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="DApp">1.8. 從通用區塊鏈到去中心化應用 (DApps)</h3>
+<div class="paragraph">
+<p>以太坊作為一種可用於各種用途的通用區塊鏈的方式開始。但很快，以太坊的願景擴展為編程 <em>去中心化應用（DApps）</em> 的平臺。DApps代表比“智能合約”更廣闊的視角。DApp至少是一個智能合約和一個web用戶界面。更廣泛地說，DApp是一個基於開放的、去中心化的、點對點基礎架構服務的Web應用程式。</p>
+</div>
+<div class="paragraph">
+<p>DApp至少由以下部分組成：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>區塊鏈上的智能合約</p>
+</li>
+<li>
+<p>一個Web前端用戶界面</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>另外，許多DApp還包括其他去中心化組件，例如：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>去中心化（P2P）儲存協議和平臺。</p>
+</li>
+<li>
+<p>去中心化（P2P）消息傳遞協議和平臺。</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="提示"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>你可能會看到DApps拼寫為 ÐApps. Ð 字符是拉丁字符，稱為“ETH”，暗指以太坊。"ETH", 要顯示此字符，請在HTML中使用十進制實體 #208，並使用Unicode字符 0xCE（UTF-8）或 0x00D0（UTF-16）。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="evolving_WWW">1.9. 全球資訊網的進化</h3>
+<div class="paragraph">
+<p>2004年，“Web 2.0”一詞引人注目，描述了網路向用戶生成內容，響應接口和交互性的演變。Web 2.0不是技術規範，而是描述Web應用程式新焦點的術語。</p>
+</div>
+<div class="paragraph">
+<p>DApps的概念旨在將全球資訊網引入其下一個自然演進，將去中心化對等協議引入Web應用程式的每個方面。用於描述這種演變的術語是 <em>Web3</em>，意思是網路的第三個“版本”。由Gavin Wood首先提出，_web3_代表了Web應用程式的新願景和焦點：從集中擁有和管理的應用程式到基於去中心化協議的應用程式。</p>
+</div>
+<div class="paragraph">
+<p>在後面的章節中，我們將探索Ethereum + web3js + JavaScript庫，它將你的瀏覽器中運行的JavaScript應用程式與以太坊區塊鏈連接起來。web3.js 庫還包含一個名為 <em>Swarm</em> 的P2P儲存網路接口和一個稱為 <em>Whisper</em> 的P2P消息傳遞服務。通過在你的Web瀏覽器中運行的JavaScript庫中包含這三個組件，開發人員可以使用完整的應用程式開發套件來構建web3 DApps：</p>
+</div>
+<div id="web_suite" class="imageblock">
+<div class="content">
+<img src="images/web3suite.png" alt="Web3 Suite">
+</div>
+<div class="title">Figure 1. Web3: A suite of decentralized application components for the next evolution of the web</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="development_culture">1.10. 以太坊的開發文化</h3>
+<div class="paragraph">
+<p>到目前為止，我們已經談到了以太坊的目標和技術與其他區塊鏈之前的區別，比如比特幣。以太坊也有非常不同的開發文化。</p>
+</div>
+<div class="paragraph">
+<p>在比特幣中，開發以保守原則為指導：所有變化都經過仔細研究，以確保現有系統都不會中斷。大部分情況下，只有在向後兼容時才會執行更改。允許現有客戶“選擇加入”，但如果他們決定不升級，將繼續運作。</p>
+</div>
+<div class="paragraph">
+<p>相比之下，在以太坊中，開發文化的重點是速度和創新。這個咒語是“快速行動，解決事情”。如果需要進行更改，即使這意味著使之前的假設失效，破壞兼容性或強制客戶端進行更新，也會執行更改。以太坊的開發文化的特點是快速創新，快速進化和願意參與實驗。</p>
+</div>
+<div class="paragraph">
+<p>這對開發者來說意味著什麼，就是你必須保持靈活性，隨著一些潛在的假設變化，準備重建你的基礎設施。不要以為任何東西都是靜態的或永久的。以太坊開發人員面臨的一個重大挑戰是將程式碼部署到不可變帳本與仍在快速發展的開發平臺之間的內在矛盾。你不能簡單地“升級”你的智能合約。你必須準備部署新的，遷移用戶，應用程式和資金，並重新開始。</p>
+</div>
+<div class="paragraph">
+<p>具有諷刺意味的是，這也意味著構建具有更多自主權和更少集中控制的系統的目標是無法實現的。在接下來的幾年中，自治和分權要求平臺中的穩定性要比以太坊可能獲得的穩定性要高一點。為了“發展”平臺，你必須準備好取消並重啟你的智能合約，這意味著你必須保留一定程度的控制權。</p>
+</div>
+<div class="paragraph">
+<p>但是，在積極的一面，以太坊正在快速發展。“自行車脫落”的機會很小 - 這個表達意味著爭論一些小細節，比如如何在大樓後面建造自行車棚。如果你開始騎腳踏車，你可能會突然發現其他的開發團隊改變了計劃，並且拋棄了自行車，轉而使用自動氣墊船。在以太坊有很少的神聖原則，最終標準或固定接口。</p>
+</div>
+<div class="paragraph">
+<p>最終，以太坊核心協議的開發速度將會放慢，其接口將會變得固定。但與此同時，創新是推動原則。你最好跟上，因為沒有人會為你放慢速度。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="why_learn">1.11. 為什麼學習以太坊？</h3>
+<div class="paragraph">
+<p>區塊鏈具有非常陡峭的學習曲線，因為它們將多個學科合併到一個領域：編程、資訊安全、密碼學、經濟學、分佈式系統、對等網路等。以太坊使得這一學習曲線不再陡峭，因此你可以很快就開始了。但就在一個看似簡單的環境表面之下，還有更多。當你學習並開始更深入的觀察時，總會有另一層複雜性和奇蹟。</p>
+</div>
+<div class="paragraph">
+<p>以太坊是學習區塊鏈的絕佳平臺，它構建了一個龐大的開發者社區，比任何其他區塊鏈平臺都快。相比其他區塊鏈，以太坊是開發者為開發者開發的_開發者的區塊鏈_。熟悉JavaScript應用程式的開發人員可以進入以太坊並開始快速生成工作程式碼。在以太坊的頭幾年，通常看到T恤衫宣佈你可以用五行程式碼創建一個代幣。當然，這是一把雙刃劍。編寫程式碼很容易，但編寫_good_程式碼和_secure_程式碼非常困難。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="teaching_objectives">1.12. 本書將教你什麼？</h3>
+<div class="paragraph">
+<p>這本書深入以太坊的每一個組成部分。你將從一個簡單的交易開始，分析它的工作原理，建立一個簡單的合約，使其更好，並跟蹤它在以太坊系統中的路徑。</p>
+</div>
+<div class="paragraph">
+<p>你將瞭解以太坊的工作方式，以及為什麼這樣設計。你將能夠理解每個組成部分的工作方式，它們如何組合在一起以及為什麼。</p>
+</div>
+</div>
+</div>
+</div>
+
+<nav class="chapter-nav"><a href="glossary.html" class="nav-prev">&larr; 快速術語表</a><a href="index.html" class="nav-home">首頁</a><a href="ch02.html" class="nav-next">以太坊基礎 &rarr;</a></nav>
+</div>
+<div id="footer">
+<div id="footer-text">
+最後更新： 2026-03-30 08:28:57 UTC
+</div>
+</div>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "none" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<style>
+/* 浮動目錄按鈕 — 僅手機版顯示 */
+.toc-toggle {
+  position: fixed;
+  bottom: 5rem;
+  right: 1.2rem;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #2980b9;
+  color: #fff;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, transform 0.2s;
+}
+.toc-toggle:hover { background: #1a6fa0; }
+.toc-toggle:active { transform: scale(0.95); }
+
+/* 回到頂部按鈕 */
+.back-to-top {
+  position: fixed;
+  bottom: 1.8rem;
+  right: 1.2rem;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: rgba(85,85,85,0.85);
+  color: #fff;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s, background 0.2s, transform 0.2s;
+  pointer-events: none;
+}
+.back-to-top:hover { background: rgba(50,50,50,0.9); }
+.back-to-top:active { transform: scale(0.95); }
+.back-to-top.visible {
+  display: flex;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* 浮動目錄面板 */
+.toc-panel {
+  position: fixed;
+  top: 0;
+  right: -340px;
+  width: 320px;
+  max-width: 85vw;
+  height: 100vh;
+  background: #fff;
+  border-left: 1px solid #e1e4e8;
+  box-shadow: -4px 0 20px rgba(0,0,0,0.12);
+  z-index: 1001;
+  transition: right 0.3s ease;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 0;
+}
+.toc-panel.open { right: 0; }
+
+.toc-panel-header {
+  position: sticky;
+  top: 0;
+  background: #fff;
+  padding: 1.2rem 1rem 0.8rem;
+  border-bottom: 1px solid #e1e4e8;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1;
+}
+
+.toc-panel-header h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #1a252f;
+}
+
+.toc-panel .close-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #888;
+  padding: 0 0.3rem;
+  line-height: 1;
+  transition: color 0.15s;
+}
+.toc-panel .close-btn:hover { color: #333; }
+
+.toc-panel-body {
+  padding: 0.8rem 1rem 2rem;
+}
+
+.toc-panel-body ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.toc-panel-body ul ul {
+  padding-left: 0.9rem;
+}
+
+.toc-panel-body li {
+  margin: 0;
+}
+
+.toc-panel-body a {
+  color: #555;
+  text-decoration: none;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  display: block;
+  padding: 0.3rem 0.5rem;
+  border-radius: 4px;
+  transition: background 0.12s, color 0.12s;
+}
+.toc-panel-body a:hover {
+  background: #f0f3f6;
+  color: #2980b9;
+}
+
+/* 遮罩 */
+.toc-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.35);
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+.toc-overlay.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* 閱讀進度條 */
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #2980b9, #3498db);
+  z-index: 1002;
+  transition: width 0.1s;
+  will-change: width;
+}
+
+/* 手機版顯示浮動按鈕 */
+@media screen and (max-width: 768px) {
+  .toc-toggle {
+    display: flex;
+  }
+  .back-to-top {
+    display: flex;
+  }
+}
+
+/* 桌面版也顯示回到頂部 */
+@media screen and (min-width: 769px) {
+  .back-to-top {
+    display: flex;
+  }
+  .reading-progress {
+    left: var(--toc-width, 300px);
+  }
+}
+/* 電子書下載橫幅 */
+.ebook-banner {
+  background: linear-gradient(135deg, #1a252f 0%, #2c3e50 100%);
+  color: #fff;
+  padding: 0.7rem 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  font-size: 0.88rem;
+  position: relative;
+  z-index: 50;
+}
+
+.ebook-banner a {
+  color: #fff;
+  background: rgba(255,255,255,0.15);
+  padding: 0.35rem 0.9rem;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+
+.ebook-banner a:hover {
+  background: rgba(255,255,255,0.25);
+}
+
+.ebook-banner .banner-text {
+  opacity: 0.9;
+}
+
+.ebook-banner .banner-close {
+  position: absolute;
+  right: 0.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.5);
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0.2rem 0.4rem;
+}
+
+.ebook-banner .banner-close:hover {
+  color: #fff;
+}
+
+/* 桌面版橫幅在 TOC 右邊 */
+@media screen and (min-width: 769px) {
+  .ebook-banner {
+    margin-left: var(--toc-width, 300px);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .ebook-banner {
+    font-size: 0.82rem;
+    padding: 0.6rem 0.8rem;
+    gap: 0.8rem;
+  }
+}
+</style>
+
+<!-- 電子書下載橫幅 -->
+<div class="ebook-banner" id="ebookBanner">
+  <span class="banner-text">下載電子書離線閱讀</span>
+  <a href="https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.pdf">PDF</a>
+  <a href="https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.epub">EPUB</a>
+  <a href="https://github.com/awesome-doge/ethereumbook_zh/releases/latest">GitHub Releases</a>
+  <button class="banner-close" id="bannerClose" aria-label="關閉">&times;</button>
+</div>
+
+<!-- 閱讀進度條 -->
+<div class="reading-progress" id="readingProgress"></div>
+
+<!-- 浮動按鈕 -->
+<button class="toc-toggle" id="tocToggle" aria-label="開啟目錄">&#9776;</button>
+<button class="back-to-top" id="backToTop" aria-label="回到頂部">&#8593;</button>
+
+<!-- 目錄面板（手機版） -->
+<div class="toc-overlay" id="tocOverlay"></div>
+<div class="toc-panel" id="tocPanel" role="navigation" aria-label="目錄">
+  <div class="toc-panel-header">
+    <h3>目錄</h3>
+    <button class="close-btn" id="tocClose" aria-label="關閉目錄">&times;</button>
+  </div>
+  <div class="toc-panel-body" id="tocContent"></div>
+</div>
+
+<script>
+(function() {
+  'use strict';
+
+  // === 電子書橫幅：移到頁面頂部 + 關閉/記憶 ===
+  var banner = document.getElementById('ebookBanner');
+  var bannerClose = document.getElementById('bannerClose');
+  if (banner) {
+    // 如果用戶之前關閉過，隱藏
+    if (localStorage.getItem('ebookBannerClosed')) {
+      banner.style.display = 'none';
+    } else {
+      // 移到 body 最前面（在 header 之前）
+      document.body.insertBefore(banner, document.body.firstChild);
+    }
+    if (bannerClose) {
+      bannerClose.addEventListener('click', function() {
+        banner.style.display = 'none';
+        localStorage.setItem('ebookBannerClosed', '1');
+      });
+    }
+  }
+
+  // === 生成手機版目錄 ===
+  var tocContent = document.getElementById('tocContent');
+  var nativeToc = document.getElementById('toc');
+
+  if (tocContent && nativeToc) {
+    // 從原生 TOC 複製結構
+    var nativeList = nativeToc.querySelector('ul.sectlevel1');
+    if (nativeList) {
+      tocContent.appendChild(nativeList.cloneNode(true));
+    }
+  }
+
+  // === 目錄開關 ===
+  var tocToggle = document.getElementById('tocToggle');
+  var tocPanel = document.getElementById('tocPanel');
+  var tocOverlay = document.getElementById('tocOverlay');
+  var tocClose = document.getElementById('tocClose');
+
+  function openToc() {
+    tocPanel.classList.add('open');
+    tocOverlay.classList.add('visible');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeToc() {
+    tocPanel.classList.remove('open');
+    tocOverlay.classList.remove('visible');
+    document.body.style.overflow = '';
+  }
+
+  if (tocToggle) tocToggle.addEventListener('click', openToc);
+  if (tocOverlay) tocOverlay.addEventListener('click', closeToc);
+  if (tocClose) tocClose.addEventListener('click', closeToc);
+
+  // 點擊目錄連結後關閉面板
+  if (tocContent) {
+    tocContent.addEventListener('click', function(e) {
+      if (e.target.tagName === 'A') {
+        closeToc();
+      }
+    });
+  }
+
+  // ESC 關閉
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeToc();
+  });
+
+  // === 回到頂部 ===
+  var backToTop = document.getElementById('backToTop');
+  if (backToTop) {
+    backToTop.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  // === 閱讀進度條 + 回到頂部顯示 ===
+  var progressBar = document.getElementById('readingProgress');
+  var ticking = false;
+
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function() {
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      var docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+
+      // 回到頂部
+      if (backToTop) {
+        if (scrollTop > 400) {
+          backToTop.classList.add('visible');
+        } else {
+          backToTop.classList.remove('visible');
+        }
+      }
+
+      // 進度條
+      if (progressBar && docHeight > 0) {
+        progressBar.style.width = ((scrollTop / docHeight) * 100) + '%';
+      }
+
+      ticking = false;
+    });
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // === 表格響應式包裝 ===
+  document.querySelectorAll('table.tableblock').forEach(function(table) {
+    if (!table.parentElement.classList.contains('tableblock-wrapper')) {
+      var wrapper = document.createElement('div');
+      wrapper.style.overflowX = 'auto';
+      wrapper.style.WebkitOverflowScrolling = 'touch';
+      wrapper.style.margin = '1.5rem 0';
+      table.parentNode.insertBefore(wrapper, table);
+      wrapper.appendChild(table);
+      table.style.margin = '0';
+    }
+  });
+
+  // === 桌面版：TOC 當前章節高亮 ===
+  if (window.innerWidth > 768 && nativeToc) {
+    var tocLinks = nativeToc.querySelectorAll('a');
+    var headingIds = [];
+    tocLinks.forEach(function(link) {
+      var id = link.getAttribute('href');
+      if (id && id.startsWith('#')) {
+        headingIds.push({ id: id.substring(1), el: link });
+      }
+    });
+
+    var currentHighlight = null;
+
+    // 注入高亮樣式
+    var hlStyle = document.createElement('style');
+    hlStyle.textContent = '#toc a.toc-active { background: #dbeafe !important; color: #1d4ed8 !important; border-radius: 4px; font-weight: 600; border-left: 3px solid #2980b9; padding-left: 0.4rem; }';
+    document.head.appendChild(hlStyle);
+
+    function highlightToc() {
+      var scrollPos = window.pageYOffset + 100;
+      var current = null;
+
+      for (var i = headingIds.length - 1; i >= 0; i--) {
+        var target = document.getElementById(headingIds[i].id);
+        if (target && target.offsetTop <= scrollPos) {
+          current = headingIds[i].el;
+          break;
+        }
+      }
+
+      if (current !== currentHighlight) {
+        if (currentHighlight) {
+          currentHighlight.classList.remove('toc-active');
+        }
+        if (current) {
+          current.classList.add('toc-active');
+          // 確保高亮項在可視範圍
+          var tocEl = document.getElementById('toc');
+          if (tocEl) {
+            var linkRect = current.getBoundingClientRect();
+            var tocRect = tocEl.getBoundingClientRect();
+            if (linkRect.top < tocRect.top + 60 || linkRect.bottom > tocRect.bottom - 20) {
+              current.scrollIntoView({ block: 'center', behavior: 'smooth' });
+            }
+          }
+        }
+        currentHighlight = current;
+      }
+    }
+
+    window.addEventListener('scroll', function() {
+      requestAnimationFrame(highlightToc);
+    }, { passive: true });
+
+    highlightToc();
+  }
+})();
+</script>
+</body>
+</html>
+</body>
+</html>

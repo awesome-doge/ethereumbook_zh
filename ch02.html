@@ -1,0 +1,1533 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.26">
+<title>以太坊基礎 — 精通以太坊 Mastering Ethereum 繁體中文版</title>
+<link rel="stylesheet" href="./custom.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./rouge-github.css">
+<!-- Google Analytics 4 -->
+<script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-ZVVQYEKMPF"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-ZVVQYEKMPF');
+</script>
+
+<!-- Favicon -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2B21;</text></svg>" type="image/svg+xml">
+
+<!-- SEO: Title Override -->
+<meta name="title" content="精通以太坊 Mastering Ethereum — 繁體中文完整版 | 智能合約、DApps、EVM、Solidity 技術指南">
+
+<!-- SEO: Description -->
+<meta name="description" content="精通以太坊（Mastering Ethereum）繁體中文版，由 Andreas M. Antonopoulos 和 Gavin Wood 著作。完整涵蓋以太坊基礎、智能合約、Solidity、DApps、EVM、Gas、密鑰管理、錢包、交易、預言機、共識機制等 19 章內容。免費線上閱讀，提供 PDF 和 EPUB 電子書下載。">
+<meta name="keywords" content="以太坊, Ethereum, 智能合約, Smart Contract, Solidity, DApp, EVM, 區塊鏈, Blockchain, 加密貨幣, Web3, DeFi, 精通以太坊, Mastering Ethereum, 繁體中文, 教學, 技術指南">
+<meta name="author" content="Andreas M. Antonopoulos, Gavin Wood, Dr. Awesome Doge">
+
+<!-- SEO: Canonical -->
+
+
+<!-- SEO: Language Alternatives -->
+<link rel="alternate" hreflang="zh-Hant" href="https://mastering-ethereum.doge.tg/">
+<link rel="alternate" hreflang="en" href="https://github.com/ethereumbook/ethereumbook">
+
+<!-- Google Fonts: Noto Sans TC -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap">
+
+<!-- Open Graph -->
+<meta property="og:type" content="book">
+<meta property="og:title" content="精通以太坊 Mastering Ethereum — 繁體中文完整版">
+<meta property="og:description" content="以太坊完整技術指南，涵蓋智能合約、Solidity、DApps、EVM 等 19 章。免費線上閱讀 + PDF/EPUB 下載。">
+<meta property="og:image" content="https://mastering-ethereum.doge.tg/images/cover.png">
+<meta property="og:image:width" content="1050">
+<meta property="og:image:height" content="1378">
+<meta property="og:image:alt" content="Mastering Ethereum 書籍封面">
+<meta property="og:url" content="https://mastering-ethereum.doge.tg/">
+<meta property="og:site_name" content="精通以太坊 繁體中文版">
+<meta property="og:locale" content="zh_TW">
+<meta property="book:author" content="Andreas M. Antonopoulos">
+<meta property="book:author" content="Gavin Wood">
+<meta property="book:tag" content="Ethereum">
+<meta property="book:tag" content="Blockchain">
+<meta property="book:tag" content="Smart Contracts">
+<meta property="book:tag" content="Solidity">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="精通以太坊 Mastering Ethereum — 繁體中文完整版">
+<meta name="twitter:description" content="以太坊完整技術指南，涵蓋智能合約、Solidity、DApps、EVM 等 19 章。免費線上閱讀 + PDF/EPUB 下載。">
+<meta name="twitter:image" content="https://mastering-ethereum.doge.tg/images/cover.png">
+<meta name="twitter:image:alt" content="Mastering Ethereum 書籍封面">
+
+<!-- JSON-LD Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Book",
+  "name": "精通以太坊 Mastering Ethereum 繁體中文版",
+  "alternateName": "Mastering Ethereum: Building Smart Contracts and DApps",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Andreas M. Antonopoulos",
+      "url": "https://aantonop.com/"
+    },
+    {
+      "@type": "Person",
+      "name": "Gavin Wood"
+    }
+  ],
+  "translator": {
+    "@type": "Person",
+    "name": "Dr. Awesome Doge"
+  },
+  "inLanguage": "zh-Hant",
+  "url": "https://mastering-ethereum.doge.tg/",
+  "image": "https://mastering-ethereum.doge.tg/images/cover.png",
+  "description": "以太坊完整技術指南繁體中文版，涵蓋智能合約、Solidity、DApps、EVM、Gas、密鑰管理等 19 章內容。",
+  "genre": ["Technology", "Blockchain", "Cryptocurrency"],
+  "bookFormat": "https://schema.org/EBook",
+  "numberOfPages": 257,
+  "publisher": {
+    "@type": "Organization",
+    "name": "O'Reilly Media"
+  },
+  "license": "https://creativecommons.org/licenses/by-nc-nd/4.0/",
+  "isAccessibleForFree": true,
+  "encoding": [
+    {
+      "@type": "MediaObject",
+      "encodingFormat": "application/pdf",
+      "contentUrl": "https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.pdf"
+    },
+    {
+      "@type": "MediaObject",
+      "encodingFormat": "application/epub+zip",
+      "contentUrl": "https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.epub"
+    }
+  ],
+  "about": [
+    {"@type": "Thing", "name": "Ethereum"},
+    {"@type": "Thing", "name": "Smart Contracts"},
+    {"@type": "Thing", "name": "Blockchain"},
+    {"@type": "Thing", "name": "Solidity"},
+    {"@type": "Thing", "name": "Decentralized Applications"},
+    {"@type": "Thing", "name": "EVM"}
+  ]
+}
+</script>
+
+<!-- BreadcrumbList for search results -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "精通以太坊",
+      "item": "https://mastering-ethereum.doge.tg/"
+    }
+  ]
+}
+</script>
+
+<link rel="canonical" href="https://mastering-ethereum.doge.tg/ch02.html">
+<meta name="description" content="精通以太坊：以太坊基礎。以太坊完整技術指南繁體中文版，免費線上閱讀。">
+<style>
+.chapter-nav{display:flex;justify-content:space-between;align-items:center;padding:1rem 0;border-top:1px solid #e1e4e8;border-bottom:1px solid #e1e4e8;margin:2rem 0;gap:0.8rem;flex-wrap:wrap}
+.chapter-nav a{color:#2980b9;text-decoration:none;font-size:0.9rem;padding:0.4rem 0.8rem;border-radius:4px;transition:background 0.2s}
+.chapter-nav a:hover{background:#f0f3f6}
+.chapter-nav .nav-prev{text-align:left;max-width:40%}
+.chapter-nav .nav-next{text-align:right;max-width:40%}
+.chapter-nav .nav-home{font-weight:600}
+@media(max-width:768px){.chapter-nav{font-size:0.82rem}.chapter-nav a{padding:0.3rem 0.5rem}}
+</style>
+</head>
+<body class="book">
+<div id="header">
+<h1><a href="index.html" style="color:inherit;text-decoration:none">精通以太坊 Mastering Ethereum 繁體中文版</a></h1>
+</div>
+<div id="content">
+<nav class="chapter-nav"><a href="ch01.html" class="nav-prev">&larr; 什麼是以太坊</a><a href="index.html" class="nav-home">首頁</a><a href="ch03.html" class="nav-next">以太坊客戶端 &rarr;</a></nav>
+<div class="sect1">
+<h2 id="intro_chapter">2. 以太坊基礎</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="ether_units">2.1. 以太幣單位</h3>
+<div class="paragraph">
+<p>以太坊的貨幣單位稱為以太幣 (ether) ，也被稱為ETH或符號 &#926; （來自看起來像程式化的大寫字母E的希臘字母“Xi”）或（不太常見的）&#9830;，例如，1個以太，或1個ETH，或 &#926;1，或 &#9830;1</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="提示"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>&#926; 使用Unicode字符U+039E，&#9830;使用U+2666。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>以太幣 (ether) 被細分為更小的單位，直到可能的最小單位，這被命名為 wei 。一個 ether 是 1×10<sup>18</sup>或1,000,000,000,000,000,000 個 wei。你可能會聽到人們也提到貨幣“以太坊”，但這是一個常見的初學者的錯誤。以太坊 (Ethereum) 是一個系統，以太幣 (ether) 是貨幣(currency)。</p>
+</div>
+<div class="paragraph">
+<p>ether 的值總是在以太坊內部表示為 wei ，無符號整數值(unsigned integer) 。當你處理1個以太幣時，交易將編碼 10000000000000000000 wei作為值。</p>
+</div>
+<div class="paragraph">
+<p>ether 的各種單位既有使用國際單位系統（System of Units, SI）的科學名稱，也有口語化的名字，向計算機和密碼學的許多偉大思想致敬。</p>
+</div>
+<div class="paragraph">
+<p>表 <a href="#ether_denominations">Ether Denominations and Unit Names</a> 顯示了各種單位，它們的俗名（通用）名稱和他們的SI名稱。為了與價值的內部表示保持一致，該表格顯示了所有面值的wei（第一行），在第七行中 ether 顯示為10<sup>18</sup> wei：</p>
+</div>
+<table id="ether_denominations" class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. Ether Denominations and Unit Names</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Value (in wei)</th>
+<th class="tableblock halign-left valign-top">Exponent</th>
+<th class="tableblock halign-left valign-top">Common Name</th>
+<th class="tableblock halign-left valign-top">SI Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">wei</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">wei</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1,000</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10<sup>3</sup></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">babbage</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">kilowei or femtoether</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1,000,000</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10<sup>6</sup></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">lovelace</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">megawei or picoether</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1,000,000,000</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10<sup>9</sup></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">shannon</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">gigawei or nanoether</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1,000,000,000,000</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10<sup>12</sup></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">szabo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">microether or micro</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1,000,000,000,000,000</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10<sup>15</sup></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">finney</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">milliether or milli</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>1,000,000,000,000,000,000</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>10<sup>18</sup></em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>ether</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>ether</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1,000,000,000,000,000,000,000</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10<sup>21</sup></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">grand</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">kiloether</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1,000,000,000,000,000,000,000,000</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10<sup>24</sup></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">megaether</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="choosing_eth_wallet">2.2. 選擇一個以太坊錢包</h3>
+<div class="paragraph">
+<p>以太坊錢包是你通往以太坊系統的門戶。它擁有你的密鑰，並且可以代表你創建和廣播交易。選擇一個以太坊錢包可能很困難，因為有很多不同功能和設計選擇。有些更適合初學者，有些更適合專家。即使你現在選擇一個你喜歡的，你可能會決定稍後切換到另一個錢包。以太坊本身在不斷變化，“最好”的錢包往往是適應它們的。</p>
+</div>
+<div class="paragraph">
+<p>別擔心！如果你選擇一個錢包而不喜歡它的工作方式，那麼你可以很容易地更換錢包。你只需進行一項交易，即將資金從舊錢包發送到新錢包，或者通過匯出和匯入私鑰來移動密鑰。</p>
+</div>
+<div class="paragraph">
+<p>首先，我們將選擇三種不同類型的錢包作為整本書的範例：行動錢包，桌面錢包和基於網路的錢包。我們選擇了這三款錢包，因為它們代表了廣泛的複雜性和功能。然而，選擇這些錢包並不是對其質量或安全性的認可。他們只是示範和測試。</p>
+</div>
+<div class="paragraph">
+<p>起始錢包：</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">MetaMask</dt>
+<dd>
+<p>MetaMask是一款瀏覽器擴展錢包，可在你的瀏覽器（Chrome、Firefox、Opera或Brave Browser）中運行。它易於使用且便於測試，因為它可以連接到各種以太坊節點和測試區塊鏈（請參閱“testnets”）。</p>
+</dd>
+<dt class="hdlist1">Jaxx</dt>
+<dd>
+<p>Jaxx是一款多平臺和多幣種錢包，可在各種作業系統上運行，包括Android、iOS、Windows、Mac和Linux。對於新用戶來說，它通常是一個不錯的選擇，因為它的設計簡單易用。</p>
+</dd>
+<dt class="hdlist1">MyEtherWallet (MEW)</dt>
+<dd>
+<p>MyEtherWallet是一款基於網路的錢包，可在任何瀏覽器中運行。它具有多個複雜的功能，我們將在許多範例中探討這些功能。</p>
+</dd>
+<dt class="hdlist1">Emerald Wallet</dt>
+<dd>
+<p>Emerald錢包設計用於以太坊經典區塊鏈，但與其他以太坊區塊鏈兼容。它是一款開源桌面應用程式，適用於Windows、Mac和Linux。Emerald錢包可以運行一個完整的節點或連接到一個公共的遠程節點，工作在“輕量”模式下。它還有一個配套工具來在命令行中執行所有操作。</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>我們將首先在桌面上安裝MetaMask</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="control_responsibility">2.3. 控制和責任</h3>
+<div class="paragraph">
+<p>像以太坊這樣的開放區塊鏈是安全的，因為它們是_去中心化的_。這意味著以太坊的每個用戶都應該控制自己的密鑰，這些密鑰可以控制對資金和合約的訪問。一些用戶選擇通過使用第三方保管人（比如交易所錢包）放棄對密鑰的控制權。在本書中，我們將教你如何控制和管理你自己的密鑰。</p>
+</div>
+<div class="paragraph">
+<p>這種控制帶來了很大的責任。如果你丟失了你的鑰匙，你將無法獲得資金和合約。沒有人可以幫助你重新獲得訪問權 - 你的資金將永遠鎖定。以下是一些幫助你管理這一責任的提示：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>提示你選擇密碼時：強化它，備份並不共享。如果你沒有密碼管理器，請將其寫下並存放在鎖定的抽屜或保險櫃中。只要你擁有帳戶的“keystore”檔案，就可以使用此密碼。</p>
+</li>
+<li>
+<p>當系統提示你備份密鑰或助記詞時，請使用筆和紙進行物理備份。不要把這個任務放在“以後”，你會忘記。這些在你丟失了系統中保存的所有數據時使用。</p>
+</li>
+<li>
+<p>不要在數位文件、數位照片、螢幕截圖、在線驅動器、加密的PDF等中儲存密鑰材料（加密或不加密），不要臨時湊合的安全性。使用密碼管理器或筆和紙。</p>
+</li>
+<li>
+<p>在傳輸任何大量數據之前，先做一個小的測試交易（例如，1美元）。一旦你收到測試交易，請嘗試從該錢包中發送。如果你忘記密碼或因任何其他原因無法發送資金，最好是一個小小的損失。</p>
+</li>
+<li>
+<p>請勿將金錢匯入本書所示的任何地址。私人密鑰被列在書中，有人會立即拿走這筆錢。</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="installing_MetaMask">2.4. MetaMask 入門</h3>
+<div class="paragraph">
+<p>打開Google Chrome瀏覽器並導航至：</p>
+</div>
+<div class="paragraph">
+<p><a href="https://chrome.google.com/webstore/category/extensions" class="bare">https://chrome.google.com/webstore/category/extensions</a></p>
+</div>
+<div class="paragraph">
+<p>搜索“MetaMask”並點擊狐狸的標誌。你應該看到這樣的擴展的詳細資訊頁面：</p>
+</div>
+<div id="metamask_download" class="imageblock">
+<div class="content">
+<img src="images/metamask_download.png" alt="MetaMask Detail Page">
+</div>
+<div class="title">Figure 2. The detail page of the MetaMask Chrome Extension</div>
+</div>
+<div class="paragraph">
+<p>驗證你是否下載真正的MetaMask擴展非常重要，因為有時候人們可以將惡意擴展通過Google的過濾器。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>在地址欄中顯示ID nkbihfbeogaeaoehlefnkodbefgpgknn</p>
+</li>
+<li>
+<p>由https://metamask.io提供</p>
+</li>
+<li>
+<p>有超過800個評論</p>
+</li>
+<li>
+<p>擁有超過1,000,000名用戶</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>確認你正在查看正確的擴展程式後，請點擊“添加到Chrome”進行安裝。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="using_MetaMask">2.5. 第一次使用MetaMask</h3>
+<div class="paragraph">
+<p>一旦安裝了MetaMask，你應該在瀏覽器的工具欄中看到一個新圖示（狐狸頭）。點擊它開始。它將要求你接受條款和條件，然後通過輸入密碼來創建新的以太坊錢包：</p>
+</div>
+<div id="metamask_password" class="imageblock">
+<div class="content">
+<img src="images/metamask_password.png" alt="MetaMask Password Page">
+</div>
+<div class="title">Figure 3. The password page of the MetaMask Chrome Extension</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="提示"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>密碼控制對MetaMask的訪問，任何有權訪問你的瀏覽器的人無法使用它。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>一旦你設置了密碼，MetaMask將為你生成一個錢包並向你顯示一個_助記詞備份_，由12個英文單詞組成。如果MetaMask或你的計算機出現問題，可以在任何兼容的錢包中使用這些詞來恢復對資金的訪問。你不需要通過密碼進行恢復。這12個字就足夠了。</p>
+</div>
+<div id="metamask_mnemonic" class="imageblock">
+<div class="content">
+<img src="images/metamask_mnemonic.png" alt="MetaMask Mnemonic Page">
+</div>
+<div class="title">Figure 4. The mnemonic backup of your wallet, created by MetaMask</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="提示"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>在紙上備份助記符（12個字），兩次。將兩份紙張備份存放在兩個單獨的安全位置，例如防火安全櫃，鎖定的抽屜或保險箱。將紙質備份視為你在Ethereum錢包中儲存的相同價值的現金。任何能夠訪問這些文字的人都可以訪問並竊取你的資金。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>一旦確認你已安全儲存助記符，MetaMask將顯示你的以太坊帳戶詳細資訊：</p>
+</div>
+<div id="metamask_account" class="imageblock">
+<div class="content">
+<img src="images/metamask_account.png" alt="MetaMask Account Page">
+</div>
+<div class="title">Figure 5. Your Ethereum account in MetaMask</div>
+</div>
+<div class="paragraph">
+<p>你的帳戶頁面會顯示你帳戶的名稱（預設情況下為“Account 1”），以太坊地址（範例中為0x9E713 &#8230;&#8203;）以及彩色圖示，以幫助你將此帳戶與其他帳戶區分開來。在帳戶頁面的頂部，你可以看到你當前正在使用哪個以太坊網路（範例中的“主網路”）。</p>
+</div>
+<div class="paragraph">
+<p>恭喜！你已經建立了你的第一個以太坊錢包！</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="switching_networks">2.6. 切換網路</h3>
+<div class="paragraph">
+<p>正如你在MetaMask帳戶頁面上所看到的，你可以在多個以太坊網路中進行選擇。預設情況下，MetaMask將嘗試連接到“主網路”。其他選擇是公共測試網，你選擇的任何以太坊節點或在你自己的計算機上運行私有區塊鏈的節點（本地主機）：</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Main Ethereum Network</dt>
+<dd>
+<p>主要的，公開的以太坊區塊鏈。真正的ETH，真正的價值，真正的後果。</p>
+</dd>
+<dt class="hdlist1">Ropsten Test Network</dt>
+<dd>
+<p>以太坊公開測試區塊鏈和網路，使用工作證明共識（挖礦）。在這個網路上的ETH沒有價值。Ropsten的問題在於攻擊者鑄造了數以萬計的區塊，產生巨大的重組並將燃氣極限推到9B。當時需要一個新的公共測試網，但之後（2017年3月25日）Ropsten也復活了！</p>
+</dd>
+<dt class="hdlist1">Kovan Test Network</dt>
+<dd>
+<p>以太坊公開測試區塊鏈和網路，使用“Aura”協議進行權威證明（Proof-of-Authority）共識（聯合簽名）。在這個網路上的ETH沒有價值。該測試網路僅由“Parity”支持。其他以太坊客戶使用稍後提出的"Clique"協議作為權威證明。</p>
+</dd>
+<dt class="hdlist1">Rinkeby Test Network</dt>
+<dd>
+<p>以太坊公開測試區塊鏈和網路，使用“Clique”協議進行權威證明共識（聯合簽名）。在這個網路上的ETH沒有價值。</p>
+</dd>
+<dt class="hdlist1">Localhost 8545</dt>
+<dd>
+<p>連接到與瀏覽器在同一臺計算機上運行的節點。該節點可以是任何公共區塊鏈（主要或測試網路）或私人測試網路的一部分（參見<a href="#ganache">[ganache]</a>）。</p>
+</dd>
+<dt class="hdlist1">Custom RPC</dt>
+<dd>
+<p>允許你將MetaMask連接到任何具有geth兼容的遠程過程調用（RPC）接口的節點。該節點可以是任何公共或私有區塊鏈的一部分。</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>有關各種以太坊測試網以及如何在它們之間進行選擇的更多資訊，請參見 <a href="#testnets">[testnets]</a>。</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="提示"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>你的MetaMask錢包在連接的所有網路上使用相同的私鑰和以太坊地址。但是，每個以太坊網路上的以太坊地址餘額將有所不同。例如，你的密鑰可以控制Ropsten上的以太和合約，但不能控制主網上的。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="getting_test_eth">2.7. 獲得一些測試以太幣</h3>
+<div class="paragraph">
+<p>我們的首要任務是給我們的錢包儲值。我們不會在主網上這樣做，因為真正的以太網需要花費金錢，處理它需要更多的經驗。現在，我們將使用一些testnet ether加載我們的錢包。</p>
+</div>
+<div class="paragraph">
+<p>將MetaMask切換到_Ropsten測試網路_。然後點擊“Buy”，然後點擊“Ropsten Test Faucet”。MetaMask將打開一個新的網頁：</p>
+</div>
+<div id="metamask_ropsten_faucet" class="imageblock">
+<div class="content">
+<img src="images/metamask_ropsten_faucet.png" alt="MetaMask Ropsten Test Faucet">
+</div>
+<div class="title">Figure 6. MetaMask Ropsten Test Faucet</div>
+</div>
+<div class="paragraph">
+<p>你可能會注意到該網頁已經包含你的MetaMask錢包的以太坊地址。MetaMask集成了支持以太坊的網頁（ 參見 <a href="#dapps">[dapps]</a>）與你的MetaMask錢包整合在一起。MetaMask可以在網頁上“查看”以太坊地址，例如，你可以向顯示以太坊地址的網上商店發送付款。如果網頁請求，MetaMask也可以使用自己的錢包地址填入網頁，作為收件人地址。在此頁面中，faucet應用程式要求MetaMask提供一個錢包地址以發送測試以太網。</p>
+</div>
+<div class="paragraph">
+<p>按綠色"request 1 ether from faucet"按鈕。你會看到一個交易ID出現在頁面的下方。faucet應用程式創建了一個交易 - 付款給你。交易ID如下所示：</p>
+</div>
+<div id="faucet_tx_id" class="listingblock">
+<div class="content">
+<pre>0x7c7ad5aaea6474adccf6f5c5d6abed11b70a350fbc6f9590109e099568090c57</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>幾秒鐘後，新交易將由Ropsten礦工開採，你的MetaMask錢包將顯示1 ETH的餘額。點擊交易ID，你的瀏覽器會將你帶到一個_block explorer_，該網站允許你查看和瀏覽區塊，地址和交易。MetaMask使用 etherscan.io 區塊瀏覽器，這是受歡迎的以太坊區塊瀏覽器之一。包含Ropsten Test Faucet支付的交易顯示在 <a href="#ropsten_block_explorer">Etherscan Ropsten Block Explorer</a> 中。</p>
+</div>
+<div id="ropsten_block_explorer" class="imageblock">
+<div class="content">
+<img src="images/ropsten_block_explorer.png" alt="Etherscan Ropsten Block Explorer">
+</div>
+<div class="title">Figure 7. Etherscan Ropsten Block Explorer</div>
+</div>
+<div class="paragraph">
+<p>交易記錄在Ropsten區塊鏈中，任何人都可以隨時查看，只需搜索交易ID或訪問鏈接即可：</p>
+</div>
+<div class="paragraph">
+<p><a href="https://ropsten.etherscan.io/tx/0x7c7ad5aaea6474adccf6f5c5d6abed11b70a350fbc6f9590109e099568090c57" class="bare">https://ropsten.etherscan.io/tx/0x7c7ad5aaea6474adccf6f5c5d6abed11b70a350fbc6f9590109e099568090c57</a></p>
+</div>
+<div class="paragraph">
+<p>嘗試訪問該鏈接，或將交易雜湊值輸入到 ropsten.etherscan.io 網站中，親自查看。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sending_eth_MetaMask">2.8. 使用MetaMask發送ether</h3>
+<div class="paragraph">
+<p>一旦我們從Ropsten Test Faucet接收到我們的第一個測試ether，我們將試著發送一些ether回到faucet。正如你在Ropsten Test Faucet頁面上看到的那樣，你可以選擇“donate”1個ETH。這個選項是可用的，所以一旦你完成了測試，你可以返回剩餘的測試ether，以便其他人可以使用它。儘管測試ether沒有價值，但有些人囤積測試ether，使其他人難以使用測試網路。囤積測試ether令人不悅！</p>
+</div>
+<div class="paragraph">
+<p>幸運的是，我們不是測試ether的囤積者，我們希望練習發送ether。</p>
+</div>
+<div class="paragraph">
+<p>點擊橙色的“1 ether”按鈕來告訴MetaMask創建支付Faucet 1 ether的交易。MetaMask將準備一個交易並彈出一個視窗，並顯示確認資訊：</p>
+</div>
+<div id="send_to_faucet" class="imageblock">
+<div class="content">
+<img src="images/send_to_faucet.png" alt="Sending 1 ether to the faucet">
+</div>
+<div class="title">Figure 8. Sending 1 ether to the faucet</div>
+</div>
+<div class="paragraph">
+<p>哎！你可能注意到你無法完成交易。MetaMask表示“交易餘額不足”。乍一看這可能會讓人困惑：我們有1個ETH，我們想要發送1個ETH，為什麼MetaMask說我們沒有足夠的資金？</p>
+</div>
+<div class="paragraph">
+<p>答案是因為_gas_的成本。以太坊交易需要支付礦工收取的費用，以驗證交易。以太坊的費用以_gas_虛擬貨幣收取。作為交易的一部分，你使用ether支付gas。</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="提示"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>測試網路也需要費用。如果沒有費用，測試網路的行為將與主網路不同，從而使其成為不適當的測試平臺。費用還可以保護測試網路免受拒絕服務攻擊和構造不良的合約（如無限迴圈），就像保護主網路一樣。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>當你發送交易時，Metamask以3 GWEI（即3 gigawei）計算最近成功交易的平均gas價格。Wei是以太貨幣的最小的細分，正如我們在 <a href="#ether_units">以太幣單位</a> 中所討論的那樣。發送基本交易的gas成本為21000個gas單位。因此，你花費的ETH的最大數量為3 * 21000 GWEI = 63000 GWEI = 0.000063 ETH。請注意，平均gas價格可能波動，因為它們主要由礦工決定。我們將在後面的章節中看到如何增加/減少gas限制，以確保你的交易在需要時優先處理。</p>
+</div>
+<div class="paragraph">
+<p>這表明：1 ETH交易的成本是1.000063 ETH。MetaMask在顯示總數時會將此近似到1 ETH，但你需要的實際金額為1.000063 ETH，並且你只有1個ETH。點擊“Reject”取消此交易。</p>
+</div>
+<div class="paragraph">
+<p>讓我們再來測試一下吧！再次點擊綠色的“request 1 ether from the faucet”按鈕，等待幾秒鐘。別擔心，faucet應該有足夠的ether，如果你要的話，會給你更多的東西。</p>
+</div>
+<div class="paragraph">
+<p>一旦你有2 ETH的餘額，你可以再試一次。這次，當你點擊橙色的“1 ether”捐贈按鈕時，你有足夠的餘額來完成交易。MetaMask彈出付款視窗時點擊“Submit”。所有這一切之後，你應該看到0.999937 ETH的餘額，因為你使用0.000063 ETH的gas發送了1個ETH到faucet。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="explore_tx_history">2.9. 探索地址的交易歷史</h3>
+<div class="paragraph">
+<p>到目前為止，你已經成為使用MetaMask發送和接收測試ether的專家。你的錢包已收到至少兩次付款並至少發送了一次。讓我們看看所有這些交易，使用 ropsten.etherscan.io 區塊瀏覽器。你可以複製你的錢包地址並將其粘貼到瀏覽器的搜索框中，或者你可以讓MetaMask為你打開該頁面。在MetaMask中你的帳戶圖示旁邊，你會看到一個顯示三個點的按鈕。點擊它顯示與帳戶相關的選項菜單：</p>
+</div>
+<div id="metamask_account_context_menu" class="imageblock">
+<div class="content">
+<img src="images/metamask_account_context_menu.png" alt="MetaMask Account Context Menu">
+</div>
+<div class="title">Figure 9. MetaMask Account Context Menu</div>
+</div>
+<div class="paragraph">
+<p>選擇 "View Account on Etherscan"，在瀏覽器中打開一個網頁，顯示你帳戶的交易記錄：</p>
+</div>
+<div id="block_explorer_account_history" class="imageblock">
+<div class="content">
+<img src="images/block_explorer_account_history.png" alt="Address Transaction History on Etherscan">
+</div>
+<div class="title">Figure 10. Address Transaction History on Etherscan</div>
+</div>
+<div class="paragraph">
+<p>在這裡你可以看到你的以太坊地址的整個交易歷史。它顯示了Ropsten區塊鏈上記錄的所有交易，其中你的地址是交易的發件人或收件人。點擊其中幾項交易即可查看更多詳細資訊。</p>
+</div>
+<div class="paragraph">
+<p>你可以瀏覽任何地址的交易歷史記錄。查看你是否可以瀏覽Ropsten Test Faucet地址的交易歷史記錄（提示：它是在你的地址中最早付款中列出的“發件人”地址）。你可以看到從faucet發送給你的和其他地址的測試ether。你看到的每筆交易都可能帶給你更多的地址和交易。不久之後，你將迷失在相互關聯的數據迷宮中。公共區塊鏈包含大量的資訊，所有這些都可以通過編程方式進行探索，我們將在未來的例子中看到。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="intro_world_computer">2.10. 世界計算機 (World Computer) 介紹</h3>
+<div class="paragraph">
+<p>你現在已經創建好一個錢包，也能傳送與接收 ether了，到目前為止，我們已經將以太坊視為一種密碼貨幣 (cryptocurrency)。但是以太坊的功能其實比這些多太多了。事實上，整個乙太坊是一個去中心化的世界計算機 (World Computer)，而密碼貨幣的功能則是從屬於以太坊的功能。一個執行於以太坊虛擬機器 (Ethereum Virtual Machine, EVM) 中的電腦程式，它稱之為智能合約，它就是這個世界計算機的電腦程式，當你執行這程式時，就是用乙太幣用來支付執行費用。</p>
+</div>
+<div class="paragraph">
+<p>EVM 是一個全域單例 (global singleton) ，這意味著它的運作方式就好像它是一個全域的單一實體計算機，無處不在。以太坊網路上的每個節點運行 EVM 副本於本地，用以驗證合約執行，而以太坊區塊鏈上，記錄著這台世界計算機處理的交易以及智能合約上的狀態 (State) 之變化紀錄。更多更棒的細節我們可以在 <a href="ch14.html#evm_chapter">以太坊虛擬機</a> 這一章看到。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="EOA_contracts">2.11. 外部擁有帳戶（EOAs）和合約</h3>
+<div class="paragraph">
+<p>我們在 MetaMask 錢包中創建的帳戶類型稱為 <em>Externally Owned Account（EOA）</em> 。外部擁有帳戶是那些擁有私人密鑰的帳戶，它控制對資金或合約的訪問。現在，你可能猜測還有另一種帳戶，_合約_帳戶。合約帳戶由以太坊區塊鏈記錄，由EVM執行的軟體程式的邏輯所擁有（和控制）。</p>
+</div>
+<div class="paragraph">
+<p>將來，所有以太坊錢包可能會作為以太坊合約運行，模糊了外部擁有帳戶和合約帳戶之間的區別。但是永遠保持的重要區別在於：人們通過EOA做出決定，而軟體通過合約做出決定。</p>
+</div>
+<div class="paragraph">
+<p>合約有一個地址，就像EOAs（錢包）一樣。合約可以發送和接收ether，就像錢包一樣。當交易目的地是合約地址時，它會導致該合約在EVM中_運行_，並將交易作為其輸入。</p>
+</div>
+<div class="paragraph">
+<p>除了ether之外，交易還可以包含_數據_，用於指示合約中要運行的特定方法以及傳遞給該方法的參數。通過這種方式，交易通過合約_調用_方法。最後，合約可以產生調用其他合約的交易，建立複雜的執行路徑。其中一個典型的用法是合約A調用合約B，以便在合約A的用戶之間保持共享狀態。</p>
+</div>
+<div class="paragraph">
+<p>在接下來的幾節中，我們將編寫我們的第一份合約。然後，我們將使用MetaMask錢包和測試ether在Ropsten測試網上創建，資助，使用該合約。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="simple_contract_example">2.12. 一個簡單的合約：一個 test ether faucet</h3>
+<div class="paragraph">
+<p>以太坊有許多不同的高階語言，所有這些語言都可用於編寫合約並生成EVM Bytecode 。你可以閱讀 <a href="ch08.html#high_level_languages">以太坊高階語言簡介</a>  中許多最成功和有趣的內容。一種智能合約編程的主要高階語言：Solidity。本書的合著者Gavin Wood創建了Solidity，已經成為以太坊及以太坊外最廣泛使用的語言。我們將使用Solidity編寫我們的第一份合約。</p>
+</div>
+<div class="paragraph">
+<p>作為我們的第一個例子，我們將編寫一個控制_faucet_的合約。我們已經使用了faucent在Ropsten測試網路上獲得測試ether。faucet是一件相對簡單的事情：它給任何地址發放ether，可以定期補充。你可以將faucet實現為由人類（或網路伺服器）控制的錢包，但我們將編寫一個實現faucet的Solidity合約：</p>
+</div>
+<div id="solidity_faucet_example" class="listingblock">
+<div class="title">Faucet.sol : A Solidity contract implementing a faucet</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="solidity"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+</pre></td><td class="code"><pre>// Our first contract is a faucet!
+contract Faucet {
+
+    // Give out ether to anyone who asks
+    function withdraw(uint withdraw_amount) public {
+
+        // Limit withdrawal amount
+        require(withdraw_amount &lt;= 100000000000000000);
+
+        // Send the amount to the address that requested it
+        msg.sender.transfer(withdraw_amount);
+    }
+
+    // Accept any incoming amount
+    function () public payable {}
+
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>這是一個非常簡單的合約，簡單到我們可以很容易實現它。這也是一個有*缺陷*的合約，顯示出一些不良做法和安全漏洞。在後面章節中我們的學習方式將使用審查各種缺陷的方式來進行。但現在，讓我們逐行看下這個合約作了些什麼以及如何作到的。你將發現 Solidity 與其它的程式語言相似，例如像 JavaScript, Java 或是 C++。</p>
+</div>
+<div class="paragraph">
+<p>第一行程式是註解</p>
+</div>
+<div id="comment" class="listingblock">
+<div class="content">
+<pre>// Version of Solidity compiler this program was written for</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>註解是讓人類閱讀的並且不包含於可執行的 EVM Bytecode 之中。我們通常會將註解放在程式碼之前來試著解釋該程式碼；有時也會放在同一行程式碼的後面，而作法是使用雙斜線 // 來作為註解作為開頭。註解從兩個正斜線 // 開始直到該行的結束都是註解內容，這些註解內容就如同空白行一樣是不會被執行的。</p>
+</div>
+<div class="paragraph">
+<p>下一行程式碼, 是我們的_真正的_合約的開始：</p>
+</div>
+<div id="contract_definition" class="listingblock">
+<div class="content">
+<pre>contract Faucet {</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>這一行宣告了一個合約物件，類似於其他物件導向語言中的類別宣告，這裡的大括號所以定義的是一個範圍 (scope)，就如同許多其他編程語言中使用大括號的方式一樣，大括號（{}）間的所有程式構成了合約的定義。</p>
+</div>
+<div class="paragraph">
+<p>接下來，我們宣告 faucet 合約的第一個函數：</p>
+</div>
+<div id="withdraw_function" class="listingblock">
+<div class="content">
+<pre>function withdraw(uint withdraw_amount) public {</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>函數名為 withdraw，它接收一個無符號整數（uint）名為 withdraw_amount 的參數。它被宣告為 public 函數，意味著它可以被其他合約呼叫。函數定義在大括號之間。+withdraw+函數的第一個參數設置了取款限制：</p>
+</div>
+<div id="withdraw_limit" class="listingblock">
+<div class="content">
+<pre>require(withdraw_amount &lt;= 100000000000000000);</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>它使用內建的 Solidity 函數 require 來測試前提條件，即 withdraw_amount 小於或等於 100,000,000,000,000,000 wei，它是 ether 的基本單位（參見 <a href="#ether_denominations">Ether Denominations and Unit Names</a>），等於 0.1 ether。如果 withdraw 函數的 withdraw_amount 參數大於該數值，則此處的 require 函數將導致合約停止執行、失敗並且丟出例外 (exception) ，注意，在 Solidity 中的每一行程式敘述 (statement) 需要以分號作為結束。</p>
+</div>
+<div class="paragraph">
+<p>這部分的合約程式是我們 faucet 的主要邏輯。它透過設定提款限額來控制合約的資金流出。這是一個非常簡單的控制例子，但卻可以讓你看到可編程區塊鏈的強大功能：一個控制貨幣的去中心化軟體。</p>
+</div>
+<div class="paragraph">
+<p>接下來是實際的提款：</p>
+</div>
+<div id="withdraw_command" class="paragraph">
+<p>Next comes the actual withdrawal:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>msg.sender.transfer(withdraw_amount);</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>這裡發生了一些有趣的事情。msg 物件是所有合約都取得的一個輸入。msg 物件代表的是促使該合約執行起來的那筆交易 (transaction)。而屬性 sender 是指此比交易發送者的地址；而它的函數 transfer 是一個內建函數，將此合約上的 ether 轉帳至該地址去。從後往前讀，意思就是把錢轉帳至該 msg 的傳送者 sender 去，也就是觸發該合約執行的交易發起者。transfer 只需要用到一個參數，該參數的傳入值即為 withdraw 函數中的 withdraw_amount 函數參數。</p>
+</div>
+<div class="paragraph">
+<p>緊接著的一行是結束大括號，表示 withdraw 函數定義的結束。</p>
+</div>
+<div class="paragraph">
+<p>下面我們又宣告了一個函數：</p>
+</div>
+<div id="fallback_function" class="listingblock">
+<div class="content">
+<pre>function () public payable {}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>此函數是所謂的_“fallback”_或_default_函數，如果合約的交易沒有命名合約中任何已宣告的功能或任何功能，或者不包含數據，則觸發此函數。合約可以有一個這樣的預設功能（沒有名字），它通常是接收ether的那個。這就是為什麼它被定義為 public 和 payable 函數，這意味著它可以接受合約中的ether。除了大括號中的空白定義 {} 所指示的以外，它不會執行任何操作。如果我們進行一次向這個合約地址發送ether的交易，就好像它是一個錢包一樣，該函數將處理它。</p>
+</div>
+<div class="paragraph">
+<p>在我們的預設函數下面是最後一個關閉大括號，它關閉了合約 faucet 的定義。就是這樣！</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="compile_faucet_contract">2.13. 編譯faucet合約</h3>
+<div class="paragraph">
+<p>現在我們已經有了我們的第一個範例合約，我們需要使用Solidity編譯器將Solidity程式碼轉換為EVM字節程式碼，以便它可以由EVM執行。</p>
+</div>
+<div class="paragraph">
+<p>Solidity編譯器是獨立的可執行檔案，作為不同框架的一部分，也捆綁在一個_Integrated Development Environment（IDE）_中。為了簡單起見，我們將使用一種更流行的IDE，稱為Remix。</p>
+</div>
+<div class="paragraph">
+<p>使用你的Chrome瀏覽器（使用我們之前安裝的MetaMask錢包）導航到以下位置的Remix IDE：</p>
+</div>
+<div class="paragraph">
+<p><a href="https://remix.ethereum.org/" class="bare">https://remix.ethereum.org/</a></p>
+</div>
+<div class="paragraph">
+<p>當你第一次加載Remix時，它將以一個名為 ballot.sol 的範例合約開始。我們不需要這個，所以讓我們關閉它，點擊標籤邊的 x ：</p>
+</div>
+<div id="remix_close_tab" class="imageblock">
+<div class="content">
+<img src="images/remix_close_tab.png" alt="Close the default example tab">
+</div>
+<div class="title">Figure 11. Close the default example tab</div>
+</div>
+<div class="paragraph">
+<p>現在，點擊左側工具欄中的圓形加號，添加一個新選項卡，命名新檔案 Faucet.sol：</p>
+</div>
+<div id="remix_toolbar" class="imageblock">
+<div class="content">
+<img src="images/remix_toolbar.png" alt="Click the plus sign to open a new tab">
+</div>
+<div class="title">Figure 12. Click the plus sign to open a new tab</div>
+</div>
+<div class="paragraph">
+<p>打開新選項卡後，複製並粘貼範例 Faucet.sol：</p>
+</div>
+<div id="remix_faucet_load" class="imageblock">
+<div class="content">
+<img src="images/remix_faucet_load.png" alt="Copy the Faucet example code into the new tab">
+</div>
+<div class="title">Figure 13. Copy the Faucet example code into the new tab</div>
+</div>
+<div class="paragraph">
+<p>現在我們已將 Faucet.sol 合約加載到Remix IDE中，IDE將自動編譯程式碼。如果一切順利，你會看到一個綠色的方塊，右邊出現一個帶有“faucet”的綠色方塊，在Compile選項卡下，確認編譯成功：</p>
+</div>
+<div id="remix_compile" class="imageblock">
+<div class="content">
+<img src="images/remix_compile.png" alt="Remix 編譯">
+</div>
+<div class="title">Figure 14. Remix successfully compiles the Faucet.sol contract</div>
+</div>
+<div class="paragraph">
+<p>如果出現問題，最可能的問題是Remix IDE正在使用與+0.4.19+版本不同的Solidity編譯器。在這種情況下，我們的編譯指示將阻止+Faucet.sol+編譯。要更改編譯器版本，請轉到“Settings”選項卡，並重試。</p>
+</div>
+<div class="paragraph">
+<p>Solidity編譯器現在已將我們的+ Faucet.sol +編譯為EVM Bytecode 。如果你好奇， Bytecode 如下所示：</p>
+</div>
+<div id="faucet_bytecode" class="listingblock">
+<div class="content">
+<pre>PUSH1 0x60 PUSH1 0x40 MSTORE CALLVALUE ISZERO PUSH2 0xF JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST PUSH1 0xE5 DUP1 PUSH2 0x1D PUSH1 0x0 CODECOPY PUSH1 0x0 RETURN STOP PUSH1 0x60 PUSH1 0x40 MSTORE PUSH1 0x4 CALLDATASIZE LT PUSH1 0x3F JUMPI PUSH1 0x0 CALLDATALOAD PUSH29 0x100000000000000000000000000000000000000000000000000000000 SWAP1 DIV PUSH4 0xFFFFFFFF AND DUP1 PUSH4 0x2E1A7D4D EQ PUSH1 0x41 JUMPI JUMPDEST STOP JUMPDEST CALLVALUE ISZERO PUSH1 0x4B JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST PUSH1 0x5F PUSH1 0x4 DUP1 DUP1 CALLDATALOAD SWAP1 PUSH1 0x20 ADD SWAP1 SWAP2 SWAP1 POP POP PUSH1 0x61 JUMP JUMPDEST STOP JUMPDEST PUSH8 0x16345785D8A0000 DUP2 GT ISZERO ISZERO ISZERO PUSH1 0x77 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST CALLER PUSH20 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF AND PUSH2 0x8FC DUP3 SWAP1 DUP2 ISZERO MUL SWAP1 PUSH1 0x40 MLOAD PUSH1 0x0 PUSH1 0x40 MLOAD DUP1 DUP4 SUB DUP2 DUP6 DUP9 DUP9 CALL SWAP4 POP POP POP POP ISZERO ISZERO PUSH1 0xB6 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP JUMP STOP LOG1 PUSH6 0x627A7A723058 KECCAK256 PUSH9 0x13D1EA839A4438EF75 GASLIMIT CALLVALUE LOG4 0x5f PUSH24 0x7541F409787592C988A079407FB28B4AD000290000000000</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>你是不是很高興使用像Solidity這樣的高階語言，而不是直接在EVM Bytecode 中編程？我也是！</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="create_contract">2.14. 在區塊鏈上創建合約</h3>
+<div class="paragraph">
+<p>我們有一個合約，已經將它編譯成 Bytecode 。現在，我們需要在以太坊區塊鏈上“登記”合約。我們將使用Ropsten測試網來測試我們的合約，所以這就是我們想要記錄的區塊鏈。</p>
+</div>
+<div class="paragraph">
+<p>在區塊鏈上註冊合約涉及創建一個特殊交易，其目標是地址0x0000000000000000000000000000000000000000，也稱為_zero address_。零地址是一個特殊的地址，告訴以太坊區塊鏈你想註冊一個合約。幸運的是，Remix IDE將為你處理所有這些交易並將交易發送給MetaMask。</p>
+</div>
+<div class="paragraph">
+<p>首先，切換到“Run”選項卡，並在“Environment”下拉列表框中選擇“Injected Web3”。這將Remix IDE連接到MetaMask錢包，並通過MetaMask連接到Ropsten測試網路。一旦你這樣做，你可以在Evironment下看到“Ropsten”。另外，在Account選擇框中，它顯示你的錢包的地址：</p>
+</div>
+<div id="remix_run.png" class="imageblock">
+<div class="content">
+<img src="images/remix_run.png" alt="Remix IDE Run tab, with Injected Web3 environment selected">
+</div>
+<div class="title">Figure 15. Remix IDE "Run" tab, with "Injected Web3" environment selected</div>
+</div>
+<div class="paragraph">
+<p>在剛剛確認的“Run”設置下方，是Faucet合約，隨時可以創建。點擊“Create”或“Deploy“按鈕：</p>
+</div>
+<div id="remix_create_contract" class="imageblock">
+<div class="content">
+<img src="images/remix_create_contract.png" alt="Click the Create button in the Run tab">
+</div>
+<div class="title">Figure 16. Click the Create button in the Run tab</div>
+</div>
+<div class="paragraph">
+<p>Remix IDE將構建特殊的“creation“交易，MetaMask會要求你批准它。從MetaMask中可以看到，合約創建交易沒有ether，但它有258個字節（編譯的合約），並且會消耗10個Gwei。點擊“Submit”來批准：</p>
+</div>
+<div id="remix_metamask_create" class="imageblock">
+<div class="content">
+<img src="images/remix_metamask_create.png" alt="MetaMask showing the contract creation transaction">
+</div>
+<div class="title">Figure 17. MetaMask showing the contract creation transaction</div>
+</div>
+<div class="paragraph">
+<p>現在，等待：合約在Ropsten上開採需要大約15到30秒的時間。Remix IDE似乎不會做太多，耐心等待。</p>
+</div>
+<div class="paragraph">
+<p>合約創建後，它會顯示在“運行”選項卡的底部：</p>
+</div>
+<div id="remix_contract_interact" class="imageblock">
+<div class="content">
+<img src="images/remix_contract_interact.png" alt="The Faucet contract is ALIVE!">
+</div>
+<div class="title">Figure 18. The Faucet contract is ALIVE!</div>
+</div>
+<div class="paragraph">
+<p>請注意，Faucet合約現在有自己的地址：Remix將其顯示為 Faucet at 0x72e....c7829。右邊的小剪貼板符號允許你將合約地址複製到剪貼板中。我們將在下一節中使用它。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="interact_contract">2.15. 與合約交互</h3>
+<div class="paragraph">
+<p>讓我們回顧一下我們迄今為止學到的東西：以太坊合約是控制貨幣的程式，運行在名為EVM的虛擬機內。它們是由一個特殊的交易創建的，該交易提交它們的 Bytecode 以記錄在區塊鏈中。一旦他們在區塊鏈上創建，他們就擁有一個以太坊地址，就像錢包一樣。只要有人將交易發送到合約地址，它就會導致合約在EVM中運行，並將交易作為其輸入。發送到合約地址的交易可能包含以太網或數據或兩者都有。如果它們含有ether，則將其“存入”合約餘額。如果它們包含數據，則數據可以在合約中指定一個命名函數並調用它，並將參數傳遞給該函數。</p>
+</div>
+<div class="sect3">
+<h4 id="view_contract_address">2.15.1. 在區塊瀏覽器中查看合約地址</h4>
+<div class="paragraph">
+<p>現在，我們在區塊鏈中登記了一份合約，我們可以看到它有一個以太坊地址。讓我們在 ropsten.etherscan.io 區塊瀏覽器中查看它，看看合約是什麼樣子。通過點擊名稱旁邊的剪貼板圖示來複制合約的地址。</p>
+</div>
+<div id="remix_contract_address" class="imageblock">
+<div class="content">
+<img src="images/remix_contract_address.png" alt="Copy the contract address from Remix">
+</div>
+<div class="title">Figure 19. Copy the contract address from Remix</div>
+</div>
+<div class="paragraph">
+<p>保持Remix打開在標籤中，我們稍後會再回來。現在，將瀏覽器導航至 ropsten.etherscan.io 並將地址粘貼到搜索框中。你應該看到合約的以太坊地址記錄：</p>
+</div>
+<div id="etherscan_contract_address" class="imageblock">
+<div class="content">
+<img src="images/etherscan_contract_address.png" alt="View the Faucet contract address in the etherscan block explorer">
+</div>
+<div class="title">Figure 20. View the Faucet contract address in the etherscan block explorer</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="fund_contract">2.15.2. 為合約提供資金</h4>
+<div class="paragraph">
+<p>現在，合約其歷史上只有一筆交易：合約創建交易。如你所見，合約也沒有ether（零餘額）。這是因為我們沒有在創建交易中向合約發送任何提示，儘管我們可以提供。</p>
+</div>
+<div class="paragraph">
+<p>讓我們向合約發一些ether！你仍然應該在剪貼板中擁有合約的地址（如果沒有，請從Remix再次複製）。打開MetaMask，然後向它發送1個ether，就像任何其他以太坊地址一樣：</p>
+</div>
+<div id="metamask_send_to_contract" class="imageblock">
+<div class="content">
+<img src="images/metamask_send_to_contract.png" alt="MetaMask 發送到合約">
+</div>
+<div class="title">Figure 21. Send 1 ether to the contract address</div>
+</div>
+<div class="paragraph">
+<p>一分鐘後，如果你刷新etherscan區塊瀏覽器，它會向合約地址顯示另一個交易，並更新1 ether的餘額。</p>
+</div>
+<div class="paragraph">
+<p>還記得我們的 Faucet.sol 程式碼中的未命名預設公共付費功能？它看起來像這樣：</p>
+</div>
+<div id="fallback_function_review" class="listingblock">
+<div class="content">
+<pre>function () public payable {}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>當你將交易發送到合約地址時，沒有指定要調用哪個函數的數據，它將調用預設函數。由於我們將它宣告為+payable+，因此它接受1 ether並存入合約賬戶餘額中。你的交易導致合約在EVM中運行，更新其餘額。我們資助了我們的faucet！</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="withdraw_from_contract">2.15.3. 從我們的合約中提取</h4>
+<div class="paragraph">
+<p>接下來，讓我們從faucet中提取一些資金。要提取，我們必須構造一個調用 withdraw 函數並將 withdraw_amount 參數傳遞給它的交易。為了保持現在簡單，Remix將為我們構建該交易，並且MetaMask將提交它以供我們批准。</p>
+</div>
+<div class="paragraph">
+<p>返回到Remix選項卡並在“Run”選項卡下查看合約。你應該看到一個標記為 withdraw 的紅色框，其中帶有一個標記為 uint256 withdraw_amount：</p>
+</div>
+<div id="remix_contract_withdraw" class="imageblock">
+<div class="content">
+<img src="images/remix_contract_interact.png" alt="The withdraw function of Faucet.sol, in Remix">
+</div>
+<div class="title">Figure 22. The withdraw function of Faucet.sol, in Remix</div>
+</div>
+<div class="paragraph">
+<p>這是合約的Remix界面。它允許我們構造調用合約中定義的函數的交易。我們將輸入 withdraw_amount 並點擊 withdraw 按鈕以生成交易。</p>
+</div>
+<div class="paragraph">
+<p>首先，我們來看看 withdraw_amount。我們要試著提取0.1 ether，這是我們合約允許的最高金額。請記住，以太坊中的所有貨幣值都以 wei + 計價，而我們的 +withdraw 函數預期 withdraw_amount 也以 wei 計價。我們想要的數量是0.1 ether，這是 100000000000000000 wei（1後面跟著17個零）。</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="提示"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>由於JavaScript的限制，Remix無法處理10<sup>17</sup>這樣大的數字。相反，我們用雙引號括起來，讓Remix以字串的形式接收它，並將它作為 BigNumber 進行操作。如果我們不把它放在引號中，那麼Remix IDE將無法處理它並顯示“Error encoding arguments：Error：Assertion failed” 。
+譯者注：翻譯此書時，已經支持直接輸入數字</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>輸入“100000000000000000”（帶引號）到 withdraw_amount 框中，然後單擊 withdraw 按鈕：</p>
+</div>
+<div id="remix_withdraw" class="imageblock">
+<div class="content">
+<img src="images/remix_withdraw.png" alt="Remix 提款">
+</div>
+<div class="title">Figure 23. Click "withdraw" in Remix to create a withdrawal transaction</div>
+</div>
+<div class="paragraph">
+<p>MetaMask將彈出一個交易視窗供你批准。點擊“Submit”將你的提款通知發送至合約：</p>
+</div>
+<div id="metamask_withdraw" class="imageblock">
+<div class="content">
+<img src="images/metamask_withdraw.png" alt="MetaMask transaction to call the withdraw function">
+</div>
+<div class="title">Figure 24. MetaMask transaction to call the withdraw function</div>
+</div>
+<div class="paragraph">
+<p>等一下，然後重新加載 etherscan 區塊瀏覽器以查看在ether合約地址歷史記錄中反映的交易：</p>
+</div>
+<div id="etherscan_withdrawal_tx" class="imageblock">
+<div class="content">
+<img src="images/etherscan_withdrawal_tx.png" alt="Etherscan shows the transaction calling the withdraw function">
+</div>
+<div class="title">Figure 25. Etherscan shows the transaction calling the withdraw function</div>
+</div>
+<div class="paragraph">
+<p>我們現在看到一個新的交易，其中合約地址是目標地址，0 ether。合約餘額已經改變，現在是0.9 ether，因為它按要求給了我們0.1 ether。但是我們在合約地址歷史記錄中看不到“OUT”交易。</p>
+</div>
+<div class="paragraph">
+<p>提款的交易在哪裡？合約的地址歷史記錄頁面中出現了一個名為“內部交易”的新選項卡。由於0.1 ether傳輸源於合約程式碼，因此它是一個內部交易（也稱為_message_）。點擊“內部交易”標籤查看：</p>
+</div>
+<div id="etherscan_withdrawal_internal" class="imageblock">
+<div class="content">
+<img src="images/etherscan_withdrawal_internal.png" alt="Etherscan shows the internal transaction transferring ether out from the contract">
+</div>
+<div class="title">Figure 26. Etherscan shows the internal transaction transferring ether out from the contract</div>
+</div>
+<div class="paragraph">
+<p>這個“內部交易”是由合約在這行程式碼中發送的（Faucet.sol 的 withdraw 方法）</p>
+</div>
+<div id="withdraw_command_review" class="listingblock">
+<div class="content">
+<pre>msg.sender.transfer(withdraw_amount);</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>回顧一下：我們從MetaMask錢包發送了一個包含數據指令的交易，以 0.1 ether 的+withdraw_amount+ 參數調用 withdraw 函數。該交易導致合約在EVM內部運行。當EVM運行faucet合約的 withdraw 功能時，首先它調用+require+函數並驗證我們的金額小於或等於最大允許提款0.1 ether。然後它調用 transfer 函數向我們發送ether。運行 transfer 函數生成一個內部交易，從合約的餘額中將0.1以太幣存入我們的錢包地址。這就是 etherscan 中“內部交易”標籤中顯示的內容。</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="intro_conclusion">2.16. 總結</h3>
+<div class="paragraph">
+<p>本章中，我們使用MetaMask創建了一個錢包，並且使用Ropsten測試網路上的一個faucet為它儲值。我們收到了發送到錢包以太坊地址的ether。然後我們把ether發送到faucet的以太坊地址。</p>
+</div>
+<div class="paragraph">
+<p>接下來，我們在Solidity中寫了一個faucet合約。使用Remix IDE將合約編譯為EVM Bytecode 。使用Remix進行交易，並在Ropsten區塊鏈上登記faucet合約。一旦登記，faucet合約有一個以太坊地址，我們發送一些ether。最後，我們構建了一個交易來調用 withdraw 函數，併成功請求了0.1 ether。該合約檢查了我們的請求，發送給我們0.1 ether並進行內部交易。</p>
+</div>
+<div class="paragraph">
+<p>可能看起來不多，但我們剛剛成功地與控制去中心化世界計算機上資金的軟體進行了交互。</p>
+</div>
+<div class="paragraph">
+<p>我們將在“智能合約”中做更多的智能合約編程，並瞭解最佳實踐和安全考慮。</p>
+</div>
+</div>
+</div>
+</div>
+
+<nav class="chapter-nav"><a href="ch01.html" class="nav-prev">&larr; 什麼是以太坊</a><a href="index.html" class="nav-home">首頁</a><a href="ch03.html" class="nav-next">以太坊客戶端 &rarr;</a></nav>
+</div>
+<div id="footer">
+<div id="footer-text">
+最後更新： 2026-03-30 08:28:57 UTC
+</div>
+</div>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "none" } }
+})
+MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
+      data.math.root.display = "block"
+    }
+    return data
+  })
+})
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<style>
+/* 浮動目錄按鈕 — 僅手機版顯示 */
+.toc-toggle {
+  position: fixed;
+  bottom: 5rem;
+  right: 1.2rem;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #2980b9;
+  color: #fff;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, transform 0.2s;
+}
+.toc-toggle:hover { background: #1a6fa0; }
+.toc-toggle:active { transform: scale(0.95); }
+
+/* 回到頂部按鈕 */
+.back-to-top {
+  position: fixed;
+  bottom: 1.8rem;
+  right: 1.2rem;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: rgba(85,85,85,0.85);
+  color: #fff;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s, background 0.2s, transform 0.2s;
+  pointer-events: none;
+}
+.back-to-top:hover { background: rgba(50,50,50,0.9); }
+.back-to-top:active { transform: scale(0.95); }
+.back-to-top.visible {
+  display: flex;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* 浮動目錄面板 */
+.toc-panel {
+  position: fixed;
+  top: 0;
+  right: -340px;
+  width: 320px;
+  max-width: 85vw;
+  height: 100vh;
+  background: #fff;
+  border-left: 1px solid #e1e4e8;
+  box-shadow: -4px 0 20px rgba(0,0,0,0.12);
+  z-index: 1001;
+  transition: right 0.3s ease;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 0;
+}
+.toc-panel.open { right: 0; }
+
+.toc-panel-header {
+  position: sticky;
+  top: 0;
+  background: #fff;
+  padding: 1.2rem 1rem 0.8rem;
+  border-bottom: 1px solid #e1e4e8;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1;
+}
+
+.toc-panel-header h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #1a252f;
+}
+
+.toc-panel .close-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #888;
+  padding: 0 0.3rem;
+  line-height: 1;
+  transition: color 0.15s;
+}
+.toc-panel .close-btn:hover { color: #333; }
+
+.toc-panel-body {
+  padding: 0.8rem 1rem 2rem;
+}
+
+.toc-panel-body ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.toc-panel-body ul ul {
+  padding-left: 0.9rem;
+}
+
+.toc-panel-body li {
+  margin: 0;
+}
+
+.toc-panel-body a {
+  color: #555;
+  text-decoration: none;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  display: block;
+  padding: 0.3rem 0.5rem;
+  border-radius: 4px;
+  transition: background 0.12s, color 0.12s;
+}
+.toc-panel-body a:hover {
+  background: #f0f3f6;
+  color: #2980b9;
+}
+
+/* 遮罩 */
+.toc-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.35);
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+.toc-overlay.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* 閱讀進度條 */
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #2980b9, #3498db);
+  z-index: 1002;
+  transition: width 0.1s;
+  will-change: width;
+}
+
+/* 手機版顯示浮動按鈕 */
+@media screen and (max-width: 768px) {
+  .toc-toggle {
+    display: flex;
+  }
+  .back-to-top {
+    display: flex;
+  }
+}
+
+/* 桌面版也顯示回到頂部 */
+@media screen and (min-width: 769px) {
+  .back-to-top {
+    display: flex;
+  }
+  .reading-progress {
+    left: var(--toc-width, 300px);
+  }
+}
+/* 電子書下載橫幅 */
+.ebook-banner {
+  background: linear-gradient(135deg, #1a252f 0%, #2c3e50 100%);
+  color: #fff;
+  padding: 0.7rem 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  font-size: 0.88rem;
+  position: relative;
+  z-index: 50;
+}
+
+.ebook-banner a {
+  color: #fff;
+  background: rgba(255,255,255,0.15);
+  padding: 0.35rem 0.9rem;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+
+.ebook-banner a:hover {
+  background: rgba(255,255,255,0.25);
+}
+
+.ebook-banner .banner-text {
+  opacity: 0.9;
+}
+
+.ebook-banner .banner-close {
+  position: absolute;
+  right: 0.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.5);
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0.2rem 0.4rem;
+}
+
+.ebook-banner .banner-close:hover {
+  color: #fff;
+}
+
+/* 桌面版橫幅在 TOC 右邊 */
+@media screen and (min-width: 769px) {
+  .ebook-banner {
+    margin-left: var(--toc-width, 300px);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .ebook-banner {
+    font-size: 0.82rem;
+    padding: 0.6rem 0.8rem;
+    gap: 0.8rem;
+  }
+}
+</style>
+
+<!-- 電子書下載橫幅 -->
+<div class="ebook-banner" id="ebookBanner">
+  <span class="banner-text">下載電子書離線閱讀</span>
+  <a href="https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.pdf">PDF</a>
+  <a href="https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.epub">EPUB</a>
+  <a href="https://github.com/awesome-doge/ethereumbook_zh/releases/latest">GitHub Releases</a>
+  <button class="banner-close" id="bannerClose" aria-label="關閉">&times;</button>
+</div>
+
+<!-- 閱讀進度條 -->
+<div class="reading-progress" id="readingProgress"></div>
+
+<!-- 浮動按鈕 -->
+<button class="toc-toggle" id="tocToggle" aria-label="開啟目錄">&#9776;</button>
+<button class="back-to-top" id="backToTop" aria-label="回到頂部">&#8593;</button>
+
+<!-- 目錄面板（手機版） -->
+<div class="toc-overlay" id="tocOverlay"></div>
+<div class="toc-panel" id="tocPanel" role="navigation" aria-label="目錄">
+  <div class="toc-panel-header">
+    <h3>目錄</h3>
+    <button class="close-btn" id="tocClose" aria-label="關閉目錄">&times;</button>
+  </div>
+  <div class="toc-panel-body" id="tocContent"></div>
+</div>
+
+<script>
+(function() {
+  'use strict';
+
+  // === 電子書橫幅：移到頁面頂部 + 關閉/記憶 ===
+  var banner = document.getElementById('ebookBanner');
+  var bannerClose = document.getElementById('bannerClose');
+  if (banner) {
+    // 如果用戶之前關閉過，隱藏
+    if (localStorage.getItem('ebookBannerClosed')) {
+      banner.style.display = 'none';
+    } else {
+      // 移到 body 最前面（在 header 之前）
+      document.body.insertBefore(banner, document.body.firstChild);
+    }
+    if (bannerClose) {
+      bannerClose.addEventListener('click', function() {
+        banner.style.display = 'none';
+        localStorage.setItem('ebookBannerClosed', '1');
+      });
+    }
+  }
+
+  // === 生成手機版目錄 ===
+  var tocContent = document.getElementById('tocContent');
+  var nativeToc = document.getElementById('toc');
+
+  if (tocContent && nativeToc) {
+    // 從原生 TOC 複製結構
+    var nativeList = nativeToc.querySelector('ul.sectlevel1');
+    if (nativeList) {
+      tocContent.appendChild(nativeList.cloneNode(true));
+    }
+  }
+
+  // === 目錄開關 ===
+  var tocToggle = document.getElementById('tocToggle');
+  var tocPanel = document.getElementById('tocPanel');
+  var tocOverlay = document.getElementById('tocOverlay');
+  var tocClose = document.getElementById('tocClose');
+
+  function openToc() {
+    tocPanel.classList.add('open');
+    tocOverlay.classList.add('visible');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeToc() {
+    tocPanel.classList.remove('open');
+    tocOverlay.classList.remove('visible');
+    document.body.style.overflow = '';
+  }
+
+  if (tocToggle) tocToggle.addEventListener('click', openToc);
+  if (tocOverlay) tocOverlay.addEventListener('click', closeToc);
+  if (tocClose) tocClose.addEventListener('click', closeToc);
+
+  // 點擊目錄連結後關閉面板
+  if (tocContent) {
+    tocContent.addEventListener('click', function(e) {
+      if (e.target.tagName === 'A') {
+        closeToc();
+      }
+    });
+  }
+
+  // ESC 關閉
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeToc();
+  });
+
+  // === 回到頂部 ===
+  var backToTop = document.getElementById('backToTop');
+  if (backToTop) {
+    backToTop.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  // === 閱讀進度條 + 回到頂部顯示 ===
+  var progressBar = document.getElementById('readingProgress');
+  var ticking = false;
+
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function() {
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      var docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+
+      // 回到頂部
+      if (backToTop) {
+        if (scrollTop > 400) {
+          backToTop.classList.add('visible');
+        } else {
+          backToTop.classList.remove('visible');
+        }
+      }
+
+      // 進度條
+      if (progressBar && docHeight > 0) {
+        progressBar.style.width = ((scrollTop / docHeight) * 100) + '%';
+      }
+
+      ticking = false;
+    });
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // === 表格響應式包裝 ===
+  document.querySelectorAll('table.tableblock').forEach(function(table) {
+    if (!table.parentElement.classList.contains('tableblock-wrapper')) {
+      var wrapper = document.createElement('div');
+      wrapper.style.overflowX = 'auto';
+      wrapper.style.WebkitOverflowScrolling = 'touch';
+      wrapper.style.margin = '1.5rem 0';
+      table.parentNode.insertBefore(wrapper, table);
+      wrapper.appendChild(table);
+      table.style.margin = '0';
+    }
+  });
+
+  // === 桌面版：TOC 當前章節高亮 ===
+  if (window.innerWidth > 768 && nativeToc) {
+    var tocLinks = nativeToc.querySelectorAll('a');
+    var headingIds = [];
+    tocLinks.forEach(function(link) {
+      var id = link.getAttribute('href');
+      if (id && id.startsWith('#')) {
+        headingIds.push({ id: id.substring(1), el: link });
+      }
+    });
+
+    var currentHighlight = null;
+
+    // 注入高亮樣式
+    var hlStyle = document.createElement('style');
+    hlStyle.textContent = '#toc a.toc-active { background: #dbeafe !important; color: #1d4ed8 !important; border-radius: 4px; font-weight: 600; border-left: 3px solid #2980b9; padding-left: 0.4rem; }';
+    document.head.appendChild(hlStyle);
+
+    function highlightToc() {
+      var scrollPos = window.pageYOffset + 100;
+      var current = null;
+
+      for (var i = headingIds.length - 1; i >= 0; i--) {
+        var target = document.getElementById(headingIds[i].id);
+        if (target && target.offsetTop <= scrollPos) {
+          current = headingIds[i].el;
+          break;
+        }
+      }
+
+      if (current !== currentHighlight) {
+        if (currentHighlight) {
+          currentHighlight.classList.remove('toc-active');
+        }
+        if (current) {
+          current.classList.add('toc-active');
+          // 確保高亮項在可視範圍
+          var tocEl = document.getElementById('toc');
+          if (tocEl) {
+            var linkRect = current.getBoundingClientRect();
+            var tocRect = tocEl.getBoundingClientRect();
+            if (linkRect.top < tocRect.top + 60 || linkRect.bottom > tocRect.bottom - 20) {
+              current.scrollIntoView({ block: 'center', behavior: 'smooth' });
+            }
+          }
+        }
+        currentHighlight = current;
+      }
+    }
+
+    window.addEventListener('scroll', function() {
+      requestAnimationFrame(highlightToc);
+    }, { passive: true });
+
+    highlightToc();
+  }
+})();
+</script>
+</body>
+</html>
+</body>
+</html>
