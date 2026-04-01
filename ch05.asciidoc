@@ -145,23 +145,37 @@ image::images/simple_elliptic_curve.png["ecc-curve"]
 
 以太坊使用特定的橢圓曲線和一組數學常數，由國家標準與技術研究院（NIST）制定的名為 +secp256k1+ 的標準中所定義的。+secp256k1+ 曲線由以下函數定義，該函數產生一個橢圓曲線：
 
+ifdef::backend-html5[]
 [latexmath]
 ++++
 \begin{equation}
 {y^2 = (x^3 + 7)}~\text{over}~(\mathbb{F}_p)
 \end{equation}
 ++++
+endif::[]
+ifndef::backend-html5[]
+****
+y^2^ = (x^3^ + 7) over (F~p~)
+****
+endif::[]
 
 或
 
+ifdef::backend-html5[]
 [latexmath]
 ++++
 \begin{equation}
 {y^2 \mod p = (x^3 + 7) \mod p}
 \end{equation}
 ++++
+endif::[]
+ifndef::backend-html5[]
+****
+y^2^ mod p = (x^3^ + 7) mod p
+****
+endif::[]
 
-_mod p_ (模質數p) 表示該曲線在質數階_p_的有限域上，也寫作 latexmath:[\( \mathbb{F}_p \)], 其中 p = 2^256^ – 2^32^ – 2^9^ – 2^8^ – 2^7^ – 2^6^ – 2^4^ – 1, 一個非常大的質數。
+_mod p_ (模質數p) 表示該曲線在質數階_p_的有限域上，也寫作 **F**~p~, 其中 p = 2^256^ – 2^32^ – 2^9^ – 2^8^ – 2^7^ – 2^6^ – 2^4^ – 1, 一個非常大的質數。
 
 因為這條曲線是在有限的質數階上而不是在實數上定義的，所以它看起來像是一個散佈在二維中的點的模式，使得難以可視化。然而，數學與實數上的橢圓曲線的數學是相同的。作為一個例子，<<ecc-over-F17-math>> 在一個更小的質數階17的有限域上顯示了相同的橢圓曲線，顯示了一個網格上的點的圖案。+secp256k1+ 以太坊橢圓曲線可以被認為是一個更復雜的模式，在一個不可思議的大網格上的點。
 
@@ -224,12 +238,19 @@ pass:[+] 是可結合的,  (A pass:[+] B) pass:[+] C = A pass:[+] (B pass:[+] C)
 
 以一個隨機生成的數字_k_的私鑰開始，我們通過將它乘以稱為_generator point_ _G_的曲線上的預定點，在曲線上的其他位置產生另一個點，這是相應的公鑰_K_。生成點被指定為+secp256k1+標準的一部分，對於+secp256k1+的所有實現始終相同，並且從該曲線派生的所有密鑰都使用相同的點_G_：
 
+ifdef::backend-html5[]
 [latexmath]
 ++++
 \begin{equation}
 {K = k * G}
 \end{equation}
 ++++
+endif::[]
+ifndef::backend-html5[]
+****
+K = k × G
+****
+endif::[]
 
 其中_k_是私鑰，_G_是生成點，_K_是生成的公鑰，即曲線上的一個點。因為所有以太坊用戶的生成點始終相同，所以_G_乘以_G_的私鑰總是會導致相同的公鑰_K_。_k_和_K_之間的關係是固定的，但只能從_k_到_K_的一個方向進行計算。這就是為什麼以太坊地址（來自_K_）可以與任何人共享，並且不會洩露用戶的私鑰（_k_）。
 

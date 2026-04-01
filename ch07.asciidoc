@@ -459,7 +459,12 @@ image::images/published_contract_transactions.png["Etherscan showing the transac
 
 在以太坊實現的ECDSA中，被簽名的“消息”是交易，或者更確切地說，來自交易的RLP編碼數據的Keccak256雜湊。簽名密鑰是EOA的私鑰。結果是簽名：
 
+ifdef::backend-html5[]
 latexmath:[\(Sig = F_{sig}(F_{keccak256}(m), k)\)]
+endif::[]
+ifndef::backend-html5[]
+**Sig = F~sig~(F~keccak256~(m), k)**
+endif::[]
 
 其中:
 
