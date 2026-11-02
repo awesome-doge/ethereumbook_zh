@@ -1,3 +1,4 @@
+[appendix]
 [[ethereum_fork_history]]
 == 以太坊分叉歷史
 
@@ -21,14 +22,14 @@ DAO token能夠在2016年4月5日至4月30日期間的眾籌中購買，佔據�
 [[dao_reentrancy_bug]]
 === 重入（ Re-Entrancy ）Bug
 
-6月9日，開發商Peter Vessenes和Chriseth報告稱，大多數基於以太坊的合約管理基金都可能容易受到可以清空合約資金的漏洞<<[2]>>的影響。幾天後（6月12日）斯蒂芬·塔爾（Slock.It的創始人）報告說，DAO的程式碼並不容易受到彼得和克里斯描述的錯誤的影響。<<[3]>> 令人擔憂的DAO貢獻者暫時鬆了一口氣，直到5天后（6月17日），一名未知的攻擊者（“DAO攻擊者”）開始使用類似於6月9日描述的漏洞利用DAO <<[4]>> 。最終，DAO攻擊者從DAO中吸取了大約360萬個ether。
+6月9日，開發商Peter Vessenes和Chriseth報告稱，大多數基於以太坊的合約管理基金都可能容易受到可以清空合約資金的漏洞<<ch19_ref2>>的影響。幾天後（6月12日）斯蒂芬·塔爾（Slock.It的創始人）報告說，DAO的程式碼並不容易受到彼得和克里斯描述的錯誤的影響。<<ch19_ref3>> 令人擔憂的DAO貢獻者暫時鬆了一口氣，直到5天后（6月17日），一名未知的攻擊者（“DAO攻擊者”）開始使用類似於6月9日描述的漏洞利用DAO <<ch19_ref4>> 。最終，DAO攻擊者從DAO中吸取了大約360萬個ether。
 
-同時，一群自稱為Robinhood Group（RHG）的志願者開始使用相同的漏洞來提取剩餘的資金。6月21日，RHG宣佈<<[5]>>他們已經獲得了另外70％的DAO，約720萬以太，並計劃將其退還社區。RHG的快速行動和思考被給予了很多感謝和讚揚，這有助於保護社區的大部分ether。
+同時，一群自稱為Robinhood Group（RHG）的志願者開始使用相同的漏洞來提取剩餘的資金。6月21日，RHG宣佈<<ch19_ref5>>他們已經獲得了另外70％的DAO，約720萬以太，並計劃將其退還社區。RHG的快速行動和思考被給予了很多感謝和讚揚，這有助於保護社區的大部分ether。
 
 
 [[dao_reentrancy_bug_technicals]]
 ==== Re-Entrancy技術
-雖然Phil Daian <<[6]>> 描述了對該錯誤的更詳細和詳盡的解釋，但簡短的解釋是可以在以太坊虛擬機上同時多次調用合約函數）。這允許DAO攻擊者反覆請求提取ether，並且在合約記錄DAO攻擊者已經提取之前，攻擊者再次提取。
+雖然Phil Daian <<ch19_ref6>> 描述了對該錯誤的更詳細和詳盡的解釋，但簡短的解釋是可以在以太坊虛擬機上同時多次調用合約函數）。這允許DAO攻擊者反覆請求提取ether，並且在合約記錄DAO攻擊者已經提取之前，攻擊者再次提取。
 
 [[dao_reentrancy_bug_attack_flow]]
 ==== Re-Entrancy 攻擊流程
@@ -46,19 +47,19 @@ DAO token能夠在2016年4月5日至4月30日期間的眾籌中購買，佔據�
 
 DAO中的一想安全措施是所有提款請求都要延遲28天。這為社區提供了一個簡短的時間來討論如何處理漏洞利用。從大約6月17日到7月20日，DAO攻擊者將無法將他們的DAO token轉換為ether。
 
-一些開發人員專注於尋找可行的解決方案，並在這麼短的時間內探索了多種途徑。其中包括6月24日宣佈的DAO軟分叉推遲DAO的退出，直到達成共識<<[7]>>，以及7月15日宣佈的DAO硬分叉，以不正常的方式扭轉DAO攻擊影響的狀態改變<<[8]>>。
+一些開發人員專注於尋找可行的解決方案，並在這麼短的時間內探索了多種途徑。其中包括6月24日宣佈的DAO軟分叉推遲DAO的退出，直到達成共識<<ch19_ref7>>，以及7月15日宣佈的DAO硬分叉，以不正常的方式扭轉DAO攻擊影響的狀態改變<<ch19_ref8>>。
 
-6月28日，開發人員在DAO軟分叉<<[9]>>中發現了一個DoS漏洞，並得出結論，DAO硬分叉將是fork之路上的唯一可行選擇。DAO硬分叉將把所有投資於DAO的ether轉移到新的退款智能合約中，允許ether的原始所有者要求全額退款。這為返還被黑的資金提供瞭解決方案，但也意味著干擾網路上特定地址的餘額；但他們是孤立的。在DAO的部分中也會有一些剩餘的ether，稱為childDAO <<[12]>>。一組受託人將手動授權剩餘的ether；當時的價值約為6-7百萬美元<<[8]>>。
+6月28日，開發人員在DAO軟分叉<<ch19_ref9>>中發現了一個DoS漏洞，並得出結論，DAO硬分叉將是fork之路上的唯一可行選擇。DAO硬分叉將把所有投資於DAO的ether轉移到新的退款智能合約中，允許ether的原始所有者要求全額退款。這為返還被黑的資金提供瞭解決方案，但也意味著干擾網路上特定地址的餘額；但他們是孤立的。在DAO的部分中也會有一些剩餘的ether，稱為childDAO <<ch19_ref12>>。一組受託人將手動授權剩餘的ether；當時的價值約為6-7百萬美元<<ch19_ref8>>。
 
-隨著時間的推移，多個以太坊開發團隊創建了允許用戶決定是否要啟用此分叉的客戶端。但是，客戶端創建者想要決定是否選擇 opt-in（預設不分叉），或選擇opt-out（預設分叉）。7月15日，Carbonvote.com上的投票開始了<<[10]>>。7月16日，在塊[1,894,000] <<[11]>>，它被關閉。在以太供應總票數的5.5％中，約80％的選票（約佔總供應量的4.5％）投票選擇opt-out。選擇opt-out的投票的四分之一來自單一地址<<[12]>>。
+隨著時間的推移，多個以太坊開發團隊創建了允許用戶決定是否要啟用此分叉的客戶端。但是，客戶端創建者想要決定是否選擇 opt-in（預設不分叉），或選擇opt-out（預設分叉）。7月15日，Carbonvote.com上的投票開始了<<ch19_ref10>>。7月16日，在塊[1,894,000] <<ch19_ref11>>，它被關閉。在以太供應總票數的5.5％中，約80％的選票（約佔總供應量的4.5％）投票選擇opt-out。選擇opt-out的投票的四分之一來自單一地址<<ch19_ref12>>。
 
 最終決定成為選擇opt-out，反對DAO硬分叉的人需要通過更改他們運行的軟體中的配置選項來不分叉。 
 
-7月20日，在塊1,920,000 <<[13]>> 以太坊實施了DAO硬分叉 <<[14]>>，因此創建了兩個以太坊，一個支持不規則的狀態變化，另一個與它相對。
+7月20日，在塊1,920,000 <<ch19_ref13>> 以太坊實施了DAO硬分叉 <<ch19_ref14>>，因此創建了兩個以太坊，一個支持不規則的狀態變化，另一個與它相對。
 
 當硬分叉的以太坊（現今的以太坊）獲得了大部分採礦權時，許多人認為達成共識並且少數群體鏈將逐漸消失; 和以前的分叉一樣。儘管如此，以太坊社區的相當大一部分開始支持原來的區塊鏈，後來被稱為以太坊經典。
 
-幾天之內，幾個交易所開始列出以太坊（“ETH”）和以太坊經典（“ETC”）。由於硬分叉的性質，所有在分拆時持有ether的以太網用戶現在都在兩個區塊鏈中都持有資金，在Poloniex於7月24日列出ETC後，ETC的市場價值很快就建立了 <<[15]>>。
+幾天之內，幾個交易所開始列出以太坊（“ETH”）和以太坊經典（“ETC”）。由於硬分叉的性質，所有在分拆時持有ether的以太網用戶現在都在兩個區塊鏈中都持有資金，在Poloniex於7月24日列出ETC後，ETC的市場價值很快就建立了 <<ch19_ref15>>。
 
 [[dao_hard_fork_arguments]]
 ==== 硬分叉的討論
@@ -77,7 +78,7 @@ DAO中的一想安全措施是所有提款請求都要延遲28天。這為社區
 
 |DAO協議
 |DAO的大多數參與者無法正確評估程式碼，因此他們不能同意受DAO程式碼的約束。
-|DAO的條款和條件<<[23]>>的開頭段落宣告“...... DAO的程式碼控制並闡述了DAO創作的所有條款。”
+|DAO的條款和條件<<ch19_ref23>>的開頭段落宣告“...... DAO的程式碼控制並闡述了DAO創作的所有條款。”
 
 |區塊鏈不變性
 |區塊鏈不變性是一種社會結構，因此如果多數人同意，我們可以改變它。
@@ -85,32 +86,32 @@ DAO中的一想安全措施是所有提款請求都要延遲28天。這為社區
 
 |選擇加入與選擇退出
 |社區可以選擇Hard Fork是選擇加入還是選擇退出。我們投票決定是選擇退出。
-|歷史上Hard Forks是選擇加入（即比特幣）而非投票是不投票。在約1天的時間內，選擇退出投票僅佔總供應投票的4.5％。<< [12] >>
+|歷史上Hard Forks是選擇加入（即比特幣）而非投票是不投票。在約1天的時間內，選擇退出投票僅佔總供應投票的4.5％。<<ch19_ref12>>
 |===
 
 [[dao_hard_fork_timeline]]
 === DAO硬分叉的時間線
 
--  4月5日：Slock.It 在Dejavu Security<<[16]>>的安全審計之後創建了DAO
--  4月30日：DAO眾籌推出<<[17]>>
+-  4月5日：Slock.It 在Dejavu Security<<ch19_ref16>>的安全審計之後創建了DAO
+-  4月30日：DAO眾籌推出<<ch19_ref17>>
 -  5月27日：DAO眾籌結束
--  6月9日：發現了潛在的遞迴調用錯誤，並認為它會影響跟蹤用戶餘額的許多Solidity合約<<[2]>>
--  6月12日：Stephen Tual宣佈DAO資金沒有風險<<[3]>>
--  6月17日：DAO被利用，發現的bug的一個變種（稱為“重新進入的bug”）被用來開始耗盡資金; 最終攫取了約30％的資金。<<[6]>>
--  6月21日：RHG宣佈它已經確保了儲存在DAO中的其他~70％的以太網。<<[5]>>
--  6月24日：通過Geth和Parity客戶通過選擇加入信號宣佈軟叉投票。這旨在暫時扣留資金，直到社區可以更好地決定做什麼。<<[7]>>
--  6月28日：軟叉中發現了一個漏洞，它已被廢棄。<<[9]>>
+-  6月9日：發現了潛在的遞迴調用錯誤，並認為它會影響跟蹤用戶餘額的許多Solidity合約<<ch19_ref2>>
+-  6月12日：Stephen Tual宣佈DAO資金沒有風險<<ch19_ref3>>
+-  6月17日：DAO被利用，發現的bug的一個變種（稱為“重新進入的bug”）被用來開始耗盡資金; 最終攫取了約30％的資金。<<ch19_ref6>>
+-  6月21日：RHG宣佈它已經確保了儲存在DAO中的其他~70％的以太網。<<ch19_ref5>>
+-  6月24日：通過Geth和Parity客戶通過選擇加入信號宣佈軟叉投票。這旨在暫時扣留資金，直到社區可以更好地決定做什麼。<<ch19_ref7>>
+-  6月28日：軟叉中發現了一個漏洞，它已被廢棄。<<ch19_ref9>>
 -  6月28日至7月15日：用戶辯論是否硬分叉。大多數爭論發生在/r/ethereum subreddit上。
--  7月15日：DAO Hard Fork被提議撤銷DAO攻擊。<<[8]>>
--  7月15日：對carbonvote進行投票以決定DAO Hard Fork是否選擇加入（預設情況下不分叉）或選擇退出（預設為fork）。<<[10]>>
--  7月16日：以太供應總票數的5.5％，約80％的選票（約佔總供應量的4.5％）是選擇退出硬分叉。支持投票的四分之一來自一個地址。<<[11]>> <<[12]>>
--  7月20日：硬分叉發生在1,920,000塊。<<[13]>> <<[14]>>
--  7月20日：反對DAO Hard Fork的人繼續運行舊的非硬分叉客戶端軟體。這會導致在兩個鏈上重放交易的問題。<<[18]>>
--  7月24日：Poloniex在股票程式碼ETC下列出原始的以太坊鏈; 這是第一次交換。<<[15]>>
--  8月10日：RHG將290萬回收的ETC轉移至Poloniex，以便在Bity SA的建議下將其轉換為ETH。RHG總持有量的14％從ETC轉換為ETH和其他密碼貨幣。Poloniex凍結了另外86％的沉積ETH。<<[19]>>
--  8月30日：凍結的資金由Poloniex發送回RHG。然後RHG在ETC鏈上設立退款合約。<<[20]>> <<[21]>>
+-  7月15日：DAO Hard Fork被提議撤銷DAO攻擊。<<ch19_ref8>>
+-  7月15日：對carbonvote進行投票以決定DAO Hard Fork是否選擇加入（預設情況下不分叉）或選擇退出（預設為fork）。<<ch19_ref10>>
+-  7月16日：以太供應總票數的5.5％，約80％的選票（約佔總供應量的4.5％）是選擇退出硬分叉。支持投票的四分之一來自一個地址。<<ch19_ref11>> <<ch19_ref12>>
+-  7月20日：硬分叉發生在1,920,000塊。<<ch19_ref13>> <<ch19_ref14>>
+-  7月20日：反對DAO Hard Fork的人繼續運行舊的非硬分叉客戶端軟體。這會導致在兩個鏈上重放交易的問題。<<ch19_ref18>>
+-  7月24日：Poloniex在股票程式碼ETC下列出原始的以太坊鏈; 這是第一次交換。<<ch19_ref15>>
+-  8月10日：RHG將290萬回收的ETC轉移至Poloniex，以便在Bity SA的建議下將其轉換為ETH。RHG總持有量的14％從ETC轉換為ETH和其他密碼貨幣。Poloniex凍結了另外86％的沉積ETH。<<ch19_ref19>>
+-  8月30日：凍結的資金由Poloniex發送回RHG。然後RHG在ETC鏈上設立退款合約。<<ch19_ref20>> <<ch19_ref21>>
 -  12月11日：IOHK的ETC開發團隊組建。由以太坊創始成員Charles Hoskinson領導。
--  2017年1月13日：更新ETC網路以解決交易重播問題。這兩個鏈現在在功能上是分開的。<<[22]>>
+-  2017年1月13日：更新ETC網路以解決交易重播問題。這兩個鏈現在在功能上是分開的。<<ch19_ref22>>
 -  2月20日：ETCDEVTeam表格。早期ETC開發人員Igor Artamonov（splix）領導。
 
 [[eth_etc_differences]]
@@ -182,53 +183,53 @@ DAO中的一想安全措施是所有提款請求都要延遲28天。這為社區
 
 [bibliography]
 === 參考
-- [[[1]]] https://www.economist.com/news/finance-and-economics/21699159-new-automated-investment-fund-has-attracted-stacks-digital-money-dao
+- [[[ch19_ref1,1]]] https://www.economist.com/news/finance-and-economics/21699159-new-automated-investment-fund-has-attracted-stacks-digital-money-dao
 
-- [[[2]]] http://vessenes.com/more-ethereum-attacks-race-to-empty-is-the-real-deal/
+- [[[ch19_ref2,2]]] http://vessenes.com/more-ethereum-attacks-race-to-empty-is-the-real-deal/
 
-- [[[3]]] https://blog.slock.it/no-dao-funds-at-risk-following-the-ethereum-smart-contract-recursive-call-bug-discovery-29f482d348b
+- [[[ch19_ref3,3]]] https://blog.slock.it/no-dao-funds-at-risk-following-the-ethereum-smart-contract-recursive-call-bug-discovery-29f482d348b
 
-- [[[4]]] http://hackingdistributed.com/2016/06/18/analysis-of-the-dao-exploit
+- [[[ch19_ref4,4]]] http://hackingdistributed.com/2016/06/18/analysis-of-the-dao-exploit
 
-- [[[5]]] https://www.reddit.com/r/ethereum/comments/4p7mhc/update_on_the_white_hat_attack/
+- [[[ch19_ref5,5]]] https://www.reddit.com/r/ethereum/comments/4p7mhc/update_on_the_white_hat_attack/
 
-- [[[6]]] http://hackingdistributed.com/2016/06/18/analysis-of-the-dao-exploit/
+- [[[ch19_ref6,6]]] http://hackingdistributed.com/2016/06/18/analysis-of-the-dao-exploit/
 
-- [[[7]]] https://blog.ethereum.org/2016/06/24/dao-wars-youre-voice-soft-fork-dilemma/
+- [[[ch19_ref7,7]]] https://blog.ethereum.org/2016/06/24/dao-wars-youre-voice-soft-fork-dilemma/
 
-- [[[8]]] https://blog.slock.it/hard-fork-specification-24b889e70703
+- [[[ch19_ref8,8]]] https://blog.slock.it/hard-fork-specification-24b889e70703
 
-- [[[9]]] https://blog.ethereum.org/2016/06/28/security-alert-dos-vulnerability-in-the-soft-fork/
+- [[[ch19_ref9,9]]] https://blog.ethereum.org/2016/06/28/security-alert-dos-vulnerability-in-the-soft-fork/
 
-- [[[10]]] https://blog.ethereum.org/2016/07/15/to-fork-or-not-to-fork/
+- [[[ch19_ref10,10]]] https://blog.ethereum.org/2016/07/15/to-fork-or-not-to-fork/
 
-- [[[11]]] https://etherscan.io/block/1894000
+- [[[ch19_ref11,11]]] https://etherscan.io/block/1894000
 
-- [[[12]]] https://elaineou.com/2016/07/18/stick-a-fork-in-ethereum/
+- [[[ch19_ref12,12]]] https://elaineou.com/2016/07/18/stick-a-fork-in-ethereum/
 
-- [[[13]]] https://etherscan.io/block/1920000
+- [[[ch19_ref13,13]]] https://etherscan.io/block/1920000
 
-- [[[14]]] https://blog.ethereum.org/2016/07/20/hard-fork-completed/
+- [[[ch19_ref14,14]]] https://blog.ethereum.org/2016/07/20/hard-fork-completed/
 
-- [[[15]]] https://twitter.com/poloniex/status/757068619234803712
+- [[[ch19_ref15,15]]] https://twitter.com/poloniex/status/757068619234803712
 
-- [[[16]]] https://blog.slock.it/deja-vu-dao-smart-contracts-audit-results-d26bc088e32e
+- [[[ch19_ref16,16]]] https://blog.slock.it/deja-vu-dao-smart-contracts-audit-results-d26bc088e32e
 
-- [[[17]]] https://blog.slock.it/the-dao-creation-is-now-live-2270fd23affc
+- [[[ch19_ref17,17]]] https://blog.slock.it/the-dao-creation-is-now-live-2270fd23affc
 
-- [[[18]]] https://gastracker.io/block/0x94365e3a8c0b35089c1d1195081fe7489b528a84b22199c916180db8b28ade7f
+- [[[ch19_ref18,18]]] https://gastracker.io/block/0x94365e3a8c0b35089c1d1195081fe7489b528a84b22199c916180db8b28ade7f
 
-- [[[19]]] https://bitcoinmagazine.com/articles/millions-of-dollars-worth-of-etc-may-soon-be-dumped-on-the-market-1472567361/
+- [[[ch19_ref19,19]]] https://bitcoinmagazine.com/articles/millions-of-dollars-worth-of-etc-may-soon-be-dumped-on-the-market-1472567361/
 
-- [[[20]]] https://medium.com/@jackfru1t/the-robin-hood-group-and-etc-bdc6a0c111c3
+- [[[ch19_ref20,20]]] https://medium.com/@jackfru1t/the-robin-hood-group-and-etc-bdc6a0c111c3
 
-- [[[21]]] https://www.reddit.com/r/EthereumClassic/comments/4xauca/follow_up_statement_on_the_etc_salvaged_from/
+- [[[ch19_ref21,21]]] https://www.reddit.com/r/EthereumClassic/comments/4xauca/follow_up_statement_on_the_etc_salvaged_from/
 
-- [[[22]]] https://www.reddit.com/r/EthereumClassic/comments/5nt4qm/diehard_etc_protocol_upgrade_successful_nethash/
+- [[[ch19_ref22,22]]] https://www.reddit.com/r/EthereumClassic/comments/5nt4qm/diehard_etc_protocol_upgrade_successful_nethash/
 
-- [[[23]]] https://web.archive.org/web/20160429141714/https://daohub.org/explainer.html/
+- [[[ch19_ref23,23]]] https://web.archive.org/web/20160429141714/https://daohub.org/explainer.html/
 
-- [[[24]]] https://ethereumclassic.github.io/blog/2016-12-12-TeamGrothendieck/
+- [[[ch19_ref24,24]]] https://ethereumclassic.github.io/blog/2016-12-12-TeamGrothendieck/
 
 全書完結
 

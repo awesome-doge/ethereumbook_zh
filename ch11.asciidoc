@@ -91,11 +91,11 @@ Truffle是一種流行的選擇，為以太坊提供可管理的開發環境，�
 * 在開發過程中即時重建資產。
 * 在Truffle環境中執行腳本的外部腳本運行器。
 
-入門和文件：http://truffleframework.com/docs
+入門和文件：link:http://truffleframework.com/docs[]
 
-Github：https://github.com/trufflesuite/truffle
+Github：link:https://github.com/trufflesuite/truffle[]
 
-Website：https://truffleframework.com
+Website：link:https://truffleframework.com[]
 
 [[embark_sec]]
 ==== Embark Embark框架專注於使用以太坊，IPFS和其他平臺的無伺服器去中心化應用。Embark目前與EVM區塊鏈（Ethereum），去中心化儲存（IPFS）和去中心化通信平臺（Whisper和Orbit）集成。
@@ -119,11 +119,11 @@ Website：https://truffleframework.com
 * 與任何網路技術集成，包括React，Foundation等。
 * 使用你想要的任何構建管道或工具，包括grunt，gulp和webpack。
 
-入門和文件：https://embark.readthedocs.io
+入門和文件：link:https://embark.readthedocs.io[]
 
-Github：https://github.com/embark-framework/embark
+Github：link:https://github.com/embark-framework/embark[]
 
-Website：https://github.com/embark-framework/embark
+Website：link:https://github.com/embark-framework/embark[]
 
 ==== Emerald
 
@@ -144,13 +144,13 @@ Emerald提供：
 * 網路應用程式
 * 命令行應用程式和腳本工具
 
-入門和文件：https://docs.etcdevteam.com
+入門和文件：link:https://docs.etcdevteam.com[]
 
-Github：https://github.com/etcdevteam/emerald-platform
+Github：link:https://github.com/etcdevteam/emerald-platform[]
 
-Website：https://emeraldplatform.io
+Website：link:https://emeraldplatform.io[]
 
-[[dapp_develotment_tool_sec]
+[[dapp_develotment_tool_sec]]
 ==== DApp（開發工具）
 DApp是一個用於智能合約開發的簡單命令行工具。它支持以下常見用例：
 
@@ -159,7 +159,7 @@ DApp是一個用於智能合約開發的簡單命令行工具。它支持以下�
 * 單元測試
 * 簡單的合約部署
 
-入門和文件：https://dapp.readthedocs.io/en/latest/
+入門和文件：link:https://dapp.readthedocs.io/en/latest/[]
 
 [[live_dapps_sec]]
 === 活躍的DApps
@@ -170,29 +170,30 @@ DApp是一個用於智能合約開發的簡單命令行工具。它支持以下�
 ==== EthPM
 一個旨在將包管理帶入以太坊生態系統的項目。
 
-Website：https://www.ethpm.com/
+Website：link:https://www.ethpm.com/[]
 
 [[radar_relay_sec]]
 ==== Radar Relay
 DEX（去中心化交易所）專注於直接從錢包到錢包交易基於以太坊的tokens。
 
-Website：https://radarrelay.com/
+Website：link:https://radarrelay.com/[]
 
 [[cryptokitties_sec]]
+[[cryptoKitties]]
 ==== CryptoKitties
 在以太坊上部署的遊戲，允許玩家購買，收集，繁殖和銷售各種類型的虛擬貓
 它代表了為休閒和悠閒目的部署區塊鏈技術的最早嘗試之一。
 
-Website：https://www.cryptokitties.co
+Website：link:https://www.cryptokitties.co[]
 
 [[ethlance_sec]]
 ==== Ethlance
 Ethlance是一個連接自由職業者和開發者的平臺，用ether支付和收款。
 
-Website：https://ethlance.com/
+Website：link:https://ethlance.com/[]
 
 [[decentraland_sec]]
 ==== Decentraland
 Decentraland是以太坊區塊鏈支持的虛擬現實平臺。用戶可以創建，體驗內容和應用程式並從中獲利。
 
-Website：https://decentraland.org/
+Website：link:https://decentraland.org/[]

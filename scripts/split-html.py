@@ -27,7 +27,7 @@ CHAPTER_MAP = [
     ("oracles_chap", "ch12.html", "預言機 Oracles"),
     ("gas", "ch13.html", "燃氣 Gas"),
     ("evm_chapter", "ch14.html", "以太坊虛擬機 EVM"),
-    ("_以太坊的共識", "ch15.html", "共識"),
+    ("consensus_chapter", "ch15.html", "共識"),
     ("viper_chap", "ch16.html", "Vyper"),
     ("communications_between_nodes", "ch17.html", "DevP2P 協議"),
     ("ethereum_standards", "ch18.html", "以太坊標準"),

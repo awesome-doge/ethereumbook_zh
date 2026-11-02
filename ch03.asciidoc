@@ -5,14 +5,14 @@
 
 以太坊是一個開放原始碼 (open source) 專案，原始碼可在開源授權（LGPL v3.0）許可下使用，可免費下載並用於任何目的。開放原始碼意味著不僅僅是免費使用。這也意味著以太坊由開源社群的志願者所開發，任何人都可以修改。越多人關注此專案，它的程式碼就越可以被信賴。
 
-一個名為"黃皮書 (Yellow Paper)" 的正式標準定義了以太坊。(請見以太坊黃皮書，連結：https://ethereum.github.io/yellowpaper/paper.pdf)
+一個名為"黃皮書 (Yellow Paper)" 的正式標準定義了以太坊。(請見以太坊黃皮書，連結：link:https://ethereum.github.io/yellowpaper/paper.pdf[])
 
 這與比特幣相反，比特幣沒有任何正式的定義。比特幣的“規範”是比特幣核心的參考實現，以太坊的規範定義在一篇結合了英文和數學的（正式的）規範的論文中。
 這個正式的規範，除了各種以太坊改進建議之外，還定義了以太坊客戶端的標準行為。隨著對以太坊的重大改變，黃皮書會定期更新。
 
 作為以太坊明確的正式規範的結果，以太坊客戶端有許多獨立開發的，可互操作的軟體實現。以太坊在網路上運行的實現方式比任何其他區塊鏈都多。
 
-== 以太坊網路
+=== 以太坊網路
 
 現今存在各式各樣基於乙太坊的網路，它們雖然大程度符合以太坊黃皮書 (Ethereum Yellow Paper) 的正式規範。但它們之間並不一定能互相操作。
 
@@ -30,7 +30,7 @@
 
 但是，運行完整的節點會導致硬體資源和帶寬的巨大成本。完整的節點必須下載超過80GB的數據（截至2018年4月;取決於客戶端）並將其儲存在本地硬碟上。隨著新的交易和區塊的添加，這種數據負擔每天都會迅速增加。<<requirements>> 中有關於此主題的更多資訊。
 
-在以太坊開發中，運行在活躍網路（主網）上的完整節點不是必需的。你可以使用_testnet_節點（它儲存小型公共測試區塊鏈的副本），或本地私有區塊鏈（參見 <<ganache>>），或服務提供商提供的基於雲的以太坊客戶端（參見 <<infura>>），做幾乎任何事。
+在以太坊開發中，運行在活躍網路（主網）上的完整節點不是必需的。你可以使用__testnet__節點（它儲存小型公共測試區塊鏈的副本），或本地私有區塊鏈（參見 <<ganache>>），或服務提供商提供的基於雲的以太坊客戶端（參見 <<infura>>），做幾乎任何事。
 
 你還可以選擇運行輕量級客戶端，該客戶端不會儲存區塊鏈的本地副本或驗證塊和交易。這些客戶端提供錢包的功能，並可以創建和廣播交易。
 
@@ -81,7 +81,7 @@
 [[testRPC_adv_disadv]]
 ==== 本地實例（TestRPC）的優點和缺點
 
-對於許多測試目的，最好的選擇是使用 +testrpc+ 節點啟動一個實例私有區塊鏈。TestRPC創建一個本地私有區塊鏈，你可以與之交互，而無需任何其他參與者。它分享了公共測試網的許多優點和缺點，但也有一些差異。
+對於許多測試目的，最好的選擇是使用 ``+testrpc+`` 節點啟動一個實例私有區塊鏈。TestRPC創建一個本地私有區塊鏈，你可以與之交互，而無需任何其他參與者。它分享了公共測試網的許多優點和缺點，但也有一些差異。
 
 *優點：*
 
@@ -142,7 +142,7 @@
 
 通常，每個區塊鏈都有自己的Geth版本，而Parity支持多個以太坊區塊鏈（Ethereum、Ethereum Classic、Ellaism、Expanse、Musicoin）。
 
-在我們開始之前，我們可能需要滿足一些先決條件。如果你從未在你當前使用的計算機上進行任何軟體開發，則可能需要安裝一些基本工具。對於以下範例，你需要安裝 +git+，源程式碼管理系統; +Golang+，Go程式語言和標準庫; 和Rust，一種系統程式語言。
+在我們開始之前，我們可能需要滿足一些先決條件。如果你從未在你當前使用的計算機上進行任何軟體開發，則可能需要安裝一些基本工具。對於以下範例，你需要安裝 ``+git+``，源程式碼管理系統; ``+Golang+``，Go程式語言和標準庫; 和Rust，一種系統程式語言。
 
 可以按照以下說明安裝Git：
 https://git-scm.com/
@@ -172,9 +172,9 @@ Parity還需要一些軟體庫，例如OpenSSL和libudev。要在Linux（Debian�
 $ sudo apt-get install openssl libssl-dev libudev-dev
 ----
 
-對於其他作業系統，請使用作業系統的軟體包管理器或遵循Wiki說明（https://github.com/paritytech/parity/wiki/Setup）來安裝所需的庫。
+對於其他作業系統，請使用作業系統的軟體包管理器或遵循Wiki說明（link:https://github.com/paritytech/parity/wiki/Setup[]）來安裝所需的庫。
 
-現在你已經安裝了 +git+、+golang+、+rust+ 和必要的庫，讓我們開始工作吧！
+現在你已經安裝了 ``+git+``、``+golang+``、``+rust+`` 和必要的庫，讓我們開始工作吧！
 
 [[parity]]
 ==== Parity
@@ -186,7 +186,7 @@ Parity是完整節點以太坊客戶端和DApp瀏覽器的實現。Parity是由R
 披露：本書的作者之一Gavin Wood是Parity Tech的創始人，並撰寫了大部分Parity客戶端。Parity代表了約28%的以太坊客戶端。
 =====
 
-要安裝Parity，你可以使用Rust包管理器+cargo+或從GitHub下載源程式碼。軟體包管理器也下載源程式碼，所以兩種選擇之間沒有太大區別。在下一節中，我們將向你展示如何自己下載和編譯Parity。
+要安裝Parity，你可以使用Rust包管理器``+cargo+``或從GitHub下載源程式碼。軟體包管理器也下載源程式碼，所以兩種選擇之間沒有太大區別。在下一節中，我們將向你展示如何自己下載和編譯Parity。
 
 [[install_parity]]
 ===== 安裝 Parity
@@ -195,7 +195,7 @@ Parity Wiki提供了在不同環境和容器中構建Parity的說明：
 
 https://github.com/paritytech/parity/wiki/Setup
 
-我們將從源程式碼構建奇偶校驗。這假定你已經使用 +rustup+ 安裝了Rust（見 <<sw_reqs>>）。
+我們將從源程式碼構建奇偶校驗。這假定你已經使用 ``+rustup+`` 安裝了Rust（見 <<sw_reqs>>）。
 
 首先，讓我們從GitHub獲取源程式碼：
 
@@ -204,7 +204,7 @@ https://github.com/paritytech/parity/wiki/Setup
 $ git clone https://github.com/paritytech/parity
 ----
 
-現在，我們轉到+parity+目錄並使用+cargo+構建可執行檔案：
+現在，我們轉到``+parity+``目錄並使用``+cargo+``構建可執行檔案：
 
 [[parity_build]]
 ----
@@ -232,7 +232,7 @@ Finished dev [unoptimized + debuginfo] target(s) in 479.12 secs
 $
 ----
 
-讓我們通過調用+--version+選項來運行+parity+以查看它是否已安裝：
+讓我們通過調用``+--version+``選項來運行``+parity+``以查看它是否已安裝：
 
 [[run_parity]]
 ----
@@ -280,7 +280,7 @@ Geth是Go語言實現的，它被積極開發並被視為以太坊客戶端的�
 
 我們的第一步是複製git倉庫，以獲得源程式碼的副本。
 
-要創建此儲存庫的本地副本，請使用 +git+ 命令，如下所示，在你的主目錄或用於開發的任何目錄下：
+要創建此儲存庫的本地副本，請使用 ``+git+`` 命令，如下所示，在你的主目錄或用於開發的任何目錄下：
 
 [[git_clone_geth]]
 ----
@@ -305,7 +305,7 @@ Checking connectivity... done.
 [[build_geth_src]]
 ===== 從源程式碼構建Geth
 
-要構建Geth，切換到下載源程式碼的目錄並使用 +make+ 命令：
+要構建Geth，切換到下載源程式碼的目錄並使用 ``+make+`` 命令：
 
 [[making_geth]]
 ----
@@ -313,7 +313,7 @@ $ cd go-ethereum
 $ make geth
 ----
 
-如果一切順利，你將看到Go編譯器構建每個組件，直到它生成+ geth +可執行檔案：
+如果一切順利，你將看到Go編譯器構建每個組件，直到它生成``+geth+``可執行檔案：
 
 [[making_geth_status]]
 ----
@@ -333,7 +333,7 @@ Run "build/bin/geth" to launch geth.
 $
 ----
 
-讓我們在停止並更改它的配置之前運行 +geth+ 以確保它工作：
+讓我們在停止並更改它的配置之前運行 ``+geth+`` 以確保它工作：
 
 [[run_geth]]
 ----
@@ -352,16 +352,16 @@ GOROOT=/usr/local/go
 
 ----
 
-你的 +geth version+ 命令可能會稍微不同，但你應該看到類似上面的版本報告。
+你的 ``+geth version+`` 命令可能會稍微不同，但你應該看到類似上面的版本報告。
 
-最後，我們可能希望將 +geth+ 命令複製到作業系統的應用程式目錄（或命令行執行路徑上的目錄）。在Linux上，我們使用以下命令：
+最後，我們可能希望將 ``+geth+`` 命令複製到作業系統的應用程式目錄（或命令行執行路徑上的目錄）。在Linux上，我們使用以下命令：
 
 [[copy_geth_binary]]
 ----
 $ sudo cp ./build/bin/geth /usr/local/bin
 ----
 
-先不要開始運行 +geth+，因為它會以“緩慢的方式”開始將區塊鏈同步，這將花費太長的時間（幾周）。<<first_sync>> 解釋了以太坊區塊鏈的初始同步帶來的挑戰。
+先不要開始運行 ``+geth+``，因為它會以“緩慢的方式”開始將區塊鏈同步，這將花費太長的時間（幾周）。<<first_sync>> 解釋了以太坊區塊鏈的初始同步帶來的挑戰。
 
 [[first_sync]]
 === 基於以太坊的區塊鏈首次同步
@@ -372,15 +372,15 @@ $ sudo cp ./build/bin/geth /usr/local/bin
 
 許多基於以太坊的區塊鏈在2016年底遭受了拒絕服務（DoS）攻擊。受此攻擊影響的區塊鏈在進行完全同步時傾向於緩慢同步。
 
-例如，在以太坊中，新客戶端在到達區塊2,283,397之前會進展迅速。該塊在2016年9月18日開採，標誌著DoS攻擊的開始。從這個區塊到2,700,031區塊（2016年11月26日），交易驗證變得非常緩慢，記憶體密集並且I/O密集。這導致每塊的驗證時間超過1分鐘。以太坊使用硬分叉實施了一系列升級，以解決在拒絕服務中被利用的底層漏洞。這些升級還通過刪除由垃圾郵件交易創建的大約2000萬個空帳戶來清理區塊鏈。<<[1]>>
+例如，在以太坊中，新客戶端在到達區塊2,283,397之前會進展迅速。該塊在2016年9月18日開採，標誌著DoS攻擊的開始。從這個區塊到2,700,031區塊（2016年11月26日），交易驗證變得非常緩慢，記憶體密集並且I/O密集。這導致每塊的驗證時間超過1分鐘。以太坊使用硬分叉實施了一系列升級，以解決在拒絕服務中被利用的底層漏洞。這些升級還通過刪除由垃圾郵件交易創建的大約2000萬個空帳戶來清理區塊鏈。<<ch03_ref1>>
 
 如果你正在使用完整驗證進行同步，則客戶端會放慢速度並可能需要幾天或更長時間才能驗證受此DoS攻擊影響的任何塊。
 
 大多數以太坊客戶端包括一個選項，可以執行“快速”同步，跳過交易的完整驗證，同步到區塊鏈的頂端後，再恢復完整驗證。
 
-對於Geth，啟用快速同步的選項通常稱為 +--fast+。你可能需要參考你選擇的以太坊鏈的具體說明。
+對於Geth，啟用快速同步的選項通常稱為 ``+--fast+``。你可能需要參考你選擇的以太坊鏈的具體說明。
 
-對於Parity，較舊版本（<1.6），該選項為 +--warp+，較新版本（>=1.6）上預設啟用（無需設置配置選項）。
+對於Parity，較舊版本（<1.6），該選項為 ``+--warp+``，較新版本（>=1.6）上預設啟用（無需設置配置選項）。
 
 [NOTE]
 =====
@@ -390,11 +390,11 @@ Geth和Parity只能在空的區塊資料庫啟動時進行快速同步。如果�
 [[json_rpc]]
 ==== JSON-RPC接口
 
-以太坊客戶端提供應用程式編程接口（API）和一組遠程過程調用（RPC）命令，這些命令被編碼為JavaScript物件表示法（JSON）。這被稱為_JSON-RPC API_。本質上，JSON-RPC API是一個接口，允許我們將使用以太坊客戶端的程式作為_gateway_編寫到以太坊網路和區塊鏈中。
+以太坊客戶端提供應用程式編程接口（API）和一組遠程過程調用（RPC）命令，這些命令被編碼為JavaScript物件表示法（JSON）。這被稱為__JSON-RPC API__。本質上，JSON-RPC API是一個接口，允許我們將使用以太坊客戶端的程式作為__gateway__編寫到以太坊網路和區塊鏈中。
 
-通常，RPC接口作為連接埠+8545+上的HTTP服務提供。出於安全原因，預設情況下，它僅受限於從本地主機（你自己的計算機的IP地址為+127.0.0.1+）接受連接。
+通常，RPC接口作為連接埠``+8545+``上的HTTP服務提供。出於安全原因，預設情況下，它僅受限於從本地主機（你自己的計算機的IP地址為``+127.0.0.1+``）接受連接。
 
-要訪問JSON-RPC API，可以使用專門的庫，用你選擇的程式語言編寫，它提供與每個可用的RPC命令相對應的“樁（stub）”函數調用。或者，你可以手動構建HTTP請求併發送/接收JSON編碼的請求。你甚至可以使用通用命令行HTTP客戶端（如 +curl+ ）來調用RPC接口。讓我們嘗試一下（確保你已經配置並運行了Geth）：
+要訪問JSON-RPC API，可以使用專門的庫，用你選擇的程式語言編寫，它提供與每個可用的RPC命令相對應的“樁（stub）”函數調用。或者，你可以手動構建HTTP請求併發送/接收JSON編碼的請求。你甚至可以使用通用命令行HTTP客戶端（如 ``+curl+`` ）來調用RPC接口。讓我們嘗試一下（確保你已經配置並運行了Geth）：
 
 [[curl_web3]]
 .Using curl to call the web3_clientVersion function over JSON-RPC
@@ -407,7 +407,7 @@ http://localhost:8545
 "result":"Geth/v1.8.0-unstable-02aeb3d7/linux-amd64/go1.8.3"}
 ----
 
-在這個例子中，我們使用 +curl+ 建立一個HTTP連接來訪問 +http://localhost:8545+。我們已經運行了 +geth+，它將JSON-RPC API作為連接埠8545上的HTTP服務提供。我們指示 +curl+ 使用HTTP +POST+ 命令並將內容標識為 +Content-Type: application/json+。最後，我們傳遞一個JSON編碼的請求作為我們HTTP請求的+data+部分。我們的大多數命令行只是設置 +curl+ 來正確地建立HTTP連接。有趣的部分是我們發佈的實際的JSON-RPC命令：
+在這個例子中，我們使用 ``+curl+`` 建立一個HTTP連接來訪問 ``+http://localhost:8545+``。我們已經運行了 ``+geth+``，它將JSON-RPC API作為連接埠8545上的HTTP服務提供。我們指示 ``+curl+`` 使用HTTP ``+POST+`` 命令並將內容標識為 ``+Content-Type: application/json+``。最後，我們傳遞一個JSON編碼的請求作為我們HTTP請求的``+data+``部分。我們的大多數命令行只是設置 ``+curl+`` 來正確地建立HTTP連接。有趣的部分是我們發佈的實際的JSON-RPC命令：
 
 [[JSON_RPC_command]]
 ----
@@ -419,7 +419,7 @@ http://www.jsonrpc.org/specification
 
 每個請求包含4個元素：
 
-jsonrpc:: JSON-RPC協議的版本。這_必須_是“2.0”。
+jsonrpc:: JSON-RPC協議的版本。這__必須__是“2.0”。
 
 method:: 要調用的方法的名稱。
 
@@ -429,7 +429,7 @@ id:: 由客戶端建立的識別碼，必須包含字串，數字或NULL值（�
 
 [TIP]
 ====
-+id+ 參數主要用於在單個JSON-RPC調用中進行多個請求的情況，這種做法稱為_批處理_。批處理用於避免每個請求的新HTTP和TCP連接的開銷。例如，在以太坊環境中，如果我們想要在一個HTTP連接中查詢數千個交易，我們將使用批處理。批處理時，為每個請求設置不同的 +id+，然後將其與來自JSON-RPC伺服器的每個響應中的+id+進行匹配。實現這個最簡單的方法是維護一個計數器併為每個請求增加值。
+``+id+`` 參數主要用於在單個JSON-RPC調用中進行多個請求的情況，這種做法稱為__批處理__。批處理用於避免每個請求的新HTTP和TCP連接的開銷。例如，在以太坊環境中，如果我們想要在一個HTTP連接中查詢數千個交易，我們將使用批處理。批處理時，為每個請求設置不同的 ``+id+``，然後將其與來自JSON-RPC伺服器的每個響應中的``+id+``進行匹配。實現這個最簡單的方法是維護一個計數器併為每個請求增加值。
 ====
 
 [[JSON_RPC_response]]
@@ -452,14 +452,14 @@ http://localhost:8545
 {"jsonrpc":"2.0","id":4213,"result":"0x430e23400"}
 ----
 
-響應 +0x430e23400+ 告訴我們，當前的gas價格是1.8wei（gigawei或十億wei）。
+響應 ``+0x430e23400+`` 告訴我們，當前的gas價格是1.8wei（gigawei或十億wei）。
 
 https://github.com/ethereum/wiki/wiki/JSON-RPC
 
 [[parity_compatibility_mode]]
 ===== Parity的Geth兼容模式
 
-有一個特殊的“Geth兼容模式”，它提供了一個與+geth+相同的JSON-RPC API。要在Geth兼容模式下運行奇偶校驗，請使用+--geth+開關：
+有一個特殊的“Geth兼容模式”，它提供了一個與``+geth+``相同的JSON-RPC API。要在Geth兼容模式下運行奇偶校驗，請使用``+--geth+``開關：
 
 [[parity_geth]]
 ----
@@ -494,13 +494,13 @@ $ parity --geth
 
 流行的行動錢包包括Jaxx，Status和Trust Wallet。我們列舉這些作為流行手機錢包的例子（不是對這些錢包的安全或功能的認可）。
 
-Jaxx :: 基於BIP39助記種子的多幣種手機錢包，支持比特幣、萊特幣、以太坊、以太坊經典、ZCash、各種ERC20代幣和許多其他貨幣。Jaxx可在Android、iOS上作為瀏覽器插件錢包使用，桌面錢包可用於各種作業系統。可以在https://jaxx.io找到它。
+Jaxx :: 基於BIP39助記種子的多幣種手機錢包，支持比特幣、萊特幣、以太坊、以太坊經典、ZCash、各種ERC20代幣和許多其他貨幣。Jaxx可在Android、iOS上作為瀏覽器插件錢包使用，桌面錢包可用於各種作業系統。可以在link:https://jaxx.io[]找到它。
 
-Status:: 行動錢包和DApp瀏覽器，支持各種代幣和流行的DApps。適用於iOS和Android智慧型手機。可以在https://status.im找到它。
+Status:: 行動錢包和DApp瀏覽器，支持各種代幣和流行的DApps。適用於iOS和Android智慧型手機。可以在link:https://status.im[]找到它。
 
-Trust Wallet:: 支持ERC20和ERC223代幣的行動以太坊，以太坊經典錢包。Trust Wallet適用於iOS和Android智慧型手機。可以在https://trustwalletapp.com/找到它。
+Trust Wallet:: 支持ERC20和ERC223代幣的行動以太坊，以太坊經典錢包。Trust Wallet適用於iOS和Android智慧型手機。可以在link:https://trustwalletapp.com/[]找到它。
 
-Cipher Browser:: 全功能的啟用以太坊的行動DApp瀏覽器和錢包。允許與以太坊應用程式和代幣集成。可以在https://www.cipherbrowser.com找到它
+Cipher Browser:: 全功能的啟用以太坊的行動DApp瀏覽器和錢包。允許與以太坊應用程式和代幣集成。可以在link:https://www.cipherbrowser.com[]找到它
 
 [[browser_wallets]]
 === 瀏覽器錢包
@@ -512,7 +512,7 @@ Cipher Browser:: 全功能的啟用以太坊的行動DApp瀏覽器和錢包。�
 [[MetaMask]]
 ==== MetaMask
 
-MetaMask 在 <<intro>> 中介紹，它是一個多功能的基於瀏覽器的錢包，RPC客戶端和基本合約瀏覽器。它可用於Chrome、Firefox、Opera和Brave Browser。在以下位置找到MetaMask：
+MetaMask 在 <<intro_chapter>> 中介紹，它是一個多功能的基於瀏覽器的錢包，RPC客戶端和基本合約瀏覽器。它可用於Chrome、Firefox、Opera和Brave Browser。在以下位置找到MetaMask：
 
 https://metamask.io
 
@@ -557,10 +557,10 @@ https://MyCrypto.com
 ==== Mist
 
 
-Mist是以太坊基金會創建的第一個啟用以太坊的瀏覽器。它還包含一個基於瀏覽器的錢包，這是有史以來第一個實現ERC20代幣標準的（Fabian Vogelsteller，ERC20的作者也是Mist的主要開發人員）。Mist也是第一個引入camelCase校驗和的軟體包（EIP-155，參見 <<eip-155>> ）。Mist運行一個完整的節點，並提供完整的DApp瀏覽器，支持基於Swarm的儲存和ENS地址。可以在以下網址找到：
+Mist是以太坊基金會創建的第一個啟用以太坊的瀏覽器。它還包含一個基於瀏覽器的錢包，這是有史以來第一個實現ERC20代幣標準的（Fabian Vogelsteller，ERC20的作者也是Mist的主要開發人員）。Mist也是第一個引入camelCase校驗和的軟體包（EIP-55，參見 <<eip-55>> ）。Mist運行一個完整的節點，並提供完整的DApp瀏覽器，支持基於Swarm的儲存和ENS地址。可以在以下網址找到：
 
 https://github.com/ethereum/mist
 
 [bibliography]
-=== References
-- [[[1]]] EIP-161: http://eips.ethereum.org/EIPS/eip-161
+=== 參考
+- [[[ch03_ref1,1]]] EIP-161: http://eips.ethereum.org/EIPS/eip-161

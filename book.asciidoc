@@ -16,6 +16,10 @@
 :note-caption: 備註
 :tip-caption: 提示
 :warning-caption: 警告
+:appendix-caption: 附錄
+:example-caption: 範例
+:figure-caption: 圖
+:table-caption: 表
 :front-cover-image: image:cover.jpg[Front Cover,fit=contain]
 
 ifdef::backend-html5[]
@@ -29,23 +33,43 @@ endif::[]
 本書由 Dr. Awesome Doge 翻譯。
 
 include::preface.asciidoc[]
+
 include::glossary.asciidoc[]
+
 include::ch01.asciidoc[]
+
 include::ch02.asciidoc[]
+
 include::ch03.asciidoc[]
+
 include::ch04.asciidoc[]
+
 include::ch05.asciidoc[]
+
 include::ch06.asciidoc[]
+
 include::ch07.asciidoc[]
+
 include::ch08.asciidoc[]
+
 include::ch09.asciidoc[]
+
 include::ch10.asciidoc[]
+
 include::ch11.asciidoc[]
+
 include::ch12.asciidoc[]
+
 include::ch13.asciidoc[]
+
 include::ch14.asciidoc[]
+
 include::ch15.asciidoc[]
+
 include::ch16.asciidoc[]
+
 include::ch17.asciidoc[]
+
 include::ch18.asciidoc[]
+
 include::ch19.asciidoc[]
