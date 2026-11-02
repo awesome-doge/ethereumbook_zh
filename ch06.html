@@ -160,7 +160,7 @@ gtag('config', 'G-ZVVQYEKMPF');
 <div id="content">
 <nav class="chapter-nav"><a href="ch05.html" class="nav-prev">&larr; 密鑰和地址</a><a href="index.html" class="nav-home">首頁</a><a href="ch07.html" class="nav-next">交易 &rarr;</a></nav>
 <div class="sect1">
-<h2 id="wallets_chapter">8. 錢包</h2>
+<h2 id="wallets_chapter">6. 錢包</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>在以太坊中，“錢包”一詞有幾個不同的含義。</p>
@@ -175,7 +175,7 @@ gtag('config', 'G-ZVVQYEKMPF');
 <p>在本節中，我們將把錢包看作私鑰的容器，並將其視為用於管理密鑰的系統。</p>
 </div>
 <div class="sect2">
-<h3 id="wallet_tech_overview">8.1. 錢包技術概覽</h3>
+<h3 id="wallet_tech_overview">6.1. 錢包技術概覽</h3>
 <div class="paragraph">
 <p>在本節中，我們總結了用於構建用戶友好，安全，和靈活的以太坊錢包的技術。</p>
 </div>
@@ -190,7 +190,7 @@ gtag('config', 'G-ZVVQYEKMPF');
 </td>
 <td class="content">
 <div class="paragraph">
-<p>以太坊錢包包含密鑰，而不是ether或令牌。每個用戶都有一個包含密鑰的錢包。錢包真的是包含私鑰/公鑰的鑰匙串（參見<a href="#private_public_keys">[private_public_keys]</a>）。用戶使用密鑰簽署交易，從而證明他們擁有ether。ether儲存在區塊鏈上。</p>
+<p>以太坊錢包包含密鑰，而不是ether或令牌。每個用戶都有一個包含密鑰的錢包。錢包真的是包含私鑰/公鑰的鑰匙串（參見<a href="ch05.html#keys_addresses">密鑰、地址</a>）。用戶使用密鑰簽署交易，從而證明他們擁有ether。ether儲存在區塊鏈上。</p>
 </div>
 </td>
 </tr>
@@ -203,18 +203,18 @@ gtag('config', 'G-ZVVQYEKMPF');
 <p>第一種類型是 <em>非確定性錢包</em> <em>nondeterministic wallet</em>，其中每個密鑰都是從隨機數中獨立生成的。密鑰不相互關聯。這種類型的錢包也被稱為“Just a Bunch Of Keys”，JBOK錢包。</p>
 </div>
 <div class="paragraph">
-<p>第二種類型的錢包是 <em>確定性錢包</em> <em>deterministic wallet</em>，其中所有密鑰都來自單個主密鑰，稱為_種子_ <em>seed</em>。這種類型的錢包中的所有鑰匙都是相互關聯的，如果有原始種子，可以再次生成。確定性錢包中使用了許多不同的 <em>密鑰推導方法。最常用的派生方法使用樹狀結構，稱為 _分層確定</em> _hierarchical deterministic_或_HD_錢包。</p>
+<p>第二種類型的錢包是 <em>確定性錢包</em> <em>deterministic wallet</em>，其中所有密鑰都來自單個主密鑰，稱為<em>種子</em> <em>seed</em>。這種類型的錢包中的所有鑰匙都是相互關聯的，如果有原始種子，可以再次生成。確定性錢包中使用了許多不同的 <em>密鑰推導方法。最常用的派生方法使用樹狀結構，稱為 _分層確定</em> <em>hierarchical deterministic</em>或<em>HD</em>錢包。</p>
 </div>
 <div class="paragraph">
 <p>確定性錢包是從種子初始化的。為了使這些更容易使用，種子被編碼為一些英文單詞（或其他語言的詞），稱為 <em>mnemonic code</em> 助記詞，接下來的幾節將從較高的層次介紹這些技術。</p>
 </div>
 <div class="sect3">
-<h4 id="random_wallet">8.1.1. 非確定性（隨機）錢包</h4>
+<h4 id="random_wallet">6.1.1. 非確定性（隨機）錢包</h4>
 <div class="paragraph">
 <p>在第一個以太坊錢包（由Ethereum pre-sale創建）中，錢包檔案儲存一個隨機生成的私鑰。這些錢包正在被確定性的錢包取代，因為它們管理，備份和匯入很麻煩。隨機密鑰的缺點是，如果你生成了許多密鑰，你必須保留所有密鑰的副本。每個密鑰都必須備份，否則如果錢包變得不可訪問，則其控制的資金將不可撤銷地丟失。此外，以太坊地址重用可以通過將多個交易和地址相互關聯來降低隱私。0型非確定性錢包是很少的選擇，特別是如果你想避免地址重用，因為它意味著管理許多密鑰，需要經常備份。</p>
 </div>
 <div class="paragraph">
-<p>許多以太坊客戶端（包括 go-ethereum 或 geth）使用_keystore_檔案，這是一個JSON編碼的檔案，其中包含一個（隨機生成的）私鑰，由一個密碼加密以提高安全性。JSON檔案的內容如下所示：</p>
+<p>許多以太坊客戶端（包括 go-ethereum 或 geth）使用<em>keystore</em>檔案，這是一個JSON編碼的檔案，其中包含一個（隨機生成的）私鑰，由一個密碼加密以提高安全性。JSON檔案的內容如下所示：</p>
 </div>
 <div id="keystore_example" class="listingblock">
 <div class="content">
@@ -242,10 +242,10 @@ gtag('config', 'G-ZVVQYEKMPF');
 </div>
 </div>
 <div class="paragraph">
-<p>keystore格式使用_Key派生函數（KDF）<em>，也稱為密碼擴展演算法，該演算法可防止對密碼加密的暴力破解，字典或彩虹表攻擊。簡而言之，私鑰沒有直接由密碼短語加密。相反，通過反覆對它進行雜湊，密碼被_拉長</em>。雜湊函數重複執行262144輪，可以在keystore JSON中的參數 crypto.kdfparams.n 看到。試圖暴力破解密碼短語的攻擊者必須對每個嘗試的密碼應用262144輪雜湊，這足以減緩攻擊行為，從而使破解足夠複雜性和夠長的密碼短語是不可行的。</p>
+<p>keystore格式使用<em>Key派生函數（KDF）</em>，也稱為密碼擴展演算法，該演算法可防止對密碼加密的暴力破解，字典或彩虹表攻擊。簡而言之，私鑰沒有直接由密碼短語加密。相反，通過反覆對它進行雜湊，密碼被<em>拉長</em>。雜湊函數重複執行262144輪，可以在keystore JSON中的參數 <code>crypto.kdfparams.n</code> 看到。試圖暴力破解密碼短語的攻擊者必須對每個嘗試的密碼應用262144輪雜湊，這足以減緩攻擊行為，從而使破解足夠複雜性和夠長的密碼短語是不可行的。</p>
 </div>
 <div class="paragraph">
-<p>有許多軟體庫可以讀寫keystore格式，例如JavaScript庫 keythereum：</p>
+<p>有許多軟體庫可以讀寫keystore格式，例如JavaScript庫 <code>keythereum</code>：</p>
 </div>
 <div class="paragraph">
 <p><a href="https://github.com/ethereumjs/keythereum" class="bare">https://github.com/ethereumjs/keythereum</a></p>
@@ -258,7 +258,7 @@ gtag('config', 'G-ZVVQYEKMPF');
 </td>
 <td class="content">
 <div class="paragraph">
-<p>除簡單測試以外，不鼓勵使用非確定性錢包，他們太麻煩了，無法備份和使用。相反，使用具有_mnemonic_種子的基於行業標準的_HD錢包_。</p>
+<p>除簡單測試以外，不鼓勵使用非確定性錢包，他們太麻煩了，無法備份和使用。相反，使用具有<em>mnemonic</em>種子的基於行業標準的<em>HD錢包</em>。</p>
 </div>
 </td>
 </tr>
@@ -266,21 +266,21 @@ gtag('config', 'G-ZVVQYEKMPF');
 </div>
 </div>
 <div class="sect3">
-<h4 id="deterministic_wallets">8.1.2. 確定性（種子）錢包</h4>
+<h4 id="deterministic_wallets">6.1.2. 確定性（種子）錢包</h4>
 <div class="paragraph">
 <p>確定性或“種子”錢包是包含私鑰的錢包，所有私鑰都來源於共同的種子，使用單向雜湊函數生成。種子是隨機生成的數字，可以與其他數據（如索引編號或“鏈碼”（請參閱​<a href="#hd_wallets">HD 錢包 (BIP-32/BIP-44)</a>））組合以匯出私鑰。在確定性錢包中，種子足以恢復所有派生的密鑰，因此在創建時的單個備份就足夠了。種子也足以用於錢包的匯入和匯出，允許在不同實現的錢包之間輕鬆遷移所有用戶密鑰。</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="hd_wallets">8.1.3. HD 錢包 (BIP-32/BIP-44)</h4>
+<h4 id="hd_wallets">6.1.3. HD 錢包 (BIP-32/BIP-44)</h4>
 <div class="paragraph">
-<p>確定性錢包的開發使得從單個”種子“中獲得許多密鑰變得容易。確定性錢包的最先進的形式是由比特幣的BIP-32標準定義的HD錢包。HD錢包包含以樹狀結構匯出的密鑰，以便父密鑰可以生成一系列的子密鑰，每個子密鑰可以派生一系列孫子密鑰等等，可以達到無限深度。這個樹狀結構在 <a href="#hd_wallet">[hd_wallet]</a> 中進行說明。</p>
+<p>確定性錢包的開發使得從單個”種子“中獲得許多密鑰變得容易。確定性錢包的最先進的形式是由比特幣的BIP-32標準定義的HD錢包。HD錢包包含以樹狀結構匯出的密鑰，以便父密鑰可以生成一系列的子密鑰，每個子密鑰可以派生一系列孫子密鑰等等，可以達到無限深度。這個樹狀結構在 <a href="#hd_wallets">HD 錢包 (BIP-32/BIP-44)</a> 中進行說明。</p>
 </div>
 <div id="hd_wallets_figure" class="imageblock">
 <div class="content">
 <img src="images/hd_wallet.png" alt="HD wallet">
 </div>
-<div class="title">Figure 29. HD wallet: a tree of keys generated from a single seed</div>
+<div class="title">圖 29. HD wallet: a tree of keys generated from a single seed</div>
 </div>
 <div class="paragraph">
 <p>與隨機（非確定性）密鑰相比，HD錢包具有兩大優勢。首先，樹狀結構可以用來表達額外的組織含義，例如，使用特定分支的子密鑰來接收傳入的支付，使用不同分支的子密鑰來接收支付時產生的零錢。密鑰的分支也可用於公司設置，將不同分支分配給部門，子公司，特定職能或會計類別。</p>
@@ -290,9 +290,9 @@ gtag('config', 'G-ZVVQYEKMPF');
 </div>
 </div>
 <div class="sect3">
-<h4 id="mnemonic_codes">8.1.4. 種子和助記詞（BIP-39）</h4>
+<h4 id="mnemonic_codes">6.1.4. 種子和助記詞（BIP-39）</h4>
 <div class="paragraph">
-<p>HD錢包是管理許多密鑰和地址的非常強大的機制。如果將它們與一系列英文單詞（或另一種語言的單詞）相結合，更易於轉錄，和跨錢包的匯出匯入。這被稱為_mnemonic_，標準由BIP-39定義。今天，許多以太坊錢包（以及用於其他密碼貨幣的錢包）都使用此標準，並且可以使用可互操作的助記詞匯入和匯出種子以進行備份和恢復。</p>
+<p>HD錢包是管理許多密鑰和地址的非常強大的機制。如果將它們與一系列英文單詞（或另一種語言的單詞）相結合，更易於轉錄，和跨錢包的匯出匯入。這被稱為<em>mnemonic</em>，標準由BIP-39定義。今天，許多以太坊錢包（以及用於其他密碼貨幣的錢包）都使用此標準，並且可以使用可互操作的助記詞匯入和匯出種子以進行備份和恢復。</p>
 </div>
 <div class="paragraph">
 <p>我們從實際的角度來看一下。下列哪種種子更容易轉錄，在紙上記錄，無誤地讀取，匯出並匯入另一個錢包？</p>
@@ -312,7 +312,7 @@ wall cliff insect more detail hub</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="wallet_best_practices">8.1.5. 錢包最佳實踐</h4>
+<h4 id="wallet_best_practices">6.1.5. 錢包最佳實踐</h4>
 <div class="paragraph">
 <p>隨著密碼貨幣錢包技術的成熟，某些常見行業標準使錢包廣泛地互操作，易於使用，安全和靈活。這些標準還允許錢包從多個不同的密碼貨幣中獲取密鑰，所有這些都來自助記詞。這些通用標準是：</p>
 </div>
@@ -360,7 +360,7 @@ wall cliff insect more detail hub</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="mnemonic_code_words">8.1.6. 助記詞 (BIP-39)</h4>
+<h4 id="mnemonic_code_words">6.1.6. 助記詞 (BIP-39)</h4>
 <div class="paragraph">
 <p>助記詞是表示（編碼）派生確定性錢包的種子的隨機數的單詞序列。單詞序列足以重新創建種子，從而重新創建錢包和所有派生的密鑰。使用助記詞實現的確定性錢包會在首次創建錢包時向用戶展示12至24個字的序列。該單字序列是錢包的備份，可用於在相同或任何兼容的錢包應用程式中恢復和重新創建所有密鑰。</p>
 </div>
@@ -382,7 +382,7 @@ wall cliff insect more detail hub</pre>
 <p>助記詞在BIP-39中定義。請注意，BIP-39是助記詞編碼標準的一個實現。有一個不同的標準，帶有一組不同的單詞，在BIP-39之前用於Electrum比特幣錢包。BIP-39由Trezor硬體錢包背後的公司提出，與Electrum的實現不兼容。但是，BIP-39現在已經在數十種可互操作實現方面取得了廣泛的行業支持，應該被視為事實上的行業標準。此外，BIP-39可用於生產支持以太坊的多幣種錢包，而Electrum種子不能。</p>
 </div>
 <div class="paragraph">
-<p>BIP-39定義了助記詞和種子的創建，我們在這裡通過九個步驟來描述它。為了清楚起見，該過程分為兩部分：步驟1至6展示在<a href="#generate_mnemonic_words">[generate_mnemonic_words]</a> 中，步驟7至9展示在 <a href="#mnemonic_to_seed">從助記詞到種子</a> 中。</p>
+<p>BIP-39定義了助記詞和種子的創建，我們在這裡通過九個步驟來描述它。為了清楚起見，該過程分為兩部分：步驟1至6展示在<a href="#generating_mnemonic_words">生成助記詞</a> 中，步驟7至9展示在 <a href="#mnemonic_to_seed">從助記詞到種子</a> 中。</p>
 </div>
 <div class="sect4">
 <h5 id="generating_mnemonic_words">生成助記詞</h5>
@@ -418,13 +418,13 @@ wall cliff insect more detail hub</pre>
 <div class="content">
 <img src="images/bip39-part1.png" alt="Generating entropy and encoding as mnemonic words">
 </div>
-<div class="title">Figure 30. Generating entropy and encoding as mnemonic words</div>
+<div class="title">圖 30. Generating entropy and encoding as mnemonic words</div>
 </div>
 <div class="paragraph">
 <p><a href="#table_bip39_entropy">Mnemonic codes: entropy and word length</a> 展示熵數據的大小和助記詞的長度關係。</p>
 </div>
 <table id="table_bip39_entropy" class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 2. Mnemonic codes: entropy and word length</caption>
+<caption class="title">表 2. Mnemonic codes: entropy and word length</caption>
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 25%;">
@@ -479,7 +479,7 @@ wall cliff insect more detail hub</pre>
 <p>助記符字表示長度為128到256位的熵。然後使用使用密鑰擴展函數PBKDF2將熵匯出成更長的（512位）種子。然後使用生成的種子構建確定性錢包並派生其密鑰。</p>
 </div>
 <div class="paragraph">
-<p>密鑰擴展函數有兩個參數：助記詞和_salt_。在密鑰擴展函數中使用鹽的目的是使得構建能夠進行暴力攻擊的查找表不可行。在BIP-39標準中，鹽有另一個目的 —— 它允許引入密碼，作為保護種子的附加安全因素，我們將在 <a href="#mnemonic_passphrase">BIP-39中的可選密碼短語</a> 中詳細描述。</p>
+<p>密鑰擴展函數有兩個參數：助記詞和<em>salt</em>。在密鑰擴展函數中使用鹽的目的是使得構建能夠進行暴力攻擊的查找表不可行。在BIP-39標準中，鹽有另一個目的 —— 它允許引入密碼，作為保護種子的附加安全因素，我們將在 <a href="#mnemonic_passphrase">BIP-39中的可選密碼短語</a> 中詳細描述。</p>
 </div>
 <div class="paragraph">
 <p>步驟7到9中從 <a href="#generating_mnemonic_words">生成助記詞</a> 描述的過程後繼續：</p>
@@ -490,13 +490,13 @@ wall cliff insect more detail hub</pre>
     <li>PBKDF2使用2048輪HMAC-SHA512雜湊演算法，擴展助記詞和鹽，生成512位的種子。</li>
 </ol>
 <div class="paragraph">
-<p><a href="#fig_5_7">[fig_5_7]</a> 展示如何使用助記詞來生成種子。</p>
+<p><a href="#mnemonic_to_seed_figure">From mnemonic to seed</a> 展示如何使用助記詞來生成種子。</p>
 </div>
 <div id="mnemonic_to_seed_figure" class="imageblock">
 <div class="content">
 <img src="images/bip39-part2.png" alt="From mnemonic to seed">
 </div>
-<div class="title">Figure 31. From mnemonic to seed</div>
+<div class="title">圖 31. From mnemonic to seed</div>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -513,10 +513,10 @@ wall cliff insect more detail hub</pre>
 </table>
 </div>
 <div class="paragraph">
-<p>表格 <a data-type="xref" href="#mnemonic_128_no_pass" data-xrefstyle="select: labelnumber">#mnemonic_128_no_pass</a>, <a data-type="xref" href="#mnemonic_128_w_pass" data-xrefstyle="select: labelnumber">#mnemonic_128_w_pass</a>, 和 <a data-type="xref" href="#mnemonic_256_no_pass" data-xrefstyle="select: labelnumber">#mnemonic_256_no_pass</a> 展示了一些助記詞和它們生成的種子的例子（沒有密碼）。</p>
+<p><a href="#mnemonic_128_no_pass">表 3</a>、<a href="#mnemonic_128_w_pass">表 4</a> 和 <a href="#mnemonic_256_no_pass">表 5</a> 展示了一些助記詞和它們生成的種子的例子（沒有密碼）。</p>
 </div>
 <table id="mnemonic_128_no_pass" class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 3. 128-bit entropy mnemonic code, no passphrase, resulting seed</caption>
+<caption class="title">表 3. 128-bit entropy mnemonic code, no passphrase, resulting seed</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -524,11 +524,11 @@ wall cliff insect more detail hub</pre>
 <tbody>
 <tr>
 <th class="tableblock halign-left valign-top"><p class="tableblock"><strong>Entropy input (128 bits)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0c1e24e5917779d297e14d45f14e1a1a</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>0c1e24e5917779d297e14d45f14e1a1a</code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-left valign-top"><p class="tableblock"><strong>Mnemonic (12 words)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">army van defense carry jealous true garbage claim echo media make crunch</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>army van defense carry jealous true garbage claim echo media make crunch</code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-left valign-top"><p class="tableblock"><strong>Passphrase</strong></p></th>
@@ -536,13 +536,13 @@ wall cliff insect more detail hub</pre>
 </tr>
 <tr>
 <th class="tableblock halign-left valign-top"><p class="tableblock"><strong>Seed  (512 bits)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">5b56c417303faa3fcba7e57400e120a0ca83ec5a4fc9ffba757fbe63fbd77a89a1a3be4c67196f57c39
-a88b76373733891bfaba16ed27a813ceed498804c0570</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>5b56c417303faa3fcba7e57400e120a0ca83ec5a4fc9ffba757fbe63fbd77a89a1a3be4c67196f57c39</code>
+<code>a88b76373733891bfaba16ed27a813ceed498804c0570</code></p></td>
 </tr>
 </tbody>
 </table>
 <table id="mnemonic_128_w_pass" class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 4. 128-bit entropy mnemonic code, with passphrase, resulting seed</caption>
+<caption class="title">表 4. 128-bit entropy mnemonic code, with passphrase, resulting seed</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -550,11 +550,11 @@ a88b76373733891bfaba16ed27a813ceed498804c0570</p></td>
 <tbody>
 <tr>
 <th class="tableblock halign-left valign-top"><p class="tableblock"><strong>Entropy input (128 bits)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0c1e24e5917779d297e14d45f14e1a1a</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>0c1e24e5917779d297e14d45f14e1a1a</code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-left valign-top"><p class="tableblock"><strong>Mnemonic (12 words)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">army van defense carry jealous true garbage claim echo media make crunch</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>army van defense carry jealous true garbage claim echo media make crunch</code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-left valign-top"><p class="tableblock"><strong>Passphrase</strong></p></th>
@@ -562,13 +562,13 @@ a88b76373733891bfaba16ed27a813ceed498804c0570</p></td>
 </tr>
 <tr>
 <th class="tableblock halign-left valign-top"><p class="tableblock"><strong>Seed  (512 bits)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">3b5df16df2157104cfdd22830162a5e170c0161653e3afe6c88defeefb0818c793dbb28ab3ab091897d0
-715861dc8a18358f80b79d49acf64142ae57037d1d54</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>3b5df16df2157104cfdd22830162a5e170c0161653e3afe6c88defeefb0818c793dbb28ab3ab091897d0</code>
+<code>715861dc8a18358f80b79d49acf64142ae57037d1d54</code></p></td>
 </tr>
 </tbody>
 </table>
 <table id="mnemonic_256_no_pass" class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 5. 256-bit entropy mnemonic code, no passphrase, resulting seed</caption>
+<caption class="title">表 5. 256-bit entropy mnemonic code, no passphrase, resulting seed</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -576,7 +576,7 @@ a88b76373733891bfaba16ed27a813ceed498804c0570</p></td>
 <tbody>
 <tr>
 <th class="tableblock halign-left valign-top"><p class="tableblock"><strong>Entropy input (256 bits)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2041546864449caff939d32d574753fe684d3c947c3346713dd8423e74abcf8c</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>2041546864449caff939d32d574753fe684d3c947c3346713dd8423e74abcf8c</code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-left valign-top"><p class="tableblock"><strong>Mnemonic (24 words)</strong></p></th>
@@ -589,8 +589,8 @@ luggage oxygen faint major edit measure invite love trap field dilemma oblige</p
 </tr>
 <tr>
 <th class="tableblock halign-left valign-top"><p class="tableblock"><strong>Seed (512 bits)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">3269bce2674acbd188d4f120072b13b088a0ecf87c6e4cae41657a0bb78f5315b33b3a04356e53d062e5
-5f1e0deaa082df8d487381379df848a6ad7e98798404</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>3269bce2674acbd188d4f120072b13b088a0ecf87c6e4cae41657a0bb78f5315b33b3a04356e53d062e5</code>
+<code>5f1e0deaa082df8d487381379df848a6ad7e98798404</code></p></td>
 </tr>
 </tbody>
 </table>
@@ -598,7 +598,7 @@ luggage oxygen faint major edit measure invite love trap field dilemma oblige</p
 <div class="sect4">
 <h5 id="mnemonic_passphrase">BIP-39中的可選密碼短語</h5>
 <div class="paragraph">
-<p>BIP-39標準允許在派生種子時使用可選的密碼短語。如果沒有使用密碼短語，助記詞將被一個由常量字串+"mnemonic"+ 組成的鹽擴展，從任何給定的助記詞中產生一個特定的512位種子。如果使用密碼短語，則擴展函數會從同一助記詞中生成一個_不同的_種子。事實上，對於一個助記符，每個可能的密碼都會生成不同的種子。本質上，沒有“錯誤的”密碼。所有密碼都是有效的，它們都會生成不同的種子，形成一大批可能未初始化的錢包。可能的錢包的集合非常大（2<sup>512</sup>），因此沒有暴力或意外猜測正在使用的錢包的可能。</p>
+<p>BIP-39標準允許在派生種子時使用可選的密碼短語。如果沒有使用密碼短語，助記詞將被一個由常量字串<code>"mnemonic"</code> 組成的鹽擴展，從任何給定的助記詞中產生一個特定的512位種子。如果使用密碼短語，則擴展函數會從同一助記詞中生成一個<em>不同的</em>種子。事實上，對於一個助記符，每個可能的密碼都會生成不同的種子。本質上，沒有“錯誤的”密碼。所有密碼都是有效的，它們都會生成不同的種子，形成一大批可能未初始化的錢包。可能的錢包的集合非常大（2<sup>512</sup>），因此沒有暴力或意外猜測正在使用的錢包的可能。</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -672,25 +672,24 @@ luggage oxygen faint major edit measure invite love trap field dilemma oblige</p
 <div class="content">
 <img src="images/bip39_web.png" alt="BIP-39 generator web-page">
 </div>
-<div class="title">Figure 32. A BIP-39 generator as a standalone web page</div>
+<div class="title">圖 32. A BIP-39 generator as a standalone web page</div>
 </div>
 <div class="paragraph">
-<p>頁面（https://iancoleman.github.io/bip39/）可以在瀏覽器中離線使用，也可以在線訪問。</p>
+<p>頁面（<a href="https://iancoleman.github.io/bip39/" class="bare">https://iancoleman.github.io/bip39/</a>）可以在瀏覽器中離線使用，也可以在線訪問。</p>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="create_hd_wallet">8.1.7. 從種子創建HD錢包</h4>
+<h4 id="create_hd_wallet">6.1.7. 從種子創建HD錢包</h4>
 <div class="paragraph">
-<p>HD錢包是由單個_根種子_創建的，該_種子_是128,256或512位隨機數。最常見的情況是，這個種子是從_助記詞_生成的，詳見前一節。</p>
+<p>HD錢包是由單個<em>根種子</em>創建的，該<em>種子</em>是128,256或512位隨機數。最常見的情況是，這個種子是從<em>助記詞</em>生成的，詳見前一節。</p>
 </div>
 <div class="paragraph">
 <p>HD錢包中的每個密鑰都是從這個根種子確定性地派生出來的，這使得可以在任何兼容的HD錢包中從該種子重新創建整個HD錢包。這使得備份，恢復，匯出和匯入包含數千乃至數百萬個密鑰的HD錢包變得很容易，只需傳輸根種子的助記詞即可。</p>
 </div>
-<div class="paragraph">
-<p>[[bip32_bip43/44]]
-==== 分層確定性錢包（BIP-32）和路徑（BIP-43/44）</p>
 </div>
+<div class="sect3">
+<h4 id="bip32_bip43_44">6.1.8. 分層確定性錢包（BIP-32）和路徑（BIP-43/44）</h4>
 <div class="paragraph">
 <p>大多數HD錢包遵循BIP-32標準，這已成為確定性密鑰事實上的行業標準代。你可以在以下網址閱讀詳細說明：</p>
 </div>
@@ -731,7 +730,7 @@ luggage oxygen faint major edit measure invite love trap field dilemma oblige</p
 <div class="sect4">
 <h5 id="extended_keys">擴展公鑰和私鑰</h5>
 <div class="paragraph">
-<p>在BIP-32術語中，可以擴展併產生“孩子”的父密鑰稱為 <em>擴展密鑰</em> <em>extended key</em>。如果它是一個私有密鑰，它是由前綴_xprv_區分的 <em>擴展私鑰</em> <em>extended_private_key</em>：</p>
+<p>在BIP-32術語中，可以擴展併產生“孩子”的父密鑰稱為 <em>擴展密鑰</em> <em>extended key</em>。如果它是一個私有密鑰，它是由前綴<em>xprv</em>區分的 <em>擴展私鑰</em> <em>extended_private_key</em>：</p>
 </div>
 <div id="xprv_example" class="listingblock">
 <div class="content">
@@ -768,7 +767,7 @@ luggage oxygen faint major edit measure invite love trap field dilemma oblige</p
 <p>從xpub派生公鑰的分支是非常有用的，但它帶有潛在風險。訪問xpub不能訪問子私鑰。但是，因為xpub包含鏈碼，所以如果某個子私鑰已知，或者以某種方式洩漏，則可以與鏈碼一起使用，以派生所有其他子私鑰。一個洩露的子私鑰和一個父鏈碼一起揭示了所有子私鑰。更糟的是，可以使用子私鑰和父鏈碼來推導父私鑰。</p>
 </div>
 <div class="paragraph">
-<p>為了應對這種風險，HD錢包使用一種稱為 <em>強化派生</em> _hardened derivation_的替代派生函數，該函數“破壞”父公鑰和子鏈碼之間的關係。強化派生函數使用父私鑰來派生子鏈碼，而不是父公鑰。這會在父/子序列中創建一個“防火牆”，鏈碼不能用於危害父代或同級私鑰。</p>
+<p>為了應對這種風險，HD錢包使用一種稱為 <em>強化派生</em> <em>hardened derivation</em>的替代派生函數，該函數“破壞”父公鑰和子鏈碼之間的關係。強化派生函數使用父私鑰來派生子鏈碼，而不是父公鑰。這會在父/子序列中創建一個“防火牆”，鏈碼不能用於危害父代或同級私鑰。</p>
 </div>
 <div class="paragraph">
 <p>簡而言之，如果你想使用xpub的便利來派生公鑰的分支，而不會讓自己面臨洩漏鏈碼的風險，所以應該從強化父項而不是普通父項派生。作為最佳做法，主密鑰的1級子密鑰級始終通過強化派生派生，以防止主密鑰受到破壞。</p>
@@ -792,7 +791,7 @@ luggage oxygen faint major edit measure invite love trap field dilemma oblige</p
 <p>從右向左讀取一個密鑰的“祖先”，直到你到達從派生出它的主密鑰。例如，識別碼 m/x/y/z 描述了密鑰 m/x/y 的第z個子密鑰，密鑰 m/x/y 是密鑰 m/x 的第y個子密鑰，密鑰 m/x 是 m 的第 x 個子密鑰。</p>
 </div>
 <table id="hd_path_table" class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 6. HD wallet path examples</caption>
+<caption class="title">表 6. HD wallet path examples</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -836,7 +835,7 @@ luggage oxygen faint major edit measure invite love trap field dilemma oblige</p
 <p>通過為HD錢包的樹狀結構創建一些標準，兩個BIP為這種複雜性提供瞭解決方案。BIP-43建議使用第一個強化子密鑰作為表示樹結構“目的”的特殊識別碼。基於BIP-43，HD錢包應該只使用樹的一個1級分支，索引號通過定義其目的來標識樹的其餘部分的結構和名稱空間。例如，僅使用分支m/i'/的HD錢包表示特定目的，而該目的由索引號“i”標識。</p>
 </div>
 <div class="paragraph">
-<p>擴展該規範，BIP-44提出了一個多幣種多帳戶結構作為BIP-43下的“目的”號碼+44'+。遵循BIP-44的HD錢包通過僅使用樹的一個分支的事實來標識：m / 44'/。</p>
+<p>擴展該規範，BIP-44提出了一個多幣種多帳戶結構作為BIP-43下的“目的”號碼<code>44'</code>。遵循BIP-44的HD錢包通過僅使用樹的一個分支的事實來標識：m / 44'/。</p>
 </div>
 <div class="paragraph">
 <p>BIP-44指定了包含五個預定義層級的結構</p>
@@ -847,7 +846,7 @@ luggage oxygen faint major edit measure invite love trap field dilemma oblige</p
 </div>
 </div>
 <div class="paragraph">
-<p>第一級“purpose”始終設置為+44'+。第二級“coin_type”指定密碼貨幣類型，允許多貨幣HD錢包，其中每種貨幣在第二級下具有其自己的子樹。標準檔案中定義了幾種貨幣，稱為SLIP0044：</p>
+<p>第一級“purpose”始終設置為<code>44'</code>。第二級“coin_type”指定密碼貨幣類型，允許多貨幣HD錢包，其中每種貨幣在第二級下具有其自己的子樹。標準檔案中定義了幾種貨幣，稱為SLIP0044：</p>
 </div>
 <div class="paragraph">
 <p><a href="https://github.com/satoshilabs/slips/blob/master/slip-0044.md" class="bare">https://github.com/satoshilabs/slips/blob/master/slip-0044.md</a></p>
@@ -862,7 +861,7 @@ luggage oxygen faint major edit measure invite love trap field dilemma oblige</p
 <p>由於BIP-44最初是為比特幣創建的，因此它包含一個在以太坊世界中不相關的“怪癖”。在路徑的第四層“change”時，HD錢包有兩個子樹，一個用於創建接收地址，另一個用於創建零錢地址。以太坊只使用“接收”路徑，因為沒有零錢地址這樣的東西。請注意，雖然以前的層級使用強化派生，但此層級使用正常派生。這是為了允許樹的這個層級匯出擴展公鑰在非安全環境中使用。可用地址由HD錢包作為第四級的孩子派生，使樹的第五級成為“address_index”。例如，在主賬戶中以太坊付款的第三個接收地址為M/44'/60'/0'/0/2。<a href="#bip44_path_examples">BIP-44 HD wallet structure examples</a> 展示了幾個例子。</p>
 </div>
 <table id="bip44_path_examples" class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 7. BIP-44 HD wallet structure examples</caption>
+<caption class="title">表 7. BIP-44 HD wallet structure examples</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -901,7 +900,7 @@ luggage oxygen faint major edit measure invite love trap field dilemma oblige</p
 </div>
 <div id="footer">
 <div id="footer-text">
-最後更新： 2026-04-01 15:09:02 UTC
+最後更新： 2026-11-02 14:55:30 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">

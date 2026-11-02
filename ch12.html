@@ -160,13 +160,13 @@ gtag('config', 'G-ZVVQYEKMPF');
 <div id="content">
 <nav class="chapter-nav"><a href="ch11.html" class="nav-prev">&larr; 去中心化應用 DApps</a><a href="index.html" class="nav-home">首頁</a><a href="ch13.html" class="nav-next">燃氣 Gas &rarr;</a></nav>
 <div class="sect1">
-<h2 id="oracles_chap">14. 預言機 (Oracles)</h2>
+<h2 id="oracles_chap">12. 預言機 (Oracles)</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>在本章中，我們將討論預言機 oracles，它是可以為以太坊智能合約提供外部數據源的系統。華人區塊鏈裡翻譯 oracle 為預言機；“神諭” Oracle一詞來自希臘神話，它提到了一個與神靈交流的人，他們可以看到未來的願景。 在區塊鏈的上下文中，oracle 是一個回答問題的系統，它可以回答來自於以太坊之外問題。 理想情況下，oracles 是不可靠 (trustless) 的系統，按造中心化原則 (decentralized)，這意味著它們不需要被信任。</p>
 </div>
 <div class="sect2">
-<h3 id="_為什麼預言機是剛需">14.1. 為什麼預言機是剛需</h3>
+<h3 id="_為什麼預言機是剛需">12.1. 為什麼預言機是剛需</h3>
 <div class="paragraph">
 <p>以太坊平台中的一個關鍵元件是以太坊虛擬機，這虛擬機能夠執行程式，並且在共識算法的規則約束中，能夠在去中心化網路中的任何一節點上更新乙太坊的狀態。為了保持共識，EVM 的執行必須是完全有確定性的 (deterministic)，並且該執行只能基於乙太坊狀態以及簽名交易的共享執行脈落進行。這有兩個特別重要的後果：第一個是 EVM 和智能合約沒有任何內在的隨機性來源；第二，外部之數據僅能以交易中資料封包 (data payload) 的方式來進入。</p>
 </div>
@@ -178,7 +178,7 @@ gtag('config', 'G-ZVVQYEKMPF');
 </div>
 </div>
 <div class="sect2">
-<h3 id="_預言機的使用例子_use_case_及範例">14.2. 預言機的使用例子 (Use Case) 及範例</h3>
+<h3 id="_預言機的使用例子_use_case_及範例">12.2. 預言機的使用例子 (Use Case) 及範例</h3>
 <div class="paragraph">
 <p>理想情況下，神諭提供了一種無信任（或至少近乎無信任）的方式來獲取外在的（即“真實世界”或鏈下"off-chain"）信息，例如足球比賽的結果，黃金的價格，或真正的隨機數字，在以太坊平台上使用智能合約。它們還可用於直接將數據安全地中繼到 DApp 前端。因此，可以將神諭視為彌合脫軌世界與智能合約之間差距的機制。允許智能合約基於真實世界的事件和數據來強制執行合同關係，從而大大擴展了它們的範圍。但是，這也會給以太坊的安全模型帶來外部風險。考慮一個“聰明意志”合同，當一個人去世時分配資產。這是智能合約空間中經常討論的內容，並突出了可信任的oracle的風險。如果由這樣的合同控制的繼承金額足夠高，那麼在所有者死亡之前攻擊oracle並觸發資產分配的動機是非常高的。</p>
 </div>
@@ -242,7 +242,7 @@ gtag('config', 'G-ZVVQYEKMPF');
 </div>
 </div>
 <div class="sect2">
-<h3 id="primary_functions_sec">14.3. 主要功能</h3>
+<h3 id="primary_functions_sec">12.3. 主要功能</h3>
 <div class="paragraph">
 <p>實際上，oracle可以實現爲鏈上智能合約系統和用於監控請求，查詢和返回數據的離線基礎設施。來自去中心化應用的數據請求通常是涉及許多步驟的異步過程。</p>
 </div>
@@ -282,7 +282,7 @@ gtag('config', 'G-ZVVQYEKMPF');
 </div>
 </div>
 <div class="sect2">
-<h3 id="subscription_paterns_sec">14.4. 訂閱模式</h3>
+<h3 id="subscription_paterns_sec">12.4. 訂閱模式</h3>
 <div class="paragraph">
 <p>上述訂閱模式是典型的請求——響應模式，常見於客戶端——伺服器體系結構中。雖然這是一種有用的消息傳遞模式，允許應用程式進行雙向對話，但它是一種相對簡單的模式，在某些條件下可能不合適。例如，需要oracle提供利率的智能債券可能需要在請求-響應模式下每天請求數據，以確保利率始終是正確的。鑑於利率不經常變化，發佈——訂閱模式在這裏可能更合適，尤其是考慮到以太坊的有限帶寬。</p>
 </div>
@@ -294,7 +294,7 @@ gtag('config', 'G-ZVVQYEKMPF');
 </div>
 </div>
 <div class="sect2">
-<h3 id="data_authentication_sec">14.5. 數據認證</h3>
+<h3 id="data_authentication_sec">12.5. 數據認證</h3>
 <div class="paragraph">
 <p>如果我們假設去中心化應用查詢的數據源既具有權威性又值得信賴，那麼一個懸而未決的問題仍然存在：假設oracle和查詢/響應機制可能由不同的實體操作，我們如何才能信任這種機制？數據在傳輸過程中可能會被篡改，因此脫鏈方法能夠證明返回數據的完整性至關重要。數據認證的兩種常用方法是真實性證明和可信執行環境（TEE）。</p>
 </div>
@@ -306,7 +306,7 @@ gtag('config', 'G-ZVVQYEKMPF');
 </div>
 </div>
 <div class="sect2">
-<h3 id="computation_oracles_sec">14.6. 計算 oracles</h3>
+<h3 id="computation_oracles_sec">12.6. 計算 oracles</h3>
 <div class="paragraph">
 <p>到目前爲止，我們只是在請求和提供數據的背景下討論了oracles。然而，oracles也可用於執行任意計算，這一功能在以太坊固有的區塊gas限制和相對昂貴的計算成本的情況下特別有用; Vitalik本人指出，與現有的集中服務相比，以太坊的計算成本效率低了一百萬倍[7]。計算oracles可以用於對一組輸入執行相關計算，而不是僅僅中繼查詢結果，並返回計算結果，這可能是在鏈上計算不可行的。例如，可以使用計算oracle執行計算密集型迴歸計算，以估計債券合約的收益率。</p>
 </div>
@@ -335,7 +335,7 @@ gtag('config', 'G-ZVVQYEKMPF');
 </div>
 </div>
 <div class="sect2">
-<h3 id="decentralized_orackes_sec">14.7. 去中心化的 oracles</h3>
+<h3 id="decentralized_orackes_sec">12.7. 去中心化的 oracles</h3>
 <div class="paragraph">
 <p>上面概況的機制都描述了依賴於可信任權威的集中式oracle系統。雖然它們應該足以滿足許多應用，但它們確實代表了以太坊網路中的中心故障點。已經提出了許多圍繞去中心化oracle作爲確保數據可用性手段的方案，以及利用鏈上數據聚合系統創建獨立數據提供者網路。</p>
 </div>
@@ -353,7 +353,7 @@ gtag('config', 'G-ZVVQYEKMPF');
 </div>
 </div>
 <div class="sect2">
-<h3 id="oracle_client_interfaces_in_solidity_sec">14.8. Solidity中的Oracle客戶端接口</h3>
+<h3 id="oracle_client_interfaces_in_solidity_sec">12.8. Solidity中的Oracle客戶端接口</h3>
 <div class="paragraph">
 <p>下面是一個Solidity範例，演示如何使用API從Oraclize連續輪詢ETH/USD價格並以可用的方式儲存結果。：</p>
 </div>
@@ -535,7 +535,7 @@ uint256 result = uint256(signed_value) / base_unit;
 </div>
 </div>
 <div class="sect2">
-<h3 id="references_sec">14.9. 參考</h3>
+<h3 id="references_sec">12.9. 參考</h3>
 <div class="paragraph">
 <p>[1] <a href="http://www.oraclize.it/" class="bare">http://www.oraclize.it/</a><br>
 [2] <a href="https://tlsnotary.org/" class="bare">https://tlsnotary.org/</a><br>
@@ -554,7 +554,7 @@ uint256 result = uint256(signed_value) / base_unit;
 </div>
 </div>
 <div class="sect2">
-<h3 id="other_links_sec">14.10. 其他鏈接</h3>
+<h3 id="other_links_sec">12.10. 其他鏈接</h3>
 <div class="paragraph">
 <p><a href="https://ethereum.stackexchange.com/questions/201/how-does-oraclize-handle-the-tlsnotary-secret" class="bare">https://ethereum.stackexchange.com/questions/201/how-does-oraclize-handle-the-tlsnotary-secret</a><br>
 <a href="https://blog.oraclize.it/on-decentralization-of-blockchain-oracles-94fb78598e79" class="bare">https://blog.oraclize.it/on-decentralization-of-blockchain-oracles-94fb78598e79</a><br>
@@ -578,7 +578,7 @@ uint256 result = uint256(signed_value) / base_unit;
 </div>
 <div id="footer">
 <div id="footer-text">
-最後更新： 2026-04-01 15:09:02 UTC
+最後更新： 2026-11-02 14:55:30 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">

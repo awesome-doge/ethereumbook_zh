@@ -160,18 +160,18 @@ gtag('config', 'G-ZVVQYEKMPF');
 <div id="content">
 <nav class="chapter-nav"><a href="ch04.html" class="nav-prev">&larr; 以太坊測試網</a><a href="index.html" class="nav-home">首頁</a><a href="ch06.html" class="nav-next">錢包 &rarr;</a></nav>
 <div class="sect1">
-<h2 id="keys_addresses">7. 密鑰、地址</h2>
+<h2 id="keys_addresses">5. 密鑰、地址</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>以太坊的基礎技術之一是 <em>密碼學</em> <em>cryptography</em>，它是數學的一個分支，廣泛用於計算機安全。密碼學在希臘文中的意思是“祕密寫作”，但密碼學的科學不僅僅包含祕密寫作，它被稱為加密。加密也可以用來檢驗證明 (prove) 祕密中的知識之正確性而不洩露該祕密（數位簽章），或者證明數據的真實性（數字指紋）。這些類型的密碼學證明是以太坊和大多數區塊鏈系統的關鍵數學工具，廣泛用於以太坊應用。諷刺的是，加密並不是以太坊的重要組成部分，因為它的通信和交易數據沒有加密，也不需要加密以保護系統。在本章中，我們將以密鑰和地址的形式介紹一些以太坊用來控制資金所有權的密碼學。</p>
 </div>
 <div class="sect2">
-<h3 id="keys_addresses_intro">7.1. 簡介</h3>
+<h3 id="keys_addresses_intro">5.1. 簡介</h3>
 <div class="paragraph">
-<p>以太坊有兩種不同類型的帳戶，可以擁有和控制ether：<em>外部擁有帳戶</em>（EOA）和_合同_。在本節中，我們將研究使用密碼學來確定外部擁有帳戶（即私人密鑰）對ether的所有權。</p>
+<p>以太坊有兩種不同類型的帳戶，可以擁有和控制ether：<em>外部擁有帳戶</em>（EOA）和<em>合同</em>。在本節中，我們將研究使用密碼學來確定外部擁有帳戶（即私人密鑰）對ether的所有權。</p>
 </div>
 <div class="paragraph">
-<p>EOAs中以太的所有權通過 <em>數字密鑰</em> <em>digital keys</em>，<em>以太坊地址_和_數位簽章</em> 建立 。數字密鑰實際上並不儲存在區塊鏈中或在以太坊網路上傳輸，而是由用戶創建並儲存在檔案或稱為_錢包_的簡單資料庫中。用戶錢包中的數字密鑰完全獨立於以太坊協議，可以由用戶的錢包軟體生成和管理，無需參考區塊鏈或訪問互聯網。數字密鑰可實現以太坊的許多有趣特性，包括去中心化的信任和控制以及所有權證明。</p>
+<p>EOAs中以太的所有權通過 <em>數字密鑰</em> <em>digital keys</em>，<em>以太坊地址</em>和<em>數位簽章</em> 建立 。數字密鑰實際上並不儲存在區塊鏈中或在以太坊網路上傳輸，而是由用戶創建並儲存在檔案或稱為<em>錢包</em>的簡單資料庫中。用戶錢包中的數字密鑰完全獨立於以太坊協議，可以由用戶的錢包軟體生成和管理，無需參考區塊鏈或訪問互聯網。數字密鑰可實現以太坊的許多有趣特性，包括去中心化的信任和控制以及所有權證明。</p>
 </div>
 <div class="paragraph">
 <p>以太坊交易需要將有效的數位簽章包含在區塊鏈中，該簽名只能使用密鑰生成；因此，任何擁有該密鑰副本的人都可以控制ether。以太坊交易中的數位簽章證明了資金的真正所有者。</p>
@@ -180,14 +180,14 @@ gtag('config', 'G-ZVVQYEKMPF');
 <p>數字密鑰成對組成，密鑰和公鑰。將公鑰視為類似於銀行帳號，私鑰類似於私密PIN，用於控制帳戶。以太坊的用戶很少看到這些數字密鑰。在大多數情況下，它們儲存在錢包檔案內並由以太坊錢包軟體管理。</p>
 </div>
 <div class="paragraph">
-<p>在以太坊交易的付款部分中，預期收款人由_以太坊地址_表示，該地址與支票上的收款人名稱相同（即“付款給誰”）。在大多數情況下，以太坊地址是從公鑰生成並對應的。但是，並非所有以太坊地址都代表公鑰。他們也可以代表合同，我們將在 <a href="#contracts">[contracts]</a> 中看到。以太坊地址是用戶常會看到的唯一密鑰表示，因為這是他們需要與世界分享的部分。</p>
+<p>在以太坊交易的付款部分中，預期收款人由<em>以太坊地址</em>表示，該地址與支票上的收款人名稱相同（即“付款給誰”）。在大多數情況下，以太坊地址是從公鑰生成並對應的。但是，並非所有以太坊地址都代表公鑰。他們也可以代表合同，我們將在 <a href="ch08.html#smart_contracts_chapter">智能合約</a> 中看到。以太坊地址是用戶常會看到的唯一密鑰表示，因為這是他們需要與世界分享的部分。</p>
 </div>
 <div class="paragraph">
 <p>首先，我們將介紹密碼學並解釋以太坊使用的數學。接下來，我們將看看密鑰是如何生成，儲存和管理的。最後，我們將回顧用於表示私鑰和公鑰以及地址的各種編碼格式。</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="pkc">7.2. 公鑰密碼技術和密碼貨幣</h3>
+<h3 id="pkc">5.2. 公鑰密碼技術和密碼貨幣</h3>
 <div class="paragraph">
 <p>公鑰密碼技術是現代資訊安全的核心概念。首先由Martin Hellman，Whitfield Diffie和Ralph Merkle在20世紀70年代公開發明的，這是一個巨大的突破，它激起了公眾對密碼學領域的廣泛興趣。在70年代以前，強大的密碼學知識在政府的控制下，很少有公開的研究，直到公鑰密碼技術研究的公開發表。</p>
 </div>
@@ -195,13 +195,13 @@ gtag('config', 'G-ZVVQYEKMPF');
 <p>公鑰密碼系統使用唯一的密鑰來保護資訊。這些獨特的密鑰基於具有獨特屬性的數學函數：它們很容易在一個方向上計算，但很難在相反方向上計算。基於這些數學函數，密碼學能夠創建數字密鑰和不可偽造的數位簽章，這些簽名由數學定律保證。</p>
 </div>
 <div class="paragraph">
-<p>例如，計算兩個大質數的乘積是微不足道的。但是給定兩個大質數的乘積，很難找到這兩個質數（稱為_素因式分解_問題）。假設我提供數字6895601並告訴你它是兩個質數的乘積。找到這兩個質數要比讓它們相乘生產6895601要困難得多。</p>
+<p>例如，計算兩個大質數的乘積是微不足道的。但是給定兩個大質數的乘積，很難找到這兩個質數（稱為<em>素因式分解</em>問題）。假設我提供數字6895601並告訴你它是兩個質數的乘積。找到這兩個質數要比讓它們相乘生產6895601要困難得多。</p>
 </div>
 <div class="paragraph">
-<p>如果你知道一些祕密資訊，這些數學函數可以很容易地被反轉。在我們上面的例子中，如果我告訴你一個主質數是1931，你可以簡單地用一個簡單的除法找到另一個：6895601/1931 = 3571。這樣的函數被稱為_trapdoor函數_因為給定一個祕密資訊，你可以採取一個快捷方式，使得反轉該函數很簡單。</p>
+<p>如果你知道一些祕密資訊，這些數學函數可以很容易地被反轉。在我們上面的例子中，如果我告訴你一個主質數是1931，你可以簡單地用一個簡單的除法找到另一個：6895601/1931 = 3571。這樣的函數被稱為<em>trapdoor函數</em>因為給定一個祕密資訊，你可以採取一個快捷方式，使得反轉該函數很簡單。</p>
 </div>
 <div class="paragraph">
-<p>在密碼學中有用的另一類數學函數基於橢圓曲線上的算術運算。在橢圓曲線算術中，乘以模數是簡單的，但是除法是不可能的（一個被稱為_離散對數_的問題）。橢圓曲線密碼術在現代計算機系統中被廣泛使用，並且是以太坊（和其他密碼貨幣）數字密鑰和數位簽章的基礎。</p>
+<p>在密碼學中有用的另一類數學函數基於橢圓曲線上的算術運算。在橢圓曲線算術中，乘以模數是簡單的，但是除法是不可能的（一個被稱為<em>離散對數</em>的問題）。橢圓曲線密碼術在現代計算機系統中被廣泛使用，並且是以太坊（和其他密碼貨幣）數字密鑰和數位簽章的基礎。</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -238,7 +238,7 @@ https：//en.wikipedia.org/wiki/Elliptic_curve_cryptography</p>
 </table>
 </div>
 <div class="paragraph">
-<p>在以太坊，我們使用公鑰加密技術來創建一個密鑰對，以控制對ether的訪問，並允許我們對合同進行身份驗證。密鑰對由私鑰和唯一公鑰組成，並且被認為是“一對兒”，因為公鑰是從私鑰中派生出來的。公鑰用於接收資金，私鑰用於創建數位簽章來簽署交易以支付資金。數位簽章也可用於驗證合同的所有者或用戶，我們將在 &lt;&lt; contract_authentication&gt;&gt; 中看到。</p>
+<p>在以太坊，我們使用公鑰加密技術來創建一個密鑰對，以控制對ether的訪問，並允許我們對合同進行身份驗證。密鑰對由私鑰和唯一公鑰組成，並且被認為是“一對兒”，因為公鑰是從私鑰中派生出來的。公鑰用於接收資金，私鑰用於創建數位簽章來簽署交易以支付資金。數位簽章也可用於驗證合同的所有者或用戶，我們將在 <a href="ch08.html#smart_contracts_chapter">智能合約</a> 中看到。</p>
 </div>
 <div class="paragraph">
 <p>公鑰和私鑰之間存在數學關係，允許私鑰用於在消息上生成簽名。該簽名可以在不公開私鑰的情況下使用公鑰進行驗證。</p>
@@ -254,7 +254,7 @@ https：//en.wikipedia.org/wiki/Elliptic_curve_cryptography</p>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>在大多數錢包實現中，為了方便起見，私鑰和公鑰一起儲存為_key pair_。但是，公鑰可以由私鑰進行簡單計算，因此只儲存私鑰也是可以的。</p>
+<p>在大多數錢包實現中，為了方便起見，私鑰和公鑰一起儲存為<em>key pair</em>。但是，公鑰可以由私鑰進行簡單計算，因此只儲存私鑰也是可以的。</p>
 </div>
 </td>
 </tr>
@@ -270,7 +270,7 @@ https：//en.wikipedia.org/wiki/Elliptic_curve_cryptography</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="private_keys">7.3. 私鑰</h3>
+<h3 id="private_keys">5.3. 私鑰</h3>
 <div class="paragraph">
 <p>私鑰只是一個隨機選取的數字。私有密鑰的所有權和控制權是用戶控制與相應以太坊地址相關聯的所有資金的基礎，也是對該地址的合同的訪問權授權。通過證明交易中使用的資金的所有權，私鑰用於創建花費ether所需的簽名。私鑰在任何時候都必須保密，因為向第三方透露密鑰相當於讓他們控制以太和由該密鑰保證的合同。私鑰還必須備份並防止意外丟失。如果它丟失了，無法恢復，它保護的資金也將永遠丟失。</p>
 </div>
@@ -290,12 +290,12 @@ https：//en.wikipedia.org/wiki/Elliptic_curve_cryptography</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="generating_private_key">7.4. 從隨機數生成私鑰</h3>
+<h3 id="generating_private_key">5.4. 從隨機數生成私鑰</h3>
 <div class="paragraph">
 <p>生成密鑰的第一步也是最重要的一步是找到一個安全的熵源或隨機源。創建以太坊私鑰基本上與“選擇1到2<sup>256</sup>之間的數字”相同。只要不可預測和不可重複，用於選擇該數字的確切方法並不重要。以太坊軟體使用底層作業系統的隨機數生成器生成256位熵（隨機性）。通常，作業系統隨機數生成器是由一個人為的隨機源進行初始化的，這就是為什麼可能會要求你將鼠標左右搖擺幾秒鐘，或者按下鍵盤上的隨機鍵。</p>
 </div>
 <div class="paragraph">
-<p>更確切地說，可能的私鑰範圍略小於2<sup>256</sup>。在以太坊中，私鑰可以是+1+和+n-1+之間的任何數字，其中n是定義為使用的橢圓曲線的階數的常數（n = 1.158*10<sup>77</sup>，略小於2<sup>256</sup>）（參見<a href="#elliptic_curve">橢圓曲線密碼學解釋</a>）。為了創建這樣的密鑰，我們隨機選擇一個256位數字並檢查它是否小於+n-1+。在編程方面，這通常是通過將從密碼學安全的隨機源收集的更大的隨機比特串提供給256位雜湊演算法（如Keccak-256或SHA256）（參見 <a href="#cryptographic_hash_algorithm">[cryptographic_hash_algorithm]</a>），產生一個256位數字。如果結果小於+n-1+，我們有一個合適的私鑰。否則，我們只需再次嘗試使用另一個隨機數。</p>
+<p>更確切地說，可能的私鑰範圍略小於2<sup>256</sup>。在以太坊中，私鑰可以是<code>1</code>和<code>n-1</code>之間的任何數字，其中n是定義為使用的橢圓曲線的階數的常數（n = 1.158*10<sup>77</sup>，略小於2<sup>256</sup>）（參見<a href="#elliptic_curve">橢圓曲線密碼學解釋</a>）。為了創建這樣的密鑰，我們隨機選擇一個256位數字並檢查它是否小於<code>n-1</code>。在編程方面，這通常是通過將從密碼學安全的隨機源收集的更大的隨機比特串提供給256位雜湊演算法（如Keccak-256或SHA256）（參見 <a href="#hash_functions">加密雜湊函數</a>），產生一個256位數字。如果結果小於<code>n-1</code>，我們有一個合適的私鑰。否則，我們只需再次嘗試使用另一個隨機數。</p>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -335,9 +335,9 @@ https：//en.wikipedia.org/wiki/Elliptic_curve_cryptography</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="pubkey">7.5. 公鑰</h3>
+<h3 id="pubkey">5.5. 公鑰</h3>
 <div class="paragraph">
-<p>以太坊公鑰是一個橢圓曲線上的_點_ <em>point</em>，意思是它是一組滿足橢圓曲線方程的X和Y座標。</p>
+<p>以太坊公鑰是一個橢圓曲線上的<em>點</em> <em>point</em>，意思是它是一組滿足橢圓曲線方程的X和Y座標。</p>
 </div>
 <div class="paragraph">
 <p>簡單來說，以太坊公鑰是兩個數字，並聯在一起。這些數字是通過一次單向的計算從私鑰生成的。這意味著，如果你擁有私鑰，則計算公鑰是微不足道的。但是你不能從公鑰中計算私鑰。</p>
@@ -350,10 +350,10 @@ https：//en.wikipedia.org/wiki/Elliptic_curve_cryptography</p>
 </div>
 </div>
 <div class="paragraph">
-<p>公鑰使用橢圓曲線乘法和私鑰計算，這是不可逆的：<em>K</em> = <em>k</em> * <em>G</em>，其中_k_是私鑰，<em>G_是一個稱為_generator point_的常數點，_K_是結果公鑰。如果你知道_K</em>，那麼稱為“尋找離散對數”的逆運算就像嘗試所有可能的_k_值一樣困難，也就是蠻力搜索。</p>
+<p>公鑰使用橢圓曲線乘法和私鑰計算，這是不可逆的：<em>K</em> = <em>k</em> * <em>G</em>，其中<em>k</em>是私鑰，<em>G</em>是一個稱為<em>generator point</em>的常數點，<em>K</em>是結果公鑰。如果你知道<em>K</em>，那麼稱為“尋找離散對數”的逆運算就像嘗試所有可能的<em>k</em>值一樣困難，也就是蠻力搜索。</p>
 </div>
 <div class="paragraph">
-<p>簡單地說：橢圓曲線上的算術不同於“常規”整數算術。點（G）可以乘以整數（k）以產生另一點（K）。但是沒有_除法_這樣的東西，所以不可能簡單地用公共密鑰K除以點G來計算私鑰k。這是<a href="#pkc">公鑰密碼技術和密碼貨幣</a>中描述的單向數學函數。</p>
+<p>簡單地說：橢圓曲線上的算術不同於“常規”整數算術。點（G）可以乘以整數（k）以產生另一點（K）。但是沒有<em>除法</em>這樣的東西，所以不可能簡單地用公共密鑰K除以點G來計算私鑰k。這是<a href="#pkc">公鑰密碼技術和密碼貨幣</a>中描述的單向數學函數。</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -374,7 +374,7 @@ https：//en.wikipedia.org/wiki/Elliptic_curve_cryptography</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="elliptic_curve">7.6. 橢圓曲線密碼學解釋</h3>
+<h3 id="elliptic_curve">5.6. 橢圓曲線密碼學解釋</h3>
 <div class="paragraph">
 <p>橢圓曲線密碼術是一種基於離散對數問題的非對稱或公鑰密碼體系，如橢圓曲線上的加法和乘法運算。</p>
 </div>
@@ -389,7 +389,7 @@ https：//en.wikipedia.org/wiki/Elliptic_curve_cryptography</p>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>以太坊使用與比特幣完全相同的橢圓曲線，稱為 secp256k1 。這使得重新使用比特幣的許多橢圓曲線庫和工具成為可能。</p>
+<p>以太坊使用與比特幣完全相同的橢圓曲線，稱為 <code>secp256k1</code> 。這使得重新使用比特幣的許多橢圓曲線庫和工具成為可能。</p>
 </div>
 </td>
 </tr>
@@ -399,10 +399,10 @@ https：//en.wikipedia.org/wiki/Elliptic_curve_cryptography</p>
 <div class="content">
 <img src="images/simple_elliptic_curve.png" alt="ecc-curve">
 </div>
-<div class="title">Figure 27. A visualization of an elliptic curve</div>
+<div class="title">圖 27. A visualization of an elliptic curve</div>
 </div>
 <div class="paragraph">
-<p>以太坊使用特定的橢圓曲線和一組數學常數，由國家標準與技術研究院（NIST）制定的名為 secp256k1 的標準中所定義的。secp256k1 曲線由以下函數定義，該函數產生一個橢圓曲線：</p>
+<p>以太坊使用特定的橢圓曲線和一組數學常數，由國家標準與技術研究院（NIST）制定的名為 <code>secp256k1</code> 的標準中所定義的。<code>secp256k1</code> 曲線由以下函數定義，該函數產生一個橢圓曲線：</p>
 </div>
 <div class="stemblock">
 <div class="content">
@@ -422,19 +422,19 @@ https：//en.wikipedia.org/wiki/Elliptic_curve_cryptography</p>
 </div>
 </div>
 <div class="paragraph">
-<p><em>mod p</em> (模質數p) 表示該曲線在質數階_p_的有限域上，也寫作 <strong>F</strong><sub>p</sub>, 其中 p = 2<sup>256</sup> – 2<sup>32</sup> – 2<sup>9</sup> – 2<sup>8</sup> – 2<sup>7</sup> – 2<sup>6</sup> – 2<sup>4</sup> – 1, 一個非常大的質數。</p>
+<p><em>mod p</em> (模質數p) 表示該曲線在質數階<em>p</em>的有限域上，也寫作 <strong>F</strong><sub>p</sub>, 其中 p = 2<sup>256</sup> – 2<sup>32</sup> – 2<sup>9</sup> – 2<sup>8</sup> – 2<sup>7</sup> – 2<sup>6</sup> – 2<sup>4</sup> – 1, 一個非常大的質數。</p>
 </div>
 <div class="paragraph">
-<p>因為這條曲線是在有限的質數階上而不是在實數上定義的，所以它看起來像是一個散佈在二維中的點的模式，使得難以可視化。然而，數學與實數上的橢圓曲線的數學是相同的。作為一個例子，<a href="#ecc-over-F17-math">Elliptic curve cryptography: visualizing an elliptic curve over F(p), with p=17</a> 在一個更小的質數階17的有限域上顯示了相同的橢圓曲線，顯示了一個網格上的點的圖案。secp256k1 以太坊橢圓曲線可以被認為是一個更復雜的模式，在一個不可思議的大網格上的點。</p>
+<p>因為這條曲線是在有限的質數階上而不是在實數上定義的，所以它看起來像是一個散佈在二維中的點的模式，使得難以可視化。然而，數學與實數上的橢圓曲線的數學是相同的。作為一個例子，<a href="#ecc-over-F17-math">Elliptic curve cryptography: visualizing an elliptic curve over F(p), with p=17</a> 在一個更小的質數階17的有限域上顯示了相同的橢圓曲線，顯示了一個網格上的點的圖案。<code>secp256k1</code> 以太坊橢圓曲線可以被認為是一個更復雜的模式，在一個不可思議的大網格上的點。</p>
 </div>
 <div id="ecc-over-F17-math" class="imageblock smallersixty">
 <div class="content">
 <img src="images/ec_over_small_prime_field.png" alt="ecc-over-F17-math">
 </div>
-<div class="title">Figure 28. Elliptic curve cryptography: visualizing an elliptic curve over F(p), with p=17</div>
+<div class="title">圖 28. Elliptic curve cryptography: visualizing an elliptic curve over F(p), with p=17</div>
 </div>
 <div class="paragraph">
-<p>例如，以下是座標為（x，y）的點Q，它是 secp256k1 曲線上的一個點：</p>
+<p>例如，以下是座標為（x，y）的點Q，它是 <code>secp256k1</code> 曲線上的一個點：</p>
 </div>
 <div id="coordinates_example" class="listingblock">
 <div class="content">
@@ -442,10 +442,10 @@ https：//en.wikipedia.org/wiki/Elliptic_curve_cryptography</p>
 </div>
 </div>
 <div class="paragraph">
-<p><a href="#example_1">Using Python to confirm that this point is on the elliptic curve</a> 顯示了如何使用Python檢查它。變數x和y是上述點Q的座標。變數p是橢圓曲線的主要階數（用於所有模運算的質數）。Python的最後一行是橢圓曲線方程（Python中的％運算符是模運算符）。如果x和y確實是橢圓曲線上的點，那麼它們滿足方程，結果為零（0L+是零值的長整數）。通過在命令行上鍵入+python 並複製下面的每行（不包括提示符 &gt;&gt;&gt;），親自嘗試一下：</p>
+<p><a href="#example_1">Using Python to confirm that this point is on the elliptic curve</a> 顯示了如何使用Python檢查它。變數x和y是上述點Q的座標。變數p是橢圓曲線的主要階數（用於所有模運算的質數）。Python的最後一行是橢圓曲線方程（Python中的％運算符是模運算符）。如果x和y確實是橢圓曲線上的點，那麼它們滿足方程，結果為零（<code>0L</code>是零值的長整數）。通過在命令行上鍵入<code>python</code> 並複製下面的每行（不包括提示符 <code>&gt;&gt;&gt;</code>），親自嘗試一下：</p>
 </div>
 <div id="example_1" class="exampleblock">
-<div class="title">Example 1. Using Python to confirm that this point is on the elliptic curve</div>
+<div class="title">範例 1. Using Python to confirm that this point is on the elliptic curve</div>
 <div class="content">
 <div class="listingblock">
 <div class="content">
@@ -463,7 +463,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 </div>
 </div>
 <div class="sect2">
-<h3 id="EC_math">7.7. 橢圓曲線算術運算</h3>
+<h3 id="EC_math">5.7. 橢圓曲線算術運算</h3>
 <div class="paragraph">
 <p>很多橢圓曲線數學看起來很像我們在學校學到的整數算術。具體而言，我們可以定義一個加法運算符，而不是添加數字就是在曲線上添加點。一旦我們有了加法運算符，我們也可以定義一個點和一個整數的乘法，等於重複加法。</p>
 </div>
@@ -496,9 +496,9 @@ Type "help", "copyright", "credits" or "license" for more information.
 </div>
 </div>
 <div class="sect2">
-<h3 id="public_key_derivation">7.8. 生成一個公鑰</h3>
+<h3 id="public_key_derivation">5.8. 生成一個公鑰</h3>
 <div class="paragraph">
-<p>以一個隨機生成的數字_k_的私鑰開始，我們通過將它乘以稱為_generator point_ <em>G_的曲線上的預定點，在曲線上的其他位置產生另一個點，這是相應的公鑰_K</em>。生成點被指定為+secp256k1+標準的一部分，對於+secp256k1+的所有實現始終相同，並且從該曲線派生的所有密鑰都使用相同的點_G_：</p>
+<p>以一個隨機生成的數字<em>k</em>的私鑰開始，我們通過將它乘以稱為<em>generator point</em> <em>G</em>的曲線上的預定點，在曲線上的其他位置產生另一個點，這是相應的公鑰<em>K</em>。生成點被指定為<code>secp256k1</code>標準的一部分，對於<code>secp256k1</code>的所有實現始終相同，並且從該曲線派生的所有密鑰都使用相同的點<em>G</em>：</p>
 </div>
 <div class="stemblock">
 <div class="content">
@@ -508,10 +508,10 @@ Type "help", "copyright", "credits" or "license" for more information.
 </div>
 </div>
 <div class="paragraph">
-<p>其中_k_是私鑰，<em>G_是生成點，_K_是生成的公鑰，即曲線上的一個點。因為所有以太坊用戶的生成點始終相同，所以_G_乘以_G_的私鑰總是會導致相同的公鑰_K</em>。<em>k_和_K_之間的關係是固定的，但只能從_k_到_K_的一個方向進行計算。這就是為什麼以太坊地址（來自_K</em>）可以與任何人共享，並且不會洩露用戶的私鑰（<em>k</em>）。</p>
+<p>其中<em>k</em>是私鑰，<em>G</em>是生成點，<em>K</em>是生成的公鑰，即曲線上的一個點。因為所有以太坊用戶的生成點始終相同，所以<em>G</em>乘以<em>G</em>的私鑰總是會導致相同的公鑰<em>K</em>。<em>k</em>和<em>K</em>之間的關係是固定的，但只能從<em>k</em>到<em>K</em>的一個方向進行計算。這就是為什麼以太坊地址（來自<em>K</em>）可以與任何人共享，並且不會洩露用戶的私鑰（<em>k</em>）。</p>
 </div>
 <div class="paragraph">
-<p>正如我們在 <a href="#EC_math">橢圓曲線算術運算</a>中所描述的那樣，k * G的乘法相當於重複加，G + G + G + &#8230;&#8203; + G ，重複k次。總而言之，為了從私鑰_k_生成公鑰_K_，我們將生成點_G_添加到自己_k_次。</p>
+<p>正如我們在 <a href="#EC_math">橢圓曲線算術運算</a>中所描述的那樣，k * G的乘法相當於重複加，G + G + G + &#8230;&#8203; + G ，重複k次。總而言之，為了從私鑰<em>k</em>生成公鑰<em>K</em>，我們將生成點<em>G</em>添加到自己<em>k</em>次。</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -537,7 +537,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 </div>
 </div>
 <div class="paragraph">
-<p>密碼庫可以幫助我們使用橢圓曲線乘法計算K值。得到的公鑰_K_被定義為一個點 K = (x,y) ：</p>
+<p>密碼庫可以幫助我們使用橢圓曲線乘法計算K值。得到的公鑰<em>K</em>被定義為一個點 <code>K = (x,y)</code> ：</p>
 </div>
 <div id="example_pubkey" class="listingblock">
 <div class="title">Example public key calculated from the example private key</div>
@@ -551,7 +551,7 @@ y = 83b5c38e5e2b0c8529d7fa3f64d46daa1ece2d9ac14cab9477d042c84c32ccd0</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>在以太坊中，你可以看到公鑰以66個十六進制字符（33字節）的十六進制序列表示。這是從行業聯盟標準高效密碼組（SECG）提出的標準序列化格式採用的，在http://www.secg.org/sec1-v2.pdf[Standards for Efficient Cryptography（SEC1）]中有記載。該標準定義了四個可用於識別橢圓曲線上點的可能前綴：</p>
+<p>在以太坊中，你可以看到公鑰以66個十六進制字符（33字節）的十六進制序列表示。這是從行業聯盟標準高效密碼組（SECG）提出的標準序列化格式採用的，在<a href="http://www.secg.org/sec1-v2.pdf">Standards for Efficient Cryptography（SEC1）</a>中有記載。該標準定義了四個可用於識別橢圓曲線上點的可能前綴：</p>
 </div>
 <table id="EC_prefix_table" class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -594,7 +594,7 @@ y = 83b5c38e5e2b0c8529d7fa3f64d46daa1ece2d9ac14cab9477d042c84c32ccd0</pre>
 </tbody>
 </table>
 <div class="paragraph">
-<p>以太坊只使用未壓縮的公鑰，因此唯一相關的前綴是（十六進制）04。順序連接公鑰的X和Y座標：</p>
+<p>以太坊只使用未壓縮的公鑰，因此唯一相關的前綴是（十六進制）<code>04</code>。順序連接公鑰的X和Y座標：</p>
 </div>
 <div id="concat_coordinates" class="listingblock">
 <div class="content">
@@ -611,7 +611,7 @@ y = 83b5c38e5e2b0c8529d7fa3f64d46daa1ece2d9ac14cab9477d042c84c32ccd0</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="EC_lib">7.9. 橢圓曲線庫</h3>
+<h3 id="EC_lib">5.9. 橢圓曲線庫</h3>
 <div class="paragraph">
 <p>密碼貨幣相關項目中使用了secp256k1橢圓曲線的幾個實現：</p>
 </div>
@@ -619,17 +619,17 @@ y = 83b5c38e5e2b0c8529d7fa3f64d46daa1ece2d9ac14cab9477d042c84c32ccd0</pre>
 <dl>
 <dt class="hdlist1">OpenSSL</dt>
 <dd>
-<p>OpenSSL庫提供了一套全面的加密原語，包括secp256k1的完整實現。例如，要派生公鑰，可以使用函數+EC_POINT_mul()+。https://www.openssl.org/</p>
+<p>OpenSSL庫提供了一套全面的加密原語，包括secp256k1的完整實現。例如，要派生公鑰，可以使用函數<code>EC_POINT_mul()</code>。<a href="https://www.openssl.org/" class="bare">https://www.openssl.org/</a></p>
 </dd>
 <dt class="hdlist1">libsecp256k1</dt>
 <dd>
-<p>Bitcoin Core的libsecp256k1是secp256k1橢圓曲線和其他密碼原語的C語言實現。橢圓曲線密碼學的libsecp256是從頭開始編寫的，代替了Bitcoin Core軟體中的OpenSSL，在性能和安全性方面被認為是優越的。https://github.com/bitcoin-core/secp256k1</p>
+<p>Bitcoin Core的libsecp256k1是secp256k1橢圓曲線和其他密碼原語的C語言實現。橢圓曲線密碼學的libsecp256是從頭開始編寫的，代替了Bitcoin Core軟體中的OpenSSL，在性能和安全性方面被認為是優越的。<a href="https://github.com/bitcoin-core/secp256k1" class="bare">https://github.com/bitcoin-core/secp256k1</a></p>
 </dd>
 </dl>
 </div>
 </div>
 <div class="sect2">
-<h3 id="hash_functions">7.10. 加密雜湊函數</h3>
+<h3 id="hash_functions">5.10. 加密雜湊函數</h3>
 <div class="paragraph">
 <p>加密雜湊函數在整個以太坊使用。事實上，雜湊函數幾乎在所有密碼系統中都有廣泛應用，這是密碼學家布魯斯•施奈爾（Bruce Schneier）所說的一個事實，他說：“單向雜湊函數遠不止於加密演算法，而是現代密碼學的主要工具。</p>
 </div>
@@ -637,10 +637,10 @@ y = 83b5c38e5e2b0c8529d7fa3f64d46daa1ece2d9ac14cab9477d042c84c32ccd0</pre>
 <p>在本節中，我們將討論雜湊函數，瞭解它們的基本屬性以及這些屬性如何使它們在現代密碼學的很多領域如此有用。我們在這裡討論雜湊函數，因為它們是將以太坊公鑰轉換成地址的一部分。</p>
 </div>
 <div class="paragraph">
-<p>簡而言之，“雜湊函數是可用於將任意大小的數據映射到固定大小的數據的函數。” <a href="https://en.wikipedia.org/wiki/Hash_function">Source：Wikipedia</a>。雜湊函數的輸入稱為 <em>原象</em> _ pre-image_ 或 <em>消息</em> <em>message</em>。輸出被稱為  <em>雜湊</em> <em>hash_或 _摘要</em> <em>digest</em>。雜湊函數的一個特殊子類別是 <em>加密雜湊函數</em>，它具有對密碼學有用的特定屬性。</p>
+<p>簡而言之，“雜湊函數是可用於將任意大小的數據映射到固定大小的數據的函數。” <a href="https://en.wikipedia.org/wiki/Hash_function">Source：Wikipedia</a>。雜湊函數的輸入稱為 <em>原象</em> <em>pre-image</em> 或 <em>消息</em> <em>message</em>。輸出被稱為  <em>雜湊</em> <em>hash</em>或 <em>摘要</em> <em>digest</em>。雜湊函數的一個特殊子類別是 <em>加密雜湊函數</em>，它具有對密碼學有用的特定屬性。</p>
 </div>
 <div class="paragraph">
-<p>加密雜湊函數是一種_單向_雜湊函數，它將任意大小的數據映射到固定大小的位串，如果知道輸出，計算上不可能重新創建輸入。確定輸入的唯一方法是對所有可能的輸入進行蠻力搜索，檢查匹配輸出。</p>
+<p>加密雜湊函數是一種<em>單向</em>雜湊函數，它將任意大小的數據映射到固定大小的位串，如果知道輸出，計算上不可能重新創建輸入。確定輸入的唯一方法是對所有可能的輸入進行蠻力搜索，檢查匹配輸出。</p>
 </div>
 <div class="paragraph">
 <p>加密雜湊函數有五個主要屬性 (<a href="https://en.wikipedia.org/wiki/Cryptographic_hash_function">Source: Wikipedia/Cryptographic Hash Function</a>):</p>
@@ -705,9 +705,9 @@ y = 83b5c38e5e2b0c8529d7fa3f64d46daa1ece2d9ac14cab9477d042c84c32ccd0</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="keccak256">7.11. 以太坊的加密雜湊函數 - Keccak-256</h3>
+<h3 id="keccak256">5.11. 以太坊的加密雜湊函數 - Keccak-256</h3>
 <div class="paragraph">
-<p>以太坊在許多地方使用_Keccak-256_加密雜湊函數。Keccak-256被設計為於2007年舉行的SHA-3密碼雜湊函數競賽的候選者。Keccak是獲勝的演算法，在2015年被標準化為 FIPS（聯邦資訊處理標準）202。</p>
+<p>以太坊在許多地方使用<em>Keccak-256</em>加密雜湊函數。Keccak-256被設計為於2007年舉行的SHA-3密碼雜湊函數競賽的候選者。Keccak是獲勝的演算法，在2015年被標準化為 FIPS（聯邦資訊處理標準）202。</p>
 </div>
 <div class="paragraph">
 <p>然而，在以太坊開發期間，NIST標準化工作正在完成。在標準過程完成後，NIST調整了Keccak的一些參數，據稱可以提高效率。這與英雄告密者愛德華斯諾登透露的檔案暗示NIST可能受到國家安全局的不當影響同時發生，故意削弱Dual_EC_DRBG隨機數生成器標準，有效地在標準隨機數生成器中放置一個後門。這場爭論的結果是對所提議修改的反對以及SHA-3標準化的嚴重拖延。當時，以太坊基金會決定實施最初的Keccak演算法。</p>
@@ -727,16 +727,16 @@ y = 83b5c38e5e2b0c8529d7fa3f64d46daa1ece2d9ac14cab9477d042c84c32ccd0</pre>
 </table>
 </div>
 <div class="paragraph">
-<p>由於Ethereum中使用的雜湊函數（Keccak-256）與最終標準（FIP-202 SHA-3）之間的差異造成了混淆，因此正在努力將程式碼中所有的 sha3 的所有實例，操作碼和庫重新命名為 keccak256。詳情請參閱https://github.com/ethereum/EIPs/issues/59[ERC-59]。</p>
+<p>由於Ethereum中使用的雜湊函數（Keccak-256）與最終標準（FIP-202 SHA-3）之間的差異造成了混淆，因此正在努力將程式碼中所有的 <code>sha3</code> 的所有實例，操作碼和庫重新命名為 <code>keccak256</code>。詳情請參閱<a href="https://github.com/ethereum/EIPs/issues/59">ERC-59</a>。</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="which_hash">7.12. 我正在使用哪個雜湊函數？</h3>
+<h3 id="which_hash">5.12. 我正在使用哪個雜湊函數？</h3>
 <div class="paragraph">
 <p>如何判斷你使用的軟體庫是FIPS-202 SHA-3還是Keccak-256（如果兩者都可能被稱為“SHA3”）？</p>
 </div>
 <div class="paragraph">
-<p>一個簡單的方法是使用_test vector_，一個給定輸入的預期輸出。最常用於雜湊函數的測試是_empty input_。如果你使用空字串作為輸入運行雜湊函數，你應該看到以下結果：</p>
+<p>一個簡單的方法是使用<em>test vector</em>，一個給定輸入的預期輸出。最常用於雜湊函數的測試是<em>empty input</em>。如果你使用空字串作為輸入運行雜湊函數，你應該看到以下結果：</p>
 </div>
 <div id="sha3_test_vectors" class="listingblock">
 <div class="title">Testing whether the SHA3 library you are using is Keccak-256 of FIP-202 SHA-3</div>
@@ -756,7 +756,7 @@ a7ffc6f8bf1ed76651c14756a061d662f580ff4de43b49fa82d80a4b80f8434a</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="eth_address">7.13. 以太坊地址</h3>
+<h3 id="eth_address">5.13. 以太坊地址</h3>
 <div class="paragraph">
 <p>以太坊地址是 <em>唯一識別碼</em> <em>unique identifiers</em>，它們是使用單向雜湊函數（Keccak-256）從公鑰或合約派生的。</p>
 </div>
@@ -794,7 +794,7 @@ a7ffc6f8bf1ed76651c14756a061d662f580ff4de43b49fa82d80a4b80f8434a</pre>
 </table>
 </div>
 <div class="paragraph">
-<p>我們使用Keccak-256來計算這個公鑰的_hash_：</p>
+<p>我們使用Keccak-256來計算這個公鑰的<em>hash</em>：</p>
 </div>
 <div id="calculate_hash" class="listingblock">
 <div class="content">
@@ -819,7 +819,7 @@ a7ffc6f8bf1ed76651c14756a061d662f580ff4de43b49fa82d80a4b80f8434a</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="eth_address_format">7.14. 以太坊地址格式</h3>
+<h3 id="eth_address_format">5.14. 以太坊地址格式</h3>
 <div class="paragraph">
 <p>以太坊地址是十六進制數字，從公鑰的Keccak-256雜湊的最後20個字節匯出的識別碼。</p>
 </div>
@@ -833,12 +833,12 @@ a7ffc6f8bf1ed76651c14756a061d662f580ff4de43b49fa82d80a4b80f8434a</pre>
 <p>回想起來，這種設計選擇導致了一些問題，包括由於輸入錯誤地址和輸入驗證錯誤而導致的資金損失。以太坊名稱服務的開發速度低於最初的預期，諸如ICAP之類的替代編碼被錢包開發商採用得非常緩慢。</p>
 </div>
 <div class="sect3">
-<h4 id="ICAP">7.14.1. 互換客戶端地址協議 Inter Exchange Client Address Protocol (ICAP)</h4>
+<h4 id="icap">5.14.1. 互換客戶端地址協議 Inter Exchange Client Address Protocol (ICAP)</h4>
 <div class="paragraph">
-<p>_互換客戶端地址協議（ICAP）_是一種部分與國際銀行帳號（IBAN）編碼兼容的以太坊地址編碼，為以太坊地址提供多功能，校驗和互操作編碼。ICAP地址可以編碼以太坊地址或通過以太坊名稱註冊表註冊的常用名稱。</p>
+<p><em>互換客戶端地址協議（ICAP）</em>是一種部分與國際銀行帳號（IBAN）編碼兼容的以太坊地址編碼，為以太坊地址提供多功能，校驗和互操作編碼。ICAP地址可以編碼以太坊地址或通過以太坊名稱註冊表註冊的常用名稱。</p>
 </div>
 <div class="paragraph">
-<p>閱讀以太坊Wiki上的ICAP：https://github.com/ethereum/wiki/wiki/ICAP:-Inter-exchange-Client-Address-Protocol</p>
+<p>閱讀以太坊Wiki上的ICAP：<a href="https://github.com/ethereum/wiki/wiki/ICAP:-Inter-exchange-Client-Address-Protocol" class="bare">https://github.com/ethereum/wiki/wiki/ICAP:-Inter-exchange-Client-Address-Protocol</a></p>
 </div>
 <div class="paragraph">
 <p>IBAN是識別銀行帳號的國際標準，主要用於電匯。它在歐洲單一歐元支付區（SEPA）及其以後被廣泛採用。IBAN是一項集中和嚴格監管的服務。ICAP是以太坊地址的分散但兼容的實現。</p>
@@ -853,20 +853,20 @@ a7ffc6f8bf1ed76651c14756a061d662f580ff4de43b49fa82d80a4b80f8434a</pre>
 <dl>
 <dt class="hdlist1">Direct</dt>
 <dd>
-<p>最多30個字母數字字符big-endian base-36整數，表示以太坊地址的最低有效位。由於此編碼適合小於155位，因此它僅適用於以一個或多個零字節開頭的以太坊地址。就欄位長度和校驗和而言，它的優點是它與IBAN兼容。範例：XE60HAMICDXSV5QXVJA7TJW47Q9CHWKJD（33個字符長）</p>
+<p>最多30個字母數字字符big-endian base-36整數，表示以太坊地址的最低有效位。由於此編碼適合小於155位，因此它僅適用於以一個或多個零字節開頭的以太坊地址。就欄位長度和校驗和而言，它的優點是它與IBAN兼容。範例：<code>XE60HAMICDXSV5QXVJA7TJW47Q9CHWKJD</code>（33個字符長）</p>
 </dd>
 <dt class="hdlist1">Baasic</dt>
 <dd>
-<p>與“Direct”編碼相同，只是長度為31個字符。這使它可以編碼任何以太坊地址，但使其與IBAN欄位驗證不兼容。範例：XE18CHDJBPLTBCJ03FE9O2NS0BPOJVQCU2P（35個字符長）</p>
+<p>與“Direct”編碼相同，只是長度為31個字符。這使它可以編碼任何以太坊地址，但使其與IBAN欄位驗證不兼容。範例：<code>XE18CHDJBPLTBCJ03FE9O2NS0BPOJVQCU2P</code>（35個字符長）</p>
 </dd>
 <dt class="hdlist1">Indrect</dt>
 <dd>
-<p>編碼通過名稱註冊表提供程式解析為以太坊地址的識別碼。使用由_asset identifier_（例如ETH），名稱服務（例如XREG）和9個字符的名稱（例如KITTYCATS）組成的16個字母數字字符，這是一個人類可讀的名稱。範例：XE## ETHXREGKITTYCATS（20個字符長），其中“##”應由兩個計算校驗和字符替換。</p>
+<p>編碼通過名稱註冊表提供程式解析為以太坊地址的識別碼。使用由<em>asset identifier</em>（例如ETH），名稱服務（例如XREG）和9個字符的名稱（例如KITTYCATS）組成的16個字母數字字符，這是一個人類可讀的名稱。範例：<code>XE##ETHXREGKITTYCATS</code>（20個字符長），其中“##”應由兩個計算校驗和字符替換。</p>
 </dd>
 </dl>
 </div>
 <div class="paragraph">
-<p>我們可以使用 helpeth 命令行工具來創建ICAP地址。讓我們嘗試使用我們的範例私鑰（前綴為0x並作為參數傳遞給helpeth）：</p>
+<p>我們可以使用 <code>helpeth</code> 命令行工具來創建ICAP地址。讓我們嘗試使用我們的範例私鑰（前綴為0x並作為參數傳遞給helpeth）：</p>
 </div>
 <div id="create_ICAP" class="listingblock">
 <div class="content">
@@ -878,7 +878,7 @@ Public key: 0x6e145ccef1033dea239875dd00dfb4fee6e3348b84985c92f103444683bae07b83
 </div>
 </div>
 <div class="paragraph">
-<p>helpeth 命令為我們構建了一個十六進制以太坊地址以及一個ICAP地址。我們範例密鑰的ICAP地址是：</p>
+<p><code>helpeth</code> 命令為我們構建了一個十六進制以太坊地址以及一個ICAP地址。我們範例密鑰的ICAP地址是：</p>
 </div>
 <div id="ICAP_example" class="listingblock">
 <div class="content">
@@ -910,7 +910,7 @@ Public key: 0x6e145ccef1033dea239875dd00dfb4fee6e3348b84985c92f103444683bae07b83
 </div>
 </div>
 <div class="sect3">
-<h4 id="EIP55">7.14.2. 使用大寫校驗和的十六進制編碼 (EIP-55)</h4>
+<h4 id="eip-55">5.14.2. 使用大寫校驗和的十六進制編碼 (EIP-55)</h4>
 <div class="paragraph">
 <p>由於ICAP或名稱服務部署緩慢，因此提出了一個新的標準，以太坊改進建議55（EIP-55）。你可以閱讀詳細資訊：</p>
 </div>
@@ -948,7 +948,7 @@ Public key: 0x6e145ccef1033dea239875dd00dfb4fee6e3348b84985c92f103444683bae07b83
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>計算小寫地址的雜湊，不帶 0x 前綴：:</p>
+<p>計算小寫地址的雜湊，不帶 <code>0x</code> 前綴：:</p>
 </li>
 </ol>
 </div>
@@ -961,7 +961,7 @@ Public key: 0x6e145ccef1033dea239875dd00dfb4fee6e3348b84985c92f103444683bae07b83
 <div class="olist arabic">
 <ol class="arabic" start="2">
 <li>
-<p>如果雜湊的相應十六進制數字大於或等於 0x8，則將每個字母地址字符大寫。如果我們排列地址和雜湊，這將更容易顯示：</p>
+<p>如果雜湊的相應十六進制數字大於或等於 <code>0x8</code>，則將每個字母地址字符大寫。如果我們排列地址和雜湊，這將更容易顯示：</p>
 </li>
 </ol>
 </div>
@@ -972,7 +972,7 @@ Hash   : 23a69c1653e4ebbb619b0b2cb8a9bad49892a8b9...</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>我們的地址在第四個位置包含一個字母 d。雜湊的第四個字符是 6，小於+8+。所以，我們保持 d 小寫。我們地址中的下一個字母字符是 f，位於第六位。十六進制雜湊的第六個字符是 c，它大於+8 。因此，我們在地址中大寫 +F，等等。正如你所看到的，我們只使用雜湊的前20個字節（40個十六進制字符）作為校驗和，因為我們只有20個字節（40個十六進制字符）能正確地大寫。</p>
+<p>我們的地址在第四個位置包含一個字母 <code>d</code>。雜湊的第四個字符是 <code>6</code>，小於<code>8</code>。所以，我們保持 <code>d</code> 小寫。我們地址中的下一個字母字符是 <code>f</code>，位於第六位。十六進制雜湊的第六個字符是 <code>c</code>，它大於<code>8</code>。因此，我們在地址中大寫 <code>F</code>，等等。正如你所看到的，我們只使用雜湊的前20個字節（40個十六進制字符）作為校驗和，因為我們只有20個字節（40個十六進制字符）能正確地大寫。</p>
 </div>
 <div class="paragraph">
 <p>檢查自己產生的混合大寫地址，看看你是否可以知道在地址雜湊中哪些字符被大寫和它們對應的字符：</p>
@@ -985,7 +985,7 @@ Hash   : 23a69c1653e4ebbb619b0b2cb8a9bad49892a8b9...</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="EIP55_error">7.14.3. 在EIP-55編碼地址中檢測錯誤</h4>
+<h4 id="EIP55_error">5.14.3. 在EIP-55編碼地址中檢測錯誤</h4>
 <div class="paragraph">
 <p>現在，我們來看看EIP-55地址如何幫助我們發現錯誤。假設我們已經打印出ETHER-E編碼的以太坊地址：</p>
 </div>
@@ -1024,7 +1024,7 @@ Hash   : 23a69c1653e4ebbb619b0b2cb8a9bad49892a8b9...</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>這都是錯的！幾個字母字符不正確地大寫。請記住，大寫是_正確的_校驗和的編碼。</p>
+<p>這都是錯的！幾個字母字符不正確地大寫。請記住，大寫是<em>正確的</em>校驗和的編碼。</p>
 </div>
 <div class="paragraph">
 <p>我們輸入的地址的大小寫與剛剛計算的校驗和不匹配，這意味著地址中的內容發生了變化，並且引入了錯誤。</p>
@@ -1041,7 +1041,7 @@ Hash   : 23a69c1653e4ebbb619b0b2cb8a9bad49892a8b9...</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-最後更新： 2026-04-01 15:09:02 UTC
+最後更新： 2026-11-02 14:55:30 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">

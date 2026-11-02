@@ -160,12 +160,12 @@ gtag('config', 'G-ZVVQYEKMPF');
 <div id="content">
 <nav class="chapter-nav"><a href="ch09.html" class="nav-prev">&larr; 開發工具、框架和庫</a><a href="index.html" class="nav-home">首頁</a><a href="ch11.html" class="nav-next">去中心化應用 DApps &rarr;</a></nav>
 <div class="sect1">
-<h2 id="Tokens_chapter">12. Tokens</h2>
+<h2 id="Tokens_chapter">10. Tokens</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="Tokens_definition">12.1. 什麼是Token?</h3>
+<h3 id="Tokens_definition">10.1. 什麼是Token?</h3>
 <div class="paragraph">
-<p>單詞_Token_來源於古英語“tacen”，意思是符號或符號。常用來表示私人發行的類似硬幣的物品，價值不大，例如交通Token，洗衣Token，遊樂場Token。</p>
+<p>單詞<em>Token</em>來源於古英語“tacen”，意思是符號或符號。常用來表示私人發行的類似硬幣的物品，價值不大，例如交通Token，洗衣Token，遊樂場Token。</p>
 </div>
 <div class="paragraph">
 <p>如今，基於區塊鏈的Token將這個詞重新定義為基於區塊鏈的抽象概念，可以被擁有，並代表資產，貨幣或訪問權。</p>
@@ -178,7 +178,7 @@ gtag('config', 'G-ZVVQYEKMPF');
 </div>
 </div>
 <div class="sect2">
-<h3 id="Tokens_use">12.2. 如何使用Token？</h3>
+<h3 id="Tokens_use">10.2. 如何使用Token？</h3>
 <div class="paragraph">
 <p>Token最明顯的用途是作為數字私人貨幣。但是，這只是一個可能的用途。Token可以被編程為提供許多不同的功能，通常是重疊的。例如，Token可以同時傳達投票權，訪問權和資源所有權。貨幣只是第一個“應用程式”。</p>
 </div>
@@ -231,36 +231,38 @@ gtag('config', 'G-ZVVQYEKMPF');
 </div>
 </div>
 <div class="sect2">
-<h3 id="Tokens_fungibility">12.3. Tokens和可互換性</h3>
+<h3 id="Tokens_fungibility">10.3. Tokens和可互換性</h3>
 <div class="paragraph">
 <p>來自Wikipedia:</p>
 </div>
-<div class="literalblock">
-<div class="content">
-<pre>在經濟學中，可互換性是一種商品或商品的財產，其獨立單位本質上是可以互換的。</pre>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>在經濟學中，可互換性是一種商品或商品的財產，其獨立單位本質上是可以互換的。</p>
 </div>
+</blockquote>
 </div>
 <div class="paragraph">
 <p>當我們可以將Token的任何單個單元替換為另一個Token而其價值或功能沒有任何差異時，Token是可替代的。例如，ether是一種可替代的Token，因為任何ether的單位具有相同的值並且與任何其他單位的ether一起使用。</p>
 </div>
 <div class="paragraph">
-<p>嚴格地說，如果可以跟蹤Token的歷史出處，那麼它就不是完全可替代的。追蹤出處的能力可能導致黑名單和白名單，從而降低或消除互通性。我們將在<a href="#privacy">[privacy]</a>中進一步研究。</p>
+<p>嚴格地說，如果可以跟蹤Token的歷史出處，那麼它就不是完全可替代的。追蹤出處的能力可能導致黑名單和白名單，從而降低或消除互通性。</p>
 </div>
 <div class="paragraph">
-<p>不可互換的Token是代表獨特的有形或無形商品的Token，因此不可互換。例如，表示_特定的_ Van Gogh繪畫所有權的Token不等同於代表畢加索的另一個Token。同樣，表示特定數字收藏的Token，如特定的CryptoKitty（請參閱<a href="#cryptoKitties">[cryptoKitties]</a>）與任何其他CryptoKitty都不可互換。每個不可互換的Token與唯一識別碼相關聯，例如序列號。</p>
+<p>不可互換的Token是代表獨特的有形或無形商品的Token，因此不可互換。例如，表示<em>特定的</em> Van Gogh繪畫所有權的Token不等同於代表畢加索的另一個Token。同樣，表示特定數字收藏的Token，如特定的CryptoKitty（請參閱<a href="ch11.html#cryptoKitties">CryptoKitties</a>）與任何其他CryptoKitty都不可互換。每個不可互換的Token與唯一識別碼相關聯，例如序列號。</p>
 </div>
 <div class="paragraph">
 <p>本節後面我們將看到可替換和不可替換Token的例子。</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="counterparty_risk">12.4. 交易對手風險</h3>
+<h3 id="counterparty_risk">10.4. 交易對手風險</h3>
 <div class="paragraph">
 <p>交易對手風險是交易中的其他方不能履行其義務的風險。由於在交易中增加了兩個以上的交易方，某些類型的交易會產生額外的交易對手風險。例如，如果你持有貴金屬存款證明並將其出售給某人，則該交易中至少有三方：賣方，買方和貴金屬的保管人。有人持有有形資產，必要時他們成為一方併為涉及該資產的任何交易添加交易對手風險。當資產通過交換所有權資訊而間接交易時，資產託管人有額外的交易對手風險。他們有資產嗎？他們是否會根據Token的轉讓（例如證書，契約，所有權或數字Token）識別（或允許）所有權的轉移？在數字Token的世界中，瞭解誰持有由Token表示的資產以及適用於該基礎資產的規則很重要。</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="Tokens_intrinsicality">12.5. Tokens和內在性</h3>
+<h3 id="Tokens_intrinsicality">10.5. Tokens和內在性</h3>
 <div class="paragraph">
 <p>單詞 "intrinsic" 源於拉丁詞 "intra", 表示"來自內部".</p>
 </div>
@@ -268,14 +270,14 @@ gtag('config', 'G-ZVVQYEKMPF');
 <p>一些Token代表對區塊鏈來說是 <em>內在的</em> 的數字項目。這些數字資產受共識規則的約束，就像Token本身一樣。這具有重要的意義：代表固有資產的Token不會帶來額外的交易對手風險。如果你持有1 ether的密鑰，就沒有其他方為你持有那個以太。區塊鏈共識規則的應用，使得你對私鑰的所有權（控制權）等同於資產的所有權，無需任何中介。</p>
 </div>
 <div class="paragraph">
-<p>相反，許多Token用於表示 <em>外在的</em> _extrinsic_事物，如房地產，公司投票股票，商標，金條。這些項目的所有權不屬於區塊鏈，屬於法律，習慣和政策，與管理Token的共識規則分開。換句話說，Token發行人和所有者可能仍然依賴現實世界的非智能合約。因此，這些外部資產會帶來額外的交易對手風險，因為它們由託管人持有，記錄在外部註冊管理機構中，或由區塊鏈環境以外的法律和政策控制。</p>
+<p>相反，許多Token用於表示 <em>外在的</em> <em>extrinsic</em>事物，如房地產，公司投票股票，商標，金條。這些項目的所有權不屬於區塊鏈，屬於法律，習慣和政策，與管理Token的共識規則分開。換句話說，Token發行人和所有者可能仍然依賴現實世界的非智能合約。因此，這些外部資產會帶來額外的交易對手風險，因為它們由託管人持有，記錄在外部註冊管理機構中，或由區塊鏈環境以外的法律和政策控制。</p>
 </div>
 <div class="paragraph">
 <p>基於區塊鏈的Token最重要的後果之一是能夠將外部資產轉換為內部資產，從而消除交易對手風險。一個很好的例子就是從一家公司的股權（外部）轉向一個 <em>去中心化的自治組織</em> 或類似的（內部）組織的股權或投票權。</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="using_Tokens">12.6. 使用Tokens：效用或權益</h3>
+<h3 id="using_Tokens">10.6. 使用Tokens：效用或權益</h3>
 <div class="paragraph">
 <p>今天以太坊的幾乎所有項目都以某種形式發佈。但是，所有這些項目真的需要一個Token嗎？使用Token有什麼缺點，或者我們會看到口號“將所有東西Token化”的口號是否成熟？</p>
 </div>
@@ -289,7 +291,7 @@ gtag('config', 'G-ZVVQYEKMPF');
 <p>股權Token可以像享有利潤和分紅的無投票權股份一樣有限，或者向去中心化自治組織的有投票權的股票一樣廣泛，其中平臺是通過Token持有者的多數投票管理的。</p>
 </div>
 <div class="sect3">
-<h4 id="its_not_duck">12.6.1. 它不是一隻鴨子</h4>
+<h4 id="its_not_duck">10.6.1. 它不是一隻鴨子</h4>
 <div class="paragraph">
 <p>僅僅因為Token用於為初創公司籌款，並不意味著它必須用作服務的支付，反之亦然。然而，許多初創公司面臨著一個難題：Token是一種很好的籌款機制，但向大眾提供證券（股權）是大多數司法管轄區的受監管活動。通過將股權Token偽裝成實用Token，許多創業公司希望能夠繞過這些監管限制，並從公開募股籌集資金，同時將其作為預售的實用Token。這些稀薄的股權產品是否能夠擺脫監管機構仍有待觀察。</p>
 </div>
@@ -298,7 +300,7 @@ gtag('config', 'G-ZVVQYEKMPF');
 </div>
 </div>
 <div class="sect3">
-<h4 id="who_needs_utility_Tokens">12.6.2. 實用Token：誰需要它們？</h4>
+<h4 id="who_needs_utility_Tokens">10.6.2. 實用Token：誰需要它們？</h4>
 <div class="paragraph">
 <p>真正的問題是實用Token為初創公司帶來了重大風險和被採用障礙。也許在遙遠的將來，“將所有事物Token化”成為現實。但是，目前，獲得，理解和使用Token的人數是已經很小的密碼貨幣市場的一個子集。</p>
 </div>
@@ -324,12 +326,12 @@ gtag('config', 'G-ZVVQYEKMPF');
 <p>在像以太坊這樣的通用平臺上部署服務的好處之一就是能夠連接智能合約，增加流動性和Token效用的潛力。</p>
 </div>
 <div class="paragraph">
-<p>為了正確的理由做出這個決定。採用Token是因為你的應用程式_不使用Token無法工作_ （例如以太坊）。採用它是因為Token解決了基本的市場障礙或訪問問題。不要因為這是你可以快速籌集資金的唯一方式而引入實用Token，你需要假裝它不是公開發行的證券。</p>
+<p>為了正確的理由做出這個決定。採用Token是因為你的應用程式<em>不使用Token無法工作</em> （例如以太坊）。採用它是因為Token解決了基本的市場障礙或訪問問題。不要因為這是你可以快速籌集資金的唯一方式而引入實用Token，你需要假裝它不是公開發行的證券。</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="Token_std">12.7. Token 標準</h3>
+<h3 id="Token_std">10.7. Token 標準</h3>
 <div class="paragraph">
 <p>區塊鏈標記在以太坊之前就已存在。在某些方面，第一塊區塊鏈貨幣比特幣本身就是一種Token。在Ethereum之前，還在比特幣和其他密碼貨幣上開發了許多Token平臺。然而，在以太坊上引入第一個Token標準導致Token爆炸。</p>
 </div>
@@ -337,7 +339,7 @@ gtag('config', 'G-ZVVQYEKMPF');
 <p>Vitalik Buterin建議將Token作為通用可編程區塊鏈（如以太坊）最明顯和最有用的應用之一。事實上，在以太坊的第一年，經常看到Vitalik和其他人穿著印有Ethereum標誌的T恤和背面的智能合約樣本。這件T恤有幾種變化，但最常見的是一種Token的實現。</p>
 </div>
 <div class="sect3">
-<h4 id="ERC20_std">12.7.1. ERC20 Token 標準</h4>
+<h4 id="ERC20_std">10.7.1. ERC20 Token 標準</h4>
 <div class="paragraph">
 <p>第一個標準由Fabian Vogelsteller於2015年11月引入，作為以太坊徵求意見（ERC）。它被自動分配了GitHub發行號碼20，從而獲得了名字“ERC20 Token”。絕大多數Token目前都基於ERC20。ERC20徵求意見最終成為以太坊改進建議EIP20，但大多仍以原名ERC20提及。你可以在這裡閱讀標準：</p>
 </div>
@@ -345,7 +347,7 @@ gtag('config', 'G-ZVVQYEKMPF');
 <p><a href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md" class="bare">https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md</a></p>
 </div>
 <div class="paragraph">
-<p>ERC20是_可替換Token_的標準，意味著ERC20標記的不同單元是可互換的，沒有唯一屬性。</p>
+<p>ERC20是<em>可替換Token</em>的標準，意味著ERC20標記的不同單元是可互換的，沒有唯一屬性。</p>
 </div>
 <div class="paragraph">
 <p>ERC20標準為實現Token的合同定義了一個通用接口，這樣任何兼容的Token都可以以相同的方式訪問和使用。該接口包含許多必須存在於標準的每個實現中的函數，以及可能由開發人員添加的一些可選函數和屬性。</p>
@@ -368,7 +370,7 @@ gtag('config', 'G-ZVVQYEKMPF');
 </dd>
 <dt class="hdlist1">transferFrom</dt>
 <dd>
-<p>給定發送者，接收人和數量，將Token從一個帳戶轉移到另一個帳戶。與+approve+結合使用。</p>
+<p>給定發送者，接收人和數量，將Token從一個帳戶轉移到另一個帳戶。與<code>approve</code>結合使用。</p>
 </dd>
 <dt class="hdlist1">approve</dt>
 <dd>
@@ -380,11 +382,11 @@ gtag('config', 'G-ZVVQYEKMPF');
 </dd>
 <dt class="hdlist1">Transfer event</dt>
 <dd>
-<p>成功轉移時觸發的事件（調用+transfer+或+transferFrom+）（即使對於零值轉移）。</p>
+<p>成功轉移時觸發的事件（調用<code>transfer</code>或<code>transferFrom</code>）（即使對於零值轉移）。</p>
 </dd>
 <dt class="hdlist1">Approval event</dt>
 <dd>
-<p>成功調用+approve+時記錄的事件。</p>
+<p>成功調用<code>approve</code>時記錄的事件。</p>
 </dd>
 </dl>
 </div>
@@ -431,7 +433,7 @@ gtag('config', 'G-ZVVQYEKMPF');
 <div class="sect4">
 <h5 id="ERC20_data_struct">ERC20 資料結構</h5>
 <div class="paragraph">
-<p>如果你檢查任何ERC20實現，它將包含兩個資料結構，一個用於追蹤餘額，另一個用於追蹤配額（allowances）。在Solidity中，它們使用_data mapping_實現。</p>
+<p>如果你檢查任何ERC20實現，它將包含兩個資料結構，一個用於追蹤餘額，另一個用於追蹤配額（allowances）。在Solidity中，它們使用<em>data mapping</em>實現。</p>
 </div>
 <div class="paragraph">
 <p>第一個data mapping按擁有者實現了Token餘額的內部表。這允許Token合約跟蹤誰擁有Token。每次轉帳都是從一個餘額中扣除的，並且是對另一個餘額的增加。</p>
@@ -458,17 +460,17 @@ gtag('config', 'G-ZVVQYEKMPF');
 <p>ERC20Token標準具有兩種傳輸功能。你可能想知道為什麼？</p>
 </div>
 <div class="paragraph">
-<p>ERC20允許兩種不同的工作流程。第一個是使用+transfer+函數的單次交易，簡單的工作流程。這個工作流程是錢包用來將Token發送給其他錢包的工作流程。絕大多數Token交易都發生在+transfer+工作流程中。</p>
+<p>ERC20允許兩種不同的工作流程。第一個是使用<code>transfer</code>函數的單次交易，簡單的工作流程。這個工作流程是錢包用來將Token發送給其他錢包的工作流程。絕大多數Token交易都發生在<code>transfer</code>工作流程中。</p>
 </div>
 <div class="paragraph">
-<p>執行轉讓合同非常簡單。如果愛麗絲希望向鮑勃發送10個Token，她的錢包會向Token合約的地址發送一個交易，並用Bob的地址和“10”作為參數調用+transfer+函數。Token合約調整Alice的餘額（-10）和Bob的餘額（+10）併發出+Transfer+事件。</p>
+<p>執行轉讓合同非常簡單。如果愛麗絲希望向鮑勃發送10個Token，她的錢包會向Token合約的地址發送一個交易，並用Bob的地址和“10”作為參數調用<code>transfer</code>函數。Token合約調整Alice的餘額（-10）和Bob的餘額（&#43;10）併發出<code>Transfer</code>事件。</p>
 </div>
 <div class="paragraph">
-<p>第二個工作流程是使用+approve+和+transferFrom+的雙交易工作流程。該工作流程允許Token所有者將其控制權委託給另一個地址。它通常用於委託控制權給合約來分配Token，但它也可以被交易所使用。例如，如果一家公司為ICO出售Token，他們可以+approve+一個crowdsale合同地址來分發一定數量的Token。然後crowdsale合同可以用+transferFrom+轉移給Token的每個買家。</p>
+<p>第二個工作流程是使用<code>approve</code>和<code>transferFrom</code>的雙交易工作流程。該工作流程允許Token所有者將其控制權委託給另一個地址。它通常用於委託控制權給合約來分配Token，但它也可以被交易所使用。例如，如果一家公司為ICO出售Token，他們可以<code>approve</code>一個crowdsale合同地址來分發一定數量的Token。然後crowdsale合同可以用<code>transferFrom</code>轉移給Token的每個買家。</p>
 </div>
 <div class="paragraph">
-<p> 然後，眾包合約可以+從代幣合約所有者的餘額轉移到每個代幣買家，如圖所示 <a href="#approve_transferFrom_workflow">The two-step approve &amp; transferFrom workflow of ERC20 Tokens</a>.
-例如，如果一家公司為 ICO 出售代幣，他們可以+批准+一個眾包合約 (crowdsale contract) 地址來分發一定數量的代幣。</p>
+<p> 然後，眾包合約可以從代幣合約所有者的餘額轉移到每個代幣買家，如圖所示 <a href="#approve_transferFrom_workflow">The two-step approve &amp; transferFrom workflow of ERC20 Tokens</a>.
+例如，如果一家公司為 ICO 出售代幣，他們可以<code>批准</code>一個眾包合約 (crowdsale contract) 地址來分發一定數量的代幣。</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -488,13 +490,13 @@ gtag('config', 'G-ZVVQYEKMPF');
 <div class="content">
 <img src="images/approve_transferFrom_workflow.png" alt="The two-step approve &amp; transferFrom workflow of ERC20 Tokens">
 </div>
-<div class="title">Figure 40. The two-step approve &amp; transferFrom workflow of ERC20 Tokens</div>
+<div class="title">圖 40. The two-step approve &amp; transferFrom workflow of ERC20 Tokens</div>
 </div>
 <div class="paragraph">
-<p>對於 approve &amp; transferFrom 工作流程，需要兩個交易。假設Alice希望允許AliceICO合同將所有AliceCoin Token的50％賣給像Bob和Charlie這樣的買方。首先，Alice發佈AliceCoin ERC20合同，將所有AliceCoin發放到她自己的地址。然後，Alice發佈可以以ether出售Token的AliceICO合同。接下來，Alice啟動+approve &amp; transferFrom+工作流程。她向AliceCoin發送一個交易，調用+approve+，參數是AliceICO的地址和+totalSupply+的50％。這將觸發+Approval+事件。現在，AliceICO合同可以出售AliceCoin了。</p>
+<p>對於 <code>approve &amp; transferFrom</code> 工作流程，需要兩個交易。假設Alice希望允許AliceICO合同將所有AliceCoin Token的50％賣給像Bob和Charlie這樣的買方。首先，Alice發佈AliceCoin ERC20合同，將所有AliceCoin發放到她自己的地址。然後，Alice發佈可以以ether出售Token的AliceICO合同。接下來，Alice啟動<code>approve &amp; transferFrom</code>工作流程。她向AliceCoin發送一個交易，調用<code>approve</code>，參數是AliceICO的地址和<code>totalSupply</code>的50％。這將觸發<code>Approval</code>事件。現在，AliceICO合同可以出售AliceCoin了。</p>
 </div>
 <div class="paragraph">
-<p>當AliceICO從Bob那收到ether，它需要發送一些AliceCoin給Bob作為回報。在AliceICO合約內是AliceCoin和ether之間的匯率。Alice在創建AliceICO時設置的匯率決定了Bob將根據他發送給AliceICO的ether數量能得到多少Token。當AliceICO調用AliceCoin transferFrom+函數時，它將Alice的地址設置為發送者，將Bob的地址設置為接收者，並使用匯率來確定將在“value”欄位中將多少AliceCoin Token傳送給Bob。AliceCoin合同將餘額從Alice的地址轉移到Bob的地址並觸發 +Transfer 事件。只要不超過Alice設定的審批限制，AliceICO合同可以調用 transferFrom 無限次數。AliceICO合同可以通過調用+allowance+函數來跟蹤它能賣出多少AliceCoinToken。</p>
+<p>當AliceICO從Bob那收到ether，它需要發送一些AliceCoin給Bob作為回報。在AliceICO合約內是AliceCoin和ether之間的匯率。Alice在創建AliceICO時設置的匯率決定了Bob將根據他發送給AliceICO的ether數量能得到多少Token。當AliceICO調用AliceCoin <code>transferFrom</code>函數時，它將Alice的地址設置為發送者，將Bob的地址設置為接收者，並使用匯率來確定將在“value”欄位中將多少AliceCoin Token傳送給Bob。AliceCoin合同將餘額從Alice的地址轉移到Bob的地址並觸發 <code>Transfer</code> 事件。只要不超過Alice設定的審批限制，AliceICO合同可以調用 <code>transferFrom</code> 無限次數。AliceICO合同可以通過調用<code>allowance</code>函數來跟蹤它能賣出多少AliceCoinToken。</p>
 </div>
 </div>
 <div class="sect4">
@@ -529,9 +531,9 @@ gtag('config', 'G-ZVVQYEKMPF');
 </div>
 </div>
 <div class="sect3">
-<h4 id="METoken_example">12.7.2. 發佈我們自己的ERC20Token</h4>
+<h4 id="METoken_example">10.7.2. 發佈我們自己的ERC20Token</h4>
 <div class="paragraph">
-<p>讓我們創建併發布我們自己的Token。在這個例子中，我們將使用+truffle+ 框架（參見<a href="#truffle">[truffle]</a>）。該範例假設你已經安裝了+truffle+，進行了配置，並熟悉其基本操作。</p>
+<p>讓我們創建併發布我們自己的Token。在這個例子中，我們將使用<code>truffle</code> 框架（參見<a href="ch09.html#truffle">Truffle</a>）。該範例假設你已經安裝了<code>truffle</code>，進行了配置，並熟悉其基本操作。</p>
 </div>
 <div class="paragraph">
 <p>我們將稱之為“Mastering Ethereum Token”，標誌為“MET”。</p>
@@ -541,7 +543,7 @@ gtag('config', 'G-ZVVQYEKMPF');
 <a href="https://github.com/ethereumbook/ethereumbook/blob/develop/code/truffle/METoken" class="bare">https://github.com/ethereumbook/ethereumbook/blob/develop/code/truffle/METoken</a></p>
 </div>
 <div class="paragraph">
-<p>首先，讓我們創建並初始化一個Truffle項目目錄，就像我們在<a href="#truffle_project_directory">[truffle_project_directory]</a>中所做的那樣。運行這四個命令並接受任何問題的預設答案：</p>
+<p>首先，讓我們創建並初始化一個Truffle項目目錄，就像我們在<a href="ch09.html#truffle_project_directory">創建 Truffle 項目目錄</a>中所做的那樣。運行這四個命令並接受任何問題的預設答案：</p>
 </div>
 <div id="initialize_truffle" class="listingblock">
 <div class="content">
@@ -568,18 +570,18 @@ METoken $ npm init</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>編輯+truffle.js+或+truffle-config.js+配置檔案以設置+Truffle+環境，或複製我們使用的環境：</p>
+<p>編輯<code>truffle.js</code>或<code>truffle-config.js</code>配置檔案以設置<code>Truffle</code>環境，或複製我們使用的環境：</p>
 </div>
 <div class="paragraph">
 <p><a href="https://github.com/ethereumbook/ethereumbook/blob/develop/code/truffle/METoken/truffle-config.js" class="bare">https://github.com/ethereumbook/ethereumbook/blob/develop/code/truffle/METoken/truffle-config.js</a></p>
 </div>
 <div class="paragraph">
-<p>如果使用範例+truffle-config.js+，請記住在包含你的測試私鑰的+METoken+檔案夾中創建檔案+.env+，以便在公共以太網測試網路（如ganache或Kovan）上進行測試和部署。你可以從MetaMask中匯出你的測試網路私鑰。</p>
+<p>如果使用範例<code>truffle-config.js</code>，請記住在包含你的測試私鑰的<code>METoken</code>檔案夾中創建檔案<code>.env</code>，以便在公共以太網測試網路（如ganache或Kovan）上進行測試和部署。你可以從MetaMask中匯出你的測試網路私鑰。</p>
 </div>
 <div class="paragraph">
 <p>之後你的目錄看起來像：</p>
 </div>
-<div id="truffle_directory" class="listingblock">
+<div id="truffle_directory_configured" class="listingblock">
 <div class="content">
 <pre>METoken/
 ├── contracts
@@ -619,10 +621,10 @@ added 8 packages in 2.504s</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>+ zeppelin-solidity 包將在 node_modules +目錄下添加約250個檔案。OpenZeppelin庫包含的不僅僅是ERC20Token，但我們只使用它的一小部分。</p>
+<p><code>zeppelin-solidity</code>包將在<code>node_modules</code>目錄下添加約250個檔案。OpenZeppelin庫包含的不僅僅是ERC20Token，但我們只使用它的一小部分。</p>
 </div>
 <div class="paragraph">
-<p>接下來，讓我們編寫我們的Token合約。創建一個新檔案+METoken.sol+並從GitHub複製範例程式碼：</p>
+<p>接下來，讓我們編寫我們的Token合約。創建一個新檔案<code>METoken.sol</code>並從GitHub複製範例程式碼：</p>
 </div>
 <div class="paragraph">
 <p><a href="https://github.com/ethereumbook/ethereumbook/blob/develop/code/truffle/METoken/contracts/METoken.sol" class="bare">https://github.com/ethereumbook/ethereumbook/blob/develop/code/truffle/METoken/contracts/METoken.sol</a></p>
@@ -669,10 +671,10 @@ contract METoken is StandardToken {
 </div>
 </div>
 <div class="paragraph">
-<p>在這裡，我們定義可選變數+name+，symbol+和+decimals。我們還定義了一個+_initial_supply+變數，設置為2,100萬個Token，以及兩個小數細分（總共21億）。在契約的初始化（構造函數）函數中，我們將+totalSupply+設置為等於+_initial_supply+，並將所有+_initial_supply+分配給創建 METoken 契約的帳戶餘額（msg.sender）。</p>
+<p>在這裡，我們定義可選變數<code>name</code>，<code>symbol</code>和<code>decimals</code>。我們還定義了一個<code>_initial_supply</code>變數，設置為2,100萬個Token，以及兩個小數細分（總共21億）。在契約的初始化（構造函數）函數中，我們將<code>totalSupply</code>設置為等於<code>_initial_supply</code>，並將所有<code>_initial_supply</code>分配給創建 <code>METoken</code> 契約的帳戶餘額（<code>msg.sender</code>）。</p>
 </div>
 <div class="paragraph">
-<p>我們現在使用+truffle+編譯+METoken+程式碼：</p>
+<p>我們現在使用<code>truffle</code>編譯<code>METoken</code>程式碼：</p>
 </div>
 <div id="truffle_compile" class="listingblock">
 <div class="content">
@@ -687,10 +689,10 @@ Compiling zeppelin-solidity/contracts/Token/ERC20/StandardToken.sol...</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>如你所見，+truffle+包含了OpenZeppelin庫的必要依賴關係，並編譯了這些契約。</p>
+<p>如你所見，<code>truffle</code>包含了OpenZeppelin庫的必要依賴關係，並編譯了這些契約。</p>
 </div>
 <div class="paragraph">
-<p>我們建立一個migration腳本，部署 METoken+合約。在+METoken/migrations+檔案夾中創建一個新檔案+2_deploy_contracts.js。從Github儲存庫中的範例複製內容：</p>
+<p>我們建立一個migration腳本，部署 <code>METoken</code>合約。在<code>METoken/migrations</code>檔案夾中創建一個新檔案<code>2_deploy_contracts.js</code>。從Github儲存庫中的範例複製內容：</p>
 </div>
 <div class="paragraph">
 <p><a href="https://github.com/ethereumbook/ethereumbook/blob/develop/code/truffle/METoken/migrations/2_deploy_contracts.js" class="bare">https://github.com/ethereumbook/ethereumbook/blob/develop/code/truffle/METoken/migrations/2_deploy_contracts.js</a></p>
@@ -717,10 +719,10 @@ Compiling zeppelin-solidity/contracts/Token/ERC20/StandardToken.sol...</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>在我們部署其中一個以太坊測試網路之前，讓我們開始一個本地區塊鏈來測試一切。正如我們在<a href="#using_ganache">[using_ganache]</a>中所做的那樣，從 ganache-cli 的命令行或從圖形用戶界面啟動 ganache 區塊鏈。</p>
+<p>在我們部署其中一個以太坊測試網路之前，讓我們開始一個本地區塊鏈來測試一切。正如我們在<a href="ch04.html#ganache">Ganache: 以太坊開發的個人區塊鏈</a>中所做的那樣，從 <code>ganache-cli</code> 的命令行或從圖形用戶界面啟動 <code>ganache</code> 區塊鏈。</p>
 </div>
 <div class="paragraph">
-<p>一旦 ganache 啟動，我們就可以部署我們的METoken合約，看看是否一切都按預期工作：</p>
+<p>一旦 <code>ganache</code> 啟動，我們就可以部署我們的METoken合約，看看是否一切都按預期工作：</p>
 </div>
 <div id="deploy_METoken" class="listingblock">
 <div class="content">
@@ -744,13 +746,13 @@ Saving artifacts...</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>在+ganache+控制台上，我們應該看到我們的部署創建了4個新的交易：</p>
+<p>在<code>ganache</code>控制台上，我們應該看到我們的部署創建了4個新的交易：</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="truffle_console">12.7.3. 使用Truffle控制台與METoken交互</h4>
+<h4 id="truffle_console">10.7.3. 使用Truffle控制台與METoken交互</h4>
 <div class="paragraph">
-<p>我們可以使用+Truffle控制台+與我們的+ganache+區塊鏈合同進行互動。這是一個交互式的JavaScript環境，可以訪問Truffle環境，並通過Web3訪問區塊鏈。在這種情況下，我們將+Truffle控制台+連接到+ganache+區塊鏈：</p>
+<p>我們可以使用<code>Truffle控制台</code>與我們的<code>ganache</code>區塊鏈合同進行互動。這是一個交互式的JavaScript環境，可以訪問Truffle環境，並通過Web3訪問區塊鏈。在這種情況下，我們將<code>Truffle控制台</code>連接到<code>ganache</code>區塊鏈：</p>
 </div>
 <div id="interactive_truffle" class="listingblock">
 <div class="content">
@@ -758,10 +760,8 @@ Saving artifacts...</pre>
 truffle(ganache)&gt;</pre>
 </div>
 </div>
-<div class="literalblock">
-<div class="content">
-<pre>+truffle(ganache)&gt;+ 提示符表明我們已連接到 +ganache+區塊鏈並準備輸入我們的命令。+Truffle控制台+支持所有的Truffle命令，所以我們可以從控制台+compile+和+migrate+。我們已經運行過這些命令，所以讓我們直接看看合同本身。METoken合約作為Truffle環境內的JavaScript物件存在。在提示符下鍵入+METoken+，它將轉儲整個合約定義：</pre>
-</div>
+<div class="paragraph">
+<p><code>truffle(ganache)&gt;</code> 提示符表明我們已連接到 <code>ganache</code>區塊鏈並準備輸入我們的命令。<code>Truffle控制台</code>支持所有的Truffle命令，所以我們可以從控制台<code>compile</code>和<code>migrate</code>。我們已經運行過這些命令，所以讓我們直接看看合同本身。METoken合約作為Truffle環境內的JavaScript物件存在。在提示符下鍵入<code>METoken</code>，它將轉儲整個合約定義：</p>
 </div>
 <div id="get_METoken_definition" class="listingblock">
 <div class="content">
@@ -785,7 +785,7 @@ network_id: '5777' }</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>+METoken+物件還公開幾個屬性，例如合同的地址（由+migrate+命令部署）：</p>
+<p><code>METoken</code>物件還公開幾個屬性，例如合同的地址（由<code>migrate</code>命令部署）：</p>
 </div>
 <div id="METoken_address" class="listingblock">
 <div class="content">
@@ -794,7 +794,7 @@ network_id: '5777' }</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>如果我們想要與已部署的合同進行交互，我們必須以JavaScript“promise”的形式使用異步調用。我們使用+deployment+函數來獲取合約實例，然後調用+totalSupply+函數：</p>
+<p>如果我們想要與已部署的合同進行交互，我們必須以JavaScript“promise”的形式使用異步調用。我們使用<code>deployment</code>函數來獲取合約實例，然後調用<code>totalSupply</code>函數：</p>
 </div>
 <div id="METoken_async_call" class="listingblock">
 <div class="content">
@@ -803,7 +803,7 @@ BigNumber { s: 1, e: 9, c: [ 2100000000 ] }</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>接下來，讓我們使用由+ganache+創建的帳戶來檢查我們的METoken餘額並將一些METoken發送到另一個地址。首先，讓我們獲取帳戶地址：</p>
+<p>接下來，讓我們使用由<code>ganache</code>創建的帳戶來檢查我們的METoken餘額並將一些METoken發送到另一個地址。首先，讓我們獲取帳戶地址：</p>
 </div>
 <div id="get_account_addresses" class="listingblock">
 <div class="content">
@@ -816,7 +816,7 @@ truffle(ganache)&gt; accounts[0]
 </div>
 </div>
 <div class="paragraph">
-<p>accounts 列表現在包含由+ganache+創建的所有帳戶，而+account[0]+是部署了該METoken合約的帳戶。它應該有METoken的餘額，因為我們的METoken構造函數將全部Token提供給了創建它的地址。讓我們檢查：</p>
+<p><code>accounts</code> 列表現在包含由<code>ganache</code>創建的所有帳戶，而<code>account[0]</code>是部署了該METoken合約的帳戶。它應該有METoken的餘額，因為我們的METoken構造函數將全部Token提供給了創建它的地址。讓我們檢查：</p>
 </div>
 <div id="check_balance" class="listingblock">
 <div class="content">
@@ -826,7 +826,7 @@ BigNumber { s: 1, e: 9, c: [ 2100000000 ] }</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>最後，通過調用合約的 transfer+函數，讓我們從+account[0] 向 account[1] 轉移1000.00 METoken：</p>
+<p>最後，通過調用合約的 <code>transfer</code>函數，讓我們從<code>account[0]</code> 向 <code>account[1]</code> 轉移1000.00 METoken：</p>
 </div>
 <div id="transfer_MET" class="listingblock">
 <div class="content">
@@ -857,19 +857,19 @@ truffle(ganache)&gt; BigNumber { s: 1, e: 5, c: [ 100000 ] }</pre>
 </table>
 </div>
 <div class="paragraph">
-<p>如你所見，在控制台中，+ account [0] 現在擁有20,999,000 MET， account [1] +擁有1000 MET。</p>
+<p>如你所見，在控制台中，<code>account[0]</code>現在擁有20,999,000 MET，<code>account[1]</code>擁有1000 MET。</p>
 </div>
 <div class="paragraph">
-<p>如果切換到+ganache+圖形用戶界面，你將看到名為+transfer+函數的交易：</p>
+<p>如果切換到<code>ganache</code>圖形用戶界面，你將看到名為<code>transfer</code>函數的交易：</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="sending_erc20_Tokens_contracts">12.7.4. 將ERC20Token發送到合同地址</h4>
+<h4 id="sending_erc20_Tokens_contracts">10.7.4. 將ERC20Token發送到合同地址</h4>
 <div class="paragraph">
 <p>到目前為止，我們已經設置了ERC20Token並從一個帳戶轉移到另一個帳戶。我們用於這些示範的所有帳戶都是外部擁有帳戶（EOAs），這意味著它們由私鑰控制，而不是合同。如果我們將MET發送到合同地址會發生什麼？讓我們看看！</p>
 </div>
 <div class="paragraph">
-<p>首先，我們將其他合約部署到我們的測試環境中。對於這個例子，我們將使用我們的第一個合同+Faucet.sol+。我們將它添加到METoken項目中，方法是將它複製到+contracts+目錄。我們的目錄應該是這樣的：</p>
+<p>首先，我們將其他合約部署到我們的測試環境中。對於這個例子，我們將使用我們的第一個合同<code>Faucet.sol</code>。我們將它添加到METoken項目中，方法是將它複製到<code>contracts</code>目錄。我們的目錄應該是這樣的：</p>
 </div>
 <div id="METoken_directory" class="listingblock">
 <div class="content">
@@ -881,7 +881,7 @@ truffle(ganache)&gt; BigNumber { s: 1, e: 5, c: [ 100000 ] }</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>我們還會添加一個migration，從+METoken+單獨部署+Faucet+：</p>
+<p>我們還會添加一個migration，從<code>METoken</code>單獨部署<code>Faucet</code>：</p>
 </div>
 <div id="faucet_migration" class="listingblock">
 <div class="content">
@@ -924,7 +924,7 @@ Saving artifacts...</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>現在讓我們將一些MET發送到 Faucet 合約：</p>
+<p>現在讓我們將一些MET發送到 <code>Faucet</code> 合約：</p>
 </div>
 <div id="send_MET_faucet" class="listingblock">
 <div class="content">
@@ -934,16 +934,16 @@ truffle(ganache)&gt; BigNumber { s: 1, e: 5, c: [ 100000 ] }</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>好的，我們已將1000 MET轉移到 Faucet+合約。現在，我們如何從 +Faucet 提款呢？</p>
+<p>好的，我們已將1000 MET轉移到 <code>Faucet</code>合約。現在，我們如何從 <code>Faucet</code> 提款呢？</p>
 </div>
 <div class="paragraph">
-<p>請記住，Faucet.sol+是一個非常簡單的合同。它只有一個功能，+withdraw，這是提取_ether_。它沒有提取MET或任何其他ERC20Token的功能。如果我們使用+withdraw+它將嘗試發送ether，但由於Faucet還沒有ether的餘額，它將失敗。</p>
+<p>請記住，<code>Faucet.sol</code>是一個非常簡單的合同。它只有一個功能，<code>withdraw</code>，這是提取<em>ether</em>。它沒有提取MET或任何其他ERC20Token的功能。如果我們使用<code>withdraw</code>它將嘗試發送ether，但由於Faucet還沒有ether的餘額，它將失敗。</p>
 </div>
 <div class="paragraph">
-<p>METoken+合約知道+Faucet+有餘額，但它可以轉移該餘額的唯一方法是它從合約地址收到+transfer+調用。無論如何，我們需要讓+Faucet 合約調用+MET+中的+transfer+函數。</p>
+<p><code>METoken</code>合約知道<code>Faucet</code>有餘額，但它可以轉移該餘額的唯一方法是它從合約地址收到<code>transfer</code>調用。無論如何，我們需要讓<code>Faucet</code> 合約調用<code>MET</code>中的<code>transfer</code>函數。</p>
 </div>
 <div class="paragraph">
-<p>如果你在思考下一步該做什麼，不必了。這個問題沒有解決辦法。MET發送到+Faucet+將永遠卡住。只有+Faucet+合約可以轉讓它，+Faucet+合約沒有調用ERC20Token合約的+transfer+函數的程式碼。</p>
+<p>如果你在思考下一步該做什麼，不必了。這個問題沒有解決辦法。MET發送到<code>Faucet</code>將永遠卡住。只有<code>Faucet</code>合約可以轉讓它，<code>Faucet</code>合約沒有調用ERC20Token合約的<code>transfer</code>函數的程式碼。</p>
 </div>
 <div class="paragraph">
 <p>也許你預料到了這個問題。最有可能的是，你沒有。實際上，數百名以太坊用戶也無意將各種Token轉讓給沒有任何ERC20能力的合同。據估計，價值超過250萬美元的Token被這樣“卡住”，並且永遠丟失。</p>
@@ -953,15 +953,15 @@ truffle(ganache)&gt; BigNumber { s: 1, e: 5, c: [ 100000 ] }</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="transfer_workflow_demo">12.7.5. 演示 approve &amp; transferFrom 流程</h4>
+<h4 id="transfer_workflow_demo">10.7.5. 演示 approve &amp; transferFrom 流程</h4>
 <div class="paragraph">
-<p>我們的+Faucet+合同無法處理ERC20Token。使用+transfer+函數發送Token給它，會導致這些Token的丟失。我們重寫合同，並處理ERC20Token。具體來說，我們將把它變成一個Faucet，將MET發給任何詢問的人。</p>
+<p>我們的<code>Faucet</code>合同無法處理ERC20Token。使用<code>transfer</code>函數發送Token給它，會導致這些Token的丟失。我們重寫合同，並處理ERC20Token。具體來說，我們將把它變成一個Faucet，將MET發給任何詢問的人。</p>
 </div>
 <div class="paragraph">
-<p>對於這個例子，我們製作了Truffle項目目錄的副本，將其稱為 METoken_METFaucet，初始化Truffle，npm，安裝OpenZeppelin依賴項並複製+METoken.sol+合同。有關詳細說明，請參閱我們的第一個範例<a href="#METoken_example">發佈我們自己的ERC20Token</a>。</p>
+<p>對於這個例子，我們製作了Truffle項目目錄的副本，將其稱為 <code>METoken_METFaucet</code>，初始化Truffle，npm，安裝OpenZeppelin依賴項並複製<code>METoken.sol</code>合同。有關詳細說明，請參閱我們的第一個範例<a href="#METoken_example">發佈我們自己的ERC20Token</a>。</p>
 </div>
 <div class="paragraph">
-<p>現在，讓我們創建一個新的Faucet合同，稱之為+METFaucet.sol+。它看起來像這樣：</p>
+<p>現在，讓我們創建一個新的Faucet合同，稱之為<code>METFaucet.sol</code>。它看起來像這樣：</p>
 </div>
 <div id="METFaucet" class="listingblock">
 <div class="title">METFaucet.sol: a faucet for METoken</div>
@@ -1108,7 +1108,7 @@ contract METFaucet {
 </div>
 </div>
 <div class="paragraph">
-<p>我們對基本的Faucet範例做了很多改動。由於METFaucet將使用+METoken+中的+transferFrom+函數，它將需要兩個額外的變數。其中一個將保存已部署的+METoken+合約地址。另一個將持有MET所有者的地址，他們將提供Faucet提款的批准。+METFaucet+將調用+METoken.transferFrom+並指示它將MET從所有者移至Faucet提取請求所來自的地址。</p>
+<p>我們對基本的Faucet範例做了很多改動。由於METFaucet將使用<code>METoken</code>中的<code>transferFrom</code>函數，它將需要兩個額外的變數。其中一個將保存已部署的<code>METoken</code>合約地址。另一個將持有MET所有者的地址，他們將提供Faucet提款的批准。<code>METFaucet</code>將調用<code>METoken.transferFrom</code>並指示它將MET從所有者移至Faucet提取請求所來自的地址。</p>
 </div>
 <div id="MET_owner_var" class="paragraph">
 <p>我們在這裡宣告這兩個變數：</p>
@@ -1120,7 +1120,7 @@ address public METOwner;</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>由於我們的Faucet需要使用+METoken+和+METOwner+的正確地址進行初始化，因此我們需要宣告一個自定義構造函數：</p>
+<p>由於我們的Faucet需要使用<code>METoken</code>和<code>METOwner</code>的正確地址進行初始化，因此我們需要宣告一個自定義構造函數：</p>
 </div>
 <div id="custom_constructor" class="listingblock">
 <div class="content">
@@ -1135,7 +1135,7 @@ function METFaucet(address _METoken, address _METOwner) public {
 </div>
 </div>
 <div class="paragraph">
-<p>下一個改變是+withdraw+函數。METFaucet+使用+METoken+中的+transferFrom+函數，並要求+METoken+將MET傳輸給Faucet的接收者，而不是調用+transfer。</p>
+<p>下一個改變是<code>withdraw</code>函數。<code>METFaucet</code>使用<code>METoken</code>中的<code>transferFrom</code>函數，並要求<code>METoken</code>將MET傳輸給Faucet的接收者，而不是調用<code>transfer</code>。</p>
 </div>
 <div id="transfer_met" class="listingblock">
 <div class="content">
@@ -1144,7 +1144,7 @@ METoken.transferFrom(METOwner, msg.sender, withdraw_amount);</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>最後，由於我們的Faucet不再發送ether，我們應該阻止任何人將ether送到+METFaucet+，因為我們不希望它被卡住。我們更改fallback函數以拒絕發進來的ether，使用+revert+功能還原任何收款：</p>
+<p>最後，由於我們的Faucet不再發送ether，我們應該阻止任何人將ether送到<code>METFaucet</code>，因為我們不希望它被卡住。我們更改fallback函數以拒絕發進來的ether，使用<code>revert</code>功能還原任何收款：</p>
 </div>
 <div id="reject_incoming_eth" class="listingblock">
 <div class="content">
@@ -1153,12 +1153,9 @@ function () public payable { revert(); }</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>現在我們的+METFaucet.sol+程式碼已準備就緒，我們需要修改migration腳本來部署它。這個migration腳本會有點複雜，因為+METFaucet+依賴於+METoken+的地址。我們將使用JavaScript promise按順序部署這兩個合約。創建+2_deply_contracts.js+，如下所示：</p>
+<p>現在我們的<code>METFaucet.sol</code>程式碼已準備就緒，我們需要修改migration腳本來部署它。這個migration腳本會有點複雜，因為<code>METFaucet</code>依賴於<code>METoken</code>的地址。我們將使用JavaScript promise按順序部署這兩個合約。創建<code>2_deply_contracts.js</code>，如下所示：</p>
 </div>
-<div class="paragraph">
-<p>[[2_deploy_contracts]]</p>
-</div>
-<div class="listingblock">
+<div id="metoken_2_deploy_contracts" class="listingblock">
 <div class="content">
 <pre>var METoken = artifacts.require("METoken");
 var METFaucet = artifacts.require("METFaucet");
@@ -1176,7 +1173,7 @@ module.exports = function(deployer) {
 </div>
 </div>
 <div class="paragraph">
-<p>現在，我們可以測試Truffle控制台中的所有內容。首先，我們使用+migrate+來部署合同。當+METoken+部署時，它會將所有MET分配給創建它的帳戶，web3.eth.accounts[0]。然後，我們在METoken中調用+approve+函數來批准+METFaucet+代表+web3.eth.accounts[0]+發送1000 MET。最後，為了測試我們的Faucet，我們從+web3.eth.accounts[1]+調用+METFaucet.withdraw+並嘗試提取10個MET。以下是控制台命令：</p>
+<p>現在，我們可以測試Truffle控制台中的所有內容。首先，我們使用<code>migrate</code>來部署合同。當<code>METoken</code>部署時，它會將所有MET分配給創建它的帳戶，<code>web3.eth.accounts[0]</code>。然後，我們在METoken中調用<code>approve</code>函數來批准<code>METFaucet</code>代表<code>web3.eth.accounts[0]</code>發送1000 MET。最後，為了測試我們的Faucet，我們從<code>web3.eth.accounts[1]</code>調用<code>METFaucet.withdraw</code>並嘗試提取10個MET。以下是控制台命令：</p>
 </div>
 <div id="ERC20_gananche_test" class="listingblock">
 <div class="content">
@@ -1206,14 +1203,14 @@ truffle(ganache)&gt; BigNumber { s: 1, e: 3, c: [ 1000 ] }</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>從結果中可以看出，我們可以使用 approve and transferFrom 工作流來授權一個合約轉移另一個Token中定義的Token。如果使用得當，ERC20Token可以由EOA和其他合同使用。</p>
+<p>從結果中可以看出，我們可以使用 <code>approve</code> and <code>transferFrom</code> 工作流來授權一個合約轉移另一個Token中定義的Token。如果使用得當，ERC20Token可以由EOA和其他合同使用。</p>
 </div>
 <div class="paragraph">
 <p>但是，正確管理ERC20Token的負擔會推送到用戶界面。如果用戶錯誤地嘗試將ERC20Token轉移到合同地址，並且該合同沒有配備接收ERC20Token的功能，則Token將丟失。</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="ERC20_issues">12.7.6. ERC20Token的問題</h4>
+<h4 id="ERC20_issues">10.7.6. ERC20Token的問題</h4>
 <div class="paragraph">
 <p>ERC20Token標準的採用確實是爆炸性的。成千上萬的Token已經啟動，既可以嘗試新的功能，也可以通過各種“眾籌”拍賣和初始投幣產品（ICO）籌集資金。然而，正如我們在將Token轉移到合同地址的問題所看到的那樣，存在一些潛在的陷阱。</p>
 </div>
@@ -1224,10 +1221,10 @@ truffle(ganache)&gt; BigNumber { s: 1, e: 3, c: [ 1000 ] }</pre>
 <p>事實上，用戶不太可能會追蹤所有可能的ERC20Token合約中的所有餘額。許多ERC20Token更像是垃圾郵件，而不是可用的Token。他們自動為擁有ether活動的帳戶創建餘額，以吸引用戶。如果你有一個活動歷史悠久的以太坊地址，特別是如果它是在預售中創建的，你會發現它充滿了憑空出現的“垃圾”Tokens。當然，這個地址並不是真的充滿了Token，而是那些Token合約有你的地址。如果你用於查看地址的資源管理器或錢包正在監視這些Token合約，才能看到這些餘額。</p>
 </div>
 <div class="paragraph">
-<p>Token不像ether。Ether通過+send+功能發送，並由合同中的任何payable函數或任何EOA接受。Token僅使用在ERC20合同中存在的+transfer+ 或+approve＆transferFrom+函數發送，並且不會（至少在ERC20中）觸發收款合同中的任何payable函數。Token的功能就像ether這樣的密碼貨幣，但它們帶有一些細微的區別，可以打破這種錯覺。</p>
+<p>Token不像ether。Ether通過<code>send</code>功能發送，並由合同中的任何payable函數或任何EOA接受。Token僅使用在ERC20合同中存在的<code>transfer</code> 或<code>approve＆transferFrom</code>函數發送，並且不會（至少在ERC20中）觸發收款合同中的任何payable函數。Token的功能就像ether這樣的密碼貨幣，但它們帶有一些細微的區別，可以打破這種錯覺。</p>
 </div>
 <div class="paragraph">
-<p>考慮另一個問題。要發送ether，或使用任何以太坊合同，你需要ether來支付gas。發送Token，你_也需要ether_。你無法用Token支付交易的gas，而Token合同也無法為你支付gas費用。這可能會導致一些相當奇怪的用戶體驗。例如，假設你使用交易所或Shapeshift將某些比特幣轉換為Token。你在錢包中“收到”該Token，該錢包會跟蹤該Token的合同並顯示你的餘額。它看起來與你錢包中的任何其他密碼貨幣相同。現在嘗試發送Token，你的錢包會通知你，你需要ether才能這樣做。你可能會感到困惑 - 畢竟你不需要ether接收Token。也許你沒有ether。也許你甚至不知道該Token是以太坊上的ERC20Token，也許你認為這是一個擁有自己的區塊鏈的密碼貨幣。錯覺就這樣被打破了。</p>
+<p>考慮另一個問題。要發送ether，或使用任何以太坊合同，你需要ether來支付gas。發送Token，你<em>也需要ether</em>。你無法用Token支付交易的gas，而Token合同也無法為你支付gas費用。這可能會導致一些相當奇怪的用戶體驗。例如，假設你使用交易所或Shapeshift將某些比特幣轉換為Token。你在錢包中“收到”該Token，該錢包會跟蹤該Token的合同並顯示你的餘額。它看起來與你錢包中的任何其他密碼貨幣相同。現在嘗試發送Token，你的錢包會通知你，你需要ether才能這樣做。你可能會感到困惑 - 畢竟你不需要ether接收Token。也許你沒有ether。也許你甚至不知道該Token是以太坊上的ERC20Token，也許你認為這是一個擁有自己的區塊鏈的密碼貨幣。錯覺就這樣被打破了。</p>
 </div>
 <div class="paragraph">
 <p>其中一些問題是ERC20Token特有的。其他更一般的問題涉及到以太坊內的抽象和界面邊界。有些可以通過更改Token接口來解決，其他可能需要更改以太坊內的基礎結構（例如EOAs和合同之間以及交易和消息之間的區別）。有些可能不完全“可解決”，並且可能需要用戶界面設計來隱藏細微差別並使用戶體驗一致，而不管其底層區別如何。</p>
@@ -1237,9 +1234,9 @@ truffle(ganache)&gt; BigNumber { s: 1, e: 3, c: [ 1000 ] }</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="ERC223_std">12.7.7. ERC223 - 一種建議的Token合同接口標準</h4>
+<h4 id="ERC223_std">10.7.7. ERC223 - 一種建議的Token合同接口標準</h4>
 <div class="paragraph">
-<p>ERC223提案試圖通過檢測目的地地址是否是合同來解決無意中將Token轉移到合同（可能支持或不支持Token）的問題。ERC223要求用於接受Token的契約實現名為+TokenFallback+的函數。如果傳輸的目的地是合同並且合同不支持Token（即不實現+TokenFallback+），則傳輸失敗。</p>
+<p>ERC223提案試圖通過檢測目的地地址是否是合同來解決無意中將Token轉移到合同（可能支持或不支持Token）的問題。ERC223要求用於接受Token的契約實現名為<code>TokenFallback</code>的函數。如果傳輸的目的地是合同並且合同不支持Token（即不實現<code>TokenFallback</code>），則傳輸失敗。</p>
 </div>
 <div id="is_contract" class="paragraph">
 <p>為了檢測目標地址是否為契約，ERC223參考實現使用了一小段內聯 Bytecode ，並採用了一種頗具創造性的方式：</p>
@@ -1289,7 +1286,7 @@ truffle(ganache)&gt; BigNumber { s: 1, e: 3, c: [ 1000 ] }</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_erc777_一種建議的token合同接口標準">12.7.8. ERC777 - 一種建議的Token合同接口標準</h4>
+<h4 id="_erc777_一種建議的token合同接口標準">10.7.8. ERC777 - 一種建議的Token合同接口標準</h4>
 <div class="paragraph">
 <p>另一項改進Token合同標準的提案是ERC777。該提案有幾個目標，包括：</p>
 </div>
@@ -1299,19 +1296,19 @@ truffle(ganache)&gt; BigNumber { s: 1, e: 3, c: [ 1000 ] }</pre>
 <p>提供ERC20兼容性界面</p>
 </li>
 <li>
-<p>使用+send+功能傳輸Token，類似於ether傳輸</p>
+<p>使用<code>send</code>功能傳輸Token，類似於ether傳輸</p>
 </li>
 <li>
 <p>與ERC820兼容Token合同註冊</p>
 </li>
 <li>
-<p>合同和地址可以通過在發送之前調用+TokensToSend+函數來控制它們發送的Token</p>
+<p>合同和地址可以通過在發送之前調用<code>TokensToSend</code>函數來控制它們發送的Token</p>
 </li>
 <li>
-<p>通過在接收者中調用+TokensReceived+函數來通知合同和地址</p>
+<p>通過在接收者中調用<code>TokensReceived</code>函數來通知合同和地址</p>
 </li>
 <li>
-<p>Token傳輸交易包含 userData 和 operatorData 欄位中的元數據</p>
+<p>Token傳輸交易包含 <code>userData</code> 和 <code>operatorData</code> 欄位中的元數據</p>
 </li>
 <li>
 <p>無論是發送到合同還是EOA，都以相同的方式運作</p>
@@ -1357,20 +1354,22 @@ truffle(ganache)&gt; BigNumber { s: 1, e: 3, c: [ 1000 ] }</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_erc721_不可替代的token契據標準">12.7.9. ERC721 - 不可替代的Token（契據）標準</h4>
+<h4 id="_erc721_不可替代的token契據標準">10.7.9. ERC721 - 不可替代的Token（契據）標準</h4>
 <div class="paragraph">
-<p>我們目前看到的所有Token標準都是_可互換_Token，這意味著Token的每個單元都是完全可以互換的。ERC20Token標準僅跟蹤每個帳戶的最終餘額，並且（明確地）跟蹤任何Token的出處。</p>
+<p>我們目前看到的所有Token標準都是<em>可互換</em>Token，這意味著Token的每個單元都是完全可以互換的。ERC20Token標準僅跟蹤每個帳戶的最終餘額，並且（明確地）跟蹤任何Token的出處。</p>
 </div>
 <div class="paragraph">
-<p>ERC721提案是_不可互換的_ Tokens標準，也稱為_契據_ <em>deeds</em>。</p>
+<p>ERC721提案是<em>不可互換的</em> Tokens標準，也稱為<em>契據</em> <em>deeds</em>。</p>
 </div>
 <div class="paragraph">
 <p>牛津詞典：</p>
 </div>
-<div class="literalblock">
-<div class="content">
-<pre>契約：簽署和交付的法律檔案，尤其是關於財產或合法權利所有權的法律檔案。</pre>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>契約：簽署和交付的法律檔案，尤其是關於財產或合法權利所有權的法律檔案。</p>
 </div>
+</blockquote>
 </div>
 <div class="paragraph">
 <p>契約一詞的使用旨在反映“財產所有權”部分，即使這些部分在任何司法管轄區都不被承認為“法律檔案”，至少目前不是。</p>
@@ -1422,7 +1421,7 @@ mapping (uint256 =&gt; address) private deedOwner;</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>ERC721還支持兩個_*可選*_接口，一個用於元數據，一個用於枚舉契約和所有者。</p>
+<p>ERC721還支持兩個<em><strong>可選</strong></em>接口，一個用於元數據，一個用於枚舉契約和所有者。</p>
 </div>
 <div id="ERC721_metadata" class="paragraph">
 <p>用於元數據的ERC721可選接口是：</p>
@@ -1453,24 +1452,24 @@ mapping (uint256 =&gt; address) private deedOwner;</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="Token_std_review">12.8. Token標準</h3>
+<h3 id="Token_std_review">10.8. Token標準</h3>
 <div class="paragraph">
 <p>在本節中，我們回顧幾個建議的標準和幾個廣泛部署的Token合約標準。這些標準究竟做了什麼？你應該使用這些標準嗎？你應該如何使用它們？你應該添加超出這些標準的功能嗎？你應該使用哪些標準？接下來我們將研究所有這些問題。</p>
 </div>
 <div class="sect3">
-<h4 id="Token_std_purpose">12.8.1. 什麼是Token標準？他們的目的是什麼？</h4>
+<h4 id="Token_std_purpose">10.8.1. 什麼是Token標準？他們的目的是什麼？</h4>
 <div class="paragraph">
-<p>Token標準是實現的_最小_規範。這意味著為了符合ERC20的要求，你至少需要實施ERC20規定的功能和行為。你還可以通過實現不屬於標準的功能來自由添加功能。</p>
+<p>Token標準是實現的<em>最小</em>規範。這意味著為了符合ERC20的要求，你至少需要實施ERC20規定的功能和行為。你還可以通過實現不屬於標準的功能來自由添加功能。</p>
 </div>
 <div class="paragraph">
 <p>這些標準的主要目的是鼓勵合同之間的互用性。因此，所有錢包，交易所，用戶界面和其他基礎設施組件都可以以可預見的方式與任何遵循規範的合同進行交流。</p>
 </div>
 <div class="paragraph">
-<p>標準的目的是 <em>描述性的</em> <em>descriptive</em>，而不是_規定性的_ <em>prescriptive</em>。你如何選擇實現這些功能取決於你 - 合同的內部功能與標準無關。它們有一些功能要求，它們管理特定情況下的行為，但它們沒有規定實現。例如，如果值設置為零，則傳遞函數的行為。</p>
+<p>標準的目的是 <em>描述性的</em> <em>descriptive</em>，而不是<em>規定性的</em> <em>prescriptive</em>。你如何選擇實現這些功能取決於你 - 合同的內部功能與標準無關。它們有一些功能要求，它們管理特定情況下的行為，但它們沒有規定實現。例如，如果值設置為零，則傳遞函數的行為。</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="should_use_std">12.8.2. 你應該使用這些標準嗎？</h4>
+<h4 id="should_use_std">10.8.2. 你應該使用這些標準嗎？</h4>
 <div class="paragraph">
 <p>鑑於所有這些標準，每個開發人員都面臨兩難選擇：使用現有標準還是創新超出他們施加的限制？</p>
 </div>
@@ -1480,28 +1479,30 @@ mapping (uint256 =&gt; address) private deedOwner;</code></pre>
 <div class="paragraph">
 <p>作為這一考慮的一部分，還有一個更大的問題：互操作性和廣泛採用的價值。如果你選擇使用現有標準，你將獲得設計用於該標準的所有系統的價值。如果你選擇偏離標準，則必須考慮自己構建所有基礎架構的成本，或者說服其他人支持你新標準的實施。建立自己的道路並忽視現有標準的傾向被稱為“Not Invented Here”，並且與開源文化相對立。另一方面，進步和創新有時依靠背離傳統。這是一個棘手的選擇，所以仔細考慮吧！</p>
 </div>
-<div class="literalblock">
-<div class="title">維基百科“Not Invented Here”（https://en.wikipedia.org/wiki/Not_invented_here）</div>
-<div class="content">
-<pre>Not Invented Here是由社會，企業或機構文化採取的立場，由於其外部起源和成本（如版稅），避免使用或購買已有產品，研究，標準或知識。</pre>
+<div class="quoteblock">
+<div class="title">維基百科“Not Invented Here”（<a href="https://en.wikipedia.org/wiki/Not_invented_here" class="bare">https://en.wikipedia.org/wiki/Not_invented_here</a>）</div>
+<blockquote>
+<div class="paragraph">
+<p>Not Invented Here是由社會，企業或機構文化採取的立場，由於其外部起源和成本（如版稅），避免使用或購買已有產品，研究，標準或知識。</p>
 </div>
+</blockquote>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="security_maturity">12.9. 安全成熟度</h3>
+<h3 id="security_maturity">10.9. 安全成熟度</h3>
 <div class="paragraph">
-<p>除了標準的選擇之外，還有_implementation_的並行選擇。當你決定使用標準（如ERC20）時，你必須決定如何實施兼容Token。以太坊生態系統中廣泛使用了一些現有的“參考”實現。或者你可以從頭開始寫你自己的。再次，這個選擇代表了一個可能產生嚴重安全隱患的困境。</p>
+<p>除了標準的選擇之外，還有<em>implementation</em>的並行選擇。當你決定使用標準（如ERC20）時，你必須決定如何實施兼容Token。以太坊生態系統中廣泛使用了一些現有的“參考”實現。或者你可以從頭開始寫你自己的。再次，這個選擇代表了一個可能產生嚴重安全隱患的困境。</p>
 </div>
 <div class="paragraph">
 <p>現有的實施是“戰鬥測試”。雖然不可能證明它們是安全的，但其中許多都支持數百萬美元的Token。他們一再受到攻擊，並且受到了強烈的攻擊。到目前為止，沒有發現重大的漏洞。寫你自己的並不容易 - 有許多微妙的方式可以讓合約受到損害。使用經過充分測試的廣泛使用的實現更加安全。在我們上面的例子中，我們使用了ERC20標準的OpenZeppelin實現，因為這個實現從頭到尾都是安全的。</p>
 </div>
 <div class="paragraph">
-<p>如果你使用現有的實現，你也可以擴展它。再次小心這種衝動。複雜性是安全的敵人。你添加的每一行程式碼都會擴展合約的_受攻擊面_，並可能代表處於等待狀態的漏洞。你可能沒有注意到一個問題，直到你在合同上投入了很多價值並且有人打破了它。</p>
+<p>如果你使用現有的實現，你也可以擴展它。再次小心這種衝動。複雜性是安全的敵人。你添加的每一行程式碼都會擴展合約的<em>受攻擊面</em>，並可能代表處於等待狀態的漏洞。你可能沒有注意到一個問題，直到你在合同上投入了很多價值並且有人打破了它。</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="extend_Token_interface">12.10. Token接口標準的擴展</h3>
+<h3 id="extend_Token_interface">10.10. Token接口標準的擴展</h3>
 <div class="paragraph">
 <p>本節中討論的Token標準以非常小的接口開始，功能有限。許多項目已經創建了擴展實現，以支持他們的應用程式所需的功能。其中一些包括：</p>
 </div>
@@ -1549,7 +1550,7 @@ mapping (uint256 =&gt; address) private deedOwner;</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="Tokens_ico">12.11. Tokens 和 ICOs</h3>
+<h3 id="Tokens_ico">10.11. Tokens 和 ICOs</h3>
 <div class="paragraph">
 <p>Token已經成為以太坊生態系統中的爆炸性發展。它們可能是所有智能合約平臺（如以太坊）中非常重要的基礎組件。</p>
 </div>
@@ -1567,7 +1568,7 @@ mapping (uint256 =&gt; address) private deedOwner;</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-最後更新： 2026-04-01 15:09:02 UTC
+最後更新： 2026-11-02 14:55:30 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
