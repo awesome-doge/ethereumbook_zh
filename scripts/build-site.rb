@@ -125,9 +125,9 @@ book_file =
   if BOOK == '2nd'
     tmp = Dir.mktmpdir('md2adoc')
     at_exit { FileUtils.rm_rf(tmp) }
-    zh = File.join(ROOT, 'zh-tw')
-    system('ruby', File.join(ROOT, 'scripts', 'md2adoc.rb'), File.directory?(zh) ? zh : File.join(ROOT, 'upstream'), tmp,
-           *(File.directory?(zh) ? ['--ref', File.join(ROOT, 'upstream')] : []), exception: true)
+    # 一律用譯稿模式（中文的圖表標題與章節標籤）；zh-tw/ 還沒有的章節，md2adoc 會改用英文原稿
+    system('ruby', File.join(ROOT, 'scripts', 'md2adoc.rb'), File.join(ROOT, 'zh-tw'), tmp,
+           '--ref', File.join(ROOT, 'upstream'), exception: true)
     File.join(tmp, 'book.adoc')
   else
     File.join(ROOT, 'book.asciidoc')
