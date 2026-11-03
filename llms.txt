@@ -2,6 +2,8 @@
 
 > 《精通以太坊》（Mastering Ethereum: Building Smart Contracts and DApps）的繁體中文全文譯本，由 Andreas M. Antonopoulos 與 Gavin Wood 撰寫，O'Reilly Media 出版，Dr. Awesome Doge 翻譯，以 CC BY-NC-ND 4.0 授權。
 
+注意：本譯本翻自 2018 年的草稿，測試網、客戶端、開發工具與共識機制等內容已經過時（以太坊已在 2022 年改為權益證明）。原書第二版已於 2025 年出版，英文版見 https://masteringethereum.xyz 。
+
 每一章都是獨立頁面；全書純文字版請見 https://mastering-ethereum.doge.tg/llms-full.txt 。
 
 ## 章節

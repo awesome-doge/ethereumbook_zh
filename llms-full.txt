@@ -2,6 +2,7 @@
 
 > 原著：Andreas M. Antonopoulos、Gavin Wood｜翻譯：Dr. Awesome Doge｜授權：CC BY-NC-ND 4.0
 > 線上閱讀：https://mastering-ethereum.doge.tg/
+> 注意：本譯本翻自 2018 年的草稿，部分內容已經過時；原書第二版（2025）見 https://masteringethereum.xyz
 
 
 ## 前言
