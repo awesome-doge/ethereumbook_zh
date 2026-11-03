@@ -10,7 +10,7 @@
 <%- else -%>
 <link rel="canonical" href="<%= canonical %>">
 <%- end -%>
-<meta name="author" content="Andreas M. Antonopoulos, Gavin Wood">
+<meta name="author" content="<%= AUTHORS.join(', ') %>">
 <meta name="theme-color" content="#f8f9fc" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#14151b" media="(prefers-color-scheme: dark)">
 <meta name="color-scheme" content="light dark">
@@ -53,8 +53,10 @@
 <%- if jsonld -%>
 <script type="application/ld+json"><%= jsonld(jsonld) %></script>
 <%- end -%>
+<%- if GA_ID -%>
 <script async src="https://www.googletagmanager.com/gtag/js?id=<%= GA_ID %>"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','<%= GA_ID %>');</script>
+<%- end -%>
 </head>
 <body class="<%= body_class %>">
 <a class="skip-link" href="#main">跳到主要內容</a>
@@ -128,8 +130,10 @@
       <%- end -%>
     </ol>
     <div class="sidebar-foot">
+      <%- if PDF_URL -%>
       <a href="<%= PDF_URL %>" rel="noopener">下載 PDF 電子書</a>
       <a href="<%= EPUB_URL %>" rel="noopener">下載 EPUB 電子書</a>
+      <%- end -%>
       <a href="<%= REPO_URL %>" rel="noopener">GitHub 原始碼</a>
     </div>
   </nav>
@@ -152,7 +156,7 @@
 </div>
 
 <footer class="site-footer">
-  <p>原著《Mastering Ethereum》由 Andreas M. Antonopoulos 與 Gavin Wood 撰寫，O'Reilly Media 出版。繁體中文翻譯：Dr. Awesome Doge。</p>
+  <p><%= CREDIT %>繁體中文翻譯：Dr. Awesome Doge。</p>
   <p>本書內容以 <a href="<%= LICENSE_URL %>deed.zh_TW" rel="license noopener"><%= LICENSE_NAME %></a> 授權釋出 · <a href="<%= REPO_URL %>" rel="noopener">GitHub</a> · <a href="<%= REPO_URL %>/issues" rel="noopener">回報翻譯問題</a> · <a href="<%= ORIGINAL_URL %>" rel="noopener">英文原著</a></p>
 </footer>
 

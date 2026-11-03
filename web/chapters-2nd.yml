@@ -1,0 +1,76 @@
+# 第二版網站章節設定：依 md2adoc 產生的章節 ID（preface-chap、ch01…ch17）對應網址代稱與 SEO 描述。
+# 網址為 /chapters/<slug>.html（第二版章號全部重排，不能沿用 2018 版的 /chNN.html）。
+# 新增或刪除章節時，建置腳本會在 ID 對不上時直接失敗。
+
+- id: preface-chap
+  slug: preface
+  label: 前言
+  description: 第二版的寫作緣由與三位新作者、本書的閱讀方式與目標讀者、書中的程式碼範例、以太坊地址與交易的寫法，以及排版慣例。
+
+- id: ch01
+  slug: what-is-ethereum
+  description: 什麼是以太坊？與比特幣的比較、區塊鏈的組成、以太坊的誕生與開發階段、圖靈完備性的意義與影響，以及從通用區塊鏈到去中心化應用。
+
+- id: ch02
+  slug: ethereum-basics
+  description: 以太坊入門實作：以太幣單位、選擇錢包、MetaMask 入門、外部擁有帳戶與合約，並撰寫、編譯、部署一個發放測試以太幣的水龍頭合約。
+
+- id: ch03
+  slug: nodes
+  description: 以太坊節點：以太坊網路、是否該執行完整節點、執行層與共識層客戶端的安裝與同步、JSON-RPC 介面，以及遠端客戶端。
+
+- id: ch04
+  slug: cryptography
+  description: 以太坊的密碼學：公開金鑰密碼學、私鑰與公鑰、橢圓曲線、雜湊函數與以太坊地址，以及驗證者使用的 BLS 簽章與 KZG 承諾。
+
+- id: ch05
+  slug: wallets
+  description: 錢包技術：非確定性與階層確定性（HD）錢包、助記詞與種子、錢包的最佳實踐與安全性，以及帳戶抽象、社交恢復與 ENS 等改善使用者體驗的做法。
+
+- id: ch06
+  slug: transactions
+  description: 以太坊交易的結構：nonce、gas、接收者、value 與 data，合約建立交易、數位簽章與實際簽署交易，以及各種交易類型的序列化。
+
+- id: ch07
+  slug: solidity
+  description: 智能合約與 Solidity：合約的生命週期、高階語言簡介、用 Solidity 撰寫合約、合約 ABI、編譯器與語言版本的選擇、Solidity 程式設計，以及 gas 的考量。
+
+- id: ch08
+  slug: vyper
+  description: 智能合約與 Vyper：Vyper 如何以刻意省略功能來減少漏洞、與 Solidity 的比較、裝飾符、函式與變數順序、編譯，以及在編譯器層級防止溢位。
+
+- id: ch09
+  slug: smart-contract-security
+  description: 智能合約安全：安全最佳實踐，常見的風險與反模式（重入、DELEGATECALL、搶先交易、阻斷服務、價格操縱、簽章重放等），以及可以信賴的合約函式庫。
+
+- id: ch10
+  slug: tokens
+  description: 以太坊上的代幣：代幣的用途、同質化與交易對手風險、ERC-20、ERC-721（NFT）與 ERC-1155 標準，以及代幣介面標準的擴充。
+
+- id: ch11
+  slug: oracles
+  description: 預言機：為什麼智能合約需要外部資料、使用案例、設計模式、資料驗證、計算型與去中心化預言機，以及跨鏈訊息協議。
+
+- id: ch12
+  slug: dapps
+  description: 去中心化應用（DApp）：智能合約後端、資料儲存與網頁前端，一個基本的 DApp 範例，以及如何讓應用進一步去中心化。
+
+- id: ch13
+  slug: defi
+  description: 去中心化金融（DeFi）：與傳統金融的比較，去中心化交易所、借貸市場、穩定幣、流動性質押、真實世界資產與跨鏈橋等基本元件，以及 DeFi 的風險與挑戰。
+
+- id: ch14
+  slug: evm
+  description: 以太坊虛擬機（EVM）：與其他技術的比較、指令集、以太坊狀態與默克爾帕特里夏前綴樹、EVM 各組件的實際運作，以及 Solidity 如何編譯成位元組碼。
+
+- id: ch15
+  slug: consensus
+  description: 以太坊的共識：工作量證明與權益證明、權益證明的術語、LMD-GHOST 與 Casper FFG、檢查點的生命週期、Gasper 的實際運作，以及相關爭議。
+
+- id: ch16
+  slug: scaling
+  description: 以太坊擴容：擴容三難、gas 成本與網路壅塞、狀態成長與 MEV 等第一層的限制，以及 rollup、Danksharding、Proto-Danksharding 與無狀態以太坊等解決方案。
+
+- id: ch17
+  slug: zero-knowledge-proofs
+  description: 零知識證明：歷史、定義與性質、以太坊與第二層如何使用零知識證明，一個分割問題的小範例、Fiat-Shamir 啟發法、SNARK 與 STARK，以及 zk-EVM 與 zkVM。

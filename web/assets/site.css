@@ -618,6 +618,7 @@ kbd {
 
 .home { max-width: 1040px; margin: 0 auto; }
 .hero { display: grid; grid-template-columns: minmax(180px, 300px) 1fr; gap: clamp(28px, 5vw, 64px); align-items: center; padding: 16px 0 56px; }
+.hero.no-cover { grid-template-columns: 1fr; max-width: 46em; }   /* 第二版尚無封面圖 */
 .hero-cover { width: 100%; height: auto; border-radius: 6px; box-shadow: var(--shadow); background: #fff; }
 .hero-kicker { margin: 0 0 12px; color: var(--link); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.12em; }
 .hero h1 { margin: 0; font-size: clamp(2.4rem, 6vw, 3.6rem); line-height: 1.15; letter-spacing: 0.04em; }
@@ -663,6 +664,7 @@ kbd {
 }
 .toc-cards a:hover { border-color: var(--accent); transform: translateY(-2px); }
 .card-label { color: var(--link); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; }
+.card-badge { margin-left: 6px; padding: 1px 6px; border-radius: 4px; background: var(--bg-soft); color: var(--text-3); font-weight: 500; letter-spacing: 0; }
 .card-title { margin-top: 2px; font-size: 1.1rem; font-weight: 700; line-height: 1.45; }
 .card-desc { flex: 1; margin-top: 8px; color: var(--text-2); font-size: 0.85rem; line-height: 1.7; }
 .card-meta { margin-top: 10px; color: var(--text-3); font-size: 0.78rem; }

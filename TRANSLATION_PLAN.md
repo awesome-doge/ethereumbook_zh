@@ -127,7 +127,10 @@ web/                   現有閱讀器的版型、樣式與腳本，沿用
    - 533 個標題 ID 全部出現在輸出中；標記外漏檢查為 0。
 3. ✅ 寫 `scripts/check-translation.rb`，並用刻意改壞的譯稿確認標題、程式碼、行內程式碼、連結、用語、TODO-term 都抓得到。
 4. ✅ 起草 `translation/terminology.md`（涵蓋全書，含 7 個待定條目）、`style-guide.md`、`progress.md`。
-5. ⬜ `build-site.rb` 支援第二版：加上「書稿、章節設定（`web/chapters-2nd.yml`）、圖片來源、網址前綴 `/chapters/`」參數，從 `upstream/`＋`zh-tw/` 建出**不公開**的預覽，供試譯審閱；同時在瀏覽器確認第 17 章 23 條公式的 KaTeX 都能渲染。
+5. ✅ `build-site.rb` 支援第二版：`BOOK=2nd ruby scripts/build-site.rb output/2nd` 會先執行 `md2adoc.rb`，從 `zh-tw/`（還沒翻譯的章節用 `upstream/`）建出**不公開**的預覽，網址為 `/chapters/<slug>.html`，章節設定在 `web/chapters-2nd.yml`。
+   - 預覽全站 noindex、robots 拒絕索引、sitemap 不列網址、不載入 GA；首頁與目錄標出哪些章節還是英文原稿。
+   - 2018 版的建置輸出與改寫前逐位元組相同（只有 CSS 新增兩條規則與版本參數不同）。
+   - 瀏覽器確認：圖、範例、表依各章重新編號（圖 11-1、範例 4-1、表 5-1）；第 17 章 23 條公式 0 個錯誤；圖片自 `upstream/images/` 載入；前言加 17 章的標籤正確。
 
 原本列在這裡的「2018 譯本搬到 `2018/`」與「`ebook.yml` 改產生第二版」移到第 5 階段：前者現在搬只會改動編輯連結與 release 流程、沒有好處；後者若提早改，下一次推送 `v*` tag 就會產生未完成的第二版電子書。
 
@@ -160,6 +163,8 @@ web/                   現有閱讀器的版型、樣式與腳本，沿用
 1. 確認上游授權已轉為 CC BY-SA 4.0，並把網站、README、llms.txt 的授權標示改過來。
 2. 把 2018 譯本搬到 `2018/`：除了 `*.asciidoc` 與 `images/`，還有 `code/`（章節會 `include::` 其中的檔案）、`cover.jpg`、`pdf-theme.yml`、`epub-styles/`。2018 版的 PDF／EPUB 凍結在目前最後一次 release，不再重建。
 3. 切換網站：第二版上主網域，2018 譯本移到 `/2018/`，舊網址轉址，更新 sitemap、搜尋索引與同義詞；CI 安裝固定版本的 pandoc。
+   `site.js` 的舊錨點轉址目前組成 `'/' + slug + '.html'`、`ids.json` 只存 slug；2018 版搬到 `/2018/` 時要改成存完整路徑。
+   第二版還需要自己的封面與分享圖（`og-cover.png` 目前是第一版封面）。
 4. `ebook.yml` 改為產生第二版：先執行 `md2adoc.rb` 產生 `book.adoc`，再交給 asciidoctor-pdf 與 asciidoctor-epub3。
 5. 推送新版本 tag，產生第二版的 PDF 與 EPUB。
 

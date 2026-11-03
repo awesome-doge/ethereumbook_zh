@@ -4,6 +4,12 @@
 # 建置線上閱讀網站：每章一個獨立頁面，加上首頁、404、sitemap 與全書搜尋索引。
 #
 # 用法：ruby scripts/build-site.rb [輸出目錄，預設 public]
+#       BOOK=2nd ruby scripts/build-site.rb build/2nd   # 第二版譯稿的不公開預覽
+#
+# 兩本書：
+#   2018（預設）：book.asciidoc，網址 /<slug>.html，即目前上線的 2018 草稿譯本
+#   2nd：先以 scripts/md2adoc.rb 把 zh-tw/（還沒翻譯的章節用 upstream/ 英文原稿）轉成 AsciiDoc，
+#        網址 /chapters/<slug>.html；授權確認、全書譯完之前一律 noindex，不載入 GA
 #
 # 流程：
 #   1. 以 Asciidoctor 載入整本 book.asciidoc（交叉引用因此能在全書範圍解析）
@@ -27,24 +33,67 @@ require 'time'
 require 'cgi'
 require 'set'
 
+require 'tmpdir'
+
 ROOT = File.expand_path('..', __dir__)
 OUT = File.expand_path(ARGV[0] || 'public', ROOT)
 WEB = File.join(ROOT, 'web')
 
 SITE_URL = 'https://mastering-ethereum.doge.tg'
-SITE_NAME = '精通以太坊繁體中文版'
-BOOK_TITLE = '精通以太坊'
-BOOK_FULL_TITLE = '精通以太坊：打造智能合約與 DApp'
 REPO_URL = 'https://github.com/awesome-doge/ethereumbook_zh'
 RELEASES_URL = "#{REPO_URL}/releases/latest"
-EPUB_URL = "#{RELEASES_URL}/download/Mastering-Ethereum-Traditional-Chinese.epub"
-PDF_URL = "#{RELEASES_URL}/download/Mastering-Ethereum-Traditional-Chinese.pdf"
 ORIGINAL_URL = 'https://github.com/ethereumbook/ethereumbook'
 SECOND_EDITION_URL = 'https://masteringethereum.xyz'
-LICENSE_NAME = 'CC BY-NC-ND 4.0'
-LICENSE_URL = 'https://creativecommons.org/licenses/by-nc-nd/4.0/'
-GA_ID = 'G-ZVVQYEKMPF'
 OG_IMAGE = '/assets/og-cover.png'
+
+BOOKS = {
+  '2018' => {
+    site_name: '精通以太坊繁體中文版', book_title: '精通以太坊', book_full_title: '精通以太坊：打造智能合約與 DApp',
+    authors: ['Andreas M. Antonopoulos', 'Gavin Wood'],
+    credit: '原著《Mastering Ethereum》由 Andreas M. Antonopoulos 與 Gavin Wood 撰寫，O\'Reilly Media 出版。',
+    license_name: 'CC BY-NC-ND 4.0', license_url: 'https://creativecommons.org/licenses/by-nc-nd/4.0/',
+    epub: "#{RELEASES_URL}/download/Mastering-Ethereum-Traditional-Chinese.epub",
+    pdf: "#{RELEASES_URL}/download/Mastering-Ethereum-Traditional-Chinese.pdf",
+    chapters: 'chapters.yml', home: 'home', path_prefix: '/', images_root: ROOT,
+    legacy: true, preview: false, ga: 'G-ZVVQYEKMPF',
+    original_name: 'Mastering Ethereum: Building Smart Contracts and DApps',
+    alternate_names: ['Mastering Ethereum: Building Smart Contracts and DApps', '精通以太坊 Mastering Ethereum'],
+    description: '《精通以太坊》（Mastering Ethereum）繁體中文全文，免費線上閱讀。' \
+                 '從密鑰、地址、錢包與交易，到智能合約、Solidity、Vyper、代幣、DApp、預言機、EVM 與共識，完整解說以太坊的技術原理。'
+  },
+  '2nd' => {
+    site_name: '精通以太坊第二版繁體中文版', book_title: '精通以太坊（第二版）', book_full_title: '精通以太坊（第二版）',
+    authors: ['Andreas M. Antonopoulos', 'Gavin Wood', 'Carlo Parisi', 'Alessandro Mazza', 'Niccolò Pozzolini'],
+    credit: '原著《Mastering Ethereum》第二版由 Andreas M. Antonopoulos、Gavin Wood、Carlo Parisi、Alessandro Mazza 與 ' \
+            'Niccolò Pozzolini 撰寫，O\'Reilly Media 出版。',
+    # 上游條款：出版 12 個月後轉為 CC BY-SA 4.0；正式確認前標示為待確認（見 TRANSLATION_PLAN.md）
+    license_name: 'CC BY-SA 4.0（待確認）', license_url: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    epub: nil, pdf: nil,
+    chapters: 'chapters-2nd.yml', home: 'home-2nd', path_prefix: '/chapters/', images_root: File.join(ROOT, 'upstream'),
+    legacy: false, preview: true, ga: nil,
+    original_name: 'Mastering Ethereum, 2nd Edition',
+    alternate_names: ['Mastering Ethereum, 2nd Edition', '精通以太坊第二版'],
+    description: '《精通以太坊》（Mastering Ethereum）第二版繁體中文譯稿預覽。' \
+                 '從密碼學、錢包與交易，到智能合約、安全、代幣、DeFi、EVM、權益證明、擴容與零知識證明。'
+  }
+}.freeze
+
+BOOK = ENV['BOOK'] || '2018'
+PROFILE = BOOKS.fetch(BOOK) { abort "BOOK 只能是 #{BOOKS.keys.join(' 或 ')}" }
+SITE_NAME = PROFILE[:site_name]
+BOOK_TITLE = PROFILE[:book_title]
+BOOK_FULL_TITLE = PROFILE[:book_full_title]
+AUTHORS = PROFILE[:authors]
+CREDIT = PROFILE[:credit]
+EPUB_URL = PROFILE[:epub]
+PDF_URL = PROFILE[:pdf]
+LICENSE_NAME = PROFILE[:license_name]
+LICENSE_URL = PROFILE[:license_url]
+GA_ID = PROFILE[:ga]
+PATH_PREFIX = PROFILE[:path_prefix]
+IMAGES_ROOT = PROFILE[:images_root]
+LEGACY_2018 = PROFILE[:legacy]   # 2018 草稿譯本專用：過時提示、/all.html、舊分享圖
+PREVIEW = PROFILE[:preview]      # 不公開預覽：全站 noindex、robots 拒絕索引、sitemap 不列網址
 
 def h(str) = CGI.escapeHTML(str.to_s)
 def plain(html) = Nokogiri::HTML5.fragment(html.to_s).text.gsub(/\s+/, ' ').strip
@@ -72,8 +121,20 @@ end
 # 1. 載入全書
 # ---------------------------------------------------------------------------
 
+book_file =
+  if BOOK == '2nd'
+    tmp = Dir.mktmpdir('md2adoc')
+    at_exit { FileUtils.rm_rf(tmp) }
+    zh = File.join(ROOT, 'zh-tw')
+    system('ruby', File.join(ROOT, 'scripts', 'md2adoc.rb'), File.directory?(zh) ? zh : File.join(ROOT, 'upstream'), tmp,
+           *(File.directory?(zh) ? ['--ref', File.join(ROOT, 'upstream')] : []), exception: true)
+    File.join(tmp, 'book.adoc')
+  else
+    File.join(ROOT, 'book.asciidoc')
+  end
+
 doc = Asciidoctor.load_file(
-  File.join(ROOT, 'book.asciidoc'),
+  book_file,
   safe: :unsafe,
   standalone: false,
   sourcemap: true,
@@ -87,19 +148,19 @@ doc = Asciidoctor.load_file(
   }
 )
 
-config = YAML.load_file(File.join(WEB, 'chapters.yml'))
+config = YAML.load_file(File.join(WEB, PROFILE[:chapters]))
 config_by_id = config.to_h { |c| [c['id'], c] }
 sections = doc.sections.reject { |s| s.sectname == 'index' }
 
 unknown = sections.map(&:id) - config_by_id.keys
 missing = config_by_id.keys - sections.map(&:id)
-abort "chapters.yml 缺少章節 ID：#{unknown.join(', ')}" unless unknown.empty?
-abort "chapters.yml 有不存在的章節 ID：#{missing.join(', ')}" unless missing.empty?
+abort "#{PROFILE[:chapters]} 缺少章節 ID：#{unknown.join(', ')}" unless unknown.empty?
+abort "#{PROFILE[:chapters]} 有不存在的章節 ID：#{missing.join(', ')}" unless missing.empty?
 
 Page = Struct.new(:id, :slug, :label, :title, :title_html, :description, :source, :html,
-                  :toc, :footnotes, :ids, :minutes, :search, :lastmod, :prev, :next, :has_math,
+                  :toc, :footnotes, :ids, :minutes, :search, :lastmod, :prev, :next, :has_math, :translated,
                   keyword_init: true) do
-  def path = "/#{slug}.html"
+  def path = "#{PATH_PREFIX}#{slug}.html"
   def url = SITE_URL + path
   def full_title = label == title ? title : "#{label}　#{title}"
 end
@@ -118,11 +179,18 @@ pages = sections.map do |sec|
   html = sec.convert
   footnotes = doc.footnotes[before..] || []
 
-  source = sec.source_location&.file
+  source = sec.source_location&.file && File.basename(sec.source_location.file)
+  translated = true
+  if BOOK == '2nd' && source
+    # 產生的 .adoc 在暫存目錄；對應回譯稿（或尚未翻譯時的英文原稿），供編輯連結與 lastmod 使用
+    md = source.sub(/\.adoc\z/, '.md')
+    translated = File.exist?(File.join(ROOT, 'zh-tw', md))
+    source = translated ? "zh-tw/#{md}" : "upstream/#{md}"
+  end
   Page.new(
     id: sec.id, slug: cfg['slug'], label: cfg['label'] || label,
     title: cfg['title'] || plain(sec.title), title_html: cfg['title'] || sec.title,
-    description: cfg['description'], source: source && File.basename(source),
+    description: cfg['description'], source: source, translated: translated,
     html: html, footnotes: footnotes
   )
 end
@@ -171,6 +239,7 @@ end
 FileUtils.rm_rf(OUT)
 FileUtils.mkdir_p(File.join(OUT, 'images'))
 FileUtils.mkdir_p(File.join(OUT, 'assets'))
+FileUtils.mkdir_p(File.join(OUT, PATH_PREFIX))
 
 webp = system('command -v cwebp >/dev/null 2>&1')
 warn '找不到 cwebp，圖片將只輸出 PNG' unless webp
@@ -206,7 +275,7 @@ pages.each do |page|
     src = img['src'].to_s
     next unless src.start_with?('/images/')
 
-    file = File.join(ROOT, src)
+    file = File.join(IMAGES_ROOT, src)
     abort "#{page.slug}: 圖片不存在 #{src}" unless File.exist?(file)
     used_images[src] = file
     if (dims = png_size(file))
@@ -322,12 +391,13 @@ asset_version['code.css'] = Digest::MD5.hexdigest(File.read(File.join(OUT, 'asse
 
 used_images.each do |src, file|
   dest = File.join(OUT, src)
+  FileUtils.mkdir_p(File.dirname(dest))   # 第二版的圖片分章放在 images/chN/
   FileUtils.cp(file, dest)
   system('cwebp', '-quiet', '-q', '85', '-m', '6', file, '-o', dest.sub(/\.png\z/, '.webp')) if webp && src.end_with?('.png')
 end
 
 # 舊版網站的分享圖片網址，社群平台的快取可能仍會引用
-FileUtils.cp(File.join(ROOT, 'images', 'cover.png'), File.join(OUT, 'images', 'cover.png'))
+FileUtils.cp(File.join(ROOT, 'images', 'cover.png'), File.join(OUT, 'images', 'cover.png')) if LEGACY_2018
 
 Dir.glob(File.join(WEB, 'static', '*'), File::FNM_DOTMATCH).each do |f|
   next if File.directory?(f)
@@ -344,7 +414,7 @@ def template(name) = ERB.new(File.read(File.join(WEB, 'templates', "#{name}.html
 
 LAYOUT = template('layout')
 CHAPTER = template('chapter')
-HOME = template('home')
+HOME = template(PROFILE[:home])
 NOT_FOUND = template('404')
 EDITION_NOTICE = template('edition-notice')
 
@@ -355,11 +425,10 @@ BOOK_LD = {
   '@type' => 'Book',
   '@id' => "#{SITE_URL}/#book",
   'name' => BOOK_FULL_TITLE,
-  'alternateName' => ['Mastering Ethereum: Building Smart Contracts and DApps', '精通以太坊 Mastering Ethereum'],
-  'author' => [
-    { '@type' => 'Person', 'name' => 'Andreas M. Antonopoulos', 'url' => 'https://aantonop.com' },
-    { '@type' => 'Person', 'name' => 'Gavin Wood' }
-  ],
+  'alternateName' => PROFILE[:alternate_names],
+  'author' => AUTHORS.map do |name|
+    { '@type' => 'Person', 'name' => name, 'url' => ('https://aantonop.com' if name == 'Andreas M. Antonopoulos') }.compact
+  end,
   'translator' => { '@type' => 'Person', 'name' => 'Dr. Awesome Doge' },
   'inLanguage' => 'zh-TW',
   'publisher' => { '@type' => 'Organization', 'name' => "O'Reilly Media" },
@@ -368,7 +437,7 @@ BOOK_LD = {
   'url' => "#{SITE_URL}/",
   'image' => SITE_URL + OG_IMAGE,
   'translationOfWork' => {
-    '@type' => 'Book', 'name' => 'Mastering Ethereum: Building Smart Contracts and DApps', 'inLanguage' => 'en',
+    '@type' => 'Book', 'name' => PROFILE[:original_name], 'inLanguage' => 'en',
     'url' => ORIGINAL_URL
   }
 }.compact
@@ -377,11 +446,11 @@ def jsonld(obj) = JSON.generate({ '@context' => 'https://schema.org' }.merge(obj
 
 def render_page(content:, title:, description:, canonical:, og_type: 'article', jsonld: nil,
                 current: nil, pages:, body_class: '', noindex: false, has_math: false, toc: [])
+  noindex ||= PREVIEW
   LAYOUT.result(binding)
 end
 
-home_description = '《精通以太坊》（Mastering Ethereum）繁體中文全文，免費線上閱讀。' \
-                   '從密鑰、地址、錢包與交易，到智能合約、Solidity、Vyper、代幣、DApp、預言機、EVM 與共識，完整解說以太坊的技術原理。'
+home_description = PROFILE[:description]
 first_chapter = pages.find { |p| p.label.start_with?('第') }
 
 pages.each do |page|
@@ -444,10 +513,12 @@ File.write(File.join(OUT, '404.html'), render_page(
 ))
 
 # 舊版的單頁全書 /all.html：保留網址，/all.html#錨點 由 site.js 依 ids.json 轉到對應章節
-File.write(File.join(OUT, 'all.html'), render_page(
-  content: template('legacy').result(binding), title: "單頁版已改為分章閱讀｜#{BOOK_TITLE}", description: home_description,
-  canonical: nil, pages: pages, body_class: 'is-legacy', noindex: true
-))
+if LEGACY_2018
+  File.write(File.join(OUT, 'all.html'), render_page(
+    content: template('legacy').result(binding), title: "單頁版已改為分章閱讀｜#{BOOK_TITLE}", description: home_description,
+    canonical: nil, pages: pages, body_class: 'is-legacy', noindex: true
+  ))
+end
 
 # ---------------------------------------------------------------------------
 # 6. sitemap、搜尋索引、舊網址錨點對照、llms-full.txt
@@ -456,8 +527,10 @@ File.write(File.join(OUT, 'all.html'), render_page(
 home_lastmod = pages.map(&:lastmod).max
 sitemap = +%(<?xml version="1.0" encoding="UTF-8"?>\n)
 sitemap << %(<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n)
-sitemap << "  <url><loc>#{SITE_URL}/</loc><lastmod>#{home_lastmod}</lastmod></url>\n"
-pages.each { |p| sitemap << "  <url><loc>#{p.url}</loc><lastmod>#{p.lastmod}</lastmod></url>\n" }
+unless PREVIEW   # 預覽全站 noindex，sitemap 不列網址
+  sitemap << "  <url><loc>#{SITE_URL}/</loc><lastmod>#{home_lastmod}</lastmod></url>\n"
+  pages.each { |p| sitemap << "  <url><loc>#{p.url}</loc><lastmod>#{p.lastmod}</lastmod></url>\n" }
+end
 sitemap << "</urlset>\n"
 File.write(File.join(OUT, 'sitemap.xml'), sitemap)
 
@@ -481,6 +554,12 @@ ids = {}
 pages.each { |p| p.ids.each { |id| ids[id] = p.slug unless id.start_with?('_footnote') } }
 pages.each { |p| ids[p.id] = p.slug }
 File.write(File.join(OUT, 'ids.json'), JSON.generate(ids))
+
+if PREVIEW
+  File.write(File.join(OUT, 'robots.txt'), "# 第二版譯稿預覽，尚未公開\nUser-agent: *\nDisallow: /\n")
+  puts "完成（預覽）：#{pages.size} 個章節頁面（已翻譯 #{pages.count(&:translated)}）、#{used_images.size} 張圖片 → #{OUT}"
+  exit
+end
 
 llms_full = +"# #{BOOK_FULL_TITLE}（繁體中文版）\n\n"
 llms_full << "> 原著：Andreas M. Antonopoulos、Gavin Wood｜翻譯：Dr. Awesome Doge｜授權：#{LICENSE_NAME}\n"

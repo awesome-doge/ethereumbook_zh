@@ -1,0 +1,36 @@
+<%- translated = pages.count(&:translated) -%>
+<div class="home">
+  <aside class="edition-notice" role="note" aria-label="預覽說明">
+    <p><strong>第二版譯稿預覽，尚未公開。</strong>目前已翻譯 <%= translated %> / <%= pages.size %> 章，尚未翻譯的章節暫時顯示英文原稿。翻譯計畫見 <a href="<%= REPO_URL %>/blob/master/TRANSLATION_PLAN.md" rel="noopener">TRANSLATION_PLAN.md</a>。</p>
+  </aside>
+  <section class="hero no-cover">
+    <div class="hero-text">
+      <p class="hero-kicker">Mastering Ethereum · 第二版 · 繁體中文</p>
+      <h1>精通以太坊<span class="hero-sub">第二版</span></h1>
+      <p class="hero-authors"><%= AUTHORS.join('、') %> 著<br>Dr. Awesome Doge 譯</p>
+      <p class="hero-lead">以太坊開發者的經典技術書第二版，配合 2022 年改為權益證明之後的以太坊全面改寫。從密碼學、錢包與交易，到 Solidity 與 Vyper、智能合約安全、代幣與 DeFi、以太坊虛擬機、共識、擴容與零知識證明。</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="<%= first_chapter.path %>">開始閱讀第 1 章</a>
+        <a class="btn btn-resume" href="#" hidden data-resume>繼續閱讀</a>
+        <a class="btn" href="<%= SECOND_EDITION_URL %>" rel="noopener">英文原書線上版</a>
+      </div>
+      <p class="hero-facts"><%= pages.count { |p| p.label.start_with?('第') } %> 章 · 約 <%= (total_minutes / 60.0).round %> 小時閱讀 · <%= LICENSE_NAME %></p>
+    </div>
+  </section>
+
+  <section class="home-toc" aria-labelledby="toc-title">
+    <h2 id="toc-title">目錄</h2>
+    <ol class="toc-cards">
+      <%- pages.each do |p| -%>
+      <li>
+        <a href="<%= p.path %>">
+          <span class="card-label"><%= h p.label %><%- unless p.translated -%> <span class="card-badge">英文原稿</span><%- end -%></span>
+          <span class="card-title"><%= h p.title %></span>
+          <span class="card-desc"><%= h p.description %></span>
+          <span class="card-meta">約 <%= p.minutes %> 分鐘</span>
+        </a>
+      </li>
+      <%- end -%>
+    </ol>
+  </section>
+</div>
