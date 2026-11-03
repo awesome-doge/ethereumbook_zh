@@ -40,6 +40,7 @@ RELEASES_URL = "#{REPO_URL}/releases/latest"
 EPUB_URL = "#{RELEASES_URL}/download/Mastering-Ethereum-Traditional-Chinese.epub"
 PDF_URL = "#{RELEASES_URL}/download/Mastering-Ethereum-Traditional-Chinese.pdf"
 ORIGINAL_URL = 'https://github.com/ethereumbook/ethereumbook'
+SECOND_EDITION_URL = 'https://masteringethereum.xyz'
 LICENSE_NAME = 'CC BY-NC-ND 4.0'
 LICENSE_URL = 'https://creativecommons.org/licenses/by-nc-nd/4.0/'
 GA_ID = 'G-ZVVQYEKMPF'
@@ -345,6 +346,10 @@ LAYOUT = template('layout')
 CHAPTER = template('chapter')
 HOME = template('home')
 NOT_FOUND = template('404')
+EDITION_NOTICE = template('edition-notice')
+
+# 本譯本翻自 2018 年草稿，首頁與各章都標示內容已過時，並指向原書第二版
+def edition_notice(compact: false) = EDITION_NOTICE.result(binding)
 
 BOOK_LD = {
   '@type' => 'Book',
@@ -479,7 +484,8 @@ File.write(File.join(OUT, 'ids.json'), JSON.generate(ids))
 
 llms_full = +"# #{BOOK_FULL_TITLE}（繁體中文版）\n\n"
 llms_full << "> 原著：Andreas M. Antonopoulos、Gavin Wood｜翻譯：Dr. Awesome Doge｜授權：#{LICENSE_NAME}\n"
-llms_full << "> 線上閱讀：#{SITE_URL}/\n\n"
+llms_full << "> 線上閱讀：#{SITE_URL}/\n"
+llms_full << "> 注意：本譯本翻自 2018 年的草稿，部分內容已經過時；原書第二版（2025）見 #{SECOND_EDITION_URL}\n\n"
 pages.each do |p|
   llms_full << "\n## #{p.full_title}\n\n來源：#{p.url}\n\n"
   p.search.each_with_index do |e, i|
@@ -493,6 +499,8 @@ File.write(File.join(OUT, 'llms-full.txt'), llms_full)
 llms = +"# #{BOOK_FULL_TITLE}（繁體中文版）\n\n"
 llms << "> 《精通以太坊》（Mastering Ethereum: Building Smart Contracts and DApps）的繁體中文全文譯本，" \
         "由 Andreas M. Antonopoulos 與 Gavin Wood 撰寫，O'Reilly Media 出版，Dr. Awesome Doge 翻譯，以 #{LICENSE_NAME} 授權。\n\n"
+llms << "注意：本譯本翻自 2018 年的草稿，測試網、客戶端、開發工具與共識機制等內容已經過時（以太坊已在 2022 年改為權益證明）。" \
+        "原書第二版已於 2025 年出版，英文版見 #{SECOND_EDITION_URL} 。\n\n"
 llms << "每一章都是獨立頁面；全書純文字版請見 #{SITE_URL}/llms-full.txt 。\n\n## 章節\n\n"
 pages.each { |p| llms << "- [#{p.full_title}](#{p.url})：#{p.description}\n" }
 llms << "\n## 其他\n\n- [PDF 電子書下載](#{PDF_URL})\n- [EPUB 電子書下載](#{EPUB_URL})\n" \

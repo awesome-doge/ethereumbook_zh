@@ -1,5 +1,6 @@
 <article class="chapter" aria-labelledby="<%= h page.id %>">
   <nav class="breadcrumb" aria-label="導覽路徑"><a href="/"><%= BOOK_TITLE %></a><span aria-hidden="true">/</span><span><%= h page.label %></span></nav>
+<%= edition_notice(compact: true) %>
   <header class="chapter-head">
     <%- if page.label != page.title -%>
     <p class="chapter-label"><%= h page.label %></p>
