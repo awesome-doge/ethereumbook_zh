@@ -1,0 +1,7 @@
+{
+  "1742b1f8670bc623beb94143e45bc91fe6dd60d8": "\\lvert s\\lbrack 1\\rbrack  \\rvert = \\lvert w\\lbrack 2\\rbrack  - w\\lbrack 1\\rbrack  \\rvert = \\lvert 2 - 1 \\rvert = \\lvert 1 \\rvert = 1",
+  "4a5bfb7c85f99e0ead945aabc07cda9cf3ef41fe": "\\lvert s\\lbrack 2\\rbrack  \\rvert = \\lvert w\\lbrack 3\\rbrack  - w\\lbrack 2\\rbrack  \\rvert = \\lvert 7 - 2 \\rvert = \\lvert 5 \\rvert = 5",
+  "1b1323b14c55e9605f627144ff1aeeeee75a745d": "\\lvert s\\lbrack 1\\rbrack  \\rvert = \\lvert w'\\lbrack 2\\rbrack  - w'\\lbrack 1\\rbrack  \\rvert = \\lvert 2 - 3 \\rvert = \\lvert -1 \\rvert = 1",
+  "cdbdb51c305447079acdd424263348e02b1a2ca9": "\\lvert s\\lbrack 2\\rbrack  \\rvert = \\lvert w''\\lbrack 3\\rbrack  - w''\\lbrack 2\\rbrack  \\rvert = \\lvert 8 - 3 \\rvert = \\lvert 5 \\rvert = 5",
+  "5f3b6afc54ca1c1f686d5795b486b7b9cf2b4357": "\\lvert s\\lbrack 1\\rbrack  \\rvert = \\lvert w'\\lbrack 2\\rbrack  - w'\\lbrack 1\\rbrack  \\rvert = \\lvert 10 - 9 \\rvert = \\lvert 1 \\rvert = 1"
+}
