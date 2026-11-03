@@ -1,0 +1,40 @@
+<div class="home">
+  <section class="hero">
+    <img class="hero-cover" src="/assets/cover-480.webp" width="480" height="630" alt="《精通以太坊》封面：數隻蜜蜂" fetchpriority="high">
+    <div class="hero-text">
+      <p class="hero-kicker">Mastering Ethereum · 繁體中文</p>
+      <h1>精通以太坊<span class="hero-sub">打造智能合約與 DApp</span></h1>
+      <p class="hero-authors">Andreas M. Antonopoulos、Gavin Wood 著<br>Dr. Awesome Doge 譯</p>
+      <p class="hero-lead">以太坊開發者的經典技術書，全文繁體中文翻譯，免費線上閱讀。從錢包、密鑰、地址與交易談起，一路到智能合約、Solidity 與 Vyper、代幣標準、DApp、預言機、以太坊虛擬機和共識，帶你從原理理解以太坊。</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="<%= first_chapter.path %>">開始閱讀第 1 章</a>
+        <a class="btn btn-resume" href="#" hidden data-resume>繼續閱讀</a>
+        <a class="btn" href="<%= PDF_URL %>" rel="noopener">下載 PDF</a>
+        <a class="btn" href="<%= EPUB_URL %>" rel="noopener">下載 EPUB</a>
+      </div>
+      <p class="hero-facts"><%= pages.count { |p| p.label.start_with?('第') } %> 章 · <%= pages.count { |p| p.label.start_with?('附錄') } %> 篇附錄 · 約 <%= (total_minutes / 60.0).round %> 小時閱讀 · <%= LICENSE_NAME %></p>
+    </div>
+  </section>
+
+  <section class="home-toc" aria-labelledby="toc-title">
+    <h2 id="toc-title">目錄</h2>
+    <ol class="toc-cards">
+      <%- pages.each do |p| -%>
+      <li>
+        <a href="<%= p.path %>">
+          <span class="card-label"><%= h p.label %></span>
+          <span class="card-title"><%= h p.title %></span>
+          <span class="card-desc"><%= h p.description %></span>
+          <span class="card-meta">約 <%= p.minutes %> 分鐘</span>
+        </a>
+      </li>
+      <%- end -%>
+    </ol>
+  </section>
+
+  <section class="home-about" aria-labelledby="about-title">
+    <h2 id="about-title">關於這個譯本</h2>
+    <p>《精通以太坊》（<i lang="en">Mastering Ethereum: Building Smart Contracts and DApps</i>）由 Andreas M. Antonopoulos 與 Gavin Wood 撰寫，O'Reilly Media 出版，原著以 <a href="<%= LICENSE_URL %>deed.zh_TW" rel="license noopener"><%= LICENSE_NAME %></a> 授權公開。本站為其繁體中文（臺灣）譯本，同樣以 <%= LICENSE_NAME %> 釋出：可以在註明出處的前提下非商業性地轉載與分享，但不得修改後再散布。</p>
+    <p>本書寫給想打造以太坊應用的程式設計師，前幾章也適合想了解以太坊運作原理的一般讀者。若發現翻譯錯誤或技術問題，歡迎到 <a href="<%= REPO_URL %>/issues" rel="noopener">GitHub</a> 回報或提交修正。</p>
+  </section>
+</div>

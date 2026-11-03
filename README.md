@@ -20,7 +20,7 @@
 
 | 格式 | 說明 |
 |------|------|
-| [線上閱讀](https://mastering-ethereum.doge.tg/) | 響應式網頁版，支援桌面和手機 |
+| [線上閱讀](https://mastering-ethereum.doge.tg/) | 每章一頁的線上閱讀器：全書目錄、全文搜尋、字級與主題切換、記住閱讀進度，支援桌面和手機 |
 | [PDF 下載](https://github.com/awesome-doge/ethereumbook_zh/releases/latest) | A4 排版，適合電腦、平板和列印 |
 | [EPUB 下載](https://github.com/awesome-doge/ethereumbook_zh/releases/latest) | 適合 Kindle、Apple Books、Kobo 等電子書閱讀器 |
 
@@ -47,8 +47,8 @@
 | [第 15 章](ch15.asciidoc) | 共識 |
 | [第 16 章](ch16.asciidoc) | Vyper |
 | [第 17 章](ch17.asciidoc) | DevP2P 協議 |
-| [第 18 章](ch18.asciidoc) | 以太坊標準 |
-| [第 19 章](ch19.asciidoc) | 以太坊分叉歷史 |
+| [附錄 A](ch18.asciidoc) | 以太坊標準 |
+| [附錄 B](ch19.asciidoc) | 以太坊分叉歷史 |
 
 ## 構建
 
@@ -56,15 +56,20 @@
 
 ```bash
 # 安裝
-gem install asciidoctor rouge
+gem install asciidoctor rouge nokogiri
+brew install webp            # 選用：圖片另外輸出 WebP（Linux：apt install webp）
 
-# 構建 HTML
-asciidoctor -b html5 book.asciidoc
+# 構建線上閱讀網站到 output/，並檢查連結、錨點與 sitemap
+ruby scripts/build-site.rb output
+ruby scripts/check-site.rb output
+python3 -m http.server 8000 --directory output   # 本機預覽 http://localhost:8000
 
 # 構建 PDF（需要額外安裝）
 gem install asciidoctor-pdf
 asciidoctor-pdf -a pdf-theme=pdf-theme.yml book.asciidoc
 ```
+
+網站的版型、樣式與互動在 `web/`：`web/chapters.yml` 設定各章網址代稱與 SEO 描述，`web/templates/` 是頁面版型，`web/assets/` 是樣式與腳本，`web/search-synonyms.yml` 是全書搜尋的同義詞。
 
 推送到 `master` 分支會自動透過 GitHub Actions 部署網頁版。推送 `v*` tag 會自動構建 PDF/EPUB 並發布到 GitHub Releases。
 

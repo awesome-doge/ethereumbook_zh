@@ -1,0 +1,11 @@
+<div class="not-found">
+  <p class="chapter-label">單頁版</p>
+  <h1>全書單頁版已改為分章閱讀</h1>
+  <p>每一章現在都有獨立的頁面，載入更快，也會記住讀到哪裡。如果你是從舊連結過來的，頁面會自動轉到對應的段落；也可以從下面的目錄挑選章節，或使用右上角的搜尋。想一次讀完整本書，可以下載 <a href="<%= PDF_URL %>" rel="noopener">PDF</a> 或 <a href="<%= EPUB_URL %>" rel="noopener">EPUB</a>。</p>
+  <ol class="plain-toc">
+    <%- pages.each do |p| -%>
+    <li><a href="<%= p.path %>"><span class="toc-label"><%= h p.label %></span><%= h(p.label == p.title ? '' : p.title) %></a></li>
+    <%- end -%>
+  </ol>
+  <p><a class="btn btn-primary" href="/">回到首頁</a></p>
+</div>

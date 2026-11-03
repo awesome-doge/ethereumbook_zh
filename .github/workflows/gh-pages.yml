@@ -11,56 +11,26 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0   # sitemap 的 lastmod 取自各章最後一次 commit 的時間
 
     - name: Setup Ruby
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: '3.3'
 
-    - name: Install Asciidoctor
+    - name: Install dependencies
       run: |
-        gem install asciidoctor -v '~> 2.0'
-        gem install rouge
+        gem install asciidoctor -v '~> 2.0' --no-document
+        gem install rouge nokogiri --no-document
+        sudo apt-get update -qq && sudo apt-get install -y --no-install-recommends webp
 
-    - name: Convert AsciiDoc to HTML
-      run: |
-        # 生成 Rouge 語法高亮 CSS
-        rougify style github > rouge-github.css
-        # 構建單頁 HTML
-        asciidoctor -b html5 -a stylesheet=custom.css -a linkcss -D output book.asciidoc
-        # 分割為多頁（生成 index.html, ch*.html, all.html, sitemap.xml）
-        python3 scripts/split-html.py output
+    - name: Build site
+      # 每章一頁的線上閱讀網站，加上首頁、搜尋索引、sitemap 與 llms.txt（見 scripts/build-site.rb）
+      run: STRICT_LINKS=1 WRITE_CNAME=1 ruby scripts/build-site.rb output
 
-    - name: Optimize Images
-      run: |
-        sudo apt-get update -qq
-        sudo apt-get install -y -qq pngquant optipng
-        mkdir -p output/images
-        for f in images/*.png; do
-          pngquant --quality=65-80 --speed 1 --output "output/$f" "$f" 2>/dev/null || cp "$f" "output/$f"
-          optipng -quiet -o2 "output/$f" 2>/dev/null || true
-        done
-        # Copy non-PNG files as-is
-        for f in images/*.jpg images/*.svg images/*.jpeg images/*.gif; do
-          [ -f "$f" ] && cp "$f" "output/$f" || true
-        done
-
-    - name: Copy CSS
-      run: |
-        cp custom.css output/
-        cp rouge-github.css output/
-
-    - name: Create CNAME File
-      run: echo 'mastering-ethereum.doge.tg' > output/CNAME
-
-    - name: Generate robots.txt
-      run: |
-        cat > output/robots.txt << 'EOF'
-        User-agent: *
-        Allow: /
-        Sitemap: https://mastering-ethereum.doge.tg/sitemap.xml
-        EOF
-        sed -i 's/^        //' output/robots.txt
+    - name: Check site
+      run: ruby scripts/check-site.rb output
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v4

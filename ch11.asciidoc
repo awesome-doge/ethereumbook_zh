@@ -98,7 +98,9 @@ Github：link:https://github.com/trufflesuite/truffle[]
 Website：link:https://truffleframework.com[]
 
 [[embark_sec]]
-==== Embark Embark框架專注於使用以太坊，IPFS和其他平臺的無伺服器去中心化應用。Embark目前與EVM區塊鏈（Ethereum），去中心化儲存（IPFS）和去中心化通信平臺（Whisper和Orbit）集成。
+==== Embark
+
+Embark框架專注於使用以太坊，IPFS和其他平臺的無伺服器去中心化應用。Embark目前與EVM區塊鏈（Ethereum），去中心化儲存（IPFS）和去中心化通信平臺（Whisper和Orbit）集成。
 
 ** 區塊鏈（以太坊）
 * 自動部署合約並使其在JS程式碼中可用。啟動監視更改，如果你更新合約，Embark將自動重新部署合約（如果需要）和DApp。
