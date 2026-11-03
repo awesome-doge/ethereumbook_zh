@@ -1,172 +1,198 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-Hant-TW">
 <head>
-
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.26">
-<title>以太坊分叉歷史 — 精通以太坊 Mastering Ethereum 繁體中文版</title>
-<link rel="stylesheet" href="./custom.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="./rouge-github.css">
-<!-- Google Analytics 4 -->
-<script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-ZVVQYEKMPF"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-ZVVQYEKMPF');
-</script>
-
-<!-- Favicon -->
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2B21;</text></svg>" type="image/svg+xml">
-
-<!-- SEO: Title Override -->
-<meta name="title" content="精通以太坊 Mastering Ethereum — 繁體中文完整版 | 智能合約、DApps、EVM、Solidity 技術指南">
-
-<!-- SEO: Description -->
-<meta name="description" content="精通以太坊（Mastering Ethereum）繁體中文版，由 Andreas M. Antonopoulos 和 Gavin Wood 著作。完整涵蓋以太坊基礎、智能合約、Solidity、DApps、EVM、Gas、密鑰管理、錢包、交易、預言機、共識機制等 19 章內容。免費線上閱讀，提供 PDF 和 EPUB 電子書下載。">
-<meta name="keywords" content="以太坊, Ethereum, 智能合約, Smart Contract, Solidity, DApp, EVM, 區塊鏈, Blockchain, 加密貨幣, Web3, DeFi, 精通以太坊, Mastering Ethereum, 繁體中文, 教學, 技術指南">
-<meta name="author" content="Andreas M. Antonopoulos, Gavin Wood, Dr. Awesome Doge">
-
-<!-- SEO: Canonical -->
-
-
-<!-- SEO: Language Alternatives -->
-<link rel="alternate" hreflang="zh-Hant" href="https://mastering-ethereum.doge.tg/">
-<link rel="alternate" hreflang="en" href="https://github.com/ethereumbook/ethereumbook">
-
-<!-- Google Fonts: Noto Sans TC -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap">
-
-<!-- Open Graph -->
-<meta property="og:type" content="book">
-<meta property="og:title" content="精通以太坊 Mastering Ethereum — 繁體中文完整版">
-<meta property="og:description" content="以太坊完整技術指南，涵蓋智能合約、Solidity、DApps、EVM 等 19 章。免費線上閱讀 + PDF/EPUB 下載。">
-<meta property="og:image" content="https://mastering-ethereum.doge.tg/images/cover.png">
-<meta property="og:image:width" content="1050">
-<meta property="og:image:height" content="1378">
-<meta property="og:image:alt" content="Mastering Ethereum 書籍封面">
-<meta property="og:url" content="https://mastering-ethereum.doge.tg/">
-<meta property="og:site_name" content="精通以太坊 繁體中文版">
-<meta property="og:locale" content="zh_TW">
-<meta property="book:author" content="Andreas M. Antonopoulos">
-<meta property="book:author" content="Gavin Wood">
-<meta property="book:tag" content="Ethereum">
-<meta property="book:tag" content="Blockchain">
-<meta property="book:tag" content="Smart Contracts">
-<meta property="book:tag" content="Solidity">
-
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="精通以太坊 Mastering Ethereum — 繁體中文完整版">
-<meta name="twitter:description" content="以太坊完整技術指南，涵蓋智能合約、Solidity、DApps、EVM 等 19 章。免費線上閱讀 + PDF/EPUB 下載。">
-<meta name="twitter:image" content="https://mastering-ethereum.doge.tg/images/cover.png">
-<meta name="twitter:image:alt" content="Mastering Ethereum 書籍封面">
-
-<!-- JSON-LD Structured Data -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Book",
-  "name": "精通以太坊 Mastering Ethereum 繁體中文版",
-  "alternateName": "Mastering Ethereum: Building Smart Contracts and DApps",
-  "author": [
-    {
-      "@type": "Person",
-      "name": "Andreas M. Antonopoulos",
-      "url": "https://aantonop.com/"
-    },
-    {
-      "@type": "Person",
-      "name": "Gavin Wood"
-    }
-  ],
-  "translator": {
-    "@type": "Person",
-    "name": "Dr. Awesome Doge"
-  },
-  "inLanguage": "zh-Hant",
-  "url": "https://mastering-ethereum.doge.tg/",
-  "image": "https://mastering-ethereum.doge.tg/images/cover.png",
-  "description": "以太坊完整技術指南繁體中文版，涵蓋智能合約、Solidity、DApps、EVM、Gas、密鑰管理等 19 章內容。",
-  "genre": ["Technology", "Blockchain", "Cryptocurrency"],
-  "bookFormat": "https://schema.org/EBook",
-  "numberOfPages": 257,
-  "publisher": {
-    "@type": "Organization",
-    "name": "O'Reilly Media"
-  },
-  "license": "https://creativecommons.org/licenses/by-nc-nd/4.0/",
-  "isAccessibleForFree": true,
-  "encoding": [
-    {
-      "@type": "MediaObject",
-      "encodingFormat": "application/pdf",
-      "contentUrl": "https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.pdf"
-    },
-    {
-      "@type": "MediaObject",
-      "encodingFormat": "application/epub+zip",
-      "contentUrl": "https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.epub"
-    }
-  ],
-  "about": [
-    {"@type": "Thing", "name": "Ethereum"},
-    {"@type": "Thing", "name": "Smart Contracts"},
-    {"@type": "Thing", "name": "Blockchain"},
-    {"@type": "Thing", "name": "Solidity"},
-    {"@type": "Thing", "name": "Decentralized Applications"},
-    {"@type": "Thing", "name": "EVM"}
-  ]
-}
-</script>
-
-<!-- BreadcrumbList for search results -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "精通以太坊",
-      "item": "https://mastering-ethereum.doge.tg/"
-    }
-  ]
-}
-</script>
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>附錄 B　以太坊分叉歷史｜精通以太坊繁體中文版</title>
+<meta name="description" content="以太坊的分叉歷史：The DAO 事件與重入漏洞、DAO 硬分叉及其時間線、以太坊與以太坊經典（ETC）的技術與理念差異，以及歷次重要分叉。">
 <link rel="canonical" href="https://mastering-ethereum.doge.tg/ch19.html">
-<meta name="description" content="精通以太坊：以太坊分叉歷史。以太坊完整技術指南繁體中文版，免費線上閱讀。">
-<style>
-.chapter-nav{display:flex;justify-content:space-between;align-items:center;padding:1rem 0;border-top:1px solid #e1e4e8;border-bottom:1px solid #e1e4e8;margin:2rem 0;gap:0.8rem;flex-wrap:wrap}
-.chapter-nav a{color:#2980b9;text-decoration:none;font-size:0.9rem;padding:0.4rem 0.8rem;border-radius:4px;transition:background 0.2s}
-.chapter-nav a:hover{background:#f0f3f6}
-.chapter-nav .nav-prev{text-align:left;max-width:40%}
-.chapter-nav .nav-next{text-align:right;max-width:40%}
-.chapter-nav .nav-home{font-weight:600}
-@media(max-width:768px){.chapter-nav{font-size:0.82rem}.chapter-nav a{padding:0.3rem 0.5rem}}
-</style>
+<meta name="author" content="Andreas M. Antonopoulos, Gavin Wood">
+<meta name="theme-color" content="#f8f9fc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14151b" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="sitemap" type="application/xml" href="/sitemap.xml">
+<meta property="og:site_name" content="精通以太坊繁體中文版">
+<meta property="og:type" content="article">
+<meta property="og:title" content="附錄 B　以太坊分叉歷史｜精通以太坊繁體中文版">
+<meta property="og:description" content="以太坊的分叉歷史：The DAO 事件與重入漏洞、DAO 硬分叉及其時間線、以太坊與以太坊經典（ETC）的技術與理念差異，以及歷次重要分叉。">
+<meta property="og:url" content="https://mastering-ethereum.doge.tg/ch19.html">
+<meta property="og:image" content="https://mastering-ethereum.doge.tg/assets/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="zh_TW">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="prev" href="/ch18.html">
+<script>
+(function(){try{var d=document.documentElement,s=localStorage,t=s.getItem('me-theme'),z=s.getItem('me-size'),f=s.getItem('me-font');if(t&&t!=='auto')d.setAttribute('data-theme',t);if(z)d.style.setProperty('--fs',z+'px');if(f)d.setAttribute('data-font',f)}catch(e){}})();
+</script>
+<link rel="stylesheet" href="/assets/site.css?v=8381e0abca">
+<link rel="stylesheet" href="/assets/code.css?v=c94d007c0c">
+<script defer src="/assets/site.js?v=fc9557d36e"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Chapter","@id":"https://mastering-ethereum.doge.tg/ch19.html#chapter","name":"附錄 B　以太坊分叉歷史","headline":"附錄 B　以太坊分叉歷史｜精通以太坊","description":"以太坊的分叉歷史：The DAO 事件與重入漏洞、DAO 硬分叉及其時間線、以太坊與以太坊經典（ETC）的技術與理念差異，以及歷次重要分叉。","url":"https://mastering-ethereum.doge.tg/ch19.html","inLanguage":"zh-TW","position":21,"dateModified":"2026-11-02T22:54:41+08:00","isPartOf":{"@id":"https://mastering-ethereum.doge.tg/#book"},"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true},{"@type":"Book","@id":"https://mastering-ethereum.doge.tg/#book","name":"精通以太坊：打造智能合約與 DApp","alternateName":["Mastering Ethereum: Building Smart Contracts and DApps","精通以太坊 Mastering Ethereum"],"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"inLanguage":"zh-TW","publisher":{"@type":"Organization","name":"O'Reilly Media"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true,"url":"https://mastering-ethereum.doge.tg/","image":"https://mastering-ethereum.doge.tg/assets/og-cover.png","translationOfWork":{"@type":"Book","name":"Mastering Ethereum: Building Smart Contracts and DApps","inLanguage":"en","url":"https://github.com/ethereumbook/ethereumbook"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"精通以太坊","item":"https://mastering-ethereum.doge.tg/"},{"@type":"ListItem","position":2,"name":"附錄 B　以太坊分叉歷史","item":"https://mastering-ethereum.doge.tg/ch19.html"}]}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZVVQYEKMPF"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-ZVVQYEKMPF');</script>
 </head>
-<body class="book">
-<div id="header">
-<h1><a href="index.html" style="color:inherit;text-decoration:none">精通以太坊 Mastering Ethereum 繁體中文版</a></h1>
+<body class="is-chapter">
+<a class="skip-link" href="#main">跳到主要內容</a>
+<header class="topbar">
+  <button class="icon-btn" type="button" data-action="toggle-nav" aria-controls="sidebar" aria-expanded="false" aria-label="開啟目錄">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+  </button>
+  <a class="brand" href="/" aria-label="精通以太坊 首頁">
+    <span class="brand-mark" aria-hidden="true">Ξ</span><span class="brand-text">精通以太坊</span>
+  </a>
+  <p class="topbar-title"><span class="topbar-label">附錄 B</span>以太坊分叉歷史</p>
+  <div class="topbar-actions">
+    <button class="icon-btn search-btn" type="button" data-action="search" aria-label="搜尋全書（快捷鍵 /）">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <span class="search-btn-text">搜尋</span><kbd>/</kbd>
+    </button>
+    <button class="icon-btn" type="button" data-action="settings" aria-controls="settings" aria-expanded="false" aria-label="閱讀設定">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19 9 5l5 14M5.8 14.5h6.4M15 19l3-8 3 8M15.9 16.5h4.2"/></svg>
+    </button>
+  </div>
+  <div class="progress" aria-hidden="true"><span></span></div>
+</header>
+
+<div class="settings" id="settings" hidden>
+  <div class="settings-group" role="group" aria-label="主題">
+    <span class="settings-label">主題</span>
+    <div class="seg">
+      <button type="button" data-theme-set="auto">自動</button>
+      <button type="button" data-theme-set="light">淺色</button>
+      <button type="button" data-theme-set="sepia">護眼</button>
+      <button type="button" data-theme-set="dark">深色</button>
+    </div>
+  </div>
+  <div class="settings-group" role="group" aria-label="字級">
+    <span class="settings-label">字級</span>
+    <div class="seg">
+      <button type="button" data-size="-1" aria-label="縮小字級">A−</button>
+      <output class="size-value" aria-live="polite">18</output>
+      <button type="button" data-size="1" aria-label="放大字級">A+</button>
+    </div>
+  </div>
+  <div class="settings-group" role="group" aria-label="字型">
+    <span class="settings-label">字型</span>
+    <div class="seg">
+      <button type="button" data-font-set="sans">黑體</button>
+      <button type="button" data-font-set="serif">明體</button>
+    </div>
+  </div>
 </div>
-<div id="content">
-<nav class="chapter-nav"><a href="ch18.html" class="nav-prev">&larr; 以太坊標準</a><a href="index.html" class="nav-home">首頁</a><span></span></nav>
+
+<div class="shell">
+  <nav class="sidebar" id="sidebar" aria-label="全書目錄">
+    <div class="sidebar-head">
+      <a href="/" class="sidebar-book">精通以太坊</a>
+      <span class="sidebar-sub">繁體中文版</span>
+    </div>
+    <ol class="book-toc">
+      <li>
+        <a href="/preface.html"><span class="toc-label">前言</span></a>
+      </li>
+      <li>
+        <a href="/glossary.html"><span class="toc-label">術語表</span>快速術語表</a>
+      </li>
+      <li>
+        <a href="/ch01.html"><span class="toc-label">第 1 章</span>什麼是以太坊</a>
+      </li>
+      <li>
+        <a href="/ch02.html"><span class="toc-label">第 2 章</span>以太坊基礎</a>
+      </li>
+      <li>
+        <a href="/ch03.html"><span class="toc-label">第 3 章</span>以太坊客戶端</a>
+      </li>
+      <li>
+        <a href="/ch04.html"><span class="toc-label">第 4 章</span>以太坊測試網（Testnets）</a>
+      </li>
+      <li>
+        <a href="/ch05.html"><span class="toc-label">第 5 章</span>密鑰、地址</a>
+      </li>
+      <li>
+        <a href="/ch06.html"><span class="toc-label">第 6 章</span>錢包</a>
+      </li>
+      <li>
+        <a href="/ch07.html"><span class="toc-label">第 7 章</span>交易 (Transactions)</a>
+      </li>
+      <li>
+        <a href="/ch08.html"><span class="toc-label">第 8 章</span>智能合約</a>
+      </li>
+      <li>
+        <a href="/ch09.html"><span class="toc-label">第 9 章</span>開發工具，框架和庫</a>
+      </li>
+      <li>
+        <a href="/ch10.html"><span class="toc-label">第 10 章</span>Tokens</a>
+      </li>
+      <li>
+        <a href="/ch11.html"><span class="toc-label">第 11 章</span>去中心化應用 (DApps)</a>
+      </li>
+      <li>
+        <a href="/ch12.html"><span class="toc-label">第 12 章</span>預言機 (Oracles)</a>
+      </li>
+      <li>
+        <a href="/ch13.html"><span class="toc-label">第 13 章</span>gas（Gas）</a>
+      </li>
+      <li>
+        <a href="/ch14.html"><span class="toc-label">第 14 章</span>以太坊虛擬機 (The Ethereum Virtual Machine)</a>
+      </li>
+      <li>
+        <a href="/ch15.html"><span class="toc-label">第 15 章</span>共識</a>
+      </li>
+      <li>
+        <a href="/ch16.html"><span class="toc-label">第 16 章</span>Vyper: 面向合約的程式語言</a>
+      </li>
+      <li>
+        <a href="/ch17.html"><span class="toc-label">第 17 章</span>節點間的通信 —— 一個簡單的視角</a>
+      </li>
+      <li>
+        <a href="/ch18.html"><span class="toc-label">附錄 A</span>以太坊標準</a>
+      </li>
+      <li class="is-current">
+        <a href="/ch19.html" aria-current="page"><span class="toc-label">附錄 B</span>以太坊分叉歷史</a>
+        <ol class="section-toc">
+          <li><a href="#etc_origin">B.1. 以太坊經典（ETC）</a></li>
+          <li><a href="#dao_origin">B.2. 去中心化的自治組織（The DAO）</a></li>
+          <li><a href="#dao_reentrancy_bug">B.3. 重入（ Re-Entrancy ）Bug</a></li>
+          <li><a href="#dao_hard_fork">B.4. DAO硬分叉</a></li>
+          <li><a href="#dao_hard_fork_timeline">B.5. DAO硬分叉的時間線</a></li>
+          <li><a href="#eth_etc_differences">B.6. 以太坊和以太坊經典</a></li>
+          <li><a href="#eth_etc_differences_technical">B.7. 技術差異</a></li>
+          <li><a href="#eth_etc_differences_ideological">B.8. 意識形態差異</a></li>
+          <li><a href="#other_ethereum_forks">B.9. 著名的以太坊分叉的時間表</a></li>
+          <li><a href="#_參考_2">參考</a></li>
+        </ol>
+      </li>
+    </ol>
+    <div class="sidebar-foot">
+      <a href="https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.pdf" rel="noopener">下載 PDF 電子書</a>
+      <a href="https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.epub" rel="noopener">下載 EPUB 電子書</a>
+      <a href="https://github.com/awesome-doge/ethereumbook_zh" rel="noopener">GitHub 原始碼</a>
+    </div>
+  </nav>
+  <div class="scrim" data-action="close-nav" hidden></div>
+
+  <main id="main" class="main" tabindex="-1">
+<article class="chapter" aria-labelledby="ethereum_fork_history">
+  <nav class="breadcrumb" aria-label="導覽路徑"><a href="/">精通以太坊</a><span aria-hidden="true">/</span><span>附錄 B</span></nav>
+  <header class="chapter-head">
+    <p class="chapter-label">附錄 B</p>
+    <h1 id="ethereum_fork_history">以太坊分叉歷史</h1>
+    <p class="chapter-meta">約 13 分鐘閱讀 · 10 個小節</p>
+  </header>
+  <div class="prose">
 <div class="sect1">
-<h2 id="ethereum_fork_history">附錄 B: 以太坊分叉歷史</h2>
+
 <div class="sectionbody">
 <div class="paragraph">
 <p>大多數硬分叉計劃作為路線圖的一部分，幷包含社區普遍認同的更新; 這通常被稱為共識。然而，一些硬分叉並不總是保持共識，這導致多個不同的區塊鏈。導致以太坊/以太坊經典分裂的事件就是這種情況。</p>
 </div>
 <div class="sect2">
-<h3 id="etc_origin">B.1. 以太坊經典（ETC）</h3>
+<h2 id="etc_origin"><a class="anchor" href="#etc_origin" aria-label="本節連結"></a>B.1. 以太坊經典（ETC）</h2>
 <div class="paragraph">
 <p>在以太坊社區的成員繼續使用時間敏感的硬分叉（“DAO Hard Fork”）之後，以太坊經典就出現了。2016年7月20日，在以192萬的區塊高度上，以太坊通過硬分叉引入了不規則的狀態變化，從而退還大約360萬的ether，這些以太幣來自一個名為The DAO的智能合約。</p>
 </div>
@@ -175,7 +201,7 @@ gtag('config', 'G-ZVVQYEKMPF');
 </div>
 </div>
 <div class="sect2">
-<h3 id="dao_origin">B.2. 去中心化的自治組織（The DAO）</h3>
+<h2 id="dao_origin"><a class="anchor" href="#dao_origin" aria-label="本節連結"></a>B.2. 去中心化的自治組織（The DAO）</h2>
 <div class="paragraph">
 <p>DAO是由Slock.It創建的; 一支技術精湛的開發團隊，包括以前的以太坊創始成員。Slock.It 將DAO視為基於社區為項目提供的資金的一種方式。其核心思想是提交提案，管理者人將管理提案，資金將從以太坊社區的投資者籌集，如果項目證明成功，那麼投資者將獲得一部分利潤。</p>
 </div>
@@ -187,7 +213,7 @@ gtag('config', 'G-ZVVQYEKMPF');
 </div>
 </div>
 <div class="sect2">
-<h3 id="dao_reentrancy_bug">B.3. 重入（ Re-Entrancy ）Bug</h3>
+<h2 id="dao_reentrancy_bug"><a class="anchor" href="#dao_reentrancy_bug" aria-label="本節連結"></a>B.3. 重入（ Re-Entrancy ）Bug</h2>
 <div class="paragraph">
 <p>6月9日，開發商Peter Vessenes和Chriseth報告稱，大多數基於以太坊的合約管理基金都可能容易受到可以清空合約資金的漏洞<a href="#ch19_ref2">[2]</a>的影響。幾天後（6月12日）斯蒂芬·塔爾（Slock.It的創始人）報告說，DAO的程式碼並不容易受到彼得和克里斯描述的錯誤的影響。<a href="#ch19_ref3">[3]</a> 令人擔憂的DAO貢獻者暫時鬆了一口氣，直到5天后（6月17日），一名未知的攻擊者（“DAO攻擊者”）開始使用類似於6月9日描述的漏洞利用DAO <a href="#ch19_ref4">[4]</a> 。最終，DAO攻擊者從DAO中吸取了大約360萬個ether。</p>
 </div>
@@ -195,13 +221,13 @@ gtag('config', 'G-ZVVQYEKMPF');
 <p>同時，一群自稱為Robinhood Group（RHG）的志願者開始使用相同的漏洞來提取剩餘的資金。6月21日，RHG宣佈<a href="#ch19_ref5">[5]</a>他們已經獲得了另外70％的DAO，約720萬以太，並計劃將其退還社區。RHG的快速行動和思考被給予了很多感謝和讚揚，這有助於保護社區的大部分ether。</p>
 </div>
 <div class="sect3">
-<h4 id="dao_reentrancy_bug_technicals">B.3.1. Re-Entrancy技術</h4>
+<h3 id="dao_reentrancy_bug_technicals"><a class="anchor" href="#dao_reentrancy_bug_technicals" aria-label="本節連結"></a>B.3.1. Re-Entrancy技術</h3>
 <div class="paragraph">
 <p>雖然Phil Daian <a href="#ch19_ref6">[6]</a> 描述了對該錯誤的更詳細和詳盡的解釋，但簡短的解釋是可以在以太坊虛擬機上同時多次調用合約函數）。這允許DAO攻擊者反覆請求提取ether，並且在合約記錄DAO攻擊者已經提取之前，攻擊者再次提取。</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="dao_reentrancy_bug_attack_flow">B.3.2. Re-Entrancy 攻擊流程</h4>
+<h3 id="dao_reentrancy_bug_attack_flow"><a class="anchor" href="#dao_reentrancy_bug_attack_flow" aria-label="本節連結"></a>B.3.2. Re-Entrancy 攻擊流程</h3>
 <div class="paragraph">
 <p>想象一下，你的銀行帳戶中有100美元，你可以向你的銀行出納員提取任意數量的提款單。銀行出納員按順序為你提供每張單據的金額，並且只有在所有單據結束時才會記錄你的提款。如果你給他們帶來三張單，每張100美元怎麼辦？如果你給他們帶來三千個怎麼辦？</p>
 </div>
@@ -227,7 +253,7 @@ gtag('config', 'G-ZVVQYEKMPF');
 </div>
 </div>
 <div class="sect2">
-<h3 id="dao_hard_fork">B.4. DAO硬分叉</h3>
+<h2 id="dao_hard_fork"><a class="anchor" href="#dao_hard_fork" aria-label="本節連結"></a>B.4. DAO硬分叉</h2>
 <div class="paragraph">
 <p>DAO中的一想安全措施是所有提款請求都要延遲28天。這為社區提供了一個簡短的時間來討論如何處理漏洞利用。從大約6月17日到7月20日，DAO攻擊者將無法將他們的DAO token轉換為ether。</p>
 </div>
@@ -253,11 +279,11 @@ gtag('config', 'G-ZVVQYEKMPF');
 <p>幾天之內，幾個交易所開始列出以太坊（“ETH”）和以太坊經典（“ETC”）。由於硬分叉的性質，所有在分拆時持有ether的以太網用戶現在都在兩個區塊鏈中都持有資金，在Poloniex於7月24日列出ETC後，ETC的市場價值很快就建立了 <a href="#ch19_ref15">[15]</a>。</p>
 </div>
 <div class="sect3">
-<h4 id="dao_hard_fork_arguments">B.4.1. 硬分叉的討論</h4>
+<h3 id="dao_hard_fork_arguments"><a class="anchor" href="#dao_hard_fork_arguments" aria-label="本節連結"></a>B.4.1. 硬分叉的討論</h3>
 <div class="paragraph">
 <p>在DAO硬分叉前幾周，/r/ethereum subreddit上發生了很多討論。一些流行/關鍵的論點總結如下。</p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
+<div class="table-wrap" tabindex="0"><table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -279,7 +305,7 @@ gtag('config', 'G-ZVVQYEKMPF');
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">DAO協議</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">DAO的大多數參與者無法正確評估程式碼，因此他們不能同意受DAO程式碼的約束。</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">DAO的條款和條件<a href="#ch19_ref23">[23]</a>的開頭段落宣告“&#8230;&#8203;&#8230;&#8203; DAO的程式碼控制並闡述了DAO創作的所有條款。”</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DAO的條款和條件<a href="#ch19_ref23">[23]</a>的開頭段落宣告“…​…​ DAO的程式碼控制並闡述了DAO創作的所有條款。”</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">區塊鏈不變性</p></td>
@@ -292,11 +318,11 @@ gtag('config', 'G-ZVVQYEKMPF');
 <td class="tableblock halign-left valign-top"><p class="tableblock">歷史上Hard Forks是選擇加入（即比特幣）而非投票是不投票。在約1天的時間內，選擇退出投票僅佔總供應投票的4.5％。<a href="#ch19_ref12">[12]</a></p></td>
 </tr>
 </tbody>
-</table>
+</table></div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="dao_hard_fork_timeline">B.5. DAO硬分叉的時間線</h3>
+<h2 id="dao_hard_fork_timeline"><a class="anchor" href="#dao_hard_fork_timeline" aria-label="本節連結"></a>B.5. DAO硬分叉的時間線</h2>
 <div class="ulist">
 <ul>
 <li>
@@ -366,25 +392,25 @@ gtag('config', 'G-ZVVQYEKMPF');
 </div>
 </div>
 <div class="sect2">
-<h3 id="eth_etc_differences">B.6. 以太坊和以太坊經典</h3>
+<h2 id="eth_etc_differences"><a class="anchor" href="#eth_etc_differences" aria-label="本節連結"></a>B.6. 以太坊和以太坊經典</h2>
 <div class="paragraph">
 <p>雖然最初的分裂以DAO為中心，但以太坊和以太坊經典現在是獨立的項目。完整的差異是不斷髮展的，而且過於廣泛而無法在本章涵蓋，值得注意的是，這些鏈條在核心發展和社區結構方面確實存在顯著差異。</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="eth_etc_differences_technical">B.7. 技術差異</h3>
+<h2 id="eth_etc_differences_technical"><a class="anchor" href="#eth_etc_differences_technical" aria-label="本節連結"></a>B.7. 技術差異</h2>
 <div class="sect3">
-<h4 id="eth_etc_differences_evm">B.7.1. EVM</h4>
+<h3 id="eth_etc_differences_evm"><a class="anchor" href="#eth_etc_differences_evm" aria-label="本節連結"></a>B.7.1. EVM</h3>
 <div class="paragraph">
-<p>對於大多數部分（截至2018年4月），兩個網路保持高度兼容。為一條鏈生成的合約程式碼在另一條鏈上按預期運行。儘管EVM作業系統的差異很小（參見EIPs： <a href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-140.md">140</a>, <a href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-145.md">145</a>, 和<a href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-214.md">214</a>）</p>
+<p>對於大多數部分（截至2018年4月），兩個網路保持高度兼容。為一條鏈生成的合約程式碼在另一條鏈上按預期運行。儘管EVM作業系統的差異很小（參見EIPs： <a href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-140.md" rel="noopener" target="_blank">140</a>, <a href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-145.md" rel="noopener" target="_blank">145</a>, 和<a href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-214.md" rel="noopener" target="_blank">214</a>）</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="eth_etc_differences_core_development">B.7.2. 核心網路開發</h4>
+<h3 id="eth_etc_differences_core_development"><a class="anchor" href="#eth_etc_differences_core_development" aria-label="本節連結"></a>B.7.2. 核心網路開發</h3>
 <div class="paragraph">
 <p>所有區塊鏈最終都有很多用戶和貢獻者。但是，由於開發此類軟體所需的專業知識，核心網路開發（運行網路的程式碼）通常由分散的小組完成。因此，這些小組生成的程式碼與實際運行網路的程式碼密切相關。</p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
+<div class="table-wrap" tabindex="0"><table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -401,20 +427,20 @@ gtag('config', 'G-ZVVQYEKMPF');
 <td class="tableblock halign-left valign-top"><p class="tableblock">ETCDEV, IOHK, 和志願者</p></td>
 </tr>
 </tbody>
-</table>
+</table></div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="eth_etc_differences_ideological">B.8. 意識形態差異</h3>
+<h2 id="eth_etc_differences_ideological"><a class="anchor" href="#eth_etc_differences_ideological" aria-label="本節連結"></a>B.8. 意識形態差異</h2>
 <div class="paragraph">
 <p>以太坊和以太坊經典之間最大的物質差異之一是意識形態，它以兩種主要方式表現出來：不變性和社區結構。</p>
 </div>
 <div class="sect3">
-<h4 id="eth_etc_differences_immutability">B.8.1. 不變性</h4>
+<h3 id="eth_etc_differences_immutability"><a class="anchor" href="#eth_etc_differences_immutability" aria-label="本節連結"></a>B.8.1. 不變性</h3>
 <div class="paragraph">
 <p>在區塊鏈的背景下，不變性指的是區塊鏈歷史的保存。</p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
+<div class="table-wrap" tabindex="0"><table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -431,14 +457,14 @@ gtag('config', 'G-ZVVQYEKMPF');
 <td class="tableblock halign-left valign-top"><p class="tableblock">遵循一種理念，即一旦數據出現在區塊鏈上，就不能被其他人修改。這是與比特幣，Litecoin和其他密碼貨幣共享的理念。</p></td>
 </tr>
 </tbody>
-</table>
+</table></div>
 </div>
 <div class="sect3">
-<h4 id="eth_etc_differences_community_structure">B.8.2. 社區結構</h4>
+<h3 id="eth_etc_differences_community_structure"><a class="anchor" href="#eth_etc_differences_community_structure" aria-label="本節連結"></a>B.8.2. 社區結構</h3>
 <div class="paragraph">
 <p>雖然區塊鏈旨在分散，但它們周圍的世界大部分都是集中的。以太坊和以太坊經典以不同的方式處理這一現實。</p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
+<div class="table-wrap" tabindex="0"><table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -452,14 +478,14 @@ gtag('config', 'G-ZVVQYEKMPF');
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">_以太坊基金會所有：/r/ethereum Subreddit, ethereum.org 網站, 論壇, GitHub (ethereum), Twitter (@ethereum), Facebook, 和 Google+ account.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">_由單獨的實體所有：/r/ethereumclassic Subreddit, the ethereumclassic.org 網站, 論壇, GitHubs (ethereumproject, ethereumclassic, etcdevteam, iohk, ethereumcommonwealth), Twitter (@eth_classic), Telegrams, 和 Discord.</p></td>
+<td class="tableblock halign-left valign-top long-token"><p class="tableblock">_由單獨的實體所有：/r/ethereumclassic Subreddit, the ethereumclassic.org 網站, 論壇, GitHubs (ethereumproject, ethereumclassic, etcdevteam, iohk, ethereumcommonwealth), Twitter (@eth_classic), Telegrams, 和 Discord.</p></td>
 </tr>
 </tbody>
-</table>
+</table></div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="other_ethereum_forks">B.9. 著名的以太坊分叉的時間表</h3>
+<h2 id="other_ethereum_forks"><a class="anchor" href="#other_ethereum_forks" aria-label="本節連結"></a>B.9. 著名的以太坊分叉的時間表</h2>
 <div class="paragraph">
 <p>在以太坊也發生了其他幾個分叉。其中一些是硬分叉，因為它們直接從預先存在的以太坊網路中分離出來。其他是軟分叉：它們使用以太坊的客戶端/節點軟體，但運行完全獨立的網路，沒有與以太坊共享的任何歷史記錄。在以太坊的生活中可能會有更多的分叉。</p>
 </div>
@@ -484,80 +510,80 @@ gtag('config', 'G-ZVVQYEKMPF');
 </div>
 </div>
 <div class="sect2">
-<h3 id="_參考_2">參考</h3>
+<h2 id="_參考_2"><a class="anchor" href="#_參考_2" aria-label="本節連結"></a>參考</h2>
 <div class="ulist bibliography">
 <ul class="bibliography">
 <li>
-<p><a id="ch19_ref1"></a>[1] <a href="https://www.economist.com/news/finance-and-economics/21699159-new-automated-investment-fund-has-attracted-stacks-digital-money-dao" class="bare">https://www.economist.com/news/finance-and-economics/21699159-new-automated-investment-fund-has-attracted-stacks-digital-money-dao</a></p>
+<p><a id="ch19_ref1"></a>[1] <a href="https://www.economist.com/news/finance-and-economics/21699159-new-automated-investment-fund-has-attracted-stacks-digital-money-dao" class="bare" rel="noopener" target="_blank">https://www.economist.com/news/finance-and-economics/21699159-new-automated-investment-fund-has-attracted-stacks-digital-money-dao</a></p>
 </li>
 <li>
-<p><a id="ch19_ref2"></a>[2] <a href="http://vessenes.com/more-ethereum-attacks-race-to-empty-is-the-real-deal/" class="bare">http://vessenes.com/more-ethereum-attacks-race-to-empty-is-the-real-deal/</a></p>
+<p><a id="ch19_ref2"></a>[2] <a href="http://vessenes.com/more-ethereum-attacks-race-to-empty-is-the-real-deal/" class="bare" rel="noopener" target="_blank">http://vessenes.com/more-ethereum-attacks-race-to-empty-is-the-real-deal/</a></p>
 </li>
 <li>
-<p><a id="ch19_ref3"></a>[3] <a href="https://blog.slock.it/no-dao-funds-at-risk-following-the-ethereum-smart-contract-recursive-call-bug-discovery-29f482d348b" class="bare">https://blog.slock.it/no-dao-funds-at-risk-following-the-ethereum-smart-contract-recursive-call-bug-discovery-29f482d348b</a></p>
+<p><a id="ch19_ref3"></a>[3] <a href="https://blog.slock.it/no-dao-funds-at-risk-following-the-ethereum-smart-contract-recursive-call-bug-discovery-29f482d348b" class="bare" rel="noopener" target="_blank">https://blog.slock.it/no-dao-funds-at-risk-following-the-ethereum-smart-contract-recursive-call-bug-discovery-29f482d348b</a></p>
 </li>
 <li>
-<p><a id="ch19_ref4"></a>[4] <a href="http://hackingdistributed.com/2016/06/18/analysis-of-the-dao-exploit" class="bare">http://hackingdistributed.com/2016/06/18/analysis-of-the-dao-exploit</a></p>
+<p><a id="ch19_ref4"></a>[4] <a href="http://hackingdistributed.com/2016/06/18/analysis-of-the-dao-exploit" class="bare" rel="noopener" target="_blank">http://hackingdistributed.com/2016/06/18/analysis-of-the-dao-exploit</a></p>
 </li>
 <li>
-<p><a id="ch19_ref5"></a>[5] <a href="https://www.reddit.com/r/ethereum/comments/4p7mhc/update_on_the_white_hat_attack/" class="bare">https://www.reddit.com/r/ethereum/comments/4p7mhc/update_on_the_white_hat_attack/</a></p>
+<p><a id="ch19_ref5"></a>[5] <a href="https://www.reddit.com/r/ethereum/comments/4p7mhc/update_on_the_white_hat_attack/" class="bare" rel="noopener" target="_blank">https://www.reddit.com/r/ethereum/comments/4p7mhc/update_on_the_white_hat_attack/</a></p>
 </li>
 <li>
-<p><a id="ch19_ref6"></a>[6] <a href="http://hackingdistributed.com/2016/06/18/analysis-of-the-dao-exploit/" class="bare">http://hackingdistributed.com/2016/06/18/analysis-of-the-dao-exploit/</a></p>
+<p><a id="ch19_ref6"></a>[6] <a href="http://hackingdistributed.com/2016/06/18/analysis-of-the-dao-exploit/" class="bare" rel="noopener" target="_blank">http://hackingdistributed.com/2016/06/18/analysis-of-the-dao-exploit/</a></p>
 </li>
 <li>
-<p><a id="ch19_ref7"></a>[7] <a href="https://blog.ethereum.org/2016/06/24/dao-wars-youre-voice-soft-fork-dilemma/" class="bare">https://blog.ethereum.org/2016/06/24/dao-wars-youre-voice-soft-fork-dilemma/</a></p>
+<p><a id="ch19_ref7"></a>[7] <a href="https://blog.ethereum.org/2016/06/24/dao-wars-youre-voice-soft-fork-dilemma/" class="bare" rel="noopener" target="_blank">https://blog.ethereum.org/2016/06/24/dao-wars-youre-voice-soft-fork-dilemma/</a></p>
 </li>
 <li>
-<p><a id="ch19_ref8"></a>[8] <a href="https://blog.slock.it/hard-fork-specification-24b889e70703" class="bare">https://blog.slock.it/hard-fork-specification-24b889e70703</a></p>
+<p><a id="ch19_ref8"></a>[8] <a href="https://blog.slock.it/hard-fork-specification-24b889e70703" class="bare" rel="noopener" target="_blank">https://blog.slock.it/hard-fork-specification-24b889e70703</a></p>
 </li>
 <li>
-<p><a id="ch19_ref9"></a>[9] <a href="https://blog.ethereum.org/2016/06/28/security-alert-dos-vulnerability-in-the-soft-fork/" class="bare">https://blog.ethereum.org/2016/06/28/security-alert-dos-vulnerability-in-the-soft-fork/</a></p>
+<p><a id="ch19_ref9"></a>[9] <a href="https://blog.ethereum.org/2016/06/28/security-alert-dos-vulnerability-in-the-soft-fork/" class="bare" rel="noopener" target="_blank">https://blog.ethereum.org/2016/06/28/security-alert-dos-vulnerability-in-the-soft-fork/</a></p>
 </li>
 <li>
-<p><a id="ch19_ref10"></a>[10] <a href="https://blog.ethereum.org/2016/07/15/to-fork-or-not-to-fork/" class="bare">https://blog.ethereum.org/2016/07/15/to-fork-or-not-to-fork/</a></p>
+<p><a id="ch19_ref10"></a>[10] <a href="https://blog.ethereum.org/2016/07/15/to-fork-or-not-to-fork/" class="bare" rel="noopener" target="_blank">https://blog.ethereum.org/2016/07/15/to-fork-or-not-to-fork/</a></p>
 </li>
 <li>
-<p><a id="ch19_ref11"></a>[11] <a href="https://etherscan.io/block/1894000" class="bare">https://etherscan.io/block/1894000</a></p>
+<p><a id="ch19_ref11"></a>[11] <a href="https://etherscan.io/block/1894000" class="bare" rel="noopener" target="_blank">https://etherscan.io/block/1894000</a></p>
 </li>
 <li>
-<p><a id="ch19_ref12"></a>[12] <a href="https://elaineou.com/2016/07/18/stick-a-fork-in-ethereum/" class="bare">https://elaineou.com/2016/07/18/stick-a-fork-in-ethereum/</a></p>
+<p><a id="ch19_ref12"></a>[12] <a href="https://elaineou.com/2016/07/18/stick-a-fork-in-ethereum/" class="bare" rel="noopener" target="_blank">https://elaineou.com/2016/07/18/stick-a-fork-in-ethereum/</a></p>
 </li>
 <li>
-<p><a id="ch19_ref13"></a>[13] <a href="https://etherscan.io/block/1920000" class="bare">https://etherscan.io/block/1920000</a></p>
+<p><a id="ch19_ref13"></a>[13] <a href="https://etherscan.io/block/1920000" class="bare" rel="noopener" target="_blank">https://etherscan.io/block/1920000</a></p>
 </li>
 <li>
-<p><a id="ch19_ref14"></a>[14] <a href="https://blog.ethereum.org/2016/07/20/hard-fork-completed/" class="bare">https://blog.ethereum.org/2016/07/20/hard-fork-completed/</a></p>
+<p><a id="ch19_ref14"></a>[14] <a href="https://blog.ethereum.org/2016/07/20/hard-fork-completed/" class="bare" rel="noopener" target="_blank">https://blog.ethereum.org/2016/07/20/hard-fork-completed/</a></p>
 </li>
 <li>
-<p><a id="ch19_ref15"></a>[15] <a href="https://twitter.com/poloniex/status/757068619234803712" class="bare">https://twitter.com/poloniex/status/757068619234803712</a></p>
+<p><a id="ch19_ref15"></a>[15] <a href="https://twitter.com/poloniex/status/757068619234803712" class="bare" rel="noopener" target="_blank">https://twitter.com/poloniex/status/757068619234803712</a></p>
 </li>
 <li>
-<p><a id="ch19_ref16"></a>[16] <a href="https://blog.slock.it/deja-vu-dao-smart-contracts-audit-results-d26bc088e32e" class="bare">https://blog.slock.it/deja-vu-dao-smart-contracts-audit-results-d26bc088e32e</a></p>
+<p><a id="ch19_ref16"></a>[16] <a href="https://blog.slock.it/deja-vu-dao-smart-contracts-audit-results-d26bc088e32e" class="bare" rel="noopener" target="_blank">https://blog.slock.it/deja-vu-dao-smart-contracts-audit-results-d26bc088e32e</a></p>
 </li>
 <li>
-<p><a id="ch19_ref17"></a>[17] <a href="https://blog.slock.it/the-dao-creation-is-now-live-2270fd23affc" class="bare">https://blog.slock.it/the-dao-creation-is-now-live-2270fd23affc</a></p>
+<p><a id="ch19_ref17"></a>[17] <a href="https://blog.slock.it/the-dao-creation-is-now-live-2270fd23affc" class="bare" rel="noopener" target="_blank">https://blog.slock.it/the-dao-creation-is-now-live-2270fd23affc</a></p>
 </li>
 <li>
-<p><a id="ch19_ref18"></a>[18] <a href="https://gastracker.io/block/0x94365e3a8c0b35089c1d1195081fe7489b528a84b22199c916180db8b28ade7f" class="bare">https://gastracker.io/block/0x94365e3a8c0b35089c1d1195081fe7489b528a84b22199c916180db8b28ade7f</a></p>
+<p><a id="ch19_ref18"></a>[18] <a href="https://gastracker.io/block/0x94365e3a8c0b35089c1d1195081fe7489b528a84b22199c916180db8b28ade7f" class="bare" rel="noopener" target="_blank">https://gastracker.io/block/0x94365e3a8c0b35089c1d1195081fe7489b528a84b22199c916180db8b28ade7f</a></p>
 </li>
 <li>
-<p><a id="ch19_ref19"></a>[19] <a href="https://bitcoinmagazine.com/articles/millions-of-dollars-worth-of-etc-may-soon-be-dumped-on-the-market-1472567361/" class="bare">https://bitcoinmagazine.com/articles/millions-of-dollars-worth-of-etc-may-soon-be-dumped-on-the-market-1472567361/</a></p>
+<p><a id="ch19_ref19"></a>[19] <a href="https://bitcoinmagazine.com/articles/millions-of-dollars-worth-of-etc-may-soon-be-dumped-on-the-market-1472567361/" class="bare" rel="noopener" target="_blank">https://bitcoinmagazine.com/articles/millions-of-dollars-worth-of-etc-may-soon-be-dumped-on-the-market-1472567361/</a></p>
 </li>
 <li>
-<p><a id="ch19_ref20"></a>[20] <a href="https://medium.com/@jackfru1t/the-robin-hood-group-and-etc-bdc6a0c111c3" class="bare">https://medium.com/@jackfru1t/the-robin-hood-group-and-etc-bdc6a0c111c3</a></p>
+<p><a id="ch19_ref20"></a>[20] <a href="https://medium.com/@jackfru1t/the-robin-hood-group-and-etc-bdc6a0c111c3" class="bare" rel="noopener" target="_blank">https://medium.com/@jackfru1t/the-robin-hood-group-and-etc-bdc6a0c111c3</a></p>
 </li>
 <li>
-<p><a id="ch19_ref21"></a>[21] <a href="https://www.reddit.com/r/EthereumClassic/comments/4xauca/follow_up_statement_on_the_etc_salvaged_from/" class="bare">https://www.reddit.com/r/EthereumClassic/comments/4xauca/follow_up_statement_on_the_etc_salvaged_from/</a></p>
+<p><a id="ch19_ref21"></a>[21] <a href="https://www.reddit.com/r/EthereumClassic/comments/4xauca/follow_up_statement_on_the_etc_salvaged_from/" class="bare" rel="noopener" target="_blank">https://www.reddit.com/r/EthereumClassic/comments/4xauca/follow_up_statement_on_the_etc_salvaged_from/</a></p>
 </li>
 <li>
-<p><a id="ch19_ref22"></a>[22] <a href="https://www.reddit.com/r/EthereumClassic/comments/5nt4qm/diehard_etc_protocol_upgrade_successful_nethash/" class="bare">https://www.reddit.com/r/EthereumClassic/comments/5nt4qm/diehard_etc_protocol_upgrade_successful_nethash/</a></p>
+<p><a id="ch19_ref22"></a>[22] <a href="https://www.reddit.com/r/EthereumClassic/comments/5nt4qm/diehard_etc_protocol_upgrade_successful_nethash/" class="bare" rel="noopener" target="_blank">https://www.reddit.com/r/EthereumClassic/comments/5nt4qm/diehard_etc_protocol_upgrade_successful_nethash/</a></p>
 </li>
 <li>
-<p><a id="ch19_ref23"></a>[23] <a href="https://web.archive.org/web/20160429141714/https://daohub.org/explainer.html/" class="bare">https://web.archive.org/web/20160429141714/https://daohub.org/explainer.html/</a></p>
+<p><a id="ch19_ref23"></a>[23] <a href="https://web.archive.org/web/20160429141714/https://daohub.org/explainer.html/" class="bare" rel="noopener" target="_blank">https://web.archive.org/web/20160429141714/https://daohub.org/explainer.html/</a></p>
 </li>
 <li>
-<p><a id="ch19_ref24"></a>[24] <a href="https://ethereumclassic.github.io/blog/2016-12-12-TeamGrothendieck/" class="bare">https://ethereumclassic.github.io/blog/2016-12-12-TeamGrothendieck/</a></p>
+<p><a id="ch19_ref24"></a>[24] <a href="https://ethereumclassic.github.io/blog/2016-12-12-TeamGrothendieck/" class="bare" rel="noopener" target="_blank">https://ethereumclassic.github.io/blog/2016-12-12-TeamGrothendieck/</a></p>
 </li>
 </ul>
 </div>
@@ -567,499 +593,46 @@ gtag('config', 'G-ZVVQYEKMPF');
 </div>
 </div>
 </div>
-</div>
-
-<nav class="chapter-nav"><a href="ch18.html" class="nav-prev">&larr; 以太坊標準</a><a href="index.html" class="nav-home">首頁</a><span></span></nav>
-</div>
-<div id="footer">
-<div id="footer-text">
-最後更新： 2026-11-02 14:55:30 UTC
-</div>
-</div>
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  messageStyle: "none",
-  tex2jax: {
-    inlineMath: [["\\(", "\\)"]],
-    displayMath: [["\\[", "\\]"]],
-    ignoreClass: "nostem|nolatexmath"
-  },
-  asciimath2jax: {
-    delimiters: [["\\$", "\\$"]],
-    ignoreClass: "nostem|noasciimath"
-  },
-  TeX: { equationNumbers: { autoNumber: "none" } }
-})
-MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
-  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
-    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
-      data.math.root.display = "block"
-    }
-    return data
-  })
-})
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<style>
-/* 浮動目錄按鈕 — 僅手機版顯示 */
-.toc-toggle {
-  position: fixed;
-  bottom: 5rem;
-  right: 1.2rem;
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  background: #2980b9;
-  color: #fff;
-  border: none;
-  font-size: 1.2rem;
-  cursor: pointer;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-  z-index: 1000;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.2s, transform 0.2s;
-}
-.toc-toggle:hover { background: #1a6fa0; }
-.toc-toggle:active { transform: scale(0.95); }
-
-/* 回到頂部按鈕 */
-.back-to-top {
-  position: fixed;
-  bottom: 1.8rem;
-  right: 1.2rem;
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  background: rgba(85,85,85,0.85);
-  color: #fff;
-  border: none;
-  font-size: 1.2rem;
-  cursor: pointer;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
-  z-index: 1000;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.3s, background 0.2s, transform 0.2s;
-  pointer-events: none;
-}
-.back-to-top:hover { background: rgba(50,50,50,0.9); }
-.back-to-top:active { transform: scale(0.95); }
-.back-to-top.visible {
-  display: flex;
-  opacity: 1;
-  pointer-events: auto;
-}
-
-/* 浮動目錄面板 */
-.toc-panel {
-  position: fixed;
-  top: 0;
-  right: -340px;
-  width: 320px;
-  max-width: 85vw;
-  height: 100vh;
-  background: #fff;
-  border-left: 1px solid #e1e4e8;
-  box-shadow: -4px 0 20px rgba(0,0,0,0.12);
-  z-index: 1001;
-  transition: right 0.3s ease;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  padding: 0;
-}
-.toc-panel.open { right: 0; }
-
-.toc-panel-header {
-  position: sticky;
-  top: 0;
-  background: #fff;
-  padding: 1.2rem 1rem 0.8rem;
-  border-bottom: 1px solid #e1e4e8;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  z-index: 1;
-}
-
-.toc-panel-header h3 {
-  margin: 0;
-  font-size: 1.1rem;
-  color: #1a252f;
-}
-
-.toc-panel .close-btn {
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  color: #888;
-  padding: 0 0.3rem;
-  line-height: 1;
-  transition: color 0.15s;
-}
-.toc-panel .close-btn:hover { color: #333; }
-
-.toc-panel-body {
-  padding: 0.8rem 1rem 2rem;
-}
-
-.toc-panel-body ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.toc-panel-body ul ul {
-  padding-left: 0.9rem;
-}
-
-.toc-panel-body li {
-  margin: 0;
-}
-
-.toc-panel-body a {
-  color: #555;
-  text-decoration: none;
-  font-size: 0.9rem;
-  line-height: 1.5;
-  display: block;
-  padding: 0.3rem 0.5rem;
-  border-radius: 4px;
-  transition: background 0.12s, color 0.12s;
-}
-.toc-panel-body a:hover {
-  background: #f0f3f6;
-  color: #2980b9;
-}
-
-/* 遮罩 */
-.toc-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.35);
-  z-index: 1000;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s, visibility 0.3s;
-}
-.toc-overlay.visible {
-  opacity: 1;
-  visibility: visible;
-}
-
-/* 閱讀進度條 */
-.reading-progress {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 3px;
-  background: linear-gradient(90deg, #2980b9, #3498db);
-  z-index: 1002;
-  transition: width 0.1s;
-  will-change: width;
-}
-
-/* 手機版顯示浮動按鈕 */
-@media screen and (max-width: 768px) {
-  .toc-toggle {
-    display: flex;
-  }
-  .back-to-top {
-    display: flex;
-  }
-}
-
-/* 桌面版也顯示回到頂部 */
-@media screen and (min-width: 769px) {
-  .back-to-top {
-    display: flex;
-  }
-  .reading-progress {
-    left: var(--toc-width, 300px);
-  }
-}
-/* 電子書下載橫幅 */
-.ebook-banner {
-  background: linear-gradient(135deg, #1a252f 0%, #2c3e50 100%);
-  color: #fff;
-  padding: 0.7rem 1.2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-  font-size: 0.88rem;
-  position: relative;
-  z-index: 50;
-}
-
-.ebook-banner a {
-  color: #fff;
-  background: rgba(255,255,255,0.15);
-  padding: 0.35rem 0.9rem;
-  border-radius: 5px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: background 0.2s;
-  white-space: nowrap;
-}
-
-.ebook-banner a:hover {
-  background: rgba(255,255,255,0.25);
-}
-
-.ebook-banner .banner-text {
-  opacity: 0.9;
-}
-
-.ebook-banner .banner-close {
-  position: absolute;
-  right: 0.8rem;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  color: rgba(255,255,255,0.5);
-  font-size: 1.2rem;
-  cursor: pointer;
-  padding: 0.2rem 0.4rem;
-}
-
-.ebook-banner .banner-close:hover {
-  color: #fff;
-}
-
-/* 桌面版橫幅在 TOC 右邊 */
-@media screen and (min-width: 769px) {
-  .ebook-banner {
-    margin-left: var(--toc-width, 300px);
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .ebook-banner {
-    font-size: 0.82rem;
-    padding: 0.6rem 0.8rem;
-    gap: 0.8rem;
-  }
-}
-</style>
-
-<!-- 電子書下載橫幅 -->
-<div class="ebook-banner" id="ebookBanner">
-  <span class="banner-text">下載電子書離線閱讀</span>
-  <a href="https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.pdf">PDF</a>
-  <a href="https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.epub">EPUB</a>
-  <a href="https://github.com/awesome-doge/ethereumbook_zh/releases/latest">GitHub Releases</a>
-  <button class="banner-close" id="bannerClose" aria-label="關閉">&times;</button>
-</div>
-
-<!-- 閱讀進度條 -->
-<div class="reading-progress" id="readingProgress"></div>
-
-<!-- 浮動按鈕 -->
-<button class="toc-toggle" id="tocToggle" aria-label="開啟目錄">&#9776;</button>
-<button class="back-to-top" id="backToTop" aria-label="回到頂部">&#8593;</button>
-
-<!-- 目錄面板（手機版） -->
-<div class="toc-overlay" id="tocOverlay"></div>
-<div class="toc-panel" id="tocPanel" role="navigation" aria-label="目錄">
-  <div class="toc-panel-header">
-    <h3>目錄</h3>
-    <button class="close-btn" id="tocClose" aria-label="關閉目錄">&times;</button>
   </div>
-  <div class="toc-panel-body" id="tocContent"></div>
+  <nav class="pager" aria-label="章節導覽">
+    <a class="pager-link prev" href="/ch18.html" rel="prev"><span class="pager-dir">← 上一章</span><span class="pager-title">附錄 A　以太坊標準</span></a>
+    <a class="pager-link next" href="/" rel="next"><span class="pager-dir">全書完 →</span><span class="pager-title">回到封面與目錄</span></a>
+  </nav>
+  <p class="edit-link"><a href="https://github.com/awesome-doge/ethereumbook_zh/blob/master/ch19.asciidoc" rel="noopener">在 GitHub 上檢視或改善本章翻譯</a></p>
+</article>
+
+  </main>
+
+  <aside class="rail" aria-label="本章內容">
+    <p class="rail-title">本章內容</p>
+    <ol>
+      <li><a href="#etc_origin">B.1. 以太坊經典（ETC）</a></li>
+      <li><a href="#dao_origin">B.2. 去中心化的自治組織（The DAO）</a></li>
+      <li><a href="#dao_reentrancy_bug">B.3. 重入（ Re-Entrancy ）Bug</a></li>
+      <li><a href="#dao_hard_fork">B.4. DAO硬分叉</a></li>
+      <li><a href="#dao_hard_fork_timeline">B.5. DAO硬分叉的時間線</a></li>
+      <li><a href="#eth_etc_differences">B.6. 以太坊和以太坊經典</a></li>
+      <li><a href="#eth_etc_differences_technical">B.7. 技術差異</a></li>
+      <li><a href="#eth_etc_differences_ideological">B.8. 意識形態差異</a></li>
+      <li><a href="#other_ethereum_forks">B.9. 著名的以太坊分叉的時間表</a></li>
+      <li><a href="#_參考_2">參考</a></li>
+    </ol>
+  </aside>
 </div>
 
-<script>
-(function() {
-  'use strict';
+<footer class="site-footer">
+  <p>原著《Mastering Ethereum》由 Andreas M. Antonopoulos 與 Gavin Wood 撰寫，O'Reilly Media 出版。繁體中文翻譯：Dr. Awesome Doge。</p>
+  <p>本書內容以 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh_TW" rel="license noopener">CC BY-NC-ND 4.0</a> 授權釋出 · <a href="https://github.com/awesome-doge/ethereumbook_zh" rel="noopener">GitHub</a> · <a href="https://github.com/awesome-doge/ethereumbook_zh/issues" rel="noopener">回報翻譯問題</a> · <a href="https://github.com/ethereumbook/ethereumbook" rel="noopener">英文原著</a></p>
+</footer>
 
-  // === 電子書橫幅：移到頁面頂部 + 關閉/記憶 ===
-  var banner = document.getElementById('ebookBanner');
-  var bannerClose = document.getElementById('bannerClose');
-  if (banner) {
-    // 如果用戶之前關閉過，隱藏
-    if (localStorage.getItem('ebookBannerClosed')) {
-      banner.style.display = 'none';
-    } else {
-      // 移到 body 最前面（在 header 之前）
-      document.body.insertBefore(banner, document.body.firstChild);
-    }
-    if (bannerClose) {
-      bannerClose.addEventListener('click', function() {
-        banner.style.display = 'none';
-        localStorage.setItem('ebookBannerClosed', '1');
-      });
-    }
-  }
-
-  // === 生成手機版目錄 ===
-  var tocContent = document.getElementById('tocContent');
-  var nativeToc = document.getElementById('toc');
-
-  if (tocContent && nativeToc) {
-    // 從原生 TOC 複製結構
-    var nativeList = nativeToc.querySelector('ul.sectlevel1');
-    if (nativeList) {
-      tocContent.appendChild(nativeList.cloneNode(true));
-    }
-  }
-
-  // === 目錄開關 ===
-  var tocToggle = document.getElementById('tocToggle');
-  var tocPanel = document.getElementById('tocPanel');
-  var tocOverlay = document.getElementById('tocOverlay');
-  var tocClose = document.getElementById('tocClose');
-
-  function openToc() {
-    tocPanel.classList.add('open');
-    tocOverlay.classList.add('visible');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeToc() {
-    tocPanel.classList.remove('open');
-    tocOverlay.classList.remove('visible');
-    document.body.style.overflow = '';
-  }
-
-  if (tocToggle) tocToggle.addEventListener('click', openToc);
-  if (tocOverlay) tocOverlay.addEventListener('click', closeToc);
-  if (tocClose) tocClose.addEventListener('click', closeToc);
-
-  // 點擊目錄連結後關閉面板
-  if (tocContent) {
-    tocContent.addEventListener('click', function(e) {
-      if (e.target.tagName === 'A') {
-        closeToc();
-      }
-    });
-  }
-
-  // ESC 關閉
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') closeToc();
-  });
-
-  // === 回到頂部 ===
-  var backToTop = document.getElementById('backToTop');
-  if (backToTop) {
-    backToTop.addEventListener('click', function() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  }
-
-  // === 閱讀進度條 + 回到頂部顯示 ===
-  var progressBar = document.getElementById('readingProgress');
-  var ticking = false;
-
-  function onScroll() {
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(function() {
-      var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      var docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-
-      // 回到頂部
-      if (backToTop) {
-        if (scrollTop > 400) {
-          backToTop.classList.add('visible');
-        } else {
-          backToTop.classList.remove('visible');
-        }
-      }
-
-      // 進度條
-      if (progressBar && docHeight > 0) {
-        progressBar.style.width = ((scrollTop / docHeight) * 100) + '%';
-      }
-
-      ticking = false;
-    });
-  }
-
-  window.addEventListener('scroll', onScroll, { passive: true });
-
-  // === 表格響應式包裝 ===
-  document.querySelectorAll('table.tableblock').forEach(function(table) {
-    if (!table.parentElement.classList.contains('tableblock-wrapper')) {
-      var wrapper = document.createElement('div');
-      wrapper.style.overflowX = 'auto';
-      wrapper.style.WebkitOverflowScrolling = 'touch';
-      wrapper.style.margin = '1.5rem 0';
-      table.parentNode.insertBefore(wrapper, table);
-      wrapper.appendChild(table);
-      table.style.margin = '0';
-    }
-  });
-
-  // === 桌面版：TOC 當前章節高亮 ===
-  if (window.innerWidth > 768 && nativeToc) {
-    var tocLinks = nativeToc.querySelectorAll('a');
-    var headingIds = [];
-    tocLinks.forEach(function(link) {
-      var id = link.getAttribute('href');
-      if (id && id.startsWith('#')) {
-        headingIds.push({ id: id.substring(1), el: link });
-      }
-    });
-
-    var currentHighlight = null;
-
-    // 注入高亮樣式
-    var hlStyle = document.createElement('style');
-    hlStyle.textContent = '#toc a.toc-active { background: #dbeafe !important; color: #1d4ed8 !important; border-radius: 4px; font-weight: 600; border-left: 3px solid #2980b9; padding-left: 0.4rem; }';
-    document.head.appendChild(hlStyle);
-
-    function highlightToc() {
-      var scrollPos = window.pageYOffset + 100;
-      var current = null;
-
-      for (var i = headingIds.length - 1; i >= 0; i--) {
-        var target = document.getElementById(headingIds[i].id);
-        if (target && target.offsetTop <= scrollPos) {
-          current = headingIds[i].el;
-          break;
-        }
-      }
-
-      if (current !== currentHighlight) {
-        if (currentHighlight) {
-          currentHighlight.classList.remove('toc-active');
-        }
-        if (current) {
-          current.classList.add('toc-active');
-          // 確保高亮項在可視範圍
-          var tocEl = document.getElementById('toc');
-          if (tocEl) {
-            var linkRect = current.getBoundingClientRect();
-            var tocRect = tocEl.getBoundingClientRect();
-            if (linkRect.top < tocRect.top + 60 || linkRect.bottom > tocRect.bottom - 20) {
-              current.scrollIntoView({ block: 'center', behavior: 'smooth' });
-            }
-          }
-        }
-        currentHighlight = current;
-      }
-    }
-
-    window.addEventListener('scroll', function() {
-      requestAnimationFrame(highlightToc);
-    }, { passive: true });
-
-    highlightToc();
-  }
-})();
-</script>
-</body>
-</html>
+<dialog class="search" id="search" aria-label="搜尋全書">
+  <form method="dialog" class="search-form" role="search">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input type="search" id="search-input" placeholder="搜尋全書，例如：智能合約、gas、ERC20" autocomplete="off" spellcheck="false" aria-label="搜尋關鍵字">
+    <button type="submit" class="search-close" value="close" aria-label="關閉搜尋">Esc</button>
+  </form>
+  <p class="search-status" aria-live="polite"></p>
+  <ol class="search-results"></ol>
+</dialog>
 </body>
 </html>

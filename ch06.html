@@ -1,166 +1,184 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-Hant-TW">
 <head>
-
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.26">
-<title>錢包 — 精通以太坊 Mastering Ethereum 繁體中文版</title>
-<link rel="stylesheet" href="./custom.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="./rouge-github.css">
-<!-- Google Analytics 4 -->
-<script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-ZVVQYEKMPF"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-ZVVQYEKMPF');
-</script>
-
-<!-- Favicon -->
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2B21;</text></svg>" type="image/svg+xml">
-
-<!-- SEO: Title Override -->
-<meta name="title" content="精通以太坊 Mastering Ethereum — 繁體中文完整版 | 智能合約、DApps、EVM、Solidity 技術指南">
-
-<!-- SEO: Description -->
-<meta name="description" content="精通以太坊（Mastering Ethereum）繁體中文版，由 Andreas M. Antonopoulos 和 Gavin Wood 著作。完整涵蓋以太坊基礎、智能合約、Solidity、DApps、EVM、Gas、密鑰管理、錢包、交易、預言機、共識機制等 19 章內容。免費線上閱讀，提供 PDF 和 EPUB 電子書下載。">
-<meta name="keywords" content="以太坊, Ethereum, 智能合約, Smart Contract, Solidity, DApp, EVM, 區塊鏈, Blockchain, 加密貨幣, Web3, DeFi, 精通以太坊, Mastering Ethereum, 繁體中文, 教學, 技術指南">
-<meta name="author" content="Andreas M. Antonopoulos, Gavin Wood, Dr. Awesome Doge">
-
-<!-- SEO: Canonical -->
-
-
-<!-- SEO: Language Alternatives -->
-<link rel="alternate" hreflang="zh-Hant" href="https://mastering-ethereum.doge.tg/">
-<link rel="alternate" hreflang="en" href="https://github.com/ethereumbook/ethereumbook">
-
-<!-- Google Fonts: Noto Sans TC -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap">
-
-<!-- Open Graph -->
-<meta property="og:type" content="book">
-<meta property="og:title" content="精通以太坊 Mastering Ethereum — 繁體中文完整版">
-<meta property="og:description" content="以太坊完整技術指南，涵蓋智能合約、Solidity、DApps、EVM 等 19 章。免費線上閱讀 + PDF/EPUB 下載。">
-<meta property="og:image" content="https://mastering-ethereum.doge.tg/images/cover.png">
-<meta property="og:image:width" content="1050">
-<meta property="og:image:height" content="1378">
-<meta property="og:image:alt" content="Mastering Ethereum 書籍封面">
-<meta property="og:url" content="https://mastering-ethereum.doge.tg/">
-<meta property="og:site_name" content="精通以太坊 繁體中文版">
-<meta property="og:locale" content="zh_TW">
-<meta property="book:author" content="Andreas M. Antonopoulos">
-<meta property="book:author" content="Gavin Wood">
-<meta property="book:tag" content="Ethereum">
-<meta property="book:tag" content="Blockchain">
-<meta property="book:tag" content="Smart Contracts">
-<meta property="book:tag" content="Solidity">
-
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="精通以太坊 Mastering Ethereum — 繁體中文完整版">
-<meta name="twitter:description" content="以太坊完整技術指南，涵蓋智能合約、Solidity、DApps、EVM 等 19 章。免費線上閱讀 + PDF/EPUB 下載。">
-<meta name="twitter:image" content="https://mastering-ethereum.doge.tg/images/cover.png">
-<meta name="twitter:image:alt" content="Mastering Ethereum 書籍封面">
-
-<!-- JSON-LD Structured Data -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Book",
-  "name": "精通以太坊 Mastering Ethereum 繁體中文版",
-  "alternateName": "Mastering Ethereum: Building Smart Contracts and DApps",
-  "author": [
-    {
-      "@type": "Person",
-      "name": "Andreas M. Antonopoulos",
-      "url": "https://aantonop.com/"
-    },
-    {
-      "@type": "Person",
-      "name": "Gavin Wood"
-    }
-  ],
-  "translator": {
-    "@type": "Person",
-    "name": "Dr. Awesome Doge"
-  },
-  "inLanguage": "zh-Hant",
-  "url": "https://mastering-ethereum.doge.tg/",
-  "image": "https://mastering-ethereum.doge.tg/images/cover.png",
-  "description": "以太坊完整技術指南繁體中文版，涵蓋智能合約、Solidity、DApps、EVM、Gas、密鑰管理等 19 章內容。",
-  "genre": ["Technology", "Blockchain", "Cryptocurrency"],
-  "bookFormat": "https://schema.org/EBook",
-  "numberOfPages": 257,
-  "publisher": {
-    "@type": "Organization",
-    "name": "O'Reilly Media"
-  },
-  "license": "https://creativecommons.org/licenses/by-nc-nd/4.0/",
-  "isAccessibleForFree": true,
-  "encoding": [
-    {
-      "@type": "MediaObject",
-      "encodingFormat": "application/pdf",
-      "contentUrl": "https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.pdf"
-    },
-    {
-      "@type": "MediaObject",
-      "encodingFormat": "application/epub+zip",
-      "contentUrl": "https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.epub"
-    }
-  ],
-  "about": [
-    {"@type": "Thing", "name": "Ethereum"},
-    {"@type": "Thing", "name": "Smart Contracts"},
-    {"@type": "Thing", "name": "Blockchain"},
-    {"@type": "Thing", "name": "Solidity"},
-    {"@type": "Thing", "name": "Decentralized Applications"},
-    {"@type": "Thing", "name": "EVM"}
-  ]
-}
-</script>
-
-<!-- BreadcrumbList for search results -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "精通以太坊",
-      "item": "https://mastering-ethereum.doge.tg/"
-    }
-  ]
-}
-</script>
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>第 6 章　錢包｜精通以太坊繁體中文版</title>
+<meta name="description" content="錢包技術：非確定性與確定性錢包、階層確定性（HD）錢包（BIP-32/BIP-44）、BIP-39 助記詞與種子的產生，以及錢包的最佳實踐。">
 <link rel="canonical" href="https://mastering-ethereum.doge.tg/ch06.html">
-<meta name="description" content="精通以太坊：錢包。以太坊完整技術指南繁體中文版，免費線上閱讀。">
-<style>
-.chapter-nav{display:flex;justify-content:space-between;align-items:center;padding:1rem 0;border-top:1px solid #e1e4e8;border-bottom:1px solid #e1e4e8;margin:2rem 0;gap:0.8rem;flex-wrap:wrap}
-.chapter-nav a{color:#2980b9;text-decoration:none;font-size:0.9rem;padding:0.4rem 0.8rem;border-radius:4px;transition:background 0.2s}
-.chapter-nav a:hover{background:#f0f3f6}
-.chapter-nav .nav-prev{text-align:left;max-width:40%}
-.chapter-nav .nav-next{text-align:right;max-width:40%}
-.chapter-nav .nav-home{font-weight:600}
-@media(max-width:768px){.chapter-nav{font-size:0.82rem}.chapter-nav a{padding:0.3rem 0.5rem}}
-</style>
+<meta name="author" content="Andreas M. Antonopoulos, Gavin Wood">
+<meta name="theme-color" content="#f8f9fc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14151b" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="sitemap" type="application/xml" href="/sitemap.xml">
+<meta property="og:site_name" content="精通以太坊繁體中文版">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第 6 章　錢包｜精通以太坊繁體中文版">
+<meta property="og:description" content="錢包技術：非確定性與確定性錢包、階層確定性（HD）錢包（BIP-32/BIP-44）、BIP-39 助記詞與種子的產生，以及錢包的最佳實踐。">
+<meta property="og:url" content="https://mastering-ethereum.doge.tg/ch06.html">
+<meta property="og:image" content="https://mastering-ethereum.doge.tg/assets/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="zh_TW">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="prev" href="/ch05.html">
+<link rel="next" href="/ch07.html">
+<script>
+(function(){try{var d=document.documentElement,s=localStorage,t=s.getItem('me-theme'),z=s.getItem('me-size'),f=s.getItem('me-font');if(t&&t!=='auto')d.setAttribute('data-theme',t);if(z)d.style.setProperty('--fs',z+'px');if(f)d.setAttribute('data-font',f)}catch(e){}})();
+</script>
+<link rel="stylesheet" href="/assets/site.css?v=8381e0abca">
+<link rel="stylesheet" href="/assets/code.css?v=c94d007c0c">
+<script defer src="/assets/site.js?v=fc9557d36e"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Chapter","@id":"https://mastering-ethereum.doge.tg/ch06.html#chapter","name":"第 6 章　錢包","headline":"第 6 章　錢包｜精通以太坊","description":"錢包技術：非確定性與確定性錢包、階層確定性（HD）錢包（BIP-32/BIP-44）、BIP-39 助記詞與種子的產生，以及錢包的最佳實踐。","url":"https://mastering-ethereum.doge.tg/ch06.html","inLanguage":"zh-TW","position":8,"dateModified":"2026-11-02T22:54:41+08:00","isPartOf":{"@id":"https://mastering-ethereum.doge.tg/#book"},"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true},{"@type":"Book","@id":"https://mastering-ethereum.doge.tg/#book","name":"精通以太坊：打造智能合約與 DApp","alternateName":["Mastering Ethereum: Building Smart Contracts and DApps","精通以太坊 Mastering Ethereum"],"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"inLanguage":"zh-TW","publisher":{"@type":"Organization","name":"O'Reilly Media"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true,"url":"https://mastering-ethereum.doge.tg/","image":"https://mastering-ethereum.doge.tg/assets/og-cover.png","translationOfWork":{"@type":"Book","name":"Mastering Ethereum: Building Smart Contracts and DApps","inLanguage":"en","url":"https://github.com/ethereumbook/ethereumbook"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"精通以太坊","item":"https://mastering-ethereum.doge.tg/"},{"@type":"ListItem","position":2,"name":"第 6 章　錢包","item":"https://mastering-ethereum.doge.tg/ch06.html"}]}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZVVQYEKMPF"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-ZVVQYEKMPF');</script>
 </head>
-<body class="book">
-<div id="header">
-<h1><a href="index.html" style="color:inherit;text-decoration:none">精通以太坊 Mastering Ethereum 繁體中文版</a></h1>
+<body class="is-chapter">
+<a class="skip-link" href="#main">跳到主要內容</a>
+<header class="topbar">
+  <button class="icon-btn" type="button" data-action="toggle-nav" aria-controls="sidebar" aria-expanded="false" aria-label="開啟目錄">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+  </button>
+  <a class="brand" href="/" aria-label="精通以太坊 首頁">
+    <span class="brand-mark" aria-hidden="true">Ξ</span><span class="brand-text">精通以太坊</span>
+  </a>
+  <p class="topbar-title"><span class="topbar-label">第 6 章</span>錢包</p>
+  <div class="topbar-actions">
+    <button class="icon-btn search-btn" type="button" data-action="search" aria-label="搜尋全書（快捷鍵 /）">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <span class="search-btn-text">搜尋</span><kbd>/</kbd>
+    </button>
+    <button class="icon-btn" type="button" data-action="settings" aria-controls="settings" aria-expanded="false" aria-label="閱讀設定">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19 9 5l5 14M5.8 14.5h6.4M15 19l3-8 3 8M15.9 16.5h4.2"/></svg>
+    </button>
+  </div>
+  <div class="progress" aria-hidden="true"><span></span></div>
+</header>
+
+<div class="settings" id="settings" hidden>
+  <div class="settings-group" role="group" aria-label="主題">
+    <span class="settings-label">主題</span>
+    <div class="seg">
+      <button type="button" data-theme-set="auto">自動</button>
+      <button type="button" data-theme-set="light">淺色</button>
+      <button type="button" data-theme-set="sepia">護眼</button>
+      <button type="button" data-theme-set="dark">深色</button>
+    </div>
+  </div>
+  <div class="settings-group" role="group" aria-label="字級">
+    <span class="settings-label">字級</span>
+    <div class="seg">
+      <button type="button" data-size="-1" aria-label="縮小字級">A−</button>
+      <output class="size-value" aria-live="polite">18</output>
+      <button type="button" data-size="1" aria-label="放大字級">A+</button>
+    </div>
+  </div>
+  <div class="settings-group" role="group" aria-label="字型">
+    <span class="settings-label">字型</span>
+    <div class="seg">
+      <button type="button" data-font-set="sans">黑體</button>
+      <button type="button" data-font-set="serif">明體</button>
+    </div>
+  </div>
 </div>
-<div id="content">
-<nav class="chapter-nav"><a href="ch05.html" class="nav-prev">&larr; 密鑰和地址</a><a href="index.html" class="nav-home">首頁</a><a href="ch07.html" class="nav-next">交易 &rarr;</a></nav>
+
+<div class="shell">
+  <nav class="sidebar" id="sidebar" aria-label="全書目錄">
+    <div class="sidebar-head">
+      <a href="/" class="sidebar-book">精通以太坊</a>
+      <span class="sidebar-sub">繁體中文版</span>
+    </div>
+    <ol class="book-toc">
+      <li>
+        <a href="/preface.html"><span class="toc-label">前言</span></a>
+      </li>
+      <li>
+        <a href="/glossary.html"><span class="toc-label">術語表</span>快速術語表</a>
+      </li>
+      <li>
+        <a href="/ch01.html"><span class="toc-label">第 1 章</span>什麼是以太坊</a>
+      </li>
+      <li>
+        <a href="/ch02.html"><span class="toc-label">第 2 章</span>以太坊基礎</a>
+      </li>
+      <li>
+        <a href="/ch03.html"><span class="toc-label">第 3 章</span>以太坊客戶端</a>
+      </li>
+      <li>
+        <a href="/ch04.html"><span class="toc-label">第 4 章</span>以太坊測試網（Testnets）</a>
+      </li>
+      <li>
+        <a href="/ch05.html"><span class="toc-label">第 5 章</span>密鑰、地址</a>
+      </li>
+      <li class="is-current">
+        <a href="/ch06.html" aria-current="page"><span class="toc-label">第 6 章</span>錢包</a>
+        <ol class="section-toc">
+          <li><a href="#wallet_tech_overview">6.1. 錢包技術概覽</a></li>
+        </ol>
+      </li>
+      <li>
+        <a href="/ch07.html"><span class="toc-label">第 7 章</span>交易 (Transactions)</a>
+      </li>
+      <li>
+        <a href="/ch08.html"><span class="toc-label">第 8 章</span>智能合約</a>
+      </li>
+      <li>
+        <a href="/ch09.html"><span class="toc-label">第 9 章</span>開發工具，框架和庫</a>
+      </li>
+      <li>
+        <a href="/ch10.html"><span class="toc-label">第 10 章</span>Tokens</a>
+      </li>
+      <li>
+        <a href="/ch11.html"><span class="toc-label">第 11 章</span>去中心化應用 (DApps)</a>
+      </li>
+      <li>
+        <a href="/ch12.html"><span class="toc-label">第 12 章</span>預言機 (Oracles)</a>
+      </li>
+      <li>
+        <a href="/ch13.html"><span class="toc-label">第 13 章</span>gas（Gas）</a>
+      </li>
+      <li>
+        <a href="/ch14.html"><span class="toc-label">第 14 章</span>以太坊虛擬機 (The Ethereum Virtual Machine)</a>
+      </li>
+      <li>
+        <a href="/ch15.html"><span class="toc-label">第 15 章</span>共識</a>
+      </li>
+      <li>
+        <a href="/ch16.html"><span class="toc-label">第 16 章</span>Vyper: 面向合約的程式語言</a>
+      </li>
+      <li>
+        <a href="/ch17.html"><span class="toc-label">第 17 章</span>節點間的通信 —— 一個簡單的視角</a>
+      </li>
+      <li>
+        <a href="/ch18.html"><span class="toc-label">附錄 A</span>以太坊標準</a>
+      </li>
+      <li>
+        <a href="/ch19.html"><span class="toc-label">附錄 B</span>以太坊分叉歷史</a>
+      </li>
+    </ol>
+    <div class="sidebar-foot">
+      <a href="https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.pdf" rel="noopener">下載 PDF 電子書</a>
+      <a href="https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.epub" rel="noopener">下載 EPUB 電子書</a>
+      <a href="https://github.com/awesome-doge/ethereumbook_zh" rel="noopener">GitHub 原始碼</a>
+    </div>
+  </nav>
+  <div class="scrim" data-action="close-nav" hidden></div>
+
+  <main id="main" class="main" tabindex="-1">
+<article class="chapter" aria-labelledby="wallets_chapter">
+  <nav class="breadcrumb" aria-label="導覽路徑"><a href="/">精通以太坊</a><span aria-hidden="true">/</span><span>第 6 章</span></nav>
+  <header class="chapter-head">
+    <p class="chapter-label">第 6 章</p>
+    <h1 id="wallets_chapter">錢包</h1>
+    <p class="chapter-meta">約 20 分鐘閱讀 · 1 個小節</p>
+  </header>
+  <div class="prose">
 <div class="sect1">
-<h2 id="wallets_chapter">6. 錢包</h2>
+
 <div class="sectionbody">
 <div class="paragraph">
 <p>在以太坊中，“錢包”一詞有幾個不同的含義。</p>
@@ -175,7 +193,7 @@ gtag('config', 'G-ZVVQYEKMPF');
 <p>在本節中，我們將把錢包看作私鑰的容器，並將其視為用於管理密鑰的系統。</p>
 </div>
 <div class="sect2">
-<h3 id="wallet_tech_overview">6.1. 錢包技術概覽</h3>
+<h2 id="wallet_tech_overview"><a class="anchor" href="#wallet_tech_overview" aria-label="本節連結"></a>6.1. 錢包技術概覽</h2>
 <div class="paragraph">
 <p>在本節中，我們總結了用於構建用戶友好，安全，和靈活的以太坊錢包的技術。</p>
 </div>
@@ -184,17 +202,17 @@ gtag('config', 'G-ZVVQYEKMPF');
 </div>
 <div class="admonitionblock tip">
 <table>
-<tr>
+<tbody><tr>
 <td class="icon">
 <i class="fa icon-tip" title="提示"></i>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>以太坊錢包包含密鑰，而不是ether或令牌。每個用戶都有一個包含密鑰的錢包。錢包真的是包含私鑰/公鑰的鑰匙串（參見<a href="ch05.html#keys_addresses">密鑰、地址</a>）。用戶使用密鑰簽署交易，從而證明他們擁有ether。ether儲存在區塊鏈上。</p>
+<p>以太坊錢包包含密鑰，而不是ether或令牌。每個用戶都有一個包含密鑰的錢包。錢包真的是包含私鑰/公鑰的鑰匙串（參見<a href="/ch05.html">密鑰、地址</a>）。用戶使用密鑰簽署交易，從而證明他們擁有ether。ether儲存在區塊鏈上。</p>
 </div>
 </td>
 </tr>
-</table>
+</tbody></table>
 </div>
 <div class="paragraph">
 <p>有兩種主要類型的錢包，通過它們包含的密鑰是否彼此相關來區分。</p>
@@ -209,7 +227,7 @@ gtag('config', 'G-ZVVQYEKMPF');
 <p>確定性錢包是從種子初始化的。為了使這些更容易使用，種子被編碼為一些英文單詞（或其他語言的詞），稱為 <em>mnemonic code</em> 助記詞，接下來的幾節將從較高的層次介紹這些技術。</p>
 </div>
 <div class="sect3">
-<h4 id="random_wallet">6.1.1. 非確定性（隨機）錢包</h4>
+<h3 id="random_wallet"><a class="anchor" href="#random_wallet" aria-label="本節連結"></a>6.1.1. 非確定性（隨機）錢包</h3>
 <div class="paragraph">
 <p>在第一個以太坊錢包（由Ethereum pre-sale創建）中，錢包檔案儲存一個隨機生成的私鑰。這些錢包正在被確定性的錢包取代，因為它們管理，備份和匯入很麻煩。隨機密鑰的缺點是，如果你生成了許多密鑰，你必須保留所有密鑰的副本。每個密鑰都必須備份，否則如果錢包變得不可訪問，則其控制的資金將不可撤銷地丟失。此外，以太坊地址重用可以通過將多個交易和地址相互關聯來降低隱私。0型非確定性錢包是很少的選擇，特別是如果你想避免地址重用，因為它意味著管理許多密鑰，需要經常備份。</p>
 </div>
@@ -248,11 +266,11 @@ gtag('config', 'G-ZVVQYEKMPF');
 <p>有許多軟體庫可以讀寫keystore格式，例如JavaScript庫 <code>keythereum</code>：</p>
 </div>
 <div class="paragraph">
-<p><a href="https://github.com/ethereumjs/keythereum" class="bare">https://github.com/ethereumjs/keythereum</a></p>
+<p><a href="https://github.com/ethereumjs/keythereum" class="bare" rel="noopener" target="_blank">https://github.com/ethereumjs/keythereum</a></p>
 </div>
 <div class="admonitionblock tip">
 <table>
-<tr>
+<tbody><tr>
 <td class="icon">
 <i class="fa icon-tip" title="提示"></i>
 </td>
@@ -262,25 +280,25 @@ gtag('config', 'G-ZVVQYEKMPF');
 </div>
 </td>
 </tr>
-</table>
+</tbody></table>
 </div>
 </div>
 <div class="sect3">
-<h4 id="deterministic_wallets">6.1.2. 確定性（種子）錢包</h4>
+<h3 id="deterministic_wallets"><a class="anchor" href="#deterministic_wallets" aria-label="本節連結"></a>6.1.2. 確定性（種子）錢包</h3>
 <div class="paragraph">
 <p>確定性或“種子”錢包是包含私鑰的錢包，所有私鑰都來源於共同的種子，使用單向雜湊函數生成。種子是隨機生成的數字，可以與其他數據（如索引編號或“鏈碼”（請參閱​<a href="#hd_wallets">HD 錢包 (BIP-32/BIP-44)</a>））組合以匯出私鑰。在確定性錢包中，種子足以恢復所有派生的密鑰，因此在創建時的單個備份就足夠了。種子也足以用於錢包的匯入和匯出，允許在不同實現的錢包之間輕鬆遷移所有用戶密鑰。</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="hd_wallets">6.1.3. HD 錢包 (BIP-32/BIP-44)</h4>
+<h3 id="hd_wallets"><a class="anchor" href="#hd_wallets" aria-label="本節連結"></a>6.1.3. HD 錢包 (BIP-32/BIP-44)</h3>
 <div class="paragraph">
 <p>確定性錢包的開發使得從單個”種子“中獲得許多密鑰變得容易。確定性錢包的最先進的形式是由比特幣的BIP-32標準定義的HD錢包。HD錢包包含以樹狀結構匯出的密鑰，以便父密鑰可以生成一系列的子密鑰，每個子密鑰可以派生一系列孫子密鑰等等，可以達到無限深度。這個樹狀結構在 <a href="#hd_wallets">HD 錢包 (BIP-32/BIP-44)</a> 中進行說明。</p>
 </div>
 <div id="hd_wallets_figure" class="imageblock">
 <div class="content">
-<img src="images/hd_wallet.png" alt="HD wallet">
+<picture><source type="image/webp" srcset="/images/hd_wallet.webp"><img src="/images/hd_wallet.png" alt="HD wallet" width="1206" height="811" loading="lazy" decoding="async"></picture>
 </div>
-<div class="title">圖 29. HD wallet: a tree of keys generated from a single seed</div>
+<div class="title">圖 6-1. HD wallet: a tree of keys generated from a single seed</div>
 </div>
 <div class="paragraph">
 <p>與隨機（非確定性）密鑰相比，HD錢包具有兩大優勢。首先，樹狀結構可以用來表達額外的組織含義，例如，使用特定分支的子密鑰來接收傳入的支付，使用不同分支的子密鑰來接收支付時產生的零錢。密鑰的分支也可用於公司設置，將不同分支分配給部門，子公司，特定職能或會計類別。</p>
@@ -290,7 +308,7 @@ gtag('config', 'G-ZVVQYEKMPF');
 </div>
 </div>
 <div class="sect3">
-<h4 id="mnemonic_codes">6.1.4. 種子和助記詞（BIP-39）</h4>
+<h3 id="mnemonic_codes"><a class="anchor" href="#mnemonic_codes" aria-label="本節連結"></a>6.1.4. 種子和助記詞（BIP-39）</h3>
 <div class="paragraph">
 <p>HD錢包是管理許多密鑰和地址的非常強大的機制。如果將它們與一系列英文單詞（或另一種語言的單詞）相結合，更易於轉錄，和跨錢包的匯出匯入。這被稱為<em>mnemonic</em>，標準由BIP-39定義。今天，許多以太坊錢包（以及用於其他密碼貨幣的錢包）都使用此標準，並且可以使用可互操作的助記詞匯入和匯出種子以進行備份和恢復。</p>
 </div>
@@ -312,7 +330,7 @@ wall cliff insect more detail hub</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="wallet_best_practices">6.1.5. 錢包最佳實踐</h4>
+<h3 id="wallet_best_practices"><a class="anchor" href="#wallet_best_practices" aria-label="本節連結"></a>6.1.5. 錢包最佳實踐</h3>
 <div class="paragraph">
 <p>隨著密碼貨幣錢包技術的成熟，某些常見行業標準使錢包廣泛地互操作，易於使用，安全和靈活。這些標準還允許錢包從多個不同的密碼貨幣中獲取密鑰，所有這些都來自助記詞。這些通用標準是：</p>
 </div>
@@ -346,7 +364,7 @@ wall cliff insect more detail hub</pre>
 </div>
 <div class="admonitionblock tip">
 <table>
-<tr>
+<tbody><tr>
 <td class="icon">
 <i class="fa icon-tip" title="提示"></i>
 </td>
@@ -356,17 +374,17 @@ wall cliff insect more detail hub</pre>
 </div>
 </td>
 </tr>
-</table>
+</tbody></table>
 </div>
 </div>
 <div class="sect3">
-<h4 id="mnemonic_code_words">6.1.6. 助記詞 (BIP-39)</h4>
+<h3 id="mnemonic_code_words"><a class="anchor" href="#mnemonic_code_words" aria-label="本節連結"></a>6.1.6. 助記詞 (BIP-39)</h3>
 <div class="paragraph">
 <p>助記詞是表示（編碼）派生確定性錢包的種子的隨機數的單詞序列。單詞序列足以重新創建種子，從而重新創建錢包和所有派生的密鑰。使用助記詞實現的確定性錢包會在首次創建錢包時向用戶展示12至24個字的序列。該單字序列是錢包的備份，可用於在相同或任何兼容的錢包應用程式中恢復和重新創建所有密鑰。</p>
 </div>
 <div class="admonitionblock tip">
 <table>
-<tr>
+<tbody><tr>
 <td class="icon">
 <i class="fa icon-tip" title="提示"></i>
 </td>
@@ -376,7 +394,7 @@ wall cliff insect more detail hub</pre>
 </div>
 </td>
 </tr>
-</table>
+</tbody></table>
 </div>
 <div class="paragraph">
 <p>助記詞在BIP-39中定義。請注意，BIP-39是助記詞編碼標準的一個實現。有一個不同的標準，帶有一組不同的單詞，在BIP-39之前用於Electrum比特幣錢包。BIP-39由Trezor硬體錢包背後的公司提出，與Electrum的實現不兼容。但是，BIP-39現在已經在數十種可互操作實現方面取得了廣泛的行業支持，應該被視為事實上的行業標準。此外，BIP-39可用於生產支持以太坊的多幣種錢包，而Electrum種子不能。</p>
@@ -385,7 +403,7 @@ wall cliff insect more detail hub</pre>
 <p>BIP-39定義了助記詞和種子的創建，我們在這裡通過九個步驟來描述它。為了清楚起見，該過程分為兩部分：步驟1至6展示在<a href="#generating_mnemonic_words">生成助記詞</a> 中，步驟7至9展示在 <a href="#mnemonic_to_seed">從助記詞到種子</a> 中。</p>
 </div>
 <div class="sect4">
-<h5 id="generating_mnemonic_words">生成助記詞</h5>
+<h4 id="generating_mnemonic_words"><a class="anchor" href="#generating_mnemonic_words" aria-label="本節連結"></a>生成助記詞</h4>
 <div class="paragraph">
 <p>助記詞是由錢包使用BIP-39中定義的標準化流程自動生成的。錢包從熵源開始，添加校驗和，然後將熵映射到單詞列表：</p>
 </div>
@@ -416,15 +434,15 @@ wall cliff insect more detail hub</pre>
 </div>
 <div id="generating_entropy_and_encoding" class="imageblock smallerseventy">
 <div class="content">
-<img src="images/bip39-part1.png" alt="Generating entropy and encoding as mnemonic words">
+<picture><source type="image/webp" srcset="/images/bip39-part1.webp"><img src="/images/bip39-part1.png" alt="Generating entropy and encoding as mnemonic words" width="795" height="822" loading="lazy" decoding="async"></picture>
 </div>
-<div class="title">圖 30. Generating entropy and encoding as mnemonic words</div>
+<div class="title">圖 6-2. Generating entropy and encoding as mnemonic words</div>
 </div>
 <div class="paragraph">
 <p><a href="#table_bip39_entropy">Mnemonic codes: entropy and word length</a> 展示熵數據的大小和助記詞的長度關係。</p>
 </div>
-<table id="table_bip39_entropy" class="tableblock frame-all grid-all stretch">
-<caption class="title">表 2. Mnemonic codes: entropy and word length</caption>
+<div class="table-wrap" tabindex="0"><table id="table_bip39_entropy" class="tableblock frame-all grid-all stretch">
+<caption class="title">表 6-1. Mnemonic codes: entropy and word length</caption>
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 25%;">
@@ -471,10 +489,10 @@ wall cliff insect more detail hub</pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">24</p></td>
 </tr>
 </tbody>
-</table>
+</table></div>
 </div>
 <div class="sect4">
-<h5 id="mnemonic_to_seed">從助記詞到種子</h5>
+<h4 id="mnemonic_to_seed"><a class="anchor" href="#mnemonic_to_seed" aria-label="本節連結"></a>從助記詞到種子</h4>
 <div class="paragraph">
 <p>助記符字表示長度為128到256位的熵。然後使用使用密鑰擴展函數PBKDF2將熵匯出成更長的（512位）種子。然後使用生成的種子構建確定性錢包並派生其密鑰。</p>
 </div>
@@ -494,13 +512,13 @@ wall cliff insect more detail hub</pre>
 </div>
 <div id="mnemonic_to_seed_figure" class="imageblock">
 <div class="content">
-<img src="images/bip39-part2.png" alt="From mnemonic to seed">
+<picture><source type="image/webp" srcset="/images/bip39-part2.webp"><img src="/images/bip39-part2.png" alt="From mnemonic to seed" width="1017" height="710" loading="lazy" decoding="async"></picture>
 </div>
-<div class="title">圖 31. From mnemonic to seed</div>
+<div class="title">圖 6-3. From mnemonic to seed</div>
 </div>
 <div class="admonitionblock tip">
 <table>
-<tr>
+<tbody><tr>
 <td class="icon">
 <i class="fa icon-tip" title="提示"></i>
 </td>
@@ -510,13 +528,13 @@ wall cliff insect more detail hub</pre>
 </div>
 </td>
 </tr>
-</table>
+</tbody></table>
 </div>
 <div class="paragraph">
 <p><a href="#mnemonic_128_no_pass">表 3</a>、<a href="#mnemonic_128_w_pass">表 4</a> 和 <a href="#mnemonic_256_no_pass">表 5</a> 展示了一些助記詞和它們生成的種子的例子（沒有密碼）。</p>
 </div>
-<table id="mnemonic_128_no_pass" class="tableblock frame-all grid-all stretch">
-<caption class="title">表 3. 128-bit entropy mnemonic code, no passphrase, resulting seed</caption>
+<div class="table-wrap" tabindex="0"><table id="mnemonic_128_no_pass" class="tableblock frame-all grid-all stretch">
+<caption class="title">表 6-2. 128-bit entropy mnemonic code, no passphrase, resulting seed</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -524,7 +542,7 @@ wall cliff insect more detail hub</pre>
 <tbody>
 <tr>
 <th class="tableblock halign-left valign-top"><p class="tableblock"><strong>Entropy input (128 bits)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>0c1e24e5917779d297e14d45f14e1a1a</code></p></td>
+<td class="tableblock halign-left valign-top long-token"><p class="tableblock"><code>0c1e24e5917779d297e14d45f14e1a1a</code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-left valign-top"><p class="tableblock"><strong>Mnemonic (12 words)</strong></p></th>
@@ -536,13 +554,13 @@ wall cliff insect more detail hub</pre>
 </tr>
 <tr>
 <th class="tableblock halign-left valign-top"><p class="tableblock"><strong>Seed  (512 bits)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>5b56c417303faa3fcba7e57400e120a0ca83ec5a4fc9ffba757fbe63fbd77a89a1a3be4c67196f57c39</code>
+<td class="tableblock halign-left valign-top long-token"><p class="tableblock"><code>5b56c417303faa3fcba7e57400e120a0ca83ec5a4fc9ffba757fbe63fbd77a89a1a3be4c67196f57c39</code>
 <code>a88b76373733891bfaba16ed27a813ceed498804c0570</code></p></td>
 </tr>
 </tbody>
-</table>
-<table id="mnemonic_128_w_pass" class="tableblock frame-all grid-all stretch">
-<caption class="title">表 4. 128-bit entropy mnemonic code, with passphrase, resulting seed</caption>
+</table></div>
+<div class="table-wrap" tabindex="0"><table id="mnemonic_128_w_pass" class="tableblock frame-all grid-all stretch">
+<caption class="title">表 6-3. 128-bit entropy mnemonic code, with passphrase, resulting seed</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -550,7 +568,7 @@ wall cliff insect more detail hub</pre>
 <tbody>
 <tr>
 <th class="tableblock halign-left valign-top"><p class="tableblock"><strong>Entropy input (128 bits)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>0c1e24e5917779d297e14d45f14e1a1a</code></p></td>
+<td class="tableblock halign-left valign-top long-token"><p class="tableblock"><code>0c1e24e5917779d297e14d45f14e1a1a</code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-left valign-top"><p class="tableblock"><strong>Mnemonic (12 words)</strong></p></th>
@@ -562,13 +580,13 @@ wall cliff insect more detail hub</pre>
 </tr>
 <tr>
 <th class="tableblock halign-left valign-top"><p class="tableblock"><strong>Seed  (512 bits)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>3b5df16df2157104cfdd22830162a5e170c0161653e3afe6c88defeefb0818c793dbb28ab3ab091897d0</code>
+<td class="tableblock halign-left valign-top long-token"><p class="tableblock"><code>3b5df16df2157104cfdd22830162a5e170c0161653e3afe6c88defeefb0818c793dbb28ab3ab091897d0</code>
 <code>715861dc8a18358f80b79d49acf64142ae57037d1d54</code></p></td>
 </tr>
 </tbody>
-</table>
-<table id="mnemonic_256_no_pass" class="tableblock frame-all grid-all stretch">
-<caption class="title">表 5. 256-bit entropy mnemonic code, no passphrase, resulting seed</caption>
+</table></div>
+<div class="table-wrap" tabindex="0"><table id="mnemonic_256_no_pass" class="tableblock frame-all grid-all stretch">
+<caption class="title">表 6-4. 256-bit entropy mnemonic code, no passphrase, resulting seed</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -576,7 +594,7 @@ wall cliff insect more detail hub</pre>
 <tbody>
 <tr>
 <th class="tableblock halign-left valign-top"><p class="tableblock"><strong>Entropy input (256 bits)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>2041546864449caff939d32d574753fe684d3c947c3346713dd8423e74abcf8c</code></p></td>
+<td class="tableblock halign-left valign-top long-token"><p class="tableblock"><code>2041546864449caff939d32d574753fe684d3c947c3346713dd8423e74abcf8c</code></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-left valign-top"><p class="tableblock"><strong>Mnemonic (24 words)</strong></p></th>
@@ -589,20 +607,20 @@ luggage oxygen faint major edit measure invite love trap field dilemma oblige</p
 </tr>
 <tr>
 <th class="tableblock halign-left valign-top"><p class="tableblock"><strong>Seed (512 bits)</strong></p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>3269bce2674acbd188d4f120072b13b088a0ecf87c6e4cae41657a0bb78f5315b33b3a04356e53d062e5</code>
+<td class="tableblock halign-left valign-top long-token"><p class="tableblock"><code>3269bce2674acbd188d4f120072b13b088a0ecf87c6e4cae41657a0bb78f5315b33b3a04356e53d062e5</code>
 <code>5f1e0deaa082df8d487381379df848a6ad7e98798404</code></p></td>
 </tr>
 </tbody>
-</table>
+</table></div>
 </div>
 <div class="sect4">
-<h5 id="mnemonic_passphrase">BIP-39中的可選密碼短語</h5>
+<h4 id="mnemonic_passphrase"><a class="anchor" href="#mnemonic_passphrase" aria-label="本節連結"></a>BIP-39中的可選密碼短語</h4>
 <div class="paragraph">
 <p>BIP-39標準允許在派生種子時使用可選的密碼短語。如果沒有使用密碼短語，助記詞將被一個由常量字串<code>"mnemonic"</code> 組成的鹽擴展，從任何給定的助記詞中產生一個特定的512位種子。如果使用密碼短語，則擴展函數會從同一助記詞中生成一個<em>不同的</em>種子。事實上，對於一個助記符，每個可能的密碼都會生成不同的種子。本質上，沒有“錯誤的”密碼。所有密碼都是有效的，它們都會生成不同的種子，形成一大批可能未初始化的錢包。可能的錢包的集合非常大（2<sup>512</sup>），因此沒有暴力或意外猜測正在使用的錢包的可能。</p>
 </div>
 <div class="admonitionblock tip">
 <table>
-<tr>
+<tbody><tr>
 <td class="icon">
 <i class="fa icon-tip" title="提示"></i>
 </td>
@@ -612,7 +630,7 @@ luggage oxygen faint major edit measure invite love trap field dilemma oblige</p
 </div>
 </td>
 </tr>
-</table>
+</tbody></table>
 </div>
 <div class="paragraph">
 <p>可選的密碼短語創造了兩個重要的特性：</p>
@@ -645,21 +663,21 @@ luggage oxygen faint major edit measure invite love trap field dilemma oblige</p
 </div>
 </div>
 <div class="sect4">
-<h5 id="working_mnemonic_codes">使用助記詞</h5>
+<h4 id="working_mnemonic_codes"><a class="anchor" href="#working_mnemonic_codes" aria-label="本節連結"></a>使用助記詞</h4>
 <div class="paragraph">
 <p>BIP-39 以許多不同的程式語言實現為庫：</p>
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1"><a href="https://github.com/trezor/python-mnemonic">python-mnemonic</a></dt>
+<dt class="hdlist1"><a href="https://github.com/trezor/python-mnemonic" rel="noopener" target="_blank">python-mnemonic</a></dt>
 <dd>
 <p>SatoshiLabs團隊提出的BIP-39標準的參考實現，使用Python</p>
 </dd>
-<dt class="hdlist1"><a href="https://github.com/ConsenSys/eth-lightwallet">Consensys/eth-lightwallet</a></dt>
+<dt class="hdlist1"><a href="https://github.com/ConsenSys/eth-lightwallet" rel="noopener" target="_blank">Consensys/eth-lightwallet</a></dt>
 <dd>
 <p>輕量級JS Ethereum節點和瀏覽器錢包（使用BIP-39）</p>
 </dd>
-<dt class="hdlist1"><a href="https://www.npmjs.com/package/bip39">npm/bip39</a></dt>
+<dt class="hdlist1"><a href="https://www.npmjs.com/package/bip39" rel="noopener" target="_blank">npm/bip39</a></dt>
 <dd>
 <p>比特幣BIP39的JavaScript實現：用於生成確定性密鑰的助記詞</p>
 </dd>
@@ -670,17 +688,17 @@ luggage oxygen faint major edit measure invite love trap field dilemma oblige</p
 </div>
 <div id="a_bip39_generator_as_a_standalone_web_page" class="imageblock">
 <div class="content">
-<img src="images/bip39_web.png" alt="BIP-39 generator web-page">
+<picture><source type="image/webp" srcset="/images/bip39_web.webp"><img src="/images/bip39_web.png" alt="BIP-39 generator web-page" width="795" height="548" loading="lazy" decoding="async"></picture>
 </div>
-<div class="title">圖 32. A BIP-39 generator as a standalone web page</div>
+<div class="title">圖 6-4. A BIP-39 generator as a standalone web page</div>
 </div>
 <div class="paragraph">
-<p>頁面（<a href="https://iancoleman.github.io/bip39/" class="bare">https://iancoleman.github.io/bip39/</a>）可以在瀏覽器中離線使用，也可以在線訪問。</p>
+<p>頁面（<a href="https://iancoleman.github.io/bip39/" class="bare" rel="noopener" target="_blank">https://iancoleman.github.io/bip39/</a>）可以在瀏覽器中離線使用，也可以在線訪問。</p>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="create_hd_wallet">6.1.7. 從種子創建HD錢包</h4>
+<h3 id="create_hd_wallet"><a class="anchor" href="#create_hd_wallet" aria-label="本節連結"></a>6.1.7. 從種子創建HD錢包</h3>
 <div class="paragraph">
 <p>HD錢包是由單個<em>根種子</em>創建的，該<em>種子</em>是128,256或512位隨機數。最常見的情況是，這個種子是從<em>助記詞</em>生成的，詳見前一節。</p>
 </div>
@@ -689,19 +707,19 @@ luggage oxygen faint major edit measure invite love trap field dilemma oblige</p
 </div>
 </div>
 <div class="sect3">
-<h4 id="bip32_bip43_44">6.1.8. 分層確定性錢包（BIP-32）和路徑（BIP-43/44）</h4>
+<h3 id="bip32_bip43_44"><a class="anchor" href="#bip32_bip43_44" aria-label="本節連結"></a>6.1.8. 分層確定性錢包（BIP-32）和路徑（BIP-43/44）</h3>
 <div class="paragraph">
 <p>大多數HD錢包遵循BIP-32標準，這已成為確定性密鑰事實上的行業標準代。你可以在以下網址閱讀詳細說明：</p>
 </div>
 <div class="paragraph">
-<p><a href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki" class="bare">https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki</a></p>
+<p><a href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki" class="bare" rel="noopener" target="_blank">https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki</a></p>
 </div>
 <div class="paragraph">
 <p>我們不會在這裡討論BIP-32的細節，只是瞭解如何在錢包中使用BIP-32。在許多軟體庫中提供了許多可互操作的BIP-32實現：</p>
 </div>
 <div class="dlist">
 <dl>
-<dt class="hdlist1"><a href="https://github.com/ConsenSys/eth-lightwallet">Consensys/eth-lightwallet</a></dt>
+<dt class="hdlist1"><a href="https://github.com/ConsenSys/eth-lightwallet" rel="noopener" target="_blank">Consensys/eth-lightwallet</a></dt>
 <dd>
 <p>輕量級JS Ethereum節點和瀏覽器錢包（使用BIP-32）</p>
 </dd>
@@ -711,11 +729,11 @@ luggage oxygen faint major edit measure invite love trap field dilemma oblige</p
 <p>還有一個BIP-32獨立的網頁生成器，對BIP-32的測試和實驗非常有用：</p>
 </div>
 <div class="paragraph">
-<p><a href="http://bip32.org/" class="bare">http://bip32.org/</a></p>
+<p><a href="http://bip32.org/" class="bare" rel="noopener" target="_blank">http://bip32.org/</a></p>
 </div>
 <div class="admonitionblock note">
 <table>
-<tr>
+<tbody><tr>
 <td class="icon">
 <i class="fa icon-note" title="備註"></i>
 </td>
@@ -725,10 +743,10 @@ luggage oxygen faint major edit measure invite love trap field dilemma oblige</p
 </div>
 </td>
 </tr>
-</table>
+</tbody></table>
 </div>
 <div class="sect4">
-<h5 id="extended_keys">擴展公鑰和私鑰</h5>
+<h4 id="extended_keys"><a class="anchor" href="#extended_keys" aria-label="本節連結"></a>擴展公鑰和私鑰</h4>
 <div class="paragraph">
 <p>在BIP-32術語中，可以擴展併產生“孩子”的父密鑰稱為 <em>擴展密鑰</em> <em>extended key</em>。如果它是一個私有密鑰，它是由前綴<em>xprv</em>區分的 <em>擴展私鑰</em> <em>extended_private_key</em>：</p>
 </div>
@@ -762,7 +780,7 @@ luggage oxygen faint major edit measure invite love trap field dilemma oblige</p
 </div>
 </div>
 <div class="sect4">
-<h5 id="hardened_child_key">強化子密鑰派生</h5>
+<h4 id="hardened_child_key"><a class="anchor" href="#hardened_child_key" aria-label="本節連結"></a>強化子密鑰派生</h4>
 <div class="paragraph">
 <p>從xpub派生公鑰的分支是非常有用的，但它帶有潛在風險。訪問xpub不能訪問子私鑰。但是，因為xpub包含鏈碼，所以如果某個子私鑰已知，或者以某種方式洩漏，則可以與鏈碼一起使用，以派生所有其他子私鑰。一個洩露的子私鑰和一個父鏈碼一起揭示了所有子私鑰。更糟的是，可以使用子私鑰和父鏈碼來推導父私鑰。</p>
 </div>
@@ -774,7 +792,7 @@ luggage oxygen faint major edit measure invite love trap field dilemma oblige</p
 </div>
 </div>
 <div class="sect4">
-<h5 id="index_number">正常和強化派生的索引號</h5>
+<h4 id="index_number"><a class="anchor" href="#index_number" aria-label="本節連結"></a>正常和強化派生的索引號</h4>
 <div class="paragraph">
 <p>BIP-32派生函數中使用的索引號是一個32位整數。為了便於區分通過常規派生函數派生的密鑰與通過強化派生函數派生的密鑰，該索引號分為兩個部分。0到2<sup>31</sup>-1（0x0到0x7FFFFFFF）之間的索引號僅用於常規派生。2<sup>31</sup>和2<sup>32</sup>-1（0x80000000至0xFFFFFFFF）之間的索引號僅用於強化派生。因此，如果索引號小於2<sup>31</sup>，則子項是常規的，如果索引號等於或大於2<sup>31</sup>，則子項是強化的。</p>
 </div>
@@ -783,15 +801,15 @@ luggage oxygen faint major edit measure invite love trap field dilemma oblige</p
 </div>
 </div>
 <div class="sect4">
-<h5 id="hd_wallet_path">HD錢包密鑰識別碼（路徑）</h5>
+<h4 id="hd_wallet_path"><a class="anchor" href="#hd_wallet_path" aria-label="本節連結"></a>HD錢包密鑰識別碼（路徑）</h4>
 <div class="paragraph">
 <p>HD錢包中的密鑰使用“路徑”命名約定來標識，樹的每個級別都用斜槓（/）字符分隔（參見 <a href="#hd_path_table">HD wallet path examples</a>）。從主密鑰派生的私鑰以“m”開頭。從主公鑰派生的公鑰以“M”開始。因此，主私鑰的第一個子私鑰為m/0。第一個子公鑰是M/0。第一個孩子的第二個孩子是m/0/1，依此類推。</p>
 </div>
 <div class="paragraph">
 <p>從右向左讀取一個密鑰的“祖先”，直到你到達從派生出它的主密鑰。例如，識別碼 m/x/y/z 描述了密鑰 m/x/y 的第z個子密鑰，密鑰 m/x/y 是密鑰 m/x 的第y個子密鑰，密鑰 m/x 是 m 的第 x 個子密鑰。</p>
 </div>
-<table id="hd_path_table" class="tableblock frame-all grid-all stretch">
-<caption class="title">表 6. HD wallet path examples</caption>
+<div class="table-wrap" tabindex="0"><table id="hd_path_table" class="tableblock frame-all grid-all stretch">
+<caption class="title">表 6-5. HD wallet path examples</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -821,13 +839,13 @@ luggage oxygen faint major edit measure invite love trap field dilemma oblige</p
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">M/23/17/0/0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The first great-great-grandchild public key of the first great-grandchild of the 18th grandchild of the 24th child</p></td>
+<td class="tableblock halign-left valign-top long-token"><p class="tableblock">The first great-great-grandchild public key of the first great-grandchild of the 18th grandchild of the 24th child</p></td>
 </tr>
 </tbody>
-</table>
+</table></div>
 </div>
 <div class="sect4">
-<h5 id="navigating_hd_wallet_tree">HD錢包樹狀結構導航</h5>
+<h4 id="navigating_hd_wallet_tree"><a class="anchor" href="#navigating_hd_wallet_tree" aria-label="本節連結"></a>HD錢包樹狀結構導航</h4>
 <div class="paragraph">
 <p>HD錢包樹結構提供了巨大的靈活性。每個父擴展密鑰可以有40億子密鑰：20億正常子密鑰和20億強化子密鑰。這些子密鑰中的每一個又可以有另外40億子密鑰，以此類推。這棵樹可以像你想要的一樣深，無限的世代。然而，這些靈活性，使得在這個無限樹中導航變得非常困難。在實現之間轉移HD錢包尤其困難，因為內部組織分支和子分支的可能性是無窮無盡的。</p>
 </div>
@@ -849,7 +867,7 @@ luggage oxygen faint major edit measure invite love trap field dilemma oblige</p
 <p>第一級“purpose”始終設置為<code>44'</code>。第二級“coin_type”指定密碼貨幣類型，允許多貨幣HD錢包，其中每種貨幣在第二級下具有其自己的子樹。標準檔案中定義了幾種貨幣，稱為SLIP0044：</p>
 </div>
 <div class="paragraph">
-<p><a href="https://github.com/satoshilabs/slips/blob/master/slip-0044.md" class="bare">https://github.com/satoshilabs/slips/blob/master/slip-0044.md</a></p>
+<p><a href="https://github.com/satoshilabs/slips/blob/master/slip-0044.md" class="bare" rel="noopener" target="_blank">https://github.com/satoshilabs/slips/blob/master/slip-0044.md</a></p>
 </div>
 <div class="paragraph">
 <p>一些例子: Ethereum 是 m/44'/60', Ethereum Classic is m/44'/61', Bitcoin 是 m/44'/0', 所有貨幣的 Testnet 是 m/44'/1'.</p>
@@ -860,8 +878,8 @@ luggage oxygen faint major edit measure invite love trap field dilemma oblige</p
 <div class="paragraph">
 <p>由於BIP-44最初是為比特幣創建的，因此它包含一個在以太坊世界中不相關的“怪癖”。在路徑的第四層“change”時，HD錢包有兩個子樹，一個用於創建接收地址，另一個用於創建零錢地址。以太坊只使用“接收”路徑，因為沒有零錢地址這樣的東西。請注意，雖然以前的層級使用強化派生，但此層級使用正常派生。這是為了允許樹的這個層級匯出擴展公鑰在非安全環境中使用。可用地址由HD錢包作為第四級的孩子派生，使樹的第五級成為“address_index”。例如，在主賬戶中以太坊付款的第三個接收地址為M/44'/60'/0'/0/2。<a href="#bip44_path_examples">BIP-44 HD wallet structure examples</a> 展示了幾個例子。</p>
 </div>
-<table id="bip44_path_examples" class="tableblock frame-all grid-all stretch">
-<caption class="title">表 7. BIP-44 HD wallet structure examples</caption>
+<div class="table-wrap" tabindex="0"><table id="bip44_path_examples" class="tableblock frame-all grid-all stretch">
+<caption class="title">表 6-6. BIP-44 HD wallet structure examples</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -886,507 +904,46 @@ luggage oxygen faint major edit measure invite love trap field dilemma oblige</p
 <td class="tableblock halign-left valign-top"><p class="tableblock">The second private key in the Litecoin main account, for signing transactions</p></td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <div class="paragraph">
-<p><a href="ch07.html#tx_chapter">下一章：交易</a></p>
+<p><a href="/ch07.html">下一章：交易</a></p>
 </div>
 </div>
 </div>
 </div>
 </div>
 </div>
-
-<nav class="chapter-nav"><a href="ch05.html" class="nav-prev">&larr; 密鑰和地址</a><a href="index.html" class="nav-home">首頁</a><a href="ch07.html" class="nav-next">交易 &rarr;</a></nav>
-</div>
-<div id="footer">
-<div id="footer-text">
-最後更新： 2026-11-02 14:55:30 UTC
-</div>
-</div>
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  messageStyle: "none",
-  tex2jax: {
-    inlineMath: [["\\(", "\\)"]],
-    displayMath: [["\\[", "\\]"]],
-    ignoreClass: "nostem|nolatexmath"
-  },
-  asciimath2jax: {
-    delimiters: [["\\$", "\\$"]],
-    ignoreClass: "nostem|noasciimath"
-  },
-  TeX: { equationNumbers: { autoNumber: "none" } }
-})
-MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
-  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
-    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
-      data.math.root.display = "block"
-    }
-    return data
-  })
-})
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<style>
-/* 浮動目錄按鈕 — 僅手機版顯示 */
-.toc-toggle {
-  position: fixed;
-  bottom: 5rem;
-  right: 1.2rem;
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  background: #2980b9;
-  color: #fff;
-  border: none;
-  font-size: 1.2rem;
-  cursor: pointer;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-  z-index: 1000;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.2s, transform 0.2s;
-}
-.toc-toggle:hover { background: #1a6fa0; }
-.toc-toggle:active { transform: scale(0.95); }
-
-/* 回到頂部按鈕 */
-.back-to-top {
-  position: fixed;
-  bottom: 1.8rem;
-  right: 1.2rem;
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  background: rgba(85,85,85,0.85);
-  color: #fff;
-  border: none;
-  font-size: 1.2rem;
-  cursor: pointer;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
-  z-index: 1000;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.3s, background 0.2s, transform 0.2s;
-  pointer-events: none;
-}
-.back-to-top:hover { background: rgba(50,50,50,0.9); }
-.back-to-top:active { transform: scale(0.95); }
-.back-to-top.visible {
-  display: flex;
-  opacity: 1;
-  pointer-events: auto;
-}
-
-/* 浮動目錄面板 */
-.toc-panel {
-  position: fixed;
-  top: 0;
-  right: -340px;
-  width: 320px;
-  max-width: 85vw;
-  height: 100vh;
-  background: #fff;
-  border-left: 1px solid #e1e4e8;
-  box-shadow: -4px 0 20px rgba(0,0,0,0.12);
-  z-index: 1001;
-  transition: right 0.3s ease;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  padding: 0;
-}
-.toc-panel.open { right: 0; }
-
-.toc-panel-header {
-  position: sticky;
-  top: 0;
-  background: #fff;
-  padding: 1.2rem 1rem 0.8rem;
-  border-bottom: 1px solid #e1e4e8;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  z-index: 1;
-}
-
-.toc-panel-header h3 {
-  margin: 0;
-  font-size: 1.1rem;
-  color: #1a252f;
-}
-
-.toc-panel .close-btn {
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  color: #888;
-  padding: 0 0.3rem;
-  line-height: 1;
-  transition: color 0.15s;
-}
-.toc-panel .close-btn:hover { color: #333; }
-
-.toc-panel-body {
-  padding: 0.8rem 1rem 2rem;
-}
-
-.toc-panel-body ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.toc-panel-body ul ul {
-  padding-left: 0.9rem;
-}
-
-.toc-panel-body li {
-  margin: 0;
-}
-
-.toc-panel-body a {
-  color: #555;
-  text-decoration: none;
-  font-size: 0.9rem;
-  line-height: 1.5;
-  display: block;
-  padding: 0.3rem 0.5rem;
-  border-radius: 4px;
-  transition: background 0.12s, color 0.12s;
-}
-.toc-panel-body a:hover {
-  background: #f0f3f6;
-  color: #2980b9;
-}
-
-/* 遮罩 */
-.toc-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.35);
-  z-index: 1000;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s, visibility 0.3s;
-}
-.toc-overlay.visible {
-  opacity: 1;
-  visibility: visible;
-}
-
-/* 閱讀進度條 */
-.reading-progress {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 3px;
-  background: linear-gradient(90deg, #2980b9, #3498db);
-  z-index: 1002;
-  transition: width 0.1s;
-  will-change: width;
-}
-
-/* 手機版顯示浮動按鈕 */
-@media screen and (max-width: 768px) {
-  .toc-toggle {
-    display: flex;
-  }
-  .back-to-top {
-    display: flex;
-  }
-}
-
-/* 桌面版也顯示回到頂部 */
-@media screen and (min-width: 769px) {
-  .back-to-top {
-    display: flex;
-  }
-  .reading-progress {
-    left: var(--toc-width, 300px);
-  }
-}
-/* 電子書下載橫幅 */
-.ebook-banner {
-  background: linear-gradient(135deg, #1a252f 0%, #2c3e50 100%);
-  color: #fff;
-  padding: 0.7rem 1.2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-  font-size: 0.88rem;
-  position: relative;
-  z-index: 50;
-}
-
-.ebook-banner a {
-  color: #fff;
-  background: rgba(255,255,255,0.15);
-  padding: 0.35rem 0.9rem;
-  border-radius: 5px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: background 0.2s;
-  white-space: nowrap;
-}
-
-.ebook-banner a:hover {
-  background: rgba(255,255,255,0.25);
-}
-
-.ebook-banner .banner-text {
-  opacity: 0.9;
-}
-
-.ebook-banner .banner-close {
-  position: absolute;
-  right: 0.8rem;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  color: rgba(255,255,255,0.5);
-  font-size: 1.2rem;
-  cursor: pointer;
-  padding: 0.2rem 0.4rem;
-}
-
-.ebook-banner .banner-close:hover {
-  color: #fff;
-}
-
-/* 桌面版橫幅在 TOC 右邊 */
-@media screen and (min-width: 769px) {
-  .ebook-banner {
-    margin-left: var(--toc-width, 300px);
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .ebook-banner {
-    font-size: 0.82rem;
-    padding: 0.6rem 0.8rem;
-    gap: 0.8rem;
-  }
-}
-</style>
-
-<!-- 電子書下載橫幅 -->
-<div class="ebook-banner" id="ebookBanner">
-  <span class="banner-text">下載電子書離線閱讀</span>
-  <a href="https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.pdf">PDF</a>
-  <a href="https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.epub">EPUB</a>
-  <a href="https://github.com/awesome-doge/ethereumbook_zh/releases/latest">GitHub Releases</a>
-  <button class="banner-close" id="bannerClose" aria-label="關閉">&times;</button>
-</div>
-
-<!-- 閱讀進度條 -->
-<div class="reading-progress" id="readingProgress"></div>
-
-<!-- 浮動按鈕 -->
-<button class="toc-toggle" id="tocToggle" aria-label="開啟目錄">&#9776;</button>
-<button class="back-to-top" id="backToTop" aria-label="回到頂部">&#8593;</button>
-
-<!-- 目錄面板（手機版） -->
-<div class="toc-overlay" id="tocOverlay"></div>
-<div class="toc-panel" id="tocPanel" role="navigation" aria-label="目錄">
-  <div class="toc-panel-header">
-    <h3>目錄</h3>
-    <button class="close-btn" id="tocClose" aria-label="關閉目錄">&times;</button>
   </div>
-  <div class="toc-panel-body" id="tocContent"></div>
+  <nav class="pager" aria-label="章節導覽">
+    <a class="pager-link prev" href="/ch05.html" rel="prev"><span class="pager-dir">← 上一章</span><span class="pager-title">第 5 章　密鑰、地址</span></a>
+    <a class="pager-link next" href="/ch07.html" rel="next"><span class="pager-dir">下一章 →</span><span class="pager-title">第 7 章　交易 (Transactions)</span></a>
+  </nav>
+  <p class="edit-link"><a href="https://github.com/awesome-doge/ethereumbook_zh/blob/master/ch06.asciidoc" rel="noopener">在 GitHub 上檢視或改善本章翻譯</a></p>
+</article>
+
+  </main>
+
+  <aside class="rail" aria-label="本章內容">
+    <p class="rail-title">本章內容</p>
+    <ol>
+      <li><a href="#wallet_tech_overview">6.1. 錢包技術概覽</a></li>
+    </ol>
+  </aside>
 </div>
 
-<script>
-(function() {
-  'use strict';
+<footer class="site-footer">
+  <p>原著《Mastering Ethereum》由 Andreas M. Antonopoulos 與 Gavin Wood 撰寫，O'Reilly Media 出版。繁體中文翻譯：Dr. Awesome Doge。</p>
+  <p>本書內容以 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh_TW" rel="license noopener">CC BY-NC-ND 4.0</a> 授權釋出 · <a href="https://github.com/awesome-doge/ethereumbook_zh" rel="noopener">GitHub</a> · <a href="https://github.com/awesome-doge/ethereumbook_zh/issues" rel="noopener">回報翻譯問題</a> · <a href="https://github.com/ethereumbook/ethereumbook" rel="noopener">英文原著</a></p>
+</footer>
 
-  // === 電子書橫幅：移到頁面頂部 + 關閉/記憶 ===
-  var banner = document.getElementById('ebookBanner');
-  var bannerClose = document.getElementById('bannerClose');
-  if (banner) {
-    // 如果用戶之前關閉過，隱藏
-    if (localStorage.getItem('ebookBannerClosed')) {
-      banner.style.display = 'none';
-    } else {
-      // 移到 body 最前面（在 header 之前）
-      document.body.insertBefore(banner, document.body.firstChild);
-    }
-    if (bannerClose) {
-      bannerClose.addEventListener('click', function() {
-        banner.style.display = 'none';
-        localStorage.setItem('ebookBannerClosed', '1');
-      });
-    }
-  }
-
-  // === 生成手機版目錄 ===
-  var tocContent = document.getElementById('tocContent');
-  var nativeToc = document.getElementById('toc');
-
-  if (tocContent && nativeToc) {
-    // 從原生 TOC 複製結構
-    var nativeList = nativeToc.querySelector('ul.sectlevel1');
-    if (nativeList) {
-      tocContent.appendChild(nativeList.cloneNode(true));
-    }
-  }
-
-  // === 目錄開關 ===
-  var tocToggle = document.getElementById('tocToggle');
-  var tocPanel = document.getElementById('tocPanel');
-  var tocOverlay = document.getElementById('tocOverlay');
-  var tocClose = document.getElementById('tocClose');
-
-  function openToc() {
-    tocPanel.classList.add('open');
-    tocOverlay.classList.add('visible');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeToc() {
-    tocPanel.classList.remove('open');
-    tocOverlay.classList.remove('visible');
-    document.body.style.overflow = '';
-  }
-
-  if (tocToggle) tocToggle.addEventListener('click', openToc);
-  if (tocOverlay) tocOverlay.addEventListener('click', closeToc);
-  if (tocClose) tocClose.addEventListener('click', closeToc);
-
-  // 點擊目錄連結後關閉面板
-  if (tocContent) {
-    tocContent.addEventListener('click', function(e) {
-      if (e.target.tagName === 'A') {
-        closeToc();
-      }
-    });
-  }
-
-  // ESC 關閉
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') closeToc();
-  });
-
-  // === 回到頂部 ===
-  var backToTop = document.getElementById('backToTop');
-  if (backToTop) {
-    backToTop.addEventListener('click', function() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  }
-
-  // === 閱讀進度條 + 回到頂部顯示 ===
-  var progressBar = document.getElementById('readingProgress');
-  var ticking = false;
-
-  function onScroll() {
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(function() {
-      var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      var docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-
-      // 回到頂部
-      if (backToTop) {
-        if (scrollTop > 400) {
-          backToTop.classList.add('visible');
-        } else {
-          backToTop.classList.remove('visible');
-        }
-      }
-
-      // 進度條
-      if (progressBar && docHeight > 0) {
-        progressBar.style.width = ((scrollTop / docHeight) * 100) + '%';
-      }
-
-      ticking = false;
-    });
-  }
-
-  window.addEventListener('scroll', onScroll, { passive: true });
-
-  // === 表格響應式包裝 ===
-  document.querySelectorAll('table.tableblock').forEach(function(table) {
-    if (!table.parentElement.classList.contains('tableblock-wrapper')) {
-      var wrapper = document.createElement('div');
-      wrapper.style.overflowX = 'auto';
-      wrapper.style.WebkitOverflowScrolling = 'touch';
-      wrapper.style.margin = '1.5rem 0';
-      table.parentNode.insertBefore(wrapper, table);
-      wrapper.appendChild(table);
-      table.style.margin = '0';
-    }
-  });
-
-  // === 桌面版：TOC 當前章節高亮 ===
-  if (window.innerWidth > 768 && nativeToc) {
-    var tocLinks = nativeToc.querySelectorAll('a');
-    var headingIds = [];
-    tocLinks.forEach(function(link) {
-      var id = link.getAttribute('href');
-      if (id && id.startsWith('#')) {
-        headingIds.push({ id: id.substring(1), el: link });
-      }
-    });
-
-    var currentHighlight = null;
-
-    // 注入高亮樣式
-    var hlStyle = document.createElement('style');
-    hlStyle.textContent = '#toc a.toc-active { background: #dbeafe !important; color: #1d4ed8 !important; border-radius: 4px; font-weight: 600; border-left: 3px solid #2980b9; padding-left: 0.4rem; }';
-    document.head.appendChild(hlStyle);
-
-    function highlightToc() {
-      var scrollPos = window.pageYOffset + 100;
-      var current = null;
-
-      for (var i = headingIds.length - 1; i >= 0; i--) {
-        var target = document.getElementById(headingIds[i].id);
-        if (target && target.offsetTop <= scrollPos) {
-          current = headingIds[i].el;
-          break;
-        }
-      }
-
-      if (current !== currentHighlight) {
-        if (currentHighlight) {
-          currentHighlight.classList.remove('toc-active');
-        }
-        if (current) {
-          current.classList.add('toc-active');
-          // 確保高亮項在可視範圍
-          var tocEl = document.getElementById('toc');
-          if (tocEl) {
-            var linkRect = current.getBoundingClientRect();
-            var tocRect = tocEl.getBoundingClientRect();
-            if (linkRect.top < tocRect.top + 60 || linkRect.bottom > tocRect.bottom - 20) {
-              current.scrollIntoView({ block: 'center', behavior: 'smooth' });
-            }
-          }
-        }
-        currentHighlight = current;
-      }
-    }
-
-    window.addEventListener('scroll', function() {
-      requestAnimationFrame(highlightToc);
-    }, { passive: true });
-
-    highlightToc();
-  }
-})();
-</script>
-</body>
-</html>
+<dialog class="search" id="search" aria-label="搜尋全書">
+  <form method="dialog" class="search-form" role="search">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input type="search" id="search-input" placeholder="搜尋全書，例如：智能合約、gas、ERC20" autocomplete="off" spellcheck="false" aria-label="搜尋關鍵字">
+    <button type="submit" class="search-close" value="close" aria-label="關閉搜尋">Esc</button>
+  </form>
+  <p class="search-status" aria-live="polite"></p>
+  <ol class="search-results"></ol>
+</dialog>
 </body>
 </html>

@@ -1,169 +1,197 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-Hant-TW">
 <head>
-
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.26">
-<title>代幣 Tokens — 精通以太坊 Mastering Ethereum 繁體中文版</title>
-<link rel="stylesheet" href="./custom.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="./rouge-github.css">
-<!-- Google Analytics 4 -->
-<script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-ZVVQYEKMPF"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-ZVVQYEKMPF');
-</script>
-
-<!-- Favicon -->
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2B21;</text></svg>" type="image/svg+xml">
-
-<!-- SEO: Title Override -->
-<meta name="title" content="精通以太坊 Mastering Ethereum — 繁體中文完整版 | 智能合約、DApps、EVM、Solidity 技術指南">
-
-<!-- SEO: Description -->
-<meta name="description" content="精通以太坊（Mastering Ethereum）繁體中文版，由 Andreas M. Antonopoulos 和 Gavin Wood 著作。完整涵蓋以太坊基礎、智能合約、Solidity、DApps、EVM、Gas、密鑰管理、錢包、交易、預言機、共識機制等 19 章內容。免費線上閱讀，提供 PDF 和 EPUB 電子書下載。">
-<meta name="keywords" content="以太坊, Ethereum, 智能合約, Smart Contract, Solidity, DApp, EVM, 區塊鏈, Blockchain, 加密貨幣, Web3, DeFi, 精通以太坊, Mastering Ethereum, 繁體中文, 教學, 技術指南">
-<meta name="author" content="Andreas M. Antonopoulos, Gavin Wood, Dr. Awesome Doge">
-
-<!-- SEO: Canonical -->
-
-
-<!-- SEO: Language Alternatives -->
-<link rel="alternate" hreflang="zh-Hant" href="https://mastering-ethereum.doge.tg/">
-<link rel="alternate" hreflang="en" href="https://github.com/ethereumbook/ethereumbook">
-
-<!-- Google Fonts: Noto Sans TC -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap">
-
-<!-- Open Graph -->
-<meta property="og:type" content="book">
-<meta property="og:title" content="精通以太坊 Mastering Ethereum — 繁體中文完整版">
-<meta property="og:description" content="以太坊完整技術指南，涵蓋智能合約、Solidity、DApps、EVM 等 19 章。免費線上閱讀 + PDF/EPUB 下載。">
-<meta property="og:image" content="https://mastering-ethereum.doge.tg/images/cover.png">
-<meta property="og:image:width" content="1050">
-<meta property="og:image:height" content="1378">
-<meta property="og:image:alt" content="Mastering Ethereum 書籍封面">
-<meta property="og:url" content="https://mastering-ethereum.doge.tg/">
-<meta property="og:site_name" content="精通以太坊 繁體中文版">
-<meta property="og:locale" content="zh_TW">
-<meta property="book:author" content="Andreas M. Antonopoulos">
-<meta property="book:author" content="Gavin Wood">
-<meta property="book:tag" content="Ethereum">
-<meta property="book:tag" content="Blockchain">
-<meta property="book:tag" content="Smart Contracts">
-<meta property="book:tag" content="Solidity">
-
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="精通以太坊 Mastering Ethereum — 繁體中文完整版">
-<meta name="twitter:description" content="以太坊完整技術指南，涵蓋智能合約、Solidity、DApps、EVM 等 19 章。免費線上閱讀 + PDF/EPUB 下載。">
-<meta name="twitter:image" content="https://mastering-ethereum.doge.tg/images/cover.png">
-<meta name="twitter:image:alt" content="Mastering Ethereum 書籍封面">
-
-<!-- JSON-LD Structured Data -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Book",
-  "name": "精通以太坊 Mastering Ethereum 繁體中文版",
-  "alternateName": "Mastering Ethereum: Building Smart Contracts and DApps",
-  "author": [
-    {
-      "@type": "Person",
-      "name": "Andreas M. Antonopoulos",
-      "url": "https://aantonop.com/"
-    },
-    {
-      "@type": "Person",
-      "name": "Gavin Wood"
-    }
-  ],
-  "translator": {
-    "@type": "Person",
-    "name": "Dr. Awesome Doge"
-  },
-  "inLanguage": "zh-Hant",
-  "url": "https://mastering-ethereum.doge.tg/",
-  "image": "https://mastering-ethereum.doge.tg/images/cover.png",
-  "description": "以太坊完整技術指南繁體中文版，涵蓋智能合約、Solidity、DApps、EVM、Gas、密鑰管理等 19 章內容。",
-  "genre": ["Technology", "Blockchain", "Cryptocurrency"],
-  "bookFormat": "https://schema.org/EBook",
-  "numberOfPages": 257,
-  "publisher": {
-    "@type": "Organization",
-    "name": "O'Reilly Media"
-  },
-  "license": "https://creativecommons.org/licenses/by-nc-nd/4.0/",
-  "isAccessibleForFree": true,
-  "encoding": [
-    {
-      "@type": "MediaObject",
-      "encodingFormat": "application/pdf",
-      "contentUrl": "https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.pdf"
-    },
-    {
-      "@type": "MediaObject",
-      "encodingFormat": "application/epub+zip",
-      "contentUrl": "https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.epub"
-    }
-  ],
-  "about": [
-    {"@type": "Thing", "name": "Ethereum"},
-    {"@type": "Thing", "name": "Smart Contracts"},
-    {"@type": "Thing", "name": "Blockchain"},
-    {"@type": "Thing", "name": "Solidity"},
-    {"@type": "Thing", "name": "Decentralized Applications"},
-    {"@type": "Thing", "name": "EVM"}
-  ]
-}
-</script>
-
-<!-- BreadcrumbList for search results -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "精通以太坊",
-      "item": "https://mastering-ethereum.doge.tg/"
-    }
-  ]
-}
-</script>
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>第 10 章　Tokens｜精通以太坊繁體中文版</title>
+<meta name="description" content="以太坊上的代幣：可互換性、交易對手風險、效用與權益型代幣，ERC20 標準與自行發行代幣，approve 與 transferFrom 流程，以及 ERC223、ERC777、ERC721。">
 <link rel="canonical" href="https://mastering-ethereum.doge.tg/ch10.html">
-<meta name="description" content="精通以太坊：代幣 Tokens。以太坊完整技術指南繁體中文版，免費線上閱讀。">
-<style>
-.chapter-nav{display:flex;justify-content:space-between;align-items:center;padding:1rem 0;border-top:1px solid #e1e4e8;border-bottom:1px solid #e1e4e8;margin:2rem 0;gap:0.8rem;flex-wrap:wrap}
-.chapter-nav a{color:#2980b9;text-decoration:none;font-size:0.9rem;padding:0.4rem 0.8rem;border-radius:4px;transition:background 0.2s}
-.chapter-nav a:hover{background:#f0f3f6}
-.chapter-nav .nav-prev{text-align:left;max-width:40%}
-.chapter-nav .nav-next{text-align:right;max-width:40%}
-.chapter-nav .nav-home{font-weight:600}
-@media(max-width:768px){.chapter-nav{font-size:0.82rem}.chapter-nav a{padding:0.3rem 0.5rem}}
-</style>
+<meta name="author" content="Andreas M. Antonopoulos, Gavin Wood">
+<meta name="theme-color" content="#f8f9fc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14151b" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="sitemap" type="application/xml" href="/sitemap.xml">
+<meta property="og:site_name" content="精通以太坊繁體中文版">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第 10 章　Tokens｜精通以太坊繁體中文版">
+<meta property="og:description" content="以太坊上的代幣：可互換性、交易對手風險、效用與權益型代幣，ERC20 標準與自行發行代幣，approve 與 transferFrom 流程，以及 ERC223、ERC777、ERC721。">
+<meta property="og:url" content="https://mastering-ethereum.doge.tg/ch10.html">
+<meta property="og:image" content="https://mastering-ethereum.doge.tg/assets/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="zh_TW">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="prev" href="/ch09.html">
+<link rel="next" href="/ch11.html">
+<script>
+(function(){try{var d=document.documentElement,s=localStorage,t=s.getItem('me-theme'),z=s.getItem('me-size'),f=s.getItem('me-font');if(t&&t!=='auto')d.setAttribute('data-theme',t);if(z)d.style.setProperty('--fs',z+'px');if(f)d.setAttribute('data-font',f)}catch(e){}})();
+</script>
+<link rel="stylesheet" href="/assets/site.css?v=8381e0abca">
+<link rel="stylesheet" href="/assets/code.css?v=c94d007c0c">
+<script defer src="/assets/site.js?v=fc9557d36e"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Chapter","@id":"https://mastering-ethereum.doge.tg/ch10.html#chapter","name":"第 10 章　Tokens","headline":"第 10 章　Tokens｜精通以太坊","description":"以太坊上的代幣：可互換性、交易對手風險、效用與權益型代幣，ERC20 標準與自行發行代幣，approve 與 transferFrom 流程，以及 ERC223、ERC777、ERC721。","url":"https://mastering-ethereum.doge.tg/ch10.html","inLanguage":"zh-TW","position":12,"dateModified":"2026-11-02T22:54:41+08:00","isPartOf":{"@id":"https://mastering-ethereum.doge.tg/#book"},"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true},{"@type":"Book","@id":"https://mastering-ethereum.doge.tg/#book","name":"精通以太坊：打造智能合約與 DApp","alternateName":["Mastering Ethereum: Building Smart Contracts and DApps","精通以太坊 Mastering Ethereum"],"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"inLanguage":"zh-TW","publisher":{"@type":"Organization","name":"O'Reilly Media"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true,"url":"https://mastering-ethereum.doge.tg/","image":"https://mastering-ethereum.doge.tg/assets/og-cover.png","translationOfWork":{"@type":"Book","name":"Mastering Ethereum: Building Smart Contracts and DApps","inLanguage":"en","url":"https://github.com/ethereumbook/ethereumbook"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"精通以太坊","item":"https://mastering-ethereum.doge.tg/"},{"@type":"ListItem","position":2,"name":"第 10 章　Tokens","item":"https://mastering-ethereum.doge.tg/ch10.html"}]}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZVVQYEKMPF"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-ZVVQYEKMPF');</script>
 </head>
-<body class="book">
-<div id="header">
-<h1><a href="index.html" style="color:inherit;text-decoration:none">精通以太坊 Mastering Ethereum 繁體中文版</a></h1>
+<body class="is-chapter">
+<a class="skip-link" href="#main">跳到主要內容</a>
+<header class="topbar">
+  <button class="icon-btn" type="button" data-action="toggle-nav" aria-controls="sidebar" aria-expanded="false" aria-label="開啟目錄">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+  </button>
+  <a class="brand" href="/" aria-label="精通以太坊 首頁">
+    <span class="brand-mark" aria-hidden="true">Ξ</span><span class="brand-text">精通以太坊</span>
+  </a>
+  <p class="topbar-title"><span class="topbar-label">第 10 章</span>Tokens</p>
+  <div class="topbar-actions">
+    <button class="icon-btn search-btn" type="button" data-action="search" aria-label="搜尋全書（快捷鍵 /）">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <span class="search-btn-text">搜尋</span><kbd>/</kbd>
+    </button>
+    <button class="icon-btn" type="button" data-action="settings" aria-controls="settings" aria-expanded="false" aria-label="閱讀設定">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19 9 5l5 14M5.8 14.5h6.4M15 19l3-8 3 8M15.9 16.5h4.2"/></svg>
+    </button>
+  </div>
+  <div class="progress" aria-hidden="true"><span></span></div>
+</header>
+
+<div class="settings" id="settings" hidden>
+  <div class="settings-group" role="group" aria-label="主題">
+    <span class="settings-label">主題</span>
+    <div class="seg">
+      <button type="button" data-theme-set="auto">自動</button>
+      <button type="button" data-theme-set="light">淺色</button>
+      <button type="button" data-theme-set="sepia">護眼</button>
+      <button type="button" data-theme-set="dark">深色</button>
+    </div>
+  </div>
+  <div class="settings-group" role="group" aria-label="字級">
+    <span class="settings-label">字級</span>
+    <div class="seg">
+      <button type="button" data-size="-1" aria-label="縮小字級">A−</button>
+      <output class="size-value" aria-live="polite">18</output>
+      <button type="button" data-size="1" aria-label="放大字級">A+</button>
+    </div>
+  </div>
+  <div class="settings-group" role="group" aria-label="字型">
+    <span class="settings-label">字型</span>
+    <div class="seg">
+      <button type="button" data-font-set="sans">黑體</button>
+      <button type="button" data-font-set="serif">明體</button>
+    </div>
+  </div>
 </div>
-<div id="content">
-<nav class="chapter-nav"><a href="ch09.html" class="nav-prev">&larr; 開發工具、框架和庫</a><a href="index.html" class="nav-home">首頁</a><a href="ch11.html" class="nav-next">去中心化應用 DApps &rarr;</a></nav>
+
+<div class="shell">
+  <nav class="sidebar" id="sidebar" aria-label="全書目錄">
+    <div class="sidebar-head">
+      <a href="/" class="sidebar-book">精通以太坊</a>
+      <span class="sidebar-sub">繁體中文版</span>
+    </div>
+    <ol class="book-toc">
+      <li>
+        <a href="/preface.html"><span class="toc-label">前言</span></a>
+      </li>
+      <li>
+        <a href="/glossary.html"><span class="toc-label">術語表</span>快速術語表</a>
+      </li>
+      <li>
+        <a href="/ch01.html"><span class="toc-label">第 1 章</span>什麼是以太坊</a>
+      </li>
+      <li>
+        <a href="/ch02.html"><span class="toc-label">第 2 章</span>以太坊基礎</a>
+      </li>
+      <li>
+        <a href="/ch03.html"><span class="toc-label">第 3 章</span>以太坊客戶端</a>
+      </li>
+      <li>
+        <a href="/ch04.html"><span class="toc-label">第 4 章</span>以太坊測試網（Testnets）</a>
+      </li>
+      <li>
+        <a href="/ch05.html"><span class="toc-label">第 5 章</span>密鑰、地址</a>
+      </li>
+      <li>
+        <a href="/ch06.html"><span class="toc-label">第 6 章</span>錢包</a>
+      </li>
+      <li>
+        <a href="/ch07.html"><span class="toc-label">第 7 章</span>交易 (Transactions)</a>
+      </li>
+      <li>
+        <a href="/ch08.html"><span class="toc-label">第 8 章</span>智能合約</a>
+      </li>
+      <li>
+        <a href="/ch09.html"><span class="toc-label">第 9 章</span>開發工具，框架和庫</a>
+      </li>
+      <li class="is-current">
+        <a href="/ch10.html" aria-current="page"><span class="toc-label">第 10 章</span>Tokens</a>
+        <ol class="section-toc">
+          <li><a href="#Tokens_definition">10.1. 什麼是Token?</a></li>
+          <li><a href="#Tokens_use">10.2. 如何使用Token？</a></li>
+          <li><a href="#Tokens_fungibility">10.3. Tokens和可互換性</a></li>
+          <li><a href="#counterparty_risk">10.4. 交易對手風險</a></li>
+          <li><a href="#Tokens_intrinsicality">10.5. Tokens和內在性</a></li>
+          <li><a href="#using_Tokens">10.6. 使用Tokens：效用或權益</a></li>
+          <li><a href="#Token_std">10.7. Token 標準</a></li>
+          <li><a href="#Token_std_review">10.8. Token標準</a></li>
+          <li><a href="#security_maturity">10.9. 安全成熟度</a></li>
+          <li><a href="#extend_Token_interface">10.10. Token接口標準的擴展</a></li>
+          <li><a href="#Tokens_ico">10.11. Tokens 和 ICOs</a></li>
+        </ol>
+      </li>
+      <li>
+        <a href="/ch11.html"><span class="toc-label">第 11 章</span>去中心化應用 (DApps)</a>
+      </li>
+      <li>
+        <a href="/ch12.html"><span class="toc-label">第 12 章</span>預言機 (Oracles)</a>
+      </li>
+      <li>
+        <a href="/ch13.html"><span class="toc-label">第 13 章</span>gas（Gas）</a>
+      </li>
+      <li>
+        <a href="/ch14.html"><span class="toc-label">第 14 章</span>以太坊虛擬機 (The Ethereum Virtual Machine)</a>
+      </li>
+      <li>
+        <a href="/ch15.html"><span class="toc-label">第 15 章</span>共識</a>
+      </li>
+      <li>
+        <a href="/ch16.html"><span class="toc-label">第 16 章</span>Vyper: 面向合約的程式語言</a>
+      </li>
+      <li>
+        <a href="/ch17.html"><span class="toc-label">第 17 章</span>節點間的通信 —— 一個簡單的視角</a>
+      </li>
+      <li>
+        <a href="/ch18.html"><span class="toc-label">附錄 A</span>以太坊標準</a>
+      </li>
+      <li>
+        <a href="/ch19.html"><span class="toc-label">附錄 B</span>以太坊分叉歷史</a>
+      </li>
+    </ol>
+    <div class="sidebar-foot">
+      <a href="https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.pdf" rel="noopener">下載 PDF 電子書</a>
+      <a href="https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.epub" rel="noopener">下載 EPUB 電子書</a>
+      <a href="https://github.com/awesome-doge/ethereumbook_zh" rel="noopener">GitHub 原始碼</a>
+    </div>
+  </nav>
+  <div class="scrim" data-action="close-nav" hidden></div>
+
+  <main id="main" class="main" tabindex="-1">
+<article class="chapter" aria-labelledby="Tokens_chapter">
+  <nav class="breadcrumb" aria-label="導覽路徑"><a href="/">精通以太坊</a><span aria-hidden="true">/</span><span>第 10 章</span></nav>
+  <header class="chapter-head">
+    <p class="chapter-label">第 10 章</p>
+    <h1 id="Tokens_chapter">Tokens</h1>
+    <p class="chapter-meta">約 41 分鐘閱讀 · 11 個小節</p>
+  </header>
+  <div class="prose">
 <div class="sect1">
-<h2 id="Tokens_chapter">10. Tokens</h2>
+
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="Tokens_definition">10.1. 什麼是Token?</h3>
+<h2 id="Tokens_definition"><a class="anchor" href="#Tokens_definition" aria-label="本節連結"></a>10.1. 什麼是Token?</h2>
 <div class="paragraph">
 <p>單詞<em>Token</em>來源於古英語“tacen”，意思是符號或符號。常用來表示私人發行的類似硬幣的物品，價值不大，例如交通Token，洗衣Token，遊樂場Token。</p>
 </div>
@@ -178,7 +206,7 @@ gtag('config', 'G-ZVVQYEKMPF');
 </div>
 </div>
 <div class="sect2">
-<h3 id="Tokens_use">10.2. 如何使用Token？</h3>
+<h2 id="Tokens_use"><a class="anchor" href="#Tokens_use" aria-label="本節連結"></a>10.2. 如何使用Token？</h2>
 <div class="paragraph">
 <p>Token最明顯的用途是作為數字私人貨幣。但是，這只是一個可能的用途。Token可以被編程為提供許多不同的功能，通常是重疊的。例如，Token可以同時傳達投票權，訪問權和資源所有權。貨幣只是第一個“應用程式”。</p>
 </div>
@@ -231,7 +259,7 @@ gtag('config', 'G-ZVVQYEKMPF');
 </div>
 </div>
 <div class="sect2">
-<h3 id="Tokens_fungibility">10.3. Tokens和可互換性</h3>
+<h2 id="Tokens_fungibility"><a class="anchor" href="#Tokens_fungibility" aria-label="本節連結"></a>10.3. Tokens和可互換性</h2>
 <div class="paragraph">
 <p>來自Wikipedia:</p>
 </div>
@@ -249,20 +277,20 @@ gtag('config', 'G-ZVVQYEKMPF');
 <p>嚴格地說，如果可以跟蹤Token的歷史出處，那麼它就不是完全可替代的。追蹤出處的能力可能導致黑名單和白名單，從而降低或消除互通性。</p>
 </div>
 <div class="paragraph">
-<p>不可互換的Token是代表獨特的有形或無形商品的Token，因此不可互換。例如，表示<em>特定的</em> Van Gogh繪畫所有權的Token不等同於代表畢加索的另一個Token。同樣，表示特定數字收藏的Token，如特定的CryptoKitty（請參閱<a href="ch11.html#cryptoKitties">CryptoKitties</a>）與任何其他CryptoKitty都不可互換。每個不可互換的Token與唯一識別碼相關聯，例如序列號。</p>
+<p>不可互換的Token是代表獨特的有形或無形商品的Token，因此不可互換。例如，表示<em>特定的</em> Van Gogh繪畫所有權的Token不等同於代表畢加索的另一個Token。同樣，表示特定數字收藏的Token，如特定的CryptoKitty（請參閱<a href="/ch11.html#cryptoKitties">CryptoKitties</a>）與任何其他CryptoKitty都不可互換。每個不可互換的Token與唯一識別碼相關聯，例如序列號。</p>
 </div>
 <div class="paragraph">
 <p>本節後面我們將看到可替換和不可替換Token的例子。</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="counterparty_risk">10.4. 交易對手風險</h3>
+<h2 id="counterparty_risk"><a class="anchor" href="#counterparty_risk" aria-label="本節連結"></a>10.4. 交易對手風險</h2>
 <div class="paragraph">
 <p>交易對手風險是交易中的其他方不能履行其義務的風險。由於在交易中增加了兩個以上的交易方，某些類型的交易會產生額外的交易對手風險。例如，如果你持有貴金屬存款證明並將其出售給某人，則該交易中至少有三方：賣方，買方和貴金屬的保管人。有人持有有形資產，必要時他們成為一方併為涉及該資產的任何交易添加交易對手風險。當資產通過交換所有權資訊而間接交易時，資產託管人有額外的交易對手風險。他們有資產嗎？他們是否會根據Token的轉讓（例如證書，契約，所有權或數字Token）識別（或允許）所有權的轉移？在數字Token的世界中，瞭解誰持有由Token表示的資產以及適用於該基礎資產的規則很重要。</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="Tokens_intrinsicality">10.5. Tokens和內在性</h3>
+<h2 id="Tokens_intrinsicality"><a class="anchor" href="#Tokens_intrinsicality" aria-label="本節連結"></a>10.5. Tokens和內在性</h2>
 <div class="paragraph">
 <p>單詞 "intrinsic" 源於拉丁詞 "intra", 表示"來自內部".</p>
 </div>
@@ -277,7 +305,7 @@ gtag('config', 'G-ZVVQYEKMPF');
 </div>
 </div>
 <div class="sect2">
-<h3 id="using_Tokens">10.6. 使用Tokens：效用或權益</h3>
+<h2 id="using_Tokens"><a class="anchor" href="#using_Tokens" aria-label="本節連結"></a>10.6. 使用Tokens：效用或權益</h2>
 <div class="paragraph">
 <p>今天以太坊的幾乎所有項目都以某種形式發佈。但是，所有這些項目真的需要一個Token嗎？使用Token有什麼缺點，或者我們會看到口號“將所有東西Token化”的口號是否成熟？</p>
 </div>
@@ -291,7 +319,7 @@ gtag('config', 'G-ZVVQYEKMPF');
 <p>股權Token可以像享有利潤和分紅的無投票權股份一樣有限，或者向去中心化自治組織的有投票權的股票一樣廣泛，其中平臺是通過Token持有者的多數投票管理的。</p>
 </div>
 <div class="sect3">
-<h4 id="its_not_duck">10.6.1. 它不是一隻鴨子</h4>
+<h3 id="its_not_duck"><a class="anchor" href="#its_not_duck" aria-label="本節連結"></a>10.6.1. 它不是一隻鴨子</h3>
 <div class="paragraph">
 <p>僅僅因為Token用於為初創公司籌款，並不意味著它必須用作服務的支付，反之亦然。然而，許多初創公司面臨著一個難題：Token是一種很好的籌款機制，但向大眾提供證券（股權）是大多數司法管轄區的受監管活動。通過將股權Token偽裝成實用Token，許多創業公司希望能夠繞過這些監管限制，並從公開募股籌集資金，同時將其作為預售的實用Token。這些稀薄的股權產品是否能夠擺脫監管機構仍有待觀察。</p>
 </div>
@@ -300,7 +328,7 @@ gtag('config', 'G-ZVVQYEKMPF');
 </div>
 </div>
 <div class="sect3">
-<h4 id="who_needs_utility_Tokens">10.6.2. 實用Token：誰需要它們？</h4>
+<h3 id="who_needs_utility_Tokens"><a class="anchor" href="#who_needs_utility_Tokens" aria-label="本節連結"></a>10.6.2. 實用Token：誰需要它們？</h3>
 <div class="paragraph">
 <p>真正的問題是實用Token為初創公司帶來了重大風險和被採用障礙。也許在遙遠的將來，“將所有事物Token化”成為現實。但是，目前，獲得，理解和使用Token的人數是已經很小的密碼貨幣市場的一個子集。</p>
 </div>
@@ -331,7 +359,7 @@ gtag('config', 'G-ZVVQYEKMPF');
 </div>
 </div>
 <div class="sect2">
-<h3 id="Token_std">10.7. Token 標準</h3>
+<h2 id="Token_std"><a class="anchor" href="#Token_std" aria-label="本節連結"></a>10.7. Token 標準</h2>
 <div class="paragraph">
 <p>區塊鏈標記在以太坊之前就已存在。在某些方面，第一塊區塊鏈貨幣比特幣本身就是一種Token。在Ethereum之前，還在比特幣和其他密碼貨幣上開發了許多Token平臺。然而，在以太坊上引入第一個Token標準導致Token爆炸。</p>
 </div>
@@ -339,12 +367,12 @@ gtag('config', 'G-ZVVQYEKMPF');
 <p>Vitalik Buterin建議將Token作為通用可編程區塊鏈（如以太坊）最明顯和最有用的應用之一。事實上，在以太坊的第一年，經常看到Vitalik和其他人穿著印有Ethereum標誌的T恤和背面的智能合約樣本。這件T恤有幾種變化，但最常見的是一種Token的實現。</p>
 </div>
 <div class="sect3">
-<h4 id="ERC20_std">10.7.1. ERC20 Token 標準</h4>
+<h3 id="ERC20_std"><a class="anchor" href="#ERC20_std" aria-label="本節連結"></a>10.7.1. ERC20 Token 標準</h3>
 <div class="paragraph">
 <p>第一個標準由Fabian Vogelsteller於2015年11月引入，作為以太坊徵求意見（ERC）。它被自動分配了GitHub發行號碼20，從而獲得了名字“ERC20 Token”。絕大多數Token目前都基於ERC20。ERC20徵求意見最終成為以太坊改進建議EIP20，但大多仍以原名ERC20提及。你可以在這裡閱讀標準：</p>
 </div>
 <div class="paragraph">
-<p><a href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md" class="bare">https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md</a></p>
+<p><a href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md" class="bare" rel="noopener" target="_blank">https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md</a></p>
 </div>
 <div class="paragraph">
 <p>ERC20是<em>可替換Token</em>的標準，意味著ERC20標記的不同單元是可互換的，沒有唯一屬性。</p>
@@ -353,7 +381,7 @@ gtag('config', 'G-ZVVQYEKMPF');
 <p>ERC20標準為實現Token的合同定義了一個通用接口，這樣任何兼容的Token都可以以相同的方式訪問和使用。該接口包含許多必須存在於標準的每個實現中的函數，以及可能由開發人員添加的一些可選函數和屬性。</p>
 </div>
 <div class="sect4">
-<h5 id="ERC20_reqd_func">ERC20 必須的函數和事件</h5>
+<h4 id="ERC20_reqd_func"><a class="anchor" href="#ERC20_reqd_func" aria-label="本節連結"></a>ERC20 必須的函數和事件</h4>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">totalSupply</dt>
@@ -392,7 +420,7 @@ gtag('config', 'G-ZVVQYEKMPF');
 </div>
 </div>
 <div class="sect4">
-<h5 id="ERC20_optional_func">ERC20 可選函數</h5>
+<h4 id="ERC20_optional_func"><a class="anchor" href="#ERC20_optional_func" aria-label="本節連結"></a>ERC20 可選函數</h4>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">name</dt>
@@ -411,7 +439,7 @@ gtag('config', 'G-ZVVQYEKMPF');
 </div>
 </div>
 <div class="sect4">
-<h5 id="ERC20_interface">在Solidity中定義的ERC20接口</h5>
+<h4 id="ERC20_interface"><a class="anchor" href="#ERC20_interface" aria-label="本節連結"></a>在Solidity中定義的ERC20接口</h4>
 <div class="paragraph">
 <p>以下是在Solidity中ERC20接口規範的樣子：</p>
 </div>
@@ -431,7 +459,7 @@ gtag('config', 'G-ZVVQYEKMPF');
 </div>
 </div>
 <div class="sect4">
-<h5 id="ERC20_data_struct">ERC20 資料結構</h5>
+<h4 id="ERC20_data_struct"><a class="anchor" href="#ERC20_data_struct" aria-label="本節連結"></a>ERC20 資料結構</h4>
 <div class="paragraph">
 <p>如果你檢查任何ERC20實現，它將包含兩個資料結構，一個用於追蹤餘額，另一個用於追蹤配額（allowances）。在Solidity中，它們使用<em>data mapping</em>實現。</p>
 </div>
@@ -455,7 +483,7 @@ gtag('config', 'G-ZVVQYEKMPF');
 </div>
 </div>
 <div class="sect4">
-<h5 id="transfer_workflows">ERC20工作流程：“transfer”和“approve &amp; transferFrom”</h5>
+<h4 id="transfer_workflows"><a class="anchor" href="#transfer_workflows" aria-label="本節連結"></a>ERC20工作流程：“transfer”和“approve &amp; transferFrom”</h4>
 <div class="paragraph">
 <p>ERC20Token標準具有兩種傳輸功能。你可能想知道為什麼？</p>
 </div>
@@ -463,7 +491,7 @@ gtag('config', 'G-ZVVQYEKMPF');
 <p>ERC20允許兩種不同的工作流程。第一個是使用<code>transfer</code>函數的單次交易，簡單的工作流程。這個工作流程是錢包用來將Token發送給其他錢包的工作流程。絕大多數Token交易都發生在<code>transfer</code>工作流程中。</p>
 </div>
 <div class="paragraph">
-<p>執行轉讓合同非常簡單。如果愛麗絲希望向鮑勃發送10個Token，她的錢包會向Token合約的地址發送一個交易，並用Bob的地址和“10”作為參數調用<code>transfer</code>函數。Token合約調整Alice的餘額（-10）和Bob的餘額（&#43;10）併發出<code>Transfer</code>事件。</p>
+<p>執行轉讓合同非常簡單。如果愛麗絲希望向鮑勃發送10個Token，她的錢包會向Token合約的地址發送一個交易，並用Bob的地址和“10”作為參數調用<code>transfer</code>函數。Token合約調整Alice的餘額（-10）和Bob的餘額（+10）併發出<code>Transfer</code>事件。</p>
 </div>
 <div class="paragraph">
 <p>第二個工作流程是使用<code>approve</code>和<code>transferFrom</code>的雙交易工作流程。該工作流程允許Token所有者將其控制權委託給另一個地址。它通常用於委託控制權給合約來分配Token，但它也可以被交易所使用。例如，如果一家公司為ICO出售Token，他們可以<code>approve</code>一個crowdsale合同地址來分發一定數量的Token。然後crowdsale合同可以用<code>transferFrom</code>轉移給Token的每個買家。</p>
@@ -474,7 +502,7 @@ gtag('config', 'G-ZVVQYEKMPF');
 </div>
 <div class="admonitionblock note">
 <table>
-<tr>
+<tbody><tr>
 <td class="icon">
 <i class="fa icon-note" title="備註"></i>
 </td>
@@ -484,13 +512,13 @@ gtag('config', 'G-ZVVQYEKMPF');
 </div>
 </td>
 </tr>
-</table>
+</tbody></table>
 </div>
 <div id="approve_transferFrom_workflow" class="imageblock">
 <div class="content">
-<img src="images/approve_transferFrom_workflow.png" alt="The two-step approve &amp; transferFrom workflow of ERC20 Tokens">
+<picture><source type="image/webp" srcset="/images/approve_transferFrom_workflow.webp"><img src="/images/approve_transferFrom_workflow.png" alt="The two-step approve &amp; transferFrom workflow of ERC20 Tokens" width="979" height="424" loading="lazy" decoding="async"></picture>
 </div>
-<div class="title">圖 40. The two-step approve &amp; transferFrom workflow of ERC20 Tokens</div>
+<div class="title">圖 10-1. The two-step approve &amp; transferFrom workflow of ERC20 Tokens</div>
 </div>
 <div class="paragraph">
 <p>對於 <code>approve &amp; transferFrom</code> 工作流程，需要兩個交易。假設Alice希望允許AliceICO合同將所有AliceCoin Token的50％賣給像Bob和Charlie這樣的買方。首先，Alice發佈AliceCoin ERC20合同，將所有AliceCoin發放到她自己的地址。然後，Alice發佈可以以ether出售Token的AliceICO合同。接下來，Alice啟動<code>approve &amp; transferFrom</code>工作流程。她向AliceCoin發送一個交易，調用<code>approve</code>，參數是AliceICO的地址和<code>totalSupply</code>的50％。這將觸發<code>Approval</code>事件。現在，AliceICO合同可以出售AliceCoin了。</p>
@@ -500,7 +528,7 @@ gtag('config', 'G-ZVVQYEKMPF');
 </div>
 </div>
 <div class="sect4">
-<h5 id="ERC20_implementation">ERC20 實現</h5>
+<h4 id="ERC20_implementation"><a class="anchor" href="#ERC20_implementation" aria-label="本節連結"></a>ERC20 實現</h4>
 <div class="paragraph">
 <p>雖然可以在約三十行Solidity程式碼中實現兼容ERC20的Token，但大多數實現都更加複雜，以解決潛在的安全漏洞。在EIP20標準中提到了兩種實現：</p>
 </div>
@@ -514,7 +542,7 @@ gtag('config', 'G-ZVVQYEKMPF');
 </div>
 <div class="paragraph">
 <p>你可以在此處閱讀Consensys實現的Solidity程式碼：
-<a href="https://github.com/ConsenSys/Tokens/blob/master/contracts/eip20/EIP20.sol" class="bare">https://github.com/ConsenSys/Tokens/blob/master/contracts/eip20/EIP20.sol</a></p>
+<a href="https://github.com/ConsenSys/Tokens/blob/master/contracts/eip20/EIP20.sol" class="bare" rel="noopener" target="_blank">https://github.com/ConsenSys/Tokens/blob/master/contracts/eip20/EIP20.sol</a></p>
 </div>
 <div class="dlist">
 <dl>
@@ -526,24 +554,24 @@ gtag('config', 'G-ZVVQYEKMPF');
 </div>
 <div class="paragraph">
 <p>你可以在這裡看到OpenZeppelin StandardToken的Solidity程式碼：
-<a href="https://github.com/OpenZeppelin/zeppelin-solidity/blob/master/contracts/Token/ERC20/StandardToken.sol" class="bare">https://github.com/OpenZeppelin/zeppelin-solidity/blob/master/contracts/Token/ERC20/StandardToken.sol</a></p>
+<a href="https://github.com/OpenZeppelin/zeppelin-solidity/blob/master/contracts/Token/ERC20/StandardToken.sol" class="bare" rel="noopener" target="_blank">https://github.com/OpenZeppelin/zeppelin-solidity/blob/master/contracts/Token/ERC20/StandardToken.sol</a></p>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="METoken_example">10.7.2. 發佈我們自己的ERC20Token</h4>
+<h3 id="METoken_example"><a class="anchor" href="#METoken_example" aria-label="本節連結"></a>10.7.2. 發佈我們自己的ERC20Token</h3>
 <div class="paragraph">
-<p>讓我們創建併發布我們自己的Token。在這個例子中，我們將使用<code>truffle</code> 框架（參見<a href="ch09.html#truffle">Truffle</a>）。該範例假設你已經安裝了<code>truffle</code>，進行了配置，並熟悉其基本操作。</p>
+<p>讓我們創建併發布我們自己的Token。在這個例子中，我們將使用<code>truffle</code> 框架（參見<a href="/ch09.html#truffle">Truffle</a>）。該範例假設你已經安裝了<code>truffle</code>，進行了配置，並熟悉其基本操作。</p>
 </div>
 <div class="paragraph">
 <p>我們將稱之為“Mastering Ethereum Token”，標誌為“MET”。</p>
 </div>
 <div class="paragraph">
 <p>你可以在本書的GitHub倉庫中找到這個例子：
-<a href="https://github.com/ethereumbook/ethereumbook/blob/develop/code/truffle/METoken" class="bare">https://github.com/ethereumbook/ethereumbook/blob/develop/code/truffle/METoken</a></p>
+<a href="https://github.com/ethereumbook/ethereumbook/blob/develop/code/truffle/METoken" class="bare" rel="noopener" target="_blank">https://github.com/ethereumbook/ethereumbook/blob/develop/code/truffle/METoken</a></p>
 </div>
 <div class="paragraph">
-<p>首先，讓我們創建並初始化一個Truffle項目目錄，就像我們在<a href="ch09.html#truffle_project_directory">創建 Truffle 項目目錄</a>中所做的那樣。運行這四個命令並接受任何問題的預設答案：</p>
+<p>首先，讓我們創建並初始化一個Truffle項目目錄，就像我們在<a href="/ch09.html#truffle_project_directory">創建 Truffle 項目目錄</a>中所做的那樣。運行這四個命令並接受任何問題的預設答案：</p>
 </div>
 <div id="initialize_truffle" class="listingblock">
 <div class="content">
@@ -560,9 +588,9 @@ METoken $ npm init</pre>
 <div class="content">
 <pre>METoken/
 ├── contracts
-│   └── Migrations.sol
+│&nbsp;&nbsp; └── Migrations.sol
 ├── migrations
-│   └── 1_initial_migration.js
+│&nbsp;&nbsp; └── 1_initial_migration.js
 ├── package.json
 ├── test
 ├── truffle-config.js
@@ -573,7 +601,7 @@ METoken $ npm init</pre>
 <p>編輯<code>truffle.js</code>或<code>truffle-config.js</code>配置檔案以設置<code>Truffle</code>環境，或複製我們使用的環境：</p>
 </div>
 <div class="paragraph">
-<p><a href="https://github.com/ethereumbook/ethereumbook/blob/develop/code/truffle/METoken/truffle-config.js" class="bare">https://github.com/ethereumbook/ethereumbook/blob/develop/code/truffle/METoken/truffle-config.js</a></p>
+<p><a href="https://github.com/ethereumbook/ethereumbook/blob/develop/code/truffle/METoken/truffle-config.js" class="bare" rel="noopener" target="_blank">https://github.com/ethereumbook/ethereumbook/blob/develop/code/truffle/METoken/truffle-config.js</a></p>
 </div>
 <div class="paragraph">
 <p>如果使用範例<code>truffle-config.js</code>，請記住在包含你的測試私鑰的<code>METoken</code>檔案夾中創建檔案<code>.env</code>，以便在公共以太網測試網路（如ganache或Kovan）上進行測試和部署。你可以從MetaMask中匯出你的測試網路私鑰。</p>
@@ -585,9 +613,9 @@ METoken $ npm init</pre>
 <div class="content">
 <pre>METoken/
 ├── contracts
-│   └── Migrations.sol
+│&nbsp;&nbsp; └── Migrations.sol
 ├── migrations
-│   └── 1_initial_migration.js
+│&nbsp;&nbsp; └── 1_initial_migration.js
 ├── package.json
 ├── test
 ├── truffle-config.js
@@ -597,7 +625,7 @@ METoken $ npm init</pre>
 </div>
 <div class="admonitionblock warning">
 <table>
-<tr>
+<tbody><tr>
 <td class="icon">
 <i class="fa icon-warning" title="警告"></i>
 </td>
@@ -607,7 +635,7 @@ METoken $ npm init</pre>
 </div>
 </td>
 </tr>
-</table>
+</tbody></table>
 </div>
 <div class="paragraph">
 <p>對於我們的範例，我們將匯入OpenZeppelin StandardContract，它實現了一些重要的安全檢查並且易於擴展。讓我們匯入該庫：</p>
@@ -627,7 +655,7 @@ added 8 packages in 2.504s</pre>
 <p>接下來，讓我們編寫我們的Token合約。創建一個新檔案<code>METoken.sol</code>並從GitHub複製範例程式碼：</p>
 </div>
 <div class="paragraph">
-<p><a href="https://github.com/ethereumbook/ethereumbook/blob/develop/code/truffle/METoken/contracts/METoken.sol" class="bare">https://github.com/ethereumbook/ethereumbook/blob/develop/code/truffle/METoken/contracts/METoken.sol</a></p>
+<p><a href="https://github.com/ethereumbook/ethereumbook/blob/develop/code/truffle/METoken/contracts/METoken.sol" class="bare" rel="noopener" target="_blank">https://github.com/ethereumbook/ethereumbook/blob/develop/code/truffle/METoken/contracts/METoken.sol</a></p>
 </div>
 <div class="paragraph">
 <p>我們的合同非常簡單，因為它繼承了OpenZeppelin StandardToken庫的所有功能：</p>
@@ -635,7 +663,7 @@ added 8 packages in 2.504s</pre>
 <div id="solidity_Token_example" class="listingblock">
 <div class="title">METoken.sol : A Solidity contract implementing an ERC20 Token</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="solidity"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno"> 1
+<pre class="rouge highlight"><code data-lang="solidity"><div class="table-wrap" tabindex="0"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno"> 1
  2
  3
  4
@@ -651,7 +679,7 @@ added 8 packages in 2.504s</pre>
 14
 15
 16
-</pre></td><td class="code"><pre>pragma solidity ^0.4.18;
+</pre></td><td class="code long-token"><pre>pragma solidity ^0.4.18;
 
 import 'zeppelin-solidity/contracts/token/ERC20/StandardToken.sol';
 
@@ -667,7 +695,7 @@ contract METoken is StandardToken {
         Transfer(address(0), msg.sender, _initial_supply);
     }
 }
-</pre></td></tr></tbody></table></code></pre>
+</pre></td></tr></tbody></table></div></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -695,7 +723,7 @@ Compiling zeppelin-solidity/contracts/Token/ERC20/StandardToken.sol...</pre>
 <p>我們建立一個migration腳本，部署 <code>METoken</code>合約。在<code>METoken/migrations</code>檔案夾中創建一個新檔案<code>2_deploy_contracts.js</code>。從Github儲存庫中的範例複製內容：</p>
 </div>
 <div class="paragraph">
-<p><a href="https://github.com/ethereumbook/ethereumbook/blob/develop/code/truffle/METoken/migrations/2_deploy_contracts.js" class="bare">https://github.com/ethereumbook/ethereumbook/blob/develop/code/truffle/METoken/migrations/2_deploy_contracts.js</a></p>
+<p><a href="https://github.com/ethereumbook/ethereumbook/blob/develop/code/truffle/METoken/migrations/2_deploy_contracts.js" class="bare" rel="noopener" target="_blank">https://github.com/ethereumbook/ethereumbook/blob/develop/code/truffle/METoken/migrations/2_deploy_contracts.js</a></p>
 </div>
 <div class="paragraph">
 <p>以下是它包含的內容：</p>
@@ -703,23 +731,23 @@ Compiling zeppelin-solidity/contracts/Token/ERC20/StandardToken.sol...</pre>
 <div id="METoken_migration" class="listingblock">
 <div class="title">2_deploy_contracts: Migration to deploy METoken</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="javascript"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+<pre class="rouge highlight"><code data-lang="javascript"><div class="table-wrap" tabindex="0"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
 2
 3
 4
 5
 6
-</pre></td><td class="code"><pre><span class="kd">var</span> <span class="nx">METoken</span> <span class="o">=</span> <span class="nx">artifacts</span><span class="p">.</span><span class="nf">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">METoken</span><span class="dl">"</span><span class="p">);</span>
+</pre></td><td class="code long-token"><pre><span class="kd">var</span> <span class="nx">METoken</span> <span class="o">=</span> <span class="nx">artifacts</span><span class="p">.</span><span class="nf">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">METoken</span><span class="dl">"</span><span class="p">);</span>
 
 <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">deployer</span><span class="p">)</span> <span class="p">{</span>
   <span class="c1">// Deploy the METoken contract as our only task</span>
   <span class="nx">deployer</span><span class="p">.</span><span class="nf">deploy</span><span class="p">(</span><span class="nx">METoken</span><span class="p">);</span>
 <span class="p">};</span>
-</pre></td></tr></tbody></table></code></pre>
+</pre></td></tr></tbody></table></div></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>在我們部署其中一個以太坊測試網路之前，讓我們開始一個本地區塊鏈來測試一切。正如我們在<a href="ch04.html#ganache">Ganache: 以太坊開發的個人區塊鏈</a>中所做的那樣，從 <code>ganache-cli</code> 的命令行或從圖形用戶界面啟動 <code>ganache</code> 區塊鏈。</p>
+<p>在我們部署其中一個以太坊測試網路之前，讓我們開始一個本地區塊鏈來測試一切。正如我們在<a href="/ch04.html#ganache">Ganache: 以太坊開發的個人區塊鏈</a>中所做的那樣，從 <code>ganache-cli</code> 的命令行或從圖形用戶界面啟動 <code>ganache</code> 區塊鏈。</p>
 </div>
 <div class="paragraph">
 <p>一旦 <code>ganache</code> 啟動，我們就可以部署我們的METoken合約，看看是否一切都按預期工作：</p>
@@ -750,7 +778,7 @@ Saving artifacts...</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="truffle_console">10.7.3. 使用Truffle控制台與METoken交互</h4>
+<h3 id="truffle_console"><a class="anchor" href="#truffle_console" aria-label="本節連結"></a>10.7.3. 使用Truffle控制台與METoken交互</h3>
 <div class="paragraph">
 <p>我們可以使用<code>Truffle控制台</code>與我們的<code>ganache</code>區塊鏈合同進行互動。這是一個交互式的JavaScript環境，可以訪問Truffle環境，並通過Web3訪問區塊鏈。在這種情況下，我們將<code>Truffle控制台</code>連接到<code>ganache</code>區塊鏈：</p>
 </div>
@@ -844,7 +872,7 @@ truffle(ganache)&gt; BigNumber { s: 1, e: 5, c: [ 100000 ] }</pre>
 </div>
 <div class="admonitionblock tip">
 <table>
-<tr>
+<tbody><tr>
 <td class="icon">
 <i class="fa icon-tip" title="提示"></i>
 </td>
@@ -854,7 +882,7 @@ truffle(ganache)&gt; BigNumber { s: 1, e: 5, c: [ 100000 ] }</pre>
 </div>
 </td>
 </tr>
-</table>
+</tbody></table>
 </div>
 <div class="paragraph">
 <p>如你所見，在控制台中，<code>account[0]</code>現在擁有20,999,000 MET，<code>account[1]</code>擁有1000 MET。</p>
@@ -864,7 +892,7 @@ truffle(ganache)&gt; BigNumber { s: 1, e: 5, c: [ 100000 ] }</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="sending_erc20_Tokens_contracts">10.7.4. 將ERC20Token發送到合同地址</h4>
+<h3 id="sending_erc20_Tokens_contracts"><a class="anchor" href="#sending_erc20_Tokens_contracts" aria-label="本節連結"></a>10.7.4. 將ERC20Token發送到合同地址</h3>
 <div class="paragraph">
 <p>到目前為止，我們已經設置了ERC20Token並從一個帳戶轉移到另一個帳戶。我們用於這些示範的所有帳戶都是外部擁有帳戶（EOAs），這意味著它們由私鑰控制，而不是合同。如果我們將MET發送到合同地址會發生什麼？讓我們看看！</p>
 </div>
@@ -875,9 +903,9 @@ truffle(ganache)&gt; BigNumber { s: 1, e: 5, c: [ 100000 ] }</pre>
 <div class="content">
 <pre>METoken/
 ├── contracts
-│   ├── Faucet.sol
-│   ├── METoken.sol
-│   └── Migrations.sol</pre>
+│&nbsp;&nbsp; ├── Faucet.sol
+│&nbsp;&nbsp; ├── METoken.sol
+│&nbsp;&nbsp; └── Migrations.sol</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -953,7 +981,7 @@ truffle(ganache)&gt; BigNumber { s: 1, e: 5, c: [ 100000 ] }</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="transfer_workflow_demo">10.7.5. 演示 approve &amp; transferFrom 流程</h4>
+<h3 id="transfer_workflow_demo"><a class="anchor" href="#transfer_workflow_demo" aria-label="本節連結"></a>10.7.5. 演示 approve &amp; transferFrom 流程</h3>
 <div class="paragraph">
 <p>我們的<code>Faucet</code>合同無法處理ERC20Token。使用<code>transfer</code>函數發送Token給它，會導致這些Token的丟失。我們重寫合同，並處理ERC20Token。具體來說，我們將把它變成一個Faucet，將MET發給任何詢問的人。</p>
 </div>
@@ -966,7 +994,7 @@ truffle(ganache)&gt; BigNumber { s: 1, e: 5, c: [ 100000 ] }</pre>
 <div id="METFaucet" class="listingblock">
 <div class="title">METFaucet.sol: a faucet for METoken</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="solidity"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno"> 1
+<pre class="rouge highlight"><code data-lang="solidity"><div class="table-wrap" tabindex="0"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno"> 1
  2
  3
  4
@@ -1035,7 +1063,7 @@ truffle(ganache)&gt; BigNumber { s: 1, e: 5, c: [ 100000 ] }</pre>
 67
 68
 69
-</pre></td><td class="code"><pre>// Version of Solidity compiler this program was written for
+</pre></td><td class="code long-token"><pre>// Version of Solidity compiler this program was written for
 pragma solidity ^0.4.19;
 
 import 'zeppelin-solidity/contracts/token/ERC20/StandardToken.sol';
@@ -1104,7 +1132,7 @@ contract METFaucet {
   function () public payable { revert(); }
 
 }
-</pre></td></tr></tbody></table></code></pre>
+</pre></td></tr></tbody></table></div></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1210,7 +1238,7 @@ truffle(ganache)&gt; BigNumber { s: 1, e: 3, c: [ 1000 ] }</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="ERC20_issues">10.7.6. ERC20Token的問題</h4>
+<h3 id="ERC20_issues"><a class="anchor" href="#ERC20_issues" aria-label="本節連結"></a>10.7.6. ERC20Token的問題</h3>
 <div class="paragraph">
 <p>ERC20Token標準的採用確實是爆炸性的。成千上萬的Token已經啟動，既可以嘗試新的功能，也可以通過各種“眾籌”拍賣和初始投幣產品（ICO）籌集資金。然而，正如我們在將Token轉移到合同地址的問題所看到的那樣，存在一些潛在的陷阱。</p>
 </div>
@@ -1234,7 +1262,7 @@ truffle(ganache)&gt; BigNumber { s: 1, e: 3, c: [ 1000 ] }</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="ERC223_std">10.7.7. ERC223 - 一種建議的Token合同接口標準</h4>
+<h3 id="ERC223_std"><a class="anchor" href="#ERC223_std" aria-label="本節連結"></a>10.7.7. ERC223 - 一種建議的Token合同接口標準</h3>
 <div class="paragraph">
 <p>ERC223提案試圖通過檢測目的地地址是否是合同來解決無意中將Token轉移到合同（可能支持或不支持Token）的問題。ERC223要求用於接受Token的契約實現名為<code>TokenFallback</code>的函數。如果傳輸的目的地是合同並且合同不支持Token（即不實現<code>TokenFallback</code>），則傳輸失敗。</p>
 </div>
@@ -1257,7 +1285,7 @@ truffle(ganache)&gt; BigNumber { s: 1, e: 3, c: [ 1000 ] }</pre>
 <p>你可以在這裡看到有關ERC223提案的討論：</p>
 </div>
 <div class="paragraph">
-<p><a href="https://github.com/ethereum/EIPs/issues/223" class="bare">https://github.com/ethereum/EIPs/issues/223</a></p>
+<p><a href="https://github.com/ethereum/EIPs/issues/223" class="bare" rel="noopener" target="_blank">https://github.com/ethereum/EIPs/issues/223</a></p>
 </div>
 <div id="ERC223_interface" class="paragraph">
 <p>ERC223合同接口規範是：</p>
@@ -1286,7 +1314,7 @@ truffle(ganache)&gt; BigNumber { s: 1, e: 3, c: [ 1000 ] }</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_erc777_一種建議的token合同接口標準">10.7.8. ERC777 - 一種建議的Token合同接口標準</h4>
+<h3 id="_erc777_一種建議的token合同接口標準"><a class="anchor" href="#_erc777_一種建議的token合同接口標準" aria-label="本節連結"></a>10.7.8. ERC777 - 一種建議的Token合同接口標準</h3>
 <div class="paragraph">
 <p>另一項改進Token合同標準的提案是ERC777。該提案有幾個目標，包括：</p>
 </div>
@@ -1319,7 +1347,7 @@ truffle(ganache)&gt; BigNumber { s: 1, e: 3, c: [ 1000 ] }</pre>
 <p>有關ERC777的詳細資訊和正在進行的討論可以在這裡找到：</p>
 </div>
 <div class="paragraph">
-<p><a href="https://github.com/ethereum/EIPs/issues/777" class="bare">https://github.com/ethereum/EIPs/issues/777</a></p>
+<p><a href="https://github.com/ethereum/EIPs/issues/777" class="bare" rel="noopener" target="_blank">https://github.com/ethereum/EIPs/issues/777</a></p>
 </div>
 <div id="ERC777_interface" class="paragraph">
 <p>ERC777合同接口規範是：</p>
@@ -1354,7 +1382,7 @@ truffle(ganache)&gt; BigNumber { s: 1, e: 3, c: [ 1000 ] }</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_erc721_不可替代的token契據標準">10.7.9. ERC721 - 不可替代的Token（契據）標準</h4>
+<h3 id="_erc721_不可替代的token契據標準"><a class="anchor" href="#_erc721_不可替代的token契據標準" aria-label="本節連結"></a>10.7.9. ERC721 - 不可替代的Token（契據）標準</h3>
 <div class="paragraph">
 <p>我們目前看到的所有Token標準都是<em>可互換</em>Token，這意味著Token的每個單元都是完全可以互換的。ERC20Token標準僅跟蹤每個帳戶的最終餘額，並且（明確地）跟蹤任何Token的出處。</p>
 </div>
@@ -1382,11 +1410,11 @@ truffle(ganache)&gt; BigNumber { s: 1, e: 3, c: [ 1000 ] }</pre>
 </div>
 <div class="paragraph">
 <p>初步建議：
-<a href="https://github.com/ethereum/EIPs/issues/721" class="bare">https://github.com/ethereum/EIPs/issues/721</a></p>
+<a href="https://github.com/ethereum/EIPs/issues/721" class="bare" rel="noopener" target="_blank">https://github.com/ethereum/EIPs/issues/721</a></p>
 </div>
 <div class="paragraph">
 <p>繼續討論：
-<a href="https://github.com/ethereum/EIPs/pull/841" class="bare">https://github.com/ethereum/EIPs/pull/841</a></p>
+<a href="https://github.com/ethereum/EIPs/pull/841" class="bare" rel="noopener" target="_blank">https://github.com/ethereum/EIPs/pull/841</a></p>
 </div>
 <div id="map_deed_owner" class="paragraph">
 <p>要掌握ERC20和ERC721之間的基本差異，只需查看ERC721中使用的內部資料結構即可：</p>
@@ -1452,12 +1480,12 @@ mapping (uint256 =&gt; address) private deedOwner;</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="Token_std_review">10.8. Token標準</h3>
+<h2 id="Token_std_review"><a class="anchor" href="#Token_std_review" aria-label="本節連結"></a>10.8. Token標準</h2>
 <div class="paragraph">
 <p>在本節中，我們回顧幾個建議的標準和幾個廣泛部署的Token合約標準。這些標準究竟做了什麼？你應該使用這些標準嗎？你應該如何使用它們？你應該添加超出這些標準的功能嗎？你應該使用哪些標準？接下來我們將研究所有這些問題。</p>
 </div>
 <div class="sect3">
-<h4 id="Token_std_purpose">10.8.1. 什麼是Token標準？他們的目的是什麼？</h4>
+<h3 id="Token_std_purpose"><a class="anchor" href="#Token_std_purpose" aria-label="本節連結"></a>10.8.1. 什麼是Token標準？他們的目的是什麼？</h3>
 <div class="paragraph">
 <p>Token標準是實現的<em>最小</em>規範。這意味著為了符合ERC20的要求，你至少需要實施ERC20規定的功能和行為。你還可以通過實現不屬於標準的功能來自由添加功能。</p>
 </div>
@@ -1469,7 +1497,7 @@ mapping (uint256 =&gt; address) private deedOwner;</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="should_use_std">10.8.2. 你應該使用這些標準嗎？</h4>
+<h3 id="should_use_std"><a class="anchor" href="#should_use_std" aria-label="本節連結"></a>10.8.2. 你應該使用這些標準嗎？</h3>
 <div class="paragraph">
 <p>鑑於所有這些標準，每個開發人員都面臨兩難選擇：使用現有標準還是創新超出他們施加的限制？</p>
 </div>
@@ -1480,7 +1508,7 @@ mapping (uint256 =&gt; address) private deedOwner;</code></pre>
 <p>作為這一考慮的一部分，還有一個更大的問題：互操作性和廣泛採用的價值。如果你選擇使用現有標準，你將獲得設計用於該標準的所有系統的價值。如果你選擇偏離標準，則必須考慮自己構建所有基礎架構的成本，或者說服其他人支持你新標準的實施。建立自己的道路並忽視現有標準的傾向被稱為“Not Invented Here”，並且與開源文化相對立。另一方面，進步和創新有時依靠背離傳統。這是一個棘手的選擇，所以仔細考慮吧！</p>
 </div>
 <div class="quoteblock">
-<div class="title">維基百科“Not Invented Here”（<a href="https://en.wikipedia.org/wiki/Not_invented_here" class="bare">https://en.wikipedia.org/wiki/Not_invented_here</a>）</div>
+<div class="title">維基百科“Not Invented Here”（<a href="https://en.wikipedia.org/wiki/Not_invented_here" class="bare" rel="noopener" target="_blank">https://en.wikipedia.org/wiki/Not_invented_here</a>）</div>
 <blockquote>
 <div class="paragraph">
 <p>Not Invented Here是由社會，企業或機構文化採取的立場，由於其外部起源和成本（如版稅），避免使用或購買已有產品，研究，標準或知識。</p>
@@ -1490,7 +1518,7 @@ mapping (uint256 =&gt; address) private deedOwner;</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="security_maturity">10.9. 安全成熟度</h3>
+<h2 id="security_maturity"><a class="anchor" href="#security_maturity" aria-label="本節連結"></a>10.9. 安全成熟度</h2>
 <div class="paragraph">
 <p>除了標準的選擇之外，還有<em>implementation</em>的並行選擇。當你決定使用標準（如ERC20）時，你必須決定如何實施兼容Token。以太坊生態系統中廣泛使用了一些現有的“參考”實現。或者你可以從頭開始寫你自己的。再次，這個選擇代表了一個可能產生嚴重安全隱患的困境。</p>
 </div>
@@ -1502,7 +1530,7 @@ mapping (uint256 =&gt; address) private deedOwner;</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="extend_Token_interface">10.10. Token接口標準的擴展</h3>
+<h2 id="extend_Token_interface"><a class="anchor" href="#extend_Token_interface" aria-label="本節連結"></a>10.10. Token接口標準的擴展</h2>
 <div class="paragraph">
 <p>本節中討論的Token標準以非常小的接口開始，功能有限。許多項目已經創建了擴展實現，以支持他們的應用程式所需的功能。其中一些包括：</p>
 </div>
@@ -1550,7 +1578,7 @@ mapping (uint256 =&gt; address) private deedOwner;</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="Tokens_ico">10.11. Tokens 和 ICOs</h3>
+<h2 id="Tokens_ico"><a class="anchor" href="#Tokens_ico" aria-label="本節連結"></a>10.11. Tokens 和 ICOs</h2>
 <div class="paragraph">
 <p>Token已經成為以太坊生態系統中的爆炸性發展。它們可能是所有智能合約平臺（如以太坊）中非常重要的基礎組件。</p>
 </div>
@@ -1563,498 +1591,47 @@ mapping (uint256 =&gt; address) private deedOwner;</code></pre>
 </div>
 </div>
 </div>
-
-<nav class="chapter-nav"><a href="ch09.html" class="nav-prev">&larr; 開發工具、框架和庫</a><a href="index.html" class="nav-home">首頁</a><a href="ch11.html" class="nav-next">去中心化應用 DApps &rarr;</a></nav>
-</div>
-<div id="footer">
-<div id="footer-text">
-最後更新： 2026-11-02 14:55:30 UTC
-</div>
-</div>
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  messageStyle: "none",
-  tex2jax: {
-    inlineMath: [["\\(", "\\)"]],
-    displayMath: [["\\[", "\\]"]],
-    ignoreClass: "nostem|nolatexmath"
-  },
-  asciimath2jax: {
-    delimiters: [["\\$", "\\$"]],
-    ignoreClass: "nostem|noasciimath"
-  },
-  TeX: { equationNumbers: { autoNumber: "none" } }
-})
-MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
-  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
-    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
-      data.math.root.display = "block"
-    }
-    return data
-  })
-})
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<style>
-/* 浮動目錄按鈕 — 僅手機版顯示 */
-.toc-toggle {
-  position: fixed;
-  bottom: 5rem;
-  right: 1.2rem;
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  background: #2980b9;
-  color: #fff;
-  border: none;
-  font-size: 1.2rem;
-  cursor: pointer;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-  z-index: 1000;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.2s, transform 0.2s;
-}
-.toc-toggle:hover { background: #1a6fa0; }
-.toc-toggle:active { transform: scale(0.95); }
-
-/* 回到頂部按鈕 */
-.back-to-top {
-  position: fixed;
-  bottom: 1.8rem;
-  right: 1.2rem;
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  background: rgba(85,85,85,0.85);
-  color: #fff;
-  border: none;
-  font-size: 1.2rem;
-  cursor: pointer;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
-  z-index: 1000;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.3s, background 0.2s, transform 0.2s;
-  pointer-events: none;
-}
-.back-to-top:hover { background: rgba(50,50,50,0.9); }
-.back-to-top:active { transform: scale(0.95); }
-.back-to-top.visible {
-  display: flex;
-  opacity: 1;
-  pointer-events: auto;
-}
-
-/* 浮動目錄面板 */
-.toc-panel {
-  position: fixed;
-  top: 0;
-  right: -340px;
-  width: 320px;
-  max-width: 85vw;
-  height: 100vh;
-  background: #fff;
-  border-left: 1px solid #e1e4e8;
-  box-shadow: -4px 0 20px rgba(0,0,0,0.12);
-  z-index: 1001;
-  transition: right 0.3s ease;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  padding: 0;
-}
-.toc-panel.open { right: 0; }
-
-.toc-panel-header {
-  position: sticky;
-  top: 0;
-  background: #fff;
-  padding: 1.2rem 1rem 0.8rem;
-  border-bottom: 1px solid #e1e4e8;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  z-index: 1;
-}
-
-.toc-panel-header h3 {
-  margin: 0;
-  font-size: 1.1rem;
-  color: #1a252f;
-}
-
-.toc-panel .close-btn {
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  color: #888;
-  padding: 0 0.3rem;
-  line-height: 1;
-  transition: color 0.15s;
-}
-.toc-panel .close-btn:hover { color: #333; }
-
-.toc-panel-body {
-  padding: 0.8rem 1rem 2rem;
-}
-
-.toc-panel-body ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.toc-panel-body ul ul {
-  padding-left: 0.9rem;
-}
-
-.toc-panel-body li {
-  margin: 0;
-}
-
-.toc-panel-body a {
-  color: #555;
-  text-decoration: none;
-  font-size: 0.9rem;
-  line-height: 1.5;
-  display: block;
-  padding: 0.3rem 0.5rem;
-  border-radius: 4px;
-  transition: background 0.12s, color 0.12s;
-}
-.toc-panel-body a:hover {
-  background: #f0f3f6;
-  color: #2980b9;
-}
-
-/* 遮罩 */
-.toc-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.35);
-  z-index: 1000;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s, visibility 0.3s;
-}
-.toc-overlay.visible {
-  opacity: 1;
-  visibility: visible;
-}
-
-/* 閱讀進度條 */
-.reading-progress {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 3px;
-  background: linear-gradient(90deg, #2980b9, #3498db);
-  z-index: 1002;
-  transition: width 0.1s;
-  will-change: width;
-}
-
-/* 手機版顯示浮動按鈕 */
-@media screen and (max-width: 768px) {
-  .toc-toggle {
-    display: flex;
-  }
-  .back-to-top {
-    display: flex;
-  }
-}
-
-/* 桌面版也顯示回到頂部 */
-@media screen and (min-width: 769px) {
-  .back-to-top {
-    display: flex;
-  }
-  .reading-progress {
-    left: var(--toc-width, 300px);
-  }
-}
-/* 電子書下載橫幅 */
-.ebook-banner {
-  background: linear-gradient(135deg, #1a252f 0%, #2c3e50 100%);
-  color: #fff;
-  padding: 0.7rem 1.2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-  font-size: 0.88rem;
-  position: relative;
-  z-index: 50;
-}
-
-.ebook-banner a {
-  color: #fff;
-  background: rgba(255,255,255,0.15);
-  padding: 0.35rem 0.9rem;
-  border-radius: 5px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: background 0.2s;
-  white-space: nowrap;
-}
-
-.ebook-banner a:hover {
-  background: rgba(255,255,255,0.25);
-}
-
-.ebook-banner .banner-text {
-  opacity: 0.9;
-}
-
-.ebook-banner .banner-close {
-  position: absolute;
-  right: 0.8rem;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  color: rgba(255,255,255,0.5);
-  font-size: 1.2rem;
-  cursor: pointer;
-  padding: 0.2rem 0.4rem;
-}
-
-.ebook-banner .banner-close:hover {
-  color: #fff;
-}
-
-/* 桌面版橫幅在 TOC 右邊 */
-@media screen and (min-width: 769px) {
-  .ebook-banner {
-    margin-left: var(--toc-width, 300px);
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .ebook-banner {
-    font-size: 0.82rem;
-    padding: 0.6rem 0.8rem;
-    gap: 0.8rem;
-  }
-}
-</style>
-
-<!-- 電子書下載橫幅 -->
-<div class="ebook-banner" id="ebookBanner">
-  <span class="banner-text">下載電子書離線閱讀</span>
-  <a href="https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.pdf">PDF</a>
-  <a href="https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.epub">EPUB</a>
-  <a href="https://github.com/awesome-doge/ethereumbook_zh/releases/latest">GitHub Releases</a>
-  <button class="banner-close" id="bannerClose" aria-label="關閉">&times;</button>
-</div>
-
-<!-- 閱讀進度條 -->
-<div class="reading-progress" id="readingProgress"></div>
-
-<!-- 浮動按鈕 -->
-<button class="toc-toggle" id="tocToggle" aria-label="開啟目錄">&#9776;</button>
-<button class="back-to-top" id="backToTop" aria-label="回到頂部">&#8593;</button>
-
-<!-- 目錄面板（手機版） -->
-<div class="toc-overlay" id="tocOverlay"></div>
-<div class="toc-panel" id="tocPanel" role="navigation" aria-label="目錄">
-  <div class="toc-panel-header">
-    <h3>目錄</h3>
-    <button class="close-btn" id="tocClose" aria-label="關閉目錄">&times;</button>
   </div>
-  <div class="toc-panel-body" id="tocContent"></div>
+  <nav class="pager" aria-label="章節導覽">
+    <a class="pager-link prev" href="/ch09.html" rel="prev"><span class="pager-dir">← 上一章</span><span class="pager-title">第 9 章　開發工具，框架和庫</span></a>
+    <a class="pager-link next" href="/ch11.html" rel="next"><span class="pager-dir">下一章 →</span><span class="pager-title">第 11 章　去中心化應用 (DApps)</span></a>
+  </nav>
+  <p class="edit-link"><a href="https://github.com/awesome-doge/ethereumbook_zh/blob/master/ch10.asciidoc" rel="noopener">在 GitHub 上檢視或改善本章翻譯</a></p>
+</article>
+
+  </main>
+
+  <aside class="rail" aria-label="本章內容">
+    <p class="rail-title">本章內容</p>
+    <ol>
+      <li><a href="#Tokens_definition">10.1. 什麼是Token?</a></li>
+      <li><a href="#Tokens_use">10.2. 如何使用Token？</a></li>
+      <li><a href="#Tokens_fungibility">10.3. Tokens和可互換性</a></li>
+      <li><a href="#counterparty_risk">10.4. 交易對手風險</a></li>
+      <li><a href="#Tokens_intrinsicality">10.5. Tokens和內在性</a></li>
+      <li><a href="#using_Tokens">10.6. 使用Tokens：效用或權益</a></li>
+      <li><a href="#Token_std">10.7. Token 標準</a></li>
+      <li><a href="#Token_std_review">10.8. Token標準</a></li>
+      <li><a href="#security_maturity">10.9. 安全成熟度</a></li>
+      <li><a href="#extend_Token_interface">10.10. Token接口標準的擴展</a></li>
+      <li><a href="#Tokens_ico">10.11. Tokens 和 ICOs</a></li>
+    </ol>
+  </aside>
 </div>
 
-<script>
-(function() {
-  'use strict';
+<footer class="site-footer">
+  <p>原著《Mastering Ethereum》由 Andreas M. Antonopoulos 與 Gavin Wood 撰寫，O'Reilly Media 出版。繁體中文翻譯：Dr. Awesome Doge。</p>
+  <p>本書內容以 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh_TW" rel="license noopener">CC BY-NC-ND 4.0</a> 授權釋出 · <a href="https://github.com/awesome-doge/ethereumbook_zh" rel="noopener">GitHub</a> · <a href="https://github.com/awesome-doge/ethereumbook_zh/issues" rel="noopener">回報翻譯問題</a> · <a href="https://github.com/ethereumbook/ethereumbook" rel="noopener">英文原著</a></p>
+</footer>
 
-  // === 電子書橫幅：移到頁面頂部 + 關閉/記憶 ===
-  var banner = document.getElementById('ebookBanner');
-  var bannerClose = document.getElementById('bannerClose');
-  if (banner) {
-    // 如果用戶之前關閉過，隱藏
-    if (localStorage.getItem('ebookBannerClosed')) {
-      banner.style.display = 'none';
-    } else {
-      // 移到 body 最前面（在 header 之前）
-      document.body.insertBefore(banner, document.body.firstChild);
-    }
-    if (bannerClose) {
-      bannerClose.addEventListener('click', function() {
-        banner.style.display = 'none';
-        localStorage.setItem('ebookBannerClosed', '1');
-      });
-    }
-  }
-
-  // === 生成手機版目錄 ===
-  var tocContent = document.getElementById('tocContent');
-  var nativeToc = document.getElementById('toc');
-
-  if (tocContent && nativeToc) {
-    // 從原生 TOC 複製結構
-    var nativeList = nativeToc.querySelector('ul.sectlevel1');
-    if (nativeList) {
-      tocContent.appendChild(nativeList.cloneNode(true));
-    }
-  }
-
-  // === 目錄開關 ===
-  var tocToggle = document.getElementById('tocToggle');
-  var tocPanel = document.getElementById('tocPanel');
-  var tocOverlay = document.getElementById('tocOverlay');
-  var tocClose = document.getElementById('tocClose');
-
-  function openToc() {
-    tocPanel.classList.add('open');
-    tocOverlay.classList.add('visible');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeToc() {
-    tocPanel.classList.remove('open');
-    tocOverlay.classList.remove('visible');
-    document.body.style.overflow = '';
-  }
-
-  if (tocToggle) tocToggle.addEventListener('click', openToc);
-  if (tocOverlay) tocOverlay.addEventListener('click', closeToc);
-  if (tocClose) tocClose.addEventListener('click', closeToc);
-
-  // 點擊目錄連結後關閉面板
-  if (tocContent) {
-    tocContent.addEventListener('click', function(e) {
-      if (e.target.tagName === 'A') {
-        closeToc();
-      }
-    });
-  }
-
-  // ESC 關閉
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') closeToc();
-  });
-
-  // === 回到頂部 ===
-  var backToTop = document.getElementById('backToTop');
-  if (backToTop) {
-    backToTop.addEventListener('click', function() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  }
-
-  // === 閱讀進度條 + 回到頂部顯示 ===
-  var progressBar = document.getElementById('readingProgress');
-  var ticking = false;
-
-  function onScroll() {
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(function() {
-      var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      var docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-
-      // 回到頂部
-      if (backToTop) {
-        if (scrollTop > 400) {
-          backToTop.classList.add('visible');
-        } else {
-          backToTop.classList.remove('visible');
-        }
-      }
-
-      // 進度條
-      if (progressBar && docHeight > 0) {
-        progressBar.style.width = ((scrollTop / docHeight) * 100) + '%';
-      }
-
-      ticking = false;
-    });
-  }
-
-  window.addEventListener('scroll', onScroll, { passive: true });
-
-  // === 表格響應式包裝 ===
-  document.querySelectorAll('table.tableblock').forEach(function(table) {
-    if (!table.parentElement.classList.contains('tableblock-wrapper')) {
-      var wrapper = document.createElement('div');
-      wrapper.style.overflowX = 'auto';
-      wrapper.style.WebkitOverflowScrolling = 'touch';
-      wrapper.style.margin = '1.5rem 0';
-      table.parentNode.insertBefore(wrapper, table);
-      wrapper.appendChild(table);
-      table.style.margin = '0';
-    }
-  });
-
-  // === 桌面版：TOC 當前章節高亮 ===
-  if (window.innerWidth > 768 && nativeToc) {
-    var tocLinks = nativeToc.querySelectorAll('a');
-    var headingIds = [];
-    tocLinks.forEach(function(link) {
-      var id = link.getAttribute('href');
-      if (id && id.startsWith('#')) {
-        headingIds.push({ id: id.substring(1), el: link });
-      }
-    });
-
-    var currentHighlight = null;
-
-    // 注入高亮樣式
-    var hlStyle = document.createElement('style');
-    hlStyle.textContent = '#toc a.toc-active { background: #dbeafe !important; color: #1d4ed8 !important; border-radius: 4px; font-weight: 600; border-left: 3px solid #2980b9; padding-left: 0.4rem; }';
-    document.head.appendChild(hlStyle);
-
-    function highlightToc() {
-      var scrollPos = window.pageYOffset + 100;
-      var current = null;
-
-      for (var i = headingIds.length - 1; i >= 0; i--) {
-        var target = document.getElementById(headingIds[i].id);
-        if (target && target.offsetTop <= scrollPos) {
-          current = headingIds[i].el;
-          break;
-        }
-      }
-
-      if (current !== currentHighlight) {
-        if (currentHighlight) {
-          currentHighlight.classList.remove('toc-active');
-        }
-        if (current) {
-          current.classList.add('toc-active');
-          // 確保高亮項在可視範圍
-          var tocEl = document.getElementById('toc');
-          if (tocEl) {
-            var linkRect = current.getBoundingClientRect();
-            var tocRect = tocEl.getBoundingClientRect();
-            if (linkRect.top < tocRect.top + 60 || linkRect.bottom > tocRect.bottom - 20) {
-              current.scrollIntoView({ block: 'center', behavior: 'smooth' });
-            }
-          }
-        }
-        currentHighlight = current;
-      }
-    }
-
-    window.addEventListener('scroll', function() {
-      requestAnimationFrame(highlightToc);
-    }, { passive: true });
-
-    highlightToc();
-  }
-})();
-</script>
-</body>
-</html>
+<dialog class="search" id="search" aria-label="搜尋全書">
+  <form method="dialog" class="search-form" role="search">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input type="search" id="search-input" placeholder="搜尋全書，例如：智能合約、gas、ERC20" autocomplete="off" spellcheck="false" aria-label="搜尋關鍵字">
+    <button type="submit" class="search-close" value="close" aria-label="關閉搜尋">Esc</button>
+  </form>
+  <p class="search-status" aria-live="polite"></p>
+  <ol class="search-results"></ol>
+</dialog>
 </body>
 </html>

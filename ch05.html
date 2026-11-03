@@ -1,172 +1,206 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-Hant-TW">
 <head>
-
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.26">
-<title>密鑰和地址 — 精通以太坊 Mastering Ethereum 繁體中文版</title>
-<link rel="stylesheet" href="./custom.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="./rouge-github.css">
-<!-- Google Analytics 4 -->
-<script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-ZVVQYEKMPF"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-ZVVQYEKMPF');
-</script>
-
-<!-- Favicon -->
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2B21;</text></svg>" type="image/svg+xml">
-
-<!-- SEO: Title Override -->
-<meta name="title" content="精通以太坊 Mastering Ethereum — 繁體中文完整版 | 智能合約、DApps、EVM、Solidity 技術指南">
-
-<!-- SEO: Description -->
-<meta name="description" content="精通以太坊（Mastering Ethereum）繁體中文版，由 Andreas M. Antonopoulos 和 Gavin Wood 著作。完整涵蓋以太坊基礎、智能合約、Solidity、DApps、EVM、Gas、密鑰管理、錢包、交易、預言機、共識機制等 19 章內容。免費線上閱讀，提供 PDF 和 EPUB 電子書下載。">
-<meta name="keywords" content="以太坊, Ethereum, 智能合約, Smart Contract, Solidity, DApp, EVM, 區塊鏈, Blockchain, 加密貨幣, Web3, DeFi, 精通以太坊, Mastering Ethereum, 繁體中文, 教學, 技術指南">
-<meta name="author" content="Andreas M. Antonopoulos, Gavin Wood, Dr. Awesome Doge">
-
-<!-- SEO: Canonical -->
-
-
-<!-- SEO: Language Alternatives -->
-<link rel="alternate" hreflang="zh-Hant" href="https://mastering-ethereum.doge.tg/">
-<link rel="alternate" hreflang="en" href="https://github.com/ethereumbook/ethereumbook">
-
-<!-- Google Fonts: Noto Sans TC -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap">
-
-<!-- Open Graph -->
-<meta property="og:type" content="book">
-<meta property="og:title" content="精通以太坊 Mastering Ethereum — 繁體中文完整版">
-<meta property="og:description" content="以太坊完整技術指南，涵蓋智能合約、Solidity、DApps、EVM 等 19 章。免費線上閱讀 + PDF/EPUB 下載。">
-<meta property="og:image" content="https://mastering-ethereum.doge.tg/images/cover.png">
-<meta property="og:image:width" content="1050">
-<meta property="og:image:height" content="1378">
-<meta property="og:image:alt" content="Mastering Ethereum 書籍封面">
-<meta property="og:url" content="https://mastering-ethereum.doge.tg/">
-<meta property="og:site_name" content="精通以太坊 繁體中文版">
-<meta property="og:locale" content="zh_TW">
-<meta property="book:author" content="Andreas M. Antonopoulos">
-<meta property="book:author" content="Gavin Wood">
-<meta property="book:tag" content="Ethereum">
-<meta property="book:tag" content="Blockchain">
-<meta property="book:tag" content="Smart Contracts">
-<meta property="book:tag" content="Solidity">
-
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="精通以太坊 Mastering Ethereum — 繁體中文完整版">
-<meta name="twitter:description" content="以太坊完整技術指南，涵蓋智能合約、Solidity、DApps、EVM 等 19 章。免費線上閱讀 + PDF/EPUB 下載。">
-<meta name="twitter:image" content="https://mastering-ethereum.doge.tg/images/cover.png">
-<meta name="twitter:image:alt" content="Mastering Ethereum 書籍封面">
-
-<!-- JSON-LD Structured Data -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Book",
-  "name": "精通以太坊 Mastering Ethereum 繁體中文版",
-  "alternateName": "Mastering Ethereum: Building Smart Contracts and DApps",
-  "author": [
-    {
-      "@type": "Person",
-      "name": "Andreas M. Antonopoulos",
-      "url": "https://aantonop.com/"
-    },
-    {
-      "@type": "Person",
-      "name": "Gavin Wood"
-    }
-  ],
-  "translator": {
-    "@type": "Person",
-    "name": "Dr. Awesome Doge"
-  },
-  "inLanguage": "zh-Hant",
-  "url": "https://mastering-ethereum.doge.tg/",
-  "image": "https://mastering-ethereum.doge.tg/images/cover.png",
-  "description": "以太坊完整技術指南繁體中文版，涵蓋智能合約、Solidity、DApps、EVM、Gas、密鑰管理等 19 章內容。",
-  "genre": ["Technology", "Blockchain", "Cryptocurrency"],
-  "bookFormat": "https://schema.org/EBook",
-  "numberOfPages": 257,
-  "publisher": {
-    "@type": "Organization",
-    "name": "O'Reilly Media"
-  },
-  "license": "https://creativecommons.org/licenses/by-nc-nd/4.0/",
-  "isAccessibleForFree": true,
-  "encoding": [
-    {
-      "@type": "MediaObject",
-      "encodingFormat": "application/pdf",
-      "contentUrl": "https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.pdf"
-    },
-    {
-      "@type": "MediaObject",
-      "encodingFormat": "application/epub+zip",
-      "contentUrl": "https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.epub"
-    }
-  ],
-  "about": [
-    {"@type": "Thing", "name": "Ethereum"},
-    {"@type": "Thing", "name": "Smart Contracts"},
-    {"@type": "Thing", "name": "Blockchain"},
-    {"@type": "Thing", "name": "Solidity"},
-    {"@type": "Thing", "name": "Decentralized Applications"},
-    {"@type": "Thing", "name": "EVM"}
-  ]
-}
-</script>
-
-<!-- BreadcrumbList for search results -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "精通以太坊",
-      "item": "https://mastering-ethereum.doge.tg/"
-    }
-  ]
-}
-</script>
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>第 5 章　密鑰、地址｜精通以太坊繁體中文版</title>
+<meta name="description" content="以太坊的密碼學基礎：私鑰與公鑰的產生、橢圓曲線密碼學與 secp256k1、Keccak-256 雜湊函數，以及以太坊地址格式、ICAP 與 EIP-55 大小寫校驗。">
 <link rel="canonical" href="https://mastering-ethereum.doge.tg/ch05.html">
-<meta name="description" content="精通以太坊：密鑰和地址。以太坊完整技術指南繁體中文版，免費線上閱讀。">
-<style>
-.chapter-nav{display:flex;justify-content:space-between;align-items:center;padding:1rem 0;border-top:1px solid #e1e4e8;border-bottom:1px solid #e1e4e8;margin:2rem 0;gap:0.8rem;flex-wrap:wrap}
-.chapter-nav a{color:#2980b9;text-decoration:none;font-size:0.9rem;padding:0.4rem 0.8rem;border-radius:4px;transition:background 0.2s}
-.chapter-nav a:hover{background:#f0f3f6}
-.chapter-nav .nav-prev{text-align:left;max-width:40%}
-.chapter-nav .nav-next{text-align:right;max-width:40%}
-.chapter-nav .nav-home{font-weight:600}
-@media(max-width:768px){.chapter-nav{font-size:0.82rem}.chapter-nav a{padding:0.3rem 0.5rem}}
-</style>
+<meta name="author" content="Andreas M. Antonopoulos, Gavin Wood">
+<meta name="theme-color" content="#f8f9fc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14151b" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="sitemap" type="application/xml" href="/sitemap.xml">
+<meta property="og:site_name" content="精通以太坊繁體中文版">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第 5 章　密鑰、地址｜精通以太坊繁體中文版">
+<meta property="og:description" content="以太坊的密碼學基礎：私鑰與公鑰的產生、橢圓曲線密碼學與 secp256k1、Keccak-256 雜湊函數，以及以太坊地址格式、ICAP 與 EIP-55 大小寫校驗。">
+<meta property="og:url" content="https://mastering-ethereum.doge.tg/ch05.html">
+<meta property="og:image" content="https://mastering-ethereum.doge.tg/assets/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="zh_TW">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="prev" href="/ch04.html">
+<link rel="next" href="/ch06.html">
+<script>
+(function(){try{var d=document.documentElement,s=localStorage,t=s.getItem('me-theme'),z=s.getItem('me-size'),f=s.getItem('me-font');if(t&&t!=='auto')d.setAttribute('data-theme',t);if(z)d.style.setProperty('--fs',z+'px');if(f)d.setAttribute('data-font',f)}catch(e){}})();
+</script>
+<link rel="stylesheet" href="/assets/site.css?v=8381e0abca">
+<link rel="stylesheet" href="/assets/code.css?v=c94d007c0c">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous" media="print" onload="this.media='all'">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+<script defer src="/assets/site.js?v=fc9557d36e"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Chapter","@id":"https://mastering-ethereum.doge.tg/ch05.html#chapter","name":"第 5 章　密鑰、地址","headline":"第 5 章　密鑰、地址｜精通以太坊","description":"以太坊的密碼學基礎：私鑰與公鑰的產生、橢圓曲線密碼學與 secp256k1、Keccak-256 雜湊函數，以及以太坊地址格式、ICAP 與 EIP-55 大小寫校驗。","url":"https://mastering-ethereum.doge.tg/ch05.html","inLanguage":"zh-TW","position":7,"dateModified":"2026-11-02T22:54:41+08:00","isPartOf":{"@id":"https://mastering-ethereum.doge.tg/#book"},"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true},{"@type":"Book","@id":"https://mastering-ethereum.doge.tg/#book","name":"精通以太坊：打造智能合約與 DApp","alternateName":["Mastering Ethereum: Building Smart Contracts and DApps","精通以太坊 Mastering Ethereum"],"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"inLanguage":"zh-TW","publisher":{"@type":"Organization","name":"O'Reilly Media"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true,"url":"https://mastering-ethereum.doge.tg/","image":"https://mastering-ethereum.doge.tg/assets/og-cover.png","translationOfWork":{"@type":"Book","name":"Mastering Ethereum: Building Smart Contracts and DApps","inLanguage":"en","url":"https://github.com/ethereumbook/ethereumbook"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"精通以太坊","item":"https://mastering-ethereum.doge.tg/"},{"@type":"ListItem","position":2,"name":"第 5 章　密鑰、地址","item":"https://mastering-ethereum.doge.tg/ch05.html"}]}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZVVQYEKMPF"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-ZVVQYEKMPF');</script>
 </head>
-<body class="book">
-<div id="header">
-<h1><a href="index.html" style="color:inherit;text-decoration:none">精通以太坊 Mastering Ethereum 繁體中文版</a></h1>
+<body class="is-chapter">
+<a class="skip-link" href="#main">跳到主要內容</a>
+<header class="topbar">
+  <button class="icon-btn" type="button" data-action="toggle-nav" aria-controls="sidebar" aria-expanded="false" aria-label="開啟目錄">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+  </button>
+  <a class="brand" href="/" aria-label="精通以太坊 首頁">
+    <span class="brand-mark" aria-hidden="true">Ξ</span><span class="brand-text">精通以太坊</span>
+  </a>
+  <p class="topbar-title"><span class="topbar-label">第 5 章</span>密鑰、地址</p>
+  <div class="topbar-actions">
+    <button class="icon-btn search-btn" type="button" data-action="search" aria-label="搜尋全書（快捷鍵 /）">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <span class="search-btn-text">搜尋</span><kbd>/</kbd>
+    </button>
+    <button class="icon-btn" type="button" data-action="settings" aria-controls="settings" aria-expanded="false" aria-label="閱讀設定">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19 9 5l5 14M5.8 14.5h6.4M15 19l3-8 3 8M15.9 16.5h4.2"/></svg>
+    </button>
+  </div>
+  <div class="progress" aria-hidden="true"><span></span></div>
+</header>
+
+<div class="settings" id="settings" hidden>
+  <div class="settings-group" role="group" aria-label="主題">
+    <span class="settings-label">主題</span>
+    <div class="seg">
+      <button type="button" data-theme-set="auto">自動</button>
+      <button type="button" data-theme-set="light">淺色</button>
+      <button type="button" data-theme-set="sepia">護眼</button>
+      <button type="button" data-theme-set="dark">深色</button>
+    </div>
+  </div>
+  <div class="settings-group" role="group" aria-label="字級">
+    <span class="settings-label">字級</span>
+    <div class="seg">
+      <button type="button" data-size="-1" aria-label="縮小字級">A−</button>
+      <output class="size-value" aria-live="polite">18</output>
+      <button type="button" data-size="1" aria-label="放大字級">A+</button>
+    </div>
+  </div>
+  <div class="settings-group" role="group" aria-label="字型">
+    <span class="settings-label">字型</span>
+    <div class="seg">
+      <button type="button" data-font-set="sans">黑體</button>
+      <button type="button" data-font-set="serif">明體</button>
+    </div>
+  </div>
 </div>
-<div id="content">
-<nav class="chapter-nav"><a href="ch04.html" class="nav-prev">&larr; 以太坊測試網</a><a href="index.html" class="nav-home">首頁</a><a href="ch06.html" class="nav-next">錢包 &rarr;</a></nav>
+
+<div class="shell">
+  <nav class="sidebar" id="sidebar" aria-label="全書目錄">
+    <div class="sidebar-head">
+      <a href="/" class="sidebar-book">精通以太坊</a>
+      <span class="sidebar-sub">繁體中文版</span>
+    </div>
+    <ol class="book-toc">
+      <li>
+        <a href="/preface.html"><span class="toc-label">前言</span></a>
+      </li>
+      <li>
+        <a href="/glossary.html"><span class="toc-label">術語表</span>快速術語表</a>
+      </li>
+      <li>
+        <a href="/ch01.html"><span class="toc-label">第 1 章</span>什麼是以太坊</a>
+      </li>
+      <li>
+        <a href="/ch02.html"><span class="toc-label">第 2 章</span>以太坊基礎</a>
+      </li>
+      <li>
+        <a href="/ch03.html"><span class="toc-label">第 3 章</span>以太坊客戶端</a>
+      </li>
+      <li>
+        <a href="/ch04.html"><span class="toc-label">第 4 章</span>以太坊測試網（Testnets）</a>
+      </li>
+      <li class="is-current">
+        <a href="/ch05.html" aria-current="page"><span class="toc-label">第 5 章</span>密鑰、地址</a>
+        <ol class="section-toc">
+          <li><a href="#keys_addresses_intro">5.1. 簡介</a></li>
+          <li><a href="#pkc">5.2. 公鑰密碼技術和密碼貨幣</a></li>
+          <li><a href="#private_keys">5.3. 私鑰</a></li>
+          <li><a href="#generating_private_key">5.4. 從隨機數生成私鑰</a></li>
+          <li><a href="#pubkey">5.5. 公鑰</a></li>
+          <li><a href="#elliptic_curve">5.6. 橢圓曲線密碼學解釋</a></li>
+          <li><a href="#EC_math">5.7. 橢圓曲線算術運算</a></li>
+          <li><a href="#public_key_derivation">5.8. 生成一個公鑰</a></li>
+          <li><a href="#EC_lib">5.9. 橢圓曲線庫</a></li>
+          <li><a href="#hash_functions">5.10. 加密雜湊函數</a></li>
+          <li><a href="#keccak256">5.11. 以太坊的加密雜湊函數 - Keccak-256</a></li>
+          <li><a href="#which_hash">5.12. 我正在使用哪個雜湊函數？</a></li>
+          <li><a href="#eth_address">5.13. 以太坊地址</a></li>
+          <li><a href="#eth_address_format">5.14. 以太坊地址格式</a></li>
+        </ol>
+      </li>
+      <li>
+        <a href="/ch06.html"><span class="toc-label">第 6 章</span>錢包</a>
+      </li>
+      <li>
+        <a href="/ch07.html"><span class="toc-label">第 7 章</span>交易 (Transactions)</a>
+      </li>
+      <li>
+        <a href="/ch08.html"><span class="toc-label">第 8 章</span>智能合約</a>
+      </li>
+      <li>
+        <a href="/ch09.html"><span class="toc-label">第 9 章</span>開發工具，框架和庫</a>
+      </li>
+      <li>
+        <a href="/ch10.html"><span class="toc-label">第 10 章</span>Tokens</a>
+      </li>
+      <li>
+        <a href="/ch11.html"><span class="toc-label">第 11 章</span>去中心化應用 (DApps)</a>
+      </li>
+      <li>
+        <a href="/ch12.html"><span class="toc-label">第 12 章</span>預言機 (Oracles)</a>
+      </li>
+      <li>
+        <a href="/ch13.html"><span class="toc-label">第 13 章</span>gas（Gas）</a>
+      </li>
+      <li>
+        <a href="/ch14.html"><span class="toc-label">第 14 章</span>以太坊虛擬機 (The Ethereum Virtual Machine)</a>
+      </li>
+      <li>
+        <a href="/ch15.html"><span class="toc-label">第 15 章</span>共識</a>
+      </li>
+      <li>
+        <a href="/ch16.html"><span class="toc-label">第 16 章</span>Vyper: 面向合約的程式語言</a>
+      </li>
+      <li>
+        <a href="/ch17.html"><span class="toc-label">第 17 章</span>節點間的通信 —— 一個簡單的視角</a>
+      </li>
+      <li>
+        <a href="/ch18.html"><span class="toc-label">附錄 A</span>以太坊標準</a>
+      </li>
+      <li>
+        <a href="/ch19.html"><span class="toc-label">附錄 B</span>以太坊分叉歷史</a>
+      </li>
+    </ol>
+    <div class="sidebar-foot">
+      <a href="https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.pdf" rel="noopener">下載 PDF 電子書</a>
+      <a href="https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.epub" rel="noopener">下載 EPUB 電子書</a>
+      <a href="https://github.com/awesome-doge/ethereumbook_zh" rel="noopener">GitHub 原始碼</a>
+    </div>
+  </nav>
+  <div class="scrim" data-action="close-nav" hidden></div>
+
+  <main id="main" class="main" tabindex="-1">
+<article class="chapter" aria-labelledby="keys_addresses">
+  <nav class="breadcrumb" aria-label="導覽路徑"><a href="/">精通以太坊</a><span aria-hidden="true">/</span><span>第 5 章</span></nav>
+  <header class="chapter-head">
+    <p class="chapter-label">第 5 章</p>
+    <h1 id="keys_addresses">密鑰、地址</h1>
+    <p class="chapter-meta">約 25 分鐘閱讀 · 14 個小節</p>
+  </header>
+  <div class="prose">
 <div class="sect1">
-<h2 id="keys_addresses">5. 密鑰、地址</h2>
+
 <div class="sectionbody">
 <div class="paragraph">
 <p>以太坊的基礎技術之一是 <em>密碼學</em> <em>cryptography</em>，它是數學的一個分支，廣泛用於計算機安全。密碼學在希臘文中的意思是“祕密寫作”，但密碼學的科學不僅僅包含祕密寫作，它被稱為加密。加密也可以用來檢驗證明 (prove) 祕密中的知識之正確性而不洩露該祕密（數位簽章），或者證明數據的真實性（數字指紋）。這些類型的密碼學證明是以太坊和大多數區塊鏈系統的關鍵數學工具，廣泛用於以太坊應用。諷刺的是，加密並不是以太坊的重要組成部分，因為它的通信和交易數據沒有加密，也不需要加密以保護系統。在本章中，我們將以密鑰和地址的形式介紹一些以太坊用來控制資金所有權的密碼學。</p>
 </div>
 <div class="sect2">
-<h3 id="keys_addresses_intro">5.1. 簡介</h3>
+<h2 id="keys_addresses_intro"><a class="anchor" href="#keys_addresses_intro" aria-label="本節連結"></a>5.1. 簡介</h2>
 <div class="paragraph">
 <p>以太坊有兩種不同類型的帳戶，可以擁有和控制ether：<em>外部擁有帳戶</em>（EOA）和<em>合同</em>。在本節中，我們將研究使用密碼學來確定外部擁有帳戶（即私人密鑰）對ether的所有權。</p>
 </div>
@@ -180,14 +214,14 @@ gtag('config', 'G-ZVVQYEKMPF');
 <p>數字密鑰成對組成，密鑰和公鑰。將公鑰視為類似於銀行帳號，私鑰類似於私密PIN，用於控制帳戶。以太坊的用戶很少看到這些數字密鑰。在大多數情況下，它們儲存在錢包檔案內並由以太坊錢包軟體管理。</p>
 </div>
 <div class="paragraph">
-<p>在以太坊交易的付款部分中，預期收款人由<em>以太坊地址</em>表示，該地址與支票上的收款人名稱相同（即“付款給誰”）。在大多數情況下，以太坊地址是從公鑰生成並對應的。但是，並非所有以太坊地址都代表公鑰。他們也可以代表合同，我們將在 <a href="ch08.html#smart_contracts_chapter">智能合約</a> 中看到。以太坊地址是用戶常會看到的唯一密鑰表示，因為這是他們需要與世界分享的部分。</p>
+<p>在以太坊交易的付款部分中，預期收款人由<em>以太坊地址</em>表示，該地址與支票上的收款人名稱相同（即“付款給誰”）。在大多數情況下，以太坊地址是從公鑰生成並對應的。但是，並非所有以太坊地址都代表公鑰。他們也可以代表合同，我們將在 <a href="/ch08.html">智能合約</a> 中看到。以太坊地址是用戶常會看到的唯一密鑰表示，因為這是他們需要與世界分享的部分。</p>
 </div>
 <div class="paragraph">
 <p>首先，我們將介紹密碼學並解釋以太坊使用的數學。接下來，我們將看看密鑰是如何生成，儲存和管理的。最後，我們將回顧用於表示私鑰和公鑰以及地址的各種編碼格式。</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="pkc">5.2. 公鑰密碼技術和密碼貨幣</h3>
+<h2 id="pkc"><a class="anchor" href="#pkc" aria-label="本節連結"></a>5.2. 公鑰密碼技術和密碼貨幣</h2>
 <div class="paragraph">
 <p>公鑰密碼技術是現代資訊安全的核心概念。首先由Martin Hellman，Whitfield Diffie和Ralph Merkle在20世紀70年代公開發明的，這是一個巨大的突破，它激起了公眾對密碼學領域的廣泛興趣。在70年代以前，強大的密碼學知識在政府的控制下，很少有公開的研究，直到公鑰密碼技術研究的公開發表。</p>
 </div>
@@ -205,7 +239,7 @@ gtag('config', 'G-ZVVQYEKMPF');
 </div>
 <div class="admonitionblock tip">
 <table>
-<tr>
+<tbody><tr>
 <td class="icon">
 <i class="fa icon-tip" title="提示"></i>
 </td>
@@ -215,19 +249,19 @@ gtag('config', 'G-ZVVQYEKMPF');
 </div>
 <div class="paragraph">
 <p>密碼：
-<a href="https://en.wikipedia.org/wiki/Cryptography" class="bare">https://en.wikipedia.org/wiki/Cryptography</a></p>
+<a href="https://en.wikipedia.org/wiki/Cryptography" class="bare" rel="noopener" target="_blank">https://en.wikipedia.org/wiki/Cryptography</a></p>
 </div>
 <div class="paragraph">
 <p>Trapdoor函數：
-<a href="https://en.wikipedia.org/wiki/Trapdoor_function" class="bare">https://en.wikipedia.org/wiki/Trapdoor_function</a></p>
+<a href="https://en.wikipedia.org/wiki/Trapdoor_function" class="bare" rel="noopener" target="_blank">https://en.wikipedia.org/wiki/Trapdoor_function</a></p>
 </div>
 <div class="paragraph">
 <p>素因子分解：
-<a href="https://en.wikipedia.org/wiki/Integer_factorization" class="bare">https://en.wikipedia.org/wiki/Integer_factorization</a></p>
+<a href="https://en.wikipedia.org/wiki/Integer_factorization" class="bare" rel="noopener" target="_blank">https://en.wikipedia.org/wiki/Integer_factorization</a></p>
 </div>
 <div class="paragraph">
 <p>離散對數：
-<a href="https://en.wikipedia.org/wiki/Discrete_logarithm" class="bare">https://en.wikipedia.org/wiki/Discrete_logarithm</a></p>
+<a href="https://en.wikipedia.org/wiki/Discrete_logarithm" class="bare" rel="noopener" target="_blank">https://en.wikipedia.org/wiki/Discrete_logarithm</a></p>
 </div>
 <div class="paragraph">
 <p>橢圓曲線密碼學：
@@ -235,10 +269,10 @@ https：//en.wikipedia.org/wiki/Elliptic_curve_cryptography</p>
 </div>
 </td>
 </tr>
-</table>
+</tbody></table>
 </div>
 <div class="paragraph">
-<p>在以太坊，我們使用公鑰加密技術來創建一個密鑰對，以控制對ether的訪問，並允許我們對合同進行身份驗證。密鑰對由私鑰和唯一公鑰組成，並且被認為是“一對兒”，因為公鑰是從私鑰中派生出來的。公鑰用於接收資金，私鑰用於創建數位簽章來簽署交易以支付資金。數位簽章也可用於驗證合同的所有者或用戶，我們將在 <a href="ch08.html#smart_contracts_chapter">智能合約</a> 中看到。</p>
+<p>在以太坊，我們使用公鑰加密技術來創建一個密鑰對，以控制對ether的訪問，並允許我們對合同進行身份驗證。密鑰對由私鑰和唯一公鑰組成，並且被認為是“一對兒”，因為公鑰是從私鑰中派生出來的。公鑰用於接收資金，私鑰用於創建數位簽章來簽署交易以支付資金。數位簽章也可用於驗證合同的所有者或用戶，我們將在 <a href="/ch08.html">智能合約</a> 中看到。</p>
 </div>
 <div class="paragraph">
 <p>公鑰和私鑰之間存在數學關係，允許私鑰用於在消息上生成簽名。該簽名可以在不公開私鑰的情況下使用公鑰進行驗證。</p>
@@ -248,7 +282,7 @@ https：//en.wikipedia.org/wiki/Elliptic_curve_cryptography</p>
 </div>
 <div class="admonitionblock tip">
 <table>
-<tr>
+<tbody><tr>
 <td class="icon">
 <i class="fa icon-tip" title="提示"></i>
 </td>
@@ -258,7 +292,7 @@ https：//en.wikipedia.org/wiki/Elliptic_curve_cryptography</p>
 </div>
 </td>
 </tr>
-</table>
+</tbody></table>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -270,13 +304,13 @@ https：//en.wikipedia.org/wiki/Elliptic_curve_cryptography</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="private_keys">5.3. 私鑰</h3>
+<h2 id="private_keys"><a class="anchor" href="#private_keys" aria-label="本節連結"></a>5.3. 私鑰</h2>
 <div class="paragraph">
 <p>私鑰只是一個隨機選取的數字。私有密鑰的所有權和控制權是用戶控制與相應以太坊地址相關聯的所有資金的基礎，也是對該地址的合同的訪問權授權。通過證明交易中使用的資金的所有權，私鑰用於創建花費ether所需的簽名。私鑰在任何時候都必須保密，因為向第三方透露密鑰相當於讓他們控制以太和由該密鑰保證的合同。私鑰還必須備份並防止意外丟失。如果它丟失了，無法恢復，它保護的資金也將永遠丟失。</p>
 </div>
 <div class="admonitionblock tip">
 <table>
-<tr>
+<tbody><tr>
 <td class="icon">
 <i class="fa icon-tip" title="提示"></i>
 </td>
@@ -286,11 +320,11 @@ https：//en.wikipedia.org/wiki/Elliptic_curve_cryptography</p>
 </div>
 </td>
 </tr>
-</table>
+</tbody></table>
 </div>
 </div>
 <div class="sect2">
-<h3 id="generating_private_key">5.4. 從隨機數生成私鑰</h3>
+<h2 id="generating_private_key"><a class="anchor" href="#generating_private_key" aria-label="本節連結"></a>5.4. 從隨機數生成私鑰</h2>
 <div class="paragraph">
 <p>生成密鑰的第一步也是最重要的一步是找到一個安全的熵源或隨機源。創建以太坊私鑰基本上與“選擇1到2<sup>256</sup>之間的數字”相同。只要不可預測和不可重複，用於選擇該數字的確切方法並不重要。以太坊軟體使用底層作業系統的隨機數生成器生成256位熵（隨機性）。通常，作業系統隨機數生成器是由一個人為的隨機源進行初始化的，這就是為什麼可能會要求你將鼠標左右搖擺幾秒鐘，或者按下鍵盤上的隨機鍵。</p>
 </div>
@@ -299,7 +333,7 @@ https：//en.wikipedia.org/wiki/Elliptic_curve_cryptography</p>
 </div>
 <div class="admonitionblock warning">
 <table>
-<tr>
+<tbody><tr>
 <td class="icon">
 <i class="fa icon-warning" title="警告"></i>
 </td>
@@ -309,7 +343,7 @@ https：//en.wikipedia.org/wiki/Elliptic_curve_cryptography</p>
 </div>
 </td>
 </tr>
-</table>
+</tbody></table>
 </div>
 <div class="paragraph">
 <p>以下是以十六進制格式顯示的隨機生成的私鑰（k）（256位，顯示為64個十六進制數字，每個4位）：</p>
@@ -321,7 +355,7 @@ https：//en.wikipedia.org/wiki/Elliptic_curve_cryptography</p>
 </div>
 <div class="admonitionblock tip">
 <table>
-<tr>
+<tbody><tr>
 <td class="icon">
 <i class="fa icon-tip" title="提示"></i>
 </td>
@@ -331,11 +365,11 @@ https：//en.wikipedia.org/wiki/Elliptic_curve_cryptography</p>
 </div>
 </td>
 </tr>
-</table>
+</tbody></table>
 </div>
 </div>
 <div class="sect2">
-<h3 id="pubkey">5.5. 公鑰</h3>
+<h2 id="pubkey"><a class="anchor" href="#pubkey" aria-label="本節連結"></a>5.5. 公鑰</h2>
 <div class="paragraph">
 <p>以太坊公鑰是一個橢圓曲線上的<em>點</em> <em>point</em>，意思是它是一組滿足橢圓曲線方程的X和Y座標。</p>
 </div>
@@ -357,7 +391,7 @@ https：//en.wikipedia.org/wiki/Elliptic_curve_cryptography</p>
 </div>
 <div class="admonitionblock tip">
 <table>
-<tr>
+<tbody><tr>
 <td class="icon">
 <i class="fa icon-tip" title="提示"></i>
 </td>
@@ -367,14 +401,14 @@ https：//en.wikipedia.org/wiki/Elliptic_curve_cryptography</p>
 </div>
 </td>
 </tr>
-</table>
+</tbody></table>
 </div>
 <div class="paragraph">
 <p>在我們演示如何從私鑰生成公鑰之前，我們先來看一下橢圓曲線加密。</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="elliptic_curve">5.6. 橢圓曲線密碼學解釋</h3>
+<h2 id="elliptic_curve"><a class="anchor" href="#elliptic_curve" aria-label="本節連結"></a>5.6. 橢圓曲線密碼學解釋</h2>
 <div class="paragraph">
 <p>橢圓曲線密碼術是一種基於離散對數問題的非對稱或公鑰密碼體系，如橢圓曲線上的加法和乘法運算。</p>
 </div>
@@ -383,7 +417,7 @@ https：//en.wikipedia.org/wiki/Elliptic_curve_cryptography</p>
 </div>
 <div class="admonitionblock tip">
 <table>
-<tr>
+<tbody><tr>
 <td class="icon">
 <i class="fa icon-tip" title="提示"></i>
 </td>
@@ -393,13 +427,13 @@ https：//en.wikipedia.org/wiki/Elliptic_curve_cryptography</p>
 </div>
 </td>
 </tr>
-</table>
+</tbody></table>
 </div>
 <div id="ecc-curve" class="imageblock smallerthirty">
 <div class="content">
-<img src="images/simple_elliptic_curve.png" alt="ecc-curve">
+<picture><source type="image/webp" srcset="/images/simple_elliptic_curve.webp"><img src="/images/simple_elliptic_curve.png" alt="ecc-curve" width="893" height="896" loading="lazy" decoding="async"></picture>
 </div>
-<div class="title">圖 27. A visualization of an elliptic curve</div>
+<div class="title">圖 5-1. A visualization of an elliptic curve</div>
 </div>
 <div class="paragraph">
 <p>以太坊使用特定的橢圓曲線和一組數學常數，由國家標準與技術研究院（NIST）制定的名為 <code>secp256k1</code> 的標準中所定義的。<code>secp256k1</code> 曲線由以下函數定義，該函數產生一個橢圓曲線：</p>
@@ -429,9 +463,9 @@ https：//en.wikipedia.org/wiki/Elliptic_curve_cryptography</p>
 </div>
 <div id="ecc-over-F17-math" class="imageblock smallersixty">
 <div class="content">
-<img src="images/ec_over_small_prime_field.png" alt="ecc-over-F17-math">
+<picture><source type="image/webp" srcset="/images/ec_over_small_prime_field.webp"><img src="/images/ec_over_small_prime_field.png" alt="ecc-over-F17-math" width="532" height="530" loading="lazy" decoding="async"></picture>
 </div>
-<div class="title">圖 28. Elliptic curve cryptography: visualizing an elliptic curve over F(p), with p=17</div>
+<div class="title">圖 5-2. Elliptic curve cryptography: visualizing an elliptic curve over F(p), with p=17</div>
 </div>
 <div class="paragraph">
 <p>例如，以下是座標為（x，y）的點Q，它是 <code>secp256k1</code> 曲線上的一個點：</p>
@@ -445,7 +479,7 @@ https：//en.wikipedia.org/wiki/Elliptic_curve_cryptography</p>
 <p><a href="#example_1">Using Python to confirm that this point is on the elliptic curve</a> 顯示了如何使用Python檢查它。變數x和y是上述點Q的座標。變數p是橢圓曲線的主要階數（用於所有模運算的質數）。Python的最後一行是橢圓曲線方程（Python中的％運算符是模運算符）。如果x和y確實是橢圓曲線上的點，那麼它們滿足方程，結果為零（<code>0L</code>是零值的長整數）。通過在命令行上鍵入<code>python</code> 並複製下面的每行（不包括提示符 <code>&gt;&gt;&gt;</code>），親自嘗試一下：</p>
 </div>
 <div id="example_1" class="exampleblock">
-<div class="title">範例 1. Using Python to confirm that this point is on the elliptic curve</div>
+<div class="title">範例 5-1. Using Python to confirm that this point is on the elliptic curve</div>
 <div class="content">
 <div class="listingblock">
 <div class="content">
@@ -463,7 +497,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 </div>
 </div>
 <div class="sect2">
-<h3 id="EC_math">5.7. 橢圓曲線算術運算</h3>
+<h2 id="EC_math"><a class="anchor" href="#EC_math" aria-label="本節連結"></a>5.7. 橢圓曲線算術運算</h2>
 <div class="paragraph">
 <p>很多橢圓曲線數學看起來很像我們在學校學到的整數算術。具體而言，我們可以定義一個加法運算符，而不是添加數字就是在曲線上添加點。一旦我們有了加法運算符，我們也可以定義一個點和一個整數的乘法，等於重複加法。</p>
 </div>
@@ -492,11 +526,11 @@ Type "help", "copyright", "credits" or "license" for more information.
 <p>+ 是可結合的,  (A + B) + C = A + (B + C). 這表示 A + B + C 不加括號也沒有歧義。</p>
 </div>
 <div class="paragraph">
-<p>現在我們已經定義了加法，我們可以用擴展加法的標準方式來定義乘法。對於橢圓曲線上的點P，如果k是整數，則 k * P = P + P + P + &#8230;&#8203; + P (k 次)。請注意，在這種情況下，k有時會被混淆地稱為“指數”。</p>
+<p>現在我們已經定義了加法，我們可以用擴展加法的標準方式來定義乘法。對於橢圓曲線上的點P，如果k是整數，則 k * P = P + P + P + …​ + P (k 次)。請注意，在這種情況下，k有時會被混淆地稱為“指數”。</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="public_key_derivation">5.8. 生成一個公鑰</h3>
+<h2 id="public_key_derivation"><a class="anchor" href="#public_key_derivation" aria-label="本節連結"></a>5.8. 生成一個公鑰</h2>
 <div class="paragraph">
 <p>以一個隨機生成的數字<em>k</em>的私鑰開始，我們通過將它乘以稱為<em>generator point</em> <em>G</em>的曲線上的預定點，在曲線上的其他位置產生另一個點，這是相應的公鑰<em>K</em>。生成點被指定為<code>secp256k1</code>標準的一部分，對於<code>secp256k1</code>的所有實現始終相同，並且從該曲線派生的所有密鑰都使用相同的點<em>G</em>：</p>
 </div>
@@ -511,11 +545,11 @@ Type "help", "copyright", "credits" or "license" for more information.
 <p>其中<em>k</em>是私鑰，<em>G</em>是生成點，<em>K</em>是生成的公鑰，即曲線上的一個點。因為所有以太坊用戶的生成點始終相同，所以<em>G</em>乘以<em>G</em>的私鑰總是會導致相同的公鑰<em>K</em>。<em>k</em>和<em>K</em>之間的關係是固定的，但只能從<em>k</em>到<em>K</em>的一個方向進行計算。這就是為什麼以太坊地址（來自<em>K</em>）可以與任何人共享，並且不會洩露用戶的私鑰（<em>k</em>）。</p>
 </div>
 <div class="paragraph">
-<p>正如我們在 <a href="#EC_math">橢圓曲線算術運算</a>中所描述的那樣，k * G的乘法相當於重複加，G + G + G + &#8230;&#8203; + G ，重複k次。總而言之，為了從私鑰<em>k</em>生成公鑰<em>K</em>，我們將生成點<em>G</em>添加到自己<em>k</em>次。</p>
+<p>正如我們在 <a href="#EC_math">橢圓曲線算術運算</a>中所描述的那樣，k * G的乘法相當於重複加，G + G + G + …​ + G ，重複k次。總而言之，為了從私鑰<em>k</em>生成公鑰<em>K</em>，我們將生成點<em>G</em>添加到自己<em>k</em>次。</p>
 </div>
 <div class="admonitionblock tip">
 <table>
-<tr>
+<tbody><tr>
 <td class="icon">
 <i class="fa icon-tip" title="提示"></i>
 </td>
@@ -525,7 +559,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 </div>
 </td>
 </tr>
-</table>
+</tbody></table>
 </div>
 <div class="paragraph">
 <p>讓我們應用這個計算來找到我們在 <a href="#private_keys">私鑰</a> 中給出的特定私鑰的公鑰：</p>
@@ -551,9 +585,9 @@ y = 83b5c38e5e2b0c8529d7fa3f64d46daa1ece2d9ac14cab9477d042c84c32ccd0</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>在以太坊中，你可以看到公鑰以66個十六進制字符（33字節）的十六進制序列表示。這是從行業聯盟標準高效密碼組（SECG）提出的標準序列化格式採用的，在<a href="http://www.secg.org/sec1-v2.pdf">Standards for Efficient Cryptography（SEC1）</a>中有記載。該標準定義了四個可用於識別橢圓曲線上點的可能前綴：</p>
+<p>在以太坊中，你可以看到公鑰以66個十六進制字符（33字節）的十六進制序列表示。這是從行業聯盟標準高效密碼組（SECG）提出的標準序列化格式採用的，在<a href="http://www.secg.org/sec1-v2.pdf" rel="noopener" target="_blank">Standards for Efficient Cryptography（SEC1）</a>中有記載。該標準定義了四個可用於識別橢圓曲線上點的可能前綴：</p>
 </div>
-<table id="EC_prefix_table" class="tableblock frame-all grid-all stretch">
+<div class="table-wrap" tabindex="0"><table id="EC_prefix_table" class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 25%;">
@@ -592,7 +626,7 @@ y = 83b5c38e5e2b0c8529d7fa3f64d46daa1ece2d9ac14cab9477d042c84c32ccd0</pre>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <div class="paragraph">
 <p>以太坊只使用未壓縮的公鑰，因此唯一相關的前綴是（十六進制）<code>04</code>。順序連接公鑰的X和Y座標：</p>
 </div>
@@ -611,7 +645,7 @@ y = 83b5c38e5e2b0c8529d7fa3f64d46daa1ece2d9ac14cab9477d042c84c32ccd0</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="EC_lib">5.9. 橢圓曲線庫</h3>
+<h2 id="EC_lib"><a class="anchor" href="#EC_lib" aria-label="本節連結"></a>5.9. 橢圓曲線庫</h2>
 <div class="paragraph">
 <p>密碼貨幣相關項目中使用了secp256k1橢圓曲線的幾個實現：</p>
 </div>
@@ -619,17 +653,17 @@ y = 83b5c38e5e2b0c8529d7fa3f64d46daa1ece2d9ac14cab9477d042c84c32ccd0</pre>
 <dl>
 <dt class="hdlist1">OpenSSL</dt>
 <dd>
-<p>OpenSSL庫提供了一套全面的加密原語，包括secp256k1的完整實現。例如，要派生公鑰，可以使用函數<code>EC_POINT_mul()</code>。<a href="https://www.openssl.org/" class="bare">https://www.openssl.org/</a></p>
+<p>OpenSSL庫提供了一套全面的加密原語，包括secp256k1的完整實現。例如，要派生公鑰，可以使用函數<code>EC_POINT_mul()</code>。<a href="https://www.openssl.org/" class="bare" rel="noopener" target="_blank">https://www.openssl.org/</a></p>
 </dd>
 <dt class="hdlist1">libsecp256k1</dt>
 <dd>
-<p>Bitcoin Core的libsecp256k1是secp256k1橢圓曲線和其他密碼原語的C語言實現。橢圓曲線密碼學的libsecp256是從頭開始編寫的，代替了Bitcoin Core軟體中的OpenSSL，在性能和安全性方面被認為是優越的。<a href="https://github.com/bitcoin-core/secp256k1" class="bare">https://github.com/bitcoin-core/secp256k1</a></p>
+<p>Bitcoin Core的libsecp256k1是secp256k1橢圓曲線和其他密碼原語的C語言實現。橢圓曲線密碼學的libsecp256是從頭開始編寫的，代替了Bitcoin Core軟體中的OpenSSL，在性能和安全性方面被認為是優越的。<a href="https://github.com/bitcoin-core/secp256k1" class="bare" rel="noopener" target="_blank">https://github.com/bitcoin-core/secp256k1</a></p>
 </dd>
 </dl>
 </div>
 </div>
 <div class="sect2">
-<h3 id="hash_functions">5.10. 加密雜湊函數</h3>
+<h2 id="hash_functions"><a class="anchor" href="#hash_functions" aria-label="本節連結"></a>5.10. 加密雜湊函數</h2>
 <div class="paragraph">
 <p>加密雜湊函數在整個以太坊使用。事實上，雜湊函數幾乎在所有密碼系統中都有廣泛應用，這是密碼學家布魯斯•施奈爾（Bruce Schneier）所說的一個事實，他說：“單向雜湊函數遠不止於加密演算法，而是現代密碼學的主要工具。</p>
 </div>
@@ -637,13 +671,13 @@ y = 83b5c38e5e2b0c8529d7fa3f64d46daa1ece2d9ac14cab9477d042c84c32ccd0</pre>
 <p>在本節中，我們將討論雜湊函數，瞭解它們的基本屬性以及這些屬性如何使它們在現代密碼學的很多領域如此有用。我們在這裡討論雜湊函數，因為它們是將以太坊公鑰轉換成地址的一部分。</p>
 </div>
 <div class="paragraph">
-<p>簡而言之，“雜湊函數是可用於將任意大小的數據映射到固定大小的數據的函數。” <a href="https://en.wikipedia.org/wiki/Hash_function">Source：Wikipedia</a>。雜湊函數的輸入稱為 <em>原象</em> <em>pre-image</em> 或 <em>消息</em> <em>message</em>。輸出被稱為  <em>雜湊</em> <em>hash</em>或 <em>摘要</em> <em>digest</em>。雜湊函數的一個特殊子類別是 <em>加密雜湊函數</em>，它具有對密碼學有用的特定屬性。</p>
+<p>簡而言之，“雜湊函數是可用於將任意大小的數據映射到固定大小的數據的函數。” <a href="https://en.wikipedia.org/wiki/Hash_function" rel="noopener" target="_blank">Source：Wikipedia</a>。雜湊函數的輸入稱為 <em>原象</em> <em>pre-image</em> 或 <em>消息</em> <em>message</em>。輸出被稱為  <em>雜湊</em> <em>hash</em>或 <em>摘要</em> <em>digest</em>。雜湊函數的一個特殊子類別是 <em>加密雜湊函數</em>，它具有對密碼學有用的特定屬性。</p>
 </div>
 <div class="paragraph">
 <p>加密雜湊函數是一種<em>單向</em>雜湊函數，它將任意大小的數據映射到固定大小的位串，如果知道輸出，計算上不可能重新創建輸入。確定輸入的唯一方法是對所有可能的輸入進行蠻力搜索，檢查匹配輸出。</p>
 </div>
 <div class="paragraph">
-<p>加密雜湊函數有五個主要屬性 (<a href="https://en.wikipedia.org/wiki/Cryptographic_hash_function">Source: Wikipedia/Cryptographic Hash Function</a>):</p>
+<p>加密雜湊函數有五個主要屬性 (<a href="https://en.wikipedia.org/wiki/Cryptographic_hash_function" rel="noopener" target="_blank">Source: Wikipedia/Cryptographic Hash Function</a>):</p>
 </div>
 <div class="dlist">
 <dl>
@@ -705,7 +739,7 @@ y = 83b5c38e5e2b0c8529d7fa3f64d46daa1ece2d9ac14cab9477d042c84c32ccd0</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="keccak256">5.11. 以太坊的加密雜湊函數 - Keccak-256</h3>
+<h2 id="keccak256"><a class="anchor" href="#keccak256" aria-label="本節連結"></a>5.11. 以太坊的加密雜湊函數 - Keccak-256</h2>
 <div class="paragraph">
 <p>以太坊在許多地方使用<em>Keccak-256</em>加密雜湊函數。Keccak-256被設計為於2007年舉行的SHA-3密碼雜湊函數競賽的候選者。Keccak是獲勝的演算法，在2015年被標準化為 FIPS（聯邦資訊處理標準）202。</p>
 </div>
@@ -714,7 +748,7 @@ y = 83b5c38e5e2b0c8529d7fa3f64d46daa1ece2d9ac14cab9477d042c84c32ccd0</pre>
 </div>
 <div class="admonitionblock warning">
 <table>
-<tr>
+<tbody><tr>
 <td class="icon">
 <i class="fa icon-warning" title="警告"></i>
 </td>
@@ -724,14 +758,14 @@ y = 83b5c38e5e2b0c8529d7fa3f64d46daa1ece2d9ac14cab9477d042c84c32ccd0</pre>
 </div>
 </td>
 </tr>
-</table>
+</tbody></table>
 </div>
 <div class="paragraph">
-<p>由於Ethereum中使用的雜湊函數（Keccak-256）與最終標準（FIP-202 SHA-3）之間的差異造成了混淆，因此正在努力將程式碼中所有的 <code>sha3</code> 的所有實例，操作碼和庫重新命名為 <code>keccak256</code>。詳情請參閱<a href="https://github.com/ethereum/EIPs/issues/59">ERC-59</a>。</p>
+<p>由於Ethereum中使用的雜湊函數（Keccak-256）與最終標準（FIP-202 SHA-3）之間的差異造成了混淆，因此正在努力將程式碼中所有的 <code>sha3</code> 的所有實例，操作碼和庫重新命名為 <code>keccak256</code>。詳情請參閱<a href="https://github.com/ethereum/EIPs/issues/59" rel="noopener" target="_blank">ERC-59</a>。</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="which_hash">5.12. 我正在使用哪個雜湊函數？</h3>
+<h2 id="which_hash"><a class="anchor" href="#which_hash" aria-label="本節連結"></a>5.12. 我正在使用哪個雜湊函數？</h2>
 <div class="paragraph">
 <p>如何判斷你使用的軟體庫是FIPS-202 SHA-3還是Keccak-256（如果兩者都可能被稱為“SHA3”）？</p>
 </div>
@@ -756,7 +790,7 @@ a7ffc6f8bf1ed76651c14756a061d662f580ff4de43b49fa82d80a4b80f8434a</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="eth_address">5.13. 以太坊地址</h3>
+<h2 id="eth_address"><a class="anchor" href="#eth_address" aria-label="本節連結"></a>5.13. 以太坊地址</h2>
 <div class="paragraph">
 <p>以太坊地址是 <em>唯一識別碼</em> <em>unique identifiers</em>，它們是使用單向雜湊函數（Keccak-256）從公鑰或合約派生的。</p>
 </div>
@@ -781,7 +815,7 @@ a7ffc6f8bf1ed76651c14756a061d662f580ff4de43b49fa82d80a4b80f8434a</pre>
 </div>
 <div class="admonitionblock warning">
 <table>
-<tr>
+<tbody><tr>
 <td class="icon">
 <i class="fa icon-warning" title="警告"></i>
 </td>
@@ -791,7 +825,7 @@ a7ffc6f8bf1ed76651c14756a061d662f580ff4de43b49fa82d80a4b80f8434a</pre>
 </div>
 </td>
 </tr>
-</table>
+</tbody></table>
 </div>
 <div class="paragraph">
 <p>我們使用Keccak-256來計算這個公鑰的<em>hash</em>：</p>
@@ -819,7 +853,7 @@ a7ffc6f8bf1ed76651c14756a061d662f580ff4de43b49fa82d80a4b80f8434a</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="eth_address_format">5.14. 以太坊地址格式</h3>
+<h2 id="eth_address_format"><a class="anchor" href="#eth_address_format" aria-label="本節連結"></a>5.14. 以太坊地址格式</h2>
 <div class="paragraph">
 <p>以太坊地址是十六進制數字，從公鑰的Keccak-256雜湊的最後20個字節匯出的識別碼。</p>
 </div>
@@ -833,12 +867,12 @@ a7ffc6f8bf1ed76651c14756a061d662f580ff4de43b49fa82d80a4b80f8434a</pre>
 <p>回想起來，這種設計選擇導致了一些問題，包括由於輸入錯誤地址和輸入驗證錯誤而導致的資金損失。以太坊名稱服務的開發速度低於最初的預期，諸如ICAP之類的替代編碼被錢包開發商採用得非常緩慢。</p>
 </div>
 <div class="sect3">
-<h4 id="icap">5.14.1. 互換客戶端地址協議 Inter Exchange Client Address Protocol (ICAP)</h4>
+<h3 id="icap"><a class="anchor" href="#icap" aria-label="本節連結"></a>5.14.1. 互換客戶端地址協議 Inter Exchange Client Address Protocol (ICAP)</h3>
 <div class="paragraph">
 <p><em>互換客戶端地址協議（ICAP）</em>是一種部分與國際銀行帳號（IBAN）編碼兼容的以太坊地址編碼，為以太坊地址提供多功能，校驗和互操作編碼。ICAP地址可以編碼以太坊地址或通過以太坊名稱註冊表註冊的常用名稱。</p>
 </div>
 <div class="paragraph">
-<p>閱讀以太坊Wiki上的ICAP：<a href="https://github.com/ethereum/wiki/wiki/ICAP:-Inter-exchange-Client-Address-Protocol" class="bare">https://github.com/ethereum/wiki/wiki/ICAP:-Inter-exchange-Client-Address-Protocol</a></p>
+<p>閱讀以太坊Wiki上的ICAP：<a href="https://github.com/ethereum/wiki/wiki/ICAP:-Inter-exchange-Client-Address-Protocol" class="bare" rel="noopener" target="_blank">https://github.com/ethereum/wiki/wiki/ICAP:-Inter-exchange-Client-Address-Protocol</a></p>
 </div>
 <div class="paragraph">
 <p>IBAN是識別銀行帳號的國際標準，主要用於電匯。它在歐洲單一歐元支付區（SEPA）及其以後被廣泛採用。IBAN是一項集中和嚴格監管的服務。ICAP是以太坊地址的分散但兼容的實現。</p>
@@ -893,7 +927,7 @@ Public key: 0x6e145ccef1033dea239875dd00dfb4fee6e3348b84985c92f103444683bae07b83
 </div>
 <div class="admonitionblock tip">
 <table>
-<tr>
+<tbody><tr>
 <td class="icon">
 <i class="fa icon-tip" title="提示"></i>
 </td>
@@ -903,19 +937,19 @@ Public key: 0x6e145ccef1033dea239875dd00dfb4fee6e3348b84985c92f103444683bae07b83
 </div>
 </td>
 </tr>
-</table>
+</tbody></table>
 </div>
 <div class="paragraph">
 <p>不幸的是，現在，只有幾個錢包支持ICAP。</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="eip-55">5.14.2. 使用大寫校驗和的十六進制編碼 (EIP-55)</h4>
+<h3 id="eip-55"><a class="anchor" href="#eip-55" aria-label="本節連結"></a>5.14.2. 使用大寫校驗和的十六進制編碼 (EIP-55)</h3>
 <div class="paragraph">
 <p>由於ICAP或名稱服務部署緩慢，因此提出了一個新的標準，以太坊改進建議55（EIP-55）。你可以閱讀詳細資訊：</p>
 </div>
 <div class="paragraph">
-<p><a href="https://github.com/Ethereum/EIPs/blob/master/EIPS/eip-55.md" class="bare">https://github.com/Ethereum/EIPs/blob/master/EIPS/eip-55.md</a></p>
+<p><a href="https://github.com/Ethereum/EIPs/blob/master/EIPS/eip-55.md" class="bare" rel="noopener" target="_blank">https://github.com/Ethereum/EIPs/blob/master/EIPS/eip-55.md</a></p>
 </div>
 <div class="paragraph">
 <p>通過修改十六進制地址的大小寫，EIP-55為以太坊地址提供了向後兼容的校驗和。這個想法是，以太坊地址不區分大小寫，所有錢包都應該接受以大寫字母或小寫字母表示的以太坊地址，在解釋上沒有任何區別。</p>
@@ -985,7 +1019,7 @@ Hash   : 23a69c1653e4ebbb619b0b2cb8a9bad49892a8b9...</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="EIP55_error">5.14.3. 在EIP-55編碼地址中檢測錯誤</h4>
+<h3 id="EIP55_error"><a class="anchor" href="#EIP55_error" aria-label="本節連結"></a>5.14.3. 在EIP-55編碼地址中檢測錯誤</h3>
 <div class="paragraph">
 <p>現在，我們來看看EIP-55地址如何幫助我們發現錯誤。假設我們已經打印出ETHER-E編碼的以太坊地址：</p>
 </div>
@@ -1030,504 +1064,56 @@ Hash   : 23a69c1653e4ebbb619b0b2cb8a9bad49892a8b9...</pre>
 <p>我們輸入的地址的大小寫與剛剛計算的校驗和不匹配，這意味著地址中的內容發生了變化，並且引入了錯誤。</p>
 </div>
 <div class="paragraph">
-<p><a href="ch06.html#wallets_chapter">下一章：錢包</a></p>
+<p><a href="/ch06.html">下一章：錢包</a></p>
 </div>
 </div>
 </div>
 </div>
 </div>
-
-<nav class="chapter-nav"><a href="ch04.html" class="nav-prev">&larr; 以太坊測試網</a><a href="index.html" class="nav-home">首頁</a><a href="ch06.html" class="nav-next">錢包 &rarr;</a></nav>
-</div>
-<div id="footer">
-<div id="footer-text">
-最後更新： 2026-11-02 14:55:30 UTC
-</div>
-</div>
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  messageStyle: "none",
-  tex2jax: {
-    inlineMath: [["\\(", "\\)"]],
-    displayMath: [["\\[", "\\]"]],
-    ignoreClass: "nostem|nolatexmath"
-  },
-  asciimath2jax: {
-    delimiters: [["\\$", "\\$"]],
-    ignoreClass: "nostem|noasciimath"
-  },
-  TeX: { equationNumbers: { autoNumber: "none" } }
-})
-MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
-  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
-    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
-      data.math.root.display = "block"
-    }
-    return data
-  })
-})
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<style>
-/* 浮動目錄按鈕 — 僅手機版顯示 */
-.toc-toggle {
-  position: fixed;
-  bottom: 5rem;
-  right: 1.2rem;
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  background: #2980b9;
-  color: #fff;
-  border: none;
-  font-size: 1.2rem;
-  cursor: pointer;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-  z-index: 1000;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.2s, transform 0.2s;
-}
-.toc-toggle:hover { background: #1a6fa0; }
-.toc-toggle:active { transform: scale(0.95); }
-
-/* 回到頂部按鈕 */
-.back-to-top {
-  position: fixed;
-  bottom: 1.8rem;
-  right: 1.2rem;
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  background: rgba(85,85,85,0.85);
-  color: #fff;
-  border: none;
-  font-size: 1.2rem;
-  cursor: pointer;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
-  z-index: 1000;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.3s, background 0.2s, transform 0.2s;
-  pointer-events: none;
-}
-.back-to-top:hover { background: rgba(50,50,50,0.9); }
-.back-to-top:active { transform: scale(0.95); }
-.back-to-top.visible {
-  display: flex;
-  opacity: 1;
-  pointer-events: auto;
-}
-
-/* 浮動目錄面板 */
-.toc-panel {
-  position: fixed;
-  top: 0;
-  right: -340px;
-  width: 320px;
-  max-width: 85vw;
-  height: 100vh;
-  background: #fff;
-  border-left: 1px solid #e1e4e8;
-  box-shadow: -4px 0 20px rgba(0,0,0,0.12);
-  z-index: 1001;
-  transition: right 0.3s ease;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  padding: 0;
-}
-.toc-panel.open { right: 0; }
-
-.toc-panel-header {
-  position: sticky;
-  top: 0;
-  background: #fff;
-  padding: 1.2rem 1rem 0.8rem;
-  border-bottom: 1px solid #e1e4e8;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  z-index: 1;
-}
-
-.toc-panel-header h3 {
-  margin: 0;
-  font-size: 1.1rem;
-  color: #1a252f;
-}
-
-.toc-panel .close-btn {
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  color: #888;
-  padding: 0 0.3rem;
-  line-height: 1;
-  transition: color 0.15s;
-}
-.toc-panel .close-btn:hover { color: #333; }
-
-.toc-panel-body {
-  padding: 0.8rem 1rem 2rem;
-}
-
-.toc-panel-body ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.toc-panel-body ul ul {
-  padding-left: 0.9rem;
-}
-
-.toc-panel-body li {
-  margin: 0;
-}
-
-.toc-panel-body a {
-  color: #555;
-  text-decoration: none;
-  font-size: 0.9rem;
-  line-height: 1.5;
-  display: block;
-  padding: 0.3rem 0.5rem;
-  border-radius: 4px;
-  transition: background 0.12s, color 0.12s;
-}
-.toc-panel-body a:hover {
-  background: #f0f3f6;
-  color: #2980b9;
-}
-
-/* 遮罩 */
-.toc-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.35);
-  z-index: 1000;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s, visibility 0.3s;
-}
-.toc-overlay.visible {
-  opacity: 1;
-  visibility: visible;
-}
-
-/* 閱讀進度條 */
-.reading-progress {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 3px;
-  background: linear-gradient(90deg, #2980b9, #3498db);
-  z-index: 1002;
-  transition: width 0.1s;
-  will-change: width;
-}
-
-/* 手機版顯示浮動按鈕 */
-@media screen and (max-width: 768px) {
-  .toc-toggle {
-    display: flex;
-  }
-  .back-to-top {
-    display: flex;
-  }
-}
-
-/* 桌面版也顯示回到頂部 */
-@media screen and (min-width: 769px) {
-  .back-to-top {
-    display: flex;
-  }
-  .reading-progress {
-    left: var(--toc-width, 300px);
-  }
-}
-/* 電子書下載橫幅 */
-.ebook-banner {
-  background: linear-gradient(135deg, #1a252f 0%, #2c3e50 100%);
-  color: #fff;
-  padding: 0.7rem 1.2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-  font-size: 0.88rem;
-  position: relative;
-  z-index: 50;
-}
-
-.ebook-banner a {
-  color: #fff;
-  background: rgba(255,255,255,0.15);
-  padding: 0.35rem 0.9rem;
-  border-radius: 5px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: background 0.2s;
-  white-space: nowrap;
-}
-
-.ebook-banner a:hover {
-  background: rgba(255,255,255,0.25);
-}
-
-.ebook-banner .banner-text {
-  opacity: 0.9;
-}
-
-.ebook-banner .banner-close {
-  position: absolute;
-  right: 0.8rem;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  color: rgba(255,255,255,0.5);
-  font-size: 1.2rem;
-  cursor: pointer;
-  padding: 0.2rem 0.4rem;
-}
-
-.ebook-banner .banner-close:hover {
-  color: #fff;
-}
-
-/* 桌面版橫幅在 TOC 右邊 */
-@media screen and (min-width: 769px) {
-  .ebook-banner {
-    margin-left: var(--toc-width, 300px);
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .ebook-banner {
-    font-size: 0.82rem;
-    padding: 0.6rem 0.8rem;
-    gap: 0.8rem;
-  }
-}
-</style>
-
-<!-- 電子書下載橫幅 -->
-<div class="ebook-banner" id="ebookBanner">
-  <span class="banner-text">下載電子書離線閱讀</span>
-  <a href="https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.pdf">PDF</a>
-  <a href="https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.epub">EPUB</a>
-  <a href="https://github.com/awesome-doge/ethereumbook_zh/releases/latest">GitHub Releases</a>
-  <button class="banner-close" id="bannerClose" aria-label="關閉">&times;</button>
-</div>
-
-<!-- 閱讀進度條 -->
-<div class="reading-progress" id="readingProgress"></div>
-
-<!-- 浮動按鈕 -->
-<button class="toc-toggle" id="tocToggle" aria-label="開啟目錄">&#9776;</button>
-<button class="back-to-top" id="backToTop" aria-label="回到頂部">&#8593;</button>
-
-<!-- 目錄面板（手機版） -->
-<div class="toc-overlay" id="tocOverlay"></div>
-<div class="toc-panel" id="tocPanel" role="navigation" aria-label="目錄">
-  <div class="toc-panel-header">
-    <h3>目錄</h3>
-    <button class="close-btn" id="tocClose" aria-label="關閉目錄">&times;</button>
   </div>
-  <div class="toc-panel-body" id="tocContent"></div>
+  <nav class="pager" aria-label="章節導覽">
+    <a class="pager-link prev" href="/ch04.html" rel="prev"><span class="pager-dir">← 上一章</span><span class="pager-title">第 4 章　以太坊測試網（Testnets）</span></a>
+    <a class="pager-link next" href="/ch06.html" rel="next"><span class="pager-dir">下一章 →</span><span class="pager-title">第 6 章　錢包</span></a>
+  </nav>
+  <p class="edit-link"><a href="https://github.com/awesome-doge/ethereumbook_zh/blob/master/ch05.asciidoc" rel="noopener">在 GitHub 上檢視或改善本章翻譯</a></p>
+</article>
+
+  </main>
+
+  <aside class="rail" aria-label="本章內容">
+    <p class="rail-title">本章內容</p>
+    <ol>
+      <li><a href="#keys_addresses_intro">5.1. 簡介</a></li>
+      <li><a href="#pkc">5.2. 公鑰密碼技術和密碼貨幣</a></li>
+      <li><a href="#private_keys">5.3. 私鑰</a></li>
+      <li><a href="#generating_private_key">5.4. 從隨機數生成私鑰</a></li>
+      <li><a href="#pubkey">5.5. 公鑰</a></li>
+      <li><a href="#elliptic_curve">5.6. 橢圓曲線密碼學解釋</a></li>
+      <li><a href="#EC_math">5.7. 橢圓曲線算術運算</a></li>
+      <li><a href="#public_key_derivation">5.8. 生成一個公鑰</a></li>
+      <li><a href="#EC_lib">5.9. 橢圓曲線庫</a></li>
+      <li><a href="#hash_functions">5.10. 加密雜湊函數</a></li>
+      <li><a href="#keccak256">5.11. 以太坊的加密雜湊函數 - Keccak-256</a></li>
+      <li><a href="#which_hash">5.12. 我正在使用哪個雜湊函數？</a></li>
+      <li><a href="#eth_address">5.13. 以太坊地址</a></li>
+      <li><a href="#eth_address_format">5.14. 以太坊地址格式</a></li>
+    </ol>
+  </aside>
 </div>
 
-<script>
-(function() {
-  'use strict';
+<footer class="site-footer">
+  <p>原著《Mastering Ethereum》由 Andreas M. Antonopoulos 與 Gavin Wood 撰寫，O'Reilly Media 出版。繁體中文翻譯：Dr. Awesome Doge。</p>
+  <p>本書內容以 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh_TW" rel="license noopener">CC BY-NC-ND 4.0</a> 授權釋出 · <a href="https://github.com/awesome-doge/ethereumbook_zh" rel="noopener">GitHub</a> · <a href="https://github.com/awesome-doge/ethereumbook_zh/issues" rel="noopener">回報翻譯問題</a> · <a href="https://github.com/ethereumbook/ethereumbook" rel="noopener">英文原著</a></p>
+</footer>
 
-  // === 電子書橫幅：移到頁面頂部 + 關閉/記憶 ===
-  var banner = document.getElementById('ebookBanner');
-  var bannerClose = document.getElementById('bannerClose');
-  if (banner) {
-    // 如果用戶之前關閉過，隱藏
-    if (localStorage.getItem('ebookBannerClosed')) {
-      banner.style.display = 'none';
-    } else {
-      // 移到 body 最前面（在 header 之前）
-      document.body.insertBefore(banner, document.body.firstChild);
-    }
-    if (bannerClose) {
-      bannerClose.addEventListener('click', function() {
-        banner.style.display = 'none';
-        localStorage.setItem('ebookBannerClosed', '1');
-      });
-    }
-  }
-
-  // === 生成手機版目錄 ===
-  var tocContent = document.getElementById('tocContent');
-  var nativeToc = document.getElementById('toc');
-
-  if (tocContent && nativeToc) {
-    // 從原生 TOC 複製結構
-    var nativeList = nativeToc.querySelector('ul.sectlevel1');
-    if (nativeList) {
-      tocContent.appendChild(nativeList.cloneNode(true));
-    }
-  }
-
-  // === 目錄開關 ===
-  var tocToggle = document.getElementById('tocToggle');
-  var tocPanel = document.getElementById('tocPanel');
-  var tocOverlay = document.getElementById('tocOverlay');
-  var tocClose = document.getElementById('tocClose');
-
-  function openToc() {
-    tocPanel.classList.add('open');
-    tocOverlay.classList.add('visible');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeToc() {
-    tocPanel.classList.remove('open');
-    tocOverlay.classList.remove('visible');
-    document.body.style.overflow = '';
-  }
-
-  if (tocToggle) tocToggle.addEventListener('click', openToc);
-  if (tocOverlay) tocOverlay.addEventListener('click', closeToc);
-  if (tocClose) tocClose.addEventListener('click', closeToc);
-
-  // 點擊目錄連結後關閉面板
-  if (tocContent) {
-    tocContent.addEventListener('click', function(e) {
-      if (e.target.tagName === 'A') {
-        closeToc();
-      }
-    });
-  }
-
-  // ESC 關閉
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') closeToc();
-  });
-
-  // === 回到頂部 ===
-  var backToTop = document.getElementById('backToTop');
-  if (backToTop) {
-    backToTop.addEventListener('click', function() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  }
-
-  // === 閱讀進度條 + 回到頂部顯示 ===
-  var progressBar = document.getElementById('readingProgress');
-  var ticking = false;
-
-  function onScroll() {
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(function() {
-      var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      var docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-
-      // 回到頂部
-      if (backToTop) {
-        if (scrollTop > 400) {
-          backToTop.classList.add('visible');
-        } else {
-          backToTop.classList.remove('visible');
-        }
-      }
-
-      // 進度條
-      if (progressBar && docHeight > 0) {
-        progressBar.style.width = ((scrollTop / docHeight) * 100) + '%';
-      }
-
-      ticking = false;
-    });
-  }
-
-  window.addEventListener('scroll', onScroll, { passive: true });
-
-  // === 表格響應式包裝 ===
-  document.querySelectorAll('table.tableblock').forEach(function(table) {
-    if (!table.parentElement.classList.contains('tableblock-wrapper')) {
-      var wrapper = document.createElement('div');
-      wrapper.style.overflowX = 'auto';
-      wrapper.style.WebkitOverflowScrolling = 'touch';
-      wrapper.style.margin = '1.5rem 0';
-      table.parentNode.insertBefore(wrapper, table);
-      wrapper.appendChild(table);
-      table.style.margin = '0';
-    }
-  });
-
-  // === 桌面版：TOC 當前章節高亮 ===
-  if (window.innerWidth > 768 && nativeToc) {
-    var tocLinks = nativeToc.querySelectorAll('a');
-    var headingIds = [];
-    tocLinks.forEach(function(link) {
-      var id = link.getAttribute('href');
-      if (id && id.startsWith('#')) {
-        headingIds.push({ id: id.substring(1), el: link });
-      }
-    });
-
-    var currentHighlight = null;
-
-    // 注入高亮樣式
-    var hlStyle = document.createElement('style');
-    hlStyle.textContent = '#toc a.toc-active { background: #dbeafe !important; color: #1d4ed8 !important; border-radius: 4px; font-weight: 600; border-left: 3px solid #2980b9; padding-left: 0.4rem; }';
-    document.head.appendChild(hlStyle);
-
-    function highlightToc() {
-      var scrollPos = window.pageYOffset + 100;
-      var current = null;
-
-      for (var i = headingIds.length - 1; i >= 0; i--) {
-        var target = document.getElementById(headingIds[i].id);
-        if (target && target.offsetTop <= scrollPos) {
-          current = headingIds[i].el;
-          break;
-        }
-      }
-
-      if (current !== currentHighlight) {
-        if (currentHighlight) {
-          currentHighlight.classList.remove('toc-active');
-        }
-        if (current) {
-          current.classList.add('toc-active');
-          // 確保高亮項在可視範圍
-          var tocEl = document.getElementById('toc');
-          if (tocEl) {
-            var linkRect = current.getBoundingClientRect();
-            var tocRect = tocEl.getBoundingClientRect();
-            if (linkRect.top < tocRect.top + 60 || linkRect.bottom > tocRect.bottom - 20) {
-              current.scrollIntoView({ block: 'center', behavior: 'smooth' });
-            }
-          }
-        }
-        currentHighlight = current;
-      }
-    }
-
-    window.addEventListener('scroll', function() {
-      requestAnimationFrame(highlightToc);
-    }, { passive: true });
-
-    highlightToc();
-  }
-})();
-</script>
-</body>
-</html>
+<dialog class="search" id="search" aria-label="搜尋全書">
+  <form method="dialog" class="search-form" role="search">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input type="search" id="search-input" placeholder="搜尋全書，例如：智能合約、gas、ERC20" autocomplete="off" spellcheck="false" aria-label="搜尋關鍵字">
+    <button type="submit" class="search-close" value="close" aria-label="關閉搜尋">Esc</button>
+  </form>
+  <p class="search-status" aria-live="polite"></p>
+  <ol class="search-results"></ol>
+</dialog>
 </body>
 </html>

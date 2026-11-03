@@ -1,0 +1,36 @@
+# 精通以太坊：打造智能合約與 DApp（繁體中文版）
+
+> 《精通以太坊》（Mastering Ethereum: Building Smart Contracts and DApps）的繁體中文全文譯本，由 Andreas M. Antonopoulos 與 Gavin Wood 撰寫，O'Reilly Media 出版，Dr. Awesome Doge 翻譯，以 CC BY-NC-ND 4.0 授權。
+
+每一章都是獨立頁面；全書純文字版請見 https://mastering-ethereum.doge.tg/llms-full.txt 。
+
+## 章節
+
+- [前言](https://mastering-ethereum.doge.tg/preface.html)：本書的寫作緣由、目標讀者與內容安排，以及封面上蜜蜂的含義：沒有中央指揮、由眾多個體協作而成的系統，正是以太坊的寫照。
+- [術語表　快速術語表](https://mastering-ethereum.doge.tg/glossary.html)：以太坊常用術語的快速對照與解釋，從帳戶、區塊、gas、EVM、智能合約到各種 EIP 與 ERC 標準，閱讀全書時可隨時查閱。
+- [第 1 章　什麼是以太坊](https://mastering-ethereum.doge.tg/ch01.html)：什麼是以太坊？與比特幣的比較、以太坊的誕生與四個開發階段、組件、圖靈完備性，以及從通用區塊鏈到去中心化應用（DApp）的演進。
+- [第 2 章　以太坊基礎](https://mastering-ethereum.doge.tg/ch02.html)：以太坊入門實作：以太幣單位、選擇錢包、安裝 MetaMask、切換測試網並取得測試以太幣，再撰寫、編譯、部署並呼叫第一個 faucet 智能合約。
+- [第 3 章　以太坊客戶端](https://mastering-ethereum.doge.tg/ch03.html)：以太坊客戶端與網路：是否要執行全節點、硬體與軟體需求、Parity 與 Geth 的安裝建置、首次同步區塊鏈、JSON-RPC 介面，以及輕量、行動與瀏覽器錢包。
+- [第 4 章　以太坊測試網（Testnets）](https://mastering-ethereum.doge.tg/ch04.html)：以太坊測試網：用 MetaMask、Remix、Geth 與 Parity 連上測試網，Ropsten、Rinkeby、Kovan 等測試網的歷史與共識差異，以及用 Ganache 架設本地測試鏈。
+- [第 5 章　密鑰、地址](https://mastering-ethereum.doge.tg/ch05.html)：以太坊的密碼學基礎：私鑰與公鑰的產生、橢圓曲線密碼學與 secp256k1、Keccak-256 雜湊函數，以及以太坊地址格式、ICAP 與 EIP-55 大小寫校驗。
+- [第 6 章　錢包](https://mastering-ethereum.doge.tg/ch06.html)：錢包技術：非確定性與確定性錢包、階層確定性（HD）錢包（BIP-32/BIP-44）、BIP-39 助記詞與種子的產生，以及錢包的最佳實踐。
+- [第 7 章　交易 (Transactions)](https://mastering-ethereum.doge.tg/ch07.html)：以太坊交易的結構：nonce、gas、接收者、value 與 data，合約建立交易、數位簽章與公鑰恢復、離線簽名、交易的傳播與上鏈，以及多重簽名交易。
+- [第 8 章　智能合約](https://mastering-ethereum.doge.tg/ch08.html)：智能合約與 Solidity：合約的生命週期、高階語言比較、ABI、資料型別、函數與修飾符、事件、繼承、錯誤處理、gas 最佳化，以及重入等安全考量。
+- [第 9 章　開發工具，框架和庫](https://mastering-ethereum.doge.tg/ch09.html)：以太坊開發工具：用 Truffle 建立、部署與遷移合約，Embark、OpenZeppelin、zeppelin_os、dapp.tools 等工具，以及 web3.js、web3.py、web3j 等函式庫。
+- [第 10 章　Tokens](https://mastering-ethereum.doge.tg/ch10.html)：以太坊上的代幣：可互換性、交易對手風險、效用與權益型代幣，ERC20 標準與自行發行代幣，approve 與 transferFrom 流程，以及 ERC223、ERC777、ERC721。
+- [第 11 章　去中心化應用 (DApps)](https://mastering-ethereum.doge.tg/ch11.html)：去中心化應用（DApp）：由智能合約、前端與去中心化儲存組成的架構，Truffle、Embark 等 DApp 框架，以及 EthPM、CryptoKitties、Decentraland 等實際案例。
+- [第 12 章　預言機 (Oracles)](https://mastering-ethereum.doge.tg/ch12.html)：預言機（Oracle）：為什麼智能合約需要外部資料、使用案例、訂閱與請求模式、資料認證、計算型與去中心化預言機，以及 Solidity 中的預言機客戶端介面。
+- [第 13 章　gas（Gas）](https://mastering-ethereum.doge.tg/ch13.html)：gas 的運作機制：停機問題、gas 成本與 gas 價格、gas 耗盡、估算 gas、價格與交易優先順序、區塊 gas 上限由誰決定，以及 gas 退款。
+- [第 14 章　以太坊虛擬機 (The Ethereum Virtual Machine)](https://mastering-ethereum.doge.tg/ch14.html)：以太坊虛擬機（EVM）：與其他虛擬機的比較、操作碼與狀態、Solidity 如何編譯成 bytecode、執行過程與 gas 計算、部署與執行期 bytecode，以及反組譯。
+- [第 15 章　共識](https://mastering-ethereum.doge.tg/ch15.html)：區塊鏈的共識：以雜湊為基礎與以風險為基礎的度量，工作量證明、權益證明、權威證明與委託權益證明，以及以太坊的 Ethash 演算法與 Polkadot 簡介。
+- [第 16 章　Vyper: 面向合約的程式語言](https://mastering-ethereum.doge.tg/ch16.html)：Vyper 合約程式語言：與 Solidity 的差異與設計取捨、裝飾符、線上與命令列編譯、讀寫資料、ERC20 介面實作，以及 Vyper 產生的操作碼。
+- [第 17 章　節點間的通信 —— 一個簡單的視角](https://mastering-ethereum.doge.tg/ch17.html)：以太坊節點之間如何通訊：傳輸協議與加密握手、安全考量、ÐΞVp2p 基本訊息與以太坊子協議，以及節點身分與聲譽。
+- [附錄 A　以太坊標準](https://mastering-ethereum.doge.tg/ch18.html)：以太坊標準的制定流程：以太坊改進提案（EIP）與徵求意見（ERC），以及最重要的 EIP 與 ERC 一覽表。
+- [附錄 B　以太坊分叉歷史](https://mastering-ethereum.doge.tg/ch19.html)：以太坊的分叉歷史：The DAO 事件與重入漏洞、DAO 硬分叉及其時間線、以太坊與以太坊經典（ETC）的技術與理念差異，以及歷次重要分叉。
+
+## 其他
+
+- [PDF 電子書下載](https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.pdf)
+- [EPUB 電子書下載](https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.epub)
+- [翻譯專案原始碼](https://github.com/awesome-doge/ethereumbook_zh)
+- [英文原著](https://github.com/ethereumbook/ethereumbook)

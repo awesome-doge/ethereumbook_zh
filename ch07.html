@@ -1,166 +1,199 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-Hant-TW">
 <head>
-
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.26">
-<title>交易 — 精通以太坊 Mastering Ethereum 繁體中文版</title>
-<link rel="stylesheet" href="./custom.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="./rouge-github.css">
-<!-- Google Analytics 4 -->
-<script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-ZVVQYEKMPF"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-ZVVQYEKMPF');
-</script>
-
-<!-- Favicon -->
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2B21;</text></svg>" type="image/svg+xml">
-
-<!-- SEO: Title Override -->
-<meta name="title" content="精通以太坊 Mastering Ethereum — 繁體中文完整版 | 智能合約、DApps、EVM、Solidity 技術指南">
-
-<!-- SEO: Description -->
-<meta name="description" content="精通以太坊（Mastering Ethereum）繁體中文版，由 Andreas M. Antonopoulos 和 Gavin Wood 著作。完整涵蓋以太坊基礎、智能合約、Solidity、DApps、EVM、Gas、密鑰管理、錢包、交易、預言機、共識機制等 19 章內容。免費線上閱讀，提供 PDF 和 EPUB 電子書下載。">
-<meta name="keywords" content="以太坊, Ethereum, 智能合約, Smart Contract, Solidity, DApp, EVM, 區塊鏈, Blockchain, 加密貨幣, Web3, DeFi, 精通以太坊, Mastering Ethereum, 繁體中文, 教學, 技術指南">
-<meta name="author" content="Andreas M. Antonopoulos, Gavin Wood, Dr. Awesome Doge">
-
-<!-- SEO: Canonical -->
-
-
-<!-- SEO: Language Alternatives -->
-<link rel="alternate" hreflang="zh-Hant" href="https://mastering-ethereum.doge.tg/">
-<link rel="alternate" hreflang="en" href="https://github.com/ethereumbook/ethereumbook">
-
-<!-- Google Fonts: Noto Sans TC -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap">
-
-<!-- Open Graph -->
-<meta property="og:type" content="book">
-<meta property="og:title" content="精通以太坊 Mastering Ethereum — 繁體中文完整版">
-<meta property="og:description" content="以太坊完整技術指南，涵蓋智能合約、Solidity、DApps、EVM 等 19 章。免費線上閱讀 + PDF/EPUB 下載。">
-<meta property="og:image" content="https://mastering-ethereum.doge.tg/images/cover.png">
-<meta property="og:image:width" content="1050">
-<meta property="og:image:height" content="1378">
-<meta property="og:image:alt" content="Mastering Ethereum 書籍封面">
-<meta property="og:url" content="https://mastering-ethereum.doge.tg/">
-<meta property="og:site_name" content="精通以太坊 繁體中文版">
-<meta property="og:locale" content="zh_TW">
-<meta property="book:author" content="Andreas M. Antonopoulos">
-<meta property="book:author" content="Gavin Wood">
-<meta property="book:tag" content="Ethereum">
-<meta property="book:tag" content="Blockchain">
-<meta property="book:tag" content="Smart Contracts">
-<meta property="book:tag" content="Solidity">
-
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="精通以太坊 Mastering Ethereum — 繁體中文完整版">
-<meta name="twitter:description" content="以太坊完整技術指南，涵蓋智能合約、Solidity、DApps、EVM 等 19 章。免費線上閱讀 + PDF/EPUB 下載。">
-<meta name="twitter:image" content="https://mastering-ethereum.doge.tg/images/cover.png">
-<meta name="twitter:image:alt" content="Mastering Ethereum 書籍封面">
-
-<!-- JSON-LD Structured Data -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Book",
-  "name": "精通以太坊 Mastering Ethereum 繁體中文版",
-  "alternateName": "Mastering Ethereum: Building Smart Contracts and DApps",
-  "author": [
-    {
-      "@type": "Person",
-      "name": "Andreas M. Antonopoulos",
-      "url": "https://aantonop.com/"
-    },
-    {
-      "@type": "Person",
-      "name": "Gavin Wood"
-    }
-  ],
-  "translator": {
-    "@type": "Person",
-    "name": "Dr. Awesome Doge"
-  },
-  "inLanguage": "zh-Hant",
-  "url": "https://mastering-ethereum.doge.tg/",
-  "image": "https://mastering-ethereum.doge.tg/images/cover.png",
-  "description": "以太坊完整技術指南繁體中文版，涵蓋智能合約、Solidity、DApps、EVM、Gas、密鑰管理等 19 章內容。",
-  "genre": ["Technology", "Blockchain", "Cryptocurrency"],
-  "bookFormat": "https://schema.org/EBook",
-  "numberOfPages": 257,
-  "publisher": {
-    "@type": "Organization",
-    "name": "O'Reilly Media"
-  },
-  "license": "https://creativecommons.org/licenses/by-nc-nd/4.0/",
-  "isAccessibleForFree": true,
-  "encoding": [
-    {
-      "@type": "MediaObject",
-      "encodingFormat": "application/pdf",
-      "contentUrl": "https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.pdf"
-    },
-    {
-      "@type": "MediaObject",
-      "encodingFormat": "application/epub+zip",
-      "contentUrl": "https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.epub"
-    }
-  ],
-  "about": [
-    {"@type": "Thing", "name": "Ethereum"},
-    {"@type": "Thing", "name": "Smart Contracts"},
-    {"@type": "Thing", "name": "Blockchain"},
-    {"@type": "Thing", "name": "Solidity"},
-    {"@type": "Thing", "name": "Decentralized Applications"},
-    {"@type": "Thing", "name": "EVM"}
-  ]
-}
-</script>
-
-<!-- BreadcrumbList for search results -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "精通以太坊",
-      "item": "https://mastering-ethereum.doge.tg/"
-    }
-  ]
-}
-</script>
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>第 7 章　交易 (Transactions)｜精通以太坊繁體中文版</title>
+<meta name="description" content="以太坊交易的結構：nonce、gas、接收者、value 與 data，合約建立交易、數位簽章與公鑰恢復、離線簽名、交易的傳播與上鏈，以及多重簽名交易。">
 <link rel="canonical" href="https://mastering-ethereum.doge.tg/ch07.html">
-<meta name="description" content="精通以太坊：交易。以太坊完整技術指南繁體中文版，免費線上閱讀。">
-<style>
-.chapter-nav{display:flex;justify-content:space-between;align-items:center;padding:1rem 0;border-top:1px solid #e1e4e8;border-bottom:1px solid #e1e4e8;margin:2rem 0;gap:0.8rem;flex-wrap:wrap}
-.chapter-nav a{color:#2980b9;text-decoration:none;font-size:0.9rem;padding:0.4rem 0.8rem;border-radius:4px;transition:background 0.2s}
-.chapter-nav a:hover{background:#f0f3f6}
-.chapter-nav .nav-prev{text-align:left;max-width:40%}
-.chapter-nav .nav-next{text-align:right;max-width:40%}
-.chapter-nav .nav-home{font-weight:600}
-@media(max-width:768px){.chapter-nav{font-size:0.82rem}.chapter-nav a{padding:0.3rem 0.5rem}}
-</style>
+<meta name="author" content="Andreas M. Antonopoulos, Gavin Wood">
+<meta name="theme-color" content="#f8f9fc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14151b" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="sitemap" type="application/xml" href="/sitemap.xml">
+<meta property="og:site_name" content="精通以太坊繁體中文版">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第 7 章　交易 (Transactions)｜精通以太坊繁體中文版">
+<meta property="og:description" content="以太坊交易的結構：nonce、gas、接收者、value 與 data，合約建立交易、數位簽章與公鑰恢復、離線簽名、交易的傳播與上鏈，以及多重簽名交易。">
+<meta property="og:url" content="https://mastering-ethereum.doge.tg/ch07.html">
+<meta property="og:image" content="https://mastering-ethereum.doge.tg/assets/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="zh_TW">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="prev" href="/ch06.html">
+<link rel="next" href="/ch08.html">
+<script>
+(function(){try{var d=document.documentElement,s=localStorage,t=s.getItem('me-theme'),z=s.getItem('me-size'),f=s.getItem('me-font');if(t&&t!=='auto')d.setAttribute('data-theme',t);if(z)d.style.setProperty('--fs',z+'px');if(f)d.setAttribute('data-font',f)}catch(e){}})();
+</script>
+<link rel="stylesheet" href="/assets/site.css?v=8381e0abca">
+<link rel="stylesheet" href="/assets/code.css?v=c94d007c0c">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous" media="print" onload="this.media='all'">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+<script defer src="/assets/site.js?v=fc9557d36e"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Chapter","@id":"https://mastering-ethereum.doge.tg/ch07.html#chapter","name":"第 7 章　交易 (Transactions)","headline":"第 7 章　交易 (Transactions)｜精通以太坊","description":"以太坊交易的結構：nonce、gas、接收者、value 與 data，合約建立交易、數位簽章與公鑰恢復、離線簽名、交易的傳播與上鏈，以及多重簽名交易。","url":"https://mastering-ethereum.doge.tg/ch07.html","inLanguage":"zh-TW","position":9,"dateModified":"2026-11-03T12:29:30+08:00","isPartOf":{"@id":"https://mastering-ethereum.doge.tg/#book"},"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true},{"@type":"Book","@id":"https://mastering-ethereum.doge.tg/#book","name":"精通以太坊：打造智能合約與 DApp","alternateName":["Mastering Ethereum: Building Smart Contracts and DApps","精通以太坊 Mastering Ethereum"],"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"inLanguage":"zh-TW","publisher":{"@type":"Organization","name":"O'Reilly Media"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true,"url":"https://mastering-ethereum.doge.tg/","image":"https://mastering-ethereum.doge.tg/assets/og-cover.png","translationOfWork":{"@type":"Book","name":"Mastering Ethereum: Building Smart Contracts and DApps","inLanguage":"en","url":"https://github.com/ethereumbook/ethereumbook"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"精通以太坊","item":"https://mastering-ethereum.doge.tg/"},{"@type":"ListItem","position":2,"name":"第 7 章　交易 (Transactions)","item":"https://mastering-ethereum.doge.tg/ch07.html"}]}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZVVQYEKMPF"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-ZVVQYEKMPF');</script>
 </head>
-<body class="book">
-<div id="header">
-<h1><a href="index.html" style="color:inherit;text-decoration:none">精通以太坊 Mastering Ethereum 繁體中文版</a></h1>
+<body class="is-chapter">
+<a class="skip-link" href="#main">跳到主要內容</a>
+<header class="topbar">
+  <button class="icon-btn" type="button" data-action="toggle-nav" aria-controls="sidebar" aria-expanded="false" aria-label="開啟目錄">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+  </button>
+  <a class="brand" href="/" aria-label="精通以太坊 首頁">
+    <span class="brand-mark" aria-hidden="true">Ξ</span><span class="brand-text">精通以太坊</span>
+  </a>
+  <p class="topbar-title"><span class="topbar-label">第 7 章</span>交易 (Transactions)</p>
+  <div class="topbar-actions">
+    <button class="icon-btn search-btn" type="button" data-action="search" aria-label="搜尋全書（快捷鍵 /）">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <span class="search-btn-text">搜尋</span><kbd>/</kbd>
+    </button>
+    <button class="icon-btn" type="button" data-action="settings" aria-controls="settings" aria-expanded="false" aria-label="閱讀設定">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19 9 5l5 14M5.8 14.5h6.4M15 19l3-8 3 8M15.9 16.5h4.2"/></svg>
+    </button>
+  </div>
+  <div class="progress" aria-hidden="true"><span></span></div>
+</header>
+
+<div class="settings" id="settings" hidden>
+  <div class="settings-group" role="group" aria-label="主題">
+    <span class="settings-label">主題</span>
+    <div class="seg">
+      <button type="button" data-theme-set="auto">自動</button>
+      <button type="button" data-theme-set="light">淺色</button>
+      <button type="button" data-theme-set="sepia">護眼</button>
+      <button type="button" data-theme-set="dark">深色</button>
+    </div>
+  </div>
+  <div class="settings-group" role="group" aria-label="字級">
+    <span class="settings-label">字級</span>
+    <div class="seg">
+      <button type="button" data-size="-1" aria-label="縮小字級">A−</button>
+      <output class="size-value" aria-live="polite">18</output>
+      <button type="button" data-size="1" aria-label="放大字級">A+</button>
+    </div>
+  </div>
+  <div class="settings-group" role="group" aria-label="字型">
+    <span class="settings-label">字型</span>
+    <div class="seg">
+      <button type="button" data-font-set="sans">黑體</button>
+      <button type="button" data-font-set="serif">明體</button>
+    </div>
+  </div>
 </div>
-<div id="content">
-<nav class="chapter-nav"><a href="ch06.html" class="nav-prev">&larr; 錢包</a><a href="index.html" class="nav-home">首頁</a><a href="ch08.html" class="nav-next">智能合約 &rarr;</a></nav>
+
+<div class="shell">
+  <nav class="sidebar" id="sidebar" aria-label="全書目錄">
+    <div class="sidebar-head">
+      <a href="/" class="sidebar-book">精通以太坊</a>
+      <span class="sidebar-sub">繁體中文版</span>
+    </div>
+    <ol class="book-toc">
+      <li>
+        <a href="/preface.html"><span class="toc-label">前言</span></a>
+      </li>
+      <li>
+        <a href="/glossary.html"><span class="toc-label">術語表</span>快速術語表</a>
+      </li>
+      <li>
+        <a href="/ch01.html"><span class="toc-label">第 1 章</span>什麼是以太坊</a>
+      </li>
+      <li>
+        <a href="/ch02.html"><span class="toc-label">第 2 章</span>以太坊基礎</a>
+      </li>
+      <li>
+        <a href="/ch03.html"><span class="toc-label">第 3 章</span>以太坊客戶端</a>
+      </li>
+      <li>
+        <a href="/ch04.html"><span class="toc-label">第 4 章</span>以太坊測試網（Testnets）</a>
+      </li>
+      <li>
+        <a href="/ch05.html"><span class="toc-label">第 5 章</span>密鑰、地址</a>
+      </li>
+      <li>
+        <a href="/ch06.html"><span class="toc-label">第 6 章</span>錢包</a>
+      </li>
+      <li class="is-current">
+        <a href="/ch07.html" aria-current="page"><span class="toc-label">第 7 章</span>交易 (Transactions)</a>
+        <ol class="section-toc">
+          <li><a href="#tx_struct">7.1. 交易的結構</a></li>
+          <li><a href="#tx_gas">7.2. 交易gas</a></li>
+          <li><a href="#tx_recipient">7.3. 交易的接收者</a></li>
+          <li><a href="#tx_value_data">7.4. 交易的價值和數據</a></li>
+          <li><a href="#value_EOA_contracts">7.5. 將value傳遞給EOA和合約</a></li>
+          <li><a href="#data_EOA">7.6. 將數據傳輸到EOA或合約</a></li>
+          <li><a href="#contract_reg">7.7. 特殊交易：合約註冊</a></li>
+          <li><a href="#digital_sign">7.8. 數位簽章</a></li>
+          <li><a href="#sign_prefix">7.9. 簽名前綴值（v）和公鑰恢復</a></li>
+          <li><a href="#offline_sign">7.10. 分離簽名和傳輸（離線簽名）</a></li>
+          <li><a href="#tx_propagation">7.11. 交易傳播</a></li>
+          <li><a href="#chain_record">7.12. 記錄到區塊鏈中</a></li>
+          <li><a href="#_多重簽名multisig交易">7.13. 多重簽名（multisig）交易</a></li>
+        </ol>
+      </li>
+      <li>
+        <a href="/ch08.html"><span class="toc-label">第 8 章</span>智能合約</a>
+      </li>
+      <li>
+        <a href="/ch09.html"><span class="toc-label">第 9 章</span>開發工具，框架和庫</a>
+      </li>
+      <li>
+        <a href="/ch10.html"><span class="toc-label">第 10 章</span>Tokens</a>
+      </li>
+      <li>
+        <a href="/ch11.html"><span class="toc-label">第 11 章</span>去中心化應用 (DApps)</a>
+      </li>
+      <li>
+        <a href="/ch12.html"><span class="toc-label">第 12 章</span>預言機 (Oracles)</a>
+      </li>
+      <li>
+        <a href="/ch13.html"><span class="toc-label">第 13 章</span>gas（Gas）</a>
+      </li>
+      <li>
+        <a href="/ch14.html"><span class="toc-label">第 14 章</span>以太坊虛擬機 (The Ethereum Virtual Machine)</a>
+      </li>
+      <li>
+        <a href="/ch15.html"><span class="toc-label">第 15 章</span>共識</a>
+      </li>
+      <li>
+        <a href="/ch16.html"><span class="toc-label">第 16 章</span>Vyper: 面向合約的程式語言</a>
+      </li>
+      <li>
+        <a href="/ch17.html"><span class="toc-label">第 17 章</span>節點間的通信 —— 一個簡單的視角</a>
+      </li>
+      <li>
+        <a href="/ch18.html"><span class="toc-label">附錄 A</span>以太坊標準</a>
+      </li>
+      <li>
+        <a href="/ch19.html"><span class="toc-label">附錄 B</span>以太坊分叉歷史</a>
+      </li>
+    </ol>
+    <div class="sidebar-foot">
+      <a href="https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.pdf" rel="noopener">下載 PDF 電子書</a>
+      <a href="https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.epub" rel="noopener">下載 EPUB 電子書</a>
+      <a href="https://github.com/awesome-doge/ethereumbook_zh" rel="noopener">GitHub 原始碼</a>
+    </div>
+  </nav>
+  <div class="scrim" data-action="close-nav" hidden></div>
+
+  <main id="main" class="main" tabindex="-1">
+<article class="chapter" aria-labelledby="tx_chapter">
+  <nav class="breadcrumb" aria-label="導覽路徑"><a href="/">精通以太坊</a><span aria-hidden="true">/</span><span>第 7 章</span></nav>
+  <header class="chapter-head">
+    <p class="chapter-label">第 7 章</p>
+    <h1 id="tx_chapter">交易 (Transactions)</h1>
+    <p class="chapter-meta">約 31 分鐘閱讀 · 13 個小節</p>
+  </header>
+  <div class="prose">
 <div class="sect1">
-<h2 id="tx_chapter">7. 交易 (Transactions)</h2>
+
 <div class="sectionbody">
 <div class="paragraph">
 <p>交易 (transaction) 是由外部擁有帳戶 (EOA) 發起的簽名訊息，由以太坊網路發送，並紀錄以太坊區塊鏈上。在這個基本定義背後，有很多令人驚訝和著迷的細節。看待交易的另一種方式是，它是唯一能觸發狀態改或是或促使合約在 EVM 中執行的東西。以太坊是一個全域單例 (global singleton) 的狀態機(state machine)，交易是唯一能夠轉動這狀態機去改變狀態的方法。合約無法自行運行。以太坊不會在後臺運行。所有的狀態改變與執行皆始於交易。</p>
@@ -169,7 +202,7 @@ gtag('config', 'G-ZVVQYEKMPF');
 <p>在本節中，我們將剖析交易，展示它們的工作方式，並瞭解詳細資訊。請注意，本章的大部分內容針對的是那些有興趣於使用低階的方式管理自己的交易的人，也許是因為他們正在撰寫錢包的應用程序; 您可能會發現有趣的細節，但如果您對使用現有的錢包應用程序感到滿意就不必擔心這一點！</p>
 </div>
 <div class="sect2">
-<h3 id="tx_struct">7.1. 交易的結構</h3>
+<h2 id="tx_struct"><a class="anchor" href="#tx_struct" aria-label="本節連結"></a>7.1. 交易的結構</h2>
 <div class="paragraph">
 <p>首先讓我們來看看交易的基本結構，因為它是在以太坊網路上進行序列化和傳輸的。接收序列化交易的每個客戶端和應用程式將使用其自己的內部資料結構將其儲存在記憶體中，還會使用網路序列化交易本身中不存在的元數據進行修飾。交易的網路序列化是交易結構的唯一通用標準。</p>
 </div>
@@ -209,7 +242,7 @@ gtag('config', 'G-ZVVQYEKMPF');
 </dl>
 </div>
 <div class="paragraph">
-<p>交易消息的結構使用遞迴長度前綴（RLP）編碼方案（參見 <a href="https://ethereum.org/developers/docs/data-structures-and-encoding/rlp/">RLP 規範</a>）進行序列化，該方案是專門為以太坊中準確和字節完美的數據序列化而創建的。以太坊中的所有數字都被編碼為大端序整數，其長度為8位的倍數。</p>
+<p>交易消息的結構使用遞迴長度前綴（RLP）編碼方案（參見 <a href="https://ethereum.org/developers/docs/data-structures-and-encoding/rlp/" rel="noopener" target="_blank">RLP 規範</a>）進行序列化，該方案是專門為以太坊中準確和字節完美的數據序列化而創建的。以太坊中的所有數字都被編碼為大端序整數，其長度為8位的倍數。</p>
 </div>
 <div class="paragraph">
 <p>請注意，欄位的標籤（“to”，“start gas”等）在這裡是為清楚起見而顯示，但不是包含欄位值的RLP編碼交易序列化數據的一部分。通常，RLP不包含任何欄位分隔符或標籤。RLP的長度前綴用於標識每個欄位的長度。因此，超出定義長度的任何內容都屬於結構中的下一個欄位。</p>
@@ -221,9 +254,9 @@ gtag('config', 'G-ZVVQYEKMPF');
 <p>例如，你可能會注意到沒有表示發起人EOA的地址的“<code>from</code>”數據。EOA的公鑰可以很容易地從ECDSA簽名的<code>v,r,s</code>組成部分中派生出來。EOA的地址又可以很容易地從公鑰中派生出來。當你看到顯示“from”欄位的交易時，是該交易所用的軟體添加了該欄位。客戶端軟體經常添加到交易中的其他元數據包括塊編號（被挖掘之後生成）和交易ID（計算出的雜湊）。同樣，這些數據來源於交易，但不是交易資訊本身的一部分。</p>
 </div>
 <div class="sect3">
-<h4 id="tx_nonce">7.1.1. 交易的隨機數（nonce）</h4>
+<h3 id="tx_nonce"><a class="anchor" href="#tx_nonce" aria-label="本節連結"></a>7.1.1. 交易的隨機數（nonce）</h3>
 <div class="paragraph">
-<p>nonce是交易中最重要和最少被理解的組成部分之一。黃皮書中的定義（見 <a href="https://ethereum.github.io/yellowpaper/paper.pdf">以太坊黃皮書</a>）寫道：</p>
+<p>nonce是交易中最重要和最少被理解的組成部分之一。黃皮書中的定義（見 <a href="https://ethereum.github.io/yellowpaper/paper.pdf" rel="noopener" target="_blank">以太坊黃皮書</a>）寫道：</p>
 </div>
 <div class="paragraph">
 <p>nonce：與此地址發送的交易數量相等的標量值，或者，對於具有關聯程式碼的帳戶，表示此帳戶創建的合約數量。</p>
@@ -238,7 +271,7 @@ gtag('config', 'G-ZVVQYEKMPF');
 <p>使用nonce確保所有節點計算相同的餘額，並正確地對交易進行排序，相當於比特幣中用於防止“雙重支付”的機制。但是，因為以太坊跟蹤賬戶餘額並且不會單獨跟蹤獨立的幣（在比特幣中稱為UTXO），所以只有在賬戶餘額計算錯誤時才會發生“雙重支付”。nonce機制可以防止這種情況發生。</p>
 </div>
 <div class="sect4">
-<h5 id="tracking_nonce">跟蹤nonce</h5>
+<h4 id="tracking_nonce"><a class="anchor" href="#tracking_nonce" aria-label="本節連結"></a>跟蹤nonce</h4>
 <div class="paragraph">
 <p>實際上，nonce是源自帳戶的 <em>已確認</em>（已開採）交易數量的最新計數。要找到nonce是什麼，你可以詢問區塊鏈，例如通過web3界面：</p>
 </div>
@@ -251,7 +284,7 @@ gtag('config', 'G-ZVVQYEKMPF');
 </div>
 <div class="admonitionblock tip">
 <table>
-<tr>
+<tbody><tr>
 <td class="icon">
 <i class="fa icon-tip" title="提示"></i>
 </td>
@@ -261,7 +294,7 @@ gtag('config', 'G-ZVVQYEKMPF');
 </div>
 </td>
 </tr>
-</table>
+</tbody></table>
 </div>
 <div class="paragraph">
 <p>你的錢包將跟蹤其管理的每個地址的nonce。這很簡單，只要你只是從單一點發起交易即可。假設你正在編寫自己的錢包軟體或其他一些發起交易的應用程式。你如何跟蹤nonce？</p>
@@ -308,7 +341,7 @@ web3.eth.getTransactionCount("0x9e713963a92c02317a681b9bb3065a8249de124f", "pend
 </div>
 </div>
 <div class="sect4">
-<h5 id="gaps_nonce">nonce的間隔，重複的nonce和確認</h5>
+<h4 id="gaps_nonce"><a class="anchor" href="#gaps_nonce" aria-label="本節連結"></a>nonce的間隔，重複的nonce和確認</h4>
 <div class="paragraph">
 <p>如果你正在以編程方式創建交易，跟蹤nonce是十分重要的，特別是如果你同時從多個獨立進程執行此操作。</p>
 </div>
@@ -329,7 +362,7 @@ web3.eth.getTransactionCount("0x9e713963a92c02317a681b9bb3065a8249de124f", "pend
 </div>
 </div>
 <div class="sect4">
-<h5 id="concurrency">併發，交易的發起和隨機數</h5>
+<h4 id="concurrency"><a class="anchor" href="#concurrency" aria-label="本節連結"></a>併發，交易的發起和隨機數</h4>
 <div class="paragraph">
 <p>併發是計算機科學的一個複雜方面，有時候它會突然出現，特別是在像Ethereum這樣的去中心化/分佈式實時系統中。</p>
 </div>
@@ -352,9 +385,9 @@ web3.eth.getTransactionCount("0x9e713963a92c02317a681b9bb3065a8249de124f", "pend
 </div>
 </div>
 <div class="sect2">
-<h3 id="tx_gas">7.2. 交易gas</h3>
+<h2 id="tx_gas"><a class="anchor" href="#tx_gas" aria-label="本節連結"></a>7.2. 交易gas</h2>
 <div class="paragraph">
-<p>我們在 <a href="ch13.html#gas">gas（Gas）</a> 中詳細討論<em>gas</em>。但是，讓我們介紹有關交易的 <code>gasPrice</code> 和 <code>startGas</code> 欄位的一些基本知識。</p>
+<p>我們在 <a href="/ch13.html">gas（Gas）</a> 中詳細討論<em>gas</em>。但是，讓我們介紹有關交易的 <code>gasPrice</code> 和 <code>startGas</code> 欄位的一些基本知識。</p>
 </div>
 <div class="paragraph">
 <p>gas是以太坊的燃料。gas不是ether，它是獨立的虛擬貨幣，有相對於ether的匯率。以太坊使用gas來控制交易可以花費的資源量，因為它將在全球數千臺計算機上處理。開放式（圖靈完備的）計算模型需要某種形式的計量，以避免拒絕服務攻擊或無意中的資源吞噬交易。</p>
@@ -369,14 +402,14 @@ web3.eth.getTransactionCount("0x9e713963a92c02317a681b9bb3065a8249de124f", "pend
 <p>網站 <code>ethgasstation.info</code> 提供有關以太坊主網路當前gas價格以及其他相關gas指標的資訊：</p>
 </div>
 <div class="paragraph">
-<p><a href="https://ethgasstation.info/" class="bare">https://ethgasstation.info/</a></p>
+<p><a href="https://ethgasstation.info/" class="bare" rel="noopener" target="_blank">https://ethgasstation.info/</a></p>
 </div>
 <div class="paragraph">
 <p>錢包可以在他們發起的交易中調整 <code>gasPrice</code>，以更快地確認（挖掘）交易。<code>gasPrice</code> 越高，交易可能被驗證的速度越快。相反，較低優先級的交易可能會降低他們願意為gas支付的價格，導致確認速度減慢。可以設置的最低<code>gasPrice</code> 為零，這意味著免費的交易。在區塊空間需求低的時期，這些交易將被開採。</p>
 </div>
 <div class="admonitionblock tip">
 <table>
-<tr>
+<tbody><tr>
 <td class="icon">
 <i class="fa icon-tip" title="提示"></i>
 </td>
@@ -386,7 +419,7 @@ web3.eth.getTransactionCount("0x9e713963a92c02317a681b9bb3065a8249de124f", "pend
 </div>
 </td>
 </tr>
-</table>
+</tbody></table>
 </div>
 <div id="gas_price_suggestion" class="paragraph">
 <p>web3界面通過計算幾個區塊的中間價格來提供gasPrice建議：</p>
@@ -398,7 +431,7 @@ truffle(mainnet)&gt; null BigNumber { s: 1, e: 10, c: [ 10000000000 ] }</pre>
 </div>
 </div>
 <div id="calc_gas_price" class="paragraph">
-<p>與gas有關的第二個重要領域是 <code>startGas</code>。這在 <a href="ch13.html#gas">gas（Gas）</a> 中有更詳細的解釋。簡單地說，<code>startGas</code> 定義交易發起人願意花費多少單位完成交易。對於簡單付款，意味著將ether從一個EOA轉移到另一個EOA的交易，所需的gas量固定為21,000個gas單位。要計算需要花費多少ether，你需要將你願意支付的 <code>gasPrice</code> 乘以21,000：</p>
+<p>與gas有關的第二個重要領域是 <code>startGas</code>。這在 <a href="/ch13.html">gas（Gas）</a> 中有更詳細的解釋。簡單地說，<code>startGas</code> 定義交易發起人願意花費多少單位完成交易。對於簡單付款，意味著將ether從一個EOA轉移到另一個EOA的交易，所需的gas量固定為21,000個gas單位。要計算需要花費多少ether，你需要將你願意支付的 <code>gasPrice</code> 乘以21,000：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -417,7 +450,7 @@ truffle(mainnet)&gt; 210000000000000</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="tx_recipient">7.3. 交易的接收者</h3>
+<h2 id="tx_recipient"><a class="anchor" href="#tx_recipient" aria-label="本節連結"></a>7.3. 交易的接收者</h2>
 <div class="paragraph">
 <p>交易的收件人在<code>to</code>欄位中指定。這包含一個20字節的以太坊地址。地址可以是EOA或合約地址。</p>
 </div>
@@ -426,7 +459,7 @@ truffle(mainnet)&gt; 210000000000000</pre>
 </div>
 <div class="admonitionblock warning">
 <table>
-<tr>
+<tbody><tr>
 <td class="icon">
 <i class="fa icon-warning" title="警告"></i>
 </td>
@@ -436,14 +469,14 @@ truffle(mainnet)&gt; 210000000000000</pre>
 </div>
 </td>
 </tr>
-</table>
+</tbody></table>
 </div>
 <div id="burning_ether" class="paragraph">
-<p>發送一個交易到一個無效的地址會<em>燃燒</em>發送的ether，使其永遠不可訪問（不可花費），因為不能生成用來使用它的簽名。假定地址驗證發生在用戶界面級別（參見 <a href="ch05.html#eip-55">使用大寫校驗和的十六進制編碼 (EIP-55)</a> 或 <a href="ch05.html#icap">互換客戶端地址協議 Inter Exchange Client Address Protocol (ICAP)</a>）。事實上，有很多合理的理由來燃燒ether，包括作為遊戲理論，來抑制支付通道和其他智能合約作弊。</p>
+<p>發送一個交易到一個無效的地址會<em>燃燒</em>發送的ether，使其永遠不可訪問（不可花費），因為不能生成用來使用它的簽名。假定地址驗證發生在用戶界面級別（參見 <a href="/ch05.html#eip-55">使用大寫校驗和的十六進制編碼 (EIP-55)</a> 或 <a href="/ch05.html#icap">互換客戶端地址協議 Inter Exchange Client Address Protocol (ICAP)</a>）。事實上，有很多合理的理由來燃燒ether，包括作為遊戲理論，來抑制支付通道和其他智能合約作弊。</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="tx_value_data">7.4. 交易的價值和數據</h3>
+<h2 id="tx_value_data"><a class="anchor" href="#tx_value_data" aria-label="本節連結"></a>7.4. 交易的價值和數據</h2>
 <div class="paragraph">
 <p>交易的主要“負載”包含在兩個欄位中：<code>value</code> 和 <code>data</code>。交易可以同時具有value和data，只有value，只有data，或沒有value和data。所有四種組合都是有效的。</p>
 </div>
@@ -464,7 +497,7 @@ truffle(mainnet)&gt; 210000000000000</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="tx_value_nodata">7.4.1. 有value的交易（支付），沒有data</h4>
+<h3 id="tx_value_nodata"><a class="anchor" href="#tx_value_nodata" aria-label="本節連結"></a>7.4.1. 有value的交易（支付），沒有data</h3>
 <div id="tx_value_nodata_src" class="listingblock">
 <div class="title">Value, no data</div>
 <div class="content">
@@ -476,13 +509,13 @@ truffle(mainnet)&gt; 210000000000000</pre>
 </div>
 <div id="parity_txdemo_value_nodata" class="imageblock">
 <div class="content">
-<img src="images/parity_txdemo_value_nodata.png" alt="Parity wallet showing a transaction with value, but no data">
+<picture><source type="image/webp" srcset="/images/parity_txdemo_value_nodata.webp"><img src="/images/parity_txdemo_value_nodata.png" alt="Parity wallet showing a transaction with value, but no data" width="851" height="200" loading="lazy" decoding="async"></picture>
 </div>
-<div class="title">圖 33. Parity wallet showing a transaction with value, but no data</div>
+<div class="title">圖 7-1. Parity wallet showing a transaction with value, but no data</div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="tx_value_data_payment">7.4.2. 有value（支付）data的交易</h4>
+<h3 id="tx_value_data_payment"><a class="anchor" href="#tx_value_data_payment" aria-label="本節連結"></a>7.4.2. 有value（支付）data的交易</h3>
 <div id="tx_value_data_src" class="listingblock">
 <div class="title">Value and data</div>
 <div class="content">
@@ -494,13 +527,13 @@ truffle(mainnet)&gt; 210000000000000</pre>
 </div>
 <div id="parity_txdemo_value_data" class="imageblock">
 <div class="content">
-<img src="images/parity_txdemo_value_data.png" alt="Parity wallet showing a transaction with value and data">
+<picture><source type="image/webp" srcset="/images/parity_txdemo_value_data.webp"><img src="/images/parity_txdemo_value_data.png" alt="Parity wallet showing a transaction with value and data" width="847" height="223" loading="lazy" decoding="async"></picture>
 </div>
-<div class="title">圖 34. Parity wallet showing a transaction with value and data</div>
+<div class="title">圖 7-2. Parity wallet showing a transaction with value and data</div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="tx_novalue_nodata">7.4.3. 0 value 的交易，只有數據</h4>
+<h3 id="tx_novalue_nodata"><a class="anchor" href="#tx_novalue_nodata" aria-label="本節連結"></a>7.4.3. 0 value 的交易，只有數據</h3>
 <div id="tx_novalue_nodata_src" class="listingblock">
 <div class="title">No value, only data</div>
 <div class="content">
@@ -512,13 +545,13 @@ truffle(mainnet)&gt; 210000000000000</pre>
 </div>
 <div id="parity_txdemo_novalue_data" class="imageblock">
 <div class="content">
-<img src="images/parity_txdemo_novalue_data.png" alt="Parity wallet showing a transaction with no value, only data">
+<picture><source type="image/webp" srcset="/images/parity_txdemo_novalue_data.webp"><img src="/images/parity_txdemo_novalue_data.png" alt="Parity wallet showing a transaction with no value, only data" width="845" height="222" loading="lazy" decoding="async"></picture>
 </div>
-<div class="title">圖 35. Parity wallet showing a transaction with no value, only data</div>
+<div class="title">圖 7-3. Parity wallet showing a transaction with no value, only data</div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="tx_novalue_data">7.4.4. 既沒有value（支付）也沒有data的交易</h4>
+<h3 id="tx_novalue_data"><a class="anchor" href="#tx_novalue_data" aria-label="本節連結"></a>7.4.4. 既沒有value（支付）也沒有data的交易</h3>
 <div id="tx_novalue_nodata_src_2" class="listingblock">
 <div class="title">No value, no data</div>
 <div class="content">
@@ -530,14 +563,14 @@ truffle(mainnet)&gt; 210000000000000</pre>
 </div>
 <div id="parity_txdemo_novalue_nodata" class="imageblock">
 <div class="content">
-<img src="images/parity_txdemo_novalue_nodata.png" alt="Parity wallet showing a transaction with no value, and no data">
+<picture><source type="image/webp" srcset="/images/parity_txdemo_novalue_nodata.webp"><img src="/images/parity_txdemo_novalue_nodata.png" alt="Parity wallet showing a transaction with no value, and no data" width="845" height="195" loading="lazy" decoding="async"></picture>
 </div>
-<div class="title">圖 36. Parity wallet showing a transaction with no value, and no data</div>
+<div class="title">圖 7-4. Parity wallet showing a transaction with no value, and no data</div>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="value_EOA_contracts">7.5. 將value傳遞給EOA和合約</h3>
+<h2 id="value_EOA_contracts"><a class="anchor" href="#value_EOA_contracts" aria-label="本節連結"></a>7.5. 將value傳遞給EOA和合約</h2>
 <div class="paragraph">
 <p>當你構建包含 <code>value</code> 的以太坊交易時，它等同於<em>payment</em>。根據目的地址是否為合約，這些交易行為會有所不同。</p>
 </div>
@@ -552,7 +585,7 @@ truffle(mainnet)&gt; 210000000000000</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="data_EOA">7.6. 將數據傳輸到EOA或合約</h3>
+<h2 id="data_EOA"><a class="anchor" href="#data_EOA" aria-label="本節連結"></a>7.6. 將數據傳輸到EOA或合約</h2>
 <div class="paragraph">
 <p>當你的交易包含<code>data</code>時，它很可能是發送到合約地址的。這並不意味著你無法向EOA發送<code>data</code>。事實上，你可以做到這一點。但是，在這種情況下，<code>data</code>的解釋取決於你用來訪問EOA的錢包。大多數錢包會忽略它們控制的EOA交易中收到的任何<code>data</code>。將來，可能會出現允許錢包以合約的方式解釋<code>data</code>編碼的標準，從而允許交易調用在用戶錢包內運行的函數。關鍵的區別在於，與合約執行不同，EOA對data的任何解釋都不受以太坊共識規則的約束。</p>
 </div>
@@ -575,7 +608,7 @@ truffle(mainnet)&gt; 210000000000000</pre>
 </dl>
 </div>
 <div id="withdraw_function_src" class="paragraph">
-<p>我們來看一個簡單的例子，它來自我們的<a href="ch02.html#solidity_faucet_example">Faucet.sol : A Solidity contract implementing a faucet</a>。在<code>Faucet.sol</code>中，我們為取款定義了一個函數：</p>
+<p>我們來看一個簡單的例子，它來自我們的<a href="/ch02.html#solidity_faucet_example">Faucet.sol : A Solidity contract implementing a faucet</a>。在<code>Faucet.sol</code>中，我們為取款定義了一個函數：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -626,7 +659,7 @@ truffle(mainnet)&gt; 210000000000000</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="contract_reg">7.7. 特殊交易：合約註冊</h3>
+<h2 id="contract_reg"><a class="anchor" href="#contract_reg" aria-label="本節連結"></a>7.7. 特殊交易：合約註冊</h2>
 <div class="paragraph">
 <p>有一種特殊的帶有data，沒有value的交易。表示註冊一個新的合約。合約登記交易被發送到一個特殊的目的地地址，即零地址。簡而言之，合約註冊交易中的<code>to</code>欄位包含地址 <code>0x0</code>。該地址既不代表EOA（沒有相應的私人/公共密鑰對）也不代表合約。它永遠不會花費ether或啟動交易。它僅用作目的地，具有“註冊此合約”的特殊含義。</p>
 </div>
@@ -640,7 +673,7 @@ truffle(mainnet)&gt; 210000000000000</pre>
 </div>
 <div class="admonitionblock warning">
 <table>
-<tr>
+<tbody><tr>
 <td class="icon">
 <i class="fa icon-warning" title="警告"></i>
 </td>
@@ -650,13 +683,13 @@ truffle(mainnet)&gt; 210000000000000</pre>
 </div>
 </td>
 </tr>
-</table>
+</tbody></table>
 </div>
 <div class="paragraph">
 <p>合約註冊交易不應包含ether value，只能包含合約編譯 Bytecode 的data。此次交易的唯一影響是註冊合約。</p>
 </div>
 <div class="paragraph">
-<p>作為例子，我們可以發佈 <a href="ch02.html#intro_chapter">以太坊基礎</a> 中使用的 <code>Faucet.sol</code>。合約需要編譯成二進制十六進制表示。這可以用Solidiy編譯器完成。</p>
+<p>作為例子，我們可以發佈 <a href="/ch02.html">以太坊基礎</a> 中使用的 <code>Faucet.sol</code>。合約需要編譯成二進制十六進制表示。這可以用Solidiy編譯器完成。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -686,9 +719,9 @@ Binary:
 </div>
 <div id="publish_contract_from_web3" class="imageblock">
 <div class="content">
-<img src="images/contract_published.png" alt="Etherscan showing the contract successully mined">
+<picture><source type="image/webp" srcset="/images/contract_published.webp"><img src="/images/contract_published.png" alt="Etherscan showing the contract successully mined" width="1192" height="863" loading="lazy" decoding="async"></picture>
 </div>
-<div class="title">圖 37. Etherscan showing the contract successully minded</div>
+<div class="title">圖 7-5. Etherscan showing the contract successully minded</div>
 </div>
 <div class="paragraph">
 <p>你可以查看交易的接收者以獲取有關合約的資訊。</p>
@@ -733,20 +766,20 @@ Binary:
 </div>
 <div id="publish_contract_transactions" class="imageblock">
 <div class="content">
-<img src="images/published_contract_transactions.png" alt="Etherscan showing the transactions for sending and receiving funds">
+<picture><source type="image/webp" srcset="/images/published_contract_transactions.webp"><img src="/images/published_contract_transactions.png" alt="Etherscan showing the transactions for sending and receiving funds" width="1187" height="331" loading="lazy" decoding="async"></picture>
 </div>
-<div class="title">圖 38. Etherscan showing the transactions for sending and receiving funds</div>
+<div class="title">圖 7-6. Etherscan showing the transactions for sending and receiving funds</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="digital_sign">7.8. 數位簽章</h3>
+<h2 id="digital_sign"><a class="anchor" href="#digital_sign" aria-label="本節連結"></a>7.8. 數位簽章</h2>
 <div class="paragraph">
 <p>到目前為止，我們還沒有深入探討“數位簽章”的細節。在本節中，我們將探討數位簽章是如何工作的,以及如何在不洩露私鑰的情況下提供私鑰所有權的證明。</p>
 </div>
 <div class="sect3">
-<h4 id="ecdsa">7.8.1. 橢圓曲線數位簽章演算法（ECDSA）</h4>
+<h3 id="ecdsa"><a class="anchor" href="#ecdsa" aria-label="本節連結"></a>7.8.1. 橢圓曲線數位簽章演算法（ECDSA）</h3>
 <div class="paragraph">
-<p>以太坊中使用的數位簽章演算法是<em>Elliptic Curve Digital Signature Algorithm</em>，或<em>ECDSA</em>。ECDSA是用於基於橢圓曲線私鑰/公鑰對的數位簽章的演算法，如 <a href="ch05.html#elliptic_curve">橢圓曲線密碼學解釋</a> 中所述。</p>
+<p>以太坊中使用的數位簽章演算法是<em>Elliptic Curve Digital Signature Algorithm</em>，或<em>ECDSA</em>。ECDSA是用於基於橢圓曲線私鑰/公鑰對的數位簽章的演算法，如 <a href="/ch05.html#elliptic_curve">橢圓曲線密碼學解釋</a> 中所述。</p>
 </div>
 <div class="paragraph">
 <p>數位簽章在以太坊中有三種用途（請參閱下面的邊欄）。首先，簽名證明私鑰的所有者，暗示著以太坊賬戶的所有者，已經授權支付ether或執行合約。其次，授權的證明是<em>undeniable</em>（不可否認）。第三，簽名證明交易數據在交易簽名後沒有也不能被任何人修改。</p>
@@ -756,23 +789,23 @@ Binary:
 <div class="title">Wikipedia對“數位簽章”的定義</div>
 <div class="paragraph">
 <p>數位簽章是用於證明數字資訊或檔案真實性的數學方案。有效的數位簽章使收件人有理由相信該資訊是由已知的發件人（認證）創建的，發件人不能否認已發送的資訊（不可否認），並且資訊在傳輸過程中未被更改（完整性） 。
-來源: <a href="https://en.wikipedia.org/wiki/Digital_signature_" class="bare">https://en.wikipedia.org/wiki/Digital_signature_</a></p>
+來源: <a href="https://en.wikipedia.org/wiki/Digital_signature_" class="bare" rel="noopener" target="_blank">https://en.wikipedia.org/wiki/Digital_signature_</a></p>
 </div>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="digital_sign_work">7.8.2. 數位簽章如何工作</h4>
+<h3 id="digital_sign_work"><a class="anchor" href="#digital_sign_work" aria-label="本節連結"></a>7.8.2. 數位簽章如何工作</h3>
 <div class="paragraph">
 <p>數位簽章是一種數學簽名，由兩部分組成。第一部分是使用私鑰（簽名密鑰）從消息（交易）中創建簽名的演算法。第二部分是允許任何人僅使用消息和公鑰來驗證簽名的演算法。</p>
 </div>
 <div class="sect4">
-<h5 id="digital_sign_create">創建數位簽章</h5>
+<h4 id="digital_sign_create"><a class="anchor" href="#digital_sign_create" aria-label="本節連結"></a>創建數位簽章</h4>
 <div class="paragraph">
 <p>在以太坊實現的ECDSA中，被簽名的“消息”是交易，或者更確切地說，來自交易的RLP編碼數據的Keccak256雜湊。簽名密鑰是EOA的私鑰。結果是簽名：</p>
 </div>
 <div class="paragraph">
-<p>\(\(Sig = F_{sig}(F_{keccak256}(m), k)\)\)</p>
+<p>\(Sig = F_{sig}(F_{keccak256}(m), k)\)</p>
 </div>
 <div class="paragraph">
 <p>其中:</p>
@@ -810,7 +843,7 @@ Binary:
 </div>
 </div>
 <div class="sect3">
-<h4 id="verify_sign">7.8.3. 驗證簽名</h4>
+<h3 id="verify_sign"><a class="anchor" href="#verify_sign" aria-label="本節連結"></a>7.8.3. 驗證簽名</h3>
 <div class="paragraph">
 <p>要驗證簽名，必須有簽名（<code>R</code>和<code>S</code>），序列化交易和公鑰（與用於創建簽名的私鑰對應）。實質上，對簽名的驗證意味著“只有生成此公鑰的私鑰的所有者才能在此交易上產生此簽名。”</p>
 </div>
@@ -819,7 +852,7 @@ Binary:
 </div>
 </div>
 <div class="sect3">
-<h4 id="ecdsa_math">7.8.4. ECDSA數學</h4>
+<h3 id="ecdsa_math"><a class="anchor" href="#ecdsa_math" aria-label="本節連結"></a>7.8.4. ECDSA數學</h3>
 <div class="paragraph">
 <p>如前所述，簽名由數學函數  <em>F</em><sub><em>sig</em></sub>  創建，該函數生成由兩個值<em>R</em>和<em>S</em>組成的簽名。在本節中，我們將更詳細地討論函數  <em>F</em><sub><em>sig</em></sub> 。</p>
 </div>
@@ -834,13 +867,13 @@ Binary:
 1.和橢圓曲線生成點<em>G</em></p>
 </div>
 <div class="paragraph">
-<p>從<em>q</em>和<em>G</em>開始，我們生成相應的臨時公鑰<em>Q</em>（以<em>Q = q * G</em>計算，與以太坊公鑰的派生方式相同，參見<a href="ch05.html#pubkey">公鑰</a>）。數位簽章的<em>R</em>值就是臨時公鑰<em>Q</em>的x座標。</p>
+<p>從<em>q</em>和<em>G</em>開始，我們生成相應的臨時公鑰<em>Q</em>（以<em>Q = q * G</em>計算，與以太坊公鑰的派生方式相同，參見<a href="/ch05.html#pubkey">公鑰</a>）。數位簽章的<em>R</em>值就是臨時公鑰<em>Q</em>的x座標。</p>
 </div>
 <div class="paragraph">
 <p>然後，演算法計算簽名的<em>S</em>值，以便：</p>
 </div>
 <div class="paragraph">
-<p><em>S</em> ≡ <em>q</em><sup>-1</sup> (<em>Keccak256</em>(<em>m</em>) + <em>k</em> * <em>R</em>)  &#160; &#160; (<em>mod p</em>)</p>
+<p><em>S</em> ≡ <em>q</em><sup>-1</sup> (<em>Keccak256</em>(<em>m</em>) + <em>k</em> * <em>R</em>)  &nbsp; &nbsp; (<em>mod p</em>)</p>
 </div>
 <div class="paragraph">
 <p>其中:</p>
@@ -868,7 +901,7 @@ Binary:
 <p>驗證是簽名生成函數的反函數，使用<em>R</em>，<em>S</em>值和公鑰來計算一個值<em>Q</em>，它是橢圓曲線上的一個點（簽名創建中使用的臨時公鑰）：</p>
 </div>
 <div class="paragraph">
-<p><em>Q</em> ≡ <em>S</em><sup>-1</sup> * <em>Keccak256</em>(<em>m</em>) * <em>G</em> + <em>S</em><sup>-1</sup> * <em>R</em> * <em>K</em>  &#160; &#160; (<em>mod p</em>)</p>
+<p><em>Q</em> ≡ <em>S</em><sup>-1</sup> * <em>Keccak256</em>(<em>m</em>) * <em>G</em> + <em>S</em><sup>-1</sup> * <em>R</em> * <em>K</em>  &nbsp; &nbsp; (<em>mod p</em>)</p>
 </div>
 <div class="paragraph">
 <p>其中:</p>
@@ -900,37 +933,37 @@ Binary:
 </div>
 <div class="admonitionblock tip">
 <table>
-<tr>
+<tbody><tr>
 <td class="icon">
 <i class="fa icon-tip" title="提示"></i>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>ECDSA必然是一門相當複雜的數學; 完整的解釋超出了本書的範圍。許多優秀的在線指南會一步一步地通過它：搜索“ECDSA explained”或嘗試這一個：<a href="http://bit.ly/2r0HhGB" class="bare">http://bit.ly/2r0HhGB</a>。</p>
+<p>ECDSA必然是一門相當複雜的數學; 完整的解釋超出了本書的範圍。許多優秀的在線指南會一步一步地通過它：搜索“ECDSA explained”或嘗試這一個：<a href="http://bit.ly/2r0HhGB" class="bare" rel="noopener" target="_blank">http://bit.ly/2r0HhGB</a>。</p>
 </div>
 </td>
 </tr>
-</table>
+</tbody></table>
 </div>
 </div>
 <div class="sect3">
-<h4 id="tx_sign">7.8.5. 實踐中的交易簽名</h4>
+<h3 id="tx_sign"><a class="anchor" href="#tx_sign" aria-label="本節連結"></a>7.8.5. 實踐中的交易簽名</h3>
 <div class="paragraph">
 <p>為了產生有效的交易，發起者必須使用橢圓曲線數位簽章演算法將數位簽章應用於消息。當我們說“簽署交易”時，我們實際上是指“簽署RLP序列化交易數據的Keccak256雜湊”。簽名應用於交易數據的雜湊，而不是交易本身。</p>
 </div>
 <div class="admonitionblock tip">
 <table>
-<tr>
+<tbody><tr>
 <td class="icon">
 <i class="fa icon-tip" title="提示"></i>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>在＃2,675,000塊，Ethereum實施了“Spurious Dragon”硬分叉，除其他更改外，還推出了包括交易重播保護的新簽名方案。這個新的簽名方案在EIP-155中指定（參見<a href="ch18.html#eip_table">最重要的EIP和ERC表</a>）。此更改會影響簽名過程的第一步，在簽名之前向交易添加三個欄位（v，r，s）。</p>
+<p>在＃2,675,000塊，Ethereum實施了“Spurious Dragon”硬分叉，除其他更改外，還推出了包括交易重播保護的新簽名方案。這個新的簽名方案在EIP-155中指定（參見<a href="/ch18.html#eip_table">最重要的EIP和ERC表</a>）。此更改會影響簽名過程的第一步，在簽名之前向交易添加三個欄位（v，r，s）。</p>
 </div>
 </td>
 </tr>
-</table>
+</tbody></table>
 </div>
 <div class="paragraph">
 <p>要在以太坊簽署交易，發件人必須：</p>
@@ -956,7 +989,7 @@ Binary:
 </div>
 </div>
 <div class="sect3">
-<h4 id="raw_tx">7.8.6. 原始交易創建和簽名</h4>
+<h3 id="raw_tx"><a class="anchor" href="#raw_tx" aria-label="本節連結"></a>7.8.6. 原始交易創建和簽名</h3>
 <div class="paragraph">
 <p>讓我們創建一個原始交易並使用 <code>ethereumjs-tx</code> 庫對其進行簽名。此範例的源程式碼位於GitHub儲存庫中的 <code>raw_tx_demo.js</code> 中：</p>
 </div>
@@ -1000,7 +1033,7 @@ console.log(rawTx)</pre>
 </div>
 <div class="paragraph">
 <p>在此處下載：
-<a href="https://github.com/ethereumbook/ethereumbook/blob/develop/code/web3js/raw_tx/raw_tx_demo.js" class="bare">https://github.com/ethereumbook/ethereumbook/blob/develop/code/web3js/raw_tx/raw_tx_demo.js</a></p>
+<a href="https://github.com/ethereumbook/ethereumbook/blob/develop/code/web3js/raw_tx/raw_tx_demo.js" class="bare" rel="noopener" target="_blank">https://github.com/ethereumbook/ethereumbook/blob/develop/code/web3js/raw_tx/raw_tx_demo.js</a></p>
 </div>
 <div id="raw_tx_demo_run" class="paragraph">
 <p>運行範例程式碼：</p>
@@ -1015,7 +1048,7 @@ Signed Raw Transaction: 0xf866808609184e72a0008303000094b0920c523d582040f2bcb1bd
 </div>
 </div>
 <div class="sect3">
-<h4 id="raw_tx_eip155">7.8.7. 用EIP-155創建原始交易</h4>
+<h3 id="raw_tx_eip155"><a class="anchor" href="#raw_tx_eip155" aria-label="本節連結"></a>7.8.7. 用EIP-155創建原始交易</h3>
 <div class="paragraph">
 <p>EIP-155“簡單重播攻擊保護”標準在簽名之前指定了重播攻擊保護（replay-attack-protected）的交易編碼，其中包括交易數據中的<em>chain identifier</em>。這確保了為一個區塊鏈（例如以太坊主網）創建的交易在另一個區塊鏈（例如Ethereum Classic或Ropsten測試網路）上無效。因此，在一個網路上廣播的交易不能在另一個網路上廣播，因此得名“重放攻擊保護”。</p>
 </div>
@@ -1025,7 +1058,7 @@ Signed Raw Transaction: 0xf866808609184e72a0008303000094b0920c523d582040f2bcb1bd
 <div id="sign_prefix_table" class="paragraph">
 <p>簽名前綴欄位<code>v</code>被初始化為鏈識別碼，其值為：</p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
+<div class="table-wrap" tabindex="0"><table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -1088,18 +1121,18 @@ Signed Raw Transaction: 0xf866808609184e72a0008303000094b0920c523d582040f2bcb1bd
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <div class="paragraph">
 <p>由此產生的交易結構被進行RLP編碼，雜湊和簽名。簽名演算法也稍作修改，以在<code>v</code>前綴中對鏈ID進行編碼。</p>
 </div>
 <div class="paragraph">
 <p>有關更多詳細資訊，請參閱EIP-155規範：
-<a href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-155.md" class="bare">https://github.com/ethereum/EIPs/blob/master/EIPS/eip-155.md</a></p>
+<a href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-155.md" class="bare" rel="noopener" target="_blank">https://github.com/ethereum/EIPs/blob/master/EIPS/eip-155.md</a></p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="sign_prefix">7.9. 簽名前綴值（v）和公鑰恢復</h3>
+<h2 id="sign_prefix"><a class="anchor" href="#sign_prefix" aria-label="本節連結"></a>7.9. 簽名前綴值（v）和公鑰恢復</h2>
 <div class="paragraph">
 <p>如<a href="#tx_struct">交易的結構</a>所述，交易消息不包含任何“from”欄位。這是因為發起者的公鑰可以直接從ECDSA簽名中計算出來。一旦你有公鑰，你可以很容易地計算出地址。恢復簽名者公鑰的過程稱為<em>公鑰恢復</em>。</p>
 </div>
@@ -1157,7 +1190,7 @@ Signed Raw Transaction: 0xf866808609184e72a0008303000094b0920c523d582040f2bcb1bd
 </div>
 </div>
 <div class="sect2">
-<h3 id="offline_sign">7.10. 分離簽名和傳輸（離線簽名）</h3>
+<h2 id="offline_sign"><a class="anchor" href="#offline_sign" aria-label="本節連結"></a>7.10. 分離簽名和傳輸（離線簽名）</h2>
 <div class="paragraph">
 <p>一旦交易被簽署，它就可以傳送到以太坊網路。創建，簽署和廣播交易的三個步驟通常發生在單個函數中，例如使用<code>web3.eth.sendTransaction</code>。但是，正如我們在<a href="#raw_tx">原始交易創建和簽名</a>中看到的那樣，你可以通過兩個單獨的步驟創建和簽署交易。一旦你簽署了交易記錄，你就可以使用<code>web3.eth.sendSignedTransaction</code>傳輸該交易記錄，該方法採用十六進制編碼的簽名交易資訊並在Ethereum網路上傳輸。</p>
 </div>
@@ -1172,7 +1205,7 @@ Signed Raw Transaction: 0xf866808609184e72a0008303000094b0920c523d582040f2bcb1bd
 </div>
 </div>
 <div class="sect2">
-<h3 id="tx_propagation">7.11. 交易傳播</h3>
+<h2 id="tx_propagation"><a class="anchor" href="#tx_propagation" aria-label="本節連結"></a>7.11. 交易傳播</h2>
 <div class="paragraph">
 <p>以太坊網路使用“泛洪”路由協議。每個以太坊客戶端，在<em>Peer-to-Peer（P2P）</em>中作為<em>node</em>，（理想情況下）構成<em>mesh</em>網路。沒有網路節點是“特殊的”，它們都作為平等的對等體。我們將使用術語“節點”來指代連接並參與P2P網路的以太坊客戶端。</p>
 </div>
@@ -1184,19 +1217,19 @@ Signed Raw Transaction: 0xf866808609184e72a0008303000094b0920c523d582040f2bcb1bd
 </div>
 </div>
 <div class="sect2">
-<h3 id="chain_record">7.12. 記錄到區塊鏈中</h3>
+<h2 id="chain_record"><a class="anchor" href="#chain_record" aria-label="本節連結"></a>7.12. 記錄到區塊鏈中</h2>
 <div class="paragraph">
-<p>雖然以太坊中的所有節點都是相同的對等節點，但其中一些節點由<em>礦工</em>操作，並將交易和數據塊提供給<em>挖礦農場</em>，這些節點是具有高性能圖形處理單元（GPU）的計算機。挖掘計算機將交易添加到候選塊，並嘗試查找使得候選塊有效的<em>Proof-of-Work</em>。我們將在<a href="ch15.html#consensus_chapter">共識</a>中更詳細地討論這一點。</p>
+<p>雖然以太坊中的所有節點都是相同的對等節點，但其中一些節點由<em>礦工</em>操作，並將交易和數據塊提供給<em>挖礦農場</em>，這些節點是具有高性能圖形處理單元（GPU）的計算機。挖掘計算機將交易添加到候選塊，並嘗試查找使得候選塊有效的<em>Proof-of-Work</em>。我們將在<a href="/ch15.html">共識</a>中更詳細地討論這一點。</p>
 </div>
 <div class="paragraph">
-<p>不深入太多細節，有效的交易最終將被包含在一個交易塊中，並記錄在以太坊區塊鏈中。一旦開採成塊，交易還通過修改賬戶餘額（在簡單付款的情況下）或通過調用改變其內部狀態的合約來修改以太坊單例的狀態。這些更改將與交易一起以交易<em>收據</em> <em>receipt</em> 的形式記錄，該交易也可能包含<em>事件</em> <em>events</em>。我們將在 <a href="ch14.html#evm_chapter">以太坊虛擬機 (The Ethereum Virtual Machine)</a> 中更詳細地檢查所有這些。</p>
+<p>不深入太多細節，有效的交易最終將被包含在一個交易塊中，並記錄在以太坊區塊鏈中。一旦開採成塊，交易還通過修改賬戶餘額（在簡單付款的情況下）或通過調用改變其內部狀態的合約來修改以太坊單例的狀態。這些更改將與交易一起以交易<em>收據</em> <em>receipt</em> 的形式記錄，該交易也可能包含<em>事件</em> <em>events</em>。我們將在 <a href="/ch14.html">以太坊虛擬機 (The Ethereum Virtual Machine)</a> 中更詳細地檢查所有這些。</p>
 </div>
 <div class="paragraph">
 <p>我們的交易已經完成了從創建到被EOA簽署，傳播以及最終採礦的旅程。它改變了單例的狀態，並在區塊鏈上留下了不可磨滅的印記。</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_多重簽名multisig交易">7.13. 多重簽名（multisig）交易</h3>
+<h2 id="_多重簽名multisig交易"><a class="anchor" href="#_多重簽名multisig交易" aria-label="本節連結"></a>7.13. 多重簽名（multisig）交易</h2>
 <div class="paragraph">
 <p>如果你熟悉比特幣的腳本功能，那麼你就知道有可能創建一個比特幣多重簽名賬戶，該賬戶只能在多方簽署交易時花費資金（例如2個或3個或4個簽名）。以太坊的價值交易沒有多重簽名的規定，儘管可以部署任意條件的任意合約來處理ether和代幣的轉讓。</p>
 </div>
@@ -1208,503 +1241,54 @@ Signed Raw Transaction: 0xf866808609184e72a0008303000094b0920c523d582040f2bcb1bd
 </div>
 <div class="paragraph">
 <p>討論和 Grid+ 參考實現：
-<a href="https://blog.gridplus.io/toward-an-ethereum-multisig-standard-c566c7b7a3f6" class="bare">https://blog.gridplus.io/toward-an-ethereum-multisig-standard-c566c7b7a3f6</a></p>
+<a href="https://blog.gridplus.io/toward-an-ethereum-multisig-standard-c566c7b7a3f6" class="bare" rel="noopener" target="_blank">https://blog.gridplus.io/toward-an-ethereum-multisig-standard-c566c7b7a3f6</a></p>
 </div>
 </div>
 </div>
 </div>
-
-<nav class="chapter-nav"><a href="ch06.html" class="nav-prev">&larr; 錢包</a><a href="index.html" class="nav-home">首頁</a><a href="ch08.html" class="nav-next">智能合約 &rarr;</a></nav>
-</div>
-<div id="footer">
-<div id="footer-text">
-最後更新： 2026-11-02 14:55:30 UTC
-</div>
-</div>
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  messageStyle: "none",
-  tex2jax: {
-    inlineMath: [["\\(", "\\)"]],
-    displayMath: [["\\[", "\\]"]],
-    ignoreClass: "nostem|nolatexmath"
-  },
-  asciimath2jax: {
-    delimiters: [["\\$", "\\$"]],
-    ignoreClass: "nostem|noasciimath"
-  },
-  TeX: { equationNumbers: { autoNumber: "none" } }
-})
-MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
-  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
-    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
-      data.math.root.display = "block"
-    }
-    return data
-  })
-})
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<style>
-/* 浮動目錄按鈕 — 僅手機版顯示 */
-.toc-toggle {
-  position: fixed;
-  bottom: 5rem;
-  right: 1.2rem;
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  background: #2980b9;
-  color: #fff;
-  border: none;
-  font-size: 1.2rem;
-  cursor: pointer;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-  z-index: 1000;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.2s, transform 0.2s;
-}
-.toc-toggle:hover { background: #1a6fa0; }
-.toc-toggle:active { transform: scale(0.95); }
-
-/* 回到頂部按鈕 */
-.back-to-top {
-  position: fixed;
-  bottom: 1.8rem;
-  right: 1.2rem;
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  background: rgba(85,85,85,0.85);
-  color: #fff;
-  border: none;
-  font-size: 1.2rem;
-  cursor: pointer;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
-  z-index: 1000;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.3s, background 0.2s, transform 0.2s;
-  pointer-events: none;
-}
-.back-to-top:hover { background: rgba(50,50,50,0.9); }
-.back-to-top:active { transform: scale(0.95); }
-.back-to-top.visible {
-  display: flex;
-  opacity: 1;
-  pointer-events: auto;
-}
-
-/* 浮動目錄面板 */
-.toc-panel {
-  position: fixed;
-  top: 0;
-  right: -340px;
-  width: 320px;
-  max-width: 85vw;
-  height: 100vh;
-  background: #fff;
-  border-left: 1px solid #e1e4e8;
-  box-shadow: -4px 0 20px rgba(0,0,0,0.12);
-  z-index: 1001;
-  transition: right 0.3s ease;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  padding: 0;
-}
-.toc-panel.open { right: 0; }
-
-.toc-panel-header {
-  position: sticky;
-  top: 0;
-  background: #fff;
-  padding: 1.2rem 1rem 0.8rem;
-  border-bottom: 1px solid #e1e4e8;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  z-index: 1;
-}
-
-.toc-panel-header h3 {
-  margin: 0;
-  font-size: 1.1rem;
-  color: #1a252f;
-}
-
-.toc-panel .close-btn {
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  color: #888;
-  padding: 0 0.3rem;
-  line-height: 1;
-  transition: color 0.15s;
-}
-.toc-panel .close-btn:hover { color: #333; }
-
-.toc-panel-body {
-  padding: 0.8rem 1rem 2rem;
-}
-
-.toc-panel-body ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.toc-panel-body ul ul {
-  padding-left: 0.9rem;
-}
-
-.toc-panel-body li {
-  margin: 0;
-}
-
-.toc-panel-body a {
-  color: #555;
-  text-decoration: none;
-  font-size: 0.9rem;
-  line-height: 1.5;
-  display: block;
-  padding: 0.3rem 0.5rem;
-  border-radius: 4px;
-  transition: background 0.12s, color 0.12s;
-}
-.toc-panel-body a:hover {
-  background: #f0f3f6;
-  color: #2980b9;
-}
-
-/* 遮罩 */
-.toc-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.35);
-  z-index: 1000;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s, visibility 0.3s;
-}
-.toc-overlay.visible {
-  opacity: 1;
-  visibility: visible;
-}
-
-/* 閱讀進度條 */
-.reading-progress {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 3px;
-  background: linear-gradient(90deg, #2980b9, #3498db);
-  z-index: 1002;
-  transition: width 0.1s;
-  will-change: width;
-}
-
-/* 手機版顯示浮動按鈕 */
-@media screen and (max-width: 768px) {
-  .toc-toggle {
-    display: flex;
-  }
-  .back-to-top {
-    display: flex;
-  }
-}
-
-/* 桌面版也顯示回到頂部 */
-@media screen and (min-width: 769px) {
-  .back-to-top {
-    display: flex;
-  }
-  .reading-progress {
-    left: var(--toc-width, 300px);
-  }
-}
-/* 電子書下載橫幅 */
-.ebook-banner {
-  background: linear-gradient(135deg, #1a252f 0%, #2c3e50 100%);
-  color: #fff;
-  padding: 0.7rem 1.2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-  font-size: 0.88rem;
-  position: relative;
-  z-index: 50;
-}
-
-.ebook-banner a {
-  color: #fff;
-  background: rgba(255,255,255,0.15);
-  padding: 0.35rem 0.9rem;
-  border-radius: 5px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: background 0.2s;
-  white-space: nowrap;
-}
-
-.ebook-banner a:hover {
-  background: rgba(255,255,255,0.25);
-}
-
-.ebook-banner .banner-text {
-  opacity: 0.9;
-}
-
-.ebook-banner .banner-close {
-  position: absolute;
-  right: 0.8rem;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  color: rgba(255,255,255,0.5);
-  font-size: 1.2rem;
-  cursor: pointer;
-  padding: 0.2rem 0.4rem;
-}
-
-.ebook-banner .banner-close:hover {
-  color: #fff;
-}
-
-/* 桌面版橫幅在 TOC 右邊 */
-@media screen and (min-width: 769px) {
-  .ebook-banner {
-    margin-left: var(--toc-width, 300px);
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .ebook-banner {
-    font-size: 0.82rem;
-    padding: 0.6rem 0.8rem;
-    gap: 0.8rem;
-  }
-}
-</style>
-
-<!-- 電子書下載橫幅 -->
-<div class="ebook-banner" id="ebookBanner">
-  <span class="banner-text">下載電子書離線閱讀</span>
-  <a href="https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.pdf">PDF</a>
-  <a href="https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.epub">EPUB</a>
-  <a href="https://github.com/awesome-doge/ethereumbook_zh/releases/latest">GitHub Releases</a>
-  <button class="banner-close" id="bannerClose" aria-label="關閉">&times;</button>
-</div>
-
-<!-- 閱讀進度條 -->
-<div class="reading-progress" id="readingProgress"></div>
-
-<!-- 浮動按鈕 -->
-<button class="toc-toggle" id="tocToggle" aria-label="開啟目錄">&#9776;</button>
-<button class="back-to-top" id="backToTop" aria-label="回到頂部">&#8593;</button>
-
-<!-- 目錄面板（手機版） -->
-<div class="toc-overlay" id="tocOverlay"></div>
-<div class="toc-panel" id="tocPanel" role="navigation" aria-label="目錄">
-  <div class="toc-panel-header">
-    <h3>目錄</h3>
-    <button class="close-btn" id="tocClose" aria-label="關閉目錄">&times;</button>
   </div>
-  <div class="toc-panel-body" id="tocContent"></div>
+  <nav class="pager" aria-label="章節導覽">
+    <a class="pager-link prev" href="/ch06.html" rel="prev"><span class="pager-dir">← 上一章</span><span class="pager-title">第 6 章　錢包</span></a>
+    <a class="pager-link next" href="/ch08.html" rel="next"><span class="pager-dir">下一章 →</span><span class="pager-title">第 8 章　智能合約</span></a>
+  </nav>
+  <p class="edit-link"><a href="https://github.com/awesome-doge/ethereumbook_zh/blob/master/ch07.asciidoc" rel="noopener">在 GitHub 上檢視或改善本章翻譯</a></p>
+</article>
+
+  </main>
+
+  <aside class="rail" aria-label="本章內容">
+    <p class="rail-title">本章內容</p>
+    <ol>
+      <li><a href="#tx_struct">7.1. 交易的結構</a></li>
+      <li><a href="#tx_gas">7.2. 交易gas</a></li>
+      <li><a href="#tx_recipient">7.3. 交易的接收者</a></li>
+      <li><a href="#tx_value_data">7.4. 交易的價值和數據</a></li>
+      <li><a href="#value_EOA_contracts">7.5. 將value傳遞給EOA和合約</a></li>
+      <li><a href="#data_EOA">7.6. 將數據傳輸到EOA或合約</a></li>
+      <li><a href="#contract_reg">7.7. 特殊交易：合約註冊</a></li>
+      <li><a href="#digital_sign">7.8. 數位簽章</a></li>
+      <li><a href="#sign_prefix">7.9. 簽名前綴值（v）和公鑰恢復</a></li>
+      <li><a href="#offline_sign">7.10. 分離簽名和傳輸（離線簽名）</a></li>
+      <li><a href="#tx_propagation">7.11. 交易傳播</a></li>
+      <li><a href="#chain_record">7.12. 記錄到區塊鏈中</a></li>
+      <li><a href="#_多重簽名multisig交易">7.13. 多重簽名（multisig）交易</a></li>
+    </ol>
+  </aside>
 </div>
 
-<script>
-(function() {
-  'use strict';
+<footer class="site-footer">
+  <p>原著《Mastering Ethereum》由 Andreas M. Antonopoulos 與 Gavin Wood 撰寫，O'Reilly Media 出版。繁體中文翻譯：Dr. Awesome Doge。</p>
+  <p>本書內容以 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh_TW" rel="license noopener">CC BY-NC-ND 4.0</a> 授權釋出 · <a href="https://github.com/awesome-doge/ethereumbook_zh" rel="noopener">GitHub</a> · <a href="https://github.com/awesome-doge/ethereumbook_zh/issues" rel="noopener">回報翻譯問題</a> · <a href="https://github.com/ethereumbook/ethereumbook" rel="noopener">英文原著</a></p>
+</footer>
 
-  // === 電子書橫幅：移到頁面頂部 + 關閉/記憶 ===
-  var banner = document.getElementById('ebookBanner');
-  var bannerClose = document.getElementById('bannerClose');
-  if (banner) {
-    // 如果用戶之前關閉過，隱藏
-    if (localStorage.getItem('ebookBannerClosed')) {
-      banner.style.display = 'none';
-    } else {
-      // 移到 body 最前面（在 header 之前）
-      document.body.insertBefore(banner, document.body.firstChild);
-    }
-    if (bannerClose) {
-      bannerClose.addEventListener('click', function() {
-        banner.style.display = 'none';
-        localStorage.setItem('ebookBannerClosed', '1');
-      });
-    }
-  }
-
-  // === 生成手機版目錄 ===
-  var tocContent = document.getElementById('tocContent');
-  var nativeToc = document.getElementById('toc');
-
-  if (tocContent && nativeToc) {
-    // 從原生 TOC 複製結構
-    var nativeList = nativeToc.querySelector('ul.sectlevel1');
-    if (nativeList) {
-      tocContent.appendChild(nativeList.cloneNode(true));
-    }
-  }
-
-  // === 目錄開關 ===
-  var tocToggle = document.getElementById('tocToggle');
-  var tocPanel = document.getElementById('tocPanel');
-  var tocOverlay = document.getElementById('tocOverlay');
-  var tocClose = document.getElementById('tocClose');
-
-  function openToc() {
-    tocPanel.classList.add('open');
-    tocOverlay.classList.add('visible');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeToc() {
-    tocPanel.classList.remove('open');
-    tocOverlay.classList.remove('visible');
-    document.body.style.overflow = '';
-  }
-
-  if (tocToggle) tocToggle.addEventListener('click', openToc);
-  if (tocOverlay) tocOverlay.addEventListener('click', closeToc);
-  if (tocClose) tocClose.addEventListener('click', closeToc);
-
-  // 點擊目錄連結後關閉面板
-  if (tocContent) {
-    tocContent.addEventListener('click', function(e) {
-      if (e.target.tagName === 'A') {
-        closeToc();
-      }
-    });
-  }
-
-  // ESC 關閉
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') closeToc();
-  });
-
-  // === 回到頂部 ===
-  var backToTop = document.getElementById('backToTop');
-  if (backToTop) {
-    backToTop.addEventListener('click', function() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  }
-
-  // === 閱讀進度條 + 回到頂部顯示 ===
-  var progressBar = document.getElementById('readingProgress');
-  var ticking = false;
-
-  function onScroll() {
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(function() {
-      var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      var docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-
-      // 回到頂部
-      if (backToTop) {
-        if (scrollTop > 400) {
-          backToTop.classList.add('visible');
-        } else {
-          backToTop.classList.remove('visible');
-        }
-      }
-
-      // 進度條
-      if (progressBar && docHeight > 0) {
-        progressBar.style.width = ((scrollTop / docHeight) * 100) + '%';
-      }
-
-      ticking = false;
-    });
-  }
-
-  window.addEventListener('scroll', onScroll, { passive: true });
-
-  // === 表格響應式包裝 ===
-  document.querySelectorAll('table.tableblock').forEach(function(table) {
-    if (!table.parentElement.classList.contains('tableblock-wrapper')) {
-      var wrapper = document.createElement('div');
-      wrapper.style.overflowX = 'auto';
-      wrapper.style.WebkitOverflowScrolling = 'touch';
-      wrapper.style.margin = '1.5rem 0';
-      table.parentNode.insertBefore(wrapper, table);
-      wrapper.appendChild(table);
-      table.style.margin = '0';
-    }
-  });
-
-  // === 桌面版：TOC 當前章節高亮 ===
-  if (window.innerWidth > 768 && nativeToc) {
-    var tocLinks = nativeToc.querySelectorAll('a');
-    var headingIds = [];
-    tocLinks.forEach(function(link) {
-      var id = link.getAttribute('href');
-      if (id && id.startsWith('#')) {
-        headingIds.push({ id: id.substring(1), el: link });
-      }
-    });
-
-    var currentHighlight = null;
-
-    // 注入高亮樣式
-    var hlStyle = document.createElement('style');
-    hlStyle.textContent = '#toc a.toc-active { background: #dbeafe !important; color: #1d4ed8 !important; border-radius: 4px; font-weight: 600; border-left: 3px solid #2980b9; padding-left: 0.4rem; }';
-    document.head.appendChild(hlStyle);
-
-    function highlightToc() {
-      var scrollPos = window.pageYOffset + 100;
-      var current = null;
-
-      for (var i = headingIds.length - 1; i >= 0; i--) {
-        var target = document.getElementById(headingIds[i].id);
-        if (target && target.offsetTop <= scrollPos) {
-          current = headingIds[i].el;
-          break;
-        }
-      }
-
-      if (current !== currentHighlight) {
-        if (currentHighlight) {
-          currentHighlight.classList.remove('toc-active');
-        }
-        if (current) {
-          current.classList.add('toc-active');
-          // 確保高亮項在可視範圍
-          var tocEl = document.getElementById('toc');
-          if (tocEl) {
-            var linkRect = current.getBoundingClientRect();
-            var tocRect = tocEl.getBoundingClientRect();
-            if (linkRect.top < tocRect.top + 60 || linkRect.bottom > tocRect.bottom - 20) {
-              current.scrollIntoView({ block: 'center', behavior: 'smooth' });
-            }
-          }
-        }
-        currentHighlight = current;
-      }
-    }
-
-    window.addEventListener('scroll', function() {
-      requestAnimationFrame(highlightToc);
-    }, { passive: true });
-
-    highlightToc();
-  }
-})();
-</script>
-</body>
-</html>
+<dialog class="search" id="search" aria-label="搜尋全書">
+  <form method="dialog" class="search-form" role="search">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input type="search" id="search-input" placeholder="搜尋全書，例如：智能合約、gas、ERC20" autocomplete="off" spellcheck="false" aria-label="搜尋關鍵字">
+    <button type="submit" class="search-close" value="close" aria-label="關閉搜尋">Esc</button>
+  </form>
+  <p class="search-status" aria-live="polite"></p>
+  <ol class="search-results"></ol>
+</dialog>
 </body>
 </html>

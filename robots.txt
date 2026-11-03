@@ -1,3 +1,7 @@
+# 精通以太坊繁體中文版
+# 全站開放索引（內容以 CC BY-NC-ND 4.0 授權，轉載請註明出處）。
+
 User-agent: *
 Allow: /
+
 Sitemap: https://mastering-ethereum.doge.tg/sitemap.xml

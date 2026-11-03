@@ -1,706 +1,384 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-Hant-TW">
 <head>
-
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.26">
-<title>精通以太坊 Mastering Ethereum 繁體中文版</title>
-<link rel="stylesheet" href="./custom.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="./rouge-github.css">
-<!-- Google Analytics 4 -->
-<script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-ZVVQYEKMPF"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-ZVVQYEKMPF');
-</script>
-
-<!-- Favicon -->
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x2B21;</text></svg>" type="image/svg+xml">
-
-<!-- SEO: Title Override -->
-<meta name="title" content="精通以太坊 Mastering Ethereum — 繁體中文完整版 | 智能合約、DApps、EVM、Solidity 技術指南">
-
-<!-- SEO: Description -->
-<meta name="description" content="精通以太坊（Mastering Ethereum）繁體中文版，由 Andreas M. Antonopoulos 和 Gavin Wood 著作。完整涵蓋以太坊基礎、智能合約、Solidity、DApps、EVM、Gas、密鑰管理、錢包、交易、預言機、共識機制等 19 章內容。免費線上閱讀，提供 PDF 和 EPUB 電子書下載。">
-<meta name="keywords" content="以太坊, Ethereum, 智能合約, Smart Contract, Solidity, DApp, EVM, 區塊鏈, Blockchain, 加密貨幣, Web3, DeFi, 精通以太坊, Mastering Ethereum, 繁體中文, 教學, 技術指南">
-<meta name="author" content="Andreas M. Antonopoulos, Gavin Wood, Dr. Awesome Doge">
-
-<!-- SEO: Canonical -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>精通以太坊繁體中文版｜免費線上閱讀</title>
+<meta name="description" content="《精通以太坊》（Mastering Ethereum）繁體中文全文，免費線上閱讀。從密鑰、地址、錢包與交易，到智能合約、Solidity、Vyper、代幣、DApp、預言機、EVM 與共識，完整解說以太坊的技術原理。">
 <link rel="canonical" href="https://mastering-ethereum.doge.tg/">
-
-<!-- SEO: Language Alternatives -->
-<link rel="alternate" hreflang="zh-Hant" href="https://mastering-ethereum.doge.tg/">
-<link rel="alternate" hreflang="en" href="https://github.com/ethereumbook/ethereumbook">
-
-<!-- Google Fonts: Noto Sans TC -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap">
-
-<!-- Open Graph -->
+<meta name="author" content="Andreas M. Antonopoulos, Gavin Wood">
+<meta name="theme-color" content="#f8f9fc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14151b" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="sitemap" type="application/xml" href="/sitemap.xml">
+<meta property="og:site_name" content="精通以太坊繁體中文版">
 <meta property="og:type" content="book">
-<meta property="og:title" content="精通以太坊 Mastering Ethereum — 繁體中文完整版">
-<meta property="og:description" content="以太坊完整技術指南，涵蓋智能合約、Solidity、DApps、EVM 等 19 章。免費線上閱讀 + PDF/EPUB 下載。">
-<meta property="og:image" content="https://mastering-ethereum.doge.tg/images/cover.png">
-<meta property="og:image:width" content="1050">
-<meta property="og:image:height" content="1378">
-<meta property="og:image:alt" content="Mastering Ethereum 書籍封面">
+<meta property="og:title" content="精通以太坊繁體中文版｜免費線上閱讀">
+<meta property="og:description" content="《精通以太坊》（Mastering Ethereum）繁體中文全文，免費線上閱讀。從密鑰、地址、錢包與交易，到智能合約、Solidity、Vyper、代幣、DApp、預言機、EVM 與共識，完整解說以太坊的技術原理。">
 <meta property="og:url" content="https://mastering-ethereum.doge.tg/">
-<meta property="og:site_name" content="精通以太坊 繁體中文版">
+<meta property="og:image" content="https://mastering-ethereum.doge.tg/assets/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta property="og:locale" content="zh_TW">
-<meta property="book:author" content="Andreas M. Antonopoulos">
-<meta property="book:author" content="Gavin Wood">
-<meta property="book:tag" content="Ethereum">
-<meta property="book:tag" content="Blockchain">
-<meta property="book:tag" content="Smart Contracts">
-<meta property="book:tag" content="Solidity">
-
-<!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="精通以太坊 Mastering Ethereum — 繁體中文完整版">
-<meta name="twitter:description" content="以太坊完整技術指南，涵蓋智能合約、Solidity、DApps、EVM 等 19 章。免費線上閱讀 + PDF/EPUB 下載。">
-<meta name="twitter:image" content="https://mastering-ethereum.doge.tg/images/cover.png">
-<meta name="twitter:image:alt" content="Mastering Ethereum 書籍封面">
-
-<!-- JSON-LD Structured Data -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Book",
-  "name": "精通以太坊 Mastering Ethereum 繁體中文版",
-  "alternateName": "Mastering Ethereum: Building Smart Contracts and DApps",
-  "author": [
-    {
-      "@type": "Person",
-      "name": "Andreas M. Antonopoulos",
-      "url": "https://aantonop.com/"
-    },
-    {
-      "@type": "Person",
-      "name": "Gavin Wood"
-    }
-  ],
-  "translator": {
-    "@type": "Person",
-    "name": "Dr. Awesome Doge"
-  },
-  "inLanguage": "zh-Hant",
-  "url": "https://mastering-ethereum.doge.tg/",
-  "image": "https://mastering-ethereum.doge.tg/images/cover.png",
-  "description": "以太坊完整技術指南繁體中文版，涵蓋智能合約、Solidity、DApps、EVM、Gas、密鑰管理等 19 章內容。",
-  "genre": ["Technology", "Blockchain", "Cryptocurrency"],
-  "bookFormat": "https://schema.org/EBook",
-  "numberOfPages": 257,
-  "publisher": {
-    "@type": "Organization",
-    "name": "O'Reilly Media"
-  },
-  "license": "https://creativecommons.org/licenses/by-nc-nd/4.0/",
-  "isAccessibleForFree": true,
-  "encoding": [
-    {
-      "@type": "MediaObject",
-      "encodingFormat": "application/pdf",
-      "contentUrl": "https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.pdf"
-    },
-    {
-      "@type": "MediaObject",
-      "encodingFormat": "application/epub+zip",
-      "contentUrl": "https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.epub"
-    }
-  ],
-  "about": [
-    {"@type": "Thing", "name": "Ethereum"},
-    {"@type": "Thing", "name": "Smart Contracts"},
-    {"@type": "Thing", "name": "Blockchain"},
-    {"@type": "Thing", "name": "Solidity"},
-    {"@type": "Thing", "name": "Decentralized Applications"},
-    {"@type": "Thing", "name": "EVM"}
-  ]
-}
-</script>
-
-<!-- BreadcrumbList for search results -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "精通以太坊",
-      "item": "https://mastering-ethereum.doge.tg/"
-    }
-  ]
-}
-</script>
-
-<style>
-.landing{max-width:880px;margin:0 auto;padding:2rem 1.5rem}
-.landing-header{text-align:center;margin-bottom:2rem}
-.landing-header h1{font-size:2.2rem;color:#1a252f;margin-bottom:0.3rem}
-.landing-header .subtitle{color:#555;font-size:1.15rem}
-.landing-header .author{color:#888;margin-top:0.5rem;font-size:0.95rem}
-.landing-cover{text-align:center;margin:2rem 0}
-.landing-cover img{max-width:280px;border-radius:8px;box-shadow:0 4px 20px rgba(0,0,0,0.12)}
-.landing-dl{display:flex;justify-content:center;gap:1rem;margin:2rem 0;flex-wrap:wrap}
-.landing-dl a{display:inline-block;padding:0.7rem 1.5rem;border-radius:6px;text-decoration:none;font-weight:600;font-size:0.95rem;transition:opacity 0.2s}
-.landing-dl a:hover{opacity:0.85}
-.btn-p{background:#2980b9;color:#fff}
-.btn-s{background:#f0f3f6;color:#2c3e50;border:1px solid #e1e4e8}
-.landing-toc{margin:2.5rem 0}
-.landing-toc h2{font-size:1.4rem;color:#1a252f;border-bottom:2px solid #e1e4e8;padding-bottom:0.4rem}
-.landing-toc ol{padding-left:1.5rem;line-height:2.2}
-.landing-toc a{color:#2980b9;text-decoration:none;font-size:1.05rem}
-.landing-toc a:hover{text-decoration:underline}
-.landing-ft{color:#888;font-size:0.85rem;text-align:center;margin-top:2rem;padding-top:1rem;border-top:1px solid #e1e4e8}
-.landing-all{text-align:center;margin:1.5rem 0}
-.landing-all a{color:#888;font-size:0.9rem}
-</style>
-</head>
-<body>
-<div class="landing">
-  <div class="landing-header">
-    <h1>精通以太坊</h1>
-    <div class="subtitle">Mastering Ethereum — 繁體中文完整版</div>
-    <p class="author">Andreas M. Antonopoulos &amp; Dr. Gavin Wood 著 · Dr. Awesome Doge 譯</p>
-  </div>
-  <div class="landing-cover">
-    <img src="images/cover.png" alt="Mastering Ethereum 封面" width="280" height="368" />
-  </div>
-  <div class="landing-dl">
-    <a href="https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.pdf" class="btn-p">下載 PDF</a>
-    <a href="https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.epub" class="btn-p">下載 EPUB</a>
-    <a href="https://github.com/awesome-doge/ethereumbook_zh" class="btn-s">GitHub</a>
-  </div>
-  <div class="landing-toc">
-    <h2>目錄</h2>
-    <ol>
-    <li><a href="preface.html">前言</a></li>
-    <li><a href="glossary.html">快速術語表</a></li>
-    <li><a href="ch01.html">什麼是以太坊</a></li>
-    <li><a href="ch02.html">以太坊基礎</a></li>
-    <li><a href="ch03.html">以太坊客戶端</a></li>
-    <li><a href="ch04.html">以太坊測試網</a></li>
-    <li><a href="ch05.html">密鑰和地址</a></li>
-    <li><a href="ch06.html">錢包</a></li>
-    <li><a href="ch07.html">交易</a></li>
-    <li><a href="ch08.html">智能合約</a></li>
-    <li><a href="ch09.html">開發工具、框架和庫</a></li>
-    <li><a href="ch10.html">代幣 Tokens</a></li>
-    <li><a href="ch11.html">去中心化應用 DApps</a></li>
-    <li><a href="ch12.html">預言機 Oracles</a></li>
-    <li><a href="ch13.html">燃氣 Gas</a></li>
-    <li><a href="ch14.html">以太坊虛擬機 EVM</a></li>
-    <li><a href="ch15.html">共識</a></li>
-    <li><a href="ch16.html">Vyper</a></li>
-    <li><a href="ch17.html">DevP2P 協議</a></li>
-    <li><a href="ch18.html">以太坊標準</a></li>
-    <li><a href="ch19.html">以太坊分叉歷史</a></li>
-    </ol>
-  </div>
-  <div class="landing-all">
-    <a href="all.html">單頁完整版（適合搜尋和列印）</a>
-  </div>
-  <div class="landing-ft">
-    以 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a> 授權釋出
-  </div>
-</div>
-<div id="footer">
-<div id="footer-text">
-最後更新： 2026-11-02 14:55:30 UTC
-</div>
-</div>
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  messageStyle: "none",
-  tex2jax: {
-    inlineMath: [["\\(", "\\)"]],
-    displayMath: [["\\[", "\\]"]],
-    ignoreClass: "nostem|nolatexmath"
-  },
-  asciimath2jax: {
-    delimiters: [["\\$", "\\$"]],
-    ignoreClass: "nostem|noasciimath"
-  },
-  TeX: { equationNumbers: { autoNumber: "none" } }
-})
-MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
-  MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
-    if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
-      data.math.root.display = "block"
-    }
-    return data
-  })
-})
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-<style>
-/* 浮動目錄按鈕 — 僅手機版顯示 */
-.toc-toggle {
-  position: fixed;
-  bottom: 5rem;
-  right: 1.2rem;
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  background: #2980b9;
-  color: #fff;
-  border: none;
-  font-size: 1.2rem;
-  cursor: pointer;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-  z-index: 1000;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.2s, transform 0.2s;
-}
-.toc-toggle:hover { background: #1a6fa0; }
-.toc-toggle:active { transform: scale(0.95); }
-
-/* 回到頂部按鈕 */
-.back-to-top {
-  position: fixed;
-  bottom: 1.8rem;
-  right: 1.2rem;
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  background: rgba(85,85,85,0.85);
-  color: #fff;
-  border: none;
-  font-size: 1.2rem;
-  cursor: pointer;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
-  z-index: 1000;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.3s, background 0.2s, transform 0.2s;
-  pointer-events: none;
-}
-.back-to-top:hover { background: rgba(50,50,50,0.9); }
-.back-to-top:active { transform: scale(0.95); }
-.back-to-top.visible {
-  display: flex;
-  opacity: 1;
-  pointer-events: auto;
-}
-
-/* 浮動目錄面板 */
-.toc-panel {
-  position: fixed;
-  top: 0;
-  right: -340px;
-  width: 320px;
-  max-width: 85vw;
-  height: 100vh;
-  background: #fff;
-  border-left: 1px solid #e1e4e8;
-  box-shadow: -4px 0 20px rgba(0,0,0,0.12);
-  z-index: 1001;
-  transition: right 0.3s ease;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  padding: 0;
-}
-.toc-panel.open { right: 0; }
-
-.toc-panel-header {
-  position: sticky;
-  top: 0;
-  background: #fff;
-  padding: 1.2rem 1rem 0.8rem;
-  border-bottom: 1px solid #e1e4e8;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  z-index: 1;
-}
-
-.toc-panel-header h3 {
-  margin: 0;
-  font-size: 1.1rem;
-  color: #1a252f;
-}
-
-.toc-panel .close-btn {
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  color: #888;
-  padding: 0 0.3rem;
-  line-height: 1;
-  transition: color 0.15s;
-}
-.toc-panel .close-btn:hover { color: #333; }
-
-.toc-panel-body {
-  padding: 0.8rem 1rem 2rem;
-}
-
-.toc-panel-body ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.toc-panel-body ul ul {
-  padding-left: 0.9rem;
-}
-
-.toc-panel-body li {
-  margin: 0;
-}
-
-.toc-panel-body a {
-  color: #555;
-  text-decoration: none;
-  font-size: 0.9rem;
-  line-height: 1.5;
-  display: block;
-  padding: 0.3rem 0.5rem;
-  border-radius: 4px;
-  transition: background 0.12s, color 0.12s;
-}
-.toc-panel-body a:hover {
-  background: #f0f3f6;
-  color: #2980b9;
-}
-
-/* 遮罩 */
-.toc-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.35);
-  z-index: 1000;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s, visibility 0.3s;
-}
-.toc-overlay.visible {
-  opacity: 1;
-  visibility: visible;
-}
-
-/* 閱讀進度條 */
-.reading-progress {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 3px;
-  background: linear-gradient(90deg, #2980b9, #3498db);
-  z-index: 1002;
-  transition: width 0.1s;
-  will-change: width;
-}
-
-/* 手機版顯示浮動按鈕 */
-@media screen and (max-width: 768px) {
-  .toc-toggle {
-    display: flex;
-  }
-  .back-to-top {
-    display: flex;
-  }
-}
-
-/* 桌面版也顯示回到頂部 */
-@media screen and (min-width: 769px) {
-  .back-to-top {
-    display: flex;
-  }
-  .reading-progress {
-    left: var(--toc-width, 300px);
-  }
-}
-/* 電子書下載橫幅 */
-.ebook-banner {
-  background: linear-gradient(135deg, #1a252f 0%, #2c3e50 100%);
-  color: #fff;
-  padding: 0.7rem 1.2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-  font-size: 0.88rem;
-  position: relative;
-  z-index: 50;
-}
-
-.ebook-banner a {
-  color: #fff;
-  background: rgba(255,255,255,0.15);
-  padding: 0.35rem 0.9rem;
-  border-radius: 5px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: background 0.2s;
-  white-space: nowrap;
-}
-
-.ebook-banner a:hover {
-  background: rgba(255,255,255,0.25);
-}
-
-.ebook-banner .banner-text {
-  opacity: 0.9;
-}
-
-.ebook-banner .banner-close {
-  position: absolute;
-  right: 0.8rem;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  color: rgba(255,255,255,0.5);
-  font-size: 1.2rem;
-  cursor: pointer;
-  padding: 0.2rem 0.4rem;
-}
-
-.ebook-banner .banner-close:hover {
-  color: #fff;
-}
-
-/* 桌面版橫幅在 TOC 右邊 */
-@media screen and (min-width: 769px) {
-  .ebook-banner {
-    margin-left: var(--toc-width, 300px);
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .ebook-banner {
-    font-size: 0.82rem;
-    padding: 0.6rem 0.8rem;
-    gap: 0.8rem;
-  }
-}
-</style>
-
-<!-- 電子書下載橫幅 -->
-<div class="ebook-banner" id="ebookBanner">
-  <span class="banner-text">下載電子書離線閱讀</span>
-  <a href="https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.pdf">PDF</a>
-  <a href="https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.epub">EPUB</a>
-  <a href="https://github.com/awesome-doge/ethereumbook_zh/releases/latest">GitHub Releases</a>
-  <button class="banner-close" id="bannerClose" aria-label="關閉">&times;</button>
-</div>
-
-<!-- 閱讀進度條 -->
-<div class="reading-progress" id="readingProgress"></div>
-
-<!-- 浮動按鈕 -->
-<button class="toc-toggle" id="tocToggle" aria-label="開啟目錄">&#9776;</button>
-<button class="back-to-top" id="backToTop" aria-label="回到頂部">&#8593;</button>
-
-<!-- 目錄面板（手機版） -->
-<div class="toc-overlay" id="tocOverlay"></div>
-<div class="toc-panel" id="tocPanel" role="navigation" aria-label="目錄">
-  <div class="toc-panel-header">
-    <h3>目錄</h3>
-    <button class="close-btn" id="tocClose" aria-label="關閉目錄">&times;</button>
-  </div>
-  <div class="toc-panel-body" id="tocContent"></div>
-</div>
-
 <script>
-(function() {
-  'use strict';
-
-  // === 電子書橫幅：移到頁面頂部 + 關閉/記憶 ===
-  var banner = document.getElementById('ebookBanner');
-  var bannerClose = document.getElementById('bannerClose');
-  if (banner) {
-    // 如果用戶之前關閉過，隱藏
-    if (localStorage.getItem('ebookBannerClosed')) {
-      banner.style.display = 'none';
-    } else {
-      // 移到 body 最前面（在 header 之前）
-      document.body.insertBefore(banner, document.body.firstChild);
-    }
-    if (bannerClose) {
-      bannerClose.addEventListener('click', function() {
-        banner.style.display = 'none';
-        localStorage.setItem('ebookBannerClosed', '1');
-      });
-    }
-  }
-
-  // === 生成手機版目錄 ===
-  var tocContent = document.getElementById('tocContent');
-  var nativeToc = document.getElementById('toc');
-
-  if (tocContent && nativeToc) {
-    // 從原生 TOC 複製結構
-    var nativeList = nativeToc.querySelector('ul.sectlevel1');
-    if (nativeList) {
-      tocContent.appendChild(nativeList.cloneNode(true));
-    }
-  }
-
-  // === 目錄開關 ===
-  var tocToggle = document.getElementById('tocToggle');
-  var tocPanel = document.getElementById('tocPanel');
-  var tocOverlay = document.getElementById('tocOverlay');
-  var tocClose = document.getElementById('tocClose');
-
-  function openToc() {
-    tocPanel.classList.add('open');
-    tocOverlay.classList.add('visible');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeToc() {
-    tocPanel.classList.remove('open');
-    tocOverlay.classList.remove('visible');
-    document.body.style.overflow = '';
-  }
-
-  if (tocToggle) tocToggle.addEventListener('click', openToc);
-  if (tocOverlay) tocOverlay.addEventListener('click', closeToc);
-  if (tocClose) tocClose.addEventListener('click', closeToc);
-
-  // 點擊目錄連結後關閉面板
-  if (tocContent) {
-    tocContent.addEventListener('click', function(e) {
-      if (e.target.tagName === 'A') {
-        closeToc();
-      }
-    });
-  }
-
-  // ESC 關閉
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') closeToc();
-  });
-
-  // === 回到頂部 ===
-  var backToTop = document.getElementById('backToTop');
-  if (backToTop) {
-    backToTop.addEventListener('click', function() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  }
-
-  // === 閱讀進度條 + 回到頂部顯示 ===
-  var progressBar = document.getElementById('readingProgress');
-  var ticking = false;
-
-  function onScroll() {
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(function() {
-      var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      var docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-
-      // 回到頂部
-      if (backToTop) {
-        if (scrollTop > 400) {
-          backToTop.classList.add('visible');
-        } else {
-          backToTop.classList.remove('visible');
-        }
-      }
-
-      // 進度條
-      if (progressBar && docHeight > 0) {
-        progressBar.style.width = ((scrollTop / docHeight) * 100) + '%';
-      }
-
-      ticking = false;
-    });
-  }
-
-  window.addEventListener('scroll', onScroll, { passive: true });
-
-  // === 表格響應式包裝 ===
-  document.querySelectorAll('table.tableblock').forEach(function(table) {
-    if (!table.parentElement.classList.contains('tableblock-wrapper')) {
-      var wrapper = document.createElement('div');
-      wrapper.style.overflowX = 'auto';
-      wrapper.style.WebkitOverflowScrolling = 'touch';
-      wrapper.style.margin = '1.5rem 0';
-      table.parentNode.insertBefore(wrapper, table);
-      wrapper.appendChild(table);
-      table.style.margin = '0';
-    }
-  });
-
-  // === 桌面版：TOC 當前章節高亮 ===
-  if (window.innerWidth > 768 && nativeToc) {
-    var tocLinks = nativeToc.querySelectorAll('a');
-    var headingIds = [];
-    tocLinks.forEach(function(link) {
-      var id = link.getAttribute('href');
-      if (id && id.startsWith('#')) {
-        headingIds.push({ id: id.substring(1), el: link });
-      }
-    });
-
-    var currentHighlight = null;
-
-    // 注入高亮樣式
-    var hlStyle = document.createElement('style');
-    hlStyle.textContent = '#toc a.toc-active { background: #dbeafe !important; color: #1d4ed8 !important; border-radius: 4px; font-weight: 600; border-left: 3px solid #2980b9; padding-left: 0.4rem; }';
-    document.head.appendChild(hlStyle);
-
-    function highlightToc() {
-      var scrollPos = window.pageYOffset + 100;
-      var current = null;
-
-      for (var i = headingIds.length - 1; i >= 0; i--) {
-        var target = document.getElementById(headingIds[i].id);
-        if (target && target.offsetTop <= scrollPos) {
-          current = headingIds[i].el;
-          break;
-        }
-      }
-
-      if (current !== currentHighlight) {
-        if (currentHighlight) {
-          currentHighlight.classList.remove('toc-active');
-        }
-        if (current) {
-          current.classList.add('toc-active');
-          // 確保高亮項在可視範圍
-          var tocEl = document.getElementById('toc');
-          if (tocEl) {
-            var linkRect = current.getBoundingClientRect();
-            var tocRect = tocEl.getBoundingClientRect();
-            if (linkRect.top < tocRect.top + 60 || linkRect.bottom > tocRect.bottom - 20) {
-              current.scrollIntoView({ block: 'center', behavior: 'smooth' });
-            }
-          }
-        }
-        currentHighlight = current;
-      }
-    }
-
-    window.addEventListener('scroll', function() {
-      requestAnimationFrame(highlightToc);
-    }, { passive: true });
-
-    highlightToc();
-  }
-})();
+(function(){try{var d=document.documentElement,s=localStorage,t=s.getItem('me-theme'),z=s.getItem('me-size'),f=s.getItem('me-font');if(t&&t!=='auto')d.setAttribute('data-theme',t);if(z)d.style.setProperty('--fs',z+'px');if(f)d.setAttribute('data-font',f)}catch(e){}})();
 </script>
-</body>
-</html>
+<link rel="stylesheet" href="/assets/site.css?v=8381e0abca">
+<link rel="stylesheet" href="/assets/code.css?v=c94d007c0c">
+<script defer src="/assets/site.js?v=fc9557d36e"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Book","@id":"https://mastering-ethereum.doge.tg/#book","name":"精通以太坊：打造智能合約與 DApp","alternateName":["Mastering Ethereum: Building Smart Contracts and DApps","精通以太坊 Mastering Ethereum"],"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"inLanguage":"zh-TW","publisher":{"@type":"Organization","name":"O'Reilly Media"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true,"url":"https://mastering-ethereum.doge.tg/","image":"https://mastering-ethereum.doge.tg/assets/og-cover.png","translationOfWork":{"@type":"Book","name":"Mastering Ethereum: Building Smart Contracts and DApps","inLanguage":"en","url":"https://github.com/ethereumbook/ethereumbook"},"description":"《精通以太坊》（Mastering Ethereum）繁體中文全文，免費線上閱讀。從密鑰、地址、錢包與交易，到智能合約、Solidity、Vyper、代幣、DApp、預言機、EVM 與共識，完整解說以太坊的技術原理。","hasPart":[{"@id":"https://mastering-ethereum.doge.tg/preface.html#chapter"},{"@id":"https://mastering-ethereum.doge.tg/glossary.html#chapter"},{"@id":"https://mastering-ethereum.doge.tg/ch01.html#chapter"},{"@id":"https://mastering-ethereum.doge.tg/ch02.html#chapter"},{"@id":"https://mastering-ethereum.doge.tg/ch03.html#chapter"},{"@id":"https://mastering-ethereum.doge.tg/ch04.html#chapter"},{"@id":"https://mastering-ethereum.doge.tg/ch05.html#chapter"},{"@id":"https://mastering-ethereum.doge.tg/ch06.html#chapter"},{"@id":"https://mastering-ethereum.doge.tg/ch07.html#chapter"},{"@id":"https://mastering-ethereum.doge.tg/ch08.html#chapter"},{"@id":"https://mastering-ethereum.doge.tg/ch09.html#chapter"},{"@id":"https://mastering-ethereum.doge.tg/ch10.html#chapter"},{"@id":"https://mastering-ethereum.doge.tg/ch11.html#chapter"},{"@id":"https://mastering-ethereum.doge.tg/ch12.html#chapter"},{"@id":"https://mastering-ethereum.doge.tg/ch13.html#chapter"},{"@id":"https://mastering-ethereum.doge.tg/ch14.html#chapter"},{"@id":"https://mastering-ethereum.doge.tg/ch15.html#chapter"},{"@id":"https://mastering-ethereum.doge.tg/ch16.html#chapter"},{"@id":"https://mastering-ethereum.doge.tg/ch17.html#chapter"},{"@id":"https://mastering-ethereum.doge.tg/ch18.html#chapter"},{"@id":"https://mastering-ethereum.doge.tg/ch19.html#chapter"}]},{"@type":"WebSite","@id":"https://mastering-ethereum.doge.tg/#website","url":"https://mastering-ethereum.doge.tg/","name":"精通以太坊繁體中文版","inLanguage":"zh-TW"}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZVVQYEKMPF"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-ZVVQYEKMPF');</script>
+</head>
+<body class="is-home">
+<a class="skip-link" href="#main">跳到主要內容</a>
+<header class="topbar">
+  <button class="icon-btn" type="button" data-action="toggle-nav" aria-controls="sidebar" aria-expanded="false" aria-label="開啟目錄">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+  </button>
+  <a class="brand" href="/" aria-label="精通以太坊 首頁">
+    <span class="brand-mark" aria-hidden="true">Ξ</span><span class="brand-text">精通以太坊</span>
+  </a>
+  <div class="topbar-actions">
+    <button class="icon-btn search-btn" type="button" data-action="search" aria-label="搜尋全書（快捷鍵 /）">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <span class="search-btn-text">搜尋</span><kbd>/</kbd>
+    </button>
+    <button class="icon-btn" type="button" data-action="settings" aria-controls="settings" aria-expanded="false" aria-label="閱讀設定">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19 9 5l5 14M5.8 14.5h6.4M15 19l3-8 3 8M15.9 16.5h4.2"/></svg>
+    </button>
+  </div>
+  <div class="progress" aria-hidden="true"><span></span></div>
+</header>
+
+<div class="settings" id="settings" hidden>
+  <div class="settings-group" role="group" aria-label="主題">
+    <span class="settings-label">主題</span>
+    <div class="seg">
+      <button type="button" data-theme-set="auto">自動</button>
+      <button type="button" data-theme-set="light">淺色</button>
+      <button type="button" data-theme-set="sepia">護眼</button>
+      <button type="button" data-theme-set="dark">深色</button>
+    </div>
+  </div>
+  <div class="settings-group" role="group" aria-label="字級">
+    <span class="settings-label">字級</span>
+    <div class="seg">
+      <button type="button" data-size="-1" aria-label="縮小字級">A−</button>
+      <output class="size-value" aria-live="polite">18</output>
+      <button type="button" data-size="1" aria-label="放大字級">A+</button>
+    </div>
+  </div>
+  <div class="settings-group" role="group" aria-label="字型">
+    <span class="settings-label">字型</span>
+    <div class="seg">
+      <button type="button" data-font-set="sans">黑體</button>
+      <button type="button" data-font-set="serif">明體</button>
+    </div>
+  </div>
+</div>
+
+<div class="shell">
+  <nav class="sidebar" id="sidebar" aria-label="全書目錄">
+    <div class="sidebar-head">
+      <a href="/" class="sidebar-book">精通以太坊</a>
+      <span class="sidebar-sub">繁體中文版</span>
+    </div>
+    <ol class="book-toc">
+      <li>
+        <a href="/preface.html"><span class="toc-label">前言</span></a>
+      </li>
+      <li>
+        <a href="/glossary.html"><span class="toc-label">術語表</span>快速術語表</a>
+      </li>
+      <li>
+        <a href="/ch01.html"><span class="toc-label">第 1 章</span>什麼是以太坊</a>
+      </li>
+      <li>
+        <a href="/ch02.html"><span class="toc-label">第 2 章</span>以太坊基礎</a>
+      </li>
+      <li>
+        <a href="/ch03.html"><span class="toc-label">第 3 章</span>以太坊客戶端</a>
+      </li>
+      <li>
+        <a href="/ch04.html"><span class="toc-label">第 4 章</span>以太坊測試網（Testnets）</a>
+      </li>
+      <li>
+        <a href="/ch05.html"><span class="toc-label">第 5 章</span>密鑰、地址</a>
+      </li>
+      <li>
+        <a href="/ch06.html"><span class="toc-label">第 6 章</span>錢包</a>
+      </li>
+      <li>
+        <a href="/ch07.html"><span class="toc-label">第 7 章</span>交易 (Transactions)</a>
+      </li>
+      <li>
+        <a href="/ch08.html"><span class="toc-label">第 8 章</span>智能合約</a>
+      </li>
+      <li>
+        <a href="/ch09.html"><span class="toc-label">第 9 章</span>開發工具，框架和庫</a>
+      </li>
+      <li>
+        <a href="/ch10.html"><span class="toc-label">第 10 章</span>Tokens</a>
+      </li>
+      <li>
+        <a href="/ch11.html"><span class="toc-label">第 11 章</span>去中心化應用 (DApps)</a>
+      </li>
+      <li>
+        <a href="/ch12.html"><span class="toc-label">第 12 章</span>預言機 (Oracles)</a>
+      </li>
+      <li>
+        <a href="/ch13.html"><span class="toc-label">第 13 章</span>gas（Gas）</a>
+      </li>
+      <li>
+        <a href="/ch14.html"><span class="toc-label">第 14 章</span>以太坊虛擬機 (The Ethereum Virtual Machine)</a>
+      </li>
+      <li>
+        <a href="/ch15.html"><span class="toc-label">第 15 章</span>共識</a>
+      </li>
+      <li>
+        <a href="/ch16.html"><span class="toc-label">第 16 章</span>Vyper: 面向合約的程式語言</a>
+      </li>
+      <li>
+        <a href="/ch17.html"><span class="toc-label">第 17 章</span>節點間的通信 —— 一個簡單的視角</a>
+      </li>
+      <li>
+        <a href="/ch18.html"><span class="toc-label">附錄 A</span>以太坊標準</a>
+      </li>
+      <li>
+        <a href="/ch19.html"><span class="toc-label">附錄 B</span>以太坊分叉歷史</a>
+      </li>
+    </ol>
+    <div class="sidebar-foot">
+      <a href="https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.pdf" rel="noopener">下載 PDF 電子書</a>
+      <a href="https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.epub" rel="noopener">下載 EPUB 電子書</a>
+      <a href="https://github.com/awesome-doge/ethereumbook_zh" rel="noopener">GitHub 原始碼</a>
+    </div>
+  </nav>
+  <div class="scrim" data-action="close-nav" hidden></div>
+
+  <main id="main" class="main" tabindex="-1">
+<div class="home">
+  <section class="hero">
+    <img class="hero-cover" src="/assets/cover-480.webp" width="480" height="630" alt="《精通以太坊》封面：數隻蜜蜂" fetchpriority="high">
+    <div class="hero-text">
+      <p class="hero-kicker">Mastering Ethereum · 繁體中文</p>
+      <h1>精通以太坊<span class="hero-sub">打造智能合約與 DApp</span></h1>
+      <p class="hero-authors">Andreas M. Antonopoulos、Gavin Wood 著<br>Dr. Awesome Doge 譯</p>
+      <p class="hero-lead">以太坊開發者的經典技術書，全文繁體中文翻譯，免費線上閱讀。從錢包、密鑰、地址與交易談起，一路到智能合約、Solidity 與 Vyper、代幣標準、DApp、預言機、以太坊虛擬機和共識，帶你從原理理解以太坊。</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="/ch01.html">開始閱讀第 1 章</a>
+        <a class="btn btn-resume" href="#" hidden data-resume>繼續閱讀</a>
+        <a class="btn" href="https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.pdf" rel="noopener">下載 PDF</a>
+        <a class="btn" href="https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.epub" rel="noopener">下載 EPUB</a>
+      </div>
+      <p class="hero-facts">17 章 · 2 篇附錄 · 約 7 小時閱讀 · CC BY-NC-ND 4.0</p>
+    </div>
+  </section>
+
+  <section class="home-toc" aria-labelledby="toc-title">
+    <h2 id="toc-title">目錄</h2>
+    <ol class="toc-cards">
+      <li>
+        <a href="/preface.html">
+          <span class="card-label">前言</span>
+          <span class="card-title">前言</span>
+          <span class="card-desc">本書的寫作緣由、目標讀者與內容安排，以及封面上蜜蜂的含義：沒有中央指揮、由眾多個體協作而成的系統，正是以太坊的寫照。</span>
+          <span class="card-meta">約 1 分鐘</span>
+        </a>
+      </li>
+      <li>
+        <a href="/glossary.html">
+          <span class="card-label">術語表</span>
+          <span class="card-title">快速術語表</span>
+          <span class="card-desc">以太坊常用術語的快速對照與解釋，從帳戶、區塊、gas、EVM、智能合約到各種 EIP 與 ERC 標準，閱讀全書時可隨時查閱。</span>
+          <span class="card-meta">約 16 分鐘</span>
+        </a>
+      </li>
+      <li>
+        <a href="/ch01.html">
+          <span class="card-label">第 1 章</span>
+          <span class="card-title">什麼是以太坊</span>
+          <span class="card-desc">什麼是以太坊？與比特幣的比較、以太坊的誕生與四個開發階段、組件、圖靈完備性，以及從通用區塊鏈到去中心化應用（DApp）的演進。</span>
+          <span class="card-meta">約 20 分鐘</span>
+        </a>
+      </li>
+      <li>
+        <a href="/ch02.html">
+          <span class="card-label">第 2 章</span>
+          <span class="card-title">以太坊基礎</span>
+          <span class="card-desc">以太坊入門實作：以太幣單位、選擇錢包、安裝 MetaMask、切換測試網並取得測試以太幣，再撰寫、編譯、部署並呼叫第一個 faucet 智能合約。</span>
+          <span class="card-meta">約 28 分鐘</span>
+        </a>
+      </li>
+      <li>
+        <a href="/ch03.html">
+          <span class="card-label">第 3 章</span>
+          <span class="card-title">以太坊客戶端</span>
+          <span class="card-desc">以太坊客戶端與網路：是否要執行全節點、硬體與軟體需求、Parity 與 Geth 的安裝建置、首次同步區塊鏈、JSON-RPC 介面，以及輕量、行動與瀏覽器錢包。</span>
+          <span class="card-meta">約 23 分鐘</span>
+        </a>
+      </li>
+      <li>
+        <a href="/ch04.html">
+          <span class="card-label">第 4 章</span>
+          <span class="card-title">以太坊測試網（Testnets）</span>
+          <span class="card-desc">以太坊測試網：用 MetaMask、Remix、Geth 與 Parity 連上測試網，Ropsten、Rinkeby、Kovan 等測試網的歷史與共識差異，以及用 Ganache 架設本地測試鏈。</span>
+          <span class="card-meta">約 9 分鐘</span>
+        </a>
+      </li>
+      <li>
+        <a href="/ch05.html">
+          <span class="card-label">第 5 章</span>
+          <span class="card-title">密鑰、地址</span>
+          <span class="card-desc">以太坊的密碼學基礎：私鑰與公鑰的產生、橢圓曲線密碼學與 secp256k1、Keccak-256 雜湊函數，以及以太坊地址格式、ICAP 與 EIP-55 大小寫校驗。</span>
+          <span class="card-meta">約 25 分鐘</span>
+        </a>
+      </li>
+      <li>
+        <a href="/ch06.html">
+          <span class="card-label">第 6 章</span>
+          <span class="card-title">錢包</span>
+          <span class="card-desc">錢包技術：非確定性與確定性錢包、階層確定性（HD）錢包（BIP-32/BIP-44）、BIP-39 助記詞與種子的產生，以及錢包的最佳實踐。</span>
+          <span class="card-meta">約 20 分鐘</span>
+        </a>
+      </li>
+      <li>
+        <a href="/ch07.html">
+          <span class="card-label">第 7 章</span>
+          <span class="card-title">交易 (Transactions)</span>
+          <span class="card-desc">以太坊交易的結構：nonce、gas、接收者、value 與 data，合約建立交易、數位簽章與公鑰恢復、離線簽名、交易的傳播與上鏈，以及多重簽名交易。</span>
+          <span class="card-meta">約 31 分鐘</span>
+        </a>
+      </li>
+      <li>
+        <a href="/ch08.html">
+          <span class="card-label">第 8 章</span>
+          <span class="card-title">智能合約</span>
+          <span class="card-desc">智能合約與 Solidity：合約的生命週期、高階語言比較、ABI、資料型別、函數與修飾符、事件、繼承、錯誤處理、gas 最佳化，以及重入等安全考量。</span>
+          <span class="card-meta">約 57 分鐘</span>
+        </a>
+      </li>
+      <li>
+        <a href="/ch09.html">
+          <span class="card-label">第 9 章</span>
+          <span class="card-title">開發工具，框架和庫</span>
+          <span class="card-desc">以太坊開發工具：用 Truffle 建立、部署與遷移合約，Embark、OpenZeppelin、zeppelin_os、dapp.tools 等工具，以及 web3.js、web3.py、web3j 等函式庫。</span>
+          <span class="card-meta">約 22 分鐘</span>
+        </a>
+      </li>
+      <li>
+        <a href="/ch10.html">
+          <span class="card-label">第 10 章</span>
+          <span class="card-title">Tokens</span>
+          <span class="card-desc">以太坊上的代幣：可互換性、交易對手風險、效用與權益型代幣，ERC20 標準與自行發行代幣，approve 與 transferFrom 流程，以及 ERC223、ERC777、ERC721。</span>
+          <span class="card-meta">約 41 分鐘</span>
+        </a>
+      </li>
+      <li>
+        <a href="/ch11.html">
+          <span class="card-label">第 11 章</span>
+          <span class="card-title">去中心化應用 (DApps)</span>
+          <span class="card-desc">去中心化應用（DApp）：由智能合約、前端與去中心化儲存組成的架構，Truffle、Embark 等 DApp 框架，以及 EthPM、CryptoKitties、Decentraland 等實際案例。</span>
+          <span class="card-meta">約 8 分鐘</span>
+        </a>
+      </li>
+      <li>
+        <a href="/ch12.html">
+          <span class="card-label">第 12 章</span>
+          <span class="card-title">預言機 (Oracles)</span>
+          <span class="card-desc">預言機（Oracle）：為什麼智能合約需要外部資料、使用案例、訂閱與請求模式、資料認證、計算型與去中心化預言機，以及 Solidity 中的預言機客戶端介面。</span>
+          <span class="card-meta">約 20 分鐘</span>
+        </a>
+      </li>
+      <li>
+        <a href="/ch13.html">
+          <span class="card-label">第 13 章</span>
+          <span class="card-title">gas（Gas）</span>
+          <span class="card-desc">gas 的運作機制：停機問題、gas 成本與 gas 價格、gas 耗盡、估算 gas、價格與交易優先順序、區塊 gas 上限由誰決定，以及 gas 退款。</span>
+          <span class="card-meta">約 8 分鐘</span>
+        </a>
+      </li>
+      <li>
+        <a href="/ch14.html">
+          <span class="card-label">第 14 章</span>
+          <span class="card-title">以太坊虛擬機 (The Ethereum Virtual Machine)</span>
+          <span class="card-desc">以太坊虛擬機（EVM）：與其他虛擬機的比較、操作碼與狀態、Solidity 如何編譯成 bytecode、執行過程與 gas 計算、部署與執行期 bytecode，以及反組譯。</span>
+          <span class="card-meta">約 15 分鐘</span>
+        </a>
+      </li>
+      <li>
+        <a href="/ch15.html">
+          <span class="card-label">第 15 章</span>
+          <span class="card-title">共識</span>
+          <span class="card-desc">區塊鏈的共識：以雜湊為基礎與以風險為基礎的度量，工作量證明、權益證明、權威證明與委託權益證明，以及以太坊的 Ethash 演算法與 Polkadot 簡介。</span>
+          <span class="card-meta">約 14 分鐘</span>
+        </a>
+      </li>
+      <li>
+        <a href="/ch16.html">
+          <span class="card-label">第 16 章</span>
+          <span class="card-title">Vyper: 面向合約的程式語言</span>
+          <span class="card-desc">Vyper 合約程式語言：與 Solidity 的差異與設計取捨、裝飾符、線上與命令列編譯、讀寫資料、ERC20 介面實作，以及 Vyper 產生的操作碼。</span>
+          <span class="card-meta">約 8 分鐘</span>
+        </a>
+      </li>
+      <li>
+        <a href="/ch17.html">
+          <span class="card-label">第 17 章</span>
+          <span class="card-title">節點間的通信 —— 一個簡單的視角</span>
+          <span class="card-desc">以太坊節點之間如何通訊：傳輸協議與加密握手、安全考量、ÐΞVp2p 基本訊息與以太坊子協議，以及節點身分與聲譽。</span>
+          <span class="card-meta">約 5 分鐘</span>
+        </a>
+      </li>
+      <li>
+        <a href="/ch18.html">
+          <span class="card-label">附錄 A</span>
+          <span class="card-title">以太坊標準</span>
+          <span class="card-desc">以太坊標準的制定流程：以太坊改進提案（EIP）與徵求意見（ERC），以及最重要的 EIP 與 ERC 一覽表。</span>
+          <span class="card-meta">約 8 分鐘</span>
+        </a>
+      </li>
+      <li>
+        <a href="/ch19.html">
+          <span class="card-label">附錄 B</span>
+          <span class="card-title">以太坊分叉歷史</span>
+          <span class="card-desc">以太坊的分叉歷史：The DAO 事件與重入漏洞、DAO 硬分叉及其時間線、以太坊與以太坊經典（ETC）的技術與理念差異，以及歷次重要分叉。</span>
+          <span class="card-meta">約 13 分鐘</span>
+        </a>
+      </li>
+    </ol>
+  </section>
+
+  <section class="home-about" aria-labelledby="about-title">
+    <h2 id="about-title">關於這個譯本</h2>
+    <p>《精通以太坊》（<i lang="en">Mastering Ethereum: Building Smart Contracts and DApps</i>）由 Andreas M. Antonopoulos 與 Gavin Wood 撰寫，O'Reilly Media 出版，原著以 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh_TW" rel="license noopener">CC BY-NC-ND 4.0</a> 授權公開。本站為其繁體中文（臺灣）譯本，同樣以 CC BY-NC-ND 4.0 釋出：可以在註明出處的前提下非商業性地轉載與分享，但不得修改後再散布。</p>
+    <p>本書寫給想打造以太坊應用的程式設計師，前幾章也適合想了解以太坊運作原理的一般讀者。若發現翻譯錯誤或技術問題，歡迎到 <a href="https://github.com/awesome-doge/ethereumbook_zh/issues" rel="noopener">GitHub</a> 回報或提交修正。</p>
+  </section>
+</div>
+
+  </main>
+
+</div>
+
+<footer class="site-footer">
+  <p>原著《Mastering Ethereum》由 Andreas M. Antonopoulos 與 Gavin Wood 撰寫，O'Reilly Media 出版。繁體中文翻譯：Dr. Awesome Doge。</p>
+  <p>本書內容以 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh_TW" rel="license noopener">CC BY-NC-ND 4.0</a> 授權釋出 · <a href="https://github.com/awesome-doge/ethereumbook_zh" rel="noopener">GitHub</a> · <a href="https://github.com/awesome-doge/ethereumbook_zh/issues" rel="noopener">回報翻譯問題</a> · <a href="https://github.com/ethereumbook/ethereumbook" rel="noopener">英文原著</a></p>
+</footer>
+
+<dialog class="search" id="search" aria-label="搜尋全書">
+  <form method="dialog" class="search-form" role="search">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input type="search" id="search-input" placeholder="搜尋全書，例如：智能合約、gas、ERC20" autocomplete="off" spellcheck="false" aria-label="搜尋關鍵字">
+    <button type="submit" class="search-close" value="close" aria-label="關閉搜尋">Esc</button>
+  </form>
+  <p class="search-status" aria-live="polite"></p>
+  <ol class="search-results"></ol>
+</dialog>
 </body>
 </html>
