@@ -1,6 +1,6 @@
 # 《精通以太坊》第二版 繁體中文翻譯規劃
 
-> 狀態：規劃中（2026-11-03）。本文件是第二版翻譯的工作依據，各階段完成後在這裡更新。
+> 狀態：第 1 階段進行中（2026-11-03）。本文件是第二版翻譯的工作依據，各階段完成後在這裡更新。
 
 ## 已決定的事
 
@@ -21,11 +21,11 @@
 
 ### 份量
 
-英文字數不含程式碼區塊。共約 149,460 字，183 張圖片（12 MB）。
+英文字數不含程式碼區塊。共約 149,460 字，183 張圖片（12 MB）。正文是前言加 17 章，共 18 個檔案。
 
 | 檔案 | 章節 | 英文字數 | 程式碼區塊 | 圖片 | 備註 |
 |---|---|---:|---:|---:|---|
-| `intro.md` | 簡介 | 92 | 0 | 0 | 很短，可併入首頁 |
+| `intro.md` | 簡介 | 92 | 0 | 0 | 其實是上游 README，不屬於正文，只用於首頁 |
 | `preface.md` | 前言 | 2,251 | 0 | 0 | |
 | `chapter_1.md` | 什麼是以太坊 | 4,936 | 0 | 1 | |
 | `chapter_2.md` | 以太坊基礎 | 6,716 | 1 | 26 | 大量操作截圖 |
@@ -57,12 +57,14 @@ upstream/              上游 src/ 原樣（含 images/），釘在 UPSTREAM_COM
   UPSTREAM_COMMIT
 zh-tw/                 譯稿 Markdown，檔名、標題數量與段落順序和 upstream/ 一一對應
 translation/
-  terminology.md       術語表（英文 → 譯名 → 備註）
+  terminology.md       術語表（英文、譯名、不用、說明、狀態）
   style-guide.md       翻譯風格指南
   progress.md          各章進度：狀態、譯者、對應的上游 commit
-2018/                  封存的 2018 草稿譯本（現在根目錄的 *.asciidoc 與 images/ 搬過來）
+  math-overrides.json  自動轉換不理想的公式改用的 LaTeX
+2018/                  第 5 階段才建立：封存的 2018 草稿譯本
 scripts/
   md2adoc.rb           譯稿 Markdown → AsciiDoc（建置時執行）
+  md2adoc/filter.lua   轉換規則（pandoc Lua filter）
   check-translation.rb 逐章比對譯稿與上游的結構
   build-site.rb        現有閱讀器建置，改為支援第二版與 /2018/ 封存
   check-site.rb
@@ -117,19 +119,37 @@ web/                   現有閱讀器的版型、樣式與腳本，沿用
 現站首頁與各章頂端標示「本譯本翻自 2018 年草稿，部分內容已過時」，並連到官方第二版 masteringethereum.xyz。第二版上線前的這段時間，讀者不會誤把舊資訊當成現況。
 
 ### 第 1 階段：基礎建設
-1. 匯入 `upstream/`，記錄 `UPSTREAM_COMMIT`。
-2. 寫 `md2adoc.rb`，用英文原稿通過上面的驗收標準。
-3. 寫 `check-translation.rb`。
-4. 從全書抽出候選術語，起草涵蓋全書的 `terminology.md`，以及 `style-guide.md`。
-5. 把 2018 譯本搬到 `2018/`：除了 `*.asciidoc` 與 `images/`，還有 `code/`（章節會 `include::` 其中的檔案）、`cover.jpg`、`pdf-theme.yml`、`epub-styles/`。2018 版的 PDF／EPUB 凍結在目前最後一次 release，不再重建。
-6. 網站建置改為兩本書：第二版用新的章節設定（`web/chapters-2nd.yml`，上面列的 slug），2018 版沿用現在的 `web/chapters.yml`；`build-site.rb` 加上「書稿路徑、章節設定、網址前綴」三個參數，各建一次。
-7. `ebook.yml` 改為產生第二版：先執行 `md2adoc.rb` 產生 `book.asciidoc`，再交給 asciidoctor-pdf 與 asciidoctor-epub3。
+1. ✅ 匯入 `upstream/`（上游 `src/` 原樣與 `book.toml`），記錄 `UPSTREAM_COMMIT`。
+2. ✅ 寫 `scripts/md2adoc.rb` 與 `scripts/md2adoc/filter.lua`，英文原稿通過驗收：
+   - Asciidoctor 以 `--failure-level WARN` 建置，0 個警告。
+   - 18 個檔案逐章比對，標題、程式碼區塊（383）、表格（10）、表格標題、圖片（183）、圖說（181）、範例（20）、提示（108＋37＋17）、註腳（19）、公式（23）全部一致。
+   - 383 個程式碼區塊與原稿逐字相同（只有純空白行被清成空行）。
+   - 533 個標題 ID 全部出現在輸出中；標記外漏檢查為 0。
+3. ✅ 寫 `scripts/check-translation.rb`，並用刻意改壞的譯稿確認標題、程式碼、行內程式碼、連結、用語、TODO-term 都抓得到。
+4. ✅ 起草 `translation/terminology.md`（涵蓋全書，含 7 個待定條目）、`style-guide.md`、`progress.md`。
+5. ⬜ `build-site.rb` 支援第二版：加上「書稿、章節設定（`web/chapters-2nd.yml`）、圖片來源、網址前綴 `/chapters/`」參數，從 `upstream/`＋`zh-tw/` 建出**不公開**的預覽，供試譯審閱；同時在瀏覽器確認第 17 章 23 條公式的 KaTeX 都能渲染。
+
+原本列在這裡的「2018 譯本搬到 `2018/`」與「`ebook.yml` 改產生第二版」移到第 5 階段：前者現在搬只會改動編輯連結與 release 流程、沒有好處；後者若提早改，下一次推送 `v*` tag 就會產生未完成的第二版電子書。
+
+#### 轉換器的實作紀錄
+- pandoc 3.9.0.2 驗證；Lua filter 需要 pandoc 3.x。CI（第 5 階段）要安裝固定版本的 pandoc release `.deb`，不要用 `apt install pandoc`，否則 ID 可能因版本而改變。
+- 讀取格式用 `gfm-tex_math_dollars`：正文的「$10–$20」會被 gfm 當成數學式。
+- MathML 由 pandoc 的 HTML 讀取器轉成 LaTeX；自動結果不理想的 5 條（絕對值等式）寫在 `translation/math-overrides.json`，以 MathML 的 sha1 對應，上游一改就會失效而不會套錯。
+- 前言的 ID 用 `preface-chap`：pandoc 遇到「ID 等於它自動產生的 ID」時不輸出錨點。
+- 範例說明偶爾寫成標題（第 2 章的 `##### Example 2-1.`），一併轉成範例區塊。
+- 試譯期間 `zh-tw/` 還沒有的章節，建置時自動改用英文原稿，所以隨時都能建出整本書預覽。
+- 其他原始 HTML（目前只有第 12 章一處 `<sup>`）會被 writer 靜默丟掉：`<sup>`／`<sub>` 轉成上下標，其餘一律報錯。
+- 驗收可重跑：`scripts/md2adoc/verify.py` 逐章比對原稿與輸出（見檔案開頭的用法）。
+- 英文標題 ID 存在 `translation/ids-snapshot.json`（533 個）；每次轉換都比對，pandoc 換版或上游改標題時會停下來，確認後用 `--update-ids` 更新。
 
 ### 第 2 階段：試譯
+已決定（2026-11-03）：slot、epoch 保留英文；attestation 譯「見證投票」；prover／verifier 譯「證明方／驗證方」；原文的 you 譯「你」。
+還待定的 2 個條目（gossip protocol、justified）只出現在第 3、15 章，平行翻譯前決定即可。
+
 依序翻譯第 8 章（Vyper，2,946 字）與第 13 章（DeFi，6,084 字），由你審閱。第 13 章用來在平行翻譯前先測試新領域的術語。依審閱結果修訂術語表與風格指南，然後定案。
 
 ### 第 3 階段：平行翻譯
-其餘 17 個檔案（前言、簡介與 15 章）以多代理平行翻譯。每個代理都拿同一份術語表、風格指南與上游原稿，譯完必須通過 `check-translation.rb`。
+其餘 16 個檔案（前言與 15 章）以多代理平行翻譯。每個代理都拿同一份術語表、風格指南與上游原稿，譯完必須通過 `check-translation.rb`。
 硬性規則：遇到術語表沒有的詞，一律在譯稿標註 `TODO-term:` 並保留英文，不得自行決定譯名；全部完成後統一決定、回填，再跑一輪跨章的術語一致性檢查。
 啟動前會先依試譯的實際用量估算總量，並請你親口指示啟動多代理翻譯後才開始。
 
@@ -138,8 +158,10 @@ web/                   現有閱讀器的版型、樣式與腳本，沿用
 
 ### 第 5 階段：上線
 1. 確認上游授權已轉為 CC BY-SA 4.0，並把網站、README、llms.txt 的授權標示改過來。
-2. 切換網站：第二版上主網域，2018 譯本移到 `/2018/`，舊網址轉址，更新 sitemap、搜尋索引與同義詞。
-3. 推送新版本 tag，產生第二版的 PDF 與 EPUB。
+2. 把 2018 譯本搬到 `2018/`：除了 `*.asciidoc` 與 `images/`，還有 `code/`（章節會 `include::` 其中的檔案）、`cover.jpg`、`pdf-theme.yml`、`epub-styles/`。2018 版的 PDF／EPUB 凍結在目前最後一次 release，不再重建。
+3. 切換網站：第二版上主網域，2018 譯本移到 `/2018/`，舊網址轉址，更新 sitemap、搜尋索引與同義詞；CI 安裝固定版本的 pandoc。
+4. `ebook.yml` 改為產生第二版：先執行 `md2adoc.rb` 產生 `book.adoc`，再交給 asciidoctor-pdf 與 asciidoctor-epub3。
+5. 推送新版本 tag，產生第二版的 PDF 與 EPUB。
 
 ### 第 6 階段：持續同步上游
 上游有新 commit 時：比對 `UPSTREAM_COMMIT` 與新版本的差異，逐章套用到譯稿，在 `progress.md` 記錄每章對應的上游 commit，最後更新 `UPSTREAM_COMMIT`。
