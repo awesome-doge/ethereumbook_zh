@@ -234,6 +234,43 @@
 | delegatecall / selfdestruct 等指令 | 保留英文 | | | [保留] |
 | EOF | EVM 物件格式（EOF） | | | [並列] |
 
+## 程式設計通用詞（試譯第 8 章新增，待審）
+
+| 英文 | 譯名 | 不用 | 說明 | 狀態 |
+|------|------|------|------|------|
+| decorator | 裝飾器 | | Python 官方中文文件的譯法 | [固定] |
+| inline assembly | 行內組合語言 | 內聯 | | [固定] |
+| function overloading | 函式多載 | 重載 | | [固定] |
+| type conversion / typecasting | 型別轉換 | 類型轉換 | | [固定] |
+| type | 型別 | | 程式語言的資料型別；一般語境的「類型」照用 | [固定] |
+| argument / parameter | 引數／參數 | | | [固定] |
+| module | 模組 | 模塊 | | [固定] |
+| scope | 作用域 | | | [固定] |
+| state variable | 狀態變數 | | | [固定] |
+| local variable | 區域變數 | 局部變量 | | [固定] |
+| constant | 常數 | 常量 | | [固定] |
+| immutable variable | 不可變變數 | | | [固定] |
+| literal | 常值 | 字面量 | | [固定] |
+| multiple inheritance | 多重繼承 | | | [固定] |
+| polymorphism | 多型 | 多態 | | [固定] |
+| object-oriented | 物件導向 | 面向對象 | | [固定] |
+| composition | 組合 | | 相對於繼承 | [固定] |
+| struct | 結構 | | Solidity／Vyper 的 struct 關鍵字保留英文 | [固定] |
+| forward declaration | 前置宣告 | | | [固定] |
+| shadow (a name) | 遮蔽 | | | [固定] |
+| assertion / assert | 斷言 | | | [固定] |
+| statement | 陳述式 | 語句 | | [固定] |
+| clamp | 值域限制（clamp） | | Vyper 對數值上下限的強制檢查 | [並列] |
+| bounds checking | 邊界檢查 | | | [固定] |
+| auditability | 可審計性 | | | [固定] |
+| reentrancy lock | 重入鎖 | | | [固定] |
+| plug-in | 外掛 | 插件 | | [固定] |
+| command line | 命令列 | 命令行 | | [固定] |
+| optimization | 最佳化 | | | [固定] |
+| framework | 框架 | | | [固定] |
+| configuration | 組態 | | | [固定] |
+| topic | topic | | 事件日誌的可搜尋欄位，保留英文 | [保留] |
+
 ## 安全
 
 | 英文 | 譯名 | 不用 | 說明 | 狀態 |

@@ -10,7 +10,7 @@
 #   - 各標題的層級與順序（標題 ID 依位置取自原稿，見 scripts/md2adoc.rb）
 #   - 程式碼區塊：語言與內容逐字相同（程式碼與其中的英文註解都不翻譯）
 #   - 行內程式碼、連結網址、圖片路徑、MathML 公式：逐字相同（行內程式碼與連結只比對集合，語序可以調整）
-#   - 表格數與每個表格的欄列數、註腳數、Note/Tip/Warning 提示數、圖說數
+#   - 段落數（一段對一段）、表格數與每個表格的欄列數、註腳數、Note/Tip/Warning 提示數、圖說數
 # 用語：translation/terminology.md 中標為「不用」的譯法，以及中國大陸用語，不得出現在正文。
 
 Encoding.default_external = Encoding::UTF_8
@@ -57,7 +57,7 @@ end
 
 # 從 AST 取出需要比對的結構
 def structure(path)
-  s = { headings: [], codes: [], inline_codes: [], links: [], images: [], tables: [], footnotes: 0,
+  s = { headings: [], codes: [], inline_codes: [], links: [], images: [], tables: [], footnotes: 0, paragraphs: 0,
         admonitions: Hash.new(0), figcaps: 0, prose: [], todo_terms: 0 }
   walk = lambda do |node, ctx = {}|
     case node
@@ -88,6 +88,7 @@ def structure(path)
         end
         walk.call(c)
       when 'Para', 'Plain'
+        s[:paragraphs] += 1
         t = text_of(c)
         s[:figcaps] += 1 if t.match?(/\A(Figure \d+-\d+\. |圖 ?\d+-\d+(\. |．))/)
         s[:prose] << t
@@ -154,6 +155,8 @@ files.each do |file|
   errors << "圖片不符：原稿 #{up[:images].size} 張、譯稿 #{zh[:images].size} 張" if up[:images] != zh[:images]
   errors << "表格不符：原稿 #{up[:tables].inspect}、譯稿 #{zh[:tables].inspect}" if up[:tables] != zh[:tables]
   errors << "註腳數不符：#{up[:footnotes]} / #{zh[:footnotes]}" if up[:footnotes] != zh[:footnotes]
+  # 一段對一段：同步上游時，原稿的修改才能直接對應到譯稿的同一段
+  errors << "段落數不符：原稿 #{up[:paragraphs]} 段、譯稿 #{zh[:paragraphs]} 段" if up[:paragraphs] != zh[:paragraphs]
   errors << "提示區塊不符：#{up[:admonitions]} / #{zh[:admonitions]}" if up[:admonitions] != zh[:admonitions]
   errors << "圖說數不符：#{up[:figcaps]} / #{zh[:figcaps]}" if up[:figcaps] != zh[:figcaps]
   errors << 'MathML 公式必須與原稿逐字相同' if up[:math] != zh[:math]
