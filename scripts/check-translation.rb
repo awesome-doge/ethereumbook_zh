@@ -71,9 +71,11 @@ def structure(path)
       when 'Link' then s[:links] << c[2][0]; walk.call(c[1])
       when 'Image' then s[:images] << c[2][0]
       when 'Note'
-        # 「譯註：」開頭的註腳是譯者加的，不列入與原稿的比對
-        s[:footnotes] += 1 unless text_of(c).strip.start_with?('譯註')
-        walk.call(c)
+        # 「譯註：」開頭的註腳是譯者加的，不列入與原稿的比對（裡面的段落也不算）
+        unless text_of(c).strip.start_with?('譯註')
+          s[:footnotes] += 1
+          walk.call(c)
+        end
       when 'Table'
         body_rows = c[4].sum { |tb| tb[3].size }
         cols = c[2].size

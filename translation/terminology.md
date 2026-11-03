@@ -4,7 +4,7 @@
 與《精通比特幣》第三版譯本共通的術語（金鑰、簽章、雜湊、記憶池、默克爾樹、完整節點、測試網路……）沿用同樣的譯法，兩本書讀起來才一致。
 
 > 狀態：**草稿**（2026-11-03）。候選詞取自上游全部 18 個檔案的縮寫、首次以斜體或粗體出現的術語與各級標題；2018 草稿譯本的用詞只當參考。
-> 2026-11-03 已決定：slot、epoch 保留英文；attestation 譯「見證投票」；prover／verifier 譯「證明方／驗證方」；原文的 you 譯「你」。
+> 2026-11-03 已決定：slot、epoch 保留英文；attestation 譯「見證投票」；prover／verifier 譯「證明方／驗證方」；原文的 you 譯「你」；revert 譯「回復」；gossip protocol 譯「gossip 協議」；justified 譯「已合理化」。
 > 標為 `[待定]` 的條目請在試譯階段決定，定案後改成 `[固定]`、`[並列]` 或 `[保留]`。平行翻譯開始前，本表不應再有 `[待定]`。
 
 ## 使用說明
@@ -158,7 +158,7 @@
 | consensus layer (CL) | 共識層 | | | [並列] |
 | peer | 對等節點 | | 與比特幣書一致 | [固定] |
 | peer-to-peer (P2P) | 點對點（P2P） | | | [並列] |
-| gossip protocol | gossip 協議 | | | [待定] |
+| gossip protocol | gossip 協議 | 八卦協議、流言協議 | 節點之間逐一轉傳訊息的方式 | [固定] |
 | sync / synchronization | 同步 | | | [固定] |
 | JSON-RPC / RPC / API | 保留英文 | | | [保留] |
 | Geth / Reth / Nethermind / Lighthouse / Prysm 等客戶端名稱 | 保留英文 | | | [保留] |
@@ -193,7 +193,7 @@
 | checkpoint | 檢查點 | | | [固定] |
 | finality | 最終性 | 終局性 | | [固定] |
 | finalized | 已最終確定 | | | [固定] |
-| justified | 已合理化 | | Casper FFG | [待定] |
+| justified | 已合理化 | | Casper FFG；與「已最終確定」成對 | [並列] |
 | LMD GHOST / Casper FFG / Gasper | 保留英文 | | | [保留] |
 | RANDAO | RANDAO | | | [保留] |
 | Ethash | Ethash | | | [保留] |
@@ -217,7 +217,7 @@
 | library | 函式庫 | | Solidity 的 library 關鍵字保留英文 | [固定] |
 | event | 事件 | | | [固定] |
 | emit | 發出 | | | [固定] |
-| revert | 回復 | 回滾 | 交易回復 | [固定] |
+| revert | 回復 | 回滾 | 交易回復；2026-11-03 確認沿用 | [固定] |
 | exception | 例外 | | 不要譯成「異常」 | [固定] |
 | overflow / underflow | 溢位／下溢 | 溢出 | | [固定] |
 | variable | 變數 | 變量 | | [固定] |
@@ -321,6 +321,73 @@
 | DAO | 去中心化自治組織（DAO） | | | [並列] |
 | real-world asset (RWA) | 真實世界資產（RWA） | | | [並列] |
 | TWAP | 時間加權平均價格（TWAP） | | | [並列] |
+
+## 金融與 DeFi 用語（試譯第 13 章新增，待審）
+
+| 英文 | 譯名 | 不用 | 說明 | 狀態 |
+|------|------|------|------|------|
+| cryptocurrency | 加密貨幣 | | | [固定] |
+| crypto asset | 加密資產 | | | [固定] |
+| traditional finance (TradFi) | 傳統金融（TradFi） | | | [並列] |
+| fiat currency | 法定貨幣 | | 複合詞可用「法幣」，例如法幣抵押型穩定幣 | [固定] |
+| financial inclusion | 普惠金融 | | | [固定] |
+| underbanked / unbanked | 銀行服務不足／沒有銀行帳戶 | | | [固定] |
+| overcollateralize / overcollateralization | 超額抵押 | | | [固定] |
+| collateralization ratio | 抵押率 | | | [固定] |
+| creditworthiness | 信用 | | 評估信用 | [固定] |
+| arbitrage / arbitrageur | 套利／套利者 | | | [固定] |
+| collateral swap | 抵押品置換 | | | [固定] |
+| DeFi primitive | 基本元件 | | | [固定] |
+| acceptability | 接受度 | | | [固定] |
+| peg / depeg | 掛鉤／脫鉤 | 錨定 | 穩定幣與標的價格的連動 | [固定] |
+| order book | 訂單簿 | | | [固定] |
+| market depth | 市場深度 | | | [固定] |
+| market maker | 造市商 | 做市商 | | [固定] |
+| impermanent loss | 無常損失 | | | [並列] |
+| slippage | 滑價 | 滑點 | | [並列] |
+| swap | 兌換 | | 代幣兌換 | [並列] |
+| constant product formula | 恆定乘積公式 | | | [固定] |
+| reserves | 儲備 | | 池中的代幣存量 | [固定] |
+| lending pool | 借貸池 | | | [固定] |
+| lender / borrower | 出借人／借款人 | | | [固定] |
+| default | 違約 | | | [固定] |
+| bad debt | 呆帳 | 壞賬 | | [固定] |
+| solvency / solvent | 償付能力 | | | [固定] |
+| incentive / incentivize | 誘因／提供誘因 | | | [固定] |
+| game theory | 賽局理論 | 博弈論 | | [固定] |
+| composability | 可組合性 | | | [固定] |
+| shorting / short position | 放空／空頭部位 | 做空、頭寸 | | [並列] |
+| longing | 做多 | | | [固定] |
+| leverage | 槓桿 | | | [固定] |
+| position | 部位 | 頭寸 | | [固定] |
+| taxable event | 應稅事件 | | | [固定] |
+| capital efficiency | 資本效率 | | | [固定] |
+| flash-loan attack | 閃電貸攻擊 | | | [固定] |
+| pseudorandom | 偽隨機 | | | [固定] |
+| deterministic | 確定性 | | | [固定] |
+| single point of failure | 單點故障 | | | [固定] |
+| reserve asset | 準備資產 | | | [固定] |
+| fiat-collateralized / crypto-collateralized stablecoin | 法幣抵押型／加密資產抵押型穩定幣 | | | [固定] |
+| algorithmic stablecoin | 演算法穩定幣 | | | [固定] |
+| custodian / custody | 託管機構／託管 | | | [固定] |
+| mint / burn | 鑄造／銷毀 | | | [固定] |
+| market cap | 市值 | | | [並列] |
+| product-market fit | 產品市場契合 | | | [固定] |
+| derivative / derivative token | 衍生品／衍生代幣 | | | [固定] |
+| systemic risk | 系統性風險 | | | [固定] |
+| tokenization | 代幣化 | | | [固定] |
+| fractionalization | 分割持有 | | | [固定] |
+| risk-free rate | 無風險利率 | | | [固定] |
+| trustless | 免信任 | | | [固定] |
+| immutable | 不可竄改／不可變更 | | 資料與紀錄用「不可竄改」；已部署的合約、程式碼用「不可變更」 | [固定] |
+| omnichain protocol | 全鏈協議 | | 也就是跨鏈訊息協議 | [並列] |
+| interoperability | 互通性 | 互操作性 | | [固定] |
+| wrapped token | 包裝代幣 | | | [固定] |
+| lock and mint | 鎖定與鑄造 | | | [固定] |
+| vampire attack | 吸血鬼攻擊 | | | [固定] |
+| regulator / regulation | 監管機關／監管 | | | [固定] |
+| cypherpunk / cryptopunk | 密碼龐克 | | | [固定] |
+| Binance Smart Chain (BSC) | 幣安智能鏈（BSC） | | | [並列] |
 
 ## 去中心化應用
 
