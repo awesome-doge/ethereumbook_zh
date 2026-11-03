@@ -3,7 +3,7 @@
 本表規定第二版繁體中文譯本的術語譯法，翻譯時優先查閱本表。
 與《精通比特幣》第三版譯本共通的術語（金鑰、簽章、雜湊、記憶池、默克爾樹、完整節點、測試網路……）沿用同樣的譯法，兩本書讀起來才一致。
 
-> 狀態：**草稿**（2026-11-03）。候選詞取自上游全部 18 個檔案的縮寫、首次以斜體或粗體出現的術語與各級標題；2018 草稿譯本的用詞只當參考。
+> 狀態：**平行翻譯前定案**（2026-11-03）。全書起草 254 條，兩章試譯新增 93 條，再從第 7、9、14 章抽取 98 條，現共 446 條。候選詞取自上游全部 18 個檔案的縮寫、首次以斜體或粗體出現的術語與各級標題；2018 草稿譯本的用詞只當參考。
 > 2026-11-03 已決定：slot、epoch 保留英文；attestation 譯「見證投票」；prover／verifier 譯「證明方／驗證方」；原文的 you 譯「你」；revert 譯「回復」；gossip protocol 譯「gossip 協議」；justified 譯「已合理化」。
 > 標為 `[待定]` 的條目請在試譯階段決定，定案後改成 `[固定]`、`[並列]` 或 `[保留]`。平行翻譯開始前，本表不應再有 `[待定]`。
 
@@ -234,7 +234,7 @@
 | delegatecall / selfdestruct 等指令 | 保留英文 | | | [保留] |
 | EOF | EVM 物件格式（EOF） | | | [並列] |
 
-## 程式設計通用詞（試譯第 8 章新增，待審）
+## 程式設計通用詞（試譯第 8 章新增，2026-11-03 隨試譯審閱定案）
 
 | 英文 | 譯名 | 不用 | 說明 | 狀態 |
 |------|------|------|------|------|
@@ -322,7 +322,120 @@
 | real-world asset (RWA) | 真實世界資產（RWA） | | | [並列] |
 | TWAP | 時間加權平均價格（TWAP） | | | [並列] |
 
-## 金融與 DeFi 用語（試譯第 13 章新增，待審）
+## Solidity 與程式設計（第 7 章抽取，2026-11-03 定案）
+
+| 英文 | 譯名 | 不用 | 說明 | 狀態 |
+|------|------|------|------|------|
+| high-level language | 高階語言 | | | [固定] |
+| life cycle | 生命週期 | | | [固定] |
+| declarative / imperative programming | 宣告式／命令式程式設計 | | | [固定] |
+| functional / procedural programming | 函數式／程序式程式設計 | | | [固定] |
+| side effect | 副作用 | | | [固定] |
+| source code | 原始碼 | 源代碼、源碼 | | [固定] |
+| machine code | 機器碼 | | | [固定] |
+| semantic versioning | 語意化版本 | | | [固定] |
+| version pragma | 版本 pragma | | | [固定] |
+| data type | 資料型別 | | | [固定] |
+| boolean | 布林值 | | | [固定] |
+| integer / fixed point | 整數／定點數 | | | [固定] |
+| floating point | 浮點數 | | | [固定] |
+| byte array | 位元組陣列 | | | [固定] |
+| array | 陣列 | 數組 | | [固定] |
+| dynamically sized array | 動態大小陣列 | | | [固定] |
+| enum | 列舉 | 枚舉 | | [固定] |
+| mapping | mapping | | Solidity 的 mapping 型別，保留英文；一般語境的 map 用「映射」 | [保留] |
+| key / value | 鍵／值 | | | [固定] |
+| global variable | 全域變數 | 全局變量 | | [固定] |
+| persistent state | 持久狀態 | | | [固定] |
+| public / internal / private / external | 公開／內部／私有／外部 | | 指可見性；程式碼中的關鍵字保留英文 | [固定] |
+| payable / view / pure | 保留英文 | | Solidity 關鍵字 | [保留] |
+| built-in function | 內建函式 | | | [固定] |
+| return value | 回傳值 | 返回值 | | [固定] |
+| function selector | 函式選擇器 | | | [固定] |
+| function identifier | 函式識別碼 | | | [固定] |
+| instance | 實例 | | | [固定] |
+| derived contract | 衍生合約 | 派生合約 | 繼承其他合約的合約 | [固定] |
+| C3 linearization | C3 線性化 | | | [固定] |
+| proxy pattern | 代理模式 | | | [固定] |
+| stub | 存根（stub） | | | [並列] |
+| gate condition | 前置條件 | | 修飾符檢查的條件 | [固定] |
+| error handling | 錯誤處理 | | | [固定] |
+| raw call / delegatecall / staticcall | 原始呼叫／delegatecall／staticcall | | | [固定] |
+| gas cost | gas 成本 | | | [固定] |
+| best practices | 最佳實踐 | | | [固定] |
+| zero address | 零地址 | | | [固定] |
+| human-readable | 人類可讀 | | | [固定] |
+| Yul / Huff / Fe | 保留英文 | | 程式語言名稱 | [保留] |
+
+## 智能合約安全（第 9 章抽取，2026-11-03 定案）
+
+| 英文 | 譯名 | 不用 | 說明 | 狀態 |
+|------|------|------|------|------|
+| antipattern | 反模式 | | | [固定] |
+| defensive programming | 防禦式程式設計 | | | [固定] |
+| code reuse | 程式碼重複使用 | 代碼復用 | | [固定] |
+| code quality | 程式碼品質 | | | [固定] |
+| test coverage | 測試覆蓋率 | | | [固定] |
+| preventative technique | 預防技術 | | | [固定] |
+| real-world example | 真實案例 | | 小節標題「Real-world example: …」譯「真實案例：……」 | [固定] |
+| read-only reentrancy | 唯讀重入 | | | [固定] |
+| entropy illusion | 熵的假象 | | | [固定] |
+| unchecked return value | 未檢查的回傳值 | | | [固定] |
+| race condition | 競爭條件 | 競態條件 | | [固定] |
+| precision | 精度 | | | [固定] |
+| inflation attack | 通膨攻擊 | | ERC-4626 | [固定] |
+| input validation | 輸入驗證 | | | [固定] |
+| arbitrary call | 任意呼叫 | | | [固定] |
+| signature replay attack | 簽章重放攻擊 | | | [固定] |
+| misconfiguration | 設定錯誤 | | | [固定] |
+| malicious contract | 惡意合約 | | | [固定] |
+| attacker / exploiter | 攻擊者 | | | [固定] |
+| hack | 駭客攻擊 | 黑客 | 「被駭」也可 | [固定] |
+| wad / ray | wad／ray | | 定點數的精度單位，保留英文 | [保留] |
+| CTF | CTF | | Capture the Flag 資安競賽 | [保留] |
+
+## EVM（第 14 章抽取，2026-11-03 定案）
+
+| 英文 | 譯名 | 不用 | 說明 | 狀態 |
+|------|------|------|------|------|
+| virtual machine | 虛擬機 | | | [固定] |
+| instruction set | 指令集 | | | [固定] |
+| arithmetic / logic operations | 算術運算／邏輯運算 | | | [固定] |
+| stack / process-flow / system / environmental / block operations | 堆疊／流程控制／系統／環境／區塊操作 | | 指令分類 | [固定] |
+| quasi-Turing-complete | 準圖靈完備 | | | [固定] |
+| stack-based architecture | 堆疊式架構 | | | [固定] |
+| last in, first out (LIFO) | 後進先出（LIFO） | | | [並列] |
+| parallelization | 平行化 | | | [固定] |
+| ahead-of-time / just-in-time compilation | 預先編譯（AOT）／即時編譯（JIT） | | | [並列] |
+| transaction-based state machine | 基於交易的狀態機 | | | [固定] |
+| out of gas | gas 耗盡 | | | [固定] |
+| gas accounting | gas 計算 | | | [固定] |
+| gas target | gas 目標 | | EIP-1559 | [固定] |
+| available gas / gas supply | 可用 gas | | 執行時剩餘的 gas | [固定] |
+| state trie / transaction trie / receipt trie / storage trie | 狀態前綴樹／交易前綴樹／收據前綴樹／儲存前綴樹 | | | [固定] |
+| transient storage | 暫時儲存空間 | | EIP-1153 | [固定] |
+| call frame | 呼叫框架 | | | [固定] |
+| initialization code / deployment code | 初始化程式碼／部署程式碼 | | | [固定] |
+| deployment bytecode | 部署位元組碼 | | | [固定] |
+| control flow / control flow graph | 控制流程／控制流程圖 | | | [固定] |
+| dispatcher | 分派器 | | 依函式選擇器分派呼叫的程式碼 | [固定] |
+| push / pop | 推入／彈出 | 壓入 | 堆疊操作；指令名稱 PUSH、POP 保留英文 | [固定] |
+| leading zeros | 前導零 | | | [固定] |
+| bit shift | 位移 | | | [固定] |
+| JUMPDEST analysis | JUMPDEST 分析 | | | [固定] |
+| code introspection | 程式碼自省 | | | [固定] |
+| code section / data section | 程式碼區段／資料區段 | | EOF | [固定] |
+| return stack | 回傳堆疊 | | EOF | [固定] |
+| legacy EVM | 舊版 EVM | | 相對於 EOF | [固定] |
+| stack too deep | stack too deep | | Solidity 編譯錯誤訊息，保留英文 | [保留] |
+| deprecate | 棄用 | | | [固定] |
+| concrete implementation | 具體實作 | | | [固定] |
+| delegation designation | 委託指定 | | EIP-7702 | [固定] |
+| enshrined PBS (ePBS) | 內建的提議者與建構者分離（ePBS） | | | [並列] |
+| cryptographic witness | 密碼學見證 | | 無狀態以太坊 | [固定] |
+| Heimdall / Ethersplay / revm / evmone 等工具 | 保留英文 | | | [保留] |
+
+## 金融與 DeFi 用語（試譯第 13 章新增，2026-11-03 隨試譯審閱定案）
 
 | 英文 | 譯名 | 不用 | 說明 | 狀態 |
 |------|------|------|------|------|
