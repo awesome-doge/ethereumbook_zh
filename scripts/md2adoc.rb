@@ -105,6 +105,7 @@ captions =
   if lang == 'zh'
     <<~ADOC
       :lang: zh-Hant
+      :chapter-signifier!:
       :toc-title: 目錄
       :caution-caption: 小心
       :important-caption: 重要

@@ -30,7 +30,7 @@ jobs:
     - name: Install Dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y fonts-noto-cjk fonts-noto-cjk-extra python3-fonttools
+        sudo apt-get install -y fonts-noto-cjk fonts-noto-cjk-extra fonts-dejavu-core python3-fonttools
         gem install asciidoctor -v '~> 2.0'
         gem install asciidoctor-pdf -v '~> 2.3'
         gem install asciidoctor-epub3 -v '~> 2.1'
@@ -66,7 +66,10 @@ jobs:
         python3 scripts/extract-cjk-fonts.py "$FONT_DIR" "$BOOK_DIR"
         cp "$FONT_DIR/notosanstc-regular.ttf" "$FONT_DIR/mplus1code-regular.ttf"
         cp "$FONT_DIR/notosanstc-bold.ttf" "$FONT_DIR/mplus1code-bold.ttf"
-        ls -lh "$FONT_DIR"/notosanstc-* "$FONT_DIR"/mplus1code-*
+        # 備用字型（下標、點字、符號）；DejaVu Sans 本身就是 TrueType 外框，不用轉換
+        cp /usr/share/fonts/truetype/dejavu/DejaVuSans.ttf "$FONT_DIR/dejavusans.ttf"
+        cp /usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf "$FONT_DIR/dejavusans-bold.ttf"
+        ls -lh "$FONT_DIR"/notosanstc-* "$FONT_DIR"/mplus1code-* "$FONT_DIR"/dejavusans*
 
     - name: Build PDF
       # 第二版目前沒有封面圖，暫不設定 front-cover-image

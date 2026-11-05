@@ -13,6 +13,13 @@ font:
       bold: GEM_FONTS_DIR/mplus1code-bold.ttf
       italic: GEM_FONTS_DIR/mplus1code-regular.ttf
       bold_italic: GEM_FONTS_DIR/mplus1code-bold.ttf
+    # Noto Sans CJK 沒有的字（下標 ₀₁ᵢ、點字、✔ 等）改用 DejaVu Sans；表情符號兩者都沒有
+    DejaVu Sans:
+      normal: GEM_FONTS_DIR/dejavusans.ttf
+      bold: GEM_FONTS_DIR/dejavusans-bold.ttf
+      italic: GEM_FONTS_DIR/dejavusans.ttf
+      bold_italic: GEM_FONTS_DIR/dejavusans-bold.ttf
+  fallbacks: [DejaVu Sans]
 
 page:
   layout: portrait

@@ -25,9 +25,11 @@ sources = sys.argv[3:] or [
 ]
 names = ["notosanstc-regular.ttf", "notosanstc-bold.ttf"]
 
-# 書中所有字元，加上 ASCII 與常用全形標點（頁首、目錄、提示框標題等由主題產生的文字）
+# 書中所有字元，加上 ASCII、常用全形標點，以及 Asciidoctor／主題在排版時才插入的字元：
+# 清單符號 •◦▪、replacements 產生的彎引號與 © ™ ® — … →，-- 兩側的細空白（U+2009）
 text = "".join(p.read_text(encoding="utf-8") for p in sorted(book_dir.glob("*.adoc")))
 text += "".join(map(chr, range(0x20, 0x7F))) + "　、。，．：；？！「」『』（）〈〉《》—…・"
+text += "•◦▪‘’“”©™®–→←⇒⇐\u2009\u00a0"
 
 
 def load_tc(src):
