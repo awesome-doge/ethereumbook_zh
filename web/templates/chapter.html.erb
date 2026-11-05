@@ -1,5 +1,5 @@
 <article class="chapter" aria-labelledby="<%= h page.id %>">
-  <nav class="breadcrumb" aria-label="導覽路徑"><a href="/"><%= BOOK_TITLE %></a><span aria-hidden="true">/</span><span><%= h page.label %></span></nav>
+  <nav class="breadcrumb" aria-label="導覽路徑"><a href="<%= HOME_PATH %>"><%= BOOK_TITLE %></a><span aria-hidden="true">/</span><span><%= h page.label %></span></nav>
 <%- if LEGACY_2018 -%>
 <%= edition_notice(compact: true) %>
 <%- elsif !page.translated -%>

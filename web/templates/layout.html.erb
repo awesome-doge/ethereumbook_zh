@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-Hant-TW">
+<html lang="zh-Hant-TW" data-base="<%= BASE %>"<%= %( data-legacy-ids="#{ARCHIVE_2018}ids.json") if LINK_2018 %>>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -14,18 +14,18 @@
 <meta name="theme-color" content="#f8f9fc" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#14151b" media="(prefers-color-scheme: dark)">
 <meta name="color-scheme" content="light dark">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="icon" href="/favicon.png" type="image/png" sizes="32x32">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<link rel="manifest" href="/manifest.webmanifest">
-<link rel="sitemap" type="application/xml" href="/sitemap.xml">
+<link rel="icon" href="<%= BASE %>/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="<%= BASE %>/favicon.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="<%= BASE %>/apple-touch-icon.png">
+<link rel="manifest" href="<%= BASE %>/manifest.webmanifest">
+<link rel="sitemap" type="application/xml" href="<%= BASE %>/sitemap.xml">
 <%- unless noindex -%>
 <meta property="og:site_name" content="<%= SITE_NAME %>">
 <meta property="og:type" content="<%= og_type %>">
 <meta property="og:title" content="<%= h title %>">
 <meta property="og:description" content="<%= h description %>">
 <meta property="og:url" content="<%= canonical %>">
-<meta property="og:image" content="<%= SITE_URL + OG_IMAGE %>">
+<meta property="og:image" content="<%= SITE_URL + BASE + OG_IMAGE %>">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="zh_TW">
@@ -64,7 +64,7 @@
   <button class="icon-btn" type="button" data-action="toggle-nav" aria-controls="sidebar" aria-expanded="false" aria-label="開啟目錄">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
   </button>
-  <a class="brand" href="/" aria-label="<%= BOOK_TITLE %> 首頁">
+  <a class="brand" href="<%= HOME_PATH %>" aria-label="<%= BOOK_TITLE %> 首頁">
     <span class="brand-mark" aria-hidden="true">Ξ</span><span class="brand-text">精通以太坊</span>
   </a>
   <%- if current -%>
@@ -112,7 +112,7 @@
 <div class="shell">
   <nav class="sidebar" id="sidebar" aria-label="全書目錄">
     <div class="sidebar-head">
-      <a href="/" class="sidebar-book"><%= BOOK_TITLE %></a>
+      <a href="<%= HOME_PATH %>" class="sidebar-book"><%= BOOK_TITLE %></a>
       <span class="sidebar-sub">繁體中文版</span>
     </div>
     <ol class="book-toc">

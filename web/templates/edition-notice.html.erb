@@ -1,7 +1,8 @@
+<%- link = SECOND_EDITION_HOME ? %(<a href="#{SECOND_EDITION_HOME}">第二版的繁體中文譯本</a>在本站首頁，) : '' -%>
 <aside class="edition-notice" role="note" aria-label="版本說明">
   <%- if compact -%>
-  <p><strong>本章內容已過時：</strong>這是 2018 年草稿的翻譯。原書第二版已於 2025 年出版，英文版可在 <a href="<%= SECOND_EDITION_URL %>" rel="noopener">masteringethereum.xyz</a> 免費線上閱讀。</p>
+  <p><strong>本章內容已過時：</strong>這是 2018 年草稿的翻譯。原書第二版已於 2025 年出版，<%= link %>英文版可在 <a href="<%= SECOND_EDITION_URL %>" rel="noopener">masteringethereum.xyz</a> 免費線上閱讀。</p>
   <%- else -%>
-  <p><strong>本譯本內容已過時。</strong>這是《精通以太坊》2018 年草稿的翻譯，書中的測試網、客戶端、開發工具與共識機制等內容，現在都已大幅改變（例如以太坊已在 2022 年改為權益證明）。原書第二版已於 2025 年出版，英文版可在 <a href="<%= SECOND_EDITION_URL %>" rel="noopener">masteringethereum.xyz</a> 免費線上閱讀。</p>
+  <p><strong>本譯本內容已過時。</strong>這是《精通以太坊》2018 年草稿的翻譯，書中的測試網、客戶端、開發工具與共識機制等內容，現在都已大幅改變（例如以太坊已在 2022 年改為權益證明）。原書第二版已於 2025 年出版，<%= link %>英文版可在 <a href="<%= SECOND_EDITION_URL %>" rel="noopener">masteringethereum.xyz</a> 免費線上閱讀。</p>
   <%- end -%>
 </aside>

@@ -1,8 +1,19 @@
 <%- translated = pages.count(&:translated) -%>
 <div class="home">
+  <%- if PREVIEW -%>
   <aside class="edition-notice" role="note" aria-label="預覽說明">
     <p><strong>第二版譯稿預覽，尚未公開。</strong>目前已翻譯 <%= translated %> / <%= pages.size %> 章，尚未翻譯的章節暫時顯示英文原稿。翻譯計畫見 <a href="<%= REPO_URL %>/blob/master/TRANSLATION_PLAN.md" rel="noopener">TRANSLATION_PLAN.md</a>。</p>
   </aside>
+  <%- elsif translated < pages.size || LINK_2018 -%>
+  <aside class="edition-notice" role="note" aria-label="版本說明">
+    <%- if translated < pages.size -%>
+    <p><strong>翻譯進行中：</strong>目前已翻譯 <%= translated %> / <%= pages.size %> 章，尚未翻譯的章節暫時顯示英文原稿。</p>
+    <%- end -%>
+    <%- if LINK_2018 -%>
+    <p>2018 年草稿（第一版）的舊譯本已封存，內容已過時，仍可在 <a href="<%= ARCHIVE_2018 %>">2018 年草稿譯本</a>閱讀。</p>
+    <%- end -%>
+  </aside>
+  <%- end -%>
   <section class="hero no-cover">
     <div class="hero-text">
       <p class="hero-kicker">Mastering Ethereum · 第二版 · 繁體中文</p>

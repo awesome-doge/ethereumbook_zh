@@ -62,17 +62,21 @@ indexable = docs.reject { |_, doc| doc.at_css('meta[name="robots"][content*="noi
   values.compact.tally.each { |v, n| errors << "重複的 #{field}（#{n} 頁）：#{v}" if n > 1 }
 end
 
+# /index.html → /、/2018/index.html → /2018/
+page_url = ->(page) { SITE_URL + page.sub(%r{(?<=/)index\.html\z}, '') }
+
 indexable.each do |page, doc|
   n = doc.css('h1').size
   errors << "#{page}: 有 #{n} 個 h1" unless n == 1
   canonical = doc.at_css('link[rel="canonical"]')&.[]('href')
-  expected = SITE_URL + (page == '/index.html' ? '/' : page)
+  expected = page_url.call(page)
   errors << "#{page}: canonical 應為 #{expected}，實際為 #{canonical}" if canonical && canonical != expected
 end
 
+# 根部的 sitemap 要列出所有可索引的頁面（整站建置時合併了第二版與 /2018/ 的 2018 版）
 sitemap = Nokogiri::XML(File.read(File.join(DIR, 'sitemap.xml'))).remove_namespaces!
 listed = sitemap.css('loc').map(&:text).to_set
-expected = indexable.keys.map { |p| SITE_URL + (p == '/index.html' ? '/' : p) }.to_set
+expected = indexable.keys.map(&page_url).to_set
 (listed - expected).each { |u| errors << "sitemap 多列了 #{u}" }
 (expected - listed).each { |u| errors << "sitemap 漏列了 #{u}" }
 
