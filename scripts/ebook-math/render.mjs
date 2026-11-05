@@ -43,6 +43,8 @@ function render(tex, display) {
   let svg = adaptor.outerHTML(svgNode)
     .replace(/(width|height)="([\d.]+)ex"/g, (_, k, v) => `${k}="${(parseFloat(v) * EX_TO_PT).toFixed(2)}pt"`)
     .replace(/ style="[^"]*"/, '')
+    // prawn-svg 會把 stroke-width="0" 畫成細線，字形看起來偏粗；MathJax 的字形只需要填色
+    .replace(/ stroke="currentColor" fill="currentColor" stroke-width="0"/, ' stroke="none" fill="#000"')
     .replace(/currentColor/g, '#000');
   const name = createHash('sha1').update(`${display ? 'block' : 'inline'}:${tex}`).digest('hex').slice(0, 12) + '.svg';
   writeFileSync(join(outDir, name), `<?xml version="1.0" encoding="UTF-8"?>\n${svg}\n`);
