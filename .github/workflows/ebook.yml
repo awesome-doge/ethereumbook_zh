@@ -75,7 +75,9 @@ jobs:
       # 第二版目前沒有封面圖，暫不設定 front-cover-image
       run: |
         mkdir -p output
+        # -a compress：Prawn 預設不壓縮頁面內容，不加的話全書 PDF 約 67 MB，加了約 16 MB
         asciidoctor-pdf \
+          -a compress \
           -a imagesdir= \
           -a pdf-theme="$PWD/pdf-theme.yml" \
           -a pdf-fontsdir=GEM_FONTS_DIR \

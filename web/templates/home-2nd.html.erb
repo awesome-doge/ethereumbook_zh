@@ -23,6 +23,10 @@
       <div class="hero-actions">
         <a class="btn btn-primary" href="<%= first_chapter.path %>">開始閱讀第 1 章</a>
         <a class="btn btn-resume" href="#" hidden data-resume>繼續閱讀</a>
+        <%- if PDF_URL -%>
+        <a class="btn" href="<%= PDF_URL %>" rel="noopener">下載 PDF</a>
+        <a class="btn" href="<%= EPUB_URL %>" rel="noopener">下載 EPUB</a>
+        <%- end -%>
         <a class="btn" href="<%= SECOND_EDITION_URL %>" rel="noopener">英文原書線上版</a>
       </div>
       <p class="hero-facts"><%= pages.count { |p| p.label.start_with?('第') } %> 章 · 約 <%= (total_minutes / 60.0).round %> 小時閱讀 · <%= LICENSE_NAME %></p>

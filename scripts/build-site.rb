@@ -78,8 +78,9 @@ BOOKS = {
     # 上游條款：出版後 12 個月內為 CC BY-NC-ND 4.0，期滿轉為 CC BY-SA 4.0。上游正式公告轉換之前，譯本照原書現行條款標示
     license_name: 'CC BY-NC-ND 4.0', license_url: 'https://creativecommons.org/licenses/by-nc-nd/4.0/',
     license_note: '（原書出版 12 個月後轉為 CC BY-SA 4.0，本譯本屆時隨之更新）',
-    # 第二版電子書還沒有 release；第一次以 ebook.yml 發布後再填上下載網址
-    epub: nil, pdf: nil,
+    # 第二版電子書由 ebook.yml 在推送 v* tag 時發布；第二版是最新的版本，用 releases/latest 跟著最新一次 release
+    epub: "#{REPO_URL}/releases/latest/download/Mastering-Ethereum-2nd-Traditional-Chinese.epub",
+    pdf: "#{REPO_URL}/releases/latest/download/Mastering-Ethereum-2nd-Traditional-Chinese.pdf",
     chapters: 'chapters-2nd.yml', home: 'home-2nd', path_prefix: '/chapters/', images_root: File.join(ROOT, 'upstream'),
     base: '', legacy: false, ga: 'G-ZVVQYEKMPF',
     original_name: 'Mastering Ethereum, 2nd Edition',
