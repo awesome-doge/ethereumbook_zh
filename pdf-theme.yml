@@ -25,6 +25,8 @@ base:
   line-height-length: 18
   line-height: $base_line_height_length / $base_font_size
   font-color: #333333
+  # 預設左右對齊會把中英文之間的空白拉得很寬
+  text-align: left
 
 heading:
   font-family: Noto Sans TC
@@ -101,7 +103,7 @@ admonition:
 image:
   align: center
 
-blockquote:
+quote:
   border-left-width: 3
   border-color: #cccccc
   font-color: #555555
@@ -130,9 +132,18 @@ footer:
   font-color: #999999
   border-color: #eeeeee
   border-width: 0.5
+  # 預設主題在左右兩側也放了頁碼，清掉，只留中間一個
   recto:
+    left:
+      content: ~
     center:
       content: '{page-number}'
+    right:
+      content: ~
   verso:
+    left:
+      content: ~
     center:
       content: '{page-number}'
+    right:
+      content: ~

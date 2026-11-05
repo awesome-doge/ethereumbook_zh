@@ -48,7 +48,10 @@ docs.each do |page, doc|
   end
 end
 
-indexable = docs.reject { |_, doc| doc.at_css('meta[name="robots"][content*="noindex"]') }
+# 舊網址轉址頁（meta refresh）不是要被索引的頁面，canonical 指向轉址目標
+indexable = docs.reject do |_, doc|
+  doc.at_css('meta[name="robots"][content*="noindex"]') || doc.at_css('meta[http-equiv="refresh"]')
+end
 %w[title description canonical].each do |field|
   values = indexable.map do |page, doc|
     v = case field

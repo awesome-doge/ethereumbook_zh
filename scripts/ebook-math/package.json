@@ -1,0 +1,9 @@
+{
+  "name": "ebook-math",
+  "private": true,
+  "description": "電子書建置用：把 AsciiDoc 的 latexmath 公式轉成 SVG 圖片",
+  "type": "module",
+  "dependencies": {
+    "mathjax-full": "3.2.2"
+  }
+}

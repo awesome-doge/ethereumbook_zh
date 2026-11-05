@@ -52,11 +52,18 @@ jobs:
         ruby scripts/md2adoc.rb zh-tw "$BOOK_DIR" --ref upstream
         cp -R upstream/images "$BOOK_DIR/images"
 
+    - name: Render math to SVG
+      # asciidoctor-pdf 與 asciidoctor-epub3 都不排版 latexmath；先用 MathJax 把公式轉成 SVG 圖片（版本鎖在 package-lock.json）
+      run: |
+        npm ci --prefix scripts/ebook-math
+        node scripts/ebook-math/render.mjs "$BOOK_DIR"
+
     - name: Extract CJK Fonts
       run: |
         FONT_DIR="$(gem environment gemdir)/gems/asciidoctor-pdf-$(gem list asciidoctor-pdf --exact | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')/data/fonts"
         echo "FONT_DIR=$FONT_DIR"
-        python3 scripts/extract-cjk-fonts.py "$FONT_DIR"
+        # 依全書文字子集化並把 CFF 外框轉成 TrueType：prawn 嵌入 CFF 外框的 Noto Sans CJK 會得到沒有文字的 PDF
+        python3 scripts/extract-cjk-fonts.py "$FONT_DIR" "$BOOK_DIR"
         cp "$FONT_DIR/notosanstc-regular.ttf" "$FONT_DIR/mplus1code-regular.ttf"
         cp "$FONT_DIR/notosanstc-bold.ttf" "$FONT_DIR/mplus1code-bold.ttf"
         ls -lh "$FONT_DIR"/notosanstc-* "$FONT_DIR"/mplus1code-*

@@ -108,7 +108,8 @@ if BOOK == 'all'
   build.call('2018', BOOKS['2018'][:base], File.join(OUT, BOOKS['2018'][:base]))
 
   # 舊網址轉址頁：/ch08.html#錨點 → /2018/ch08.html#錨點。GitHub Pages 沒有伺服器端轉址，
-  # 用 canonical、meta refresh（不支援 JS 時）加上保留 #錨點 的 JS。
+  # 用 canonical、meta refresh（不支援 JS 時）加上保留 #錨點 的 JS。不加 noindex：Google 把立即的 meta refresh
+  # 當成永久轉址，noindex 與 canonical 同時出現反而是互相矛盾的訊號。
   # /all.html#錨點 先轉到 /2018/all.html#錨點，再由 site.js 依 2018 版的 ids.json 轉到對應章節。
   redirect = ERB.new(File.read(File.join(WEB, 'templates', 'redirect.html.erb')), trim_mode: '-')
   YAML.load_file(File.join(WEB, BOOKS['2018'][:chapters])).each do |c|

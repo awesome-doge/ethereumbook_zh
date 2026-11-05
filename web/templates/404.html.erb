@@ -7,5 +7,8 @@
     <li><a href="<%= p.path %>"><span class="toc-label"><%= h p.label %></span><%= h(p.label == p.title ? '' : p.title) %></a></li>
     <%- end -%>
   </ol>
+  <%- if LINK_2018 -%>
+  <p>舊網址若是 2018 年草稿譯本的頁面，請到 <a href="<%= ARCHIVE_2018 %>">2018 年草稿譯本</a>查看。</p>
+  <%- end -%>
   <p><a class="btn btn-primary" href="<%= HOME_PATH %>">回到首頁</a></p>
 </div>
