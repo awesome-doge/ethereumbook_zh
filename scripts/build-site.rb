@@ -75,8 +75,9 @@ BOOKS = {
     authors: ['Andreas M. Antonopoulos', 'Gavin Wood', 'Carlo Parisi', 'Alessandro Mazza', 'Niccolò Pozzolini'],
     credit: '原著《Mastering Ethereum》第二版由 Andreas M. Antonopoulos、Gavin Wood、Carlo Parisi、Alessandro Mazza 與 ' \
             'Niccolò Pozzolini 撰寫，O\'Reilly Media 出版。',
-    # 上游條款：出版 12 個月後轉為 CC BY-SA 4.0；正式確認前標示為待確認（見 TRANSLATION_PLAN.md）
-    license_name: 'CC BY-SA 4.0（待確認）', license_url: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    # 上游條款：出版後 12 個月內為 CC BY-NC-ND 4.0，期滿轉為 CC BY-SA 4.0。上游正式公告轉換之前，譯本照原書現行條款標示
+    license_name: 'CC BY-NC-ND 4.0', license_url: 'https://creativecommons.org/licenses/by-nc-nd/4.0/',
+    license_note: '（原書出版 12 個月後轉為 CC BY-SA 4.0，本譯本屆時隨之更新）',
     # 第二版電子書還沒有 release；第一次以 ebook.yml 發布後再填上下載網址
     epub: nil, pdf: nil,
     chapters: 'chapters-2nd.yml', home: 'home-2nd', path_prefix: '/chapters/', images_root: File.join(ROOT, 'upstream'),
@@ -151,6 +152,7 @@ EPUB_URL = PROFILE[:epub]
 PDF_URL = PROFILE[:pdf]
 LICENSE_NAME = PROFILE[:license_name]
 LICENSE_URL = PROFILE[:license_url]
+LICENSE_NOTE = PROFILE[:license_note].to_s
 PREVIEW = ENV['PREVIEW'] == '1'  # 不公開預覽：全站 noindex、robots 拒絕索引、sitemap 不列網址、不載入 GA
 GA_ID = PREVIEW ? nil : PROFILE[:ga]
 PATH_PREFIX = PROFILE[:path_prefix]
