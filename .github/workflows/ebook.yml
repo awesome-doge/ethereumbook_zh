@@ -126,6 +126,9 @@ jobs:
           ### 線上閱讀
           [mastering-ethereum.doge.tg](https://mastering-ethereum.doge.tg/)
 
+          ### 授權
+          照原書現行條款以 [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh_TW) 釋出；原書出版 12 個月後轉為 CC BY-SA 4.0，本譯本屆時隨之更新。
+
           2018 年草稿譯本（第一版）的電子書請見 [v2.0.0](https://github.com/awesome-doge/ethereumbook_zh/releases/tag/v2.0.0)，線上版封存於 [mastering-ethereum.doge.tg/2018/](https://mastering-ethereum.doge.tg/2018/)。
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
