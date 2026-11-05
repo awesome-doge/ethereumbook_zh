@@ -588,7 +588,7 @@ payable 函式是可以接受轉入款項的函式。沒有宣告為 `payable` �
 
 **fallback()**
 
-當合約被呼叫時所帶的資料不符合任何其他函式簽章（function signature）時，就會執行 `fallback` 函式。我們可以用 `fallback() external [payable]` 或 `fallback(bytes calldata input) external [payable] returns (bytes memory output)` 宣告它。如果 `fallback` 函式包含輸入參數，這個參數會包含送到合約的全部資料（相當於 `msg.data`）。和 `receive` 函式一樣，`fallback` 函式可以是 payable、可以是 virtual、可以 override 其他函式，也可以有修飾符。現在，它主要用來實作*代理模式*：一種讓智能合約可以升級的設計模式。
+當合約被呼叫時所帶的資料不符合任何其他函式簽章（function signature）時，就會執行 `fallback` 函式。我們可以用 `fallback() external [payable]` 或 `fallback(bytes calldata input) external [payable] returns (bytes memory output)` 宣告它。如果 `fallback` 函式包含輸入參數，這個參數會包含送到合約的全部資料（相當於 `msg.data`）。和 `receive` 函式一樣，`fallback` 函式可以是 payable、可以是 virtual、可以覆寫其他函式，也可以有修飾符。現在，它主要用來實作*代理模式*：一種讓智能合約可以升級的設計模式。
 
 > **備註**
 >
@@ -734,9 +734,9 @@ contract Faucet is Pausable {
 
 `Faucet` 合約繼承了 `Pausable`，而後者又繼承了 `Owned`，因此它現在可以使用 `whenNotPaused` 修飾符，而這個修飾符的結果，可以由透過 `Owned` 合約建構子定義的擁有者控制。這些功能就和把那些函式直接寫在 `Faucet` 裡一樣，但多虧了這種模組化的架構，我們可以在其他合約中重複使用這些函式與修飾符，不必重寫。程式碼重複使用與模組化讓我們的程式碼更簡潔、更容易閱讀，也更容易審計。
 
-有時候，我們可能需要改變所繼承合約的某些功能。幸好，Solidity 正好提供了合適的功能：函式 override。宣告為 `virtual` 的函式，可以被繼承鏈中較上層的合約 override，讓繼承的做法保有高度的彈性。[^tn9]
+有時候，我們可能需要改變所繼承合約的某些功能。幸好，Solidity 正好提供了合適的功能：函式覆寫。宣告為 `virtual` 的函式，可以被繼承鏈中較上層的合約覆寫，讓繼承的做法保有高度的彈性。[^tn9]
 
-[^tn9]: 譯註：這裡的「較上層」指的是衍生程度較高、繼承了該函式的合約（例如下面範例中 override `unpause` 的 `Faucet`），與前面「呼叫繼承鏈中較上層的函式」（指父合約）的用法正好相反。
+[^tn9]: 譯註：這裡的「較上層」指的是衍生程度較高、繼承了該函式的合約（例如下面範例中覆寫 `unpause` 的 `Faucet`），與前面「呼叫繼承鏈中較上層的函式」（指父合約）的用法正好相反。
 
 我們來看一個例子。假設我們想讓暫停功能變成單向的：一旦暫停，合約就再也無法解除暫停。要做到這一點，我們需要把 `Pausable` 合約中的 `unpause` 函式標示為 `virtual`，並在 `Faucet` 合約中以 `override` 屬性重新宣告 `unpause` 函式，定義我們想要的新行為，也就是回復：
 
@@ -776,13 +776,13 @@ contract Faucet is Pausable {
 
 > **備註**
 >
-> 在 Solidity 中 override 函式時，我們只能讓可見性變得更開放——具體來說，我們可以把它從 external 改成 public，但不能反過來。至於狀態可變性（mutability），我們可以把限制收緊，例如從 nonpayable 改成 view 或 pure（就像我們對 `unpause` 所做的），或從 view 改成 pure。但有一個重大的例外：如果函式標示為 payable，就必須維持 payable——我們不能把它改成其他任何設定。
+> 在 Solidity 中覆寫函式時，我們只能讓可見性變得更開放——具體來說，我們可以把它從 external 改成 public，但不能反過來。至於狀態可變性（mutability），我們可以把限制收緊，例如從 nonpayable 改成 view 或 pure（就像我們對 `unpause` 所做的），或從 view 改成 pure。但有一個重大的例外：如果函式標示為 payable，就必須維持 payable——我們不能把它改成其他任何設定。
 
 ### 多重繼承
 
 在 Solidity 中使用多重繼承時，Solidity 會依靠一種稱為 C3 線性化的演算法，來決定合約被繼承的順序。這個演算法確保繼承順序嚴格且可預測，有助於避免循環繼承之類的問題。用最簡單的方式來說，它決定的是尋找函式時檢查基礎合約的順序，而這個順序是由右到左。也就是說，最右邊的合約被視為「衍生程度最高」的合約。例如，在合約宣告 `contract C is A, B { }` 中，合約 B 的衍生程度比合約 A 高。
 
-除了使用 C3 線性化之外，Solidity 還設有其他的防護措施。其中一條關鍵的規則是：如果多個合約有相同的函式，我們就必須明確指出要 override 哪些合約。我們來看一個例子：
+除了使用 C3 線性化之外，Solidity 還設有其他的防護措施。其中一條關鍵的規則是：如果多個合約有相同的函式，我們就必須明確指出要覆寫哪些合約。我們來看一個例子：
 
 ```solidity
 contract A {
@@ -799,7 +799,7 @@ contract C is A, B {
 }
 ```
 
-乍看之下，這段程式碼似乎應該能正常運作，因為 C3 線性化應該會處理好一切。但實際上，它無法編譯。Solidity 會拋出一個錯誤，內容是：「TypeError: Derived contract must override function `foo`. Two or more base classes define a function with the same name and parameter types.」要修正這個問題，我們必須像下面這樣，明確地 override A 與 B 兩者的 `foo()` 函式：
+乍看之下，這段程式碼似乎應該能正常運作，因為 C3 線性化應該會處理好一切。但實際上，它無法編譯。Solidity 會拋出一個錯誤，內容是：「TypeError: Derived contract must override function `foo`. Two or more base classes define a function with the same name and parameter types.」要修正這個問題，我們必須像下面這樣，明確地覆寫 A 與 B 兩者的 `foo()` 函式：
 
 ```solidity
 contract C is A, B {
@@ -809,7 +809,7 @@ contract C is A, B {
 }
 ```
 
-所以，即使 Solidity 使用 C3 線性化，我們在寫程式時大多不必擔心它，因為 Solidity 會強制我們明確地處理函式的 override。
+所以，即使 Solidity 使用 C3 線性化，我們在寫程式時大多不必擔心它，因為 Solidity 會強制我們明確地處理函式的覆寫。
 
 不過，有一個地方 C3 線性化很重要，那就是 Solidity 決定建構子執行順序的時候。建構子會依照 C3 線性化的順序執行，但有個轉折：它們是以相反的順序執行的。仔細想想，這很合理：衍生程度最高的合約，它的建構子應該最後執行，因為它可能會覆蓋先前的建構子所設定的東西。我們來看一個例子：
 
@@ -1028,7 +1028,7 @@ npm i ethers
 
 **圖 7-1.** Etherscan 上的 USDT ABI 區段
 
-現在，我們來談談要如何連上以太坊網路。我們需要一個 WebSocket 節點服務供應商（provider），因為我們要監聽事件，而這需要持續的連線。你可以選擇付費的 provider（比較可靠、速度也比較快），也可以選擇在 [ChainList](https://chainlist.org) 之類的網站上找到的免費公開 provider。以我們的範例來說，公開的 provider 就夠用了，雖然它們可能有流量限制。
+現在，我們來談談要如何連上以太坊網路。我們需要一個 WebSocket 節點服務供應商（provider），因為我們要監聽事件，而這需要持續的連線。你可以選擇付費的節點服務供應商（比較可靠、速度也比較快），也可以選擇在 [ChainList](https://chainlist.org) 之類的網站上找到的免費公開節點服務供應商。以我們的範例來說，公開的節點服務供應商就夠用了，雖然它們可能有流量限制。
 
 > **備註**
 >
@@ -1057,7 +1057,7 @@ async function getTransfer(){
 getTransfer()
 ```
 
-宣告 USDT 地址與 WebSocket provider 的網址之後，腳本一開始會用 ethers 函式庫建立一個新的 WebSocketProvider 實例。這個 provider 會透過我們指定的 WebSocket 網址，把我們連上以太坊網路。接著，我們用 `ethers.Contract` 類別建立 USDT 智能合約的實例，傳入 USDT 地址、ABI 與我們的 WebSocket provider。
+宣告 USDT 地址與 WebSocket 節點服務供應商的網址之後，腳本一開始會用 ethers 函式庫建立一個新的 WebSocketProvider 實例。這個 WebSocketProvider 實例會透過我們指定的 WebSocket 網址，把我們連上以太坊網路。接著，我們用 `ethers.Contract` 類別建立 USDT 智能合約的實例，傳入 USDT 地址、ABI 與這個 WebSocketProvider 實例。
 
 現在來到腳本的核心。我們在合約實例上設定一個事件監聽器，捕捉 USDT 合約發出的 `Transfer` 事件。每當發生 `Transfer` 事件，這個監聽器就會觸發一個回呼函式，這個函式會收到四個與這筆轉帳相關的參數。在回呼函式中，我們取出轉帳的細節，把它們包成一個物件，再把這個物件格式化成 JSON 字串。最後，我們用 `console.log` 把這個 JSON 字串印到主控台上，這樣就能即時看到每一筆轉帳的確切情況。
 

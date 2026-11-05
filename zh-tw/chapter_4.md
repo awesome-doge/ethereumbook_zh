@@ -41,7 +41,7 @@ PKC 使用獨一無二的金鑰來保護資訊。這些金鑰以具有一種特�
 >
 > 如果你有興趣進一步了解密碼學，以及現代密碼學所使用的數學函數，可以參考以下資源：
 > - [密碼學](https://oreil.ly/wOT_b)
-> - [Trapdoor function](https://oreil.ly/WrxXr)
+> - [陷門函數](https://oreil.ly/WrxXr)
 > - [質因數分解](https://oreil.ly/rxAnN)
 > - [離散對數](https://oreil.ly/pj8PD)
 > - [橢圓曲線密碼學](https://oreil.ly/RP2QF)

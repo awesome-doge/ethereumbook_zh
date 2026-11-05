@@ -19,16 +19,21 @@ PATTERNS = {
     'link:': r'\blink:\S',
     'xref:': r'\bxref:\S',
     'latexmath:': r'\blatexmath:',
+    'footnote:': r'\bfootnote:',
+    '++ 原樣標記': r'\+\+[\[\]]\+\+',
     'image:': r'\bimage::?\S',
     'TODO-term': r'TODO-term',
     'markdown 連結': r'\]\(https?://',
     'markdown 標題': r'(?m)^#{2,6} ',
+    '中文 class': r'ROLE-LEAK:\S+',
     'url[text]': r'https?://[^\s\[\]]+\[[^\]\n]*\]',
 }
 
 
 def text_of(path):
     s = path.read_text(encoding='utf-8')
+    # 「[…]++…++」被誤讀成角色時，中文會跑進 class 屬性；正文看不到，要在 HTML 原始碼裡找
+    s += ' '.join(f'ROLE-LEAK:{c}' for c in re.findall(r'class="([^"]*[^\x00-\x7f][^"]*)"', s))
     s = re.sub(r'<(pre|code|script|style)[^>]*>.*?</\1>', '', s, flags=re.S)
     s = html.unescape(re.sub(r'<[^>]+>', '', s))
     s = re.sub(r'\\\((.*?)\\\)', '', s, flags=re.S)

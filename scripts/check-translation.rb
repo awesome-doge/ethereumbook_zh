@@ -123,7 +123,7 @@ def terminology_banned
 end
 
 abort "還沒有譯稿目錄 #{ZH}" unless Dir.exist?(ZH)
-files = ARGV.empty? ? Dir.children(ZH).grep(/\.md\z/).sort_by { |f| f[/\d+/].to_i } - %w[SUMMARY.md] : ARGV
+files = ARGV.empty? ? Dir.children(ZH).grep(/\.md\z/).sort_by { |f| f[/\d+/].to_i } - %w[SUMMARY.md] : ARGV.map { |a| File.basename(a) }
 abort "zh-tw/ 還沒有任何譯稿" if files.empty?
 
 banned = MAINLAND.merge(STYLE).merge(terminology_banned)
@@ -131,7 +131,12 @@ failed = 0
 files.each do |file|
   zh_path = File.join(ZH, file)
   up_path = File.join(UP, file)
-  next warn("略過 #{file}：upstream/ 沒有這個檔案") unless File.exist?(up_path)
+  # 指名的檔案找不到時要算失敗，不能略過後仍印「通過」
+  unless File.exist?(up_path) && File.exist?(zh_path)
+    puts "FAIL #{file}\n  ✗ #{File.exist?(up_path) ? 'zh-tw' : 'upstream'}/ 沒有這個檔案"
+    failed += 1
+    next
+  end
 
   up = structure(up_path)
   zh = structure(zh_path)

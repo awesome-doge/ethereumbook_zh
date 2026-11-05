@@ -312,6 +312,23 @@ return {
   { Blocks = structure },
   -- 連結文字本身是網址時，gfm 會把它再解析成一個內層連結；先攤平成文字
   { Link = function(el) el.content = el.content:walk({ Link = function(l) return l.content end }) return el end },
+  -- 註腳內容在 footnote:[…] 裡。writer 把方括號寫成 ++[++、++]++，Asciidoctor 會把「[…]++…++」
+  -- 誤讀成帶角色的行內原樣區段，整個註腳就壞了；改成 [ 照寫、] 寫成 footnote 巨集認得的 \]
+  {
+    Note = function(el)
+      return el:walk({
+        Str = function(s)
+          if not s.text:find('[%[%]]') then return nil end
+          local out = pandoc.List()
+          for part, br in s.text:gmatch('([^%[%]]*)([%[%]]?)') do
+            if part ~= '' then out:insert(pandoc.Str(part)) end
+            if br == '[' then out:insert(raw('[')) elseif br == ']' then out:insert(raw('\\]')) end
+          end
+          return out
+        end,
+      })
+    end,
+  },
   inline_pass,
   { RawInline = reject_html, RawBlock = reject_html },
   {
