@@ -1,0 +1,2256 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" data-base="" data-legacy-ids="/2018/ids.json">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>第 6 章　交易｜精通以太坊（第二版）繁體中文版</title>
+<meta name="description" content="以太坊交易的結構：nonce、gas、接收者、value 與 data，合約建立交易、數位簽章與實際簽署交易，以及各種交易類型的序列化。">
+<link rel="canonical" href="https://mastering-ethereum.doge.tg/chapters/transactions.html">
+<meta name="author" content="Andreas M. Antonopoulos, Gavin Wood, Carlo Parisi, Alessandro Mazza, Niccolò Pozzolini">
+<meta name="theme-color" content="#f8f9fc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14151b" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="sitemap" type="application/xml" href="/sitemap.xml">
+<meta property="og:site_name" content="精通以太坊第二版繁體中文版">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第 6 章　交易｜精通以太坊（第二版）繁體中文版">
+<meta property="og:description" content="以太坊交易的結構：nonce、gas、接收者、value 與 data，合約建立交易、數位簽章與實際簽署交易，以及各種交易類型的序列化。">
+<meta property="og:url" content="https://mastering-ethereum.doge.tg/chapters/transactions.html">
+<meta property="og:image" content="https://mastering-ethereum.doge.tg/assets/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="zh_TW">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="prev" href="/chapters/wallets.html">
+<link rel="next" href="/chapters/solidity.html">
+<script>
+(function(){try{var d=document.documentElement,s=localStorage,t=s.getItem('me-theme'),z=s.getItem('me-size'),f=s.getItem('me-font');if(t&&t!=='auto')d.setAttribute('data-theme',t);if(z)d.style.setProperty('--fs',z+'px');if(f)d.setAttribute('data-font',f)}catch(e){}})();
+</script>
+<link rel="stylesheet" href="/assets/site.css?v=ad2df01e33">
+<link rel="stylesheet" href="/assets/code.css?v=c94d007c0c">
+<script defer src="/assets/site.js?v=33af8366a0"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Chapter","@id":"https://mastering-ethereum.doge.tg/chapters/transactions.html#chapter","name":"第 6 章　交易","headline":"第 6 章　交易｜精通以太坊（第二版）","description":"以太坊交易的結構：nonce、gas、接收者、value 與 data，合約建立交易、數位簽章與實際簽署交易，以及各種交易類型的序列化。","url":"https://mastering-ethereum.doge.tg/chapters/transactions.html","inLanguage":"zh-TW","position":7,"dateModified":"2026-11-06T03:30:53+08:00","isPartOf":{"@id":"https://mastering-ethereum.doge.tg/#book"},"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true},{"@type":"Book","@id":"https://mastering-ethereum.doge.tg/#book","name":"精通以太坊（第二版）","alternateName":["Mastering Ethereum, 2nd Edition","精通以太坊第二版"],"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"inLanguage":"zh-TW","publisher":{"@type":"Organization","name":"O'Reilly Media"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true,"url":"https://mastering-ethereum.doge.tg/","image":"https://mastering-ethereum.doge.tg/assets/og-cover.png","translationOfWork":{"@type":"Book","name":"Mastering Ethereum, 2nd Edition","inLanguage":"en","url":"https://github.com/ethereumbook/ethereumbook"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"精通以太坊（第二版）","item":"https://mastering-ethereum.doge.tg/"},{"@type":"ListItem","position":2,"name":"第 6 章　交易","item":"https://mastering-ethereum.doge.tg/chapters/transactions.html"}]}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZVVQYEKMPF"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-ZVVQYEKMPF');</script>
+</head>
+<body class="is-chapter">
+<a class="skip-link" href="#main">跳到主要內容</a>
+<header class="topbar">
+  <button class="icon-btn" type="button" data-action="toggle-nav" aria-controls="sidebar" aria-expanded="false" aria-label="開啟目錄">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+  </button>
+  <a class="brand" href="/" aria-label="精通以太坊（第二版） 首頁">
+    <span class="brand-mark" aria-hidden="true">Ξ</span><span class="brand-text">精通以太坊</span>
+  </a>
+  <p class="topbar-title"><span class="topbar-label">第 6 章</span>交易</p>
+  <div class="topbar-actions">
+    <button class="icon-btn search-btn" type="button" data-action="search" aria-label="搜尋全書（快捷鍵 /）">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <span class="search-btn-text">搜尋</span><kbd>/</kbd>
+    </button>
+    <button class="icon-btn" type="button" data-action="settings" aria-controls="settings" aria-expanded="false" aria-label="閱讀設定">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19 9 5l5 14M5.8 14.5h6.4M15 19l3-8 3 8M15.9 16.5h4.2"/></svg>
+    </button>
+  </div>
+  <div class="progress" aria-hidden="true"><span></span></div>
+</header>
+
+<div class="settings" id="settings" hidden>
+  <div class="settings-group" role="group" aria-label="主題">
+    <span class="settings-label">主題</span>
+    <div class="seg">
+      <button type="button" data-theme-set="auto">自動</button>
+      <button type="button" data-theme-set="light">淺色</button>
+      <button type="button" data-theme-set="sepia">護眼</button>
+      <button type="button" data-theme-set="dark">深色</button>
+    </div>
+  </div>
+  <div class="settings-group" role="group" aria-label="字級">
+    <span class="settings-label">字級</span>
+    <div class="seg">
+      <button type="button" data-size="-1" aria-label="縮小字級">A−</button>
+      <output class="size-value" aria-live="polite">18</output>
+      <button type="button" data-size="1" aria-label="放大字級">A+</button>
+    </div>
+  </div>
+  <div class="settings-group" role="group" aria-label="字型">
+    <span class="settings-label">字型</span>
+    <div class="seg">
+      <button type="button" data-font-set="sans">黑體</button>
+      <button type="button" data-font-set="serif">明體</button>
+    </div>
+  </div>
+</div>
+
+<div class="shell">
+  <nav class="sidebar" id="sidebar" aria-label="全書目錄">
+    <div class="sidebar-head">
+      <a href="/" class="sidebar-book">精通以太坊（第二版）</a>
+      <span class="sidebar-sub">繁體中文版</span>
+    </div>
+    <ol class="book-toc">
+      <li>
+        <a href="/chapters/preface.html"><span class="toc-label">前言</span></a>
+      </li>
+      <li>
+        <a href="/chapters/what-is-ethereum.html"><span class="toc-label">第 1 章</span>什麼是以太坊？</a>
+      </li>
+      <li>
+        <a href="/chapters/ethereum-basics.html"><span class="toc-label">第 2 章</span>以太坊基礎</a>
+      </li>
+      <li>
+        <a href="/chapters/nodes.html"><span class="toc-label">第 3 章</span>以太坊節點</a>
+      </li>
+      <li>
+        <a href="/chapters/cryptography.html"><span class="toc-label">第 4 章</span>密碼學</a>
+      </li>
+      <li>
+        <a href="/chapters/wallets.html"><span class="toc-label">第 5 章</span>錢包</a>
+      </li>
+      <li class="is-current">
+        <a href="/chapters/transactions.html" aria-current="page"><span class="toc-label">第 6 章</span>交易</a>
+        <ol class="section-toc">
+          <li><a href="#ch06-the-structure-of-a-transaction">6.1. 交易的結構</a></li>
+          <li><a href="#ch06-the-transaction-nonce">6.2. 交易的 nonce</a></li>
+          <li><a href="#ch06-transaction-gas">6.3. 交易的 gas</a></li>
+          <li><a href="#ch06-transaction-recipient">6.4. 交易的接收者</a></li>
+          <li><a href="#ch06-transaction-value-and-data">6.5. 交易的金額與資料</a></li>
+          <li><a href="#ch06-transmitting-value-to-eoas-and-contracts">6.6. 把價值傳送給 EOA 與合約</a></li>
+          <li><a href="#ch06-transmitting-a-data-payload-to-an-eoa-or-contract">6.7. 把資料酬載傳送給 EOA 或合約</a></li>
+          <li><a href="#ch06-special-transaction-contract-creation">6.8. 特殊交易：建立合約</a></li>
+          <li><a href="#ch06-digital-signatures">6.9. 數位簽章</a></li>
+          <li><a href="#ch06-transaction-signing-in-practice">6.10. 實際簽署交易</a></li>
+          <li><a href="#ch06-deserializing-the-transaction">6.11. 反序列化交易</a></li>
+          <li><a href="#ch06-raw-transaction-creation-with-eip-155">6.12. 使用 EIP-155 建立原始交易</a></li>
+          <li><a href="#ch06-the-signature-prefix-value-v-and-public-key-recovery">6.13. 簽章前綴值（v）與公鑰復原</a></li>
+          <li><a href="#ch06-separating-signing-and-transmission-offline-signing">6.14. 把簽署與傳送分開（離線簽署）</a></li>
+          <li><a href="#ch06-transaction-life-cycle">6.15. 交易的生命週期</a></li>
+          <li><a href="#ch06-an-alternative-life-cycle">6.16. 另一種生命週期</a></li>
+          <li><a href="#ch06-multiple-signature-transactions">6.17. 多重簽章交易</a></li>
+          <li><a href="#ch06-conclusion">6.18. 結語</a></li>
+        </ol>
+      </li>
+      <li>
+        <a href="/chapters/solidity.html"><span class="toc-label">第 7 章</span>智能合約與 Solidity</a>
+      </li>
+      <li>
+        <a href="/chapters/vyper.html"><span class="toc-label">第 8 章</span>智能合約與 Vyper</a>
+      </li>
+      <li>
+        <a href="/chapters/smart-contract-security.html"><span class="toc-label">第 9 章</span>智能合約安全</a>
+      </li>
+      <li>
+        <a href="/chapters/tokens.html"><span class="toc-label">第 10 章</span>代幣</a>
+      </li>
+      <li>
+        <a href="/chapters/oracles.html"><span class="toc-label">第 11 章</span>預言機</a>
+      </li>
+      <li>
+        <a href="/chapters/dapps.html"><span class="toc-label">第 12 章</span>去中心化應用</a>
+      </li>
+      <li>
+        <a href="/chapters/defi.html"><span class="toc-label">第 13 章</span>去中心化金融</a>
+      </li>
+      <li>
+        <a href="/chapters/evm.html"><span class="toc-label">第 14 章</span>以太坊虛擬機</a>
+      </li>
+      <li>
+        <a href="/chapters/consensus.html"><span class="toc-label">第 15 章</span>共識</a>
+      </li>
+      <li>
+        <a href="/chapters/scaling.html"><span class="toc-label">第 16 章</span>以太坊擴容</a>
+      </li>
+      <li>
+        <a href="/chapters/zero-knowledge-proofs.html"><span class="toc-label">第 17 章</span>零知識證明</a>
+      </li>
+    </ol>
+    <div class="sidebar-foot">
+      <a href="https://github.com/awesome-doge/ethereumbook_zh" rel="noopener">GitHub 原始碼</a>
+    </div>
+  </nav>
+  <div class="scrim" data-action="close-nav" hidden></div>
+
+  <main id="main" class="main" tabindex="-1">
+<article class="chapter" aria-labelledby="ch06">
+  <nav class="breadcrumb" aria-label="導覽路徑"><a href="/">精通以太坊（第二版）</a><span aria-hidden="true">/</span><span>第 6 章</span></nav>
+  <header class="chapter-head">
+    <p class="chapter-label">第 6 章</p>
+    <h1 id="ch06">交易</h1>
+    <p class="chapter-meta">約 56 分鐘閱讀 · 18 個小節</p>
+  </header>
+  <div class="prose">
+<div class="sect1">
+
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>交易</em>是由外部擁有帳戶（EOA）發起、經由以太坊網路傳送、並記錄在以太坊區塊鏈上的已簽署訊息。這個基本定義背後，隱藏著許多令人驚訝又著迷的細節。換個角度看，交易是唯一能觸發狀態改變、或讓合約在以太坊虛擬機（EVM）中執行的東西。以太坊是一個全球單例的狀態機，而交易正是讓這部狀態機「滴答」運轉、改變其狀態的動力。合約不會自己執行，以太坊也不會自主運作。一切都從一筆交易開始。</p>
+</div>
+<div class="paragraph">
+<p>本章會剖析交易，說明交易如何運作，並檢視其中的細節。請注意，本章大部分內容是寫給有興趣在底層自行管理交易的人，例如正在撰寫錢包應用程式的開發者；如果你滿足於使用現有的錢包應用程式，就不必擔心這些內容，不過你也許會覺得這些細節很有趣！</p>
+</div>
+<div class="sect2">
+<h2 id="ch06-the-structure-of-a-transaction"><a class="anchor" href="#ch06-the-structure-of-a-transaction" aria-label="本節連結"></a>6.1. 交易的結構</h2>
+<div class="paragraph">
+<p>首先，我們來看看交易在以太坊網路上序列化與傳送時的基本結構。每個收到序列化交易的客戶端，都會用自己內部的資料結構把交易存放在記憶體中，也許還會附加一些網路上序列化的交易本身並不存在的詮釋資料。網路序列化的格式，是交易唯一的標準形式。</p>
+</div>
+<div class="paragraph">
+<p>以太坊早期只有一種交易類型，後來 <a href="https://oreil.ly/6Ku5V" rel="noopener" target="_blank"><em>EIP-2718</em></a> 引進了一套處理不同交易類型、並以不同方式處理它們的方法。具體來說，每筆交易都以一個指定交易類型的位元組開頭：</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>transaction = tx_type || tx_payload</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>在本書寫作時（2025 年 6 月），共有五種交易類型，列於表 6-1。</p>
+</div>
+<div class="table-wrap" tabindex="0"><table class="tableblock frame-all grid-all stretch">
+<caption class="title">表 6-1. EIP-2718 交易類型</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">類型識別碼</th>
+<th class="tableblock halign-left valign-top">名稱</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>0x00</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Legacy 交易</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>0x01</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EIP-2930 交易</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>0x02</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EIP-1559 交易</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>0x03</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EIP-4844 交易</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>0x04</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EIP-7702 交易</p></td>
+</tr>
+</tbody>
+</table></div>
+<div class="paragraph">
+<p>我們來逐一詳細分析這些交易類型。</p>
+</div>
+<div class="sect3">
+<h3 id="ch06-legacy-transactions"><a class="anchor" href="#ch06-legacy-transactions" aria-label="本節連結"></a>6.1.1. Legacy 交易</h3>
+<div class="paragraph">
+<p><em>Legacy 交易</em>是一則序列化的二進位訊息，包含下列資料：</p>
+</div>
+<div class="paragraph">
+<p><strong>鏈 ID</strong></p>
+</div>
+<div class="paragraph">
+<p>你要把交易送往的網路的鏈 ID。它是由 EIP-155 加入的，作為一種簡單的重放攻擊防護機制。</p>
+</div>
+<div class="paragraph">
+<p><strong>Nonce</strong></p>
+</div>
+<div class="paragraph">
+<p>一個序號，由發起交易的 EOA 發出，用來防止訊息被重放。</p>
+</div>
+<div class="paragraph">
+<p><strong>gas 價格</strong></p>
+</div>
+<div class="paragraph">
+<p>發起者願意支付的 gas 價格（以 wei 計）。</p>
+</div>
+<div class="paragraph">
+<p><strong>gas 上限</strong></p>
+</div>
+<div class="paragraph">
+<p>發起者願意為這筆交易購買的 gas 最大數量。請注意，你只需要為交易實際使用的 gas 付費。gas 上限只代表你願意支付的 gas 最大數量。</p>
+</div>
+<div class="paragraph">
+<p><strong>接收者</strong></p>
+</div>
+<div class="paragraph">
+<p>目的地的以太坊地址。</p>
+</div>
+<div class="paragraph">
+<p><strong>金額</strong></p>
+</div>
+<div class="paragraph">
+<p>要送往目的地的以太幣（ether）數量。</p>
+</div>
+<div class="paragraph">
+<p><strong>資料</strong></p>
+</div>
+<div class="paragraph">
+<p>長度可變的二進位資料酬載。</p>
+</div>
+<div class="paragraph">
+<p><strong>v,r,s</strong></p>
+</div>
+<div class="paragraph">
+<p>發起交易的 EOA 所產生的 ECDSA 數位簽章的三個組成部分。</p>
+</div>
+<div class="paragraph">
+<p>交易訊息的結構是用<em>遞迴長度前綴</em>（recursive-length prefix，RLP）編碼方式來序列化的，這種編碼方式是專門為以太坊中簡單、逐位元組精確的資料序列化而設計的。以太坊中所有的數字都編碼成大端序（big-endian）整數，長度是 8 位元的倍數。</p>
+</div>
+<div class="paragraph">
+<p>請注意，這裡列出欄位標籤（<code>to</code>、<code>gas limit</code> 等）只是為了清楚說明，它們並不是交易序列化資料的一部分；序列化資料包含的是以 RLP 編碼的欄位值。一般來說，RLP 不包含任何欄位分隔符號或標籤，而是用 RLP 的長度前綴來判斷每個欄位的長度。超出定義長度的任何內容，都屬於結構中的下一個欄位。</p>
+</div>
+<div class="paragraph">
+<p>雖然這就是實際傳送的交易結構，但大多數的內部表示方式與使用者介面的視覺化呈現，都會附加一些從交易或區塊鏈推導出來的額外資訊。例如，你可能注意到，交易中並沒有標示發起者 EOA 地址的「from」資料。這是因為 EOA 的公鑰可以從 ECDSA 簽章的 <code>v</code>、<code>r</code>、<code>s</code> 三個組成部分推導出來，而地址又可以從公鑰推導出來。當你看到一筆交易顯示了 <code>from</code> 欄位，那是用來呈現交易的軟體加上去的。客戶端軟體經常附加到交易上的其他詮釋資料，還包括區塊編號（在交易發布並被納入區塊鏈之後）與交易 ID（計算出來的雜湊值）。同樣地，這些資料都是從交易推導出來的，並不是交易訊息本身的一部分。</p>
+</div>
+</div>
+<div class="sect3">
+<h3 id="ch06-eip-2930-transactions"><a class="anchor" href="#ch06-eip-2930-transactions" aria-label="本節連結"></a>6.1.2. EIP-2930 交易</h3>
+<div class="paragraph">
+<p><a href="https://oreil.ly/1dSza" rel="noopener" target="_blank">EIP-2930</a> 交易是第一種使用 EIP-2718 型別化交易封裝（typed transaction envelope）的交易，交易類型為 <code>0x01</code>。它基本上與前一種交易類型相同，只是新增了一個名為<em>存取清單</em>的欄位。存取清單是由（地址，儲存槽）組成的陣列（儲存槽即 storage slot），讓使用者可以預先為交易將會碰觸到的地址與儲存槽付費。如此一來，在 EVM 中執行時，使用者被收取的 gas 就會比較少。</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class="icon">
+<div class="title">備註</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>更精確地說，存取清單中的地址及其儲存槽會分別被放進 <code>accessed_addresses</code> 與 <code>accessed_storage_keys</code>，EVM 用這兩者來區分暖存取（warm access）與冷存取（cold access）。冷存取收取的 gas 比暖存取多得多。例如，<code>SLOAD</code> 操作碼在存取的儲存槽是 warm 時收取 100 gas，否則收取 2,100 gas。</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="paragraph">
+<p>這種新的交易類型主要是為了解決 <a href="https://oreil.ly/_9kTv" rel="noopener" target="_blank">EIP-2929</a> 帶來的問題而引進的。EIP-2929 提高了存取狀態的操作碼的 gas 成本，導致某些智能合約在處理交易時因為 gas 耗盡錯誤而無法正確執行。引進存取清單之後，使用者可以預先為交易將會存取的地址與儲存槽付費，避免這類失敗。</p>
+</div>
+</div>
+<div class="sect3">
+<h3 id="ch06-eip-1559-transactions"><a class="anchor" href="#ch06-eip-1559-transactions" aria-label="本節連結"></a>6.1.3. EIP-1559 交易</h3>
+<div class="paragraph">
+<p><a href="https://oreil.ly/ZBON6" rel="noopener" target="_blank">EIP-1559</a> 交易是在 2021 年 8 月 5 日的 London 硬分叉中引進的，交易類型為 <code>0x02</code>。它引進了一個新的協議參數：<em>基本費用</em>，徹底改變了以太坊手續費市場（fee market）的結構。</p>
+</div>
+<div class="paragraph">
+<p>基本費用代表在以太坊網路上傳送一筆交易所需支付的最低費用。區塊 gas 上限從 1,500 萬 gas 加倍到 3,000 萬 gas，同時引進了<em>區塊 gas 目標</em>，其值等於區塊 gas 上限的一半，也就是 1,500 萬 gas。這麼做的用意，是讓以太坊網路的平均負載維持與以前相同，但在需要時允許區塊變得大得多（可能大到兩倍）。</p>
+</div>
+<div class="paragraph">
+<p>為了讓區塊平均使用 1,500 萬 gas，基本費用並不是固定值，而是會根據區塊的使用率而變動。如果一個區塊使用的 gas 高於區塊 gas 目標，基本費用就會上升；如果使用的 gas 低於 gas 目標，基本費用就會下降。</p>
+</div>
+<div class="paragraph">
+<p>區塊 gas 上限（幾乎）一直都是在特定區塊、以固定的整數值提高：1,000 萬、1,250 萬、1,500 萬與 3,000 萬，如圖 6-1 所示。事實上，雖然驗證者（以及舊的工作量證明（PoW）共識協議下的礦工）可以在每個區塊稍微調整 gas 目標，進而直接影響 gas 上限，但區塊 gas 上限是非常關鍵的數值，大家通常都會遵循核心開發者的建議。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<picture><source type="image/webp" srcset="/images/ch6/maet_0601.webp"><img src="/images/ch6/maet_0601.png" alt="Block gas limit evolution over time" width="852" height="525" loading="lazy" decoding="async"></picture>
+</div>
+<div class="title">圖 6-1. 區塊 gas 上限的演變</div>
+</div>
+<div class="paragraph">
+<p>基本費用不會交給建立區塊的驗證者（或礦工），而是立即被銷毀，減少 ETH 的總供給量。EIP-1559 也引進了一種新的費用：<em>優先費用</em>，你可以把它想成付給驗證者（或礦工）的小費，作為誘因，讓他們把你的交易納入下一個區塊。</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tbody><tr>
+<td class="icon">
+<div class="title">提示</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>理論上，你可以建立只支付基本費用（這是強制的）、優先費用為零的交易。協議並沒有強制你付小費給驗證者。但實際上，你應該一律附上小費，才能讓交易在合理的時間內得到確認。請注意，錢包通常會自動替你處理基本費用與優先費用，並把它們設定成正確的數值。</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="paragraph">
+<p>EIP-1559 交易是一則序列化的二進位訊息，包含下列資料：</p>
+</div>
+<div class="paragraph">
+<p><strong>鏈 ID</strong></p>
+</div>
+<div class="paragraph">
+<p>與 Legacy 交易相同</p>
+</div>
+<div class="paragraph">
+<p><strong>Nonce</strong></p>
+</div>
+<div class="paragraph">
+<p>與 Legacy 交易相同</p>
+</div>
+<div class="paragraph">
+<p><strong>每單位 gas 的最高優先費用</strong></p>
+</div>
+<div class="paragraph">
+<p>發起者願意直接支付給驗證者、作為把交易納入區塊的小費的 gas 價格（以 wei 計）</p>
+</div>
+<div class="paragraph">
+<p><strong>每單位 gas 的最高費用</strong></p>
+</div>
+<div class="paragraph">
+<p>發起者願意支付的總 gas 價格（以 wei 計），包含基本費用與優先費用</p>
+</div>
+<div class="paragraph">
+<p><strong>gas 上限</strong></p>
+</div>
+<div class="paragraph">
+<p>與 Legacy 交易相同</p>
+</div>
+<div class="paragraph">
+<p><strong>接收者</strong></p>
+</div>
+<div class="paragraph">
+<p>與 Legacy 交易相同</p>
+</div>
+<div class="paragraph">
+<p><strong>存取清單</strong></p>
+</div>
+<div class="paragraph">
+<p>與 EIP-2930 交易相同</p>
+</div>
+<div class="paragraph">
+<p><strong>金額</strong></p>
+</div>
+<div class="paragraph">
+<p>與 Legacy 交易相同</p>
+</div>
+<div class="paragraph">
+<p><strong>資料</strong></p>
+</div>
+<div class="paragraph">
+<p>與 Legacy 交易相同</p>
+</div>
+<div class="paragraph">
+<p><strong>v,r,s</strong></p>
+</div>
+<div class="paragraph">
+<p>與 Legacy 交易相同</p>
+</div>
+<div class="paragraph">
+<p>和所有交易類型一樣，這種訊息結構也是用 RLP 編碼方式來序列化的。</p>
+</div>
+</div>
+<div class="sect3">
+<h3 id="ch06-eip-4844-transactions"><a class="anchor" href="#ch06-eip-4844-transactions" aria-label="本節連結"></a>6.1.4. EIP-4844 交易</h3>
+<div class="paragraph">
+<p><a href="https://oreil.ly/JMJmB" rel="noopener" target="_blank">EIP-4844</a> 交易是在 2024 年 3 月 13 日的 Cancun 硬分叉中引進的，交易類型為 <code>0x03</code>。我們已經在第 4 章的「KZG 承諾」一節提過它，並會在第 16 章進一步討論。它也稱為<em>攜帶 blob 的交易</em>，因為它帶有一份附帶資料（sidecar），也就是 <em>blob</em>。每個 blob 包含大量資料（約 131,000 個位元組），EVM 無法存取這些資料，但可以存取它們的承諾。</p>
+</div>
+<div class="paragraph">
+<p>blob 使用一種新的 gas：<em>blob gas</em>。它與一般的 gas 完全分開、彼此獨立，雖然深受 EIP-1559 的啟發，但遵循自己的目標調整規則。概念是：如果使用的 blob gas 高於 blob gas 的目標用量，blob gas 價格就會上升；反之則下降。</p>
+</div>
+<div class="paragraph">
+<p>這種序列化的二進位訊息與 EIP-1559 的格式相同，另外新增了兩個欄位：</p>
+</div>
+<div class="paragraph">
+<p><strong>每單位 blob gas 的最高費用</strong></p>
+</div>
+<div class="paragraph">
+<p>發起者願意為 blob 支付的 blob gas 價格（以 wei 計）</p>
+</div>
+<div class="paragraph">
+<p><strong>blob 的版本化雜湊（versioned hash）</strong></p>
+</div>
+<div class="paragraph">
+<p>一個由 32 位元組數值組成的清單，每個數值代表與 blob 相關的一個 KZG 承諾的版本化雜湊</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class="icon">
+<div class="title">備註</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>隨著 Cancun 硬分叉與 EIP-4844 交易的引進，區塊頭也新增了兩個元素：</p>
+</div>
+<div class="paragraph">
+<p><strong>已使用的 blob gas</strong></p>
+</div>
+<div class="paragraph">
+<p>區塊中所有 EIP-4844 交易使用的 blob gas 總量</p>
+</div>
+<div class="paragraph">
+<p><strong>超額 blob gas</strong></p>
+</div>
+<div class="paragraph">
+<p>在這個區塊之前，超出目標用量的 blob gas 消耗的累計總量</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+</div>
+<div class="sect3">
+<h3 id="ch06-eip-7702-transactions"><a class="anchor" href="#ch06-eip-7702-transactions" aria-label="本節連結"></a>6.1.5. EIP-7702 交易</h3>
+<div class="paragraph">
+<p><a href="https://oreil.ly/W_28X" rel="noopener" target="_blank">EIP-7702</a> 交易是在 2025 年 5 月 7 日的 Pectra 硬分叉中納入的，交易類型為 <code>0x04</code>。它讓 EOA 可以設定自己帳戶中的程式碼。傳統上，EOA 的程式碼是空的；除非與智能合約互動，否則 EOA 只能發起交易，無法真正執行複雜的操作。EIP-7702 改變了這一點，讓 EOA 可以進行下列這類操作。</p>
+</div>
+<div class="paragraph">
+<p><strong>批次處理</strong></p>
+</div>
+<div class="paragraph">
+<p>讓同一個使用者在一筆原子交易中執行多個操作，例如先做 ERC-20 授權，接著動用這筆授權額度；這是許多去中心化交易所（DEX）中非常常見的流程。</p>
+</div>
+<div class="paragraph">
+<p><strong>代付（sponsorship）</strong></p>
+</div>
+<div class="paragraph">
+<p>帳戶 X 代替帳戶 Y 支付交易費用。</p>
+</div>
+<div class="paragraph">
+<p><strong>權限降級</strong></p>
+</div>
+<div class="paragraph">
+<p>使用者可以簽署子金鑰，並賦予它們遠比帳戶完整存取權限弱得多的特定權限，例如每天最多只能花費總餘額的 1%，或只能與某個特定的應用程式互動。</p>
+</div>
+<div class="paragraph">
+<p>底層細節相當複雜，有興趣的話，我們建議閱讀 <a href="https://oreil.ly/W_28X" rel="noopener" target="_blank">以太坊改進提案（EIP）官方網站</a>。不過整體概念雖然簡單，卻非常強大。EIP-7702 讓 EOA 可以替自己指派一個<em>委託指定</em>。這個委託指定指向一個（已部署在以太坊主網上的）智能合約；當有交易送往這個 EOA 時，它會執行指定地址上的程式碼，就好像那是這個 EOA 自己的程式碼一樣，如圖 6-2 所示。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<picture><source type="image/webp" srcset="/images/ch6/maet_0602.webp"><img src="/images/ch6/maet_0602.png" alt="EIP-7702 delegation designator" width="767" height="396" loading="lazy" decoding="async"></picture>
+</div>
+<div class="title">圖 6-2. EIP-7702 的委託機制</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h2 id="ch06-the-transaction-nonce"><a class="anchor" href="#ch06-the-transaction-nonce" aria-label="本節連結"></a>6.2. 交易的 nonce</h2>
+<div class="paragraph">
+<p><em>nonce</em> 是交易中最重要、卻也最少人了解的組成部分之一。「黃皮書」對它的定義是：</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>nonce：一個純量值，等於從這個地址送出的交易數量；對於有關聯程式碼的帳戶，則等於這個帳戶建立合約的次數。</p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>嚴格來說，nonce 是發起地址的屬性，也就是說，它只在送出交易的地址這個脈絡下才有意義。不過，nonce 是明確地儲存為帳戶狀態的一部分。對外部擁有帳戶（EOA）來說，每當有一筆從這個帳戶發出的交易被納入區塊鏈，nonce 就會遞增，即使交易執行時回復也一樣。EIP-7702 的授權處理也可能讓它遞增。</p>
+</div>
+<div class="paragraph">
+<p>在兩種情境下，用來計數交易的 nonce 非常重要：一是讓交易依建立順序被納入的易用性功能，二是防止交易重複的關鍵功能。我們分別用一個範例情境來說明：</p>
+</div>
+<div class="paragraph">
+<p><strong>情境 1</strong></p>
+</div>
+<div class="paragraph">
+<p>假設你想進行兩筆交易。你有一筆重要的款項要付 6 ETH，另一筆要付 8 ETH。因為 6 ETH 的那筆比較重要，你先簽署並廣播了它，接著才簽署並廣播 8 ETH 的那筆。不幸的是，你忽略了自己帳戶裡只有 10 ETH，所以網路無法同時接受這兩筆交易：其中一筆會失敗。由於你先送出比較重要的 6 ETH 那筆，你自然會預期它會成功，而 8 ETH 那筆會被拒絕。然而，在以太坊這樣的去中心化系統中，節點可能以任何順序收到這些交易；沒有任何保證說某個特定節點一定會先收到其中一筆。因此，幾乎可以肯定的是，有些節點會先收到 6 ETH 的交易，有些則先收到 8 ETH 的交易。如果沒有 nonce，哪一筆被接受、哪一筆被拒絕就會是隨機的。但有了 nonce，你送出的第一筆交易的 nonce 可能是 3，而 8 ETH 那筆交易則是下一個 nonce 值（也就是 4）。所以即使先收到後者，在 nonce 為 0 到 3 的交易都處理完之前，它都會被忽略。呼！</p>
+</div>
+<div class="paragraph">
+<p><strong>情境 2</strong></p>
+</div>
+<div class="paragraph">
+<p>現在假設你有一個帳戶，裡面有 100 ETH。太棒了！你在網路上找到某個人，願意接受用以太幣購買一個你非常想買的 mcguffin-widget。你付給對方 2 ETH，對方把 mcguffin-widget 寄給你。真好。為了支付這 2 ETH，你簽署了一筆交易，從你的帳戶送出 2 ETH 到對方的帳戶，再把它廣播到以太坊網路，等待驗證並被納入區塊鏈。這時，如果交易中沒有 nonce 值，第二筆把 2 ETH 再送往同一個地址的交易，看起來就會和第一筆完全一樣。這代表任何在以太坊網路上看到你這筆交易的人（也就是所有人，包括收款人或你的敵人），只要複製貼上你原本的交易、重新送到網路上，就能一次又一次地「重放」這筆交易，直到你的以太幣全部花光為止。不過，交易資料中有了 nonce 值，每一筆交易都是獨一無二的，即使多次把相同金額的以太幣送往同一個收款地址也一樣。因此，有了作為交易一部分的遞增 nonce，任何人都不可能「複製」你付過的款項。</p>
+</div>
+<div class="paragraph">
+<p>總之，值得注意的是，對以帳戶為基礎的協議來說，nonce 的使用其實至關重要；這與比特幣協議的未花費交易輸出（unspent transaction output，<em>UTXO</em>）機制形成對比。</p>
+</div>
+<div class="sect3">
+<h3 id="ch06-keeping-track-of-nonces"><a class="anchor" href="#ch06-keeping-track-of-nonces" aria-label="本節連結"></a>6.2.1. 追蹤 nonce</h3>
+<div class="paragraph">
+<p>在本節與之後的各節中，我們會使用 Foundry 工具組，特別是 <code>cast</code> 工具，它能讓你非常輕鬆地與區塊鏈互動。如果你想重現下面的範例，請先安裝它。</p>
+</div>
+<div class="paragraph">
+<p>首先，我們要設定本章會一直使用的錢包。打開一個終端機視窗，輸入：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="bash"><span class="nv">$ </span>cast wallet new
+Successfully created new keypair.
+Address:     0x7e41354AfE84800680ceB104c5Fc99eCB98A25f0
+Private key: 0xd6d2672c6b4489e6bcd4e93b9af620fa0204b639b7d7f93765479c0846be0b58</code></pre>
+</div>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tbody><tr>
+<td class="icon">
+<div class="title">警告</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>如果你把資金送到這裡提到的地址，就是在白白浪費錢，因為這個私鑰已經公開，任何人都能用它把所有資金轉給自己。</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="paragraph">
+<p>接著，我們要把私鑰匯入電腦的 keystore，方便之後使用：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="bash"><span class="nv">$ </span>cast wallet import example <span class="se">\</span>
+    <span class="nt">--private-key</span> 0xd6d2672c6b4489e6bcd4e93b9af620fa0204b639b7d7f93765479c0846be0b58
+Enter password:
+<span class="sb">`</span>example<span class="sb">`</span> keystore was saved successfully. Address: 0x7e41354afe84800680ceb104c5fc99ecb98a25f0</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>你可以選擇（我們建議這麼做）設定一組密碼，之後用這個帳戶建立交易時都需要輸入。現在我們已經設定好了，但還沒有任何 ETH。</p>
+</div>
+<div class="paragraph">
+<p>你隨時都可以查詢自己的餘額。首先，你需要取得與這個帳戶相關聯的地址：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="bash"><span class="nv">$ </span>cast wallet address <span class="nt">--account</span> example
+Enter keystore password:
+0x7e41354AfE84800680ceB104c5Fc99eCB98A25f0</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>接著，你就可以向區塊鏈查詢餘額。本章所有的範例都會使用 Ethereum Sepolia 這條測試網路區塊鏈：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="bash"><span class="nv">$ </span>cast balance 0x7e41354AfE84800680ceB104c5Fc99eCB98A25f0 <span class="nt">--rpc-url</span> https://ethereum-sepolia-rpc.publicnode.com
+0</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class="icon">
+<div class="title">備註</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>請注意最後一個 <code>cast</code> 指令中的 <code>--rpc-url</code> 旗標。它應該指向你感興趣的那條區塊鏈的 RPC 端點。可靠的 RPC 端點通常需要付費，但如果你只是想實驗看看（就像本章要做的），有很多免費的選擇，例如：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.publicnode.com" rel="noopener" target="_blank">Public Node</a></p>
+</li>
+<li>
+<p><a href="https://llamarpc.com/eth" rel="noopener" target="_blank">LlamaNodes</a></p>
+</li>
+<li>
+<p><a href="https://chainlist.org" rel="noopener" target="_blank">ChainList</a></p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="paragraph">
+<p>要取得一些免費的 Sepolia ETH，你可以使用線上的水龍頭。我們會使用 Google Cloud Web3 水龍頭，它會發放 0.05 ETH，如圖 6-3 所示。前往 <a href="https://cloud.google.com/application/web3/faucet/ethereum/sepolia" rel="noopener" target="_blank">Ethereum Sepolia 水龍頭</a>，貼上你的地址，然後按下「Receive 0.05 Sepolia ETH」按鈕。你應該很快就會收到 0.05 ETH。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<picture><source type="image/webp" srcset="/images/ch6/maet_0603.webp"><img src="/images/ch6/maet_0603.png" alt="Google Cloud Web3 faucet interface" width="1496" height="812" loading="lazy" decoding="async"></picture>
+</div>
+<div class="title">圖 6-3. Google Cloud Web3 水龍頭</div>
+</div>
+<div class="paragraph">
+<p>你可以確認自己的餘額已經改變，不再是 0：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="bash"><span class="nv">$ </span>cast balance 0x7e41354AfE84800680ceB104c5Fc99eCB98A25f0 <span class="nt">--rpc-url</span> https://ethereum-sepolia-rpc.publicnode.com
+50000000000000000</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>太好了！現在我們已經完全設定好，可以回到交易 nonce 的實驗了。</p>
+</div>
+<div class="paragraph">
+<p>實務上，nonce 是從某個帳戶發出、已確認（也就是已上鏈）的交易數量的最新計數。要知道 nonce 是多少，你可以用 <code>cast</code> 查詢區塊鏈。只要打開一個新的終端機視窗，輸入：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="bash"><span class="nv">$ </span>cast nonce 0x7e41354AfE84800680ceB104c5Fc99eCB98A25f0 <span class="nt">--rpc-url</span> https://ethereum-sepolia-rpc.publicnode.com
+0</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tbody><tr>
+<td class="icon">
+<div class="title">提示</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>nonce 是從零開始的計數器，也就是說，第一筆交易的 nonce 是 0。事實上，在這個範例中我們還沒有送出任何交易。另外也請注意，RPC 的回應永遠指向下一個可用的 nonce。例如，如果某個地址已經送出 10 筆交易，也就是用過了 0 到 9 的 nonce，那麼查詢 nonce 時 RPC 的回應就會是 10。</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="paragraph">
+<p>現在我們來試著送出一些 ETH。我們會送 0.001 ETH 到 <code>vitalik.eth</code>，這是以太坊共同創辦人 Vitalik Buterin 的以太坊域名服務（ENS）地址：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="bash"><span class="nv">$ </span>cast send <span class="nt">--account</span> example vitalik.eth <span class="nt">--value</span> 0.001ether <span class="nt">--rpc-url</span> https://ethereum-sepolia-rpc.publicnode.com
+blockHash               0xa1171309fd406e44e86be9695a597d2bf5c728738d140b9958cfb50276c32b1b
+blockNumber             6989355
+contractAddress
+cumulativeGasUsed       18009816
+effectiveGasPrice       11163498011
+from                    0x7e41354AfE84800680ceB104c5Fc99eCB98A25f0
+gasUsed                 21000
+logs                    <span class="o">[]</span>
+logsBloom               0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+root
+status                  1 <span class="o">(</span>success<span class="o">)</span>
+transactionHash         0xeb7bb0322858a4e1ed85271a60d2f8353075dc0bcd0c80448ee1d5ca0bb85def
+transactionIndex        60
+<span class="nb">type                    </span>2
+blobGasPrice
+blobGasUsed
+authorizationList
+to                      0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>你的錢包會替它管理的每個地址追蹤 nonce。只要你只從單一來源發起交易，這件事就相當簡單。假設你正在撰寫自己的錢包軟體，或其他會發起交易的應用程式，你要怎麼追蹤 nonce 呢？</p>
+</div>
+<div class="paragraph">
+<p>當你建立一筆新交易時，你會指派序列中的下一個 nonce。但在交易被確認之前，它不會計入 nonce 的總數。我們用下面這個例子來看看，快速地接連送出這些指令：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="bash"><span class="nv">$ </span>cast nonce 0x7e41354AfE84800680ceB104c5Fc99eCB98A25f0 <span class="nt">--rpc-url</span> https://ethereum-sepolia-rpc.publicnode.com
+10
+<span class="nv">$ </span>cast send <span class="nt">--account</span> example vitalik.eth <span class="nt">--value</span> 0.001ether <span class="nt">--async</span> <span class="nt">--rpc-url</span> https://ethereum-sepolia-rpc.publicnode.com
+0x85f5b0db44407a6e9252590dc809087a2e232e00a951c9cb8853a109da5ddad4
+<span class="nv">$ </span>cast nonce 0x7e41354AfE84800680ceB104c5Fc99eCB98A25f0 <span class="nt">--rpc-url</span> https://ethereum-sepolia-rpc.publicnode.com
+10
+<span class="nv">$ </span>cast nonce 0x7e41354AfE84800680ceB104c5Fc99eCB98A25f0 <span class="nt">--rpc-url</span> https://ethereum-sepolia-rpc.publicnode.com
+11</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>如你所見，我們送出的交易並沒有立刻讓 nonce 計數增加；即使送出交易之後，它仍然是 10。如果我們等幾秒鐘，讓網路通訊穩定下來、交易被納入區塊，nonce 查詢就會回傳預期的數字 11。</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class="icon">
+<div class="title">備註</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>請注意 <code>cast send</code> 指令中使用的 <code>--async</code> 旗標：如果不使用它，<code>cast</code> 會讓終端機停住，直到交易在區塊中被確認為止。加上這個旗標，它會把交易送到網路上，並立即回傳交易雜湊值，不等交易被納入區塊。</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="paragraph">
+<p>現在我們來看另一個例子：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="bash"><span class="nv">$ </span>cast nonce 0x7e41354AfE84800680ceB104c5Fc99eCB98A25f0 <span class="nt">--rpc-url</span> https://ethereum-sepolia-rpc.publicnode.com
+11
+<span class="nv">$ </span>cast send <span class="nt">--account</span> example vitalik.eth <span class="nt">--value</span> 0.001ether <span class="nt">--async</span> <span class="nt">--rpc-url</span> https://ethereum-sepolia-rpc.publicnode.com
+0x63188aa73247ffe06388a9adf399fa715e42fbc37ca53f77642a7860c80feb9d
+<span class="nv">$ </span>cast nonce 0x7e41354AfE84800680ceB104c5Fc99eCB98A25f0 <span class="nt">--rpc-url</span> https://ethereum-sepolia-rpc.publicnode.com
+11
+<span class="nv">$ </span>cast rpc eth_getTransactionCount 0x7e41354AfE84800680ceB104c5Fc99eCB98A25f0 pending <span class="nt">--rpc-url</span> https://ethereum-sepolia-rpc.publicnode.com
+<span class="s2">"0xc"</span>
+<span class="nv">$ </span>cast nonce 0x7e41354AfE84800680ceB104c5Fc99eCB98A25f0 <span class="nt">--rpc-url</span> https://ethereum-sepolia-rpc.publicnode.com
+12</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>送出交易之前，我們的 nonce 計數是 11；接著我們送出交易，並立即查詢新的 nonce。正如前一個例子所預期的，nonce 還沒有更新，因為交易仍在記憶池中等待，尚未被納入區塊。不過，我們使用了一個新的查詢，即使交易還沒確認，也能取得真正的 nonce 數字（<code>0xc</code> 是十六進位的 12）。幾秒鐘之後，交易被加入區塊，<code>cast nonce</code> 查詢就回傳了新的正確數值。</p>
+</div>
+<div class="paragraph">
+<p><code>cast nonce</code> 與 <code>eth_getTransactionCount pending</code> 的差別很簡單：前者只考慮已確認（也就是已納入區塊）的交易，後者則會試著把仍在記憶池中等待的交易也算進去。</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tbody><tr>
+<td class="icon">
+<div class="title">警告</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>用 <code>eth_getTransactionCount pending</code> 計算待處理交易時要小心。事實上，雖然它會試著回傳某個地址真正的 nonce 值，但我們沒有辦法完全確定，記憶池中沒有其他待處理的交易正在等待確認。</p>
+</div>
+<div class="paragraph">
+<p>公開的記憶池並不是一個統一的東西。每個節點都有自己的記憶池：一種存放待處理交易的動態儲存區，暫時保存這些交易，直到它們在區塊鏈上被確認為止。記憶池可以透過設定不同的規則來接受或拒絕新交易，加以客製化。雖然 RPC 服務商確實擁有龐大的節點網路，應該能（幾乎）完整掌握所有待處理的交易，但你仍然不應該把這個數值當成百分之百正確。</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+</div>
+<div class="sect3">
+<h3 id="ch06-gaps-in-nonces-duplicate-nonces-and-confirmation"><a class="anchor" href="#ch06-gaps-in-nonces-duplicate-nonces-and-confirmation" aria-label="本節連結"></a>6.2.2. nonce 的空缺、重複的 nonce 與確認</h3>
+<div class="paragraph">
+<p>如果你是用程式建立交易，追蹤 nonce 就很重要，尤其是當你同時從多個獨立的處理程序建立交易時。</p>
+</div>
+<div class="paragraph">
+<p>以太坊網路會依照 nonce 依序處理交易。這代表如果你傳送了一筆 nonce 為 0 的交易，接著傳送一筆 nonce 為 2 的交易，第二筆交易將不會被納入任何區塊。它會被存放在記憶池中，而以太坊網路則等待缺少的 nonce 出現。所有節點都會假設缺少的 nonce 只是延遲了，而 nonce 為 2 的交易是不按順序收到的。</p>
+</div>
+<div class="paragraph">
+<p>如果你接著傳送一筆帶有缺少的 nonce 1 的交易，兩筆交易（nonce 1 與 2）都會被處理並納入區塊（當然，前提是它們有效）。一旦你補上空缺，網路就能把它保留在記憶池中、順序錯亂的那筆交易打包進區塊。</p>
+</div>
+<div class="paragraph">
+<p>這代表，如果你依序建立了好幾筆交易，而其中一筆沒有被正式納入任何區塊，之後所有的交易都會「卡住」，等待缺少的 nonce。一筆交易可能因為無效或 gas 不足，而在 nonce 序列中意外造成一個「空缺」。要讓事情重新動起來，你必須傳送一筆帶有缺少 nonce 的有效交易。你同樣要留意的是，一旦帶有「缺少」nonce 的交易被網路驗證，所有已廣播、nonce 在其後的交易都會依序變成有效；交易是不可能「撤回」的！</p>
+</div>
+<div class="paragraph">
+<p>另一方面，如果你不小心重複使用了某個 nonce，例如傳送了兩筆 nonce 相同、但接收者或金額不同的交易，那麼其中一筆會被確認，另一筆會被拒絕。哪一筆被確認，取決於它們抵達第一個收到它們的驗證節點的順序，也就是說，結果相當隨機。</p>
+</div>
+<div class="paragraph">
+<p>如你所見，追蹤 nonce 是必要的；如果你的應用程式沒有正確管理這個過程，就會遇到問題。不幸的是，如果你想以並行的方式做這件事，情況會變得更加困難，我們會在下一節看到。</p>
+</div>
+</div>
+<div class="sect3">
+<h3 id="ch06-concurrency-transaction-origination-and-nonces"><a class="anchor" href="#ch06-concurrency-transaction-origination-and-nonces" aria-label="本節連結"></a>6.2.3. 並行、交易的發起與 nonce</h3>
+<div class="paragraph">
+<p><em>並行</em>（concurrency）是電腦科學中一個複雜的面向，有時會出乎意料地冒出來，特別是在以太坊這種去中心化、分散式的即時系統中。</p>
+</div>
+<div class="paragraph">
+<p>簡單地說，並行就是由多個獨立的系統同時進行運算。這些系統可以在同一個程式中（例如多執行緒），在同一顆 CPU 上（例如多處理程序），或在不同的電腦上（例如分散式系統）。以太坊依定義就是一個允許操作並行（節點、客戶端、去中心化應用（DApp））、但透過共識強制維持單一狀態的系統。</p>
+</div>
+<div class="paragraph">
+<p>現在，假設你有好幾個獨立的錢包應用程式，從同一個或同一組地址產生交易。這種情況的一個例子，是交易所從自己的<em>熱錢包</em>（金鑰存放在線上的錢包，相對於金鑰永遠不連線的<em>冷錢包</em>）處理提款。理想上，你會希望有不只一台電腦處理提款，才不會成為瓶頸或單點故障。然而，這很快就會出問題，因為讓多台電腦產生提款交易，會導致一些棘手的並行問題，其中最重要的就是 nonce 的選擇。從同一個熱錢包帳戶產生、簽署並廣播交易的多台電腦，要如何協調？</p>
+</div>
+<div class="paragraph">
+<p>你可以用一台電腦，以先到先得的方式，把 nonce 分配給負責簽署交易的電腦。然而，這台電腦就成了單點故障。更糟的是，如果分配了好幾個 nonce，而其中一個從未被使用（因為處理那個 nonce 交易的電腦發生故障），之後所有的交易都會卡住。</p>
+</div>
+<div class="paragraph">
+<p>另一種做法是產生交易，但不替它們指派 nonce（因此也不簽署它們；別忘了，nonce 是交易資料不可或缺的一部分，所以必須被包含在驗證交易的數位簽章中）。接著，你可以把它們排入佇列，交給單一個節點簽署並追蹤 nonce。不過，這同樣會成為流程中的瓶頸：簽署與追蹤 nonce 正是你的作業中在負載下容易壅塞的部分，而產生未簽署的交易則是你其實不太需要平行化的部分。你會得到一些並行能力，但在流程的關鍵部分仍然缺乏並行。</p>
+</div>
+<div class="paragraph">
+<p>到頭來，這些並行問題，再加上在獨立的處理程序中追蹤帳戶餘額與交易確認的困難，迫使大多數的實作避開並行、轉而製造瓶頸，例如在交易所中由單一處理程序處理所有的提款交易，或設置多個熱錢包，讓它們在處理提款時完全獨立運作，只需要偶爾重新平衡。</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h2 id="ch06-transaction-gas"><a class="anchor" href="#ch06-transaction-gas" aria-label="本節連結"></a>6.3. 交易的 gas</h2>
+<div class="paragraph">
+<p>我們在前面幾章稍微談過 <em>gas</em>，並會在第 14 章更詳細地討論它。不過，我們先介紹一些基本概念，說明交易中 <code>gasPrice</code> 與 <code>gasLimit</code> 這兩個組成部分的作用。</p>
+</div>
+<div class="paragraph">
+<p>gas 是驅動以太坊運轉的動力。gas 不是以太幣：它是一種獨立的虛擬貨幣，與以太幣之間有自己的匯率。由於交易會在全世界數以千計的電腦上處理，以太坊用 gas 來控制一筆交易能使用的資源量。開放式（圖靈完備）的運算模型需要某種計量方式，以避免阻斷服務（DoS）攻擊，或是不小心耗盡資源的交易。</p>
+</div>
+<div class="paragraph">
+<p>gas 與以太幣分開，是為了保護系統，不受以太幣價值快速變化可能帶來的波動影響；同時也是一種方法，用來管理 gas 所支付的各種資源（運算、記憶體與儲存空間）成本之間重要而敏感的比例。</p>
+</div>
+<div class="paragraph">
+<p>交易中的 <code>gasPrice</code> 欄位讓交易的發起者設定自己願意為 gas 支付的價格。這個價格以每單位 gas 多少 wei 計算。</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tbody><tr>
+<td class="icon">
+<div class="title">提示</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>熱門網站 <a href="https://oreil.ly/ZIqcq" rel="noopener" target="_blank">Etherscan</a> 提供以太坊主網目前的 gas 價格，以及其他相關的 gas 指標。</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="paragraph">
+<p>錢包可以調整自己發起的交易中的 <code>gasPrice</code>，讓交易更快得到確認。<code>gasPrice</code> 越高，交易就可能越快被確認。反過來說，優先順序較低的交易可以出較低的價格，確認得也比較慢。<code>gasPrice</code> 可以設定的最小值，等於交易被納入的那個區塊的基本費用（我們在介紹 EIP-1559 交易時已經說明過）。</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class="icon">
+<div class="title">備註</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>在 London 硬分叉與 EIP-1559 之前，可接受的最低 <code>gasPrice</code> 是零。這代表錢包可以產生完全免費的交易。依網路容量而定，這些交易可能永遠不會被確認，但協議中並沒有任何規定禁止免費交易。在以太坊最初的幾個月裡，你可以找到好幾筆這類交易成功被納入以太坊區塊鏈的例子。</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="sect3">
+<h3 id="ch06-eip-1559-base-fee-and-priority-fee"><a class="anchor" href="#ch06-eip-1559-base-fee-and-priority-fee" aria-label="本節連結"></a>6.3.1. EIP-1559：基本費用與優先費用</h3>
+<div class="paragraph">
+<p>如同我們先前簡單說明過的，EIP-1559 引進了一個新的協議參數，也就是基本費用，徹底改變了以太坊手續費市場的結構。基本費用代表一筆交易被視為有效、並被納入區塊所需支付的最低 gas 價格。</p>
+</div>
+<div class="paragraph">
+<p>基本費用與交易實際支付的 gas 費用之間的差額，稱為<em>優先費用</em>。它會直接流向建立這筆交易所在區塊的驗證者。</p>
+</div>
+</div>
+<div class="sect3">
+<h3 id="ch06-how-to-know-the-correct-gas-price"><a class="anchor" href="#ch06-how-to-know-the-correct-gas-price" aria-label="本節連結"></a>6.3.2. 如何知道「正確」的 gas 價格</h3>
+<div class="paragraph">
+<p>Cast 會計算多個區塊的中位數價格，提供 gas 價格的建議：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="bash"><span class="nv">$ </span>cast gas-price <span class="nt">--rpc-url</span> https://ethereum-sepolia-rpc.publicnode.com
+4845187414</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>與 gas 有關的第二個重要欄位是 <code>gasLimit</code>。簡單地說，<code>gasLimit</code> 是交易發起者為了完成交易，願意購買的 gas 最大單位數。對於單純的付款，也就是把以太幣從一個 EOA 轉到另一個 EOA 的交易，所需的 gas 量固定是 21,000 個 gas 單位。要計算這會花費多少以太幣，就把 21,000 乘上你願意支付的 <code>gasPrice</code>（EIP-1559 交易則是 <code>maxFeePerGas</code>）。</p>
+</div>
+<div class="paragraph">
+<p>如果交易的目的地址是一個合約，所需的 gas 量就只能估計，無法精確地決定。這是因為合約可能會評估不同的條件，導向不同的執行路徑，而各條路徑的總 gas 成本也不同。合約可能只執行一個簡單的運算，也可能執行比較複雜的運算，取決於你無法控制、也無法預測的條件。為了說明這一點，我們來看一個例子：我們可以寫一個智能合約，每次被呼叫時就把計數器加一，並執行某個迴圈，次數等於被呼叫的次數。也許在第一百次呼叫時，它會像彩券一樣發出一個特別獎，但需要做額外的運算來計算獎金。如果你呼叫這個合約 99 次，會發生一件事；但在第一百次呼叫時，會發生非常不同的事。你要為此支付的 gas 量，取決於在你的交易被納入區塊之前，有多少其他交易呼叫過那個函式。也許你的估計是基於自己是第 99 筆交易，但就在你的交易被確認之前，有人第 99 次呼叫了這個合約。現在你成了第一百筆呼叫的交易，運算量（以及 gas 成本）就高得多。</p>
+</div>
+<div class="paragraph">
+<p>借用以太坊中常見的比喻，你可以把 <code>gasLimit</code> 想成汽車油箱的容量（你的汽車就是交易）。你依照自己認為這趟旅程（驗證交易所需的運算）需要的量，把油箱加滿汽油（gas）。你可以在某種程度上估計需要的量，但旅程可能出現意料之外的變化，例如繞道（更複雜的執行路徑），使油耗增加。</p>
+</div>
+<div class="paragraph">
+<p>不過，油箱的比喻並不完美。在交易被接受之前，發送者必須擁有足夠的以太幣，能支付交易的金額以及最高可能的 gas 成本：EIP-1559 交易是 gasLimit × maxFeePerGas，Legacy 交易則是 gasLimit × gasPrice。一旦開始執行，這筆最高金額就會被保留下來，而發送者最終只需要依交易的有效 gas 價格，為實際消耗的 gas 付費。沒有用完的 gas 都會退還。基本費用會被銷毀，優先費用則付給驗證者。</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h2 id="ch06-transaction-recipient"><a class="anchor" href="#ch06-transaction-recipient" aria-label="本節連結"></a>6.4. 交易的接收者</h2>
+<div class="paragraph">
+<p>交易的接收者記錄在 <code>to</code> 欄位中。這個欄位包含一個 20 位元組的以太坊地址，可以是 EOA，也可以是合約地址。</p>
+</div>
+<div class="paragraph">
+<p>以太坊不會對這個欄位做任何進一步的驗證。任何 20 位元組的值都被視為有效。即使這個 20 位元組的值對應到一個沒有相應私鑰、也沒有相應合約的地址，交易仍然有效。以太坊無從得知一個地址是否是從某個真實存在的公鑰（進而從某個私鑰）正確推導出來的。</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tbody><tr>
+<td class="icon">
+<div class="title">警告</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>以太坊協議不會驗證交易中的接收者地址。你可以把以太幣送到一個沒有相應私鑰或合約的地址，等於「銷毀」了這些以太幣，讓它們永遠無法再被花用。驗證應該在使用者介面這一層進行。</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="paragraph">
+<p>把交易送到錯誤的地址，很可能會銷毀送出的以太幣，讓它們永遠無法取用（無法花用），因為大多數地址都沒有已知的私鑰，也就無法產生簽章來花用它們。一般假設地址的驗證是在使用者介面這一層進行的（參見「以大小寫表示校驗和的十六進位編碼（ERC-55）」一節）。事實上，銷毀以太幣有一些正當的理由，例如在支付通道（payment channel）與其他智能合約中用來遏阻作弊；而且由於以太幣的數量有限，銷毀以太幣實際上等於把被銷毀的價值分配給所有以太幣持有者（按照他們持有的以太幣數量比例分配）。</p>
+</div>
+</div>
+<div class="sect2">
+<h2 id="ch06-transaction-value-and-data"><a class="anchor" href="#ch06-transaction-value-and-data" aria-label="本節連結"></a>6.5. 交易的金額與資料</h2>
+<div class="paragraph">
+<p>交易的主要「酬載」包含在兩個欄位中：<code>value</code> 與 <code>data</code>。交易可以同時有金額與資料、只有金額、只有資料，或既沒有金額也沒有資料。這四種組合都是有效的。</p>
+</div>
+<div class="paragraph">
+<p>只有金額的交易是一筆付款。只有資料的交易是一次呼叫。同時有金額與資料的交易，既是付款也是呼叫。既沒有金額也沒有資料的交易，嗯，那大概只是在浪費 gas！但這仍然是可能的。</p>
+</div>
+<div class="paragraph">
+<p>我們來試試所有的組合。我們會像之前一樣使用 <code>cast</code>，在 Sepolia 測試網路上送出交易。</p>
+</div>
+<div class="paragraph">
+<p>我們的第一筆交易只包含金額（付款），沒有資料酬載：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="bash"><span class="nv">$ </span>cast send <span class="nt">--account</span> example vitalik.eth <span class="nt">--value</span> 0.001ether <span class="nt">--rpc-url</span> https://ethereum-sepolia-rpc.publicnode.com</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>從圖 6-4 可以看到，送出的金額是 0.001 ETH，而資料酬載（Etherscan 上的 input data）是空的（<code>0x00</code>）。<sup class="footnote">[<a id="_footnoteref_10" class="footnote" href="#_footnotedef_10" title="查看註腳">10</a>]</sup></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<picture><source type="image/webp" srcset="/images/ch6/maet_0604.webp"><img src="/images/ch6/maet_0604.png" alt="Transaction with only value" width="1440" height="1494" loading="lazy" decoding="async"></picture>
+</div>
+<div class="title">圖 6-4. 只有金額的交易（付款）</div>
+</div>
+<div class="paragraph">
+<p>下一個例子同時指定了金額與資料酬載（不過因為我們是把交易送給一個 EOA，這份酬載會被忽略）：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="bash"><span class="nv">$ </span>cast send <span class="nt">--account</span> example vitalik.eth 0x0001 <span class="nt">--value</span> 0.001ether <span class="nt">--rpc-url</span> https://ethereum-sepolia-rpc.publicnode.com</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>從圖 6-5 可以看到，input data 現在有內容了，也就是 <code>0x0001</code>。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<picture><source type="image/webp" srcset="/images/ch6/maet_0605.webp"><img src="/images/ch6/maet_0605.png" alt="Transaction with value and data" width="1440" height="1576" loading="lazy" decoding="async"></picture>
+</div>
+<div class="title">圖 6-5. 同時有金額與資料的交易</div>
+</div>
+<div class="paragraph">
+<p>下一筆交易包含資料酬載，但指定的金額為零：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="bash"><span class="nv">$ </span>cast send <span class="nt">--account</span> example vitalik.eth 0x0001 <span class="nt">--rpc-url</span> https://ethereum-sepolia-rpc.publicnode.com</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>圖 6-6 是一個確認畫面，顯示這筆交易送出的金額為零以太幣，資料酬載則是 <code>0x0001</code>。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<picture><source type="image/webp" srcset="/images/ch6/maet_0606.webp"><img src="/images/ch6/maet_0606.png" alt="Transaction with only data" width="1442" height="1539" loading="lazy" decoding="async"></picture>
+</div>
+<div class="title">圖 6-6. 只有資料的交易（呼叫）</div>
+</div>
+<div class="paragraph">
+<p>最後，最後一筆交易既沒有要送出的金額，也沒有資料酬載：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="bash"><span class="nv">$ </span>cast send <span class="nt">--account</span> example vitalik.eth <span class="nt">--rpc-url</span> https://ethereum-sepolia-rpc.publicnode.com</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>圖 6-7 是我們這筆送出零以太幣、酬載為空的交易。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<picture><source type="image/webp" srcset="/images/ch6/maet_0607.webp"><img src="/images/ch6/maet_0607.png" alt="Transaction with neither value nor data" width="1444" height="1458" loading="lazy" decoding="async"></picture>
+</div>
+<div class="title">圖 6-7. 既沒有金額也沒有資料的交易</div>
+</div>
+</div>
+<div class="sect2">
+<h2 id="ch06-transmitting-value-to-eoas-and-contracts"><a class="anchor" href="#ch06-transmitting-value-to-eoas-and-contracts" aria-label="本節連結"></a>6.6. 把價值傳送給 EOA 與合約</h2>
+<div class="paragraph">
+<p>當你建構一筆包含金額的以太坊交易，就等同於一筆付款。這類交易的行為，會依目的地址是不是合約而有所不同。</p>
+</div>
+<div class="paragraph">
+<p>對 EOA 地址來說，或者更精確地說，對任何在區塊鏈上沒有被標記為合約的地址來說，以太坊會記錄一次狀態改變，把你送出的金額加到這個地址的餘額上。如果這個地址以前從未出現過，它會被加入客戶端內部的狀態表示中，餘額則初始化為你付款的金額。</p>
+</div>
+<div class="paragraph">
+<p>如果目的地址（<code>to</code>）是一個合約（或是先前已經透過 EIP-7702 交易委託給某個合約的 EOA），EVM 就會執行這個合約，並嘗試呼叫交易資料酬載中所指名的函式。如果交易中沒有資料，EVM 會呼叫 <em>fallback 函式</em>；如果這個函式是 payable 的，EVM 就會執行它，以決定接下來要做什麼。如果沒有 fallback 函式，這筆交易的效果就是增加合約的餘額，和付款給錢包完全一樣。</p>
+</div>
+<div class="paragraph">
+<p>合約可以拒絕收到的付款，做法是在函式被呼叫時立即拋出例外，或依函式中寫好的條件決定是否拋出例外。如果函式成功結束（沒有發生例外），合約的狀態就會更新，反映合約的以太幣餘額增加了。</p>
+</div>
+</div>
+<div class="sect2">
+<h2 id="ch06-transmitting-a-data-payload-to-an-eoa-or-contract"><a class="anchor" href="#ch06-transmitting-a-data-payload-to-an-eoa-or-contract" aria-label="本節連結"></a>6.7. 把資料酬載傳送給 EOA 或合約</h2>
+<div class="paragraph">
+<p>當你的交易包含資料時，它最有可能是送往一個合約地址。但這並不代表你不能把資料酬載送給 EOA；這在以太坊協議中完全有效。不過在這種情況下，資料要如何解讀，取決於你用來存取這個 EOA 的錢包。以太坊協議會忽略這些資料。大多數的錢包也會忽略它們所控制的 EOA 在交易中收到的任何資料。未來可能會出現一些標準，讓錢包能像合約一樣解讀資料，進而讓交易可以呼叫在使用者錢包內執行的函式。關鍵的差別在於，EOA 對資料酬載的任何解讀都不受以太坊共識規則的約束，這一點和合約的執行不同。</p>
+</div>
+<div class="paragraph">
+<p>現在，我們先假設你的交易是把資料送到一個合約地址。在這種情況下，EVM 會把這些資料解讀為一次合約呼叫。大多數的合約會更具體地把這些資料當成一次函式呼叫：呼叫指名的函式，並把任何已編碼的引數傳給這個函式。</p>
+</div>
+<div class="paragraph">
+<p>送往相容於<em>應用程式二進位介面</em>（application binary interface，ABI）的合約（你可以假設所有合約都相容）的資料酬載，是下列內容的十六進位序列化編碼：</p>
+</div>
+<div class="paragraph">
+<p><strong>函式選擇器</strong></p>
+</div>
+<div class="paragraph">
+<p>函式原型的 Keccak-256 雜湊值的前 4 個位元組。這讓合約能明確無誤地辨識你想呼叫的是哪一個函式。</p>
+</div>
+<div class="paragraph">
+<p><strong>函式引數</strong></p>
+</div>
+<div class="paragraph">
+<p>函式的引數，依照 ABI 規格中為各種基本型別定義的規則來編碼。</p>
+</div>
+<div class="paragraph">
+<p>在範例 2-1 中，我們定義了一個用來提款的函式：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="solidity">function withdraw(uint256 _withdrawAmount, address payable _to) public {</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>函式的原型定義為一個字串，內容是函式名稱，後面接著它每個引數的資料型別，以括號括起、以逗號分隔。這裡的函式名稱是 <code>withdraw</code>，它接受兩個引數：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>_withdrawAmount</code>，型別是 <code>uint256</code></p>
+</li>
+<li>
+<p><code>_to</code>，型別是 <code>address</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>所以 <code>withdraw</code> 的原型會是：</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>withdraw(uint256,address)</pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class="icon">
+<div class="title">備註</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Solidity 用 <code>payable</code> 關鍵字表示這個地址可以接收以太幣，但它不列入函式選擇器的計算。原型中只包含基本型別 <code>address</code>。</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="paragraph">
+<p>我們來計算這個字串的 Keccak-256 雜湊值：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="bash"><span class="nv">$ </span>cast keccak256 <span class="s2">"withdraw(uint256,address)"</span>
+0x00f714ce93c4a188ecc0c802ca78036f638c1c4b3ee9b98f3ed75364b45f50b1</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>雜湊值的前 4 個位元組是 <code>0x00f714ce</code>。這就是我們的函式選擇器的值，它會告訴合約我們想呼叫哪一個函式。</p>
+</div>
+<div class="paragraph">
+<p>接下來，我們要計算兩個值，作為引數 <code>withdraw_amount</code> 與 <code>_to</code> 傳入。<sup class="footnote">[<a id="_footnoteref_11" class="footnote" href="#_footnotedef_11" title="查看註腳">11</a>]</sup>我們想提領 0.000001 ETH 到 <code>vitalik.eth</code> 這個地址，也就是 <code>0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045</code>。我們把它們與上一步算出的函式選擇器一起編碼，得到最終的資料酬載（也稱為 <em>calldata</em>）：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="bash"><span class="nv">$ </span>cast calldata <span class="s2">"withdraw(uint256,address)"</span> 0.000001ether 0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045
+0x00f714ce000000000000000000000000000000000000000000000000000000e8d4a51000000000000000000000000000d8da6bf26964af9d7eed9e03e53415d37aa96045</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>這就是我們這筆交易的資料酬載：它會呼叫 <code>withdraw</code> 函式，要求以 0.000001 ETH 作為 <code>withdraw_amount</code>，並以 <code>vitalik.eth</code> 作為 <code>_to</code> 地址。</p>
+</div>
+</div>
+<div class="sect2">
+<h2 id="ch06-special-transaction-contract-creation"><a class="anchor" href="#ch06-special-transaction-contract-creation" aria-label="本節連結"></a>6.8. 特殊交易：建立合約</h2>
+<div class="paragraph">
+<p>有一種特殊情況值得一提：在區塊鏈上建立新合約、把它部署起來供日後使用的交易。<em>建立合約的交易</em>是以空的 <code>to</code> 欄位（null）來辨識的。當 <code>to</code> 欄位是空的，以太坊協議會把它解讀為部署新合約的請求，合約的位元組碼則由 <code>data</code> 欄位提供。</p>
+</div>
+<div class="paragraph">
+<p>請注意，<em>零地址</em>（<code>0x0000000000000000000000000000000000000000</code>）是另一個不同的概念：它是一個有效的 20 位元組地址，可以接收以太幣。把交易送到零地址並不會建立合約，只會像其他交易一樣，把以太幣轉到這個地址。零地址有時會收到來自各個地址的付款。這有兩種解釋：要不是意外，導致以太幣損失；就是刻意的<em>以太幣銷毀</em>（把以太幣送到一個永遠無法花用的地址，藉此刻意銷毀它）。不過，如果你想刻意銷毀以太幣，就應該向網路清楚表明你的意圖，改用專門指定的銷毀地址：</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>0x000000000000000000000000000000000000dEaD</pre>
+</div>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tbody><tr>
+<td class="icon">
+<div class="title">警告</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>任何送到這個指定銷毀地址的以太幣，都會變得無法花用，永遠遺失。</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="paragraph">
+<p>建立合約的交易只需要包含一份資料酬載，內容是會建立合約的已編譯位元組碼。這筆交易唯一的效果就是建立合約。如果你想讓新合約一開始就有餘額，可以在 <code>value</code> 欄位放入一筆以太幣金額，但這完全是選擇性的。如果你把金額（以太幣）送到建立合約的地址，卻沒有附上資料酬載（也就是沒有合約），效果就和送到銷毀地址一樣：沒有合約可以入帳，以太幣就這樣遺失了。</p>
+</div>
+<div class="paragraph">
+<p>舉例來說，我們可以手動建立一筆 <code>to</code> 欄位為空、資料酬載為合約位元組碼的交易，來建立第 2 章用過的 <code>Faucet.sol</code> 合約。合約需要先編譯成位元組碼的形式，這可以用 Solidity 編譯器來完成：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="bash"><span class="nv">$ </span>solc <span class="nt">--bin</span> Faucet.sol
+Binary:
+6080604052348015600e575f5ffd5…0033</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>同樣的資訊也可以從 Remix 線上編譯器取得。</p>
+</div>
+<div class="paragraph">
+<p>現在我們可以用這份二進位輸出來建立交易：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="bash"><span class="nv">$ </span>cast send <span class="nt">--account</span> example <span class="nt">--rpc-url</span> https://ethereum-sepolia-rpc.publicnode.com <span class="nt">--create</span> 6080604052348015600e575f5ffd5…0033</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>合約發布之後，我們就可以在 Etherscan 區塊瀏覽器上看到它，如圖 6-8 所示。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<picture><source type="image/webp" srcset="/images/ch6/maet_0608.webp"><img src="/images/ch6/maet_0608.png" alt="Contract creation on Etherscan" width="1438" height="935" loading="lazy" decoding="async"></picture>
+</div>
+<div class="title">圖 6-8. Etherscan 上建立合約的交易</div>
+</div>
+<div class="paragraph">
+<p>我們可以查看這筆交易的交易收據（用交易雜湊值來指稱它），取得合約的相關資訊：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="bash"><span class="nv">$ </span>cast receipt 0xa6b077d7d0ea21ff5f32a5a7243a81f0ab63e3b5e09c8e388c230fb067967cbb <span class="se">\</span>
+    <span class="nt">--rpc-url</span> https://ethereum-sepolia-rpc.publicnode.com
+blockHash               0x6eb071eac79a84793321b086af96b32c1d861f04b0efc7354d0f6b8d5a8fa36a
+blockNumber             7135544
+contractAddress         0x4658eD241397F08cba8d5F3a69c7774cebE7f67F
+cumulativeGasUsed       28390874
+effectiveGasPrice       8867964529
+from                    0x7e41354AfE84800680ceB104c5Fc99eCB98A25f0
+gasUsed                 145123
+logs                    <span class="o">[]</span>
+logsBloom               0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+root
+status                  1 <span class="o">(</span>success<span class="o">)</span>
+transactionHash         0xa6b077d7d0ea21ff5f32a5a7243a81f0ab63e3b5e09c8e388c230fb067967cbb
+transactionIndex        136
+<span class="nb">type                    </span>2
+blobGasPrice
+blobGasUsed
+authorizationList</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>其中包含了合約的地址（見 <code>contractAddress</code>），我們可以像上一節那樣，用這個地址把資金送進合約，或從合約領出資金。</p>
+</div>
+<div class="paragraph">
+<p>我們先把新建立的合約地址存進一個變數：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="bash"><span class="nv">$ CONTRACT_ADDRESS</span><span class="o">=</span>0x4658eD241397F08cba8d5F3a69c7774cebE7f67F</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>現在我們可以存一些以太幣進去：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="bash"><span class="nv">$ </span>cast send <span class="nt">--account</span> example <span class="nv">$CONTRACT_ADDRESS</span> <span class="nt">--value</span> 0.02ether <span class="nt">--rpc-url</span> https://ethereum-sepolia-rpc.publicnode.com</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>最後，我們用先前算出的資料酬載呼叫 <code>withdraw</code> 函式，把 0.000001 ETH 提領到 <code>vitalik.eth</code> 地址：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="bash"><span class="nv">$ </span>cast send <span class="nt">--account</span> example <span class="nv">$CONTRACT_ADDRESS</span> <span class="se">\</span>
+0x00f714ce000000000000000000000000000000000000000000000000000000e8d4a51000000000000000000000000000d8da6bf26964af9d7eed9e03e53415d37aa96045 <span class="se">\</span>
+  <span class="nt">--rpc-url</span> https://ethereum-sepolia-rpc.publicnode.com</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>過了一會兒，兩筆交易都能在 Etherscan 上看到，如圖 6-9 所示。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<picture><source type="image/webp" srcset="/images/ch6/maet_0609.webp"><img src="/images/ch6/maet_0609.png" alt="Contract interactions on Etherscan" width="1440" height="641" loading="lazy" decoding="async"></picture>
+</div>
+<div class="title">圖 6-9. 存入合約與從合約提款的交易</div>
+</div>
+</div>
+<div class="sect2">
+<h2 id="ch06-digital-signatures"><a class="anchor" href="#ch06-digital-signatures" aria-label="本節連結"></a>6.9. 數位簽章</h2>
+<div class="paragraph">
+<p>到目前為止，我們還沒有深入探討數位簽章的細節。本節會說明數位簽章如何運作，以及如何用它來證明自己擁有某個私鑰，卻不必揭露這個私鑰。</p>
+</div>
+<div class="sect3">
+<h3 id="ch06-the-ecdsa"><a class="anchor" href="#ch06-the-ecdsa" aria-label="本節連結"></a>6.9.1. ECDSA</h3>
+<div class="paragraph">
+<p>以太坊使用的數位簽章演算法是<em>橢圓曲線數位簽章演算法（Elliptic Curve Digital Signature Algorithm，ECDSA）</em>。它以橢圓曲線的私鑰與公鑰的金鑰對為基礎，如「橢圓曲線密碼學解說」一節所述。</p>
+</div>
+<div class="paragraph">
+<p>數位簽章在以太坊中有三個用途（見下方的補充說明）。第一，簽章證明私鑰的擁有者（也就是以太坊帳戶的擁有者）已經授權花用以太幣或執行合約。第二，它保證了<em>不可否認性</em>：授權的證明無法否認。第三，簽章證明交易資料在交易被簽署之後，沒有被、也無法被任何人修改。</p>
+</div>
+<div class="sect4">
+<h4 id="ch06-definition-of-a-digital-signature"><a class="anchor" href="#ch06-definition-of-a-digital-signature" aria-label="本節連結"></a>數位簽章的定義</h4>
+<div class="paragraph">
+<p>根據<a href="https://oreil.ly/kRnY2" rel="noopener" target="_blank">維基百科</a>，數位簽章是一種用來展現數位訊息或文件真實性的數學機制。有效的數位簽章能讓接收者有理由相信：訊息是由已知的發送者所建立（身分驗證），發送者無法否認自己送出了這則訊息（不可否認性），而且訊息在傳送過程中沒有被竄改（完整性）。</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h3 id="ch06-how-digital-signatures-work"><a class="anchor" href="#ch06-how-digital-signatures-work" aria-label="本節連結"></a>6.9.2. 數位簽章如何運作</h3>
+<div class="paragraph">
+<p>數位簽章是一種由兩個部分組成的數學機制。第一部分是一個演算法，用私鑰（簽署金鑰）從一則訊息（在我們的情況下就是交易）建立簽章。第二部分是一個演算法，讓任何人只要使用訊息與公鑰，就能驗證簽章。</p>
+</div>
+<div class="sect4">
+<h4 id="ch06-creating-a-digital-signature"><a class="anchor" href="#ch06-creating-a-digital-signature" aria-label="本節連結"></a>建立數位簽章</h4>
+<div class="paragraph">
+<p>在以太坊的 ECDSA 實作中，被簽署的「訊息」是交易，更精確地說，是交易的 RLP 編碼資料的 Keccak-256 雜湊值。簽署金鑰就是 EOA 的私鑰。結果就是簽章：</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Sig = Fsig (Fkeccak256 (m), k)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>其中：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>k</code> 是簽署用的私鑰</p>
+</li>
+<li>
+<p><code>m</code> 是以 RLP 編碼的交易</p>
+</li>
+<li>
+<p><code>Fkeccak256</code> 是 Keccak-256 雜湊函數</p>
+</li>
+<li>
+<p><code>Fsig</code> 是簽署演算法</p>
+</li>
+<li>
+<p><code>Sig</code> 是產生的簽章</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>函數 <code>Fsig</code> 產生的簽章 <code>Sig</code> 由兩個值組成，通常稱為 <code>r</code> 與 <code>s</code>：</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Sig = (r, s)</pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h4 id="ch06-verifying-the-signature"><a class="anchor" href="#ch06-verifying-the-signature" aria-label="本節連結"></a>驗證簽章</h4>
+<div class="paragraph">
+<p>要驗證簽章，你必須有簽章（<code>r</code> 與 <code>s</code>）、序列化的交易，以及與建立簽章所用私鑰相對應的公鑰。本質上，驗證簽章的意思就是：只有產生這個公鑰的私鑰擁有者，才可能對這筆交易產生這個簽章。</p>
+</div>
+<div class="paragraph">
+<p>簽章驗證演算法接受訊息（在我們的用途中就是交易的雜湊值）、簽署者的公鑰與簽章（<code>r</code> 與 <code>s</code> 值），如果對這則訊息與公鑰而言簽章有效，就回傳 true。</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h3 id="ch06-ecdsa-math"><a class="anchor" href="#ch06-ecdsa-math" aria-label="本節連結"></a>6.9.3. ECDSA 的數學</h3>
+<div class="paragraph">
+<p>如前所述，簽章是由數學函數 <code>Fsig</code> 建立的，它產生的簽章由 <code>r</code> 與 <code>s</code> 兩個值組成。本節會更詳細地介紹函數 <code>Fsig</code>。</p>
+</div>
+<div class="paragraph">
+<p>簽章演算法首先會以密碼學上安全的方式，產生一把<em>臨時</em>（ephemeral）私鑰。這把臨時金鑰用於計算 <code>r</code> 與 <code>s</code> 值，確保在以太坊網路上觀察已簽署交易的攻擊者，無法算出發送者真正的私鑰。</p>
+</div>
+<div class="paragraph">
+<p>我們在第 4 章學過，臨時私鑰會用來推導出相對應的（臨時）公鑰，所以我們有：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>一個密碼學上安全的隨機數 <code>q</code>，用作臨時私鑰</p>
+</li>
+<li>
+<p>相對應的臨時公鑰 <code>Q</code>，由 <code>q</code> 與橢圓曲線的生成點 <code>G</code> 產生</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>數位簽章的 <code>r</code> 值，就是臨時公鑰 <code>Q</code> 的 x 座標。</p>
+</div>
+<div class="paragraph">
+<p>接著，演算法會計算簽章的 <code>s</code> 值，使得：</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>s ≡ q-1 (Keccak256(m) + r * k) (mod p)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>其中：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>q</code> 是臨時私鑰</p>
+</li>
+<li>
+<p><code>r</code> 是臨時公鑰的 x 座標</p>
+</li>
+<li>
+<p><code>k</code> 是簽署用的（EOA 擁有者的）私鑰</p>
+</li>
+<li>
+<p><code>m</code> 是交易資料</p>
+</li>
+<li>
+<p><code>p</code> 是橢圓曲線的質數階</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>驗證是簽章產生函數的反向運算：用 <code>r</code> 與 <code>s</code> 值以及發送者的公鑰計算出一個值 <code>Q</code>，它是橢圓曲線上的一個點（也就是建立簽章時所用的臨時公鑰）。步驟如下：</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>檢查所有輸入的格式都正確。</p>
+</li>
+<li>
+<p>計算 <code>w = s-1 mod p</code>。</p>
+</li>
+<li>
+<p>計算 <code>u1 = Keccak256(m) * w mod p</code>。</p>
+</li>
+<li>
+<p>計算 <code>u2 = r * w mod p</code>。</p>
+</li>
+<li>
+<p>最後，計算橢圓曲線上的點 <code>Q ≡ u1 * G + u2 * K (mod p)</code></p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>其中：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>r</code> 與 <code>s</code> 是簽章的值</p>
+</li>
+<li>
+<p><code>K</code> 是簽署者的（EOA 擁有者的）公鑰</p>
+</li>
+<li>
+<p><code>m</code> 是被簽署的交易資料</p>
+</li>
+<li>
+<p><code>G</code> 是橢圓曲線的生成點</p>
+</li>
+<li>
+<p><code>p</code> 是橢圓曲線的質數階</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>如果計算出來的點 <code>Q</code> 的 x 座標等於 <code>r</code>，驗證方就可以斷定簽章有效。請注意，在驗證簽章的過程中，私鑰既不需要知道，也不會被揭露。</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tbody><tr>
+<td class="icon">
+<div class="title">提示</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>ECDSA 必然是一套相當複雜的數學；完整的解釋超出了本書的範圍。網路上有許多指南會一步步帶你了解它：搜尋「ECDSA explained」，或參考<a href="https://oreil.ly/KUv9P" rel="noopener" target="_blank">這一篇</a>。</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h2 id="ch06-transaction-signing-in-practice"><a class="anchor" href="#ch06-transaction-signing-in-practice" aria-label="本節連結"></a>6.10. 實際簽署交易</h2>
+<div class="paragraph">
+<p>要產生一筆有效的交易，發起者必須用 ECDSA 對訊息進行數位簽署。當我們說「簽署交易」時，實際上指的是「簽署 RLP 序列化交易資料的 Keccak-256 雜湊值」。簽章是施加在交易資料的雜湊值上，而不是交易本身。</p>
+</div>
+<div class="paragraph">
+<p>要在以太坊中簽署一筆交易，發起者必須：</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>建立一個交易資料結構，包含該交易類型所需的所有欄位。</p>
+</li>
+<li>
+<p>把這個交易資料結構以 RLP 編碼，產生序列化的訊息。</p>
+</li>
+<li>
+<p>計算這則序列化訊息的 Keccak-256 雜湊值。</p>
+</li>
+<li>
+<p>計算 ECDSA 簽章，用發起交易的 EOA 的私鑰簽署這個雜湊值。</p>
+</li>
+<li>
+<p>把計算出來的 ECDSA 簽章的 <code>v</code>、<code>r</code> 與 <code>s</code> 值附加到交易上。</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>特殊的簽章變數 <code>v</code> 表示兩件事：鏈 ID，以及幫助 ECDSArecover 函式檢查簽章的復原識別碼（recovery identifier）。在非 Legacy 交易中，<code>v</code> 變數不再編碼鏈 ID，因為鏈 ID 已經直接列為構成交易本身的項目之一。關於鏈 ID 的更多資訊，請見「使用 EIP-155 建立原始交易」一節。復原識別碼用來表示公鑰 y 分量的奇偶性（詳見「簽章前綴值（v）與公鑰復原」一節）。</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class="icon">
+<div class="title">備註</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>以太坊在第 2,675,000 個區塊實施了 Spurious Dragon 硬分叉，除了其他變更之外，它還引進了一種新的簽署方式，包含交易重放保護（防止原本要送往某個網路的交易在其他網路上被重放）。這種新的簽署方式定義在 EIP-155 中。這項變更影響了交易及其簽章的形式，因此必須注意三個簽章變數中的第一個（也就是 <code>v</code>），它有兩種形式之一，並指出被雜湊的交易訊息中包含了哪些資料欄位。</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="sect3">
+<h3 id="ch06-raw-transaction-creation-and-signing"><a class="anchor" href="#ch06-raw-transaction-creation-and-signing" aria-label="本節連結"></a>6.10.1. 建立與簽署原始交易</h3>
+<div class="paragraph">
+<p>本節會使用 <code>ethers.js</code> 函式庫建立一筆原始交易並簽署它。範例 6-1 示範了錢包或代替使用者簽署交易的應用程式中通常會用到的函式。</p>
+</div>
+<div class="exampleblock">
+<div class="title">範例 6-1. 建立並簽署一筆原始以太坊交易</div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="c1">// Load requirements first:</span>
+<span class="c1">//</span>
+<span class="c1">// npm install ethers</span>
+<span class="c1">//</span>
+<span class="c1">// Run with: node eip1559_tx.js</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">ethers</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">ethers</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="c1">// Create provider with your RPC endpoint</span>
+<span class="kd">const</span> <span class="nx">provider</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ethers</span><span class="p">.</span><span class="nc">JsonRpcProvider</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://ethereum-sepolia-rpc.publicnode.com</span><span class="dl">"</span><span class="p">);</span>
+
+<span class="c1">// Private key</span>
+<span class="kd">const</span> <span class="nx">privKey</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">0xd6d2672c6b4489e6bcd4e93b9af620fa0204b639b7d7f93765479c0846be0b58</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="c1">// Create a wallet instance</span>
+<span class="kd">const</span> <span class="nx">wallet</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ethers</span><span class="p">.</span><span class="nc">Wallet</span><span class="p">(</span><span class="nx">privKey</span><span class="p">);</span>
+
+<span class="c1">// Get nonce and create transaction data</span>
+<span class="kd">const</span> <span class="nx">txData</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">nonce</span><span class="p">:</span> <span class="k">await</span> <span class="nx">provider</span><span class="p">.</span><span class="nf">getTransactionCount</span><span class="p">(</span><span class="nx">wallet</span><span class="p">.</span><span class="nx">address</span><span class="p">),</span> <span class="c1">// Get nonce from provider</span>
+  <span class="na">to</span><span class="p">:</span> <span class="dl">"</span><span class="s2">0xb0920c523d582040f2bcb1bd7fb1c7c1ecebdb34</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// Receiver address</span>
+  <span class="na">value</span><span class="p">:</span> <span class="nx">ethers</span><span class="p">.</span><span class="nf">parseEther</span><span class="p">(</span><span class="dl">"</span><span class="s2">0.0001</span><span class="dl">"</span><span class="p">),</span> <span class="c1">// Amount to send (0.0001 ETH here)</span>
+  <span class="na">gasLimit</span><span class="p">:</span> <span class="nx">ethers</span><span class="p">.</span><span class="nf">toBeHex</span><span class="p">(</span><span class="mh">0x30000</span><span class="p">),</span> <span class="c1">// Gas limit</span>
+  <span class="na">maxFeePerGas</span><span class="p">:</span> <span class="nx">ethers</span><span class="p">.</span><span class="nf">parseUnits</span><span class="p">(</span><span class="dl">"</span><span class="s2">100</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">gwei</span><span class="dl">"</span><span class="p">),</span> <span class="c1">// Max fee per gas</span>
+  <span class="na">maxPriorityFeePerGas</span><span class="p">:</span> <span class="nx">ethers</span><span class="p">.</span><span class="nf">parseUnits</span><span class="p">(</span><span class="dl">"</span><span class="s2">2</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">gwei</span><span class="dl">"</span><span class="p">),</span> <span class="c1">// Max priority fee</span>
+  <span class="na">data</span><span class="p">:</span> <span class="dl">"</span><span class="s2">0x</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// Optional data</span>
+  <span class="na">chainId</span><span class="p">:</span> <span class="mi">11155111</span><span class="p">,</span> <span class="c1">// Sepolia chain ID</span>
+<span class="p">};</span>
+
+<span class="c1">// Calculate RLP-encoded transaction hash (pre-signed)</span>
+<span class="kd">const</span> <span class="nx">unsignedTx</span> <span class="o">=</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">Transaction</span><span class="p">.</span><span class="k">from</span><span class="p">(</span><span class="nx">txData</span><span class="p">).</span><span class="nx">unsignedSerialized</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">RLP-Encoded Tx (Unsigned): </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">unsignedTx</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">txHash</span> <span class="o">=</span> <span class="nx">ethers</span><span class="p">.</span><span class="nf">keccak256</span><span class="p">(</span><span class="nx">unsignedTx</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Tx Hash (Unsigned): </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">txHash</span><span class="p">);</span>
+
+<span class="c1">// Sign the transaction</span>
+<span class="k">async</span> <span class="kd">function</span> <span class="nf">signAndSend</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// Sign the transaction with the wallet</span>
+  <span class="kd">const</span> <span class="nx">signedTx</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">wallet</span><span class="p">.</span><span class="nf">signTransaction</span><span class="p">(</span><span class="nx">txData</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Signed Raw Transaction: </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">signedTx</span><span class="p">);</span>
+
+  <span class="c1">// Send the signed transaction to the Ethereum network</span>
+  <span class="kd">const</span> <span class="nx">txResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">provider</span><span class="p">.</span><span class="nf">broadcastTransaction</span><span class="p">(</span><span class="nx">signedTx</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Transaction Hash: </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">txResponse</span><span class="p">.</span><span class="nx">hash</span><span class="p">);</span>
+
+  <span class="c1">// Wait for the transaction to be mined</span>
+  <span class="kd">const</span> <span class="nx">receipt</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">txResponse</span><span class="p">.</span><span class="nf">wait</span><span class="p">();</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Transaction Receipt: </span><span class="dl">"</span><span class="p">,</span> <span class="nx">receipt</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nf">signAndSend</span><span class="p">().</span><span class="k">catch</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">);</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>執行這段範例程式碼，會產生下列結果：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="bash"><span class="nv">$ </span>node eip1559_tx.js
+RLP-Encoded Tx <span class="o">(</span>Unsigned<span class="o">)</span>: 0x02f283aa36a714847735940085174876e8008303000094b0920c523d582040f2bcb1bd7fb1c7c1ecebdb34865af3107a400080c0
+Tx Hash <span class="o">(</span>Unsigned<span class="o">)</span>: 0x31d43a580534a77c71324a8434df6f2df993b3d551b29d4b70d8a889768a53f7
+Signed Raw Transaction: 0x02f87583aa36a714847735940085174876e8008303000094b0920c523d582040f2bcb1bd7fb1c7c1ecebdb34865af3107a400080c001a03f8ed18cb03ee0fe3fbc3f0a7477a2f68db6ec84450e77e702b82a3f2c873aa4a0205c4f6a16ea8ad13a148cc3105814cd4a6860cd26a771651199c85ccb7c7f0f
+Transaction Hash: 0x07bfbeb337e19763a1f74d989dae2953807dcb06822354cfefb16405a11beb93
+Transaction Receipt:  TransactionReceipt <span class="o">{</span>
+  provider: JsonRpcProvider <span class="o">{}</span>,
+  to: <span class="s1">'0xB0920c523d582040f2BCB1bD7FB1c7C1ECEbdB34'</span>,
+  from: <span class="s1">'0x7e41354AfE84800680ceB104c5Fc99eCB98A25f0'</span>,
+  contractAddress: null,
+  <span class="nb">hash</span>: <span class="s1">'0x07bfbeb337e19763a1f74d989dae2953807dcb06822354cfefb16405a11beb93'</span>,
+  index: 1,
+  blockHash: <span class="s1">'0x0ac051e8f615805c69eec6e193e39637adeb7cf314a0098d455e7d9ac395a7ee'</span>,
+  blockNumber: 7135937,
+  logsBloom: <span class="s1">'0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000'</span>,
+  gasUsed: 21000n,
+  blobGasUsed: null,
+  cumulativeGasUsed: 42000n,
+  gasPrice: 3096751769n,
+  blobGasPrice: null,
+  <span class="nb">type</span>: 2,
+  status: 1,
+  root: undefined
+<span class="o">}</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h3 id="ch06-low-level-manual-construction-of-an-eip-1559-raw-transaction"><a class="anchor" href="#ch06-low-level-manual-construction-of-an-eip-1559-raw-transaction" aria-label="本節連結"></a>6.10.2. 在底層手動建構 EIP-1559 原始交易</h3>
+<div class="paragraph">
+<p>下面的範例示範了建立並簽署一筆 EIP-1559（類型 0x02）交易的完整底層流程：手動建立欄位清單、以 RLP 編碼，再簽署帶有類型的酬載。這種做法能清楚揭示 <code>wallet.signTransaction</code> 內部究竟發生了什麼事。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="c1">// npm install ethers@6</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">ethers</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">ethers</span><span class="dl">"</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">RLP</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">@ethereumjs/rlp</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="c1">// Replace with your own RPC and private key</span>
+<span class="kd">const</span> <span class="nx">rpcUrl</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">https://ethereum-sepolia-rpc.publicnode.com</span><span class="dl">"</span><span class="p">;</span> <span class="c1">// or mainnet, etc.</span>
+<span class="kd">const</span> <span class="nx">provider</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ethers</span><span class="p">.</span><span class="nc">JsonRpcProvider</span><span class="p">(</span><span class="nx">rpcUrl</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">privateKey</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">0xYOUR_PRIVATE_KEY_HERE</span><span class="dl">"</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">wallet</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ethers</span><span class="p">.</span><span class="nc">Wallet</span><span class="p">(</span><span class="nx">privateKey</span><span class="p">,</span> <span class="nx">provider</span><span class="p">);</span>
+
+<span class="kd">const</span> <span class="nx">recipient</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">0xRECIPENT_ADDRESS</span><span class="dl">"</span><span class="p">;</span> <span class="c1">// example address</span>
+
+<span class="k">async</span> <span class="kd">function</span> <span class="nf">createAndSendRawEip1559Tx</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">network</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">provider</span><span class="p">.</span><span class="nf">getNetwork</span><span class="p">();</span> <span class="c1">// This is a RPC call</span>
+  <span class="kd">const</span> <span class="nx">chainId</span> <span class="o">=</span> <span class="nx">network</span><span class="p">.</span><span class="nx">chainId</span><span class="p">;</span>
+  <span class="kd">const</span> <span class="nx">nonce</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">provider</span><span class="p">.</span><span class="nf">getTransactionCount</span><span class="p">(</span><span class="nx">wallet</span><span class="p">.</span><span class="nx">address</span><span class="p">);</span> <span class="c1">// This is a RPC call</span>
+
+  <span class="c1">// Example parameters — adjust as needed (or use provider.estimateGas + getFeeData)</span>
+  <span class="kd">const</span> <span class="nx">maxPriorityFeePerGas</span> <span class="o">=</span> <span class="nx">ethers</span><span class="p">.</span><span class="nf">parseUnits</span><span class="p">(</span><span class="dl">"</span><span class="s2">2</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">gwei</span><span class="dl">"</span><span class="p">);</span>   <span class="c1">// tip</span>
+  <span class="kd">const</span> <span class="nx">maxFeePerGas</span> <span class="o">=</span> <span class="nx">ethers</span><span class="p">.</span><span class="nf">parseUnits</span><span class="p">(</span><span class="dl">"</span><span class="s2">30</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">gwei</span><span class="dl">"</span><span class="p">);</span>         <span class="c1">// fee cap (base fee + tip)</span>
+  <span class="kd">const</span> <span class="nx">gasLimit</span> <span class="o">=</span> <span class="mi">21000</span><span class="nx">n</span><span class="p">;</span>
+  <span class="kd">const</span> <span class="nx">value</span> <span class="o">=</span> <span class="nx">ethers</span><span class="p">.</span><span class="nf">parseEther</span><span class="p">(</span><span class="dl">"</span><span class="s2">0.01</span><span class="dl">"</span><span class="p">);</span> <span class="c1">// 0.01 ETH</span>
+  <span class="kd">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">0x</span><span class="dl">"</span><span class="p">;</span> <span class="c1">// or contract calldata</span>
+  <span class="kd">const</span> <span class="nx">accessList</span> <span class="o">=</span> <span class="p">[];</span> <span class="c1">// [] or proper access list for EIP-2930 style savings</span>
+
+  <span class="c1">// Unsigned fields in strict order for Transaction Type 2</span>
+  <span class="kd">const</span> <span class="nx">unsignedFields</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="nx">chainId</span><span class="p">,</span>                              <span class="c1">// chainId</span>
+    <span class="nx">nonce</span><span class="p">,</span>                                <span class="c1">// nonce</span>
+    <span class="nx">maxPriorityFeePerGas</span><span class="p">,</span>                 <span class="c1">// maxPriorityFeePerGas</span>
+    <span class="nx">maxFeePerGas</span><span class="p">,</span>                         <span class="c1">// maxFeePerGas</span>
+    <span class="nx">gasLimit</span><span class="p">,</span>                             <span class="c1">// gasLimit</span>
+    <span class="nx">recipient</span><span class="p">,</span>                            <span class="c1">// to</span>
+    <span class="nx">value</span><span class="p">,</span>                                <span class="c1">// value</span>
+    <span class="nx">data</span><span class="p">,</span>                                 <span class="c1">// data</span>
+    <span class="nx">accessList</span>                            <span class="c1">// accessList</span>
+  <span class="p">];</span>
+
+  <span class="c1">// RLP-encode the unsigned fields</span>
+  <span class="kd">const</span> <span class="nx">encodedUnsigned</span> <span class="o">=</span> <span class="nx">RLP</span><span class="p">.</span><span class="nf">encode</span><span class="p">(</span><span class="nx">unsignedFields</span><span class="p">);</span>
+
+  <span class="c1">// Prepend the transaction type byte (0x02)</span>
+  <span class="kd">const</span> <span class="nx">txType</span> <span class="o">=</span> <span class="nx">Buffer</span><span class="p">.</span><span class="k">from</span><span class="p">(</span><span class="dl">'</span><span class="s1">02</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">hex</span><span class="dl">'</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="nx">fullTx</span> <span class="o">=</span> <span class="nx">Buffer</span><span class="p">.</span><span class="nf">concat</span><span class="p">([</span><span class="nx">txType</span><span class="p">,</span> <span class="nx">encodedUnsigned</span><span class="p">]);</span>
+
+  <span class="c1">// This is the signing hash</span>
+  <span class="kd">const</span> <span class="nx">signingHash</span> <span class="o">=</span> <span class="nx">ethers</span><span class="p">.</span><span class="nf">keccak256</span><span class="p">(</span><span class="nx">fullTx</span><span class="p">);</span>
+
+  <span class="c1">// Sign the hash</span>
+  <span class="kd">const</span> <span class="nx">signingKey</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ethers</span><span class="p">.</span><span class="nc">SigningKey</span><span class="p">(</span><span class="nx">wallet</span><span class="p">.</span><span class="nx">privateKey</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="nx">signature</span> <span class="o">=</span> <span class="nx">signingKey</span><span class="p">.</span><span class="nf">sign</span><span class="p">(</span><span class="nx">ethers</span><span class="p">.</span><span class="nf">getBytes</span><span class="p">(</span><span class="nx">signingHash</span><span class="p">));</span>
+
+  <span class="c1">// For typed transactions we use yParity (0 or 1) instead of legacy v</span>
+  <span class="kd">const</span> <span class="nx">signedFields</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">...</span><span class="nx">unsignedFields</span><span class="p">,</span>
+    <span class="nx">signature</span><span class="p">.</span><span class="nx">v</span> <span class="o">-</span> <span class="mi">27</span><span class="p">,</span> <span class="c1">// yParity (0 or 1)</span>
+    <span class="nx">signature</span><span class="p">.</span><span class="nx">r</span><span class="p">,</span>
+    <span class="nx">signature</span><span class="p">.</span><span class="nx">s</span>
+  <span class="p">];</span>
+
+  <span class="kd">const</span> <span class="nx">encodedSigned</span> <span class="o">=</span> <span class="nx">RLP</span><span class="p">.</span><span class="nf">encode</span><span class="p">(</span><span class="nx">signedFields</span><span class="p">);</span>
+
+  <span class="kd">const</span> <span class="nx">rawTransaction</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">0x02</span><span class="dl">'</span> <span class="o">+</span> <span class="nx">Buffer</span><span class="p">.</span><span class="k">from</span><span class="p">(</span><span class="nx">encodedSigned</span><span class="p">).</span><span class="nf">toString</span><span class="p">(</span><span class="dl">'</span><span class="s1">hex</span><span class="dl">'</span><span class="p">);</span>
+
+  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Raw transaction hex:</span><span class="se">\n</span><span class="dl">"</span><span class="p">,</span> <span class="nx">rawTransaction</span><span class="p">);</span>
+
+  <span class="c1">// Send the raw transaction</span>
+  <span class="kd">const</span> <span class="nx">txHash</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">provider</span><span class="p">.</span><span class="nf">send</span><span class="p">(</span><span class="dl">"</span><span class="s2">eth_sendRawTransaction</span><span class="dl">"</span><span class="p">,</span> <span class="p">[</span><span class="nx">rawTransaction</span><span class="p">]);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Transaction sent! Hash:</span><span class="dl">"</span><span class="p">,</span> <span class="nx">txHash</span><span class="p">);</span>
+
+  <span class="kd">const</span> <span class="nx">receipt</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">provider</span><span class="p">.</span><span class="nf">waitForTransaction</span><span class="p">(</span><span class="nx">txHash</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Mined in block</span><span class="dl">"</span><span class="p">,</span> <span class="nx">receipt</span><span class="p">.</span><span class="nx">blockNumber</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nf">createAndSendRawEip1559Tx</span><span class="p">().</span><span class="k">catch</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">);</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h2 id="ch06-deserializing-the-transaction"><a class="anchor" href="#ch06-deserializing-the-transaction" aria-label="本節連結"></a>6.11. 反序列化交易</h2>
+<div class="paragraph">
+<p>既然我們已經從頭建立了一筆交易並送到以太坊網路上，就可以走一遍反向的流程，從前一個範例得到的已簽署原始交易開始，試著重建交易的每個欄位。這能幫助你理解交易的每個欄位實際上是如何被包含在交易本身之中的：你只需要用正確的方式把它取出來。</p>
+</div>
+<div class="paragraph">
+<p>我們從完整的已簽署原始交易開始：</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>0x02f87583aa36a714847735940085174876e8008303000094b0920c523d582040f2bcb1bd7fb1c7c1ecebdb34865af3107a400080c001a03f8ed18cb03ee0fe3fbc3f0a7477a2f68db6ec84450e77e702b82a3f2c873aa4a0205c4f6a16ea8ad13a148cc3105814cd4a6860cd26a771651199c85ccb7c7f0f</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>回想一下 EIP-2718，所有的以太坊交易都由下列兩部分組成：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>指定交易類型的第一個位元組</p>
+</li>
+<li>
+<p>該交易類型的酬載</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>這部分幾乎總是該交易類型所有欄位的 RLP 編碼。</p>
+</div>
+<div class="paragraph">
+<p>我們的交易以 <code>0x02</code> 開頭。這代表交易類型，<code>0x02</code> 表示這是一筆 EIP-1559 交易。接下來的部分，是構成 EIP-1559 交易的所有交易欄位的 RLP 編碼。</p>
+</div>
+<div class="paragraph">
+<p>要快速解碼這些欄位，我們可以使用 <code>cast</code> 與 <code>from-rlp</code> 指令，把交易的其餘部分當作輸入：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="bash"><span class="nv">$ </span>cast from-rlp f87583aa36a714847735940085174876e8008303000094b0920c523d582040f2bcb1bd7fb1c7c1ecebdb34865af3107a400080c001a03f8ed18cb03ee0fe3fbc3f0a7477a2f68db6ec84450e77e702b82a3f2c873aa4a0205c4f6a16ea8ad13a148cc3105814cd4a6860cd26a771651199c85ccb7c7f0f
+<span class="o">[</span><span class="s2">"0xaa36a7"</span>,<span class="s2">"0x14"</span>,<span class="s2">"0x77359400"</span>,<span class="s2">"0x174876e800"</span>,<span class="s2">"0x030000"</span>,<span class="s2">"0xb0920c523d582040f2bcb1bd7fb1c7c1ecebdb34"</span>,<span class="s2">"0x5af3107a4000"</span>,<span class="s2">"0x"</span>,[],<span class="s2">"0x01"</span>,<span class="s2">"0x3f8ed18cb03ee0fe3fbc3f0a7477a2f68db6ec84450e77e702b82a3f2c873aa4"</span>,<span class="s2">"0x205c4f6a16ea8ad13a148cc3105814cd4a6860cd26a771651199c85ccb7c7f0f"</span><span class="o">]</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>你可以看到，最後一個 <code>cast</code> 指令的輸出包含一串十六進位的項目：它們就是 EIP-1559 交易的各個欄位。我們來逐一分析，並重建這筆交易：</p>
+</div>
+<div class="paragraph">
+<p><strong><code>0xaa36a7</code></strong></p>
+</div>
+<div class="paragraph">
+<p>Sepolia 的鏈 ID：十進位的 11155111。</p>
+</div>
+<div class="paragraph">
+<p><strong><code>0x14</code></strong></p>
+</div>
+<div class="paragraph">
+<p>這筆交易使用的 nonce：20。你可以到區塊瀏覽器上查看，確認它確實正確。</p>
+</div>
+<div class="paragraph">
+<p><strong><code>0x77359400</code></strong></p>
+</div>
+<div class="paragraph">
+<p>每單位 gas 的最高優先費用：十進位的 2000000000，相當於每單位 gas 2 gwei。</p>
+</div>
+<div class="paragraph">
+<p><strong><code>0x174876e800</code></strong></p>
+</div>
+<div class="paragraph">
+<p>每單位 gas 的最高費用：十進位的 100000000000，相當於每單位 gas 100 gwei。</p>
+</div>
+<div class="paragraph">
+<p><strong><code>0x030000</code></strong></p>
+</div>
+<div class="paragraph">
+<p>gas 上限：十進位的 196608。</p>
+</div>
+<div class="paragraph">
+<p><strong><code>0xb0920c523d582040f2bcb1bd7fb1c7c1ecebdb34</code></strong></p>
+</div>
+<div class="paragraph">
+<p>接收者地址。</p>
+</div>
+<div class="paragraph">
+<p><strong><code>0x5af3107a4000</code></strong></p>
+</div>
+<div class="paragraph">
+<p>從發送者送給接收者的金額，以 wei 計：十進位的 10^14，相當於 0.0001 ETH。</p>
+</div>
+<div class="paragraph">
+<p><strong><code>0x</code></strong></p>
+</div>
+<div class="paragraph">
+<p>空的資料酬載。</p>
+</div>
+<div class="paragraph">
+<p><strong><code>[]</code></strong></p>
+</div>
+<div class="paragraph">
+<p>空的存取清單。</p>
+</div>
+<div class="paragraph">
+<p><strong><code>0x01</code></strong></p>
+</div>
+<div class="paragraph">
+<p>簽章的 <code>v</code> 值；<code>0x01</code> 表示橢圓曲線上的 y 座標是奇數（<code>0x00</code> 則表示 y 座標是偶數）。</p>
+</div>
+<div class="paragraph">
+<p><strong><code>0x3f8ed18cb03ee0fe3fbc3f0a7477a2f68db6ec84450e77e702b82a3f2c873aa4</code></strong></p>
+</div>
+<div class="paragraph">
+<p>簽章的 <code>r</code> 值。</p>
+</div>
+<div class="paragraph">
+<p><strong><code>0x205c4f6a16ea8ad13a148cc3105814cd4a6860cd26a771651199c85ccb7c7f0f</code></strong></p>
+</div>
+<div class="paragraph">
+<p>簽章的 <code>s</code> 值。</p>
+</div>
+</div>
+<div class="sect2">
+<h2 id="ch06-raw-transaction-creation-with-eip-155"><a class="anchor" href="#ch06-raw-transaction-creation-with-eip-155" aria-label="本節連結"></a>6.12. 使用 EIP-155 建立原始交易</h2>
+<div class="paragraph">
+<p>EIP-155「Simple Replay Attack Protection」（簡易重放攻擊防護）標準定義了一種能防範重放攻擊的交易編碼方式，在簽署之前把鏈 ID 放進交易資料中。這確保為某條區塊鏈（例如以太坊主網）建立的交易，在另一條區塊鏈（例如 Ethereum Classic 或 Sepolia 測試網路）上是無效的。因此，在某個網路上廣播的交易無法在另一個網路上被重放，這個標準的名稱就是由此而來。</p>
+</div>
+<div class="paragraph">
+<p>由於鏈 ID 被包含在要簽署的資料中，一旦鏈 ID 被修改，簽章就會失效，所以交易簽章能防止任何竄改。因此，EIP-155 讓交易不可能在另一條鏈上被重放，因為簽章是否有效取決於鏈 ID。</p>
+</div>
+<div class="paragraph">
+<p>鏈 ID 欄位的值取決於交易要送往的網路，如表 6-2 所列。</p>
+</div>
+<div class="table-wrap" tabindex="0"><table class="tableblock frame-all grid-all stretch">
+<caption class="title">表 6-2. 鏈識別碼</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">鏈</th>
+<th class="tableblock halign-left valign-top">鏈 ID</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">以太坊主網</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ethereum Sepolia</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">11155111</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ethereum Holesky</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">17000</p></td>
+</tr>
+</tbody>
+</table></div>
+<div class="paragraph">
+<p>完整的鏈識別碼清單，請見 <a href="https://chainlist.org" rel="noopener" target="_blank">ChainList</a>。</p>
+</div>
+<div class="paragraph">
+<p>產生的交易結構會經過 RLP 編碼、雜湊與簽署。更多細節請參考 EIP-155 規格。</p>
+</div>
+</div>
+<div class="sect2">
+<h2 id="ch06-the-signature-prefix-value-v-and-public-key-recovery"><a class="anchor" href="#ch06-the-signature-prefix-value-v-and-public-key-recovery" aria-label="本節連結"></a>6.13. 簽章前綴值（v）與公鑰復原</h2>
+<div class="paragraph">
+<p>如同「交易的結構」一節所說，交易訊息中並沒有「from」欄位。這是因為發起者的公鑰可以直接從 ECDSA 簽章計算出來。一旦有了公鑰，就能輕鬆算出地址。復原簽署者公鑰的過程稱為<em>公鑰復原</em>。</p>
+</div>
+<div class="paragraph">
+<p>有了在「ECDSA 的數學」一節中計算出來的 <code>r</code> 與 <code>s</code> 值，我們就能計算出兩個可能的公鑰。</p>
+</div>
+<div class="paragraph">
+<p>首先，我們從簽章中的 x 座標值 <code>r</code> 計算出兩個橢圓曲線上的點 <code>R</code> 與 <code>R′</code>。之所以有兩個點，是因為橢圓曲線對 x 軸對稱，所以對任何一個 x 值，都有兩個符合曲線的可能值，分別位於 x 軸的兩側。</p>
+</div>
+<div class="paragraph">
+<p>我們也從 <code>r</code> 計算出 <code>r–1</code>，也就是 <code>r</code> 的乘法反元素。</p>
+</div>
+<div class="paragraph">
+<p>最後，我們計算 <code>z</code>，它是訊息雜湊值最低的 n 個位元，其中 n 是橢圓曲線的階。</p>
+</div>
+<div class="paragraph">
+<p>這樣，兩個可能的公鑰就是：</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>K1 = r–1 (sR – zG)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>以及：</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>K2 = r–1 (sR′ – zG)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>其中：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>K1</code> 與 <code>K2</code> 是簽署者公鑰的兩種可能</p>
+</li>
+<li>
+<p><code>r-1</code> 是簽章 <code>r</code> 值的乘法反元素</p>
+</li>
+<li>
+<p><code>s</code> 是簽章的 <code>s</code> 值</p>
+</li>
+<li>
+<p><code>R</code> 與 <code>R′</code> 是臨時公鑰 <code>Q</code> 的兩種可能</p>
+</li>
+<li>
+<p><code>z</code> 是訊息雜湊值最低的 n 個位元</p>
+</li>
+<li>
+<p><code>G</code> 是橢圓曲線的生成點</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>為了更有效率，交易簽章包含一個前綴值 <code>v</code>，告訴我們兩個可能的 R 值中，哪一個才是臨時公鑰。如果 <code>v</code> 是偶數，<code>R</code> 就是正確的值；如果 <code>v</code> 是奇數，正確的值就是 <code>R′</code>。這樣一來，我們只需要計算一個 R 值與一個 K 值。</p>
+</div>
+</div>
+<div class="sect2">
+<h2 id="ch06-separating-signing-and-transmission-offline-signing"><a class="anchor" href="#ch06-separating-signing-and-transmission-offline-signing" aria-label="本節連結"></a>6.14. 把簽署與傳送分開（離線簽署）</h2>
+<div class="paragraph">
+<p>交易一旦簽署完成，就可以傳送到以太坊網路上了。建立、簽署與廣播交易這三個步驟，通常會在單一個操作中完成，例如使用 <code>cast send</code> 指令。不過，如你在「建立與簽署原始交易」一節所見，你也可以分成兩個獨立的步驟來建立與簽署交易。有了已簽署的交易之後，就可以用 <code>ethers.JsonRpcProvider("..."").broadcastTransaction</code> 傳送它；這個函式接受一筆以十六進位編碼的已簽署交易，並把它傳送到以太坊網路上。</p>
+</div>
+<div class="paragraph">
+<p>為什麼要把交易的簽署與傳送分開呢？最常見的理由是安全性。簽署交易的電腦，記憶體中必須載入已解鎖的私鑰；負責傳送的電腦，則必須連上網際網路（並執行以太坊客戶端）。如果這兩項功能在同一台電腦上，私鑰就會位於一個連線中的系統上，這相當危險。</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tbody><tr>
+<td class="icon">
+<div class="title">警告</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>如果你把私鑰放在線上，就會暴露在好幾種攻擊之下，例如惡意軟體與遠端入侵，也更容易遭受網路釣魚攻擊。</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="paragraph">
+<p>把簽署與傳送這兩項功能分開，並在不同的機器上執行（分別在離線與連線的裝置上），稱為<em>離線簽署</em>，是一種常見的安全做法。</p>
+</div>
+<div class="paragraph">
+<p>圖 6-10 呈現了這個流程，步驟如下：</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>在連線的電腦上建立一筆未簽署的交易；這台電腦能取得帳戶目前的狀態，特別是目前的 nonce 與可用資金。</p>
+</li>
+<li>
+<p>把未簽署的交易傳到一台「實體隔離」的離線裝置上進行簽署（例如透過 QR 碼或 USB 隨身碟）。</p>
+</li>
+<li>
+<p>把已簽署的交易傳（回）連線的裝置，以便在以太坊區塊鏈上廣播（例如透過 QR 碼或 USB 隨身碟）。</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<picture><source type="image/webp" srcset="/images/ch6/maet_0610.webp"><img src="/images/ch6/maet_0610.png" alt="Offline signing workflow" width="1127" height="523" loading="lazy" decoding="async"></picture>
+</div>
+<div class="title">圖 6-10. 離線簽署流程</div>
+</div>
+<div class="paragraph">
+<p>依你需要的安全等級而定，你的「離線簽署」電腦與連線電腦之間可以有不同程度的隔離，從有防火牆保護的隔離子網路（連線但區隔開來），到完全離線、稱為<em>實體隔離系統</em>（air-gapped system）的系統都有。在實體隔離系統中，完全沒有任何網路連線：這台電腦與連線環境之間隔著一道「空氣」的間隙。要簽署交易，你得用資料儲存媒體，或（更好的是）網路攝影機與 QR 碼，把交易傳進、傳出這台實體隔離的電腦。當然，這代表你必須手動傳送每一筆要簽署的交易，無法規模化。</p>
+</div>
+<div class="paragraph">
+<p>雖然能採用完全實體隔離系統的環境並不多，但即使只有少許的隔離，也能帶來顯著的安全效益。例如，一個只允許訊息佇列協議通過的防火牆隔離子網路，與在連線系統上簽署相比，能大幅縮小攻擊面，安全性也高得多。許多公司會為此使用 ZeroMQ（0MQ）之類的協議。在這樣的架構下，交易會被序列化並排入佇列等待簽署。佇列協議會以類似 TCP socket 的方式，把序列化的訊息傳送給負責簽署的電腦。簽署的電腦（小心地）從佇列中讀取序列化的交易，用適當的金鑰簽署，再把它們放進送出的佇列。送出的佇列會把已簽署的交易傳送給一台執行以太坊客戶端的電腦，由它把交易從佇列中取出並傳送出去。</p>
+</div>
+</div>
+<div class="sect2">
+<h2 id="ch06-transaction-life-cycle"><a class="anchor" href="#ch06-transaction-life-cycle" aria-label="本節連結"></a>6.15. 交易的生命週期</h2>
+<div class="paragraph">
+<p>本節會探討交易完整的生命週期，從它被簽署的那一刻開始，直到它被納入區塊、而這個區塊被最終確定為止。</p>
+</div>
+<div class="sect3">
+<h3 id="ch06-creating-and-signing-the-transaction"><a class="anchor" href="#ch06-creating-and-signing-the-transaction" aria-label="本節連結"></a>6.15.1. 建立與簽署交易</h3>
+<div class="paragraph">
+<p>第一步是建立交易：選擇交易類型，並填入它所需的所有欄位。例如，我們在「建立與簽署原始交易」一節中建立了一筆 EIP-1559 交易。</p>
+</div>
+<div class="paragraph">
+<p>有了交易之後，我們需要用正確的私鑰簽署它（否則交易會因為簽章無效而無效），才能得到最終、確定的已簽署交易。這才是我們真正需要送到網路上、並等待它被納入區塊的那份資料。</p>
+</div>
+</div>
+<div class="sect3">
+<h3 id="ch06-sending-the-transaction-to-the-network"><a class="anchor" href="#ch06-sending-the-transaction-to-the-network" aria-label="本節連結"></a>6.15.2. 把交易送到網路上</h3>
+<div class="paragraph">
+<p>交易必須被納入區塊，以太坊協議才會認為它已經確認；否則，它只是一筆只有我們自己知道的已簽署交易。</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tbody><tr>
+<td class="icon">
+<div class="title">提示</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>有一點非常重要：以太坊協議只把被納入有效鏈上的區塊的交易視為有效。要更新以太坊的狀態，你必須把已簽署的交易送到網路上，並等待網路把你的交易納入區塊。如果沒有被納入區塊，單靠你的已簽署交易本身是什麼事也不會發生的。</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="paragraph">
+<p>所以，我們需要把已簽署的交易送到網路上。為此，我們只需要把交易送給一個以太坊節點：可以是我們自己的節點，也可以是第三方的節點，例如 Alchemy、Infura 或 Public Node（也就是我們在前面的範例中使用的那個）。</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class="icon">
+<div class="title">備註</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>所有的錢包預設都會使用第三方節點，這樣使用者不必安裝任何東西，就能開始使用以太坊網路。不過，如果你想把隱私保護到最大，而且真的不想依賴任何人，就應該使用自己的客戶端。你可以參考第 3 章，那裡有安裝第一個以太坊節點的詳細指南。</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="paragraph">
+<p>當我們的已簽署交易抵達第一個節點時，這個節點會進行一些驗證，以便立即剔除垃圾、無效的交易。如果驗證成功，節點就會把交易加入自己的<em>記憶池</em>，並把它傳播給一部分的對等節點。每個對等節點都會驗證它、把它加入自己的記憶池，再進一步傳播出去。</p>
+</div>
+<div class="paragraph">
+<p>這個過程是以太坊點對點（P2P）gossip 協議的一部分，結果是在短短幾秒鐘之內，一筆以太坊交易就會傳播到全球所有的以太坊節點。從每個節點的角度來看，都無法分辨交易的來源。把交易送給這個節點的鄰居，可能就是交易的發起者，也可能是從它的某個鄰居那裡收到的。攻擊者如果想追蹤交易的來源或干擾傳播，就必須控制所有節點中相當大的比例。這是 P2P 網路安全與隱私設計的一部分，特別是應用在區塊鏈網路上時。</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class="icon">
+<div class="title">備註</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>你可能會好奇，為什麼節點不把交易灌送給所有的鄰居，而只送給其中一部分。答案是效率與節省頻寬。事實上，把所有交易送給所有節點會非常沒有效率：會產生大量重複的訊息，網路流量會非常龐大，而且隨著交易數量增加，網路流量會呈指數成長，可擴展性也會很差。</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+</div>
+<div class="sect3">
+<h3 id="ch06-building-the-block"><a class="anchor" href="#ch06-building-the-block" aria-label="本節連結"></a>6.15.3. 建構區塊</h3>
+<div class="paragraph">
+<p>此時，我們的交易已經抵達幾乎所有的以太坊節點，但它仍然沒有被確認，因為它還沒有被納入區塊；要等到某個被選中提議下一個區塊的驗證者，終於從自己的記憶池中取出所有交易、把它們加入區塊，並把區塊發布到網路上才算數。</p>
+</div>
+<div class="paragraph">
+<p>交易一旦被納入區塊，就會修改以太坊的狀態：可能是修改某個帳戶的餘額（如果是單純的付款），也可能是呼叫合約、改變合約的內部狀態。這些改變會以<em>交易收據</em>的形式與交易一起記錄下來，交易收據中也可能包含事件。在「建立與簽署原始交易」一節的範例中，你可以找到我們這筆交易最終的交易收據。</p>
+</div>
+</div>
+<div class="sect3">
+<h3 id="ch06-finalizing-the-transaction"><a class="anchor" href="#ch06-finalizing-the-transaction" aria-label="本節連結"></a>6.15.4. 最終確定交易</h3>
+<div class="paragraph">
+<p>我們的交易現在已經被納入區塊，也已經修改了以太坊的狀態。不過，包含它的區塊仍然可能被撤銷，並被另一個不包含我們交易的區塊取代，雖然這種事發生的機率極低。這稱為<em>鏈重組</em>（block reorganization，簡稱 <em>block reorg</em>）。</p>
+</div>
+<div class="paragraph">
+<p>要完全確定我們的交易不會被撤銷，就必須等待包含它的區塊被以太坊的共識協議最終確定（我們會在第 15 章更詳細地探討這部分）。這通常需要大約 12 分鐘。</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class="icon">
+<div class="title">備註</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>雖然要完全確定交易已經在區塊鏈上確認，確實應該等到最終確定；但通常你只需要等幾個區塊就夠了。錢包通常會在交易被納入區塊之後，立刻把它顯示為已確認。</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h2 id="ch06-an-alternative-life-cycle"><a class="anchor" href="#ch06-an-alternative-life-cycle" aria-label="本節連結"></a>6.16. 另一種生命週期</h2>
+<div class="paragraph">
+<p>前一節探討的生命週期，是交易從開始到最後進入已最終確定區塊的舊有標準流程。在過去三、四年間，而且現在更是如此，交易已經形成了一種新的生命週期。要說明它，我們需要介紹一個稱為<em>提議者與建構者分離</em>（PBS）的概念。</p>
+</div>
+<div class="sect3">
+<h3 id="ch06-mev-and-proposer-and-builder-separation"><a class="anchor" href="#ch06-mev-and-proposer-and-builder-separation" aria-label="本節連結"></a>6.16.1. MEV 與提議者與建構者分離</h3>
+<div class="paragraph">
+<p>我們會在第 15 章進一步探討，每隔 12 秒，就會有一個驗證者必須提議一個新區塊，讓以太坊鏈往前推進。驗證者從自己的記憶池中收集交易、加以安排以填滿區塊，並把區塊發布到網路上，讓其他所有節點都能驗證並傳播這個區塊。</p>
+</div>
+<div class="paragraph">
+<p>傳統上，以太坊節點會根據付給驗證者的交易手續費（具體來說，EIP-1559 交易的優先費用）來排定交易的優先順序，以便讓利潤最大化。多年來，這一直是讓礦工與驗證者收益最佳化的標準方法。</p>
+</div>
+<div class="paragraph">
+<p>然而，隨著以太坊在 2020 年「DeFi 之夏」（DeFi Summer）期間越來越受歡迎，到了 2021 年的牛市更是如此，一種新的現象出現了：<em>最大可提取價值</em>（<em>MEV</em>，以前稱為 miner extractable value，礦工可提取價值）。這個概念大幅改變了以太坊礦工與驗證者建立區塊的方式。</p>
+</div>
+<div class="paragraph">
+<p>MEV 指的是區塊生產者透過策略性地決定下列事項，能從一個區塊中提取的最大價值：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>要把哪些交易納入區塊</p>
+</li>
+<li>
+<p>區塊中交易的順序</p>
+</li>
+<li>
+<p>要把哪些交易排除在區塊之外</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>雖然這聽起來似乎無傷大雅，但它過去對區塊生產的動態造成了巨大的影響，至今依然如此。例如，想像有一筆交易，要在 Uniswap 這類去中心化交易所上買進大量的某種代幣 X。驗證者可以看到這筆交易，並事先知道它會讓價格大幅上漲。這代表驗證者可以加入兩筆交易，從這個情況中獲利：</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>第一筆交易買進一些代幣 X，並被排在那筆大額買進交易之前執行。</p>
+</li>
+<li>
+<p>第二筆交易賣出前一筆交易買進的代幣 X，並被排在那筆大額買進交易之後執行。</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>這稱為<em>三明治攻擊</em>：驗證者從大額買進交易造成的滑價（slippage）中獲利。我們用一個玩具級的（簡化）範例來示範這個概念。</p>
+</div>
+<div class="paragraph">
+<p>一位使用者送出一筆交易（tx1），買進一千個 xyz 代幣，如圖 6-11 所示。假設 xyz 代幣的價格是 1,000 美元，所以這位使用者要買進價值 100 萬美元的代幣。這股買壓會把代幣的價格推高到 1,010 美元。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<picture><source type="image/webp" srcset="/images/ch6/maet_0611.webp"><img src="/images/ch6/maet_0611.png" alt="User submitting a large buy transaction" width="853" height="315" loading="lazy" decoding="async"></picture>
+</div>
+<div class="title">圖 6-11. MEV 介入之前的使用者交易</div>
+</div>
+<div class="paragraph">
+<p>但驗證者看到了一個搶先交易 tx1 來賺錢的機會。他們建立了兩筆交易：tx0 與 tx2，其中 tx0 是買進 10 個 xyz 代幣的買單，tx2 則是賣出同樣數量的賣單。驗證者把這兩筆交易分別排在使用者的 tx1 正前方與正後方，如圖 6-12 所示。別忘了，驗證者之所以能這麼做，是因為他們正是實際建立區塊的角色，所以可以自由決定區塊中交易的順序。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<picture><source type="image/webp" srcset="/images/ch6/maet_0612.webp"><img src="/images/ch6/maet_0612.png" alt="Validator sandwiching user transaction" width="853" height="482" loading="lazy" decoding="async"></picture>
+</div>
+<div class="title">圖 6-12. 驗證者發動的三明治攻擊</div>
+</div>
+<div class="paragraph">
+<p>結果是，驗證者能以 1,000 美元買進 10 個 xyz 代幣，再以 1,010 美元賣出，獲利 10 美元 × 10 = 100 美元。</p>
+</div>
+<div class="paragraph">
+<p>這是驗證者用來讓利潤最大化的一個非常簡單的策略。還有許多其他更複雜的策略。競爭激烈到出現了一種新的角色：<em>區塊建構者</em>。</p>
+</div>
+<div class="paragraph">
+<p>事實上，執行所有這些策略需要大量的運算能力，遠超過一般驗證者所擁有的（別忘了，只要 16 GB 的記憶體就能執行驗證者節點）。這代表 MEV 也威脅到驗證者的去中心化，讓有能力在基礎設施上花費數百萬美元、並雇用人力努力發掘新的獲利策略來建構「更好」區塊的大型實體佔了上風。</p>
+</div>
+<div class="paragraph">
+<p>這個問題的解決方案，隨著 2021 年 1 月 Flashbots v0.1 的發布而出現。它讓區塊提議者（最初是礦工，現在是驗證者）能以免信任的方式，把尋找最佳區塊建構方式的工作外包給這些稱為區塊建構者的新實體。多虧了這樣的分工（區塊建構者用交易填滿區塊，建立出付給驗證者最多費用的區塊，建構者自己也會從這筆費用中抽取一部分；驗證者則把區塊提議到網路上），驗證者仍然可以在一般市售的機器上執行。</p>
+</div>
+</div>
+<div class="sect3">
+<h3 id="ch06-private-mempools"><a class="anchor" href="#ch06-private-mempools" aria-label="本節連結"></a>6.16.2. 私有記憶池</h3>
+<div class="paragraph">
+<p>MEV 生態系已經成長到這種程度：現在區塊建構者不只競相尋找能讓利潤最大化的最佳策略，也競相爭取可以用來填滿區塊的交易。他們擁有的交易越多，就越能施展自己的策略。</p>
+</div>
+<div class="paragraph">
+<p>這促成了私有記憶池（private mempool）的出現。這類記憶池讓使用者或實體可以直接把交易提交給區塊生產者，而不必把交易暴露在一般的網路上。它們在降低搶先交易這類風險、以及支援重視隱私的工作流程上，扮演了重要的角色。</p>
+</div>
+<div class="paragraph">
+<p>Flashbots 開發了自己的解決方案，稱為 <a href="https://oreil.ly/Jq4rT" rel="noopener" target="_blank">Flashbots Protect</a>。最受歡迎的錢包 MetaMask，已經開始預設為使用者使用私有記憶池（稱為 <a href="https://oreil.ly/nnZVR" rel="noopener" target="_blank">smart transactions</a>）。</p>
+</div>
+</div>
+<div class="sect3">
+<h3 id="ch06-new-transaction-life-cycle"><a class="anchor" href="#ch06-new-transaction-life-cycle" aria-label="本節連結"></a>6.16.3. 新的交易生命週期</h3>
+<div class="paragraph">
+<p>MEV、提議者與建構者分離，以及私有記憶池，已經徹底改變了區塊生產的環境。如今，許多交易並不遵循我們在前一節說明的一般生命週期；它們在建立並簽署之後，會透過私有記憶池直接送給區塊建構者。區塊建構者會處理這些交易，試著把它們納入最佳的區塊，最後把整個區塊送給即將提議下一個區塊的驗證者。這些交易跳過了公開記憶池的傳播，直接出現在已建構好的區塊中。</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h2 id="ch06-multiple-signature-transactions"><a class="anchor" href="#ch06-multiple-signature-transactions" aria-label="本節連結"></a>6.17. 多重簽章交易</h2>
+<div class="paragraph">
+<p>如果你熟悉比特幣的腳本功能，就會知道可以建立一個比特幣的<em>多重簽章</em>帳戶，只有在多方都簽署交易時才能花用資金（例如 2-of-2 或 3-of-4 的簽章）。以太坊基本的 EOA 價值轉移交易，並沒有提供多重簽章的機制；不過，智能合約可以用任何你想得到的條件，來強制執行任意的簽署限制，以處理以太幣與代幣的轉移。</p>
+</div>
+<div class="paragraph">
+<p>要善用這項能力，必須把以太幣轉到一個錢包合約，這個合約以程式寫入了所需的花用規則，例如多重簽章的要求或花用上限（或兩者的組合）。一旦花用條件滿足，錢包合約就會在經授權的 EOA 發出指示時送出資金。例如，要用多重簽章的條件保護你的以太幣，就把以太幣轉到一個多重簽章合約。每當你想把資金送到另一個帳戶時，所有必要的使用者都需要用一般的錢包應用程式送交易給這個合約，實際上就是授權合約執行最後那筆交易。</p>
+</div>
+<div class="paragraph">
+<p>這類合約也可以設計成在執行本地程式碼或觸發其他合約之前，必須取得多個簽章。這套機制的安全性，最終取決於多重簽章合約的程式碼。</p>
+</div>
+<div class="paragraph">
+<p>能以智能合約實作多重簽章交易，展現了以太坊的彈性。目前，Gnosis Safe 已經成為建立多重簽章帳戶的事實標準。這套久經實戰考驗的智能合約，被主要的協議與去中心化自治組織（DAO）廣泛使用；截至 2024 年 11 月，它保護了超過 60 億美元的 ETH，以及價值超過 740 億美元的 ERC-20 代幣，如圖 6-13 所示。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<picture><source type="image/webp" srcset="/images/ch6/maet_0613.webp"><img src="/images/ch6/maet_0613.png" alt="Gnosis Safe value secured over time" width="1440" height="976" loading="lazy" decoding="async"></picture>
+</div>
+<div class="title">圖 6-13. Gnosis Safe 保護了數十億美元的價值</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class="icon">
+<div class="title">備註</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>使用 Gnosis Safe 時，執行一筆交易的一般流程如下：</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Safe 的其中一位簽署者提議一筆他想簽署並送到以太坊網路上的交易。</p>
+</li>
+<li>
+<p>其他簽署者看到這筆交易，如果同意它的目的，就簽署它。</p>
+</li>
+<li>
+<p>當簽署人數達到門檻時，交易終於被送到網路上，在那裡被處理並執行。</p>
+</li>
+</ol>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+</div>
+<div class="sect2">
+<h2 id="ch06-conclusion"><a class="anchor" href="#ch06-conclusion" aria-label="本節連結"></a>6.18. 結語</h2>
+<div class="paragraph">
+<p>交易是以太坊系統中一切活動的起點。交易是讓 EVM 評估合約、更新餘額，以及更廣泛地修改以太坊區塊鏈狀態的「輸入」。接下來，我們會更深入地探討智能合約，並學習如何用 Solidity 這種合約導向的語言撰寫程式。</p>
+</div>
+</div>
+</div>
+</div><section class="footnotes" aria-labelledby="footnotes-title"><h2 id="footnotes-title">註腳</h2><ol><li id="_footnotedef_10" value="10">譯註：空的資料酬載是長度為零的位元組序列，寫成 <code>0x</code>；<code>0x00</code> 則是一個值為零的位元組，並不是空的。本章「反序列化交易」一節解碼交易欄位時，也把 <code>0x</code> 列為「空的資料酬載」。 <a class="fn-back" href="#_footnoteref_10" aria-label="返回內文">↩</a></li><li id="_footnotedef_11" value="11">譯註：本章前面列出的 <code>withdraw</code> 函式宣告中，第一個參數的名稱是 <code>_withdrawAmount</code>；這裡與下文所說的 <code>withdraw_amount</code> 指的就是這個參數。參數名稱不影響函式選擇器與 calldata 的編碼。 <a class="fn-back" href="#_footnoteref_11" aria-label="返回內文">↩</a></li></ol></section>
+  </div>
+  <nav class="pager" aria-label="章節導覽">
+    <a class="pager-link prev" href="/chapters/wallets.html" rel="prev"><span class="pager-dir">← 上一章</span><span class="pager-title">第 5 章　錢包</span></a>
+    <a class="pager-link next" href="/chapters/solidity.html" rel="next"><span class="pager-dir">下一章 →</span><span class="pager-title">第 7 章　智能合約與 Solidity</span></a>
+  </nav>
+  <p class="edit-link"><a href="https://github.com/awesome-doge/ethereumbook_zh/blob/master/zh-tw/chapter_6.md" rel="noopener">在 GitHub 上檢視或改善本章翻譯</a></p>
+</article>
+
+  </main>
+
+  <aside class="rail" aria-label="本章內容">
+    <p class="rail-title">本章內容</p>
+    <ol>
+      <li><a href="#ch06-the-structure-of-a-transaction">6.1. 交易的結構</a></li>
+      <li><a href="#ch06-the-transaction-nonce">6.2. 交易的 nonce</a></li>
+      <li><a href="#ch06-transaction-gas">6.3. 交易的 gas</a></li>
+      <li><a href="#ch06-transaction-recipient">6.4. 交易的接收者</a></li>
+      <li><a href="#ch06-transaction-value-and-data">6.5. 交易的金額與資料</a></li>
+      <li><a href="#ch06-transmitting-value-to-eoas-and-contracts">6.6. 把價值傳送給 EOA 與合約</a></li>
+      <li><a href="#ch06-transmitting-a-data-payload-to-an-eoa-or-contract">6.7. 把資料酬載傳送給 EOA 或合約</a></li>
+      <li><a href="#ch06-special-transaction-contract-creation">6.8. 特殊交易：建立合約</a></li>
+      <li><a href="#ch06-digital-signatures">6.9. 數位簽章</a></li>
+      <li><a href="#ch06-transaction-signing-in-practice">6.10. 實際簽署交易</a></li>
+      <li><a href="#ch06-deserializing-the-transaction">6.11. 反序列化交易</a></li>
+      <li><a href="#ch06-raw-transaction-creation-with-eip-155">6.12. 使用 EIP-155 建立原始交易</a></li>
+      <li><a href="#ch06-the-signature-prefix-value-v-and-public-key-recovery">6.13. 簽章前綴值（v）與公鑰復原</a></li>
+      <li><a href="#ch06-separating-signing-and-transmission-offline-signing">6.14. 把簽署與傳送分開（離線簽署）</a></li>
+      <li><a href="#ch06-transaction-life-cycle">6.15. 交易的生命週期</a></li>
+      <li><a href="#ch06-an-alternative-life-cycle">6.16. 另一種生命週期</a></li>
+      <li><a href="#ch06-multiple-signature-transactions">6.17. 多重簽章交易</a></li>
+      <li><a href="#ch06-conclusion">6.18. 結語</a></li>
+    </ol>
+  </aside>
+</div>
+
+<footer class="site-footer">
+  <p>原著《Mastering Ethereum》第二版由 Andreas M. Antonopoulos、Gavin Wood、Carlo Parisi、Alessandro Mazza 與 Niccolò Pozzolini 撰寫，O'Reilly Media 出版。繁體中文翻譯：Dr. Awesome Doge。</p>
+  <p>本書內容以 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh_TW" rel="license noopener">CC BY-NC-ND 4.0</a> 授權釋出（原書出版 12 個月後轉為 CC BY-SA 4.0，本譯本屆時隨之更新） · <a href="https://github.com/awesome-doge/ethereumbook_zh" rel="noopener">GitHub</a> · <a href="https://github.com/awesome-doge/ethereumbook_zh/issues" rel="noopener">回報翻譯問題</a> · <a href="https://github.com/ethereumbook/ethereumbook" rel="noopener">英文原著</a></p>
+</footer>
+
+<dialog class="search" id="search" aria-label="搜尋全書">
+  <form method="dialog" class="search-form" role="search">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input type="search" id="search-input" placeholder="搜尋全書，例如：智能合約、gas、ERC20" autocomplete="off" spellcheck="false" aria-label="搜尋關鍵字">
+    <button type="submit" class="search-close" value="close" aria-label="關閉搜尋">Esc</button>
+  </form>
+  <p class="search-status" aria-live="polite"></p>
+  <ol class="search-results"></ol>
+</dialog>
+</body>
+</html>

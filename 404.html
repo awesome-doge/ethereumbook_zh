@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="zh-Hant-TW">
+<html lang="zh-Hant-TW" data-base="" data-legacy-ids="/2018/ids.json">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>找不到頁面｜精通以太坊</title>
-<meta name="description" content="《精通以太坊》（Mastering Ethereum）繁體中文全文，免費線上閱讀。從密鑰、地址、錢包與交易，到智能合約、Solidity、Vyper、代幣、DApp、預言機、EVM 與共識，完整解說以太坊的技術原理。">
+<title>找不到頁面｜精通以太坊（第二版）</title>
+<meta name="description" content="《精通以太坊》（Mastering Ethereum）第二版繁體中文譯本，免費線上閱讀。從密碼學、錢包與交易，到智能合約、安全、代幣、DeFi、EVM、權益證明、擴容與零知識證明。">
 <meta name="robots" content="noindex">
-<meta name="author" content="Andreas M. Antonopoulos, Gavin Wood">
+<meta name="author" content="Andreas M. Antonopoulos, Gavin Wood, Carlo Parisi, Alessandro Mazza, Niccolò Pozzolini">
 <meta name="theme-color" content="#f8f9fc" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#14151b" media="(prefers-color-scheme: dark)">
 <meta name="color-scheme" content="light dark">
@@ -20,7 +20,7 @@
 </script>
 <link rel="stylesheet" href="/assets/site.css?v=ad2df01e33">
 <link rel="stylesheet" href="/assets/code.css?v=c94d007c0c">
-<script defer src="/assets/site.js?v=fc9557d36e"></script>
+<script defer src="/assets/site.js?v=33af8366a0"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZVVQYEKMPF"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-ZVVQYEKMPF');</script>
 </head>
@@ -30,7 +30,7 @@
   <button class="icon-btn" type="button" data-action="toggle-nav" aria-controls="sidebar" aria-expanded="false" aria-label="開啟目錄">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
   </button>
-  <a class="brand" href="/" aria-label="精通以太坊 首頁">
+  <a class="brand" href="/" aria-label="精通以太坊（第二版） 首頁">
     <span class="brand-mark" aria-hidden="true">Ξ</span><span class="brand-text">精通以太坊</span>
   </a>
   <div class="topbar-actions">
@@ -75,77 +75,66 @@
 <div class="shell">
   <nav class="sidebar" id="sidebar" aria-label="全書目錄">
     <div class="sidebar-head">
-      <a href="/" class="sidebar-book">精通以太坊</a>
+      <a href="/" class="sidebar-book">精通以太坊（第二版）</a>
       <span class="sidebar-sub">繁體中文版</span>
     </div>
     <ol class="book-toc">
       <li>
-        <a href="/preface.html"><span class="toc-label">前言</span></a>
+        <a href="/chapters/preface.html"><span class="toc-label">前言</span></a>
       </li>
       <li>
-        <a href="/glossary.html"><span class="toc-label">術語表</span>快速術語表</a>
+        <a href="/chapters/what-is-ethereum.html"><span class="toc-label">第 1 章</span>什麼是以太坊？</a>
       </li>
       <li>
-        <a href="/ch01.html"><span class="toc-label">第 1 章</span>什麼是以太坊</a>
+        <a href="/chapters/ethereum-basics.html"><span class="toc-label">第 2 章</span>以太坊基礎</a>
       </li>
       <li>
-        <a href="/ch02.html"><span class="toc-label">第 2 章</span>以太坊基礎</a>
+        <a href="/chapters/nodes.html"><span class="toc-label">第 3 章</span>以太坊節點</a>
       </li>
       <li>
-        <a href="/ch03.html"><span class="toc-label">第 3 章</span>以太坊客戶端</a>
+        <a href="/chapters/cryptography.html"><span class="toc-label">第 4 章</span>密碼學</a>
       </li>
       <li>
-        <a href="/ch04.html"><span class="toc-label">第 4 章</span>以太坊測試網（Testnets）</a>
+        <a href="/chapters/wallets.html"><span class="toc-label">第 5 章</span>錢包</a>
       </li>
       <li>
-        <a href="/ch05.html"><span class="toc-label">第 5 章</span>密鑰、地址</a>
+        <a href="/chapters/transactions.html"><span class="toc-label">第 6 章</span>交易</a>
       </li>
       <li>
-        <a href="/ch06.html"><span class="toc-label">第 6 章</span>錢包</a>
+        <a href="/chapters/solidity.html"><span class="toc-label">第 7 章</span>智能合約與 Solidity</a>
       </li>
       <li>
-        <a href="/ch07.html"><span class="toc-label">第 7 章</span>交易 (Transactions)</a>
+        <a href="/chapters/vyper.html"><span class="toc-label">第 8 章</span>智能合約與 Vyper</a>
       </li>
       <li>
-        <a href="/ch08.html"><span class="toc-label">第 8 章</span>智能合約</a>
+        <a href="/chapters/smart-contract-security.html"><span class="toc-label">第 9 章</span>智能合約安全</a>
       </li>
       <li>
-        <a href="/ch09.html"><span class="toc-label">第 9 章</span>開發工具，框架和庫</a>
+        <a href="/chapters/tokens.html"><span class="toc-label">第 10 章</span>代幣</a>
       </li>
       <li>
-        <a href="/ch10.html"><span class="toc-label">第 10 章</span>Tokens</a>
+        <a href="/chapters/oracles.html"><span class="toc-label">第 11 章</span>預言機</a>
       </li>
       <li>
-        <a href="/ch11.html"><span class="toc-label">第 11 章</span>去中心化應用 (DApps)</a>
+        <a href="/chapters/dapps.html"><span class="toc-label">第 12 章</span>去中心化應用</a>
       </li>
       <li>
-        <a href="/ch12.html"><span class="toc-label">第 12 章</span>預言機 (Oracles)</a>
+        <a href="/chapters/defi.html"><span class="toc-label">第 13 章</span>去中心化金融</a>
       </li>
       <li>
-        <a href="/ch13.html"><span class="toc-label">第 13 章</span>gas（Gas）</a>
+        <a href="/chapters/evm.html"><span class="toc-label">第 14 章</span>以太坊虛擬機</a>
       </li>
       <li>
-        <a href="/ch14.html"><span class="toc-label">第 14 章</span>以太坊虛擬機 (The Ethereum Virtual Machine)</a>
+        <a href="/chapters/consensus.html"><span class="toc-label">第 15 章</span>共識</a>
       </li>
       <li>
-        <a href="/ch15.html"><span class="toc-label">第 15 章</span>共識</a>
+        <a href="/chapters/scaling.html"><span class="toc-label">第 16 章</span>以太坊擴容</a>
       </li>
       <li>
-        <a href="/ch16.html"><span class="toc-label">第 16 章</span>Vyper: 面向合約的程式語言</a>
-      </li>
-      <li>
-        <a href="/ch17.html"><span class="toc-label">第 17 章</span>節點間的通信 —— 一個簡單的視角</a>
-      </li>
-      <li>
-        <a href="/ch18.html"><span class="toc-label">附錄 A</span>以太坊標準</a>
-      </li>
-      <li>
-        <a href="/ch19.html"><span class="toc-label">附錄 B</span>以太坊分叉歷史</a>
+        <a href="/chapters/zero-knowledge-proofs.html"><span class="toc-label">第 17 章</span>零知識證明</a>
       </li>
     </ol>
     <div class="sidebar-foot">
-      <a href="https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.pdf" rel="noopener">下載 PDF 電子書</a>
-      <a href="https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-Traditional-Chinese.epub" rel="noopener">下載 EPUB 電子書</a>
       <a href="https://github.com/awesome-doge/ethereumbook_zh" rel="noopener">GitHub 原始碼</a>
     </div>
   </nav>
@@ -157,28 +146,26 @@
   <h1>找不到這個頁面</h1>
   <p>網址可能已經變更。這本書現在每一章都有獨立的頁面，可以從下面的目錄找到想看的內容，或使用右上角的搜尋。</p>
   <ol class="plain-toc">
-    <li><a href="/preface.html"><span class="toc-label">前言</span></a></li>
-    <li><a href="/glossary.html"><span class="toc-label">術語表</span>快速術語表</a></li>
-    <li><a href="/ch01.html"><span class="toc-label">第 1 章</span>什麼是以太坊</a></li>
-    <li><a href="/ch02.html"><span class="toc-label">第 2 章</span>以太坊基礎</a></li>
-    <li><a href="/ch03.html"><span class="toc-label">第 3 章</span>以太坊客戶端</a></li>
-    <li><a href="/ch04.html"><span class="toc-label">第 4 章</span>以太坊測試網（Testnets）</a></li>
-    <li><a href="/ch05.html"><span class="toc-label">第 5 章</span>密鑰、地址</a></li>
-    <li><a href="/ch06.html"><span class="toc-label">第 6 章</span>錢包</a></li>
-    <li><a href="/ch07.html"><span class="toc-label">第 7 章</span>交易 (Transactions)</a></li>
-    <li><a href="/ch08.html"><span class="toc-label">第 8 章</span>智能合約</a></li>
-    <li><a href="/ch09.html"><span class="toc-label">第 9 章</span>開發工具，框架和庫</a></li>
-    <li><a href="/ch10.html"><span class="toc-label">第 10 章</span>Tokens</a></li>
-    <li><a href="/ch11.html"><span class="toc-label">第 11 章</span>去中心化應用 (DApps)</a></li>
-    <li><a href="/ch12.html"><span class="toc-label">第 12 章</span>預言機 (Oracles)</a></li>
-    <li><a href="/ch13.html"><span class="toc-label">第 13 章</span>gas（Gas）</a></li>
-    <li><a href="/ch14.html"><span class="toc-label">第 14 章</span>以太坊虛擬機 (The Ethereum Virtual Machine)</a></li>
-    <li><a href="/ch15.html"><span class="toc-label">第 15 章</span>共識</a></li>
-    <li><a href="/ch16.html"><span class="toc-label">第 16 章</span>Vyper: 面向合約的程式語言</a></li>
-    <li><a href="/ch17.html"><span class="toc-label">第 17 章</span>節點間的通信 —— 一個簡單的視角</a></li>
-    <li><a href="/ch18.html"><span class="toc-label">附錄 A</span>以太坊標準</a></li>
-    <li><a href="/ch19.html"><span class="toc-label">附錄 B</span>以太坊分叉歷史</a></li>
+    <li><a href="/chapters/preface.html"><span class="toc-label">前言</span></a></li>
+    <li><a href="/chapters/what-is-ethereum.html"><span class="toc-label">第 1 章</span>什麼是以太坊？</a></li>
+    <li><a href="/chapters/ethereum-basics.html"><span class="toc-label">第 2 章</span>以太坊基礎</a></li>
+    <li><a href="/chapters/nodes.html"><span class="toc-label">第 3 章</span>以太坊節點</a></li>
+    <li><a href="/chapters/cryptography.html"><span class="toc-label">第 4 章</span>密碼學</a></li>
+    <li><a href="/chapters/wallets.html"><span class="toc-label">第 5 章</span>錢包</a></li>
+    <li><a href="/chapters/transactions.html"><span class="toc-label">第 6 章</span>交易</a></li>
+    <li><a href="/chapters/solidity.html"><span class="toc-label">第 7 章</span>智能合約與 Solidity</a></li>
+    <li><a href="/chapters/vyper.html"><span class="toc-label">第 8 章</span>智能合約與 Vyper</a></li>
+    <li><a href="/chapters/smart-contract-security.html"><span class="toc-label">第 9 章</span>智能合約安全</a></li>
+    <li><a href="/chapters/tokens.html"><span class="toc-label">第 10 章</span>代幣</a></li>
+    <li><a href="/chapters/oracles.html"><span class="toc-label">第 11 章</span>預言機</a></li>
+    <li><a href="/chapters/dapps.html"><span class="toc-label">第 12 章</span>去中心化應用</a></li>
+    <li><a href="/chapters/defi.html"><span class="toc-label">第 13 章</span>去中心化金融</a></li>
+    <li><a href="/chapters/evm.html"><span class="toc-label">第 14 章</span>以太坊虛擬機</a></li>
+    <li><a href="/chapters/consensus.html"><span class="toc-label">第 15 章</span>共識</a></li>
+    <li><a href="/chapters/scaling.html"><span class="toc-label">第 16 章</span>以太坊擴容</a></li>
+    <li><a href="/chapters/zero-knowledge-proofs.html"><span class="toc-label">第 17 章</span>零知識證明</a></li>
   </ol>
+  <p>舊網址若是 2018 年草稿譯本的頁面，請到 <a href="/2018/">2018 年草稿譯本</a>查看。</p>
   <p><a class="btn btn-primary" href="/">回到首頁</a></p>
 </div>
 
@@ -187,8 +174,8 @@
 </div>
 
 <footer class="site-footer">
-  <p>原著《Mastering Ethereum》由 Andreas M. Antonopoulos 與 Gavin Wood 撰寫，O'Reilly Media 出版。繁體中文翻譯：Dr. Awesome Doge。</p>
-  <p>本書內容以 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh_TW" rel="license noopener">CC BY-NC-ND 4.0</a> 授權釋出 · <a href="https://github.com/awesome-doge/ethereumbook_zh" rel="noopener">GitHub</a> · <a href="https://github.com/awesome-doge/ethereumbook_zh/issues" rel="noopener">回報翻譯問題</a> · <a href="https://github.com/ethereumbook/ethereumbook" rel="noopener">英文原著</a></p>
+  <p>原著《Mastering Ethereum》第二版由 Andreas M. Antonopoulos、Gavin Wood、Carlo Parisi、Alessandro Mazza 與 Niccolò Pozzolini 撰寫，O'Reilly Media 出版。繁體中文翻譯：Dr. Awesome Doge。</p>
+  <p>本書內容以 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh_TW" rel="license noopener">CC BY-NC-ND 4.0</a> 授權釋出（原書出版 12 個月後轉為 CC BY-SA 4.0，本譯本屆時隨之更新） · <a href="https://github.com/awesome-doge/ethereumbook_zh" rel="noopener">GitHub</a> · <a href="https://github.com/awesome-doge/ethereumbook_zh/issues" rel="noopener">回報翻譯問題</a> · <a href="https://github.com/ethereumbook/ethereumbook" rel="noopener">英文原著</a></p>
 </footer>
 
 <dialog class="search" id="search" aria-label="搜尋全書">

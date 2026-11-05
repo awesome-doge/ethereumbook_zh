@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" data-base="/2018">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>第 4 章　以太坊測試網（Testnets）｜精通以太坊繁體中文版</title>
+<meta name="description" content="以太坊測試網：用 MetaMask、Remix、Geth 與 Parity 連上測試網，Ropsten、Rinkeby、Kovan 等測試網的歷史與共識差異，以及用 Ganache 架設本地測試鏈。">
+<link rel="canonical" href="https://mastering-ethereum.doge.tg/2018/ch04.html">
+<meta name="author" content="Andreas M. Antonopoulos, Gavin Wood">
+<meta name="theme-color" content="#f8f9fc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14151b" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="/2018/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/2018/favicon.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/2018/apple-touch-icon.png">
+<link rel="manifest" href="/2018/manifest.webmanifest">
+<link rel="sitemap" type="application/xml" href="/2018/sitemap.xml">
+<meta property="og:site_name" content="精通以太坊繁體中文版">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第 4 章　以太坊測試網（Testnets）｜精通以太坊繁體中文版">
+<meta property="og:description" content="以太坊測試網：用 MetaMask、Remix、Geth 與 Parity 連上測試網，Ropsten、Rinkeby、Kovan 等測試網的歷史與共識差異，以及用 Ganache 架設本地測試鏈。">
+<meta property="og:url" content="https://mastering-ethereum.doge.tg/2018/ch04.html">
+<meta property="og:image" content="https://mastering-ethereum.doge.tg/2018/assets/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="zh_TW">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="prev" href="/2018/ch03.html">
+<link rel="next" href="/2018/ch05.html">
+<script>
+(function(){try{var d=document.documentElement,s=localStorage,t=s.getItem('me-theme'),z=s.getItem('me-size'),f=s.getItem('me-font');if(t&&t!=='auto')d.setAttribute('data-theme',t);if(z)d.style.setProperty('--fs',z+'px');if(f)d.setAttribute('data-font',f)}catch(e){}})();
+</script>
+<link rel="stylesheet" href="/2018/assets/site.css?v=ad2df01e33">
+<link rel="stylesheet" href="/2018/assets/code.css?v=c94d007c0c">
+<script defer src="/2018/assets/site.js?v=33af8366a0"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Chapter","@id":"https://mastering-ethereum.doge.tg/2018/ch04.html#chapter","name":"第 4 章　以太坊測試網（Testnets）","headline":"第 4 章　以太坊測試網（Testnets）｜精通以太坊","description":"以太坊測試網：用 MetaMask、Remix、Geth 與 Parity 連上測試網，Ropsten、Rinkeby、Kovan 等測試網的歷史與共識差異，以及用 Ganache 架設本地測試鏈。","url":"https://mastering-ethereum.doge.tg/2018/ch04.html","inLanguage":"zh-TW","position":6,"dateModified":"2026-11-02T22:54:41+08:00","isPartOf":{"@id":"https://mastering-ethereum.doge.tg/2018/#book"},"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true},{"@type":"Book","@id":"https://mastering-ethereum.doge.tg/2018/#book","name":"精通以太坊：打造智能合約與 DApp","alternateName":["Mastering Ethereum: Building Smart Contracts and DApps","精通以太坊 Mastering Ethereum"],"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"inLanguage":"zh-TW","publisher":{"@type":"Organization","name":"O'Reilly Media"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true,"url":"https://mastering-ethereum.doge.tg/2018/","image":"https://mastering-ethereum.doge.tg/2018/assets/og-cover.png","translationOfWork":{"@type":"Book","name":"Mastering Ethereum: Building Smart Contracts and DApps","inLanguage":"en","url":"https://github.com/ethereumbook/ethereumbook"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"精通以太坊","item":"https://mastering-ethereum.doge.tg/2018/"},{"@type":"ListItem","position":2,"name":"第 4 章　以太坊測試網（Testnets）","item":"https://mastering-ethereum.doge.tg/2018/ch04.html"}]}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZVVQYEKMPF"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-ZVVQYEKMPF');</script>
+</head>
+<body class="is-chapter">
+<a class="skip-link" href="#main">跳到主要內容</a>
+<header class="topbar">
+  <button class="icon-btn" type="button" data-action="toggle-nav" aria-controls="sidebar" aria-expanded="false" aria-label="開啟目錄">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+  </button>
+  <a class="brand" href="/2018/" aria-label="精通以太坊 首頁">
+    <span class="brand-mark" aria-hidden="true">Ξ</span><span class="brand-text">精通以太坊</span>
+  </a>
+  <p class="topbar-title"><span class="topbar-label">第 4 章</span>以太坊測試網（Testnets）</p>
+  <div class="topbar-actions">
+    <button class="icon-btn search-btn" type="button" data-action="search" aria-label="搜尋全書（快捷鍵 /）">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <span class="search-btn-text">搜尋</span><kbd>/</kbd>
+    </button>
+    <button class="icon-btn" type="button" data-action="settings" aria-controls="settings" aria-expanded="false" aria-label="閱讀設定">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19 9 5l5 14M5.8 14.5h6.4M15 19l3-8 3 8M15.9 16.5h4.2"/></svg>
+    </button>
+  </div>
+  <div class="progress" aria-hidden="true"><span></span></div>
+</header>
+
+<div class="settings" id="settings" hidden>
+  <div class="settings-group" role="group" aria-label="主題">
+    <span class="settings-label">主題</span>
+    <div class="seg">
+      <button type="button" data-theme-set="auto">自動</button>
+      <button type="button" data-theme-set="light">淺色</button>
+      <button type="button" data-theme-set="sepia">護眼</button>
+      <button type="button" data-theme-set="dark">深色</button>
+    </div>
+  </div>
+  <div class="settings-group" role="group" aria-label="字級">
+    <span class="settings-label">字級</span>
+    <div class="seg">
+      <button type="button" data-size="-1" aria-label="縮小字級">A−</button>
+      <output class="size-value" aria-live="polite">18</output>
+      <button type="button" data-size="1" aria-label="放大字級">A+</button>
+    </div>
+  </div>
+  <div class="settings-group" role="group" aria-label="字型">
+    <span class="settings-label">字型</span>
+    <div class="seg">
+      <button type="button" data-font-set="sans">黑體</button>
+      <button type="button" data-font-set="serif">明體</button>
+    </div>
+  </div>
+</div>
+
+<div class="shell">
+  <nav class="sidebar" id="sidebar" aria-label="全書目錄">
+    <div class="sidebar-head">
+      <a href="/2018/" class="sidebar-book">精通以太坊</a>
+      <span class="sidebar-sub">繁體中文版</span>
+    </div>
+    <ol class="book-toc">
+      <li>
+        <a href="/2018/preface.html"><span class="toc-label">前言</span></a>
+      </li>
+      <li>
+        <a href="/2018/glossary.html"><span class="toc-label">術語表</span>快速術語表</a>
+      </li>
+      <li>
+        <a href="/2018/ch01.html"><span class="toc-label">第 1 章</span>什麼是以太坊</a>
+      </li>
+      <li>
+        <a href="/2018/ch02.html"><span class="toc-label">第 2 章</span>以太坊基礎</a>
+      </li>
+      <li>
+        <a href="/2018/ch03.html"><span class="toc-label">第 3 章</span>以太坊客戶端</a>
+      </li>
+      <li class="is-current">
+        <a href="/2018/ch04.html" aria-current="page"><span class="toc-label">第 4 章</span>以太坊測試網（Testnets）</a>
+        <ol class="section-toc">
+          <li><a href="#_什麼是測試網">4.1. 什麼是測試網？</a></li>
+          <li><a href="#_使用_testnets">4.2. 使用 Testnets</a></li>
+          <li><a href="#_獲取測試以太網">4.3. 獲取測試以太網</a></li>
+          <li><a href="#_連接到testnets">4.4. 連接到Testnets</a></li>
+          <li><a href="#_深入以太坊testnets">4.5. 深入以太坊Testnets</a></li>
+          <li><a href="#_以太坊經典testnets">4.6. 以太坊經典Testnets</a></li>
+          <li><a href="#_以太坊測試網的歷史">4.7. 以太坊測試網的歷史</a></li>
+          <li><a href="#_工作量證明挖礦proof_of_work_mining_與_權威證明聯合簽名proof_of_authority_federated_signing_2">4.8. 工作量證明（挖礦）Proof-of-Work (Mining) 與 權威證明（聯合簽名）Proof-of-Authority (Federated Signing)</a></li>
+          <li><a href="#_運行本地測試網">4.9. 運行本地測試網</a></li>
+        </ol>
+      </li>
+      <li>
+        <a href="/2018/ch05.html"><span class="toc-label">第 5 章</span>密鑰、地址</a>
+      </li>
+      <li>
+        <a href="/2018/ch06.html"><span class="toc-label">第 6 章</span>錢包</a>
+      </li>
+      <li>
+        <a href="/2018/ch07.html"><span class="toc-label">第 7 章</span>交易 (Transactions)</a>
+      </li>
+      <li>
+        <a href="/2018/ch08.html"><span class="toc-label">第 8 章</span>智能合約</a>
+      </li>
+      <li>
+        <a href="/2018/ch09.html"><span class="toc-label">第 9 章</span>開發工具，框架和庫</a>
+      </li>
+      <li>
+        <a href="/2018/ch10.html"><span class="toc-label">第 10 章</span>Tokens</a>
+      </li>
+      <li>
+        <a href="/2018/ch11.html"><span class="toc-label">第 11 章</span>去中心化應用 (DApps)</a>
+      </li>
+      <li>
+        <a href="/2018/ch12.html"><span class="toc-label">第 12 章</span>預言機 (Oracles)</a>
+      </li>
+      <li>
+        <a href="/2018/ch13.html"><span class="toc-label">第 13 章</span>gas（Gas）</a>
+      </li>
+      <li>
+        <a href="/2018/ch14.html"><span class="toc-label">第 14 章</span>以太坊虛擬機 (The Ethereum Virtual Machine)</a>
+      </li>
+      <li>
+        <a href="/2018/ch15.html"><span class="toc-label">第 15 章</span>共識</a>
+      </li>
+      <li>
+        <a href="/2018/ch16.html"><span class="toc-label">第 16 章</span>Vyper: 面向合約的程式語言</a>
+      </li>
+      <li>
+        <a href="/2018/ch17.html"><span class="toc-label">第 17 章</span>節點間的通信 —— 一個簡單的視角</a>
+      </li>
+      <li>
+        <a href="/2018/ch18.html"><span class="toc-label">附錄 A</span>以太坊標準</a>
+      </li>
+      <li>
+        <a href="/2018/ch19.html"><span class="toc-label">附錄 B</span>以太坊分叉歷史</a>
+      </li>
+    </ol>
+    <div class="sidebar-foot">
+      <a href="https://github.com/awesome-doge/ethereumbook_zh/releases/download/v2.0.0/Mastering-Ethereum-Traditional-Chinese.pdf" rel="noopener">下載 PDF 電子書</a>
+      <a href="https://github.com/awesome-doge/ethereumbook_zh/releases/download/v2.0.0/Mastering-Ethereum-Traditional-Chinese.epub" rel="noopener">下載 EPUB 電子書</a>
+      <a href="https://github.com/awesome-doge/ethereumbook_zh" rel="noopener">GitHub 原始碼</a>
+    </div>
+  </nav>
+  <div class="scrim" data-action="close-nav" hidden></div>
+
+  <main id="main" class="main" tabindex="-1">
+<article class="chapter" aria-labelledby="testnets_chapter">
+  <nav class="breadcrumb" aria-label="導覽路徑"><a href="/2018/">精通以太坊</a><span aria-hidden="true">/</span><span>第 4 章</span></nav>
+<aside class="edition-notice" role="note" aria-label="版本說明">
+  <p><strong>本章內容已過時：</strong>這是 2018 年草稿的翻譯。原書第二版已於 2025 年出版，<a href="/">第二版的繁體中文譯本</a>在本站首頁，英文版可在 <a href="https://masteringethereum.xyz" rel="noopener">masteringethereum.xyz</a> 免費線上閱讀。</p>
+</aside>
+
+  <header class="chapter-head">
+    <p class="chapter-label">第 4 章</p>
+    <h1 id="testnets_chapter">以太坊測試網（Testnets）</h1>
+    <p class="chapter-meta">約 9 分鐘閱讀 · 9 個小節</p>
+  </header>
+  <div class="prose">
+<div class="sect1">
+
+<div class="sectionbody">
+<div class="sect2">
+<h2 id="_什麼是測試網"><a class="anchor" href="#_什麼是測試網" aria-label="本節連結"></a>4.1. 什麼是測試網？</h2>
+<div class="paragraph">
+<p>測試網路（簡稱testnet）用於模擬以太網主網的行為。有一些公開的測試網路可以替代以太坊區塊鏈。這些網路上的貨幣毫無價值，但它們仍然很有用，因為合約和協議變更的功能可以在不中斷以太網主網或使用真實貨幣的情況下進行測試。當主網（簡稱mainnet）即將包含對以太坊協議的任何重大改變時，其測試主要在這些測試網路上完成。這些測試網路也被大量開發人員用於在部署到主網之前測試應用程式。</p>
+</div>
+</div>
+<div class="sect2">
+<h2 id="_使用_testnets"><a class="anchor" href="#_使用_testnets" aria-label="本節連結"></a>4.2. 使用 Testnets</h2>
+<div class="paragraph">
+<p>你可以連接到公共可用的測試網路或創建你自己的私人測試網路。首先，讓我們使用公共測試網來更簡單地起步。要使用公共測試網路，需要一些測試網路以及到該網路的連接。對於testnet ether，使用“faucet”，faucet緩慢地分配測試ether，向任何詢問的人“滴送”少量ether。要連接到一個測試網路，你需要一個以太坊客戶端，完整的客戶端，比如geth，或者完整的客戶端的網關，比如MetaMask。</p>
+</div>
+</div>
+<div class="sect2">
+<h2 id="_獲取測試以太網"><a class="anchor" href="#_獲取測試以太網" aria-label="本節連結"></a>4.3. 獲取測試以太網</h2>
+<div class="paragraph">
+<p>由於測試網不以真正的金錢運作，礦工保護測試網的動機很弱。因此，測試網必須保護自己免受濫用和攻擊。因此，為這些測試網創建了水龍頭，以受控的方式向開發人員分發免費的測試ether（大多數faucet每隔幾秒左右"滴注"ether）。這種以太網的受控分配可防止用戶濫用鏈，因為提供有限的ether供應可防止他們向鏈中寫入過多內容或執行太多交易。另外，一些testnets已經實施了認證證明（Proof of Authentication）方案，使用faucet需要具有適當社交媒體網站的認證的憑證。</p>
+</div>
+</div>
+<div class="sect2">
+<h2 id="_連接到testnets"><a class="anchor" href="#_連接到testnets" aria-label="本節連結"></a>4.4. 連接到Testnets</h2>
+<div class="sect3">
+<h3 id="_metamask"><a class="anchor" href="#_metamask" aria-label="本節連結"></a>4.4.1. Metamask</h3>
+<div class="paragraph">
+<p>Metamask完全支持Ropsten，Kovan和Rinkeby測試網，但也可以連接到其他測試網和本地網。在Metamask中，只需單擊“main network”下拉菜單，即可切換網路。MetaMask還提供了一個“buy”測試ether的選項，該選項將你引導至你可以請求免費測試以太網的faucet。如果使用Ropsten測試網，則可以從Ropsten測試faucet服務中獲取ether。你可以從此頁面訪問此faucet。它需要Metamask擴展才能工作。<a href="https://faucet.metamask.io/" class="bare" rel="noopener" target="_blank">https://faucet.metamask.io/</a></p>
+</div>
+<div class="sect4">
+<h4 id="infura"><a class="anchor" href="#infura" aria-label="本節連結"></a>Infura</h4>
+<div class="paragraph">
+<p>當MetaMask連接到測試網路時，它使用Infura服務提供商來訪問JSON-RPC接口。Infura誕生的目的是為ConsenSys內部項目提供穩定可靠的RPC訪問。除了JSON-RPC API之外，Infura還提供REST（表述性狀態轉移）API、IPFS（星際檔案系統，即去中心化儲存）API和Websockets（即流式傳輸）API。</p>
+</div>
+<div class="paragraph">
+<p>Infura為Ethereum主網，Ropsten、Kovan、Rinkeby和INFURAnet（用於Infura的定製測試網路）提供網關API。</p>
+</div>
+<div class="paragraph">
+<p>要通過MetaMask使用Infura進行較低級別的活動，你不需要帳戶。要直接使用API，你需要註冊一個帳戶並使用Infura提供的API密鑰。</p>
+</div>
+<div class="paragraph">
+<p>有關Infura的更多資訊，請訪問：</p>
+</div>
+<div class="paragraph">
+<p><a href="https://infura.io/" class="bare" rel="noopener" target="_blank">https://infura.io/</a></p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h3 id="_remix集成開發環境ide"><a class="anchor" href="#_remix集成開發環境ide" aria-label="本節連結"></a>4.4.2. Remix集成開發環境（IDE）</h3>
+<div class="paragraph">
+<p>Remix IDE可用於在主網和測試網上部署和交互智能合約，包括Ropsten、Rinkeby和Kovan（Web3提供者使用Infura地址和API密鑰或通過Injected Web3使用MetaMask中選擇的網路）和Ganache（ Web3提供端點<a href="http://localhost:8545" class="bare" rel="noopener" target="_blank">http://localhost:8545</a>）</p>
+</div>
+<div class="paragraph">
+<p><a href="https://github.com/ethereum/remix/blob/master/docs/run_tab.rst" class="bare" rel="noopener" target="_blank">https://github.com/ethereum/remix/blob/master/docs/run_tab.rst</a>
+<a href="https://medium.com/swlh/deploy-smart-contracts-on-ropsten-testnet-through-ethereum-remix-233cd1494b4b" class="bare" rel="noopener" target="_blank">https://medium.com/swlh/deploy-smart-contracts-on-ropsten-testnet-through-ethereum-remix-233cd1494b4b</a></p>
+</div>
+</div>
+<div class="sect3">
+<h3 id="_geth"><a class="anchor" href="#_geth" aria-label="本節連結"></a>4.4.3. Geth</h3>
+<div class="paragraph">
+<p>Geth本身支持Ropsten和Rinkeby網路。要連接到Ropsten網路，請使用命令行參數：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>geth --testnet</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>這將開始同步Ropsten區塊鏈。名為 <code>testnet</code> 的新目錄將在你的主Ethereum數據目錄中創建。一個 <code>keystore</code> 目錄將在 <code>testnet</code> 內部創建，並將儲存你的testnet帳戶的私鑰。在撰寫本文時，Ropsten區塊鏈比以太坊主區塊鏈小得多：大約14GB的數據。由於測試網需要的資源較少，因此首先在測試網上設置並測試你的程式碼會更簡單。</p>
+</div>
+<div class="paragraph">
+<p>與testnet的交互與mainnet類似。你可以使用控制台啟動Geth testnet，方法是運行：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>geth --testnet console</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>這使得執行操作成為可能，例如開設新賬戶、檢查餘額、檢查其他以太坊地址的餘額等。
+在Geth控制台之外運行時，只需將<code>--testnet</code>參數添加到命令行指令中，就可以執行類似於在主網上執行的操作。作為列舉所有可用的testnet帳戶及其地址的範例，請運行：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>geth --testnet account list</pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tbody><tr>
+<td class="icon">
+<i class="fa icon-tip" title="提示"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>雖然小得多，但測試網仍需要一些時間才能完全同步。</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="paragraph">
+<p>你可以通過在geth交互式控制台中運行以下命令來檢查geth是否已完成同步測試網路：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>eth.getBlock("latest").number</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>一旦你的testnet節點完全同步，這應該返回一個非0的數字。你可以將該編號與已知的testnet區塊瀏覽器中的最新區塊進行比較，例如<a href="https://ropsten.etherscan.io/" class="bare" rel="noopener" target="_blank">https://ropsten.etherscan.io/</a></p>
+</div>
+<div class="paragraph">
+<p>同樣，要連接到Rinkeby測試網路，請使用命令行參數：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>geth --rinkeby</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h3 id="_parity"><a class="anchor" href="#_parity" aria-label="本節連結"></a>4.4.4. Parity</h3>
+<div class="paragraph">
+<p>Parity客戶端支持Ropsten和Kovan測試網路。你可以用<code>chain</code>參數選擇你要連接的網路。例如，要同步Ropsten測試網路：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>parity --chain ropsten</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>同樣，要同步Kovan測試網路，請使用：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>parity --chain kovan</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h2 id="_深入以太坊testnets"><a class="anchor" href="#_深入以太坊testnets" aria-label="本節連結"></a>4.5. 深入以太坊Testnets</h2>
+<div class="paragraph">
+<p>在這個階段你可能會想：“我明白我為什麼要使用測試網路，但為什麼會有這麼多呢？”</p>
+</div>
+<div class="paragraph">
+<p><a href="https://www.ethnews.com/ropsten-to-kovan-to-rinkeby-ethereums-testnet-troubles" class="bare" rel="noopener" target="_blank">https://www.ethnews.com/ropsten-to-kovan-to-rinkeby-ethereums-testnet-troubles</a></p>
+</div>
+<div class="sect3">
+<h3 id="_工作量證明挖礦proof_of_work_mining_與_權威證明聯合簽名proof_of_authority_federated_signing"><a class="anchor" href="#_工作量證明挖礦proof_of_work_mining_與_權威證明聯合簽名proof_of_authority_federated_signing" aria-label="本節連結"></a>4.5.1. 工作量證明（挖礦）Proof-of-Work (Mining) 與 權威證明（聯合簽名）Proof-of-Authority (Federated Signing)</h3>
+<div class="paragraph">
+<p><a href="https://github.com/ethereum/guide/blob/master/poa.md" class="bare" rel="noopener" target="_blank">https://github.com/ethereum/guide/blob/master/poa.md</a></p>
+</div>
+</div>
+<div class="sect3">
+<h3 id="_morden原始測試網"><a class="anchor" href="#_morden原始測試網" aria-label="本節連結"></a>4.5.2. Morden（原始測試網）</h3>
+<div class="paragraph">
+<p><a href="https://blog.ethereum.org/2016/11/20/from-morden-to-ropsten/" class="bare" rel="noopener" target="_blank">https://blog.ethereum.org/2016/11/20/from-morden-to-ropsten/</a></p>
+</div>
+</div>
+<div class="sect3">
+<h3 id="_ropsten"><a class="anchor" href="#_ropsten" aria-label="本節連結"></a>4.5.3. Ropsten</h3>
+<div class="paragraph">
+<p>如果你想開始在Ropsten網路上測試合約，有幾個faucet可以供給你Ropsten的ether。如果faucet不起作用，請嘗試不同的faucet。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://faucet.ropsten.be:3001/" class="bare" rel="noopener" target="_blank">http://faucet.ropsten.be:3001/</a>
+這個faucet提供了應該排隊接收測試以太的地址的可能性。</p>
+</li>
+<li>
+<p>bitfwd Ropsten Faucet
+<a href="https://faucet.bitfwd.xyz/。" class="bare" rel="noopener" target="_blank">https://faucet.bitfwd.xyz/。</a></p>
+</li>
+<li>
+<p>Kyber Network Ropsten Faucet
+<a href="https://faucet.kyber.network/。" class="bare" rel="noopener" target="_blank">https://faucet.kyber.network/。</a></p>
+</li>
+<li>
+<p>MetaMask Ropsten Faucet
+<a href="https://faucet.metamask.io/" class="bare" rel="noopener" target="_blank">https://faucet.metamask.io/</a></p>
+</li>
+<li>
+<p>Ropsten Testnet Mining Pool
+<a href="http://pool.ropsten.ethereum.org/" class="bare" rel="noopener" target="_blank">http://pool.ropsten.ethereum.org/</a></p>
+</li>
+<li>
+<p>Etherscan Ropsten Pool
+<a href="https://ropsten.etherscan.io/" class="bare" rel="noopener" target="_blank">https://ropsten.etherscan.io/</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h3 id="_rinkeby"><a class="anchor" href="#_rinkeby" aria-label="本節連結"></a>4.5.4. Rinkeby</h3>
+<div class="paragraph">
+<p>Rinkeby水龍頭位於<a href="https://faucet.rinkeby.io/" class="bare" rel="noopener" target="_blank">https://faucet.rinkeby.io/</a>。
+要請求測試ether，有必要在Twitter，Google Plus或Facebook上發佈公開資訊。<a href="https://www.rinkeby.io/" class="bare" rel="noopener" target="_blank">https://www.rinkeby.io/</a>
+<a href="https://rinkeby.etherscan.io/" class="bare" rel="noopener" target="_blank">https://rinkeby.etherscan.io/</a></p>
+</div>
+</div>
+<div class="sect3">
+<h3 id="_kovan"><a class="anchor" href="#_kovan" aria-label="本節連結"></a>4.5.5. Kovan</h3>
+<div class="paragraph">
+<p>Kovan testnet支持各種方法來請求測試ether。
+更多資訊可以在 <a href="https://github.com/kovan-testnet/faucet/blob/master/README.md" class="bare" rel="noopener" target="_blank">https://github.com/kovan-testnet/faucet/blob/master/README.md</a> 找到。</p>
+</div>
+<div class="paragraph">
+<p><a href="https://medium.com/@Digix/announcing-kovan-a-stable-ethereum-public-testnet-10ac7cb6c85f" class="bare" rel="noopener" target="_blank">https://medium.com/@Digix/announcing-kovan-a-stable-ethereum-public-testnet-10ac7cb6c85f</a></p>
+</div>
+<div class="paragraph">
+<p><a href="https://kovan-testnet.github.io/website/" class="bare" rel="noopener" target="_blank">https://kovan-testnet.github.io/website/</a></p>
+</div>
+<div class="paragraph">
+<p><a href="https://kovan.etherscan.io/" class="bare" rel="noopener" target="_blank">https://kovan.etherscan.io/</a></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h2 id="_以太坊經典testnets"><a class="anchor" href="#_以太坊經典testnets" aria-label="本節連結"></a>4.6. 以太坊經典Testnets</h2>
+<div class="sect3">
+<h3 id="_morden"><a class="anchor" href="#_morden" aria-label="本節連結"></a>4.6.1. Morden</h3>
+<div class="paragraph">
+<p>以太坊經典目前運行著Morden測試網的一個變體，與以太坊經典活躍網路保持功能相同。你可以通過gastracker RPC或者為<code>geth</code>或<code>parity</code>提供一個標誌來連接它.</p>
+</div>
+<div class="paragraph">
+<p><strong>Faucet:</strong> <a href="http://testnet.epool.io/" class="bare" rel="noopener" target="_blank">http://testnet.epool.io/</a></p>
+</div>
+<div class="paragraph">
+<p><strong>Gastracker RPC:</strong> <a href="https://web3.gastracker.io/morden" class="bare" rel="noopener" target="_blank">https://web3.gastracker.io/morden</a></p>
+</div>
+<div class="paragraph">
+<p><strong>Block Explorer:</strong> <a href="http://mordenexplorer.ethertrack.io/home" class="bare" rel="noopener" target="_blank">http://mordenexplorer.ethertrack.io/home</a></p>
+</div>
+<div class="paragraph">
+<p><strong>Geth flag:</strong> <code>geth --chain=morden</code></p>
+</div>
+<div class="paragraph">
+<p><strong>Parity flag:</strong> <code>parity --chain=classic-testnet</code></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h2 id="_以太坊測試網的歷史"><a class="anchor" href="#_以太坊測試網的歷史" aria-label="本節連結"></a>4.7. 以太坊測試網的歷史</h2>
+<div class="paragraph">
+<p>Olympic, Morden to Ropsten, Kovan, Rinkeby</p>
+</div>
+<div class="paragraph">
+<p>Olympic testnet (Network ID: 0) 是Frontier首個公共測試網（簡稱Ethereum 0.9）。它於2015年初推出，2015年中期被Morden取代時棄用。</p>
+</div>
+<div class="paragraph">
+<p>Ethereum’s Morden testnet (Network ID: 2) 與Frontier一起發佈，從2015年7月開始運行，直到2016年11月不再使用。雖然任何使用以太坊的人都可以創建測試網，但Morden是第一個“官方”公共測試網，取代了Olympic測試網。由於臃腫區塊鏈的長同步時間以及Geth和Parity客戶端之間的共識問題，測試網路重新啟動並重新生成為Ropsten。</p>
+</div>
+<div class="paragraph">
+<p>Ropsten (Network ID: 3) 是一個針對Homestead的公共跨客戶端測試網，於2016年晚些時候推出，並作為公共測試網順利運行至2017年2月底。根據Ethereum的核心開發人員PéterSzilágyi的說法，二月的時候，“惡意行為者決定濫用低PoW，並逐步將gas限制提高到90億（從普通的470萬），發送巨大交易損害了整個網路”。Ropsten在2017年3月被恢復。<a href="https://github.com/ethereum/ropsten" class="bare" rel="noopener" target="_blank">https://github.com/ethereum/ropsten</a></p>
+</div>
+<div class="paragraph">
+<p>Kovan (Network ID: 42) 是由Parity的權威證明（PoA）共識演算法驅動的Homestead的公共Parity測試網路。該測試網不受垃圾郵件攻擊的影響，因為ether供應由可信方控制。這些值得信賴的各方是在Ethereum上積極開發的公司。
+儘管看起來這應該是以太坊測試網問題的解決方案，但在以太坊社區內似乎存在關於Kovan測試網的共識問題。<a href="https://github.com/kovan-testnet/proposal" class="bare" rel="noopener" target="_blank">https://github.com/kovan-testnet/proposal</a></p>
+</div>
+<div class="paragraph">
+<p>Rinkeby (Network ID: 4) 是由Ethereum團隊於2017年4月開始的Homestead發佈的Geth測試網路，並使用PoA共識協議。以斯德哥爾摩的地鐵站命名，它幾乎不受垃圾郵件攻擊的影響（因為以太網供應由受信任方控制）。請參閱EIP 225：<a href="https://github.com/ethereum/EIPs/issues/225" class="bare" rel="noopener" target="_blank">https://github.com/ethereum/EIPs/issues/225</a></p>
+</div>
+</div>
+<div class="sect2">
+<h2 id="_工作量證明挖礦proof_of_work_mining_與_權威證明聯合簽名proof_of_authority_federated_signing_2"><a class="anchor" href="#_工作量證明挖礦proof_of_work_mining_與_權威證明聯合簽名proof_of_authority_federated_signing_2" aria-label="本節連結"></a>4.8. 工作量證明（挖礦）Proof-of-Work (Mining) 與 權威證明（聯合簽名）Proof-of-Authority (Federated Signing)</h2>
+<div class="paragraph">
+<p><a href="https://github.com/ethereum/guide/blob/master/poa.md" class="bare" rel="noopener" target="_blank">https://github.com/ethereum/guide/blob/master/poa.md</a></p>
+</div>
+<div class="paragraph">
+<p>Proof-of-Work 是一種協議，必須執行挖礦（昂貴的計算機計算）以在區塊鏈（分佈式賬本）上創建新的區塊（去信任的交易）。
+缺點：能源消耗。集中的雜湊算力與集中的採礦農場，不是真正的分佈式。挖掘新塊體所需的大量計算能力對環境有影響。</p>
+</div>
+<div class="paragraph">
+<p>Proof-of-Authority 是一種協議，它只將造幣的負載分配給授權和可信的簽名者，他們可以根據自己的判斷並隨時以發幣頻率分發新的區塊。<a href="https://github.com/ethereum/EIPs/issues/225" class="bare" rel="noopener" target="_blank">https://github.com/ethereum/EIPs/issues/225</a>
+優點：具有最顯赫的身份的區塊鏈參與者通過演算法選擇來驗證塊來交付交易。</p>
+</div>
+<div class="paragraph">
+<p><a href="https://www.deepdotweb.com/2017/05/21/generalized-proof-activity-poa-forking-free-hybrid-consensus/" class="bare" rel="noopener" target="_blank">https://www.deepdotweb.com/2017/05/21/generalized-proof-activity-poa-forking-free-hybrid-consensus/</a></p>
+</div>
+</div>
+<div class="sect2">
+<h2 id="_運行本地測試網"><a class="anchor" href="#_運行本地測試網" aria-label="本節連結"></a>4.9. 運行本地測試網</h2>
+<div class="sect3">
+<h3 id="ganache"><a class="anchor" href="#ganache" aria-label="本節連結"></a>4.9.1. Ganache: 以太坊開發的個人區塊鏈</h3>
+<div class="paragraph">
+<p>你可以使用Ganache部署合約，開發應用程式並運行測試。它可用作Windows，Mac和Linux的桌面應用程式。</p>
+</div>
+<div class="paragraph">
+<p>網站: <a href="http://truffleframework.com/ganache" class="bare" rel="noopener" target="_blank">http://truffleframework.com/ganache</a></p>
+</div>
+</div>
+<div class="sect3">
+<h3 id="_ganache_cli_ganache_作為命令行工具"><a class="anchor" href="#_ganache_cli_ganache_作為命令行工具" aria-label="本節連結"></a>4.9.2. Ganache CLI: Ganache 作為命令行工具。</h3>
+<div class="paragraph">
+<p>這個工具以前稱為“ethereumJS TestRPC”。</p>
+</div>
+<div class="paragraph">
+<p><a href="https://github.com/trufflesuite/ganache-cli/" class="bare" rel="noopener" target="_blank">https://github.com/trufflesuite/ganache-cli/</a></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ npm install -g ganache-cli</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>讓我們開始以太坊區塊鏈協議的節點模擬。
+* []檢查<code>--networkId</code>和<code>--port</code>flag values是否與truffle.js中的配置相匹配
+* []檢查<code>--gasLimit</code>flag values是否與<a href="https://ethstats.net" class="bare" rel="noopener" target="_blank">https://ethstats.net</a>上顯示的最新主網gas極限（即8000000 gas）相匹配，以避免不必要地遇到`gas’異常。請注意，4000000000的“--gasPrice”代表4 gwei的gas價格。
+* []可以輸入一個`--mnemonic’flag values來恢復以前的高清錢包和相關地址</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ ganache-cli \
+  --networkId=3 \
+  --port="8545" \
+  --verbose \
+  --gasLimit=8000000 \
+  --gasPrice=4000000000;</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+  </div>
+  <nav class="pager" aria-label="章節導覽">
+    <a class="pager-link prev" href="/2018/ch03.html" rel="prev"><span class="pager-dir">← 上一章</span><span class="pager-title">第 3 章　以太坊客戶端</span></a>
+    <a class="pager-link next" href="/2018/ch05.html" rel="next"><span class="pager-dir">下一章 →</span><span class="pager-title">第 5 章　密鑰、地址</span></a>
+  </nav>
+  <p class="edit-link"><a href="https://github.com/awesome-doge/ethereumbook_zh/blob/master/2018/ch04.asciidoc" rel="noopener">在 GitHub 上檢視或改善本章翻譯</a></p>
+</article>
+
+  </main>
+
+  <aside class="rail" aria-label="本章內容">
+    <p class="rail-title">本章內容</p>
+    <ol>
+      <li><a href="#_什麼是測試網">4.1. 什麼是測試網？</a></li>
+      <li><a href="#_使用_testnets">4.2. 使用 Testnets</a></li>
+      <li><a href="#_獲取測試以太網">4.3. 獲取測試以太網</a></li>
+      <li><a href="#_連接到testnets">4.4. 連接到Testnets</a></li>
+      <li><a href="#_深入以太坊testnets">4.5. 深入以太坊Testnets</a></li>
+      <li><a href="#_以太坊經典testnets">4.6. 以太坊經典Testnets</a></li>
+      <li><a href="#_以太坊測試網的歷史">4.7. 以太坊測試網的歷史</a></li>
+      <li><a href="#_工作量證明挖礦proof_of_work_mining_與_權威證明聯合簽名proof_of_authority_federated_signing_2">4.8. 工作量證明（挖礦）Proof-of-Work (Mining) 與 權威證明（聯合簽名）Proof-of-Authority (Federated Signing)</a></li>
+      <li><a href="#_運行本地測試網">4.9. 運行本地測試網</a></li>
+    </ol>
+  </aside>
+</div>
+
+<footer class="site-footer">
+  <p>原著《Mastering Ethereum》由 Andreas M. Antonopoulos 與 Gavin Wood 撰寫，O'Reilly Media 出版。繁體中文翻譯：Dr. Awesome Doge。</p>
+  <p>本書內容以 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh_TW" rel="license noopener">CC BY-NC-ND 4.0</a> 授權釋出 · <a href="https://github.com/awesome-doge/ethereumbook_zh" rel="noopener">GitHub</a> · <a href="https://github.com/awesome-doge/ethereumbook_zh/issues" rel="noopener">回報翻譯問題</a> · <a href="https://github.com/ethereumbook/ethereumbook" rel="noopener">英文原著</a></p>
+</footer>
+
+<dialog class="search" id="search" aria-label="搜尋全書">
+  <form method="dialog" class="search-form" role="search">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input type="search" id="search-input" placeholder="搜尋全書，例如：智能合約、gas、ERC20" autocomplete="off" spellcheck="false" aria-label="搜尋關鍵字">
+    <button type="submit" class="search-close" value="close" aria-label="關閉搜尋">Esc</button>
+  </form>
+  <p class="search-status" aria-live="polite"></p>
+  <ol class="search-results"></ol>
+</dialog>
+</body>
+</html>

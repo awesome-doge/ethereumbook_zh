@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" data-base="" data-legacy-ids="/2018/ids.json">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>第 13 章　去中心化金融｜精通以太坊（第二版）繁體中文版</title>
+<meta name="description" content="去中心化金融（DeFi）：與傳統金融的比較，去中心化交易所、借貸市場、穩定幣、流動性質押、真實世界資產與跨鏈橋等基本元件，以及 DeFi 的風險與挑戰。">
+<link rel="canonical" href="https://mastering-ethereum.doge.tg/chapters/defi.html">
+<meta name="author" content="Andreas M. Antonopoulos, Gavin Wood, Carlo Parisi, Alessandro Mazza, Niccolò Pozzolini">
+<meta name="theme-color" content="#f8f9fc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14151b" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="sitemap" type="application/xml" href="/sitemap.xml">
+<meta property="og:site_name" content="精通以太坊第二版繁體中文版">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第 13 章　去中心化金融｜精通以太坊（第二版）繁體中文版">
+<meta property="og:description" content="去中心化金融（DeFi）：與傳統金融的比較，去中心化交易所、借貸市場、穩定幣、流動性質押、真實世界資產與跨鏈橋等基本元件，以及 DeFi 的風險與挑戰。">
+<meta property="og:url" content="https://mastering-ethereum.doge.tg/chapters/defi.html">
+<meta property="og:image" content="https://mastering-ethereum.doge.tg/assets/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="zh_TW">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="prev" href="/chapters/dapps.html">
+<link rel="next" href="/chapters/evm.html">
+<script>
+(function(){try{var d=document.documentElement,s=localStorage,t=s.getItem('me-theme'),z=s.getItem('me-size'),f=s.getItem('me-font');if(t&&t!=='auto')d.setAttribute('data-theme',t);if(z)d.style.setProperty('--fs',z+'px');if(f)d.setAttribute('data-font',f)}catch(e){}})();
+</script>
+<link rel="stylesheet" href="/assets/site.css?v=ad2df01e33">
+<link rel="stylesheet" href="/assets/code.css?v=c94d007c0c">
+<script defer src="/assets/site.js?v=33af8366a0"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Chapter","@id":"https://mastering-ethereum.doge.tg/chapters/defi.html#chapter","name":"第 13 章　去中心化金融","headline":"第 13 章　去中心化金融｜精通以太坊（第二版）","description":"去中心化金融（DeFi）：與傳統金融的比較，去中心化交易所、借貸市場、穩定幣、流動性質押、真實世界資產與跨鏈橋等基本元件，以及 DeFi 的風險與挑戰。","url":"https://mastering-ethereum.doge.tg/chapters/defi.html","inLanguage":"zh-TW","position":14,"dateModified":"2026-11-03T14:56:36+08:00","isPartOf":{"@id":"https://mastering-ethereum.doge.tg/#book"},"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true},{"@type":"Book","@id":"https://mastering-ethereum.doge.tg/#book","name":"精通以太坊（第二版）","alternateName":["Mastering Ethereum, 2nd Edition","精通以太坊第二版"],"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"inLanguage":"zh-TW","publisher":{"@type":"Organization","name":"O'Reilly Media"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true,"url":"https://mastering-ethereum.doge.tg/","image":"https://mastering-ethereum.doge.tg/assets/og-cover.png","translationOfWork":{"@type":"Book","name":"Mastering Ethereum, 2nd Edition","inLanguage":"en","url":"https://github.com/ethereumbook/ethereumbook"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"精通以太坊（第二版）","item":"https://mastering-ethereum.doge.tg/"},{"@type":"ListItem","position":2,"name":"第 13 章　去中心化金融","item":"https://mastering-ethereum.doge.tg/chapters/defi.html"}]}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZVVQYEKMPF"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-ZVVQYEKMPF');</script>
+</head>
+<body class="is-chapter">
+<a class="skip-link" href="#main">跳到主要內容</a>
+<header class="topbar">
+  <button class="icon-btn" type="button" data-action="toggle-nav" aria-controls="sidebar" aria-expanded="false" aria-label="開啟目錄">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+  </button>
+  <a class="brand" href="/" aria-label="精通以太坊（第二版） 首頁">
+    <span class="brand-mark" aria-hidden="true">Ξ</span><span class="brand-text">精通以太坊</span>
+  </a>
+  <p class="topbar-title"><span class="topbar-label">第 13 章</span>去中心化金融</p>
+  <div class="topbar-actions">
+    <button class="icon-btn search-btn" type="button" data-action="search" aria-label="搜尋全書（快捷鍵 /）">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <span class="search-btn-text">搜尋</span><kbd>/</kbd>
+    </button>
+    <button class="icon-btn" type="button" data-action="settings" aria-controls="settings" aria-expanded="false" aria-label="閱讀設定">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19 9 5l5 14M5.8 14.5h6.4M15 19l3-8 3 8M15.9 16.5h4.2"/></svg>
+    </button>
+  </div>
+  <div class="progress" aria-hidden="true"><span></span></div>
+</header>
+
+<div class="settings" id="settings" hidden>
+  <div class="settings-group" role="group" aria-label="主題">
+    <span class="settings-label">主題</span>
+    <div class="seg">
+      <button type="button" data-theme-set="auto">自動</button>
+      <button type="button" data-theme-set="light">淺色</button>
+      <button type="button" data-theme-set="sepia">護眼</button>
+      <button type="button" data-theme-set="dark">深色</button>
+    </div>
+  </div>
+  <div class="settings-group" role="group" aria-label="字級">
+    <span class="settings-label">字級</span>
+    <div class="seg">
+      <button type="button" data-size="-1" aria-label="縮小字級">A−</button>
+      <output class="size-value" aria-live="polite">18</output>
+      <button type="button" data-size="1" aria-label="放大字級">A+</button>
+    </div>
+  </div>
+  <div class="settings-group" role="group" aria-label="字型">
+    <span class="settings-label">字型</span>
+    <div class="seg">
+      <button type="button" data-font-set="sans">黑體</button>
+      <button type="button" data-font-set="serif">明體</button>
+    </div>
+  </div>
+</div>
+
+<div class="shell">
+  <nav class="sidebar" id="sidebar" aria-label="全書目錄">
+    <div class="sidebar-head">
+      <a href="/" class="sidebar-book">精通以太坊（第二版）</a>
+      <span class="sidebar-sub">繁體中文版</span>
+    </div>
+    <ol class="book-toc">
+      <li>
+        <a href="/chapters/preface.html"><span class="toc-label">前言</span></a>
+      </li>
+      <li>
+        <a href="/chapters/what-is-ethereum.html"><span class="toc-label">第 1 章</span>什麼是以太坊？</a>
+      </li>
+      <li>
+        <a href="/chapters/ethereum-basics.html"><span class="toc-label">第 2 章</span>以太坊基礎</a>
+      </li>
+      <li>
+        <a href="/chapters/nodes.html"><span class="toc-label">第 3 章</span>以太坊節點</a>
+      </li>
+      <li>
+        <a href="/chapters/cryptography.html"><span class="toc-label">第 4 章</span>密碼學</a>
+      </li>
+      <li>
+        <a href="/chapters/wallets.html"><span class="toc-label">第 5 章</span>錢包</a>
+      </li>
+      <li>
+        <a href="/chapters/transactions.html"><span class="toc-label">第 6 章</span>交易</a>
+      </li>
+      <li>
+        <a href="/chapters/solidity.html"><span class="toc-label">第 7 章</span>智能合約與 Solidity</a>
+      </li>
+      <li>
+        <a href="/chapters/vyper.html"><span class="toc-label">第 8 章</span>智能合約與 Vyper</a>
+      </li>
+      <li>
+        <a href="/chapters/smart-contract-security.html"><span class="toc-label">第 9 章</span>智能合約安全</a>
+      </li>
+      <li>
+        <a href="/chapters/tokens.html"><span class="toc-label">第 10 章</span>代幣</a>
+      </li>
+      <li>
+        <a href="/chapters/oracles.html"><span class="toc-label">第 11 章</span>預言機</a>
+      </li>
+      <li>
+        <a href="/chapters/dapps.html"><span class="toc-label">第 12 章</span>去中心化應用</a>
+      </li>
+      <li class="is-current">
+        <a href="/chapters/defi.html" aria-current="page"><span class="toc-label">第 13 章</span>去中心化金融</a>
+        <ol class="section-toc">
+          <li><a href="#ch13-defi-versus-traditional-finance">13.1. DeFi 與傳統金融的比較</a></li>
+          <li><a href="#ch13-defi-primitives">13.2. DeFi 的基本元件</a></li>
+          <li><a href="#ch13-decentralized-finance">13.3. （去）中心化金融</a></li>
+          <li><a href="#ch13-risks-and-challenges-in-defi">13.4. DeFi 的風險與挑戰</a></li>
+          <li><a href="#ch13-conclusion">13.5. 結語</a></li>
+        </ol>
+      </li>
+      <li>
+        <a href="/chapters/evm.html"><span class="toc-label">第 14 章</span>以太坊虛擬機</a>
+      </li>
+      <li>
+        <a href="/chapters/consensus.html"><span class="toc-label">第 15 章</span>共識</a>
+      </li>
+      <li>
+        <a href="/chapters/scaling.html"><span class="toc-label">第 16 章</span>以太坊擴容</a>
+      </li>
+      <li>
+        <a href="/chapters/zero-knowledge-proofs.html"><span class="toc-label">第 17 章</span>零知識證明</a>
+      </li>
+    </ol>
+    <div class="sidebar-foot">
+      <a href="https://github.com/awesome-doge/ethereumbook_zh" rel="noopener">GitHub 原始碼</a>
+    </div>
+  </nav>
+  <div class="scrim" data-action="close-nav" hidden></div>
+
+  <main id="main" class="main" tabindex="-1">
+<article class="chapter" aria-labelledby="ch13">
+  <nav class="breadcrumb" aria-label="導覽路徑"><a href="/">精通以太坊（第二版）</a><span aria-hidden="true">/</span><span>第 13 章</span></nav>
+  <header class="chapter-head">
+    <p class="chapter-label">第 13 章</p>
+    <h1 id="ch13">去中心化金融</h1>
+    <p class="chapter-meta">約 27 分鐘閱讀 · 5 個小節</p>
+  </header>
+  <div class="prose">
+<div class="sect1">
+
+<div class="sectionbody">
+<div class="paragraph">
+<p>以太坊的智能合約開啟了簡單加密貨幣交易之外的種種可能。<em>去中心化金融</em>（decentralized finance，DeFi）更進一步，打造出一個完全在區塊鏈上運作的完整金融生態系。想像一下借出、借入、交易與投資這些傳統金融服務，卻不需要銀行、券商或任何中心化的機構。取而代之的是以太坊區塊鏈上的智能合約處理一切，帶來金融自主與創新的新時代。</p>
+</div>
+<div class="paragraph">
+<p>這種去中心化的做法讓金融服務人人都能取得，也帶來了傳統金融經常缺乏的透明度與安全性。區塊鏈上的每一筆交易都公開記錄、不可竄改，任何人都能驗證資料的真實性與完整性。這種程度的透明降低了詐欺與貪腐的風險，創造出更值得信任的金融環境。</p>
+</div>
+<div class="paragraph">
+<p>DeFi 也為全球規模的普惠金融開啟了機會。在傳統銀行基礎設施不發達或難以取得的地區，DeFi 提供了可行的替代方案。人們只要有一支智慧型手機和網路連線，就能參與全球經濟。這項能力讓過去遙不可及的信貸、儲蓄帳戶與投資機會變得觸手可及，可能讓數以百萬計的人因此受益。以太坊智能合約的可程式化，讓人能打造出在傳統金融體系中難以實作、甚至無法實作的複雜金融工具與服務。</p>
+</div>
+<div class="paragraph">
+<p>目前，DeFi 的主要使用者大概不是開發中國家那些缺乏銀行服務或根本沒有銀行帳戶的人，而是來自已開發國家、想利用加密貨幣高度投機特性獲利的人。雖然投機永遠會有它的空間，但確保全世界每個人都能使用普惠的金融產品，仍然很重要。</p>
+</div>
+<div class="sect2">
+<h2 id="ch13-defi-versus-traditional-finance"><a class="anchor" href="#ch13-defi-versus-traditional-finance" aria-label="本節連結"></a>13.1. DeFi 與傳統金融的比較</h2>
+<div class="paragraph">
+<p>DeFi 是密碼龐克對傳統金融（traditional finance，TradFi）體系的回應。這個領域仍在演進，但已經找到了自己的利基：一群忠實的使用者，以及富有創新精神的開發者。DeFi 與傳統金融的區別很複雜，不過最重要的差異在於交易媒介，以及區塊鏈與生俱來的特性，例如開放與透明。DeFi 主要使用加密貨幣，而加密貨幣通常有不同程度的去中心化；傳統金融則仰賴法定貨幣，而法定貨幣永遠是中心化到了極點。</p>
+</div>
+<div class="paragraph">
+<p>傳統金融體系的進入門檻通常很高。開立銀行帳戶、申請貸款或投資金融市場，往往需要大量的文件，還要符合各式各樣的法規要求。這個過程可能把全球很大一部分人口排除在外，特別是銀行服務不足地區的人。圖 13-1 呈現了這一點。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<picture><source type="image/webp" srcset="/images/ch13/maet_1301.webp"><img src="/images/ch13/maet_1301.png" alt="Traditional finance versus DeFi loan requirements" width="1084" height="883" loading="lazy" decoding="async"></picture>
+</div>
+<div class="title">圖 13-1. 傳統金融與 DeFi 的貸款條件比較</div>
+</div>
+<div class="paragraph">
+<p>一般使用者要申請貸款，需要具備許多條件，例如身分證件、可證明的實際住址、社會安全號碼、銀行帳戶、簽署的文件，以及良好的信用分數。即使這些都具備了，申請仍可能被拒絕；就算核准了，大概也要等上很久。</p>
+</div>
+<div class="paragraph">
+<p>在 DeFi 中，只需要三個條件：一支手機、網路連線，以及足以超額抵押這筆貸款的資產。這些條件一旦具備，貸款就能立即、去中心化而且無需許可地完成。</p>
+</div>
+<div class="paragraph">
+<p>DeFi 在設計上就更容易取得。任何人只要有網路連線，就能與 DeFi 協議互動，這讓數十億被傳統體系排除在外的人也能使用金融服務。DeFi 的高度開放，使得傳統金融用來評估信用、處理詐欺的機制很難、甚至無法套用；有些人認為這是缺點，有些人則認為是進步。</p>
+</div>
+<div class="paragraph">
+<p>DeFi 另一個引人入勝的地方，是它能創造出傳統金融體系中不可能存在的新金融工具。例如，閃電貸讓使用者不需要抵押品就能借入資金，只要在同一筆交易中還款即可。這項 DeFi 獨有的能力，為套利、抵押品置換，以及其他在傳統金融中根本無法複製的複雜金融操作，開啟了各種可能。</p>
+</div>
+</div>
+<div class="sect2">
+<h2 id="ch13-defi-primitives"><a class="anchor" href="#ch13-defi-primitives" aria-label="本節連結"></a>13.2. DeFi 的基本元件</h2>
+<div class="paragraph">
+<p>比特幣這類加密貨幣的目標，是改進貨幣的概念並使其去中心化；DeFi 專案則在這個基礎上，讓金融服務去中心化並加以改進。要充分了解 DeFi 提供的金融服務，就必須先理解幾個關鍵概念。</p>
+</div>
+<div class="sect3">
+<h3 id="ch13-acceptability-of-tokens-in-defi"><a class="anchor" href="#ch13-acceptability-of-tokens-in-defi" aria-label="本節連結"></a>13.2.1. DeFi 中代幣的接受度</h3>
+<div class="paragraph">
+<p>在以太坊的 DeFi 生態系中，每一種代幣都是一個獨立的合約。這可能讓初學者感到困惑，因為有些代幣名稱與功能相似，實際上卻是完全不同的貨幣形式。</p>
+</div>
+<div class="paragraph">
+<p>以以太坊上的 Arbitrum rollup 為例，其中有兩種代幣 USDC.e 與 USDC，看起來幾乎一模一樣，但在風險與接受度上差異很大。USDC.e 與 USDC 的目標都是維持與一美元掛鉤的價值。不過，USDC 是在 Arbitrum 鏈上原生發行的，USDC.e 則是 USDC 的跨鏈橋接版本，代表從另一條鏈轉移到 Arbitrum 的代幣。</p>
+</div>
+<div class="paragraph">
+<p>這兩種代幣的風險輪廓明顯不同。USDC.e 承擔了 USDC 本身所有的風險，還多了跨鏈橋接過程帶來的額外風險，例如可能存在的智能合約漏洞。接受度是指一種幣或代幣被各種 DeFi 金融服務接受的廣泛程度，這兩種代幣的接受度也不一樣：有些協議可能只支援 USDC.e，有些只支援 USDC，有些則兩者都接受。</p>
+</div>
+</div>
+<div class="sect3">
+<h3 id="ch13-decentralized-exchanges"><a class="anchor" href="#ch13-decentralized-exchanges" aria-label="本節連結"></a>13.2.2. 去中心化交易所</h3>
+<div class="paragraph">
+<p><em>去中心化交易所</em>（decentralized exchange，DEX）是一種讓你不需要中央機構或中介，就能直接與其他使用者交易加密貨幣的平台。DEX 不仰賴公司來撮合交易，而是使用智能合約自動處理交易。這讓你能保有對自己資金的控制權。</p>
+</div>
+<div class="sect4">
+<h4 id="ch13-the-evolution-of-dexs"><a class="anchor" href="#ch13-the-evolution-of-dexs" aria-label="本節連結"></a>DEX 的演進</h4>
+<div class="paragraph">
+<p>如果你曾在中心化交易所交易過，應該對訂單簿模式不陌生。在這種模式中，買單與賣單會連同使用者願意支付或接受的價格一起列出。當買單與賣單相符時，交易就會成交。訂單簿顯示所有掛單，讓交易者看得到市場深度與流動性。</p>
+</div>
+<div class="paragraph">
+<p>這種模式在鏈上始終沒有真正流行起來，因為區塊鏈比傳統網站慢得多，使用成本也高得多。在訂單簿上交易的延遲，加上每下一筆訂單都要支付交易費用，讓使用者體驗糟透了。2017 至 2018 年間，EtherDelta 曾嘗試實作鏈上訂單簿，之後也有其他幾個純訂單簿模式的嘗試，但都沒有獲得太多關注。</p>
+</div>
+<div class="paragraph">
+<p>Bancor 率先開創了<em>自動造市商</em>（automated market maker，AMM）模式。與訂單簿模式不同，AMM 不仰賴買方與賣方下單，而是使用流動性池，由使用者提供成對的代幣。<sup class="footnote">[<a id="_footnoteref_33" class="footnote" href="#_footnotedef_33" title="查看註腳">33</a>]</sup>價格由一個公式決定，依據的是池中代幣數量的比例。這種模式讓流動性與交易得以持續不斷。</p>
+</div>
+<div class="paragraph">
+<p>Uniswap 以簡單卻有效的 <em>x × y = k</em> 公式大幅改進並普及了 AMM 模式：兩種代幣數量的乘積維持不變。在這個公式中，<em>x</em> 與 <em>y</em> 代表池中兩種代幣的數量，<em>k</em> 則是一個常數。每當發生交易，代幣的數量會改變，但兩者數量的乘積維持不變，確保池子永遠能提供流動性。這項創新讓去中心化交易所上的交易更容易進行，也更有效率。</p>
+</div>
+<div class="paragraph">
+<p>DEX 讓任何人都能藉由提供流動性成為造市商，並為自己的貢獻賺取手續費。只要流動性足夠，交易就能迅速完成，而且不需要中央機構的許可，如圖 13-2 所示。<sup class="footnote">[<a id="_footnoteref_34" class="footnote" href="#_footnotedef_34" title="查看註腳">34</a>]</sup></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<picture><source type="image/webp" srcset="/images/ch13/maet_1302.webp"><img src="/images/ch13/maet_1302.png" alt="Decentralized exchange liquidity pool" width="1409" height="222" loading="lazy" decoding="async"></picture>
+</div>
+<div class="title">圖 13-2. 去中心化交易所的流動性池</div>
+</div>
+</div>
+<div class="sect4">
+<h4 id="ch13-impermanent-loss"><a class="anchor" href="#ch13-impermanent-loss" aria-label="本節連結"></a>無常損失</h4>
+<div class="paragraph">
+<p>在 DEX 上提供流動性並不是沒有風險。除了智能合約遭駭之外，還有一種更不容易察覺的風險，稱為<em>無常損失</em>（impermanent loss）。要理解無常損失，首先要掌握基本的 Uniswap V2 池子模型。</p>
+</div>
+<div class="paragraph">
+<p>Uniswap V2 等許多熱門的 DEX 使用恆定乘積公式 <em>x × y = k</em>，其中 <em>x</em> 與 <em>y</em> 是流動性池中兩種代幣的數量，<em>k</em> 是一個常數。代幣的價格由池中代幣數量的比例決定。例如，如果一個池子裡有 100 USDC 和 10 ETH，1 ETH 的價格就是 100 ÷ 10 = 10 USDC。如果池子因為交易變成 200 USDC 和 10 ETH，1 ETH 的價格就變成 200 ÷ 10 = 20 USDC。</p>
+</div>
+<div class="paragraph">
+<p>這個公式是理解池子如何運作的簡化方式。提供流動性時，你扮演的是造市商的角色。使用者從池子買入 ETH 時，你就是賣出 ETH、收取 USDC；使用者賣出 ETH 時，你就是買入 ETH、付出 USDC。作為回報，你可以賺取交易手續費。然而，這個過程會讓你面臨無常損失：當池中代幣的價格與你存入時相比發生變化，就會出現無常損失。如果 ETH 的價格大幅上漲或下跌，即使你收取了手續費，你在池中持有的資產價值，仍可能低於單純持有原本那些代幣的價值。</p>
+</div>
+<div class="paragraph">
+<p>這種開放性也為 DEX 帶來了重大挑戰。由於任何人都能建立區塊鏈並推出 DEX，現在各條區塊鏈上已經有超過一百個 DEX（實際數量可能多得多）。數量如此之多，造成流動性分散，使得兌換（swap，也就是使用者把一種加密貨幣換成另一種）的效率，不如在流動性集中的平台上那麼好。這種分散可能導致較高的<em>滑價</em>（slippage），也就是預期的交易價格與實際成交價格之間的差距。流動性不足時就會出現高滑價，使交易以比預期更不利的價格成交。</p>
+</div>
+</div>
+<div class="sect4">
+<h4 id="ch13-why-the-constant-product-formula-works"><a class="anchor" href="#ch13-why-the-constant-product-formula-works" aria-label="本節連結"></a>恆定乘積公式為什麼可行</h4>
+<div class="paragraph">
+<p><em>x × y = k</em> 公式的精妙之處，在於它的數學形狀：一條雙曲線。這並不是巧合，而是刻意的設計選擇，用來保護流動性池不會被完全掏空。</p>
+</div>
+<div class="paragraph">
+<p><strong>線性定價的問題</strong></p>
+</div>
+<div class="paragraph">
+<p>想像一下，如果 DEX 改用簡單的線性（固定）定價公式，不管剩下多少流動性，用 1 ETH 兌換一律剛好拿到 2 USDC。這會造成非常糟糕的交易環境：只要這個固定匯率與市場其他地方的價格不同，套利者就有誘因不斷與池子交易，直到其中一邊的儲備耗盡為止：</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>如果池子對 ETH 的定價低於市場（例如在其他地方 ETH 的價格遠高於每 ETH 2 USDC 的情況），任何人都可以一直用 USDC 換 ETH，直到池中的 ETH 幾乎被換光。</p>
+</li>
+<li>
+<p>反過來，如果池子對 ETH 的定價過高，交易者就會把 ETH 賣進池子，用同樣的方式掏空 USDC。</p>
+</li>
+<li>
+<p>池子無法單靠交易流量讓自己重新平衡：因為報價永遠不會隨著剩餘的流動性調整，儲備會一直偏向其中一種代幣，直到某一種資產耗盡為止。</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>這就是為什麼固定價格或線性曲線本質上不適合 AMM：它們會讓池子被完全掏空。</p>
+</div>
+<div class="paragraph">
+<p><strong>雙曲線的解法</strong></p>
+</div>
+<div class="paragraph">
+<p>恆定乘積公式 <em>x × y = k</em> 會產生一條雙曲線，而這條曲線有一個關鍵的性質：它永遠不會碰到任何一個座標軸。當你試著買入越來越多的某種代幣時，價格會呈指數上升，<sup class="footnote">[<a id="_footnoteref_35" class="footnote" href="#_footnotedef_35" title="查看註腳">35</a>]</sup>使得把任何一種代幣掏空到零在數學上不可能做到。</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Token Y (e.g., USDC)
+    │
+200 ┤·
+    │ ·
+    │  ·
+150 ┤   ·
+    │    ·
+    │     ·
+100 ┤       ·    ← x × y = k (hyperbola)
+    │         ·
+    │           ··
+ 50 ┤              ···
+    │                  ······
+    │                          ·················
+  0 ┼────────────────────────────────────────────→ Token X (e.g., ETH)
+    0        50       100       150       200</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>假設有一個池子，裡面有 100 ETH 與 200 USDC（k = 20,000）：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>用 1 ETH 兌換 USDC</strong>：你會拿到大約 1.98 USDC（接近 1:2 的比例）</p>
+</li>
+<li>
+<p><strong>用 50 ETH 兌換 USDC</strong>：你只會拿到 66.67 USDC（而不是線性模型所暗示的 100）</p>
+</li>
+<li>
+<p><strong>想拿走全部 200 USDC</strong>：你得提供無限多的 ETH</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>計算輸出量的公式是：</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Δy = (y × Δx) / (x + Δx)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>其中 <em>Δx</em> 是投入的數量，<em>Δy</em> 是換得的數量。當 <em>Δx</em> 趨近無限大時，<em>Δy</em> 會趨近 <em>y</em>（總儲備量），但永遠不會達到。</p>
+</div>
+<div class="paragraph">
+<p>正是這種漸近的特性讓 AMM 安全。交易規模相對於池子越大，兌換率就越差。這就產生了<em>滑價</em>，也就是預期價格與實際成交價格之間的差距，自然會抑制那些會大幅耗盡池子的交易。</p>
+</div>
+<div class="paragraph">
+<p>雙曲線確保了流動性池能自我保護：一種代幣越稀少，價格就越高，形成一道經濟上的屏障，防止池子被完全掏空。正是這個優雅的數學性質，讓 Uniswap 的簡單公式在實現免信任、無需許可的交易上具有革命性的意義。</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class="icon">
+<div class="title">備註</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Uniswap 可以說是當前 DeFi 版圖中最重要的專案之一，它的靈感來自 Vitalik Buterin 在 2016 年發表的一篇 Reddit 貼文。據說 Hayden Adams 過去沒有任何寫程式的經驗，他花了一年時間，用 Vyper 程式語言開發出 Uniswap V1。</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h3 id="ch13-lending-markets"><a class="anchor" href="#ch13-lending-markets" aria-label="本節連結"></a>13.2.3. 借貸市場</h3>
+<div class="paragraph">
+<p><em>借貸市場</em>（lending market），又稱<em>貨幣市場</em>（money market），是一種促成加密貨幣借出與借入的去中心化平台，使用智能合約讓整個過程自動化並確保安全。與傳統金融體系不同，借貸市場不需要銀行之類的中介機構，處理貸款的方式更透明，也更有效率。</p>
+</div>
+<div class="paragraph">
+<p>在借貸市場中，想用加密資產賺取利息的使用者，可以把資金存進借貸池。這些存款構成平台整體的流動性。出借人可以從存款賺取利息，利率通常依據池中的供需以演算法決定。借款的需求越高，利率就越高，進而吸引更多出借人把資產投入池中。</p>
+</div>
+<div class="paragraph">
+<p>另一方面，借款人可以提供抵押品來取得這些資金，抵押品的價值通常高於他們想借的金額。這種超額抵押對借貸來說非常重要，用來降低違約的風險，主要是因為大多數加密資產的價格波動很大，如果貸款沒有超額抵押，借貸市場可能會留下呆帳。<sup class="footnote">[<a id="_footnoteref_36" class="footnote" href="#_footnotedef_36" title="查看註腳">36</a>]</sup>抵押品鎖在智能合約中，確保借款人無法償還貸款時，可以清算抵押品來彌補未償還的金額。</p>
+</div>
+<div class="paragraph">
+<p>這套機制保護了出借人，也確保借貸池保有償付能力。圖 13-3 是一個簡化的版本：出借人提供流動性，並收取借款人支付的年利息，而借款人則提領出借人提供的流動性。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<picture><source type="image/webp" srcset="/images/ch13/maet_1303.webp"><img src="/images/ch13/maet_1303.png" alt="Lending market basic flow" width="1409" height="222" loading="lazy" decoding="async"></picture>
+</div>
+<div class="title">圖 13-3. 借貸市場的基本流程</div>
+</div>
+<div class="paragraph">
+<p>借貸市場的利率是動態的，會隨市場狀況波動。平台的演算法會持續調整利率，平衡可用資金的供給與貸款的需求。這創造出一個有效率且反應靈敏的金融生態系，讓出借人與借款人都能受惠於公平、由市場決定的利率。</p>
+</div>
+<div class="paragraph">
+<p>抵押率是借貸市場另一個重要的面向。抵押率決定擔保一筆貸款需要多少抵押品。例如，常見的抵押率可能是 150%，也就是說，借款人要借價值 100 美元的加密貨幣，至少需要存入價值 150 美元的抵押品，如圖 13-4 所示。這確保有足夠的緩衝，能吸收價格波動可能造成的損失。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<picture><source type="image/webp" srcset="/images/ch13/maet_1304.webp"><img src="/images/ch13/maet_1304.png" alt="Lending market collateralization" width="969" height="223" loading="lazy" decoding="async"></picture>
+</div>
+<div class="title">圖 13-4. 借貸市場的抵押</div>
+</div>
+<div class="paragraph">
+<p>如果抵押品的價值跌破某個門檻，平台的智能合約就會啟動清算程序，也就是出售抵押品來償還貸款，藉此保護出借人免於可能的損失。清算機制對維持借貸池的穩定與償付能力非常重要。</p>
+</div>
+<div class="sect4">
+<h4 id="ch13-incentives-in-defi"><a class="anchor" href="#ch13-incentives-in-defi" aria-label="本節連結"></a>DeFi 中的誘因</h4>
+<div class="paragraph">
+<p>DeFi 的大多數環節都是開放的，必須仰賴適當的誘因才能有效運作。例如，大多數借貸市場的清算程序，都要靠使用者持續監看哪些貸款可以被清算。一旦發現這樣的貸款，他們就會進行清算。為了激勵使用者執行這些工作，他們可以獲得清算金額的一部分作為獎勵。</p>
+</div>
+<div class="paragraph">
+<p>這種提供誘因的概念，是區塊鏈與 DeFi 的根本。這些系統中的許多機制都是依據賽局理論的原則設計的，確保參與者的行為能維持並提升網路的功能與安全。誘因讓使用者的行為與協議的整體目標一致，形成一個能自我維持的生態系。</p>
+</div>
+<div class="paragraph">
+<p>就像 DeFi 中的大多數事物一樣，可組合性是關鍵。單看借貸市場本身，似乎並不特別了不起，尤其大多數借貸市場都要求超額抵押才能借款。然而，當你把借款的能力與其他 DeFi 基本元件結合起來，就能組合出強大的功能，達成各式各樣的結果。</p>
+</div>
+<div class="paragraph">
+<p>例如，結合借貸市場與 DEX，你就能重現一種稱為<em>放空</em>（shorting）的金融操作。放空是預期某項資產價格會下跌時使用的策略。基本上，你先借入這項資產並以目前的價格賣出，希望之後能以較低的價格買回、歸還借來的資產，並賺取其中的價差。</p>
+</div>
+<div class="paragraph">
+<p>以下是在 DeFi 中放空的方法：</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>抵押資產 A</strong>：把資產 A 存進借貸市場作為抵押品。</p>
+</li>
+<li>
+<p><strong>借入資產 B</strong>：借入你想放空的資產 B。</p>
+</li>
+<li>
+<p><strong>在 DEX 上賣出資產 B</strong>：把借來的資產 B 在去中心化交易所上賣掉。</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>這麼做，你就等於以 1 倍槓桿放空了資產 B。<sup class="footnote">[<a id="_footnoteref_37" class="footnote" href="#_footnotedef_37" title="查看註腳">37</a>]</sup>如果資產 B 的價格下跌，你就可以用較低的價格把它買回、償還貸款，並保留其中的價差，如圖 13-5 所示。這說明了 DeFi 協議的可組合性如何在去中心化的環境中重現傳統的金融策略。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<picture><source type="image/webp" srcset="/images/ch13/maet_1305.webp"><img src="/images/ch13/maet_1305.png" alt="Shorting strategy using DeFi" width="1410" height="692" loading="lazy" decoding="async"></picture>
+</div>
+<div class="title">圖 13-5. 使用 DeFi 的放空策略</div>
+</div>
+<div class="paragraph">
+<p>借貸市場的應用非常廣泛，有些可能不是一眼就看得出來。你可能會想：既然手上有錢，為什麼還要申請超額抵押的貸款？為什麼不直接用自己的資金？在某些情況下確實如此。然而，借貸市場與 DEX 結合後，可以重現各種金融工具，甚至能「做多」一項資產，而不只是放空。借貸市場的另一個好處，是能避免產生應稅事件。在許多司法管轄區，借入資產不算應稅事件，賣出資產卻算。</p>
+</div>
+<div class="paragraph">
+<p>借貸市場的潛在用途非常多，超出了本書的範圍。不過，借貸市場能提升資本效率，與其他協議結合時，更能為使用者提供極大的彈性。也有一些借貸市場不要求超額抵押，只是目前還沒有獲得太多關注。</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h3 id="ch13-oracles"><a class="anchor" href="#ch13-oracles" aria-label="本節連結"></a>13.2.4. 預言機</h3>
+<div class="paragraph">
+<p>我們在第 11 章詳細討論過，以太坊的預言機是一種把真實世界的資料帶上區塊鏈的服務，讓智能合約能與外部資訊互動。例如，它可以提供加密貨幣的價格資料、天氣狀況或體育賽事的比分，讓智能合約能依據這些外部資料執行。</p>
+</div>
+<div class="paragraph">
+<p>預言機對 DeFi 的許多方面都不可或缺，包括借貸市場的安全。在這些市場中，代幣的價格可以取自 DEX。然而，只依賴這些交易所，可能讓借貸市場容易受到閃電貸攻擊。在這種攻擊中，攻擊者借入一大筆錢，在 DEX 上操縱某種幣或代幣的價格，再利用這個價格變動牟利。</p>
+</div>
+<div class="paragraph">
+<p>預言機另一個重要的功能，是能把偽隨機數帶上鏈。由於以太坊是確定性的，每一次計算都必須產生相同的結果，節點才能一致地驗證每一個區塊與每一筆交易。然而，這種確定性也意味著以太坊的各個組件中不可能存在真正的隨機性。例如，如果你要打造一個賭場平台，產生隨機數就是必要的。用區塊時間戳記、雜湊值或交易數量來產生偽隨機數是一種方法，但這種做法容易遭受攻擊，因為區塊提議者可能事先預測或操縱這些屬性，藉此占賭場的便宜。</p>
+</div>
+<div class="paragraph">
+<p>預言機讓以太坊區塊鏈能使用外部資料，為各種不同的應用開啟了更多可能。</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tbody><tr>
+<td class="icon">
+<div class="title">提示</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>從上面的描述看來，預言機似乎是一個中心化的實體，讓本該去中心化的 DeFi 必須依賴它。不過，雖然 DeFi 的某些環節確實依賴預言機，預言機本身往往高度去中心化，沒有單點故障。</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+</div>
+<div class="sect3">
+<h3 id="ch13-stablecoins"><a class="anchor" href="#ch13-stablecoins" aria-label="本節連結"></a>13.2.5. 穩定幣</h3>
+<div class="paragraph">
+<p><em>穩定幣</em>（stablecoin）是一種設計來維持穩定價值的加密貨幣，通常與美元、歐元或一籃子商品等準備資產掛鉤。穩定幣的目標，是結合加密貨幣的優點（例如安全與去中心化）以及傳統法定貨幣的穩定性。</p>
+</div>
+<div class="paragraph">
+<p>穩定幣透過不同的機制維持穩定。<em>法幣抵押型穩定幣</em>以存放在銀行或其他受信任託管機構的法定貨幣準備作為擔保。例如，每一枚 USDC 或 USDT 代幣，通常都有等額的美元（USD）作為擔保。</p>
+</div>
+<div class="paragraph">
+<p><em>加密資產抵押型穩定幣</em>採取不同的做法，以其他加密貨幣作為擔保。由於加密資產的價格波動很大，這類穩定幣通常採取超額抵押，確保能維持掛鉤。一個著名的例子是 MakerDAO 的 DAI，<sup class="footnote">[<a id="_footnoteref_38" class="footnote" href="#_footnotedef_38" title="查看註腳">38</a>]</sup>使用者鎖定以太幣或其他加密貨幣作為抵押品，來鑄造 DAI。超額抵押提供了緩衝，能抵禦標的資產的價格波動。</p>
+</div>
+<div class="paragraph">
+<p>另外還有<em>演算法穩定幣</em>，它們不依賴抵押品，而是使用演算法與智能合約管理穩定幣的供給量，讓價值保持穩定。這類穩定幣會依據市場需求調整供給，透過擴張或緊縮來維持目標價格。TerraUSD（UST）是演算法穩定幣的知名例子，但它遭遇了嚴重的問題，最終崩潰。</p>
+</div>
+<div class="paragraph">
+<p>至今還沒有一個成功、資本充足的演算法穩定幣；每一次的嘗試，不是以災難性的失敗收場，就是找不到產品市場契合。</p>
+</div>
+<div class="paragraph">
+<p>穩定幣也為 DEX 的流動性帶來重大貢獻。穩定幣提供了一種穩定、可預期的資產，讓交易更順暢、市場更有效率。交易者可以輕鬆地建立或結清部位，不必擔心價格波動，這對市場的有效運作很重要。</p>
+</div>
+<div class="sect4">
+<h4 id="ch13-limitations-of-fiat-collateralized-stablecoins"><a class="anchor" href="#ch13-limitations-of-fiat-collateralized-stablecoins" aria-label="本節連結"></a>法幣抵押型穩定幣的限制</h4>
+<div class="paragraph">
+<p>一個有趣的概念是，像 USDC 或 USDT 這類分別可以在 Coinbase 與 Bitfinex 等平台兌換成美元的穩定幣，在市值規模上的成長潛力是有限的。<em>市值</em>（market cap，或 market capitalization）是所有流通中的幣的總價值，以幣的目前價格乘以總供給量計算。</p>
+</div>
+<div class="paragraph">
+<p>之所以有這個限制，是因為如果某條區塊鏈上的穩定幣總價值超過攻擊這條區塊鏈的成本，就會讓惡意人士有強烈的誘因嘗試發動攻擊。這是因為攻破這條區塊鏈的潛在報酬可能超過成本，使這成為一個真實而且可以量化的風險。</p>
+</div>
+<div class="paragraph">
+<p>所幸，攻擊以太坊這樣穩健又安全的區塊鏈既不容易，也不便宜。這種攻擊的高成本與複雜度，構成了強大的嚇阻力。然而，在考量任何區塊鏈上穩定幣的可擴展性與安全性時，都應該把這個概念放在心上。</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h3 id="ch13-liquid-staking"><a class="anchor" href="#ch13-liquid-staking" aria-label="本節連結"></a>13.2.6. 流動性質押</h3>
+<div class="paragraph">
+<p><em>流動性質押</em>（liquid staking）是一種機制，讓使用者能在權益證明（PoS）網路中質押加密資產，同時保有這些資產的流動性。一般來說，代幣一旦質押就會被鎖定，在質押期間結束之前無法動用或交易。流動性質押發行一種代表已質押資產的衍生代幣，解決了這個問題。這種衍生代幣可以交易、轉帳，或用於其他 DeFi 協議，讓使用者在賺取質押獎勵的同時仍保有流動性。</p>
+</div>
+<div class="paragraph">
+<p>例如，如果你在流動性質押平台上質押 ETH，你可能會拿到 stETH 這樣的衍生代幣。你的 ETH 仍然處於質押狀態並持續賺取獎勵，而 stETH 代幣則可以自由交易，或用於其他 DeFi 活動，讓你享有質押的好處，又不會失去對資金的使用權。</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class="icon">
+<div class="title">備註</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>一種類似流動性質押的新型衍生品正在興起，稱為<em>流動性再質押</em>（liquid restaking）。透過 EigenLayer 等協議，代幣不只為以太坊鏈質押，還會在一個稱為再質押的過程中，用來保障其他服務的安全。這項新發展引發了疑慮：它可能讓以太坊的共識機制負擔過重。</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="paragraph">
+<p>收到的代幣（例如 Lido 發行的 stETH）就像一種與 ETH 價格掛鉤的穩定幣。這代表它不只帶有穩定幣常見的風險（例如與美元掛鉤的穩定幣所面臨的那些風險），還多了與罰沒有關的風險。流動性質押協議會拿使用者存入的 ETH 建立驗證者節點並賺取質押獎勵，再把獎勵分配給衍生代幣的持有人。這個過程帶來了罰沒的風險：如果驗證者節點未能正確運作，部分質押的 ETH 可能會損失。</p>
+</div>
+<div class="paragraph">
+<p>除了這些風險之外，流動性質押還可能為區塊鏈本身帶來系統性風險。例如，在本書撰寫時，Lido 擁有所有已質押 ETH 的 29%。如果這個比例增加到 33% 以上，就可能造成嚴重的問題。<sup class="footnote">[<a id="_footnoteref_39" class="footnote" href="#_footnotedef_39" title="查看註腳">39</a>]</sup>2022 年 6 月，Lido DAO 曾經投票，要限制 Lido 的質押規模，不讓它超過 33% 的門檻，以避免對以太坊造成潛在的系統性風險。遺憾的是，這項投票並未通過。</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class="icon">
+<div class="title">備註</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>這次投票也引起了爭議，因為大部分的反對票只來自少數幾個錢包。</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+</div>
+<div class="sect3">
+<h3 id="ch13-real-world-assets"><a class="anchor" href="#ch13-real-world-assets" aria-label="本節連結"></a>13.2.7. 真實世界資產</h3>
+<div class="paragraph">
+<p>在 DeFi 的脈絡中，<em>真實世界資產</em>（real-world assets，RWA）是指經過代幣化、帶上區塊鏈的有形資產或傳統金融資產，範圍從不動產、大宗商品，到股票、債券，甚至藝術品都有可能。這些資產的代幣化，是把它們的價值轉換成可以在區塊鏈平台上交易、出借或借入的數位代幣。</p>
+</div>
+<div class="paragraph">
+<p>RWA 有些爭議，因為它們通常需要一個託管機構，而這與區塊鏈免信任的原則相牴觸。這是 DeFi 中最後才真正興起的領域之一，到目前為止，RWA 協議還沒有發生過重大問題。儘管 RWA 違背了加密世界的核心精神，卻開啟了許多新的可能。</p>
+</div>
+<div class="paragraph">
+<p>RWA 一個重要的應用，是把債券帶上鏈，讓使用者能取得相對的無風險利率。這讓非美國公民也能享有美國在 2023 至 2024 年間提供的 5% 利率。RWA 另一個有價值的用途，是讓代幣化的資產可以分割持有，例如擁有某筆不動產的一小部分。</p>
+</div>
+<div class="paragraph">
+<p>由於這個領域仍在起步階段，我們還沒有發掘出它全部的潛力。不過，託管帶來的風險是真實存在的，也令人擔憂。</p>
+</div>
+</div>
+<div class="sect3">
+<h3 id="ch13-bridges-and-omnichain-protocols"><a class="anchor" href="#ch13-bridges-and-omnichain-protocols" aria-label="本節連結"></a>13.2.8. 跨鏈橋與全鏈協議</h3>
+<div class="paragraph">
+<p>隨著區塊鏈生態系的演進，已經發展出各式各樣具有獨特功能與優點的網路。然而，這些網路往往各自獨立運作，限制了資產與資料在彼此之間順暢地轉移。跨鏈橋與全鏈協議的目標就是解決這個問題：促成跨鏈的互動，最終建立一個更緊密互連的區塊鏈生態系。</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class="icon">
+<div class="title">備註</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>跨鏈橋往往非常中心化，因為大多數區塊鏈無從得知其他鏈的狀態。從鏈 A 轉移資金到鏈 B 時，通常會有一個中央機構核准這次跨鏈操作，並在鏈 B 上釋出流動性。這種中心化正是跨鏈橋成為 DeFi 中最常遭駭的協議之一的原因之一。</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="paragraph">
+<p><em>跨鏈橋</em>（bridge）是一種專門的協議，用來促成資產與資料在不同區塊鏈之間轉移，如圖 13-6 所示。它們扮演連接器的角色，讓代幣與其他數位資產能從一條鏈移動到另一條鏈。例如，如果你想把代幣從以太坊轉移到幣安智能鏈（Binance Smart Chain，BSC），就會使用跨鏈橋。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<picture><source type="image/webp" srcset="/images/ch13/maet_1306.webp"><img src="/images/ch13/maet_1306.png" alt="Bridge connecting two blockchains" width="1424" height="227" loading="lazy" decoding="async"></picture>
+</div>
+<div class="title">圖 13-6. 連接兩條區塊鏈的跨鏈橋</div>
+</div>
+<div class="paragraph">
+<p>把代幣從一條鏈橋接到另一條鏈的模式有很多種，每個跨鏈橋都採用某一種特定的模式。最常見的有以下幾種：</p>
+</div>
+<div class="paragraph">
+<p><strong>包裝代幣跨鏈橋（鎖定與鑄造）</strong></p>
+</div>
+<div class="paragraph">
+<p>在這種模式中，跨鏈橋在鏈 A 上收到代幣，把它們鎖進智能合約，然後在鏈 B 上鑄造一種包裝代幣（或稱「專屬」代幣）。包裝代幣就像一張收據，代表被鎖定的代幣。要取回原本的代幣，就在鏈 B 上銷毀包裝代幣，鏈 A 上的代幣隨之解鎖。</p>
+</div>
+<div class="paragraph">
+<p>舉例來說，假設你用「Mastering Bridge」把 ETH 從以太坊轉移到 BSC。你把 ETH 傳送到這個跨鏈橋在以太坊上的智能合約，跨鏈橋就在 BSC 上鑄造一種包裝代幣，例如「MasteringETH」。要回到以太坊，你就在 BSC 上銷毀 MasteringETH，跨鏈橋便會釋出原本的 ETH。這類包裝代幣通常還需要在 DEX 上兌換，才能取得鏈 B 上的原生代幣。</p>
+</div>
+<div class="paragraph">
+<p><strong>鑄造與銷毀</strong></p>
+</div>
+<div class="paragraph">
+<p>這種模式通常由能控制自家代幣鑄造與銷毀功能的專案使用。跨鏈橋不鎖定代幣，而是在鏈 A 上銷毀代幣（減少供給量），並在鏈 B 上鑄造等量的代幣。這需要專案對代幣的智能合約擁有控制權。例如，一個專案可以在以太坊上銷毀以 ETH 為基礎的代幣，並在 BSC 上鑄造同一種代幣，讓跨鏈的總供給量保持不變。</p>
+</div>
+<div class="paragraph">
+<p><strong>流動性跨鏈橋</strong></p>
+</div>
+<div class="paragraph">
+<p>流動性跨鏈橋是最常見的類型，仰賴多條鏈上的代幣池。當你把代幣橋接過去時，跨鏈橋會用它的流動性，在目的鏈上把等值的代幣發給你，通常會收取一筆手續費。與包裝代幣跨鏈橋不同，這種模式不會鑄造新的代幣；跨鏈橋本來就在兩條鏈上都持有代幣。</p>
+</div>
+<div class="paragraph">
+<p>延續前面的例子，如果你把 ETH 從以太坊橋接到 BSC，你會把 ETH 傳送到跨鏈橋在以太坊上的合約，跨鏈橋接著從它在 BSC 上的流動性池釋出 ETH。如果跨鏈橋不控制鑄造，就必須在 BSC 上維持足夠的流動性來支應轉帳。這種模式因為簡單而廣受歡迎，但取決於跨鏈橋能否安全地管理流動性。</p>
+</div>
+<div class="paragraph">
+<p><em>全鏈協議</em>（omnichain protocol）就是第 11 章所討論的跨鏈訊息協議，它進一步延伸了跨鏈互動的概念，能同時在多條區塊鏈之間順暢地通訊與互通。這些協議的目標是建立一個統一的層，讓不同的區塊鏈能無障礙地互動，在鏈與鏈之間轉移資產、資料，甚至智能合約的功能。圖 13-7 展示了一個簡單的全鏈訊息協議：使用者可以在以太坊上發起一筆兌換，並在 BSC 上完成兌換、收到資金。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<picture><source type="image/webp" srcset="/images/ch13/maet_1307.webp"><img src="/images/ch13/maet_1307.png" alt="Omnichain protocol example" width="1424" height="270" loading="lazy" decoding="async"></picture>
+</div>
+<div class="title">圖 13-7. 全鏈協議範例</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h2 id="ch13-decentralized-finance"><a class="anchor" href="#ch13-decentralized-finance" aria-label="本節連結"></a>13.3. （去）中心化金融</h2>
+<div class="paragraph">
+<p>去中心化一向很難定義，而且多半是用來表達一種期望的結果，而不是描述現實。大多數 DeFi 協議並沒有真正去中心化；它們往往依賴擁有重大特權的地址，或核心開發團隊所做的決定，在一個號稱去中心化的系統中形成了權力的集中。</p>
+</div>
+<div class="paragraph">
+<p>DeFi 仍處於早期階段，要靠早期採用者來塑造它的未來，引導它走向正確的方向。雖然去中心化是目標，但也必須認清，它不一定是目前的現實。像 DeFi 這樣的新興市場，可以藉由某種程度的中心化，快速做出決定並推動改變。在快速變化的環境中，這種中心化的決策能提供調適與成長所需的靈活度。</p>
+</div>
+<div class="paragraph">
+<p>隨著 DeFi 持續成熟，目標應該是逐步減少中心化，轉向更去中心化的模式。早期採用者在這個轉變中非常重要，必須在當下對效率與快速決策的需求，以及去中心化的終極願景之間取得平衡。只要理解並面對其中固有的取捨，DeFi 社群就能引導這個系統的演進，更符合它開放、透明與包容的基本原則。</p>
+</div>
+</div>
+<div class="sect2">
+<h2 id="ch13-risks-and-challenges-in-defi"><a class="anchor" href="#ch13-risks-and-challenges-in-defi" aria-label="本節連結"></a>13.4. DeFi 的風險與挑戰</h2>
+<div class="paragraph">
+<p>DeFi 有它自己的一套風險與挑戰，而使用者（包括專家）經常誤解這些風險與挑戰。每個 DeFi 協議都帶有特定的經濟風險與一般的智能合約風險。此外，依去中心化程度的不同，還可能有託管風險或中心化的問題。</p>
+</div>
+<div class="paragraph">
+<p>智能合約風險比較容易一概而論：智能合約可能遭駭，託管機構也可能心懷不軌或犯錯。經濟風險則比較複雜，而且每一種 DeFi 基本元件或協議各有不同。例如，借貸市場的風險是清算，如果市場沒有使用適當的預言機，有時可能會發生錯誤的清算。在 DEX 提供流動性的風險是無常損失。對穩定幣或流動性質押來說，主要的風險則是脫鉤。</p>
+</div>
+<div class="paragraph">
+<p>在使用 DeFi 協議之前，了解其中涉及的所有風險至關重要。除了風險之外，DeFi 也面臨重大的挑戰。許多協議只是分叉自既有的協議，試圖對既有業者發動「吸血鬼攻擊」，卻沒有提供真正的創新。這不僅分散了流動性與使用者，也削弱了整個生態系的整體效能。</p>
+</div>
+<div class="paragraph">
+<p>流動性對大多數協議來說都不可或缺。這些協議在市場熱絡時也許運作良好，在市場低迷時卻往往大幅衰退。大多數 DeFi 協議無法自給自足，往往只有在使用者能獲得獎勵時才運作得起來，原因可能是使用者對產品本身並沒有真正的興趣，也可能是成本高於收益。</p>
+</div>
+<div class="paragraph">
+<p>雖然 DeFi 已經展現出某種程度的產品市場契合，它的未來仍不確定。它可能演變成一套引人注目的全球基礎設施，這是最可能的結果；也可能一直只是少數使用者的小眾市場。</p>
+</div>
+<div class="paragraph">
+<p>DeFi 面臨的一大挑戰是監管。各國與各監管機關的監管環境差異很大，而大多數監管機關都反對完全去中心化的系統。雖然監管機關無法直接阻止這類系統（如果一個智能合約不可變更且已部署在鏈上，監管機關就無法直接介入），卻可以針對開發者與使用者，讓他們難以使用這些智能合約。</p>
+</div>
+<div class="paragraph">
+<p>Tornado Cash 就是一個例子，它的開發者 Alexey Pertsev 在荷蘭被判處 64 個月徒刑。美國財政部以 Tornado Cash 涉嫌被北韓駭客組織 Lazarus 用來洗白非法資金為由，將它列入封鎖名單，Pertsev 隨後於 2022 年 8 月以洗錢罪嫌遭到逮捕。Tornado Cash 協議至今仍可使用，但流動性大幅減少，使用者體驗也變差了。此外，使用過 Tornado Cash 的地址會在中心化交易所被標記，讓使用它變得更加麻煩。</p>
+</div>
+<div class="paragraph">
+<p>類似的情況也發生在其他生態系。例如，Samourai Wallet 的開發者也面臨了法律行動。這種模式顯示，雖然監管機關無法攻擊區塊鏈本身，卻可以把矛頭指向它的使用者與開發者。</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class="icon">
+<div class="title">備註</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>雖然本書作者可能不具備足夠的法律專業，無法完全理解 Samourai Wallet、Tornado Cash 及其他類似案件，但我們不支持因為撰寫去中心化程式碼而對個人採取法律行動。程式碼應該保持自由，工具的創造者不應該因為別人濫用工具而受到懲罰。希望不會再有開發者必須面對這種不公正的後果。</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+</div>
+<div class="sect2">
+<h2 id="ch13-conclusion"><a class="anchor" href="#ch13-conclusion" aria-label="本節連結"></a>13.5. 結語</h2>
+<div class="paragraph">
+<p>DeFi 讓使用者能更靈活地運用自己的資金，創造出新的機會與創新的金融基本元件，例如閃電貸。作為加密領域中的新興市場，DeFi 正在快速發展，但除了代幣兌換、穩定幣與衍生品的創建之外，還沒有找到適當的市場契合。</p>
+</div>
+</div>
+</div>
+</div><section class="footnotes" aria-labelledby="footnotes-title"><h2 id="footnotes-title">註腳</h2><ol><li id="_footnotedef_33" value="33">代幣不一定總是成對，因為有些流動性池可以包含三種以上的代幣，但最常見、也最簡單的安排是成對。 <a class="fn-back" href="#_footnoteref_33" aria-label="返回內文">↩</a></li><li id="_footnotedef_34" value="34">從圖 13-2 看來，BTC 似乎可以在 DEX 上原生兌換，但事實並非如此。DEX 上的 BTC 通常以衍生性合約表示，例如包裝比特幣（Wrapped Bitcoin，WBTC）。這類資產與 BTC 的價格掛鉤，但風險比比特幣區塊鏈上的原生 BTC 高得多。原生資產通常只存在於各自的原生鏈上。在這個例子中，池中使用的 BTC 並不是原生 BTC，而是一種衍生資產，就像穩定幣代表法定貨幣一樣。 <a class="fn-back" href="#_footnoteref_34" aria-label="返回內文">↩</a></li><li id="_footnotedef_35" value="35">譯註：嚴格來說，恆定乘積曲線上的價格並不是指數成長，而是隨著池中代幣接近耗盡而趨近無限大（雙曲線的漸近特性），下文的 Δy 公式也說明了這一點。 <a class="fn-back" href="#_footnoteref_35" aria-label="返回內文">↩</a></li><li id="_footnotedef_36" value="36">呆帳是指借款人違約，而剩下的抵押品不足以支付所欠的金額。這可能是因為市場突然劇烈波動，或抵押品估值不當。與清算（出售抵押品來償還債務）不同，呆帳是無法收回的，會造成借貸協議與其使用者的損失。 <a class="fn-back" href="#_footnoteref_36" aria-label="返回內文">↩</a></li><li id="_footnotedef_37" value="37">空頭部位的大小與借入的金額直接相關。 <a class="fn-back" href="#_footnoteref_37" aria-label="返回內文">↩</a></li><li id="_footnotedef_38" value="38">MakerDAO 現在已更名為 Sky，DAI 則改為 USDS。 <a class="fn-back" href="#_footnoteref_38" aria-label="返回內文">↩</a></li><li id="_footnotedef_39" value="39">如果任何質押者擁有超過 33% 的已質押 ETH，理論上就能攻擊這條鏈，讓最終確定的過程停擺。 <a class="fn-back" href="#_footnoteref_39" aria-label="返回內文">↩</a></li></ol></section>
+  </div>
+  <nav class="pager" aria-label="章節導覽">
+    <a class="pager-link prev" href="/chapters/dapps.html" rel="prev"><span class="pager-dir">← 上一章</span><span class="pager-title">第 12 章　去中心化應用</span></a>
+    <a class="pager-link next" href="/chapters/evm.html" rel="next"><span class="pager-dir">下一章 →</span><span class="pager-title">第 14 章　以太坊虛擬機</span></a>
+  </nav>
+  <p class="edit-link"><a href="https://github.com/awesome-doge/ethereumbook_zh/blob/master/zh-tw/chapter_13.md" rel="noopener">在 GitHub 上檢視或改善本章翻譯</a></p>
+</article>
+
+  </main>
+
+  <aside class="rail" aria-label="本章內容">
+    <p class="rail-title">本章內容</p>
+    <ol>
+      <li><a href="#ch13-defi-versus-traditional-finance">13.1. DeFi 與傳統金融的比較</a></li>
+      <li><a href="#ch13-defi-primitives">13.2. DeFi 的基本元件</a></li>
+      <li><a href="#ch13-decentralized-finance">13.3. （去）中心化金融</a></li>
+      <li><a href="#ch13-risks-and-challenges-in-defi">13.4. DeFi 的風險與挑戰</a></li>
+      <li><a href="#ch13-conclusion">13.5. 結語</a></li>
+    </ol>
+  </aside>
+</div>
+
+<footer class="site-footer">
+  <p>原著《Mastering Ethereum》第二版由 Andreas M. Antonopoulos、Gavin Wood、Carlo Parisi、Alessandro Mazza 與 Niccolò Pozzolini 撰寫，O'Reilly Media 出版。繁體中文翻譯：Dr. Awesome Doge。</p>
+  <p>本書內容以 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh_TW" rel="license noopener">CC BY-NC-ND 4.0</a> 授權釋出（原書出版 12 個月後轉為 CC BY-SA 4.0，本譯本屆時隨之更新） · <a href="https://github.com/awesome-doge/ethereumbook_zh" rel="noopener">GitHub</a> · <a href="https://github.com/awesome-doge/ethereumbook_zh/issues" rel="noopener">回報翻譯問題</a> · <a href="https://github.com/ethereumbook/ethereumbook" rel="noopener">英文原著</a></p>
+</footer>
+
+<dialog class="search" id="search" aria-label="搜尋全書">
+  <form method="dialog" class="search-form" role="search">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input type="search" id="search-input" placeholder="搜尋全書，例如：智能合約、gas、ERC20" autocomplete="off" spellcheck="false" aria-label="搜尋關鍵字">
+    <button type="submit" class="search-close" value="close" aria-label="關閉搜尋">Esc</button>
+  </form>
+  <p class="search-status" aria-live="polite"></p>
+  <ol class="search-results"></ol>
+</dialog>
+</body>
+</html>

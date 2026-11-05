@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" data-base="" data-legacy-ids="/2018/ids.json">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>第 8 章　智能合約與 Vyper｜精通以太坊（第二版）繁體中文版</title>
+<meta name="description" content="智能合約與 Vyper：Vyper 如何以刻意省略功能來減少漏洞、與 Solidity 的比較、裝飾符、函式與變數順序、編譯，以及在編譯器層級防止溢位。">
+<link rel="canonical" href="https://mastering-ethereum.doge.tg/chapters/vyper.html">
+<meta name="author" content="Andreas M. Antonopoulos, Gavin Wood, Carlo Parisi, Alessandro Mazza, Niccolò Pozzolini">
+<meta name="theme-color" content="#f8f9fc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14151b" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="sitemap" type="application/xml" href="/sitemap.xml">
+<meta property="og:site_name" content="精通以太坊第二版繁體中文版">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第 8 章　智能合約與 Vyper｜精通以太坊（第二版）繁體中文版">
+<meta property="og:description" content="智能合約與 Vyper：Vyper 如何以刻意省略功能來減少漏洞、與 Solidity 的比較、裝飾符、函式與變數順序、編譯，以及在編譯器層級防止溢位。">
+<meta property="og:url" content="https://mastering-ethereum.doge.tg/chapters/vyper.html">
+<meta property="og:image" content="https://mastering-ethereum.doge.tg/assets/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="zh_TW">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="prev" href="/chapters/solidity.html">
+<link rel="next" href="/chapters/smart-contract-security.html">
+<script>
+(function(){try{var d=document.documentElement,s=localStorage,t=s.getItem('me-theme'),z=s.getItem('me-size'),f=s.getItem('me-font');if(t&&t!=='auto')d.setAttribute('data-theme',t);if(z)d.style.setProperty('--fs',z+'px');if(f)d.setAttribute('data-font',f)}catch(e){}})();
+</script>
+<link rel="stylesheet" href="/assets/site.css?v=ad2df01e33">
+<link rel="stylesheet" href="/assets/code.css?v=c94d007c0c">
+<script defer src="/assets/site.js?v=33af8366a0"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Chapter","@id":"https://mastering-ethereum.doge.tg/chapters/vyper.html#chapter","name":"第 8 章　智能合約與 Vyper","headline":"第 8 章　智能合約與 Vyper｜精通以太坊（第二版）","description":"智能合約與 Vyper：Vyper 如何以刻意省略功能來減少漏洞、與 Solidity 的比較、裝飾符、函式與變數順序、編譯，以及在編譯器層級防止溢位。","url":"https://mastering-ethereum.doge.tg/chapters/vyper.html","inLanguage":"zh-TW","position":9,"dateModified":"2026-11-03T14:43:31+08:00","isPartOf":{"@id":"https://mastering-ethereum.doge.tg/#book"},"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true},{"@type":"Book","@id":"https://mastering-ethereum.doge.tg/#book","name":"精通以太坊（第二版）","alternateName":["Mastering Ethereum, 2nd Edition","精通以太坊第二版"],"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"inLanguage":"zh-TW","publisher":{"@type":"Organization","name":"O'Reilly Media"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true,"url":"https://mastering-ethereum.doge.tg/","image":"https://mastering-ethereum.doge.tg/assets/og-cover.png","translationOfWork":{"@type":"Book","name":"Mastering Ethereum, 2nd Edition","inLanguage":"en","url":"https://github.com/ethereumbook/ethereumbook"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"精通以太坊（第二版）","item":"https://mastering-ethereum.doge.tg/"},{"@type":"ListItem","position":2,"name":"第 8 章　智能合約與 Vyper","item":"https://mastering-ethereum.doge.tg/chapters/vyper.html"}]}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZVVQYEKMPF"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-ZVVQYEKMPF');</script>
+</head>
+<body class="is-chapter">
+<a class="skip-link" href="#main">跳到主要內容</a>
+<header class="topbar">
+  <button class="icon-btn" type="button" data-action="toggle-nav" aria-controls="sidebar" aria-expanded="false" aria-label="開啟目錄">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+  </button>
+  <a class="brand" href="/" aria-label="精通以太坊（第二版） 首頁">
+    <span class="brand-mark" aria-hidden="true">Ξ</span><span class="brand-text">精通以太坊</span>
+  </a>
+  <p class="topbar-title"><span class="topbar-label">第 8 章</span>智能合約與 Vyper</p>
+  <div class="topbar-actions">
+    <button class="icon-btn search-btn" type="button" data-action="search" aria-label="搜尋全書（快捷鍵 /）">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <span class="search-btn-text">搜尋</span><kbd>/</kbd>
+    </button>
+    <button class="icon-btn" type="button" data-action="settings" aria-controls="settings" aria-expanded="false" aria-label="閱讀設定">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19 9 5l5 14M5.8 14.5h6.4M15 19l3-8 3 8M15.9 16.5h4.2"/></svg>
+    </button>
+  </div>
+  <div class="progress" aria-hidden="true"><span></span></div>
+</header>
+
+<div class="settings" id="settings" hidden>
+  <div class="settings-group" role="group" aria-label="主題">
+    <span class="settings-label">主題</span>
+    <div class="seg">
+      <button type="button" data-theme-set="auto">自動</button>
+      <button type="button" data-theme-set="light">淺色</button>
+      <button type="button" data-theme-set="sepia">護眼</button>
+      <button type="button" data-theme-set="dark">深色</button>
+    </div>
+  </div>
+  <div class="settings-group" role="group" aria-label="字級">
+    <span class="settings-label">字級</span>
+    <div class="seg">
+      <button type="button" data-size="-1" aria-label="縮小字級">A−</button>
+      <output class="size-value" aria-live="polite">18</output>
+      <button type="button" data-size="1" aria-label="放大字級">A+</button>
+    </div>
+  </div>
+  <div class="settings-group" role="group" aria-label="字型">
+    <span class="settings-label">字型</span>
+    <div class="seg">
+      <button type="button" data-font-set="sans">黑體</button>
+      <button type="button" data-font-set="serif">明體</button>
+    </div>
+  </div>
+</div>
+
+<div class="shell">
+  <nav class="sidebar" id="sidebar" aria-label="全書目錄">
+    <div class="sidebar-head">
+      <a href="/" class="sidebar-book">精通以太坊（第二版）</a>
+      <span class="sidebar-sub">繁體中文版</span>
+    </div>
+    <ol class="book-toc">
+      <li>
+        <a href="/chapters/preface.html"><span class="toc-label">前言</span></a>
+      </li>
+      <li>
+        <a href="/chapters/what-is-ethereum.html"><span class="toc-label">第 1 章</span>什麼是以太坊？</a>
+      </li>
+      <li>
+        <a href="/chapters/ethereum-basics.html"><span class="toc-label">第 2 章</span>以太坊基礎</a>
+      </li>
+      <li>
+        <a href="/chapters/nodes.html"><span class="toc-label">第 3 章</span>以太坊節點</a>
+      </li>
+      <li>
+        <a href="/chapters/cryptography.html"><span class="toc-label">第 4 章</span>密碼學</a>
+      </li>
+      <li>
+        <a href="/chapters/wallets.html"><span class="toc-label">第 5 章</span>錢包</a>
+      </li>
+      <li>
+        <a href="/chapters/transactions.html"><span class="toc-label">第 6 章</span>交易</a>
+      </li>
+      <li>
+        <a href="/chapters/solidity.html"><span class="toc-label">第 7 章</span>智能合約與 Solidity</a>
+      </li>
+      <li class="is-current">
+        <a href="/chapters/vyper.html" aria-current="page"><span class="toc-label">第 8 章</span>智能合約與 Vyper</a>
+        <ol class="section-toc">
+          <li><a href="#ch08-vulnerabilities-and-vyper">8.1. 漏洞與 Vyper</a></li>
+          <li><a href="#ch08-comparison-to-solidity">8.2. 與 Solidity 的比較</a></li>
+          <li><a href="#ch08-decorators">8.3. 裝飾器</a></li>
+          <li><a href="#ch08-function-and-variable-ordering">8.4. 函式與變數的順序</a></li>
+          <li><a href="#ch08-compilation">8.5. 編譯</a></li>
+          <li><a href="#ch08-protecting-against-overflow-errors-at-the-compiler-level">8.6. 在編譯器層級防範溢位錯誤</a></li>
+          <li><a href="#ch08-reading-and-writing-data">8.7. 讀寫資料</a></li>
+          <li><a href="#ch08-conclusion">8.8. 結語</a></li>
+        </ol>
+      </li>
+      <li>
+        <a href="/chapters/smart-contract-security.html"><span class="toc-label">第 9 章</span>智能合約安全</a>
+      </li>
+      <li>
+        <a href="/chapters/tokens.html"><span class="toc-label">第 10 章</span>代幣</a>
+      </li>
+      <li>
+        <a href="/chapters/oracles.html"><span class="toc-label">第 11 章</span>預言機</a>
+      </li>
+      <li>
+        <a href="/chapters/dapps.html"><span class="toc-label">第 12 章</span>去中心化應用</a>
+      </li>
+      <li>
+        <a href="/chapters/defi.html"><span class="toc-label">第 13 章</span>去中心化金融</a>
+      </li>
+      <li>
+        <a href="/chapters/evm.html"><span class="toc-label">第 14 章</span>以太坊虛擬機</a>
+      </li>
+      <li>
+        <a href="/chapters/consensus.html"><span class="toc-label">第 15 章</span>共識</a>
+      </li>
+      <li>
+        <a href="/chapters/scaling.html"><span class="toc-label">第 16 章</span>以太坊擴容</a>
+      </li>
+      <li>
+        <a href="/chapters/zero-knowledge-proofs.html"><span class="toc-label">第 17 章</span>零知識證明</a>
+      </li>
+    </ol>
+    <div class="sidebar-foot">
+      <a href="https://github.com/awesome-doge/ethereumbook_zh" rel="noopener">GitHub 原始碼</a>
+    </div>
+  </nav>
+  <div class="scrim" data-action="close-nav" hidden></div>
+
+  <main id="main" class="main" tabindex="-1">
+<article class="chapter" aria-labelledby="ch08">
+  <nav class="breadcrumb" aria-label="導覽路徑"><a href="/">精通以太坊（第二版）</a><span aria-hidden="true">/</span><span>第 8 章</span></nav>
+  <header class="chapter-head">
+    <p class="chapter-label">第 8 章</p>
+    <h1 id="ch08">智能合約與 Vyper</h1>
+    <p class="chapter-meta">約 14 分鐘閱讀 · 8 個小節</p>
+  </header>
+  <div class="prose">
+<div class="sect1">
+
+<div class="sectionbody">
+<div class="paragraph">
+<p>Vyper 是一種成熟的合約導向程式語言，用於以太坊虛擬機（EVM）。它讓開發者更容易寫出好懂的程式碼，藉此提供更好的可審計性。事實上，Vyper 的原則之一，就是讓開發者幾乎不可能寫出會誤導人的程式碼。</p>
+</div>
+<div class="paragraph">
+<p>本章會先看看智能合約的常見問題，再介紹 Vyper 這種合約程式語言，並與 Solidity 比較，說明兩者的差異。</p>
+</div>
+<div class="sect2">
+<h2 id="ch08-vulnerabilities-and-vyper"><a class="anchor" href="#ch08-vulnerabilities-and-vyper" aria-label="本節連結"></a>8.1. 漏洞與 Vyper</h2>
+<div class="paragraph">
+<p>光是 2023 年，以太坊生態系中就有將近 20 億美元因為智能合約漏洞而被盜。漏洞是透過程式碼進入智能合約的。我們有充分的理由相信，這些漏洞並不是故意寫進去的；但無論如何，不理想的智能合約程式碼確實讓以太坊使用者意外損失了資金，這並不是好事。Vyper 的設計目標，是讓人更容易寫出安全的程式碼；換句話說，也就是讓人更難在不經意間寫出會誤導人或有漏洞的程式碼。</p>
+</div>
+</div>
+<div class="sect2">
+<h2 id="ch08-comparison-to-solidity"><a class="anchor" href="#ch08-comparison-to-solidity" aria-label="本節連結"></a>8.2. 與 Solidity 的比較</h2>
+<div class="paragraph">
+<p>Vyper 讓不安全的程式碼更難寫出來的做法之一，是刻意省略 Solidity 的部分功能。這項設計取捨源自 Vyper「安全第一」的原則，也受到 Python 清楚、簡潔風格的啟發。考慮用 Vyper 開發智能合約的人，有必要了解 Vyper 缺少哪些功能，以及為什麼缺少。本節會逐一介紹這些功能，並說明省略它們的理由。</p>
+</div>
+<div class="paragraph">
+<p>雖然 Vyper 為了減少歧義而精簡了功能，它仍然隨著開發者與審計人員的實際需求不斷演進。例如，最初「合約只放在單一檔案裡」的理念有助於把可審計性發揮到最大，但隨著協議變得越來越龐大、複雜，這個理念最後成了瓶頸。為了解決這個問題，現在的 Vyper 引進了一套完善的模組系統，讓開發者能把合約拆成多個檔案，同時仍然嚴格控管狀態的存取與程式碼的重複使用。這套模組系統依循的是組合的原則，而不是傳統的繼承，在結構與可讀性之間取得了更好的平衡。在去中心化金融（DeFi）協議與質押系統這類對可靠性要求很高的場景中，Vyper 的角色越來越重要，因為這些領域的開發者特別重視程式碼的清晰與容易審計。</p>
+</div>
+<div class="sect3">
+<h3 id="ch08-modifiers"><a class="anchor" href="#ch08-modifiers" aria-label="本節連結"></a>8.2.1. 修飾符</h3>
+<div class="paragraph">
+<p>我們在第 7 章看過，Solidity 的函式可以使用修飾符。例如，下面這個函式 <code>changeOwner</code> 在執行時，會一併執行一個名為 <code>onlyBy</code> 的修飾符裡的程式碼：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="solidity">function changeOwner(address _newOwner)
+ public
+ onlyBy(owner)
+{
+ owner = _newOwner;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>這個修飾符強制執行一條與所有權有關的規則。你可以看到，這個修飾符的作用，是替 <code>changeOwner</code> 函式先做一次預先檢查：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="solidity">modifier onlyBy(address _account)
+{
+ require(msg.sender == _account);
+ _;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>不過修飾符的用途不只是像這樣做檢查。事實上，修飾符可以在呼叫它的函式的脈絡中，大幅改變智能合約的環境。簡單地說，修飾符的影響<em>無所不在</em>。</p>
+</div>
+<div class="paragraph">
+<p>再看另一個 Solidity 風格的例子：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="solidity">enum Stages {
+ SafeStage,
+ DangerStage,
+ FinalStage
+}
+uint public creationTime = block.timestamp;
+Stages public stage = Stages.SafeStage;
+function nextStage() internal {
+ stage = Stages(uint256(stage) + 1);
+}
+modifier stageTimeConfirmation() {
+ if (stage == Stages.SafeStage &amp;&amp;
+ block.timestamp &gt;= creationTime + 10 days)
+ nextStage();
+ _;
+}
+function a()
+ public
+ stageTimeConfirmation
+ // More code goes here
+{
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>一方面，開發者應該檢查自己的程式碼所呼叫的所有其他程式碼。但在某些情況下（例如時間緊迫，或因為疲憊而無法專心），開發者還是可能漏看某一行程式碼。如果開發者必須在一個很大的檔案裡跳來跳去，一邊在腦中追蹤函式的呼叫層級，一邊記住智能合約各個變數的狀態，漏看的可能性就更高了。</p>
+</div>
+<div class="paragraph">
+<p>我們再深入看看前面這個例子。假設有位開發者正在撰寫一個名為 <code>a</code> 的公開函式。這位開發者剛接觸這份合約，用的是別人寫好的修飾符。乍看之下，<code>stageTimeConfirmation</code> 修飾符似乎只是針對呼叫它的函式，檢查一下合約建立了多久。開發者可能<em>沒有</em>注意到的是，這個修飾符還會呼叫另一個函式 <code>nextStage</code>。在這個簡化的示範情境中，只要呼叫公開函式 <code>a</code>，智能合約的 <code>stage</code> 變數就會從 <code>SafeStage</code> 變成 <code>DangerStage</code>。</p>
+</div>
+<div class="paragraph">
+<p>Vyper 乾脆完全拿掉了修飾符。Vyper 的建議是：如果你只是用修飾符來做斷言，那就直接在函式裡寫行內的檢查與 assert；如果你要修改智能合約的狀態之類的，同樣把這些修改明確地寫成函式的一部分。這樣做能提升可審計性與可讀性，因為讀程式碼的人不必在腦中（或動手）把修飾符的程式碼「套」到函式外面，才能看懂函式在做什麼。</p>
+</div>
+</div>
+<div class="sect3">
+<h3 id="ch08-class-inheritance"><a class="anchor" href="#ch08-class-inheritance" aria-label="本節連結"></a>8.2.2. 類別繼承</h3>
+<div class="paragraph">
+<p>繼承讓程式設計師能從既有的軟體函式庫取得現成的功能、屬性與行為，善用預先寫好的程式碼。繼承很強大，也能促進程式碼的重複使用。Solidity 支援多重繼承與多型，這些雖然是物件導向程式設計的關鍵特性，Vyper 卻不支援。Vyper 認為，實作繼承會讓寫程式的人與審計人員必須在多個檔案之間來回跳轉，才能了解程式在做什麼。Vyper 也認為多重繼承會讓程式碼複雜到難以理解；<a href="https://oreil.ly/bkGwS" rel="noopener" target="_blank">Solidity 文件</a>也間接承認了這一點，因為它就舉了一個例子，說明多重繼承可能造成的問題。</p>
+</div>
+</div>
+<div class="sect3">
+<h3 id="ch08-inline-assembly"><a class="anchor" href="#ch08-inline-assembly" aria-label="本節連結"></a>8.2.3. 行內組合語言</h3>
+<div class="paragraph">
+<p>行內組合語言讓開發者能以低階的方式存取 EVM，讓 Solidity 程式直接使用 EVM 指令來執行運算。例如，下面這段組合語言程式碼會把記憶體位置 <code>0x80</code> 的值加上 3：</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>3 0x80 mload add 0x80 mstore</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>這麼一來，就無法靠搜尋變數名稱找出讀取或修改該變數的所有位置。Vyper 認為，為了額外的能力而犧牲可讀性，代價太高，因此不支援行內組合語言。</p>
+</div>
+</div>
+<div class="sect3">
+<h3 id="ch08-function-overloading"><a class="anchor" href="#ch08-function-overloading" aria-label="本節連結"></a>8.2.4. 函式多載</h3>
+<div class="paragraph">
+<p>函式多載讓開發者能寫出多個同名的函式。實際使用哪一個函式，取決於傳入的引數型別。以下面兩個函式為例：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="solidity">function f(uint256 _in) public pure returns (uint256 out) {
+ out = 1;
+}
+function f(uint256 _in, bytes32 _key) public pure returns (uint256 out) {
+ out = 2;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>第一個函式（名為 <code>f</code>）接受一個型別為 <code>uint256</code> 的輸入引數；第二個函式（同樣名為 <code>f</code>）接受兩個引數，一個是 <code>uint256</code> 型別，另一個是 <code>bytes32</code> 型別。同名的函式有多個定義、接受不同的引數，容易讓人混淆，所以 Vyper 不支援函式多載。</p>
+</div>
+</div>
+<div class="sect3">
+<h3 id="ch08-variable-typecasting"><a class="anchor" href="#ch08-variable-typecasting" aria-label="本節連結"></a>8.2.5. 變數型別轉換</h3>
+<div class="paragraph">
+<p>Vyper 處理型別轉換的方式和 Solidity 很不一樣：它把明確而安全的型別處理放在便利性之前。Vyper 要求所有的型別轉換都必須明確地透過內建的 <code>convert()</code> 函式進行，確保開發者隨時都清楚資料型別在什麼時候、以什麼方式被改變。</p>
+</div>
+<div class="paragraph">
+<p>型別轉換可以分成兩類：可能遺失資訊的，以及不會遺失資訊的。Vyper 的 <code>convert()</code> 函式兩種情況都能處理，但一定會明確地做邊界檢查，避免出現意料之外的行為。例如，從較大的整數型別轉換成較小的型別時，如果值超出目標型別的範圍，Vyper 會回復這筆交易。</p>
+</div>
+<div class="paragraph">
+<p>Vyper 的型別轉換語法很直接：</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre># Converting between integer types
+small_value: uint8 = 42
+large_value: uint256 = convert(small_value, uint256)  # Safe upcast
+back_to_small: uint8 = convert(large_value, uint8)   # Bounds-checked downcast</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>這種明確的做法代表，處理型別轉換時，Vyper 的程式碼可能比 Solidity 冗長，但也安全得多。因為每一次轉換都必須是刻意且明確的，所以不可能意外截斷數值，也不會出現意料之外的溢位行為。如果轉換會造成資料遺失，或輸入值超出目標型別的有效範圍，<code>convert()</code> 函式就會回復交易。</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h2 id="ch08-decorators"><a class="anchor" href="#ch08-decorators" aria-label="本節連結"></a>8.3. 裝飾器</h2>
+<div class="paragraph">
+<p>每個函式的開頭都可以使用下列裝飾器：</p>
+</div>
+<div class="paragraph">
+<p><strong>@internal</strong></p>
+</div>
+<div class="paragraph">
+<p><code>@internal</code> 裝飾器讓函式無法從合約外部存取。這是函式預設的可見性，因此可以省略不寫。</p>
+</div>
+<div class="paragraph">
+<p><strong>@external</strong></p>
+</div>
+<div class="paragraph">
+<p><code>@external</code> 裝飾器讓函式公開可見，也能公開執行。例如，就連以太坊錢包在檢視合約時，也會顯示這類函式。</p>
+</div>
+<div class="paragraph">
+<p><strong>@view</strong></p>
+</div>
+<div class="paragraph">
+<p>使用 <code>@view</code> 裝飾器的函式不能修改狀態變數。事實上，如果函式試圖修改狀態變數，編譯器會拒絕編譯整個程式（並給出相應的錯誤訊息）。</p>
+</div>
+<div class="paragraph">
+<p><strong>@pure</strong></p>
+</div>
+<div class="paragraph">
+<p>使用 <code>@pure</code> 裝飾器的函式不能讀取任何區塊鏈狀態，也不能呼叫非 pure 的方法或其他合約。</p>
+</div>
+<div class="paragraph">
+<p><strong>@payable</strong></p>
+</div>
+<div class="paragraph">
+<p>只有使用 <code>@payable</code> 裝飾器的函式可以轉移價值。</p>
+</div>
+<div class="paragraph">
+<p><strong>@deploy</strong></p>
+</div>
+<div class="paragraph">
+<p><code>@deploy</code> 裝飾器用來標示合約的建構子函式。這個函式只會在合約部署到區塊鏈時執行一次，通常用來設定初始的狀態變數與組態。在 Vyper 中，只有 <code>__init__()</code> 函式可以標上 <code>@deploy</code>；如果合約需要建構子邏輯，就必須使用這個裝飾器。</p>
+</div>
+<div class="paragraph">
+<p><strong>@raw_return</strong></p>
+</div>
+<div class="paragraph">
+<p>使用 <code>@raw_return</code> 裝飾器的函式會直接回傳原始位元組，不做 ABI 編碼。這個裝飾器在代理合約與輔助合約中特別有用，因為這類合約需要原封不動地轉送另一個合約呼叫的輸出，不能再多包一層編碼。不過它有一些重要的限制：這個裝飾器只能用在 <code>@external</code> 函式上，不能用在介面定義中；而從其他合約呼叫這類函式時，應該使用 <code>raw_call</code>，而不是透過介面呼叫，因為回傳的資料可能不是 ABI 編碼。</p>
+</div>
+<div class="paragraph">
+<p><strong>@nonreentrant</strong></p>
+</div>
+<div class="paragraph">
+<p><code>@nonreentrant</code> 裝飾器會替函式加上一道鎖，防止有人重入這個裝飾器保護的任何函式。重入鎖確保這些函式在執行完畢之前，不能再次被進入。這個裝飾器用來防範重入攻擊：外部合約可能回頭呼叫受保護的函式，進而造成意料之外的行為，或讓合約遭到漏洞利用。Vyper 也支援一個預設不可重入的 pragma，讓所有外部函式預設都不可重入，除非明確覆寫。例如，如果合約 A 使用這個裝飾器防範重入，並對合約 B 發出外部呼叫，那麼合約 B 任何回頭呼叫合約 A 受保護函式的企圖，都會讓交易回復。</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class="icon">
+<div class="title">備註</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Vyper 0.2.15、0.2.16 與 0.3.0 版的這項不可重入功能有一個嚴重的錯誤，在 2023 年中被發現，並被用來攻擊 Curve 協議。我們會在第 9 章更深入探討重入漏洞。</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="paragraph">
+<p>Vyper 會明確地執行裝飾器的邏輯。例如，如果一個函式同時有 <code>@payable</code> 與 <code>@view</code> 裝飾器，Vyper 的編譯就會失敗。這很合理，因為會轉移價值的函式依定義就已經更新了狀態，所以不能是 <code>@view</code>。每個 Vyper 函式都必須以 <code>@external</code> 或 <code>@internal</code> 其中之一修飾（但不能兩者都用！）。</p>
+</div>
+</div>
+<div class="sect2">
+<h2 id="ch08-function-and-variable-ordering"><a class="anchor" href="#ch08-function-and-variable-ordering" aria-label="本節連結"></a>8.4. 函式與變數的順序</h2>
+<div class="paragraph">
+<p>Vyper 的作用域與宣告方式依循 C99 的作用域規則，彈性比你一開始想像的還要大。雖然 Vyper 合約仍然必須寫在單一檔案中（除非你使用模組系統），但早期版本對模組層級宣告的嚴格順序要求，現在已經放寬了。</p>
+</div>
+<div class="paragraph">
+<p>在模組作用域（也就是任何函式本體之外）宣告的變數與函式，在整份合約中都看得到，即使在正式宣告之前也一樣。也就是說，你可以在狀態變數與函式出現在檔案中之前就參照它們、呼叫它們，就像許多現代程式語言處理前置宣告的方式。</p>
+</div>
+<div class="paragraph">
+<p>下面是一個實際的例子，示範現在的 Vyper 中作用域如何運作：</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre># This function can reference the state variable below
+@external
+def get_stored_value() -&gt; uint256:
+    return self.stored_data  # References variable declared later
+# This function can call the function above
+@external
+def check_if_positive() -&gt; bool:
+    return self.get_stored_value() &gt; 0
+# State variable declaration - accessible by functions above
+stored_data: public(uint256)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>不過，在函式作用域內，Vyper 仍然維持嚴格的順序規則。區域變數必須先宣告才能使用，而且你不能用區域變數遮蔽常數、不可變變數或其他模組層級宣告的名稱。這種作用域的設計在 Python 的彈性與智能合約開發的需求之間取得了平衡：在智能合約中，清楚看出狀態變數與函式之間的關係，對安全審計很重要。</p>
+</div>
+</div>
+<div class="sect2">
+<h2 id="ch08-compilation"><a class="anchor" href="#ch08-compilation" aria-label="本節連結"></a>8.5. 編譯</h2>
+<div class="paragraph">
+<p>想試用 Vyper，最簡單的方法是使用 <a href="https://remix.ethereum.org" rel="noopener" target="_blank">Remix 線上編譯器</a>，只要用網頁瀏覽器就能撰寫並編譯智能合約（你需要在外掛管理員中啟用 vyper-remix 外掛）。</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class="icon">
+<div class="title">備註</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Vyper 內建了 <a href="https://oreil.ly/GazPW" rel="noopener" target="_blank">ERC-20、ERC-721 等常用介面</a>，不需要額外設定就能與這類合約互動。Vyper 的合約必須宣告為全域變數。宣告一個 ERC-20 變數的例子如下： <code>from vyper.interfaces import ERC20</code> <code>token: ERC20</code></p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="paragraph">
+<p>你也可以用命令列編譯合約。每個 Vyper 合約都存成副檔名為 <em>.vy</em> 的檔案。安裝 Vyper 之後，執行下列指令就能編譯合約：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="bash">vyper ~/hello_world.vy</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>編譯器提供了豐富的輸出選項。想取得 JSON 格式、人類可讀的 ABI 描述，可以使用：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="bash">vyper <span class="nt">-f</span> abi ~/hello_world.vy</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>開發與測試時，你可能還需要位元組碼、操作碼或介面檔等其他輸出。編譯器支援多種輸出格式：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="bash">vyper <span class="nt">-f</span> abi,bytecode,interface,source_map ~/hello_world.vy</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>現在的 Vyper 也提供進階的最佳化模式。你可以用 <code>--optimize gas</code>（預設值）針對 gas 效率最佳化，或用 <code>--optimize codesize</code> 縮小合約的大小。較新的實驗性 Venom IR 管線可以用 <code>--experimental-codegen</code> 啟用，進一步提升最佳化的效果。</p>
+</div>
+<div class="paragraph">
+<p>Remix 與命令列編譯器很適合學習與試驗，但開發大型專案的開發者通常需要完整的開發框架。<a href="https://oreil.ly/AJRSa" rel="noopener" target="_blank">ApeWorx</a>（前身為 Ape）對 Vyper 的支援相當完善，提供自動化測試、部署腳本，以及與各種網路的整合等功能。<a href="https://oreil.ly/CWIKj" rel="noopener" target="_blank">Foundry</a> 雖然主要針對 Solidity，也支援 Vyper 開發，並提供強大的測試與模擬功能。這些框架提供了專業智能合約開發者打造複雜應用所需的成熟開發環境。</p>
+</div>
+</div>
+<div class="sect2">
+<h2 id="ch08-protecting-against-overflow-errors-at-the-compiler-level"><a class="anchor" href="#ch08-protecting-against-overflow-errors-at-the-compiler-level" aria-label="本節連結"></a>8.6. 在編譯器層級防範溢位錯誤</h2>
+<div class="paragraph">
+<p>在處理真實價值時，軟體中的溢位錯誤可能造成災難性的後果。例如，<a href="https://oreil.ly/zOy06" rel="noopener" target="_blank">2018 年 4 月中的一筆交易</a>，就惡意轉移了超過 57,896,044,618,658,100,000,000,000,000,000,000,000,000,000,000,000,000,000,000 枚 BEC 代幣。這筆交易是美鏈（Beauty Chain）ERC-20 代幣合約（<em>BecToken.sol</em>）的整數溢位問題造成的。</p>
+</div>
+<div class="paragraph">
+<p>內建的溢位防護一直是 Vyper 的核心功能之一，能降低溢位錯誤的風險；這類錯誤在智能合約開發的歷史上屢見不鮮。Vyper 的溢位防護相當全面：它內建了等同於 SafeMath 的防護，處理整數運算必要的例外情況，確保加、減、乘、除等運算預設就是安全的，並在發生溢位或下溢時拋出例外。此外，每當載入常值、把值傳入函式，或指派變數時，Vyper 都會以值域限制（clamp）強制執行數值的上下限。</p>
+</div>
+<div class="paragraph">
+<p>值得一提的是，近期的 Solidity 版本（0.8.0 及之後）也在編譯器層級加入了原生的溢位檢查，類似 Vyper 從一開始就提供的功能。也就是說，現在 Solidity 的算術運算會自動包含溢位檢查，不需要再額外使用 SafeMath 這類函式庫，大幅降低了溢位錯誤的風險。這項改變雖然讓 Solidity 更接近 Vyper「安全第一」的做法，但 Vyper 的實作仍然更全面，包括值域限制，以及在整個語言中更一致的邊界檢查。關鍵的差異在於理念：Vyper 從設計之初就把溢位防護當成核心原則，而 Solidity 則是為了解決過去的漏洞，才把它當成改進加進去。這種做法上的差異，反映出 Vyper 更廣泛的堅持：讓不安全的程式碼預設就更難寫出來。</p>
+</div>
+</div>
+<div class="sect2">
+<h2 id="ch08-reading-and-writing-data"><a class="anchor" href="#ch08-reading-and-writing-data" aria-label="本節連結"></a>8.7. 讀寫資料</h2>
+<div class="paragraph">
+<p>雖然儲存、讀取與修改資料的成本很高，這些儲存操作卻是大多數智能合約不可或缺的一部分。智能合約可以把資料寫到兩個地方：</p>
+</div>
+<div class="paragraph">
+<p><strong>全域狀態</strong></p>
+</div>
+<div class="paragraph">
+<p>智能合約的狀態變數存放在以太坊的全域狀態前綴樹（trie）中；一個智能合約只能儲存、讀取與修改屬於該合約地址的資料（也就是說，智能合約不能直接讀寫其他智能合約的資料）。</p>
+</div>
+<div class="paragraph">
+<p><strong>日誌</strong></p>
+</div>
+<div class="paragraph">
+<p>智能合約可以透過日誌事件，把資料寫入以太坊的鏈上資料。在 Vyper 中，宣告與使用事件的語法乾淨而直接，符合 Vyper 重視程式碼清晰的設計。</p>
+</div>
+<div class="paragraph">
+<p>Vyper 的事件宣告看起來和結構的宣告很像。例如，宣告一個名為 <code>MyLog</code> 的事件，寫法如下：</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>event MyLog:
+    arg1: indexed(address)
+    arg2: uint256
+    message: indexed(bytes[100])</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>一個事件最多可以有四個加上索引的引數（這些引數會成為可搜尋的 topic），以及任意數量不加索引的引數，這些引數會成為事件資料的一部分。加上索引的引數適合用來篩選與搜尋事件，不加索引的引數則能容納較大量的資料。</p>
+</div>
+<div class="paragraph">
+<p>要發出日誌事件，使用語法很直接的 <code>log</code> 陳述式：</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>log MyLog(msg.sender, 42, b"Hello, Vyper!")</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>你也可以用 <code>pass</code> 陳述式建立沒有引數的事件：</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>event SimpleEvent: pass
+# Later in your code:
+log SimpleEvent()</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>雖然智能合約可以透過日誌事件把資料寫入以太坊的鏈上資料，卻無法讀取自己建立的鏈上日誌事件。不過，透過日誌事件寫入以太坊鏈上資料有一個好處：輕客戶端可以在公開的區塊鏈上找到並讀取這些日誌。例如，已發布區塊中的 <code>logsBloom</code> 值可以指出某個日誌事件是否存在。確認日誌事件存在之後，就可以從對應交易的收據中取得日誌資料。</p>
+</div>
+</div>
+<div class="sect2">
+<h2 id="ch08-conclusion"><a class="anchor" href="#ch08-conclusion" aria-label="本節連結"></a>8.8. 結語</h2>
+<div class="paragraph">
+<p>Vyper 是一種強大又迷人的合約導向程式語言。它的設計偏重「正確性」，把安全與簡潔放在第一位。這種做法也許能讓程式設計師寫出更好的智能合約，避開某些可能導致嚴重漏洞的陷阱。</p>
+</div>
+<div class="paragraph">
+<p>不過，我們也必須認清，凡事都有取捨。Vyper 嚴格的設計原則雖然提升了安全性與程式碼的清晰度，卻也限制了開發者在其他語言中可能享有的部分彈性。此外，Vyper 的使用與發展程度都不如 Solidity，開發者能用的資源、函式庫與工具也比較少。對於想尋求社群支援、現成解決方案與完整文件的人來說，這可能會是個挑戰。</p>
+</div>
+<div class="paragraph">
+<p>接下來，我們會更深入探討智能合約的安全。讀完智能合約可能出現的各種安全問題之後，Vyper 設計上的一些細節，也許會變得更加清楚。</p>
+</div>
+</div>
+</div>
+</div>
+  </div>
+  <nav class="pager" aria-label="章節導覽">
+    <a class="pager-link prev" href="/chapters/solidity.html" rel="prev"><span class="pager-dir">← 上一章</span><span class="pager-title">第 7 章　智能合約與 Solidity</span></a>
+    <a class="pager-link next" href="/chapters/smart-contract-security.html" rel="next"><span class="pager-dir">下一章 →</span><span class="pager-title">第 9 章　智能合約安全</span></a>
+  </nav>
+  <p class="edit-link"><a href="https://github.com/awesome-doge/ethereumbook_zh/blob/master/zh-tw/chapter_8.md" rel="noopener">在 GitHub 上檢視或改善本章翻譯</a></p>
+</article>
+
+  </main>
+
+  <aside class="rail" aria-label="本章內容">
+    <p class="rail-title">本章內容</p>
+    <ol>
+      <li><a href="#ch08-vulnerabilities-and-vyper">8.1. 漏洞與 Vyper</a></li>
+      <li><a href="#ch08-comparison-to-solidity">8.2. 與 Solidity 的比較</a></li>
+      <li><a href="#ch08-decorators">8.3. 裝飾器</a></li>
+      <li><a href="#ch08-function-and-variable-ordering">8.4. 函式與變數的順序</a></li>
+      <li><a href="#ch08-compilation">8.5. 編譯</a></li>
+      <li><a href="#ch08-protecting-against-overflow-errors-at-the-compiler-level">8.6. 在編譯器層級防範溢位錯誤</a></li>
+      <li><a href="#ch08-reading-and-writing-data">8.7. 讀寫資料</a></li>
+      <li><a href="#ch08-conclusion">8.8. 結語</a></li>
+    </ol>
+  </aside>
+</div>
+
+<footer class="site-footer">
+  <p>原著《Mastering Ethereum》第二版由 Andreas M. Antonopoulos、Gavin Wood、Carlo Parisi、Alessandro Mazza 與 Niccolò Pozzolini 撰寫，O'Reilly Media 出版。繁體中文翻譯：Dr. Awesome Doge。</p>
+  <p>本書內容以 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh_TW" rel="license noopener">CC BY-NC-ND 4.0</a> 授權釋出（原書出版 12 個月後轉為 CC BY-SA 4.0，本譯本屆時隨之更新） · <a href="https://github.com/awesome-doge/ethereumbook_zh" rel="noopener">GitHub</a> · <a href="https://github.com/awesome-doge/ethereumbook_zh/issues" rel="noopener">回報翻譯問題</a> · <a href="https://github.com/ethereumbook/ethereumbook" rel="noopener">英文原著</a></p>
+</footer>
+
+<dialog class="search" id="search" aria-label="搜尋全書">
+  <form method="dialog" class="search-form" role="search">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input type="search" id="search-input" placeholder="搜尋全書，例如：智能合約、gas、ERC20" autocomplete="off" spellcheck="false" aria-label="搜尋關鍵字">
+    <button type="submit" class="search-close" value="close" aria-label="關閉搜尋">Esc</button>
+  </form>
+  <p class="search-status" aria-live="polite"></p>
+  <ol class="search-results"></ol>
+</dialog>
+</body>
+</html>

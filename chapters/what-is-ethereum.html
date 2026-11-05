@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" data-base="" data-legacy-ids="/2018/ids.json">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>第 1 章　什麼是以太坊？｜精通以太坊（第二版）繁體中文版</title>
+<meta name="description" content="什麼是以太坊？與比特幣的比較、區塊鏈的組成、以太坊的誕生與開發階段、圖靈完備性的意義與影響，以及從通用區塊鏈到去中心化應用。">
+<link rel="canonical" href="https://mastering-ethereum.doge.tg/chapters/what-is-ethereum.html">
+<meta name="author" content="Andreas M. Antonopoulos, Gavin Wood, Carlo Parisi, Alessandro Mazza, Niccolò Pozzolini">
+<meta name="theme-color" content="#f8f9fc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14151b" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="sitemap" type="application/xml" href="/sitemap.xml">
+<meta property="og:site_name" content="精通以太坊第二版繁體中文版">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第 1 章　什麼是以太坊？｜精通以太坊（第二版）繁體中文版">
+<meta property="og:description" content="什麼是以太坊？與比特幣的比較、區塊鏈的組成、以太坊的誕生與開發階段、圖靈完備性的意義與影響，以及從通用區塊鏈到去中心化應用。">
+<meta property="og:url" content="https://mastering-ethereum.doge.tg/chapters/what-is-ethereum.html">
+<meta property="og:image" content="https://mastering-ethereum.doge.tg/assets/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="zh_TW">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="prev" href="/chapters/preface.html">
+<link rel="next" href="/chapters/ethereum-basics.html">
+<script>
+(function(){try{var d=document.documentElement,s=localStorage,t=s.getItem('me-theme'),z=s.getItem('me-size'),f=s.getItem('me-font');if(t&&t!=='auto')d.setAttribute('data-theme',t);if(z)d.style.setProperty('--fs',z+'px');if(f)d.setAttribute('data-font',f)}catch(e){}})();
+</script>
+<link rel="stylesheet" href="/assets/site.css?v=ad2df01e33">
+<link rel="stylesheet" href="/assets/code.css?v=c94d007c0c">
+<script defer src="/assets/site.js?v=33af8366a0"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Chapter","@id":"https://mastering-ethereum.doge.tg/chapters/what-is-ethereum.html#chapter","name":"第 1 章　什麼是以太坊？","headline":"第 1 章　什麼是以太坊？｜精通以太坊（第二版）","description":"什麼是以太坊？與比特幣的比較、區塊鏈的組成、以太坊的誕生與開發階段、圖靈完備性的意義與影響，以及從通用區塊鏈到去中心化應用。","url":"https://mastering-ethereum.doge.tg/chapters/what-is-ethereum.html","inLanguage":"zh-TW","position":2,"dateModified":"2026-11-06T03:14:10+08:00","isPartOf":{"@id":"https://mastering-ethereum.doge.tg/#book"},"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true},{"@type":"Book","@id":"https://mastering-ethereum.doge.tg/#book","name":"精通以太坊（第二版）","alternateName":["Mastering Ethereum, 2nd Edition","精通以太坊第二版"],"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"inLanguage":"zh-TW","publisher":{"@type":"Organization","name":"O'Reilly Media"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true,"url":"https://mastering-ethereum.doge.tg/","image":"https://mastering-ethereum.doge.tg/assets/og-cover.png","translationOfWork":{"@type":"Book","name":"Mastering Ethereum, 2nd Edition","inLanguage":"en","url":"https://github.com/ethereumbook/ethereumbook"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"精通以太坊（第二版）","item":"https://mastering-ethereum.doge.tg/"},{"@type":"ListItem","position":2,"name":"第 1 章　什麼是以太坊？","item":"https://mastering-ethereum.doge.tg/chapters/what-is-ethereum.html"}]}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZVVQYEKMPF"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-ZVVQYEKMPF');</script>
+</head>
+<body class="is-chapter">
+<a class="skip-link" href="#main">跳到主要內容</a>
+<header class="topbar">
+  <button class="icon-btn" type="button" data-action="toggle-nav" aria-controls="sidebar" aria-expanded="false" aria-label="開啟目錄">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+  </button>
+  <a class="brand" href="/" aria-label="精通以太坊（第二版） 首頁">
+    <span class="brand-mark" aria-hidden="true">Ξ</span><span class="brand-text">精通以太坊</span>
+  </a>
+  <p class="topbar-title"><span class="topbar-label">第 1 章</span>什麼是以太坊？</p>
+  <div class="topbar-actions">
+    <button class="icon-btn search-btn" type="button" data-action="search" aria-label="搜尋全書（快捷鍵 /）">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <span class="search-btn-text">搜尋</span><kbd>/</kbd>
+    </button>
+    <button class="icon-btn" type="button" data-action="settings" aria-controls="settings" aria-expanded="false" aria-label="閱讀設定">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19 9 5l5 14M5.8 14.5h6.4M15 19l3-8 3 8M15.9 16.5h4.2"/></svg>
+    </button>
+  </div>
+  <div class="progress" aria-hidden="true"><span></span></div>
+</header>
+
+<div class="settings" id="settings" hidden>
+  <div class="settings-group" role="group" aria-label="主題">
+    <span class="settings-label">主題</span>
+    <div class="seg">
+      <button type="button" data-theme-set="auto">自動</button>
+      <button type="button" data-theme-set="light">淺色</button>
+      <button type="button" data-theme-set="sepia">護眼</button>
+      <button type="button" data-theme-set="dark">深色</button>
+    </div>
+  </div>
+  <div class="settings-group" role="group" aria-label="字級">
+    <span class="settings-label">字級</span>
+    <div class="seg">
+      <button type="button" data-size="-1" aria-label="縮小字級">A−</button>
+      <output class="size-value" aria-live="polite">18</output>
+      <button type="button" data-size="1" aria-label="放大字級">A+</button>
+    </div>
+  </div>
+  <div class="settings-group" role="group" aria-label="字型">
+    <span class="settings-label">字型</span>
+    <div class="seg">
+      <button type="button" data-font-set="sans">黑體</button>
+      <button type="button" data-font-set="serif">明體</button>
+    </div>
+  </div>
+</div>
+
+<div class="shell">
+  <nav class="sidebar" id="sidebar" aria-label="全書目錄">
+    <div class="sidebar-head">
+      <a href="/" class="sidebar-book">精通以太坊（第二版）</a>
+      <span class="sidebar-sub">繁體中文版</span>
+    </div>
+    <ol class="book-toc">
+      <li>
+        <a href="/chapters/preface.html"><span class="toc-label">前言</span></a>
+      </li>
+      <li class="is-current">
+        <a href="/chapters/what-is-ethereum.html" aria-current="page"><span class="toc-label">第 1 章</span>什麼是以太坊？</a>
+        <ol class="section-toc">
+          <li><a href="#ch01-ethereum-compared-to-bitcoin">1.1. 以太坊與比特幣的比較</a></li>
+          <li><a href="#ch01-components-of-a-blockchain">1.2. 區塊鏈的組成元件</a></li>
+          <li><a href="#ch01-the-birth-of-ethereum">1.3. 以太坊的誕生</a></li>
+          <li><a href="#ch01-ethereums-stages-of-development">1.4. 以太坊的發展階段</a></li>
+          <li><a href="#ch01-ethereum-a-general-purpose-blockchain">1.5. 以太坊：通用區塊鏈</a></li>
+          <li><a href="#ch01-ethereums-components">1.6. 以太坊的組成元件</a></li>
+          <li><a href="#ch01-ethereum-and-turing-completeness">1.7. 以太坊與圖靈完備性</a></li>
+          <li><a href="#ch01-turing-completeness-as-a-feature">1.8. 作為「功能」的圖靈完備性</a></li>
+          <li><a href="#ch01-implications-of-turing-completeness">1.9. 圖靈完備性的影響</a></li>
+          <li><a href="#ch01-from-general-purpose-blockchains-to-dapps">1.10. 從通用區塊鏈到 DApp</a></li>
+          <li><a href="#ch01-the-third-age-of-the-internet">1.11. 網際網路的第三個時代</a></li>
+          <li><a href="#ch01-ethereums-development-culture">1.12. 以太坊的開發文化</a></li>
+          <li><a href="#ch01-why-learn-ethereum">1.13. 為什麼要學以太坊？</a></li>
+          <li><a href="#ch01-conclusion">1.14. 結論</a></li>
+        </ol>
+      </li>
+      <li>
+        <a href="/chapters/ethereum-basics.html"><span class="toc-label">第 2 章</span>以太坊基礎</a>
+      </li>
+      <li>
+        <a href="/chapters/nodes.html"><span class="toc-label">第 3 章</span>以太坊節點</a>
+      </li>
+      <li>
+        <a href="/chapters/cryptography.html"><span class="toc-label">第 4 章</span>密碼學</a>
+      </li>
+      <li>
+        <a href="/chapters/wallets.html"><span class="toc-label">第 5 章</span>錢包</a>
+      </li>
+      <li>
+        <a href="/chapters/transactions.html"><span class="toc-label">第 6 章</span>交易</a>
+      </li>
+      <li>
+        <a href="/chapters/solidity.html"><span class="toc-label">第 7 章</span>智能合約與 Solidity</a>
+      </li>
+      <li>
+        <a href="/chapters/vyper.html"><span class="toc-label">第 8 章</span>智能合約與 Vyper</a>
+      </li>
+      <li>
+        <a href="/chapters/smart-contract-security.html"><span class="toc-label">第 9 章</span>智能合約安全</a>
+      </li>
+      <li>
+        <a href="/chapters/tokens.html"><span class="toc-label">第 10 章</span>代幣</a>
+      </li>
+      <li>
+        <a href="/chapters/oracles.html"><span class="toc-label">第 11 章</span>預言機</a>
+      </li>
+      <li>
+        <a href="/chapters/dapps.html"><span class="toc-label">第 12 章</span>去中心化應用</a>
+      </li>
+      <li>
+        <a href="/chapters/defi.html"><span class="toc-label">第 13 章</span>去中心化金融</a>
+      </li>
+      <li>
+        <a href="/chapters/evm.html"><span class="toc-label">第 14 章</span>以太坊虛擬機</a>
+      </li>
+      <li>
+        <a href="/chapters/consensus.html"><span class="toc-label">第 15 章</span>共識</a>
+      </li>
+      <li>
+        <a href="/chapters/scaling.html"><span class="toc-label">第 16 章</span>以太坊擴容</a>
+      </li>
+      <li>
+        <a href="/chapters/zero-knowledge-proofs.html"><span class="toc-label">第 17 章</span>零知識證明</a>
+      </li>
+    </ol>
+    <div class="sidebar-foot">
+      <a href="https://github.com/awesome-doge/ethereumbook_zh" rel="noopener">GitHub 原始碼</a>
+    </div>
+  </nav>
+  <div class="scrim" data-action="close-nav" hidden></div>
+
+  <main id="main" class="main" tabindex="-1">
+<article class="chapter" aria-labelledby="ch01">
+  <nav class="breadcrumb" aria-label="導覽路徑"><a href="/">精通以太坊（第二版）</a><span aria-hidden="true">/</span><span>第 1 章</span></nav>
+  <header class="chapter-head">
+    <p class="chapter-label">第 1 章</p>
+    <h1 id="ch01">什麼是以太坊？</h1>
+    <p class="chapter-meta">約 24 分鐘閱讀 · 14 個小節</p>
+  </header>
+  <div class="prose">
+<div class="sect1">
+
+<div class="sectionbody">
+<div class="paragraph">
+<p>以太坊常被形容為「世界電腦」（world computer）。但這是什麼意思？我們先從偏重電腦科學的描述開始，再透過比較實際的分析來解讀以太坊的能力與特性，同時拿它和比特幣以及其他去中心化的資訊交換平台（或者精確地說，<em>區塊鏈</em>）做比較。</p>
+</div>
+<div class="paragraph">
+<p>從電腦科學的角度來看，以太坊是一個確定性、但實際上沒有邊界的狀態機，由一個全域可存取的單例狀態，以及一個對該狀態套用變更的虛擬機組成。</p>
+</div>
+<div class="paragraph">
+<p>從比較實際的角度來看，以太坊是一個開源、全球去中心化的運算基礎設施，負責執行稱為<em>智能合約</em>的程式。它使用區塊鏈來同步並儲存系統的狀態變化，並搭配一種稱為<em>以太幣</em>（ether）的加密貨幣，來計量並限制執行時耗用資源的成本。</p>
+</div>
+<div class="paragraph">
+<p>以太坊平台讓開發者能打造強大、內建經濟功能的去中心化應用（decentralized application）。它提供高可用性、可審計性、透明性與中立性，同時減少或消除審查，並降低某些交易對手風險。</p>
+</div>
+<div class="sect2">
+<h2 id="ch01-ethereum-compared-to-bitcoin"><a class="anchor" href="#ch01-ethereum-compared-to-bitcoin" aria-label="本節連結"></a>1.1. 以太坊與比特幣的比較</h2>
+<div class="paragraph">
+<p>許多人是在已經對加密貨幣、特別是比特幣有些經驗之後，才接觸以太坊。以太坊與其他開放的區塊鏈有許多共同的元素：連接參與者的點對點（peer-to-peer，P2P）網路；用來同步狀態更新、具備拜占庭容錯（Byzantine fault tolerance）的共識演算法；數位簽章、雜湊這類密碼學基本元件（cryptographic primitive）的運用；以及一種數位貨幣（以太幣）。然而在許多方面，以太坊的目的與構造，都和在它之前的開放區塊鏈（包括比特幣）截然不同。</p>
+</div>
+<div class="paragraph">
+<p>以太坊的主要目的並不是成為數位貨幣的支付網路。雖然數位貨幣以太幣是以太坊運作中不可或缺、也是必要的一部分，但以太幣的定位是一種 <em>功能型貨幣</em>（utility currency），用來支付把以太坊平台當作世界電腦使用的費用。</p>
+</div>
+<div class="paragraph">
+<p>比特幣只有非常有限的腳本語言；以太坊則不同，它被設計成一條通用、可程式化的區塊鏈，鏈上運作的虛擬機能夠執行任意且複雜度沒有上限的程式碼。比特幣的 Script 語言刻意限制在對花費條件做簡單的真／假判斷，以太坊的語言則是<em>圖靈完備</em>（Turing complete）的，這代表以太坊可以當作一部通用電腦運作。</p>
+</div>
+<div class="paragraph">
+<p>2022 年 9 月，以太坊透過合併（The Merge）升級，把共識模型從工作量證明（proof of work，PoW）轉為權益證明（proof of stake，PoS），進一步與比特幣做出區隔。這項重要的改變不僅凸顯了以太坊降低環境衝擊的決心（這也符合它創新的願景），也強化了它的可擴展性與安全性。</p>
+</div>
+</div>
+<div class="sect2">
+<h2 id="ch01-components-of-a-blockchain"><a class="anchor" href="#ch01-components-of-a-blockchain" aria-label="本節連結"></a>1.2. 區塊鏈的組成元件</h2>
+<div class="paragraph">
+<p>一條開放的公有區塊鏈，組成元件（通常）如下：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>一個連接參與者的點對點網路，以標準化的「gossip」協議傳播交易，以及由已驗證交易組成的區塊</p>
+</li>
+<li>
+<p>以交易形式呈現的訊息，代表狀態轉換</p>
+</li>
+<li>
+<p>一套共識規則，規定什麼構成一筆交易，以及什麼才是有效的狀態轉換</p>
+</li>
+<li>
+<p>一個依照共識規則處理交易的狀態機</p>
+</li>
+<li>
+<p>一條由受密碼學保護的區塊串成的鏈，作為所有已驗證、已接受之狀態轉換的紀錄</p>
+</li>
+<li>
+<p>一個共識演算法，迫使參與者合作執行共識規則，藉此把區塊鏈的控制權去中心化</p>
+</li>
+<li>
+<p>一套在賽局理論上站得住腳的誘因機制（例如工作量證明的成本加上區塊獎勵），在開放的環境中從經濟上保護這個狀態機</p>
+</li>
+<li>
+<p>上述元件的一個或多個開源軟體實作（也就是「客戶端」）</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>這些元件的全部或大部分，通常會結合在單一的軟體客戶端中。例如在比特幣中，參考實作由 Bitcoin Core 開源專案開發，並實作為比特幣客戶端。以太坊在轉向權益證明之前，最初也只需要單一客戶端。不過，以太坊現在使用兩個不同的客戶端：一個負責共識，另一個負責執行。以太坊沒有參考實作，而是仰賴一份參考規格：詳列於<a href="https://oreil.ly/IJ7_B" rel="noopener" target="_blank">「黃皮書」</a>中的數學描述，這份規格在以太坊的發展過程中持續更新。以太坊社群目前正轉向以 Python 撰寫的參考規格，<a href="https://oreil.ly/yjU6s" rel="noopener" target="_blank">共識</a>與<a href="https://oreil.ly/ggODg" rel="noopener" target="_blank">執行</a>客戶端都是如此。已經有許多客戶端依照這份參考規格打造出來。我們會在第 3 章深入探討這個主題。</p>
+</div>
+<div class="paragraph">
+<p>圖 1-1 以圖形呈現區塊鏈的各個組成元件。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<picture><source type="image/webp" srcset="/images/ch1/maet_0101.webp"><img src="/images/ch1/maet_0101.png" alt="Components of a blockchain" width="964" height="1000" loading="lazy" decoding="async"></picture>
+</div>
+<div class="title">圖 1-1. 區塊鏈的組成元件</div>
+</div>
+<div class="paragraph">
+<p>過去，我們用<em>區塊鏈</em>一詞代表上面列出的所有元件，作為一種簡稱，指的是涵蓋前述所有特性的技術組合。然而今天，區塊鏈的種類五花八門，各有不同的性質。我們需要一些修飾詞來幫助理解某條區塊鏈的特性，例如<em>開放</em>、<em>公有</em>、<em>全球</em>、<em>去中心化</em>、<em>中立</em>與<em>抗審查</em>，藉此辨認這些元件讓「區塊鏈」系統得以浮現的重要特性。</p>
+</div>
+<div class="paragraph">
+<p>並非所有區塊鏈都生而平等。儘管區塊鏈展現的性質五花八門，我們大致可以把它們分成需許可與無需許可、公有與私有兩組：</p>
+</div>
+<div class="paragraph">
+<p><strong>無需許可</strong></p>
+</div>
+<div class="paragraph">
+<p>無需許可的區塊鏈（例如比特幣與以太坊）任何人都能存取。這些去中心化網路允許任何人加入、參與共識過程、讀取與寫入資料，透過透明性建立信任。</p>
+</div>
+<div class="paragraph">
+<p><strong>需許可</strong></p>
+</div>
+<div class="paragraph">
+<p>需許可的區塊鏈會限制存取，只允許經過授權的參與者加入網路並執行特定操作。</p>
+</div>
+<div class="paragraph">
+<p><strong>公有</strong></p>
+</div>
+<div class="paragraph">
+<p>公有區塊鏈是去中心化的，對所有人開放，允許大眾廣泛參與網路活動，並透過廣泛的分散與共識機制確保透明性。</p>
+</div>
+<div class="paragraph">
+<p><strong>私有</strong></p>
+</div>
+<div class="paragraph">
+<p>私有區塊鏈把存取權限制在特定的一群參與者，通常是在組織內部或值得信任的合作夥伴之間。</p>
+</div>
+</div>
+<div class="sect2">
+<h2 id="ch01-the-birth-of-ethereum"><a class="anchor" href="#ch01-the-birth-of-ethereum" aria-label="本節連結"></a>1.3. 以太坊的誕生</h2>
+<div class="paragraph">
+<p>所有偉大的創新都在解決真實的問題，以太坊也不例外。以太坊誕生的時候，人們已經認識到比特幣模型的威力，並試圖跨出加密貨幣的應用範圍。但開發者面臨一個兩難：他們不是得建構在比特幣之上，就是得另起一條新的區塊鏈。建構在比特幣之上，意味著得在這個網路刻意設下的限制中生存，並設法找出變通的辦法。有限的交易類型、資料型別與資料儲存大小，似乎限制了能直接在比特幣上執行的應用種類；其他任何應用都需要額外的鏈外層，而這立刻抵消了使用公有區塊鏈的許多優勢。對於需要更多自由與彈性、同時又要留在鏈上的專案來說，新的區塊鏈是唯一的選擇。但這代表大量的工作：從零開始建立所有基礎設施元素、進行詳盡的測試等等。</p>
+</div>
+<div class="paragraph">
+<p>2013 年底，年輕的程式設計師、也是比特幣愛好者的 Vitalik Buterin，開始思考如何進一步擴充比特幣與 Mastercoin（一種疊加在比特幣之上、提供初步智能合約功能的協議）的能力。同年 10 月，Buterin 向 Mastercoin 團隊提出一種更通用的做法：以彈性、可編寫腳本（但不是圖靈完備）的合約，取代 Mastercoin 專用的合約語言。雖然 Mastercoin 團隊印象深刻，但這個提案的改變太過激進，無法納入他們的開發路線圖。</p>
+</div>
+<div class="paragraph">
+<p>2013 年 12 月，Buterin 開始分享一份白皮書，概述以太坊背後的構想：一條圖靈完備的通用區塊鏈。幾十個人看過這份早期草稿並提供意見，幫助 Buterin 讓這個提案逐步成形。</p>
+</div>
+<div class="paragraph">
+<p>本書的兩位原作者 Andreas M. Antonopoulos 與 Gavin Wood 博士，都收到了這份白皮書的早期草稿並提出意見。Antonopoulos 對這個構想很感興趣，問了 Buterin 許多問題，包括用一條獨立的區塊鏈對智能合約的執行強制套用共識規則，以及圖靈完備的語言會帶來什麼影響。Antonopoulos 持續以濃厚的興趣關注以太坊的進展，但當時他正處於撰寫《精通比特幣》（<em>Mastering Bitcoin</em>）的初期，所以直到很久以後才直接參與以太坊。Wood 則是最早主動聯絡 Buterin、表示願意以自己的 C++ 程式設計能力提供協助的人之一。Wood 後來成為以太坊的共同創辦人、共同設計者與技術長。</p>
+</div>
+<div class="paragraph">
+<p>Buterin 在他的<a href="https://oreil.ly/kEjpX" rel="noopener" target="_blank">〈A Prehistory of the Ethereum Protocol〉這篇文章</a>中回憶道：</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>那時候，以太坊協議完全是我一個人的創作。不過從這時起，新的參與者開始加入。在協議方面，最突出的人當屬 Gavin Wood，遠遠超過其他人。</p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>願景上的一個微妙轉變，在很大程度上也要歸功於 Wood：從把以太坊看成打造可程式化貨幣的平台（以區塊鏈為基礎的合約可以持有數位資產，並依照預先設定的規則轉移它們），轉為把它視為一個通用的運算平台。這一開始只是強調重點與用語上的細微變化，後來隨著「Web3」這個組合越來越受重視，這股影響力也越來越強；「Web3」把以太坊視為一整套去中心化技術中的一環，另外兩項是 Whisper 與 Swarm。從 2013 年 12 月開始，Buterin 與 Wood 一起改良、發展這個構想，共同打造出後來成為以太坊的協議層。</p>
+</div>
+<div class="paragraph">
+<p>以太坊的創辦人構思的是一條沒有特定用途的區塊鏈，能透過<em>程式設計</em>來支援各式各樣的應用。這個構想是：使用以太坊這樣的通用區塊鏈，開發者就能為自己的特定應用撰寫程式，而不必實作點對點網路、區塊鏈、共識演算法等底層機制。以太坊把這些細節抽象化，為撰寫去中心化應用提供一個確定性、安全的環境。這種思維上的轉變不只讓開發更容易，還從根本上擴展了區塊鏈能做的事。它為去中心化金融（decentralized finance）、非同質化代幣（NFT）與去中心化自治組織（decentralized autonomous organization，DAO）這些全新的領域奠定了基礎，而這些在早期單一用途的區塊鏈上是不可能實現的。</p>
+</div>
+<div class="paragraph">
+<p>就像中本聰（Satoshi Nakamoto，以化名發表比特幣的開發者）一樣，Buterin 與 Wood 不只是發明了一項新技術；他們以新穎的方式把新發明與既有技術結合起來，並交出原型程式碼，向世界證明他們的構想。</p>
+</div>
+<div class="paragraph">
+<p>創辦人們花了好幾年打造並改進他們的願景。2015 年 7 月 30 日，以太坊的第一個區塊被挖出。這部世界電腦開始為全世界服務。</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class="icon">
+<div class="title">備註</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Vitalik Buterin 的文章<a href="https://oreil.ly/kEjpX" rel="noopener" target="_blank">〈A Prehistory of the Ethereum Protocol〉</a>發表於 2017 年 9 月，以第一人稱的視角，引人入勝地描述了以太坊最早期的那段時光。</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+</div>
+<div class="sect2">
+<h2 id="ch01-ethereums-stages-of-development"><a class="anchor" href="#ch01-ethereums-stages-of-development" aria-label="本節連結"></a>1.4. 以太坊的發展階段</h2>
+<div class="paragraph">
+<p>以太坊的發展規劃為四個不同的階段，每個階段都有重大的變更。一個階段可能包含稱為<em>硬分叉</em>的子版本，它們會以不向下相容的方式改變功能。</p>
+</div>
+<div class="paragraph">
+<p>四個主要發展階段的代號分別是 Frontier、Homestead、Metropolis 與 Serenity。在撰寫本書時，我們正處於最後一個階段：Serenity。Serenity 階段又進一步細分為六個子階段，代號分別是合併（The Merge）、The Surge、The Scourge、The Verge、The Purge 與 The Splurge。</p>
+</div>
+<div class="paragraph">
+<p>現在我們就來深入了解這四個發展階段，並說明它們各自的主要目的：</p>
+</div>
+<div class="paragraph">
+<p><strong>Frontier（2015 年 7 月 30 日）</strong></p>
+</div>
+<div class="paragraph">
+<p>Frontier 在創世（Genesis，也就是以太坊第一個區塊被挖出的時候）啟動，為礦工與開發者打好基礎：讓人能架設礦機、開始交易 ETH，並在一個最精簡的網路環境中測試去中心化應用（DApp）。起初，區塊的 gas 上限只有五千，但這個限制在 2015 年 9 月解除，讓交易得以進行，同時引入了「難度炸彈」（difficulty bomb）。以太坊的 <em>難度炸彈</em> 是一種機制，設計成讓挖礦難度隨著時間呈指數增加，最終使挖礦變得不可行。這為從原本的工作量證明共識，轉向目前使用、更節能的權益證明模型提供了誘因。</p>
+</div>
+<div class="paragraph">
+<p><strong>Homestead（2016 年 3 月 14 日）</strong></p>
+</div>
+<div class="paragraph">
+<p>Homestead 從區塊 1,150,000 開始，透過幾項關鍵的協議更新（EIP-2、EIP-7 與 EIP-8），讓以太坊更安全、更穩定。這些升級讓開發者用起來更友善，也為之後的協議改進鋪路，不過網路當時仍處於 beta 測試階段。</p>
+</div>
+<div class="paragraph">
+<p><strong>Metropolis（2017 年 10 月 16 日）</strong></p>
+</div>
+<div class="paragraph">
+<p>Metropolis 從區塊 4,370,000 開始，目標是增加網路的功能，促進 DApp 的開發與網路整體的實用性。這個階段中的 Byzantium、Constantinople 與 Istanbul 等重要分叉，最佳化了 gas 成本、強化了安全性，並引入了第二層（layer 2，L2）擴容方案。Byzantium 減少了挖礦獎勵並實作了一些密碼學方面的功能，Constantinople 進一步最佳化 gas 成本，並允許與尚未建立的地址互動。Istanbul 讓網路更能抵禦分散式阻斷服務（distributed denial of service，DDoS）攻擊，並引入零知識（zero-knowledge）密碼學證明（zk-SNARK 與 STARK），以改善可擴展性與隱私。這些改進共同為以太坊 2.0 鋪路，代表以太坊 1.0 的最後階段。</p>
+</div>
+<div class="paragraph">
+<p><strong>Serenity（2022 年 9 月 15 日）</strong></p>
+</div>
+<div class="paragraph">
+<p>Serenity 通常稱為<em>以太坊 2.0</em>（Ethereum 2.0），是一次重大升級，目標是把以太坊從工作量證明轉為權益證明共識機制。Serenity 著重讓以太坊更永續，並能應付越來越多的使用者與應用。這個階段處理了高耗能與網路壅塞等關鍵問題，為更穩健、更有效率的區塊鏈開路。</p>
+</div>
+<div class="paragraph">
+<p>Serenity 升級分為數個子階段，每個子階段處理網路演進的某個特定面向。四個主要發展階段是依序實施的，而 Serenity 的五個子階段<sup class="footnote">[<a id="_footnoteref_1" class="footnote" href="#_footnotedef_1" title="查看註腳">1</a>]</sup>則是同時開發。這種平行的做法是對先前開發方式的策略性轉變；它之所以可行，是因為最初四個階段奠定的基礎工作，正是同時開發 Serenity 各子階段的必要前提。每個子階段都從不同的面向改進以太坊，彼此互不相關，讓升級過程更有彈性、更靈活：</p>
+</div>
+<div class="paragraph">
+<p><strong>合併（The Merge）</strong></p>
+</div>
+<div class="paragraph">
+<p>合併把以太坊主網與信標鏈（Beacon Chain，負責權益證明共識的側鏈）結合起來，正式讓網路轉向權益證明，並大幅降低能源消耗。</p>
+</div>
+<div class="paragraph">
+<p><strong>The Surge</strong></p>
+</div>
+<div class="paragraph">
+<p>The Surge 引入分片，把網路切分成更小、更容易管理的部分，藉此提升以太坊的可擴展性，讓每秒能處理更多交易。</p>
+</div>
+<div class="paragraph">
+<p><strong>The Scourge</strong></p>
+</div>
+<div class="paragraph">
+<p>The Scourge 處理中心化與抗審查性的問題，確保以太坊仍然是一個去中心化、開放的網路。</p>
+</div>
+<div class="paragraph">
+<p><strong>The Verge</strong></p>
+</div>
+<div class="paragraph">
+<p>The Verge 實作 Verkle 樹，減少節點所需的資料儲存量，進而提升網路的效率與可擴展性。</p>
+</div>
+<div class="paragraph">
+<p><strong>The Purge</strong></p>
+</div>
+<div class="paragraph">
+<p>The Purge 的目標是減少以太坊上儲存的歷史資料，簡化節點的運作並減輕網路壅塞。</p>
+</div>
+<div class="paragraph">
+<p><strong>The Splurge</strong></p>
+</div>
+<div class="paragraph">
+<p>The Splurge 包含各種小型的升級與最佳化，確保以太坊在所有重大變更實施之後，仍能順暢、有效率地運作。</p>
+</div>
+</div>
+<div class="sect2">
+<h2 id="ch01-ethereum-a-general-purpose-blockchain"><a class="anchor" href="#ch01-ethereum-a-general-purpose-blockchain" aria-label="本節連結"></a>1.5. 以太坊：通用區塊鏈</h2>
+<div class="paragraph">
+<p>最初的區塊鏈，也就是比特幣的區塊鏈，追蹤的是比特幣單位的狀態以及它們的所有權。你可以把比特幣想成一個分散式共識的<em>狀態機</em>，交易會造成全域的<em>狀態轉換</em>，改變幣的所有權。狀態轉換受到共識規則的約束，讓所有參與者在挖出幾個區塊之後，（最終）都能收斂到系統共同的（共識）狀態。</p>
+</div>
+<div class="paragraph">
+<p>以太坊也是一個分散式狀態機。但以太坊追蹤的不只是貨幣所有權的狀態，而是一個通用資料儲存的狀態轉換；也就是說，這個儲存空間能存放任何可以用<em>鍵值組</em>（key-value tuple）表達的資料。鍵值資料儲存可以存放任意的值，每個值都由某個鍵來參照：例如，鍵「書名」參照的值是「精通以太坊」。就某些方面而言，這和大多數通用電腦所使用的隨機存取記憶體（random-access memory，RAM）的資料儲存模型有相同的用途。</p>
+</div>
+<div class="paragraph">
+<p>以太坊有一塊同時存放程式碼與資料的記憶體，並使用以太坊區塊鏈來追蹤這塊記憶體隨時間的變化。就像一部通用的儲存程式型電腦，以太坊能把程式碼載入它的狀態機並<em>執行</em>這段程式碼，再把產生的狀態變化儲存在它的區塊鏈中。它與大多數通用電腦有兩個關鍵的差異：以太坊的狀態變化受共識規則所約束，而且狀態是在全球分散存放的。以太坊回答了這個問題：「如果我們能追蹤任意的狀態，並為這個狀態機撰寫程式，打造出一部在共識之下運作的全球電腦，會怎麼樣？」</p>
+</div>
+</div>
+<div class="sect2">
+<h2 id="ch01-ethereums-components"><a class="anchor" href="#ch01-ethereums-components" aria-label="本節連結"></a>1.6. 以太坊的組成元件</h2>
+<div class="paragraph">
+<p>在以太坊中，區塊鏈系統的組成元件（見「區塊鏈的組成元件」一節）更具體地說是這些：</p>
+</div>
+<div class="paragraph">
+<p><strong>點對點網路</strong></p>
+</div>
+<div class="paragraph">
+<p>以太坊運作在<em>以太坊主網</em>（Ethereum main network）上，可透過 TCP 連接埠 30303 連線，執行一種稱為 <a href="https://oreil.ly/pUfGC" rel="noopener" target="_blank"><em>ÐΞVp2p</em></a> 的協議。</p>
+</div>
+<div class="paragraph">
+<p><strong>共識規則</strong></p>
+</div>
+<div class="paragraph">
+<p>以太坊最初的共識協議是 Ethash，一種定義在參考規格「黃皮書」中的工作量證明模型。之後在 2022 年 9 月的合併升級中演進為權益證明（見第 15 章）。</p>
+</div>
+<div class="paragraph">
+<p><strong>交易</strong></p>
+</div>
+<div class="paragraph">
+<p>以太坊交易是一種網路訊息，其中包含（但不限於）發送者、接收者、金額與資料酬載。</p>
+</div>
+<div class="paragraph">
+<p><strong>狀態機</strong></p>
+</div>
+<div class="paragraph">
+<p>以太坊的狀態轉換由<em>以太坊虛擬機</em>（Ethereum Virtual Machine，EVM）處理。EVM 是一種堆疊式的虛擬機，負責執行<em>位元組碼</em>（機器語言指令）。稱為<em>智能合約</em>的 EVM 程式以高階語言（例如 Solidity）撰寫，再編譯成位元組碼，在 EVM 上執行。</p>
+</div>
+<div class="paragraph">
+<p><strong>資料結構</strong></p>
+</div>
+<div class="paragraph">
+<p>以太坊的狀態以<em>資料庫</em>（通常是 Google 的 LevelDB）的形式儲存在每個節點本地，其中以一種稱為<em>默克爾帕特里夏前綴樹</em>（Merkle-Patricia trie）的序列化雜湊資料結構，存放交易與系統狀態。</p>
+</div>
+<div class="paragraph">
+<p><strong>共識演算法</strong></p>
+</div>
+<div class="paragraph">
+<p>以太坊從工作量證明轉為權益證明共識機制，以提升能源效率與可擴展性。在權益證明中，驗證者質押自己的加密貨幣，以取得驗證交易、建立新區塊並維護網路安全的權利。以太坊的權益證明融合了兩種不同的演算法：Casper the Friendly Finality Gadget（FFG），以及搭配最新訊息驅動（latest message driven，LMD）更新的 GHOST（Greedy Heaviest Observed Subtree）（詳見第 15 章）。</p>
+</div>
+<div class="paragraph">
+<p><strong>經濟安全性</strong></p>
+</div>
+<div class="paragraph">
+<p>以太坊使用一種稱為 Gasper 的權益證明演算法，為區塊鏈提供經濟安全性。我們會在第 15 章詳細探討 Gasper 如何運作，包括它在最終性與驗證者協調中扮演的角色。</p>
+</div>
+<div class="paragraph">
+<p><strong>客戶端</strong></p>
+</div>
+<div class="paragraph">
+<p>以太坊的執行層客戶端與共識層客戶端軟體都有數個可互通的實作，其中最知名的，執行層客戶端是 <em>go-ethereum</em>（Geth）與 Nethermind，共識層客戶端是 Prysm 與 Lighthouse。</p>
+</div>
+<div class="paragraph">
+<p>以下參考資料提供了這裡提到的技術的更多資訊：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://oreil.ly/IJ7_B" rel="noopener" target="_blank">以太坊「黃皮書」</a></p>
+</li>
+<li>
+<p><a href="https://oreil.ly/yjU6s" rel="noopener" target="_blank">共識層客戶端的 Python 規格</a></p>
+</li>
+<li>
+<p><a href="https://oreil.ly/ggODg" rel="noopener" target="_blank">執行層客戶端的 Python 規格</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h2 id="ch01-ethereum-and-turing-completeness"><a class="anchor" href="#ch01-ethereum-and-turing-completeness" aria-label="本節連結"></a>1.7. 以太坊與圖靈完備性</h2>
+<div class="paragraph">
+<p>只要開始閱讀以太坊的相關資料，你就會碰到<em>圖靈完備</em>（Turing complete）這個詞。人們說，以太坊和比特幣不同，它是圖靈完備的。這究竟是什麼意思？</p>
+</div>
+<div class="paragraph">
+<p>這個詞指的是英國數學家圖靈（Alan Turing），他被視為電腦科學之父。1936 年，他提出了一種電腦的數學模型：由一個狀態機組成，透過在循序的記憶體（類似一條無限長的紙帶）上讀寫符號來操作這些符號。利用這個構造，圖靈進一步提供了數學基礎，來回答關於<em>通用可計算性</em>（universal computability）的問題（而且答案是否定的），也就是是否所有問題都能解決。他證明了有某些類別的問題是不可計算的。具體來說，他證明了<em>停機問題</em>（halting problem）是無法解決的；停機問題問的是：給定任意程式與它的輸入，能否判斷該程式最終是否會停止執行。</p>
+</div>
+<div class="paragraph">
+<p>圖靈進一步定義：如果一個系統能用來模擬任何圖靈機，這個系統就是<em>圖靈完備</em>的。這樣的系統稱為<em>通用圖靈機</em>（universal Turing machine，UTM）。</p>
+</div>
+<div class="paragraph">
+<p>以太坊能在一個稱為 EVM 的狀態機中執行儲存的程式，同時對記憶體讀寫資料，這使它成為一個圖靈完備的系統，因此也是一部通用圖靈機。在記憶體有限的限制下，以太坊能計算任何圖靈機所能計算的任何演算法。</p>
+</div>
+<div class="paragraph">
+<p>以太坊開創性的創新，在於把儲存程式型電腦的通用運算架構與去中心化區塊鏈結合起來，藉此打造出一部分散式、單一狀態（單例）的世界電腦。以太坊的程式「無所不在」地執行，卻產生一個由共識規則保護的共同狀態。</p>
+</div>
+</div>
+<div class="sect2">
+<h2 id="ch01-turing-completeness-as-a-feature"><a class="anchor" href="#ch01-turing-completeness-as-a-feature" aria-label="本節連結"></a>1.8. 作為「功能」的圖靈完備性</h2>
+<div class="paragraph">
+<p>聽到以太坊是圖靈完備的，你可能會得出這樣的結論：這是一項圖靈不完備的系統不知為何就是欠缺的<em>功能</em>。事實恰恰相反。圖靈完備性非常容易達成；事實上，<a href="https://oreil.ly/JhL2o" rel="noopener" target="_blank">已知最簡單的圖靈完備狀態機</a>只有四個狀態、使用六個符號，狀態定義只有 22 條指令長。的確，有時候人們會發現某些系統「意外地圖靈完備」（這裡有一份<a href="https://oreil.ly/7pt2q" rel="noopener" target="_blank">這類系統的有趣清單</a>）。</p>
+</div>
+<div class="paragraph">
+<p>然而，圖靈完備性非常危險，特別是在公有區塊鏈這類開放存取的系統中，原因就是上一節提到的停機問題。例如，現代的印表機是圖靈完備的，只要給它某些要列印的檔案，就可能讓它陷入當機狀態。以太坊是圖靈完備的，代表任何複雜度的任何程式都能由以太坊計算。但這種彈性也帶來一些棘手的安全與資源管理問題。沒有回應的印表機可以關機再重新開機，公有區塊鏈卻不可能這麼做。</p>
+</div>
+</div>
+<div class="sect2">
+<h2 id="ch01-implications-of-turing-completeness"><a class="anchor" href="#ch01-implications-of-turing-completeness" aria-label="本節連結"></a>1.9. 圖靈完備性的影響</h2>
+<div class="paragraph">
+<p>圖靈證明了，你無法藉由在電腦上模擬一個程式來預測它是否會終止。簡單地說，我們無法在不執行程式的情況下預測它的執行路徑。圖靈完備的系統可能陷入<em>無窮迴圈</em>（infinite loop），這個詞（過度簡化地）用來描述不會終止的程式。寫出一個永不結束的迴圈程式輕而易舉。但由於初始條件與程式碼之間複雜的交互作用，非預期的無窮迴圈也可能毫無預警地出現。在以太坊中，這帶來一個挑戰：每個參與的節點（客戶端）都必須驗證每一筆交易，並執行交易所呼叫的任何智能合約。但正如圖靈所證明的，以太坊無法在不實際執行（而且可能永遠執行下去）的情況下，預測一個智能合約是否會終止，或者會執行多久。不論是意外還是蓄意，都可能有人建立出一個智能合約，讓節點在試圖驗證它時永遠執行下去。這實際上就是一種阻斷服務（denial-of-service，DoS）攻擊。當然，在只需一毫秒就能驗證的程式與永遠執行下去的程式之間，還有無窮多種惡劣的程式，它們霸占資源、撐爆記憶體、讓 CPU 過熱，純粹在浪費資源。在世界電腦中，濫用資源的程式濫用的是全世界的資源。如果以太坊無法事先預測資源的使用量，它要如何限制智能合約所使用的資源？</p>
+</div>
+<div class="paragraph">
+<p>為了回應這個挑戰，以太坊引入了一種稱為 <em>gas</em> 的計量機制。EVM 在執行智能合約時，會仔細計算每一條指令（運算、資料存取等等）。每條指令都有以 gas 為單位、預先決定的成本。當一筆交易觸發智能合約的執行時，它必須附帶一定數量的 gas，作為執行該智能合約所能消耗的上限。如果運算所消耗的 gas 超過交易中可用的 gas，EVM 就會終止執行。gas 是以太坊用來允許圖靈完備運算、同時限制任何程式所能消耗之資源的機制。</p>
+</div>
+<div class="paragraph">
+<p>接下來的問題是：要怎麼取得 gas，來支付在以太坊世界電腦上的運算？你在任何交易所都找不到 gas。它只能作為交易的一部分購買，而且只能用以太幣購買。以太幣必須隨交易一起送出，並明確指定用來購買 gas，同時附上一個可接受的 gas 價格。就像加油站的油價一樣，gas 的價格也不是固定的。gas 會為交易而購買，接著執行運算，任何沒用完的 gas 都會退還給交易的發送者。</p>
+</div>
+</div>
+<div class="sect2">
+<h2 id="ch01-from-general-purpose-blockchains-to-dapps"><a class="anchor" href="#ch01-from-general-purpose-blockchains-to-dapps" aria-label="本節連結"></a>1.10. 從通用區塊鏈到 DApp</h2>
+<div class="paragraph">
+<p>以太坊一開始是作為打造通用區塊鏈的一種方式，這條區塊鏈可以透過程式設計用於各種用途。但很快地，以太坊的願景擴大，成為一個用來開發 DApp 的平台。DApp 代表的是比智能合約更廣的視野。DApp 至少是一個智能合約加上一個網頁使用者介面。更廣義地說，DApp 是建構在開放、去中心化、點對點基礎設施服務之上的網頁應用程式。</p>
+</div>
+<div class="paragraph">
+<p>DApp 至少由以下部分組成：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>區塊鏈上的智能合約</p>
+</li>
+<li>
+<p>網頁前端使用者介面</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>此外，許多 DApp 還包含其他去中心化的元件，例如：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>去中心化（點對點）的儲存協議與平台</p>
+</li>
+<li>
+<p>去中心化（點對點）的訊息協議與平台</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>從實務的角度來看，以太坊的 web3.js JavaScript 函式庫在你瀏覽器中執行的 JavaScript 應用程式與以太坊區塊鏈之間搭起橋梁。它原本包含一個稱為 Swarm 的點對點儲存網路，以及一個稱為 Whisper 的點對點訊息服務；這些工具讓開發完全去中心化的 Web3 DApp 成為可能。儘管這種完全去中心化的 DApp 設計很吸引人，但在之後幾年並沒有獲得太多關注。為了改善使用者體驗、提高使用者的採用率，不得不接受一些妥協，如今 DApp 的標準做法，是由一個中心化的 Web2 網站與智能合約互動。</p>
+</div>
+</div>
+<div class="sect2">
+<h2 id="ch01-the-third-age-of-the-internet"><a class="anchor" href="#ch01-the-third-age-of-the-internet" aria-label="本節連結"></a>1.11. 網際網路的第三個時代</h2>
+<div class="paragraph">
+<p>2004 年，<em>Web 2.0</em> 一詞開始廣為人知，用來標示網路朝向使用者產生的內容、反應靈敏的介面與互動性演進。Web 2.0 不是一項技術規格，而是一個描述網頁應用程式新重點的用語。</p>
+</div>
+<div class="paragraph">
+<p>DApp 的概念是要把網路帶往下一個自然演進的階段，把點對點協議帶來的去中心化，引入網頁應用程式的各個面向。用來描述這次演進的詞是 <em>Web3</em>，意思是網路的第三個「版本」。Web3 最早由 Gavin Wood 提出，代表網頁應用程式的新願景與新重點：從由中心化方式擁有並管理的應用程式，轉向建構在去中心化協議之上的應用程式。</p>
+</div>
+</div>
+<div class="sect2">
+<h2 id="ch01-ethereums-development-culture"><a class="anchor" href="#ch01-ethereums-development-culture" aria-label="本節連結"></a>1.12. 以太坊的開發文化</h2>
+<div class="paragraph">
+<p>到目前為止，我們已經談過以太坊的目標與技術，和比特幣等在它之前的其他區塊鏈有什麼不同。以太坊的開發文化也非常不一樣。</p>
+</div>
+<div class="paragraph">
+<p>在比特幣中，開發以保守的原則為指引：所有變更都經過仔細研究，確保不會干擾任何既有的系統。大多數情況下，只有向下相容的變更才會被實施。既有的客戶端可以選擇加入，但如果決定不升級，也能繼續運作。這種謹慎的做法與比特幣的治理模式一致：變更要經過比特幣改進提案（Bitcoin Improvement Proposal，BIP）流程，這是一套刻意放慢、以共識驅動的流程，目的是維持穩定。</p>
+</div>
+<div class="paragraph">
+<p>相較之下，以太坊社群的開發文化著眼於未來，而不是過去。它的口號（不完全是認真的）是「快速行動，打破成規」（move fast and break things）。如果需要某項變更，就會實施它，即使這代表推翻先前的假設、破壞相容性，或是強迫客戶端更新。以太坊的治理也反映出這種更親力親為的風格，協調工作透過頻繁舉行的 AllCoreDevs 會議公開進行，研究人員、客戶端團隊與生態系的利害關係人會在會議中討論即將到來的變更，並取得一致的方向。這是一個更敏捷、反覆迭代的流程，用部分的穩定性換取更快的創新步調。</p>
+</div>
+<div class="paragraph">
+<p>對身為開發者的你來說，這代表你必須保持彈性，並做好準備，在某些底層假設改變時重建你的基礎設施。以太坊開發者面臨的一大挑戰，是一個與生俱來的矛盾：要把程式碼部署到一個不可變更的系統上，而開發平台本身卻仍在演進。你沒辦法單純地「升級」你的智能合約。你必須準備好部署新的合約；遷移使用者、應用程式與資金；然後從頭開始。</p>
+</div>
+<div class="paragraph">
+<p>諷刺的是，這也代表打造更自主、更少中心化控制之系統的目標，仍未完全實現。自主與去中心化需要平台有多一點的穩定性，而在未來幾年內，你在以太坊上大概得不到這樣的穩定性。為了「演進」平台，你必須準備好捨棄並重新啟動你的智能合約，這代表你必須對它們保留一定程度的控制權。</p>
+</div>
+<div class="paragraph">
+<p>但從正面來看，以太坊前進得非常快。這裡幾乎沒有<em>腳踏車棚式爭論</em>（bike-shedding）的機會；這個說法指的是為了瑣碎的細節爭論不休而拖慢開發，例如爭論核電廠後面的腳踏車棚該怎麼蓋。如果你開始爭論腳踏車棚，可能會突然發現，就在你分心的時候，開發團隊的其他人已經改變計畫，放棄腳踏車，改用自動駕駛的氣墊船了。</p>
+</div>
+<div class="paragraph">
+<p>以太坊平台的開發終究會慢下來，它的介面也會固定下來。但在那之前，創新是驅動一切的原則。你最好跟上，因為沒有人會為了你放慢腳步。</p>
+</div>
+</div>
+<div class="sect2">
+<h2 id="ch01-why-learn-ethereum"><a class="anchor" href="#ch01-why-learn-ethereum" aria-label="本節連結"></a>1.13. 為什麼要學以太坊？</h2>
+<div class="paragraph">
+<p>區塊鏈的學習曲線非常陡峭，因為它把多種學科結合成一個領域：程式設計、資訊安全、密碼學、經濟學、分散式系統、點對點網路等等。以太坊讓這條學習曲線平緩許多，所以你能很快上手。但在這個看似簡單的環境表面之下，還藏著更多東西。隨著你學習並開始深入探究，總會發現另一層的複雜與奇妙。</p>
+</div>
+<div class="paragraph">
+<p>以太坊是學習區塊鏈的絕佳平台，而且它正在建立一個龐大的開發者社群，速度比其他任何區塊鏈平台都快。以太坊比其他任何區塊鏈都更像是一條<em>開發者的區塊鏈</em>：由開發者打造，為開發者服務。熟悉 JavaScript 應用程式的開發者可以直接投入以太坊，很快就寫出能運作的程式碼。在以太坊誕生的頭幾年，常常能看到印著「只要五行程式碼就能建立一個代幣」的 T 恤。當然，這是一把雙面刃。寫程式碼很容易，但要寫出<em>好</em>而且<em>安全</em>的程式碼非常困難。</p>
+</div>
+<div class="paragraph">
+<p>許多區塊鏈專案（例如各種第二層網路）都以以太坊為基礎。學習以太坊能幫助你更了解這些專案，並給你探索區塊鏈世界進一步發展的工具。對任何想參與最新區塊鏈技術的人來說，這些知識都是關鍵。</p>
+</div>
+</div>
+<div class="sect2">
+<h2 id="ch01-conclusion"><a class="anchor" href="#ch01-conclusion" aria-label="本節連結"></a>1.14. 結論</h2>
+<div class="paragraph">
+<p>以太坊是區塊鏈領域中一個開創性的平台。它被設計成一個圖靈完備的系統，因此能用來打造具備複雜、可程式化邏輯的去中心化應用，超越比特幣較簡單的功能。</p>
+</div>
+<div class="paragraph">
+<p>對開發者與技術人員來說，理解以太坊能開啟一扇門，讓你更深入地理解區塊鏈技術及其潛在的應用。精通以太坊，你就能掌握參與並貢獻於網際網路持續演進的工具，讓自己站在這個令人興奮的領域最前線。</p>
+</div>
+</div>
+</div>
+</div><section class="footnotes" aria-labelledby="footnotes-title"><h2 id="footnotes-title">註腳</h2><ol><li id="_footnotedef_1" value="1">譯註：前文說 Serenity 階段細分為六個子階段，下文也列出了六個（合併、The Surge、The Scourge、The Verge、The Purge 與 The Splurge），與這裡的「五個」不符。此處照原文譯出。 <a class="fn-back" href="#_footnoteref_1" aria-label="返回內文">↩</a></li></ol></section>
+  </div>
+  <nav class="pager" aria-label="章節導覽">
+    <a class="pager-link prev" href="/chapters/preface.html" rel="prev"><span class="pager-dir">← 上一章</span><span class="pager-title">前言</span></a>
+    <a class="pager-link next" href="/chapters/ethereum-basics.html" rel="next"><span class="pager-dir">下一章 →</span><span class="pager-title">第 2 章　以太坊基礎</span></a>
+  </nav>
+  <p class="edit-link"><a href="https://github.com/awesome-doge/ethereumbook_zh/blob/master/zh-tw/chapter_1.md" rel="noopener">在 GitHub 上檢視或改善本章翻譯</a></p>
+</article>
+
+  </main>
+
+  <aside class="rail" aria-label="本章內容">
+    <p class="rail-title">本章內容</p>
+    <ol>
+      <li><a href="#ch01-ethereum-compared-to-bitcoin">1.1. 以太坊與比特幣的比較</a></li>
+      <li><a href="#ch01-components-of-a-blockchain">1.2. 區塊鏈的組成元件</a></li>
+      <li><a href="#ch01-the-birth-of-ethereum">1.3. 以太坊的誕生</a></li>
+      <li><a href="#ch01-ethereums-stages-of-development">1.4. 以太坊的發展階段</a></li>
+      <li><a href="#ch01-ethereum-a-general-purpose-blockchain">1.5. 以太坊：通用區塊鏈</a></li>
+      <li><a href="#ch01-ethereums-components">1.6. 以太坊的組成元件</a></li>
+      <li><a href="#ch01-ethereum-and-turing-completeness">1.7. 以太坊與圖靈完備性</a></li>
+      <li><a href="#ch01-turing-completeness-as-a-feature">1.8. 作為「功能」的圖靈完備性</a></li>
+      <li><a href="#ch01-implications-of-turing-completeness">1.9. 圖靈完備性的影響</a></li>
+      <li><a href="#ch01-from-general-purpose-blockchains-to-dapps">1.10. 從通用區塊鏈到 DApp</a></li>
+      <li><a href="#ch01-the-third-age-of-the-internet">1.11. 網際網路的第三個時代</a></li>
+      <li><a href="#ch01-ethereums-development-culture">1.12. 以太坊的開發文化</a></li>
+      <li><a href="#ch01-why-learn-ethereum">1.13. 為什麼要學以太坊？</a></li>
+      <li><a href="#ch01-conclusion">1.14. 結論</a></li>
+    </ol>
+  </aside>
+</div>
+
+<footer class="site-footer">
+  <p>原著《Mastering Ethereum》第二版由 Andreas M. Antonopoulos、Gavin Wood、Carlo Parisi、Alessandro Mazza 與 Niccolò Pozzolini 撰寫，O'Reilly Media 出版。繁體中文翻譯：Dr. Awesome Doge。</p>
+  <p>本書內容以 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh_TW" rel="license noopener">CC BY-NC-ND 4.0</a> 授權釋出（原書出版 12 個月後轉為 CC BY-SA 4.0，本譯本屆時隨之更新） · <a href="https://github.com/awesome-doge/ethereumbook_zh" rel="noopener">GitHub</a> · <a href="https://github.com/awesome-doge/ethereumbook_zh/issues" rel="noopener">回報翻譯問題</a> · <a href="https://github.com/ethereumbook/ethereumbook" rel="noopener">英文原著</a></p>
+</footer>
+
+<dialog class="search" id="search" aria-label="搜尋全書">
+  <form method="dialog" class="search-form" role="search">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input type="search" id="search-input" placeholder="搜尋全書，例如：智能合約、gas、ERC20" autocomplete="off" spellcheck="false" aria-label="搜尋關鍵字">
+    <button type="submit" class="search-close" value="close" aria-label="關閉搜尋">Esc</button>
+  </form>
+  <p class="search-status" aria-live="polite"></p>
+  <ol class="search-results"></ol>
+</dialog>
+</body>
+</html>

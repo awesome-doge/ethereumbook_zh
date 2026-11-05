@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" data-base="/2018">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>第 9 章　開發工具，框架和庫｜精通以太坊繁體中文版</title>
+<meta name="description" content="以太坊開發工具：用 Truffle 建立、部署與遷移合約，Embark、OpenZeppelin、zeppelin_os、dapp.tools 等工具，以及 web3.js、web3.py、web3j 等函式庫。">
+<link rel="canonical" href="https://mastering-ethereum.doge.tg/2018/ch09.html">
+<meta name="author" content="Andreas M. Antonopoulos, Gavin Wood">
+<meta name="theme-color" content="#f8f9fc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14151b" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="/2018/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/2018/favicon.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/2018/apple-touch-icon.png">
+<link rel="manifest" href="/2018/manifest.webmanifest">
+<link rel="sitemap" type="application/xml" href="/2018/sitemap.xml">
+<meta property="og:site_name" content="精通以太坊繁體中文版">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第 9 章　開發工具，框架和庫｜精通以太坊繁體中文版">
+<meta property="og:description" content="以太坊開發工具：用 Truffle 建立、部署與遷移合約，Embark、OpenZeppelin、zeppelin_os、dapp.tools 等工具，以及 web3.js、web3.py、web3j 等函式庫。">
+<meta property="og:url" content="https://mastering-ethereum.doge.tg/2018/ch09.html">
+<meta property="og:image" content="https://mastering-ethereum.doge.tg/2018/assets/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="zh_TW">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="prev" href="/2018/ch08.html">
+<link rel="next" href="/2018/ch10.html">
+<script>
+(function(){try{var d=document.documentElement,s=localStorage,t=s.getItem('me-theme'),z=s.getItem('me-size'),f=s.getItem('me-font');if(t&&t!=='auto')d.setAttribute('data-theme',t);if(z)d.style.setProperty('--fs',z+'px');if(f)d.setAttribute('data-font',f)}catch(e){}})();
+</script>
+<link rel="stylesheet" href="/2018/assets/site.css?v=ad2df01e33">
+<link rel="stylesheet" href="/2018/assets/code.css?v=c94d007c0c">
+<script defer src="/2018/assets/site.js?v=33af8366a0"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Chapter","@id":"https://mastering-ethereum.doge.tg/2018/ch09.html#chapter","name":"第 9 章　開發工具，框架和庫","headline":"第 9 章　開發工具，框架和庫｜精通以太坊","description":"以太坊開發工具：用 Truffle 建立、部署與遷移合約，Embark、OpenZeppelin、zeppelin_os、dapp.tools 等工具，以及 web3.js、web3.py、web3j 等函式庫。","url":"https://mastering-ethereum.doge.tg/2018/ch09.html","inLanguage":"zh-TW","position":11,"dateModified":"2026-11-02T22:54:41+08:00","isPartOf":{"@id":"https://mastering-ethereum.doge.tg/2018/#book"},"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true},{"@type":"Book","@id":"https://mastering-ethereum.doge.tg/2018/#book","name":"精通以太坊：打造智能合約與 DApp","alternateName":["Mastering Ethereum: Building Smart Contracts and DApps","精通以太坊 Mastering Ethereum"],"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"inLanguage":"zh-TW","publisher":{"@type":"Organization","name":"O'Reilly Media"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true,"url":"https://mastering-ethereum.doge.tg/2018/","image":"https://mastering-ethereum.doge.tg/2018/assets/og-cover.png","translationOfWork":{"@type":"Book","name":"Mastering Ethereum: Building Smart Contracts and DApps","inLanguage":"en","url":"https://github.com/ethereumbook/ethereumbook"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"精通以太坊","item":"https://mastering-ethereum.doge.tg/2018/"},{"@type":"ListItem","position":2,"name":"第 9 章　開發工具，框架和庫","item":"https://mastering-ethereum.doge.tg/2018/ch09.html"}]}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZVVQYEKMPF"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-ZVVQYEKMPF');</script>
+</head>
+<body class="is-chapter">
+<a class="skip-link" href="#main">跳到主要內容</a>
+<header class="topbar">
+  <button class="icon-btn" type="button" data-action="toggle-nav" aria-controls="sidebar" aria-expanded="false" aria-label="開啟目錄">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+  </button>
+  <a class="brand" href="/2018/" aria-label="精通以太坊 首頁">
+    <span class="brand-mark" aria-hidden="true">Ξ</span><span class="brand-text">精通以太坊</span>
+  </a>
+  <p class="topbar-title"><span class="topbar-label">第 9 章</span>開發工具，框架和庫</p>
+  <div class="topbar-actions">
+    <button class="icon-btn search-btn" type="button" data-action="search" aria-label="搜尋全書（快捷鍵 /）">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <span class="search-btn-text">搜尋</span><kbd>/</kbd>
+    </button>
+    <button class="icon-btn" type="button" data-action="settings" aria-controls="settings" aria-expanded="false" aria-label="閱讀設定">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19 9 5l5 14M5.8 14.5h6.4M15 19l3-8 3 8M15.9 16.5h4.2"/></svg>
+    </button>
+  </div>
+  <div class="progress" aria-hidden="true"><span></span></div>
+</header>
+
+<div class="settings" id="settings" hidden>
+  <div class="settings-group" role="group" aria-label="主題">
+    <span class="settings-label">主題</span>
+    <div class="seg">
+      <button type="button" data-theme-set="auto">自動</button>
+      <button type="button" data-theme-set="light">淺色</button>
+      <button type="button" data-theme-set="sepia">護眼</button>
+      <button type="button" data-theme-set="dark">深色</button>
+    </div>
+  </div>
+  <div class="settings-group" role="group" aria-label="字級">
+    <span class="settings-label">字級</span>
+    <div class="seg">
+      <button type="button" data-size="-1" aria-label="縮小字級">A−</button>
+      <output class="size-value" aria-live="polite">18</output>
+      <button type="button" data-size="1" aria-label="放大字級">A+</button>
+    </div>
+  </div>
+  <div class="settings-group" role="group" aria-label="字型">
+    <span class="settings-label">字型</span>
+    <div class="seg">
+      <button type="button" data-font-set="sans">黑體</button>
+      <button type="button" data-font-set="serif">明體</button>
+    </div>
+  </div>
+</div>
+
+<div class="shell">
+  <nav class="sidebar" id="sidebar" aria-label="全書目錄">
+    <div class="sidebar-head">
+      <a href="/2018/" class="sidebar-book">精通以太坊</a>
+      <span class="sidebar-sub">繁體中文版</span>
+    </div>
+    <ol class="book-toc">
+      <li>
+        <a href="/2018/preface.html"><span class="toc-label">前言</span></a>
+      </li>
+      <li>
+        <a href="/2018/glossary.html"><span class="toc-label">術語表</span>快速術語表</a>
+      </li>
+      <li>
+        <a href="/2018/ch01.html"><span class="toc-label">第 1 章</span>什麼是以太坊</a>
+      </li>
+      <li>
+        <a href="/2018/ch02.html"><span class="toc-label">第 2 章</span>以太坊基礎</a>
+      </li>
+      <li>
+        <a href="/2018/ch03.html"><span class="toc-label">第 3 章</span>以太坊客戶端</a>
+      </li>
+      <li>
+        <a href="/2018/ch04.html"><span class="toc-label">第 4 章</span>以太坊測試網（Testnets）</a>
+      </li>
+      <li>
+        <a href="/2018/ch05.html"><span class="toc-label">第 5 章</span>密鑰、地址</a>
+      </li>
+      <li>
+        <a href="/2018/ch06.html"><span class="toc-label">第 6 章</span>錢包</a>
+      </li>
+      <li>
+        <a href="/2018/ch07.html"><span class="toc-label">第 7 章</span>交易 (Transactions)</a>
+      </li>
+      <li>
+        <a href="/2018/ch08.html"><span class="toc-label">第 8 章</span>智能合約</a>
+      </li>
+      <li class="is-current">
+        <a href="/2018/ch09.html" aria-current="page"><span class="toc-label">第 9 章</span>開發工具，框架和庫</a>
+        <ol class="section-toc">
+          <li><a href="#_框架">9.1. 框架</a></li>
+          <li><a href="#truffle">9.2. Truffle</a></li>
+          <li><a href="#_embark">9.3. Embark</a></li>
+          <li><a href="#_openzeppelin">9.4. OpenZeppelin</a></li>
+          <li><a href="#_zeppelin_os">9.5. zeppelin_os</a></li>
+          <li><a href="#_實用程式">9.6. 實用程式</a></li>
+          <li><a href="#_libraries">9.7. Libraries</a></li>
+        </ol>
+      </li>
+      <li>
+        <a href="/2018/ch10.html"><span class="toc-label">第 10 章</span>Tokens</a>
+      </li>
+      <li>
+        <a href="/2018/ch11.html"><span class="toc-label">第 11 章</span>去中心化應用 (DApps)</a>
+      </li>
+      <li>
+        <a href="/2018/ch12.html"><span class="toc-label">第 12 章</span>預言機 (Oracles)</a>
+      </li>
+      <li>
+        <a href="/2018/ch13.html"><span class="toc-label">第 13 章</span>gas（Gas）</a>
+      </li>
+      <li>
+        <a href="/2018/ch14.html"><span class="toc-label">第 14 章</span>以太坊虛擬機 (The Ethereum Virtual Machine)</a>
+      </li>
+      <li>
+        <a href="/2018/ch15.html"><span class="toc-label">第 15 章</span>共識</a>
+      </li>
+      <li>
+        <a href="/2018/ch16.html"><span class="toc-label">第 16 章</span>Vyper: 面向合約的程式語言</a>
+      </li>
+      <li>
+        <a href="/2018/ch17.html"><span class="toc-label">第 17 章</span>節點間的通信 —— 一個簡單的視角</a>
+      </li>
+      <li>
+        <a href="/2018/ch18.html"><span class="toc-label">附錄 A</span>以太坊標準</a>
+      </li>
+      <li>
+        <a href="/2018/ch19.html"><span class="toc-label">附錄 B</span>以太坊分叉歷史</a>
+      </li>
+    </ol>
+    <div class="sidebar-foot">
+      <a href="https://github.com/awesome-doge/ethereumbook_zh/releases/download/v2.0.0/Mastering-Ethereum-Traditional-Chinese.pdf" rel="noopener">下載 PDF 電子書</a>
+      <a href="https://github.com/awesome-doge/ethereumbook_zh/releases/download/v2.0.0/Mastering-Ethereum-Traditional-Chinese.epub" rel="noopener">下載 EPUB 電子書</a>
+      <a href="https://github.com/awesome-doge/ethereumbook_zh" rel="noopener">GitHub 原始碼</a>
+    </div>
+  </nav>
+  <div class="scrim" data-action="close-nav" hidden></div>
+
+  <main id="main" class="main" tabindex="-1">
+<article class="chapter" aria-labelledby="dev_tools_chapter">
+  <nav class="breadcrumb" aria-label="導覽路徑"><a href="/2018/">精通以太坊</a><span aria-hidden="true">/</span><span>第 9 章</span></nav>
+<aside class="edition-notice" role="note" aria-label="版本說明">
+  <p><strong>本章內容已過時：</strong>這是 2018 年草稿的翻譯。原書第二版已於 2025 年出版，<a href="/">第二版的繁體中文譯本</a>在本站首頁，英文版可在 <a href="https://masteringethereum.xyz" rel="noopener">masteringethereum.xyz</a> 免費線上閱讀。</p>
+</aside>
+
+  <header class="chapter-head">
+    <p class="chapter-label">第 9 章</p>
+    <h1 id="dev_tools_chapter">開發工具，框架和庫</h1>
+    <p class="chapter-meta">約 22 分鐘閱讀 · 7 個小節</p>
+  </header>
+  <div class="prose">
+<div class="sect1">
+
+<div class="sectionbody">
+<div class="sect2">
+<h2 id="_框架"><a class="anchor" href="#_框架" aria-label="本節連結"></a>9.1. 框架</h2>
+<div class="paragraph">
+<p>框架可使以太坊智能合約開發變得輕鬆。自己做所有事情，你可以更好地理解所有事物如何結合在一起，但這是一項繁瑣而重複的工作。下面列出的框架可以自動執行某些任務並使開發變得輕而易舉。</p>
+</div>
+</div>
+<div class="sect2">
+<h2 id="truffle"><a class="anchor" href="#truffle" aria-label="本節連結"></a>9.2. Truffle</h2>
+<div class="paragraph">
+<p>Github; <a href="https://github.com/Trufflesuite/Truffle" class="bare" rel="noopener" target="_blank">https://github.com/Trufflesuite/Truffle</a></p>
+</div>
+<div class="paragraph">
+<p>網站; <a href="https://Truffleframework.com" class="bare" rel="noopener" target="_blank">https://Truffleframework.com</a></p>
+</div>
+<div class="paragraph">
+<p>文件; <a href="https://Truffleframework.com/docs" class="bare" rel="noopener" target="_blank">https://Truffleframework.com/docs</a></p>
+</div>
+<div class="paragraph">
+<p>Truffle Boxes; <a href="http://Truffleframework.com/boxes/" class="bare" rel="noopener" target="_blank">http://Truffleframework.com/boxes/</a></p>
+</div>
+<div class="paragraph">
+<p><code>npm</code> package repository; <a href="https://www.npmjs.com/package/Truffle" class="bare" rel="noopener" target="_blank">https://www.npmjs.com/package/Truffle</a></p>
+</div>
+<div class="sect3">
+<h3 id="installing_Truffle"><a class="anchor" href="#installing_Truffle" aria-label="本節連結"></a>9.2.1. 安裝 Truffle 框架</h3>
+<div class="paragraph">
+<p>Truffle 框架由多個 <code>NodeJS</code>包組成。在我們安裝<code>Truffle</code>之前，我們需要安裝<code>NodeJS</code>和Node Package Manager（<code>npm</code>）的最新版。</p>
+</div>
+<div class="paragraph">
+<p>推薦的安裝 <code>NodeJS</code> 和 <code>npm</code> 的方法是使用node版本管理器（NVM）<code>nvm</code>。一旦我們安裝了<code>nvm</code>，它將為我們處理所有依賴和更新。我們將按照以下網址中的說明進行操作：</p>
+</div>
+<div class="paragraph">
+<p><a href="http://nvm.sh" class="bare" rel="noopener" target="_blank">http://nvm.sh</a></p>
+</div>
+<div class="paragraph">
+<p>一旦在你的作業系統上安裝了<code>nvm</code>，安裝<code>NodeJS</code>就很簡單了。我們使用<code>--lts</code>標誌告訴nvm我們想要最新的“長期支持（LTS）”版本<code>NodeJS</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ nvm install --lts</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>確認你已安裝 <code>node</code> 和 <code>npm</code>：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ node -v
+v8.9.4
+$ npm -v
+5.6.0</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>創建一個包含DApp支持的Node.js版本的隱藏檔案.nvmrc，這樣開發人員只需要在項目目錄的根目錄下運行<code>nvm install</code>，它就會自動安裝並切換到使用該版本。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ node -v &gt; .nvmrc
+$ nvm install</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>看起來不錯。現在安裝Truffle：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ npm -g install Truffle
+
++ Truffle@4.0.6
+installed 1 package in 37.508s</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h3 id="Truffle_box"><a class="anchor" href="#Truffle_box" aria-label="本節連結"></a>9.2.2. 集成預編譯的 Truffle 項目 (Truffle Box)</h3>
+<div class="paragraph">
+<p>如果我們想要使用或創建一個建立在預先構建的樣板上的DApp，那麼在Truffle Boxes鏈接中，我們可以選擇一個現有的Truffle項目，然後運行以下命令來下載並提取它：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ Truffle unbox &lt;BOX_NAME&gt;</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h3 id="truffle_project_directory"><a class="anchor" href="#truffle_project_directory" aria-label="本節連結"></a>9.2.3. 創建 Truffle 項目目錄</h3>
+<div class="paragraph">
+<p>對於我們將使用Truffle的每個項目，我們創建一個項目目錄並在該目錄中初始化Truffle。Truffle將在我們的項目目錄中創建必要的目錄結構。通常，我們為項目目錄指定一個描述我們項目的名稱。對於這個例子，我們將使用Truffle從 <a href="/2018/ch02.html#simple_contract_example">一個簡單的合約：一個 test ether faucet</a> 部署我們的Faucet合約，因此我們將命名項目檔案夾<code>Faucet</code>。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ mkdir Faucet
+$ cd Faucet
+Faucet $</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>一旦進入 <code>Faucet</code> 目錄，我們初始化 Truffle：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Faucet $ Truffle init</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Truffle創建了一個目錄結構和一些預設檔案：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Faucet
+├── contracts
+│&nbsp;&nbsp; └── Migrations.sol
+├── migrations
+│&nbsp;&nbsp; └── 1_initial_migration.js
+├── test
+├── Truffle-config.js
+└── Truffle.js</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>除了Truffle本身之外，我們還將使用一些JavaScript（nodeJS）支持包。我們可以用npm安裝這些。我們初始化npm目錄結構並接受npm建議的預設值：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ npm init
+
+package name: (faucet)
+version: (1.0.0)
+description:
+entry point: (Truffle-config.js)
+test command:
+git repository:
+keywords:
+author:
+license: (ISC)
+About to write to Faucet/package.json:
+
+{
+  "name": "faucet",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" &amp;&amp; exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
+
+
+Is this ok? (yes)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>現在，我們可以安裝我們用來使Truffle變得更容易的依賴關係：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ npm install dotenv Truffle-wallet-provider ethereumjs-wallet</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>你現在有一個帶有數千個檔案的<code>node_modules</code>目錄。</p>
+</div>
+<div class="paragraph">
+<p>在將DApp部署到雲生產或持續集成環境之前，指定 engines 欄位非常重要，以便你的Dapp使用正確的Node.js版本進行構建，並且會安裝相關的依賴關係。</p>
+</div>
+<div class="paragraph">
+<p>Package.json“engines”欄位配置鏈接; <a href="https://docs.npmjs.com/files/package.json#engines" class="bare" rel="noopener" target="_blank">https://docs.npmjs.com/files/package.json#engines</a></p>
+</div>
+</div>
+<div class="sect3">
+<h3 id="_配置_truffle"><a class="anchor" href="#_配置_truffle" aria-label="本節連結"></a>9.2.4. 配置 Truffle</h3>
+<div class="paragraph">
+<p>Truffle 創建一些空的配置檔案，<code>Truffle.js</code>和<code>Truffle-config.js</code>。在Windows系統上，當你嘗試運行命令<code>Truffle</code>，Windows嘗試運行<code>Truffle.js</code>時，<code>Truffle.js</code>名稱可能會導致衝突。為了避免這種情況，我們將刪除<code>Truffle.js</code>並使用<code>Truffle-config.js</code>來支持Windows用戶，他們的確已經受夠了。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ rm Truffle.js</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>現在我們編輯 Truffle-config.js 並用下面的內容替換：</p>
+</div>
+<div id="Truffle_config" class="listingblock">
+<div class="title">Truffle-config.js - a Truffle configuration to get us started</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><div class="table-wrap" tabindex="0"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="code"><pre><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">networks</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">localnode</span><span class="p">:</span> <span class="p">{</span> <span class="c1">// Whatever network our local node connects to</span>
+      <span class="na">network_id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">*</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// Match any network id</span>
+      <span class="na">host</span><span class="p">:</span> <span class="dl">"</span><span class="s2">localhost</span><span class="dl">"</span><span class="p">,</span>
+      <span class="na">port</span><span class="p">:</span> <span class="mi">8545</span><span class="p">,</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</pre></td></tr></tbody></table></div></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>以上配置是一個很好的起點。它設置了一個預設的以太坊網路（名為<code>localnode</code>），該網路假定你正在運行以太坊客戶端（如Parity），既可以作為完整節點，也可以作為輕客戶端。該配置將指示Truffle與連接埠8545上的本地節點通過RPC進行通信。Truffle將使用本地節點連接的任何以太網（如Ethereum主網路）或測試網路（如Ropsten）。本地節點也將提供錢包功能。</p>
+</div>
+<div class="paragraph">
+<p>在下面的章節中，我們將配置其他網路供Truffle使用，比如<code>ganache</code> test-RPC區塊鏈和託管網路提供商Infura。隨著我們添加更多網路，配置檔案將變得更加複雜，但它也將為我們的測試和開發工作流程提供更多選擇。</p>
+</div>
+</div>
+<div class="sect3">
+<h3 id="_使用truffle部署合約"><a class="anchor" href="#_使用truffle部署合約" aria-label="本節連結"></a>9.2.5. 使用Truffle部署合約</h3>
+<div class="paragraph">
+<p>我們現在有一個針對我們的 <code>Faucet</code> 項目的基本工作目錄，並且我們已經配置了Truffle和它的依賴關係。合約在我們項目的<code>contracts</code>子目錄中。該目錄已經包含一個“helper”合約，<code>Migrations.sol</code>管理合約升級。我們將在後面的章節中研究 <code>Migrations.sol</code> 的使用。</p>
+</div>
+<div class="paragraph">
+<p>讓我們將 <code>Faucet.sol</code> 合約（<a href="/2018/ch02.html#solidity_faucet_example">Faucet.sol : A Solidity contract implementing a faucet</a>）複製到<code>contracts</code>子目錄中，以便項目目錄如下所示：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Faucet
+├── contracts
+│&nbsp;&nbsp; ├── Faucet.sol
+│&nbsp;&nbsp; └── Migrations.sol
+...</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>我們現在可以讓Truffle編譯我們的合約：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ Truffle compile
+Compiling ./contracts/Faucet.sol...
+Compiling ./contracts/Migrations.sol...
+Writing artifacts to ./build/contracts</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h3 id="_truffle_migrations_理解部署腳本"><a class="anchor" href="#_truffle_migrations_理解部署腳本" aria-label="本節連結"></a>9.2.6. Truffle migrations - 理解部署腳本</h3>
+<div class="paragraph">
+<p>Truffle提供了一個名為<em>migration</em>的部署系統。如果你曾在其他框架中工作過，你可能會看到類似的東西：Ruby on Rails，Python Django和許多其他語言和框架都有<code>migrate</code>命令。</p>
+</div>
+<div class="paragraph">
+<p>在所有這些框架中，migration的目的是處理不同版本軟體之間數據模式的變化。以太坊migration的目的略有不同。因為以太坊合約是不可變的，而且要消耗gas部署，所以Truffle提供了一個migration機制來跟蹤哪些合約（以及哪些版本）已經部署。在一個擁有數十個合約和複雜依賴關係的複雜項目中，你不希望為了重新部署尚未更改的合約而支付gas。你也不想手動跟蹤哪些合約的哪些版本已經部署了。Trufflemigration機制通過部署智能合約<code>Migrations.sol</code>完成所有這些工作，然後跟蹤所有其他合約部署。</p>
+</div>
+<div class="paragraph">
+<p>我們只有一份合約，<code>Faucet.sol</code>，這至少意味著migration系統是大材小用的。不幸的是，我們必須使用它。但是，通過學習如何將它用於一個合約，我們可以開始練習一些良好的開發工作習慣。隨著事情變得更加複雜，這項努力將會得到回報。</p>
+</div>
+<div class="paragraph">
+<p>Truffle的<code>migrations</code>目錄是找到遷移腳本的地方。現在，只有一個腳本 <code>1_initial_migration.js</code>，它會部署 <code>Migrations.sol</code> 合約本身：</p>
+</div>
+<div id="faucet_1_initial_migration" class="listingblock">
+<div class="title">1_initial_migration.js - the migration script for Migrations.sol</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><div class="table-wrap" tabindex="0"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code long-token"><pre><span class="nx">include</span><span class="p">::</span><span class="nx">code</span><span class="o">/</span><span class="nx">truffle</span><span class="o">/</span><span class="nx">Faucet</span><span class="o">/</span><span class="nx">migrations</span><span class="o">/</span><span class="mi">1</span><span class="nx">_initial_migration</span><span class="p">.</span><span class="nx">js</span>
+
+<span class="kd">var</span> <span class="nx">Migrations</span> <span class="o">=</span> <span class="nx">artifacts</span><span class="p">.</span><span class="nf">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">./Migrations.sol</span><span class="dl">"</span><span class="p">);</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">deployer</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">deployer</span><span class="p">.</span><span class="nf">deploy</span><span class="p">(</span><span class="nx">Migrations</span><span class="p">);</span>
+<span class="p">};</span>
+</pre></td></tr></tbody></table></div></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>我們需要第二個migration腳本來部署 <code>Faucet.sol</code>。我們稱之為<code>2_deploy_contracts.js</code>。它非常簡單，就像<code>1_initial_migration.js</code>一樣，只需稍作修改即可。實際上，你可以複製<code>1_initial_migration.js</code>的內容，並簡單地將<code>Migrations</code>的所有實例替換為<code>Faucet</code>：</p>
+</div>
+<div id="faucet_2_deploy_contracts" class="listingblock">
+<div class="title">2_deploy_contracts.js - the migration script for Faucet.sol</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><div class="table-wrap" tabindex="0"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code long-token"><pre><span class="nx">include</span><span class="p">::</span><span class="nx">code</span><span class="o">/</span><span class="nx">truffle</span><span class="o">/</span><span class="nx">Faucet</span><span class="o">/</span><span class="nx">migrations</span><span class="o">/</span><span class="mi">2</span><span class="nx">_deploy_contracts</span><span class="p">.</span><span class="nx">js</span>
+
+<span class="kd">var</span> <span class="nx">Faucet</span> <span class="o">=</span> <span class="nx">artifacts</span><span class="p">.</span><span class="nf">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">./Faucet.sol</span><span class="dl">"</span><span class="p">);</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">deployer</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">deployer</span><span class="p">.</span><span class="nf">deploy</span><span class="p">(</span><span class="nx">Faucet</span><span class="p">);</span>
+<span class="p">};</span>
+</pre></td></tr></tbody></table></div></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>腳本初始化變數<code>Faucet</code>，將<code>Faucet.sol</code> Solidity源程式碼標識為定義<code>Faucet</code>的工件。然後，它調用部署功能來部署此合約。</p>
+</div>
+<div class="paragraph">
+<p>我們都準備好了。我們使用 <code>truffle migrate</code> 來部署合約。我們必須使用<code>--network</code>參數指定在哪個網路上部署合約。我們只在配置檔案中指定了一個網路，我們將其命名為<code>localnode</code>。確保你的本地以太坊客戶端正在運行，然後輸入：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Faucet $ Truffle migrate --network localnode</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>因為我們使用本地節點連接到以太坊網路並管理我們的錢包，所以我們必須授權Truffle創建的交易。我正在運行<code>parity</code>連接到Ropsten測試區塊鏈，所以在Trufflemigration期間，我會在parity的Web控制台上看到一個彈出視窗：</p>
+</div>
+<div id="parity_deployment_confirmation" class="imageblock">
+<div class="content">
+<picture><source type="image/webp" srcset="/2018/images/parity_deployment_confirmation.webp"><img src="/2018/images/parity_deployment_confirmation.png" alt="Parity asking for confirmation to deploy Faucet" width="861" height="308" loading="lazy" decoding="async"></picture>
+</div>
+<div class="title">圖 9-1. Parity asking for confirmation to deploy Faucet</div>
+</div>
+<div class="paragraph">
+<p>你將看到四筆交易，總計。一個部署<code>Migrations</code>，一個用於將部署計數器更新為<code>1</code>，一個用於部署<code>Faucet</code>，另一個用於將部署計數器更新為<code>2</code>。</p>
+</div>
+<div class="paragraph">
+<p>Truffle將顯示migration完成情況，顯示每個交易並顯示合約地址：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ Truffle migrate --network localnode
+Using network 'localnode'.
+
+Running migration: 1_initial_migration.js
+  Deploying Migrations...
+  ... 0xfa090db179d023d2abae543b4a21a1479e70ca7d35a469a5d1a98bfc6bd80fe8
+  Migrations: 0x8861c27715550bed8362c0345add158489df6db0
+Saving successful migration to network...
+  ... 0x985c4a32716826ddbe4eae284104bef8bc69e959899f62246a1b27c9dfcd6c03
+Saving artifacts...
+Running migration: 2_deploy_contracts.js
+  Deploying Faucet...
+  ... 0xecdbeef77f0558edc689440e34b7bba0a3ba7a45e4b680b071b47c30a930e9d6
+  Faucet: 0xd01cd8e7bd29e4bff8c1693f59eee46137a9f300
+Saving successful migration to network...
+  ... 0x11f376bd7307edddfd40dc4a14c3f7cb84b6c921ac2465602060b67d08f9fd8a
+Saving artifacts...</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h3 id="_使用truffle控制台"><a class="anchor" href="#_使用truffle控制台" aria-label="本節連結"></a>9.2.7. 使用Truffle控制台</h3>
+<div class="paragraph">
+<p>Truffle提供了一個JavaScript控制台，我們可以使用這個控制台與Ethereum網路（通過本地節點）進行交互，與已部署的合約進行交互，並與錢包提供商進行交互。在我們當前的配置（<code>localnode</code>）中，節點和錢包提供商是我們的本地parity客戶端。</p>
+</div>
+<div class="paragraph">
+<p>讓我們開始Truffle控制台並嘗試一些命令：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ Truffle console --network localnode
+Truffle(localnode)&gt;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Truffle提示一個提示符，顯示所選的網路配置（<code>localnode</code>）。記住並瞭解我們正在使用哪個網路很重要。你不希望在Ethereum主網路上意外部署測試合約或進行交易。這可能是一個昂貴的錯誤！</p>
+</div>
+<div class="paragraph">
+<p>Truffle控制台提供了自動補全功能，使我們可以輕鬆探索環境。如果我們在部分完成的命令後按<code>Tab</code>，Truffle將為我們完成命令。如果有多個命令與我們的輸入相匹配，按<code>Tab</code>兩次將顯示所有可能的完成。事實上，如果我們在空提示符下按兩次<code>Tab</code>，Truffle將列出所有命令：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Truffle(localnode)&gt;
+Array Boolean Date Error EvalError Function Infinity JSON Math NaN Number Object RangeError ReferenceError RegExp String SyntaxError TypeError URIError decodeURI decodeURIComponent encodeURI encodeURIComponent eval isFinite isNaN parseFloat parseInt undefined
+
+ArrayBuffer Buffer DataView Faucet Float32Array Float64Array GLOBAL Int16Array Int32Array Int8Array Intl Map Migrations Promise Proxy Reflect Set StateManager Symbol Uint16Array Uint32Array Uint8Array Uint8ClampedArray WeakMap WeakSet WebAssembly XMLHttpRequest _ assert async_hooks buffer child_process clearImmediate clearInterval clearTimeout cluster console crypto dgram dns domain escape events fs global http http2 https module net os path perf_hooks process punycode querystring readline repl require root setImmediate setInterval setTimeout stream string_decoder tls tty unescape url util v8 vm web3 zlib
+
+__defineGetter__ __defineSetter__ __lookupGetter__ __lookupSetter__ __proto__ constructor hasOwnProperty isPrototypeOf propertyIsEnumerable toLocaleString toString valueOf</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>絕大多數錢包和節點相關功能由<code>web3</code>物件提供，該物件是 <code>web3.js</code>庫的一個實例。<code>web3</code>物件將RPC接口抽象為我們的parity節點。你還會注意到兩個熟悉名稱的物件：<code>Migrations</code> 和 <code>Faucet</code>。這些代表我們剛剛部署的合約。我們將使用Truffle控制台與合約進行交互。首先，讓我們通過 <code>web3</code> 物件檢查我們的錢包：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Truffle(localnode)&gt; web3.eth.accounts
+[ '0x9e713963a92c02317a681b9bb3065a8249de124f',
+  '0xdb5dc1a13e3a55cf3b4587cd8d1e5fdeb6738145' ]</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>我們的parity客戶端有兩個錢包，Ropsten有一些測試ether。<code>web3.eth.accounts</code> 屬性包含所有帳戶的列表。我們可以使用 <code>getBalance</code> 函數檢查第一個帳戶的餘額：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Truffle(localnode)&gt; web3.eth.getBalance(web3.eth.accounts[0]).toNumber()
+191198572800000000
+Truffle(localnode)&gt;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>web3.js</code> 是一個大型JavaScript庫，通過提供者（如本地客戶端）為以太坊系統提供全面的界面。我們將在<a href="#web3js">web3.js</a>中更詳細地研究<code>web3.js</code>。現在讓我們嘗試與我們的合約進行交互：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Truffle(localnode)&gt; Faucet.address
+'0xd01cd8e7bd29e4bff8c1693f59eee46137a9f300'
+Truffle(localnode)&gt; web3.eth.getBalance(Faucet.address).toNumber()
+0
+Truffle(localnode)&gt;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>接下來，我們將使用 <code>sendTransaction</code> 發送一些測試ether，為 <code>Faucet</code> 提供資金。請注意使用<code>web3.toWei</code>為我們轉換ether單位。在沒有出錯的情況下輸入十八個零既困難又危險，因此使用單位轉換器來獲取值總是更好。以下是我們發送交易的方式：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Truffle(localnode)&gt; web3.eth.sendTransaction({from:web3.eth.accounts[0], to:Faucet.address, value:web3.toWei(0.5, 'ether')});
+'0xf134c75b985dc0e0c27c2f0412251e0860eb530a5055e660f21e7483ab336808'</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>切換到<code>parity</code>的Web控制台，你將看到一個彈出視窗，要求你確認該交易。等一下，一旦交易開始，你將能夠看到我們的<code>Faucet</code>合約的餘額：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Truffle(localnode)&gt; web3.eth.getBalance(Faucet.address).toNumber()
+500000000000000000</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>我們調用<code>withdraw</code>函數，從Faucet中取出一些測試ether：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Truffle(localnode)&gt; Faucet.deployed().then(instance =&gt; {instance.withdraw(web3.toWei(0.1, 'ether'))}).then(console.log)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>同樣，你需要批准parity Web控制台中的交易。<code>Faucet</code>的餘額已經下降，我們的測試錢包已經收到<code>0.1</code> ether：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Truffle(localnode)&gt; web3.eth.getBalance(Faucet.address).toNumber()
+400000000000000000</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Truffle(localnode)&gt; Faucet.deployed().then(instance =&gt; {instance.withdraw(web3.toWei(1, 'ether'))})</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>StatusError: Transaction: 0xe147ae9e3610334ada8d863c9028c12bd0501be2d0cfd05865c18612b92d3f9c exited with an error (status 0).</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h2 id="_embark"><a class="anchor" href="#_embark" aria-label="本節連結"></a>9.3. Embark</h2>
+<div class="paragraph">
+<p>Github; <a href="https://github.com/embark-framework/embark/" class="bare" rel="noopener" target="_blank">https://github.com/embark-framework/embark/</a></p>
+</div>
+<div class="paragraph">
+<p>文件; <a href="https://embark.status.im/docs/" class="bare" rel="noopener" target="_blank">https://embark.status.im/docs/</a></p>
+</div>
+<div class="paragraph">
+<p><code>npm</code> package repository; <a href="https://www.npmjs.com/package/embark" class="bare" rel="noopener" target="_blank">https://www.npmjs.com/package/embark</a></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ npm -g install embark</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h2 id="_openzeppelin"><a class="anchor" href="#_openzeppelin" aria-label="本節連結"></a>9.4. OpenZeppelin</h2>
+<div class="paragraph">
+<p><a href="https://openzeppelin.org/" rel="noopener" target="_blank">OpenZeppelin</a> 是Solidity語言的一個可重複使用且安全的智能合約的開放框架。</p>
+</div>
+<div class="paragraph">
+<p>它由社區驅動，由<a href="https://zeppelin.solutions/" rel="noopener" target="_blank">Zeppelin</a>團隊領導，擁有超過一百名外部貢獻者。該框架的主要重點是安全，通過應用行業標準合約安全模式和最佳實踐，利用zeppelin開發者從<a href="https://blog.zeppelin.solutions/tagged/security" rel="noopener" target="_blank">auditing</a>中獲得的所有經驗大量的合約，並通過社區的持續測試和審計，使用該框架作為其實際應用的基礎。</p>
+</div>
+<div class="paragraph">
+<p>OpenZeppelin框架是以太坊智能合約使用最廣泛的解決方案。這是由於社區討論每個提議的解決方案並從這些解決方案的實施和整合中學習，這將變成一個不斷增長的反饋迴圈，改進現有合約並找到將它們結合在一個清晰安全的體系結構中的新可能性。它不斷增加新的可重用合約來解決越來越複雜的挑戰，或在以太坊區塊鏈上探索激動人心的新可能性。如前所述，該框架目前擁有豐富的合約庫，從ERC20和ERC721 token的實現，到眾多的crowdsale模型，到簡單的行為，例如<code>Ownable</code>，<code>Pausable</code>或<code>LimitBalance</code>。
+在某些情況下，此儲存庫中的合約甚至作為<em>de facto</em>標準實現。</p>
+</div>
+<div class="paragraph">
+<p>該框架擁有MIT許可證，並且所有合約都採用模塊化方法進行設計，以確保易用性和擴展性。這些都是乾淨而基本的構建塊，可以在你的下一個以太坊項目中使用。讓我們設置框架，並使用OpenZeppelin合約構建一個簡單的crowdsale，作為使用它的簡單例子。這個例子還強調了重用安全組件的重要性，而不是自己編寫安全組件，並給出了以太坊平臺及其社區成為可能的想法的一個小樣本。</p>
+</div>
+<div class="paragraph">
+<p>首先，我們需要將npm中的openzepelin-solidity庫安裝到我們的工作區中。截至撰寫本文時的最新版本是<code>v1.9.0</code>，所以我們將使用該版本。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>mkdir sample-crowdsale
+cd sample-crowdsale
+npm install openzeppelin-solidity@1.9.0
+mkdir contracts</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>對於crowdsale而言，我們需要定義一個token，我們會給予投資者以換取其ether。在撰寫本文時，OpenZeppelin包含了遵循ERC20，ERC721和ERC827標準的多個基本token合約，具有不同的發行，限制，兌現，生命週期等特徵。</p>
+</div>
+<div class="paragraph">
+<p>讓我們製作一個ERC20 token，這意味著初始供應從0開始，token所有者（在我們的例子中，是crowdsale合約）可以創建新的 token並分配給投資者。為此，使用以下內容創建<code>contracts/SampleToken.sol</code>檔案：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>include::code/OpenZeppelin/contracts/SampleToken.sol
+
+pragma solidity 0.4.23;
+
+import 'openzeppelin-solidity/contracts/token/ERC20/MintableToken.sol';
+
+contract SampleToken is MintableToken {
+  string public name = "SAMPLE TOKEN";
+  string public symbol = "SAM";
+  uint8 public decimals = 18;
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>OpenZeppelin已經提供了一個MintableToken合約，我們可以用它作為token的基礎，所以我們只定義特定於我們案例的細節。你可以相信社區已經付出很大的努力來確保合約的正確性，但最好自己核實一下。看看<a href="https://github.com/OpenZeppelin/openzeppelin-solidity/blob/v1.9.0/contracts/token/ERC20/MintableToken.sol" rel="noopener" target="_blank">MintableToken</a>，<a href="https://github.com/OpenZeppelin/openzeppelin-solidity/blob/v1.9.0/contracts/token/ERC20/StandardToken.sol" rel="noopener" target="_blank">StandardToken</a>和<a href="https://github.com/OpenZeppelin/openzeppelin-solidity/blob/v1.9.0/contracts/ownership/Ownable.sol" rel="noopener" target="_blank">Ownable</a>瞭解新token的實現細節及其支持的功能。另外，看看<a href="https://github.com/OpenZeppelin/openzeppelin-solidity/blob/master/test/token/ERC20/MintableToken.test.js" rel="noopener" target="_blank">automated tests</a>以確保所有可能的場景都已經被覆蓋，並且程式碼是安全的。</p>
+</div>
+<div class="paragraph">
+<p>接下來，我們來製作Crowdsale（ICO）合約。就像 token一樣，OpenZeppelin已經提供了各種各樣的Crowdsale。目前，你將找到涉及分配、發行，價格和驗證的方案的合約。因此，假設你想為Crowdsale設定一個目標，並且如果在銷售完成時沒有達到目標，你想要退還所有投資者。為此，你可以使用<a href="https://github.com/OpenZeppelin/openzeppelin-solidity/blob/v1.9.0/contracts/crowdsale/distribution/RefundableCrowdsale.sol" rel="noopener" target="_blank">RefundableCrowdsale</a>合約。也許你想定義一個價格上漲的眾籌來激勵早期買家：<a href="https://github.com/OpenZeppelin/openzeppelin-solidity/blob/v1.9.0/contracts/crowdsale/price/IncreasingPriceCrowdsale.sol" rel="noopener" target="_blank">IncreasingPriceCrowdsale</a>，或者設定一個截止時間：<a href="https://github.com/OpenZeppelin/openzeppelin-solidity/blob/v1.9.0/contracts/crowdsale/validation/TimedCrowdsale.sol" rel="noopener" target="_blank">TimedCrowdsale</a>，或者設定購買者白名單：<a href="https://github.com/OpenZeppelin/openzeppelin-solidity/blob/v1.9.0/contracts/crowdsale/validation/WhitelistedCrowdsale.sol" rel="noopener" target="_blank">WhitelistedCrowdsale</a>。</p>
+</div>
+<div class="paragraph">
+<p>正如我們之前所說的，OpenZeppelin合約是基本的構建塊。這些crowdsale合約被設計為可組合的，只需閱讀 <a href="https://github.com/OpenZeppelin/openzeppelin-solidity/blob/v1.9.0/contracts/crowdsale/Crowdsale.sol" rel="noopener" target="_blank">Crowdsale</a>合約的源程式碼即可瞭解關於如何擴展它的指導。對於我們token的crowdsale，我們需要在crowdsale合約收到ether時才發行token，所以讓我們使用<a href="https://github.com/OpenZeppelin/openzeppelin-solidity/blob/v1.9.0/contracts/crowdsale/emission/MintedCrowdsale.sol" rel="noopener" target="_blank">MintedCrowdsale</a> 作為基礎。為了讓它更有趣，讓我們把它做成 <a href="https://github.com/OpenZeppelin/openzeppelin-solidity/blob/v1.9.0/contracts/crowdsale/distribution/PostDeliveryCrowdsale.sol" rel="noopener" target="_blank">PostDeliveryCrowdsale</a>， token只能在眾籌結束後贖回。將以下內容寫入<code>contracts/SampleCrowdsale.sol</code>：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>include::code/OpenZeppelin/contracts/SampleCrowdsale.sol
+
+pragma solidity 0.4.23;
+
+import './SampleToken.sol';
+import 'openzeppelin-solidity/contracts/crowdsale/emission/MintedCrowdsale.sol';
+import 'openzeppelin-solidity/contracts/crowdsale/distribution/PostDeliveryCrowdsale.sol';
+
+contract SampleCrowdsale is PostDeliveryCrowdsale, MintedCrowdsale {
+
+  constructor(
+    uint256 _openingTime,
+    uint256 _closingTime
+    uint256 _rate,
+    address _wallet,
+    MintableToken _token
+  )
+    public
+    Crowdsale(_rate, _wallet, _token)
+    PostDeliveryCrowdsale(_openingTime, _closingTime)
+  {
+  }
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>同樣，我們幾乎不需要編寫任何程式碼，只是為了重用OpenZeppelin社區為我們提供的已經經過測試的程式碼。但是，需要注意的是，這種情況與我們的<code>SampleToken</code>合約不同。如果你訪問<a href="https://github.com/OpenZeppelin/openzeppelin-solidity/tree/v1.9.0/test/crowdsale" rel="noopener" target="_blank">Crowdsale自動化測試</a>，你會看到它們被隔離測試。當你將不同的程式碼單元集成到一個更大的組件中時，單獨測試所有的單元是不夠的，因為它們之間的交互可能會導致你沒有預料到的行為。特別是，你會看到在這裡我們介紹了多重繼承，如果他們不瞭解Solidity編譯器的實現細節，這可能會讓開發人員感到意外。我們的<code>SampleCrowdsale</code>非常簡單，並且能夠像我們所期望的那樣工作，因為框架旨在使這些案例變得簡單明瞭；但不要因為這個框架引入的簡單性，放鬆你的安全性。每當你集成部分OpenZeppelin框架以構建更復雜的解決方案時，你必須全面測試解決方案的每個方面，以確保單元的所有交互按照你的意圖運行。</p>
+</div>
+<div class="paragraph">
+<p>最後，在我們對我們的解決方案感到滿意並且我們已經徹底測試之後，我們需要部署它。OpenZeppelin與Truffle很好地集成在一起，所以我們可以按照上面的Truffle部分所述編寫一個migration檔案。在 migrations/2_deploy_contracts.js 中寫入以下內容：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>include::code/OpenZeppelin/migrations/2_deploy_contracts.js
+
+const SampleCrowdsale = artifacts.require('./SampleCrowdsale.sol');
+const SampleToken = artifacts.require('./SampleToken.sol');
+
+module.exports = function(deployer, network, accounts) {
+  const openingTime = web3.eth.getBlock('latest').timestamp + 2; // two secs in the future
+  const closingTime = openingTime + 86400 * 20; // 20 days
+  const rate = new web3.BigNumber(1000);
+  const wallet = accounts[1];
+
+  return deployer
+    .then(() =&gt; {
+      return deployer.deploy(SampleToken);
+    })
+    .then(() =&gt; {
+      return deployer.deploy(
+        SampleCrowdsale,
+        openingTime,
+        closingTime,
+        rate,
+        wallet,
+        SampleToken.address
+      );
+    });
+};</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>這只是OpenZeppelin框架中一些合約的簡要概述。還有更多，社區總是提出新的想法，實施新的策略以使它們更安全，更簡單，更清晰，並儘早發現漏洞以防止主要網路合約中的漏洞。歡迎你加入社區進行學習和貢獻。</p>
+</div>
+<div class="paragraph">
+<p>Github link; <a href="https://github.com/OpenZeppelin/openzeppelin-solidity" class="bare" rel="noopener" target="_blank">https://github.com/OpenZeppelin/openzeppelin-solidity</a></p>
+</div>
+<div class="paragraph">
+<p>Website link; <a href="https://openzeppelin.org/" class="bare" rel="noopener" target="_blank">https://openzeppelin.org/</a></p>
+</div>
+<div class="paragraph">
+<p>Docs link; <a href="https://openzeppelin.org/api/docs/open-zeppelin.html" class="bare" rel="noopener" target="_blank">https://openzeppelin.org/api/docs/open-zeppelin.html</a></p>
+</div>
+</div>
+<div class="sect2">
+<h2 id="_zeppelin_os"><a class="anchor" href="#_zeppelin_os" aria-label="本節連結"></a>9.5. zeppelin_os</h2>
+<div class="paragraph">
+<p><a href="https://github.com/zeppelinos" rel="noopener" target="_blank">zeppelin_os</a> 是一款開源的分佈式工具和服務平臺，位於EVM之上，安全地開發和管理智能合約應用程式。</p>
+</div>
+<div class="paragraph">
+<p>與OpenZeppelin的程式碼每次都需要重新部署每個應用程式不同，zeppelin_os的程式碼處於鏈上。需要特定功能的應用程式（例如ERC20 token）不僅不需要重新設計和重新審計其實施（OpenZeppelin解決了這些問題），而且甚至不需要部署它。使用zeppelin_os，應用程式可直接與 鏈上的token實現進行交互，這與桌面應用程式與其底層作業系統的組件進行交互的方式大致相同。</p>
+</div>
+<div class="paragraph">
+<p>利用OpenZeppelin的應用程式通過重用庫的組織和同行評審合約避免了“重新發明輪子”。然而，每當應用程式使用ERC20 token實現時，同一個ERC20 Bytecode 會一次又一次地部署到區塊鏈中。這種 Bytecode 在網路中無數次重複存在。現在，使用zeppelin_os的應用程式可以避免這種不必要的重複。他們並沒有部署自己的ERC20實施，而是鏈接到定義了社區接受的最新ERC20實現的合約。這種單一的中央實現僅部署在區塊鏈中，與Solidity的庫非常相似，但卻相當複雜。</p>
+</div>
+<div class="paragraph">
+<p>與Solidity的庫不同，zeppelin_os提供的實現可以像常規合約一樣對待，即它們具有儲存空間。而且，它們是可升級的。如果在其中一個OS的官方實現中發現了一個漏洞，它可以簡單地與升級的漏洞交換。對於ERC20 token，對其實施的升級會立即波及到所有使用它的應用程式。作業系統不僅為其所有實現提供可升級性，還為用戶自己的合約提供升級能力，甚至為其自己的程式碼庫提供升級能力！開發人員決定應用程式何時以及如何實施升級，甚至決定要遵守哪種實施方案。</p>
+</div>
+<div class="paragraph">
+<p>zeppelin_os的核心是一個非常聰明的合約，被稱為“代理（proxy）”。代理是一種能夠包裝任何其他合約，暴露其接口而無需手動實現setter和getter的合約，並且可以在不丟失狀態的情況下進行升級。在Solidity術語中，它可以被看作是一個正常的合約，其業務邏輯包含在一個庫中，隨時可以由一個新庫來交換，而不會丟失其狀態。代理鏈接到其實現的方式是完全自動的，並且封裝給開發人員。實際上，任何合約都可以升級，程式碼幾乎不變。關於zeppelin_os的代理機制的更多資訊可以在Zeppelin的博客中找到：<a href="https://blog.zeppelinos.org/" rel="noopener" target="_blank">upgradeability-using-unstructured-storage</a>，</p>
+</div>
+<div class="paragraph">
+<p>作業系統將其實現封裝在可使用ZepTokens擔保(vouched)的軟體包或“發行版”中。因此，可以針對某個版本押注ZepTokens，將其標識為社區可接受的實現集。任何人都可以提交新的發行版，由社區審查並最終被接受為官方的新版本。作為獎勵，發行版的開發者在它每次被押注時都會收到token。作為一名Dapp開發人員，擔保(vouching)提供了一種可測量的方式來確定給定發行版獲得的支持，以及可信度。</p>
+</div>
+<div class="paragraph">
+<p>使用Zeppelin_os開發應用程式與使用NPM開發Javascript應用程式類似。AppManager處理應用程式的每個版本的應用程式包。包只是一個合約目錄，每個合約都可以有一個或多個可升級的代理。AppManager不僅為特定於應用程式的合約提供代理，而且還以標準庫的形式為Zeppelin_os實現提供代理。要查看這方面的完整範例，請訪問：<a href="https://github.com/zeppelinos/zos-lib/tree/master/" rel="noopener" target="_blank">examples/complex</a>。</p>
+</div>
+</div>
+<div class="sect2">
+<h2 id="_實用程式"><a class="anchor" href="#_實用程式" aria-label="本節連結"></a>9.6. 實用程式</h2>
+<div class="sect3">
+<h3 id="_ethereumjs_helpeth_命令行實用程式"><a class="anchor" href="#_ethereumjs_helpeth_命令行實用程式" aria-label="本節連結"></a>9.6.1. ethereumJS helpeth: 命令行實用程式</h3>
+<div class="paragraph">
+<p>helpeth是一個命令行工具，使開發人員更容易的操作密鑰和交易。</p>
+</div>
+<div class="paragraph">
+<p>它是基於JavaScript的庫和工具集合ethereumjs的一部分。</p>
+</div>
+<div class="paragraph">
+<p><a href="https://github.com/ethereumjs/helpeth" class="bare" rel="noopener" target="_blank">https://github.com/ethereumjs/helpeth</a></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Usage: helpeth [command]
+
+Commands:
+  signMessage &lt;message&gt;                     Sign a message
+  verifySig &lt;hash&gt; &lt;sig&gt;                    Verify signature
+  verifySigParams &lt;hash&gt; &lt;r&gt; &lt;s&gt; &lt;v&gt;        Verify signature parameters
+  createTx &lt;nonce&gt; &lt;to&gt; &lt;value&gt; &lt;data&gt;      Sign a transaction
+  &lt;gasLimit&gt; &lt;gasPrice&gt;
+  assembleTx &lt;nonce&gt; &lt;to&gt; &lt;value&gt; &lt;data&gt;    Assemble a transaction from its
+  &lt;gasLimit&gt; &lt;gasPrice&gt; &lt;v&gt; &lt;r&gt; &lt;s&gt;         components
+  parseTx &lt;tx&gt;                              Parse raw transaction
+  keyGenerate [format] [icapdirect]         Generate new key
+  keyConvert                                Convert a key to V3 keystore format
+  keyDetails                                Print key details
+  bip32Details &lt;path&gt;                       Print key details for a given path
+  addressDetails &lt;address&gt;                  Print details about an address
+  unitConvert &lt;value&gt; &lt;from&gt; &lt;to&gt;           Convert between Ethereum units
+
+Options:
+  -p, --private      Private key as a hex string                        [string]
+  --password         Password for the private key                       [string]
+  --password-prompt  Prompt for the private key password               [boolean]
+  -k, --keyfile      Encoded key file                                   [string]
+  --show-private     Show private key details                          [boolean]
+  --mnemonic         Mnemonic for HD key derivation                     [string]
+  --version          Show version number                               [boolean]
+  --help             Show help                                         [boolean]</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h3 id="_dapp_tools"><a class="anchor" href="#_dapp_tools" aria-label="本節連結"></a>9.6.2. dapp.tools</h3>
+<div class="paragraph">
+<p><a href="https://dapp.tools/" class="bare" rel="noopener" target="_blank">https://dapp.tools/</a></p>
+</div>
+<div class="paragraph">
+<p>安裝:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="bash"><span class="nv">$ </span>curl https://nixos.org/nix/install | sh
+<span class="nv">$ </span>nix-channel <span class="nt">--add</span> https://nix.dapphub.com/pkgs/dapphub
+<span class="nv">$ </span>nix-channel <span class="nt">--update</span>
+<span class="nv">$ </span>nix-env <span class="nt">-iA</span> dapphub.<span class="o">{</span>dapp,seth,hevm,evmdis<span class="o">}</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h3 id="_dapp"><a class="anchor" href="#_dapp" aria-label="本節連結"></a>9.6.3. Dapp</h3>
+<div class="paragraph">
+<p><a href="https://dapp.tools/dapp/" class="bare" rel="noopener" target="_blank">https://dapp.tools/dapp/</a></p>
+</div>
+</div>
+<div class="sect3">
+<h3 id="_seth"><a class="anchor" href="#_seth" aria-label="本節連結"></a>9.6.4. Seth</h3>
+<div class="paragraph">
+<p><a href="https://dapp.tools/seth/" class="bare" rel="noopener" target="_blank">https://dapp.tools/seth/</a></p>
+</div>
+</div>
+<div class="sect3">
+<h3 id="_hevm"><a class="anchor" href="#_hevm" aria-label="本節連結"></a>9.6.5. Hevm</h3>
+<div class="paragraph">
+<p><a href="https://dapp.tools/hevm/" class="bare" rel="noopener" target="_blank">https://dapp.tools/hevm/</a></p>
+</div>
+</div>
+<div class="sect3">
+<h3 id="_sputnikvm"><a class="anchor" href="#_sputnikvm" aria-label="本節連結"></a>9.6.6. SputnikVM</h3>
+<div class="paragraph">
+<p>SputnikVM是一個獨立的可插拔的用於不同的基於以太坊的區塊鏈的虛擬機。它是用Rust編寫的，可以用作二進制，貨物箱，共享庫，或者通過FFI，Protobuf和JSON接口集成。它有一個單獨的用於測試目的的二進制sputnikvm-dev，它模擬大部分JSON RPC API和區塊挖掘。</p>
+</div>
+<div class="paragraph">
+<p>Github link; <a href="https://github.com/etcdevteam/sputnikvm" class="bare" rel="noopener" target="_blank">https://github.com/etcdevteam/sputnikvm</a></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h2 id="_libraries"><a class="anchor" href="#_libraries" aria-label="本節連結"></a>9.7. Libraries</h2>
+<div class="sect3">
+<h3 id="web3js"><a class="anchor" href="#web3js" aria-label="本節連結"></a>9.7.1. web3.js</h3>
+<div class="paragraph">
+<p>web3.js是以太坊兼容的JS API，用於通過以太坊基金會開發的JSON RPC與客戶進行通信。</p>
+</div>
+<div class="paragraph">
+<p>Github link; <a href="https://github.com/ethereum/web3.js" class="bare" rel="noopener" target="_blank">https://github.com/ethereum/web3.js</a></p>
+</div>
+<div class="paragraph">
+<p><code>npm</code> package repository link; <a href="https://www.npmjs.com/package/web3" class="bare" rel="noopener" target="_blank">https://www.npmjs.com/package/web3</a></p>
+</div>
+<div class="paragraph">
+<p>Documentation link for web3.js API 0.2x.x; <a href="https://github.com/ethereum/wiki/wiki/JavaScript-API" class="bare" rel="noopener" target="_blank">https://github.com/ethereum/wiki/wiki/JavaScript-API</a></p>
+</div>
+<div class="paragraph">
+<p>Documentation link for web3.js API 1.0.0-beta.xx; <a href="https://web3js.readthedocs.io/en/1.0/web3.html" class="bare" rel="noopener" target="_blank">https://web3js.readthedocs.io/en/1.0/web3.html</a></p>
+</div>
+</div>
+<div class="sect3">
+<h3 id="_web3_py"><a class="anchor" href="#_web3_py" aria-label="本節連結"></a>9.7.2. web3.py</h3>
+<div class="paragraph">
+<p>web3.py 是一個用於與以太坊區塊鏈進行交互的Python庫。它現在也在以太坊基金會的GitHub中。</p>
+</div>
+<div class="paragraph">
+<p>Github link; <a href="https://github.com/ethereum/web3.py" class="bare" rel="noopener" target="_blank">https://github.com/ethereum/web3.py</a></p>
+</div>
+<div class="paragraph">
+<p>PyPi link; <a href="https://pypi.python.org/pypi/web3/4.0.0b9" class="bare" rel="noopener" target="_blank">https://pypi.python.org/pypi/web3/4.0.0b9</a></p>
+</div>
+<div class="paragraph">
+<p>Documentation link; <a href="https://web3py.readthedocs.io/" class="bare" rel="noopener" target="_blank">https://web3py.readthedocs.io/</a></p>
+</div>
+</div>
+<div class="sect3">
+<h3 id="_ethereumjs"><a class="anchor" href="#_ethereumjs" aria-label="本節連結"></a>9.7.3. EthereumJS</h3>
+<div class="paragraph">
+<p>以太坊的庫和實用程式集合。</p>
+</div>
+<div class="paragraph">
+<p>Github link; <a href="https://github.com/ethereumjs" class="bare" rel="noopener" target="_blank">https://github.com/ethereumjs</a></p>
+</div>
+<div class="paragraph">
+<p>Website link; <a href="https://ethereumjs.github.io/" class="bare" rel="noopener" target="_blank">https://ethereumjs.github.io/</a></p>
+</div>
+</div>
+<div class="sect3">
+<h3 id="_web3j"><a class="anchor" href="#_web3j" aria-label="本節連結"></a>9.7.4. web3j</h3>
+<div class="paragraph">
+<p>web3j 是Java和Android庫，用於與Ethereum客戶端集成並使用智能合約。</p>
+</div>
+<div class="paragraph">
+<p>Github link; <a href="https://github.com/web3j/web3j" class="bare" rel="noopener" target="_blank">https://github.com/web3j/web3j</a></p>
+</div>
+<div class="paragraph">
+<p>Website link; <a href="https://web3j.io" class="bare" rel="noopener" target="_blank">https://web3j.io</a></p>
+</div>
+<div class="paragraph">
+<p>Documentation link; <a href="https://docs.web3j.io" class="bare" rel="noopener" target="_blank">https://docs.web3j.io</a></p>
+</div>
+</div>
+<div class="sect3">
+<h3 id="_etherjar"><a class="anchor" href="#_etherjar" aria-label="本節連結"></a>9.7.5. Etherjar</h3>
+<div class="paragraph">
+<p>Etherjar 是與Ethereum集成並與智能合約一起工作的另一個Java庫。它專為基於Java 8+的伺服器端項目而設計，提供RPC的低層和高層封裝，以太坊資料結構和智能合約訪問。</p>
+</div>
+<div class="paragraph">
+<p>Github link; <a href="https://github.com/infinitape/etherjar" class="bare" rel="noopener" target="_blank">https://github.com/infinitape/etherjar</a></p>
+</div>
+</div>
+<div class="sect3">
+<h3 id="_nethereum"><a class="anchor" href="#_nethereum" aria-label="本節連結"></a>9.7.6. Nethereum</h3>
+<div class="paragraph">
+<p>Nethereum 是以太坊的.Net集成庫。</p>
+</div>
+<div class="paragraph">
+<p>Github link; <a href="https://github.com/Nethereum/Nethereum" class="bare" rel="noopener" target="_blank">https://github.com/Nethereum/Nethereum</a></p>
+</div>
+<div class="paragraph">
+<p>Website link; <a href="http://nethereum.com/" class="bare" rel="noopener" target="_blank">http://nethereum.com/</a></p>
+</div>
+<div class="paragraph">
+<p>Documentation link; <a href="https://nethereum.readthedocs.io/en/latest/" class="bare" rel="noopener" target="_blank">https://nethereum.readthedocs.io/en/latest/</a></p>
+</div>
+</div>
+<div class="sect3">
+<h3 id="_ethers_js"><a class="anchor" href="#_ethers_js" aria-label="本節連結"></a>9.7.7. ethers.js</h3>
+<div class="paragraph">
+<p>ethers.js 庫是一個緊湊，完整，功能齊全，經過廣泛測試的以太坊庫，完全根據MIT許可證獲得，並且已收到來自以太坊基金會的DevEx資助以擴展和維護。</p>
+</div>
+<div class="paragraph">
+<p>GitHub link: <a href="https://github.com/ethers-io/ethers.js" class="bare" rel="noopener" target="_blank">https://github.com/ethers-io/ethers.js</a></p>
+</div>
+<div class="paragraph">
+<p>Documentation: <a href="https://docs.ethers.io" class="bare" rel="noopener" target="_blank">https://docs.ethers.io</a></p>
+</div>
+</div>
+<div class="sect3">
+<h3 id="_emerald_platform"><a class="anchor" href="#_emerald_platform" aria-label="本節連結"></a>9.7.8. Emerald Platform</h3>
+<div class="paragraph">
+<p>Emerald Platform提供了庫和UI組件，可以在以太坊上構建Dapps。Emerald JS和Emerald JS UI提供了一組模塊和React組件來構建Javascript應用程式和網站，Emerald SVG Icons是一組區塊鏈相關的圖示。除了Javascript庫之外，它還有Rust庫來操作私鑰和交易簽名。所有Emerald庫和組件都使用 Apache 2許可。</p>
+</div>
+<div class="paragraph">
+<p>Github link; <a href="https://github.com/etcdevteam/emerald-platform" class="bare" rel="noopener" target="_blank">https://github.com/etcdevteam/emerald-platform</a></p>
+</div>
+<div class="paragraph">
+<p>Documentation link; <a href="https://docs.etcdevteam.com" class="bare" rel="noopener" target="_blank">https://docs.etcdevteam.com</a></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+  </div>
+  <nav class="pager" aria-label="章節導覽">
+    <a class="pager-link prev" href="/2018/ch08.html" rel="prev"><span class="pager-dir">← 上一章</span><span class="pager-title">第 8 章　智能合約</span></a>
+    <a class="pager-link next" href="/2018/ch10.html" rel="next"><span class="pager-dir">下一章 →</span><span class="pager-title">第 10 章　Tokens</span></a>
+  </nav>
+  <p class="edit-link"><a href="https://github.com/awesome-doge/ethereumbook_zh/blob/master/2018/ch09.asciidoc" rel="noopener">在 GitHub 上檢視或改善本章翻譯</a></p>
+</article>
+
+  </main>
+
+  <aside class="rail" aria-label="本章內容">
+    <p class="rail-title">本章內容</p>
+    <ol>
+      <li><a href="#_框架">9.1. 框架</a></li>
+      <li><a href="#truffle">9.2. Truffle</a></li>
+      <li><a href="#_embark">9.3. Embark</a></li>
+      <li><a href="#_openzeppelin">9.4. OpenZeppelin</a></li>
+      <li><a href="#_zeppelin_os">9.5. zeppelin_os</a></li>
+      <li><a href="#_實用程式">9.6. 實用程式</a></li>
+      <li><a href="#_libraries">9.7. Libraries</a></li>
+    </ol>
+  </aside>
+</div>
+
+<footer class="site-footer">
+  <p>原著《Mastering Ethereum》由 Andreas M. Antonopoulos 與 Gavin Wood 撰寫，O'Reilly Media 出版。繁體中文翻譯：Dr. Awesome Doge。</p>
+  <p>本書內容以 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh_TW" rel="license noopener">CC BY-NC-ND 4.0</a> 授權釋出 · <a href="https://github.com/awesome-doge/ethereumbook_zh" rel="noopener">GitHub</a> · <a href="https://github.com/awesome-doge/ethereumbook_zh/issues" rel="noopener">回報翻譯問題</a> · <a href="https://github.com/ethereumbook/ethereumbook" rel="noopener">英文原著</a></p>
+</footer>
+
+<dialog class="search" id="search" aria-label="搜尋全書">
+  <form method="dialog" class="search-form" role="search">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input type="search" id="search-input" placeholder="搜尋全書，例如：智能合約、gas、ERC20" autocomplete="off" spellcheck="false" aria-label="搜尋關鍵字">
+    <button type="submit" class="search-close" value="close" aria-label="關閉搜尋">Esc</button>
+  </form>
+  <p class="search-status" aria-live="polite"></p>
+  <ol class="search-results"></ol>
+</dialog>
+</body>
+</html>

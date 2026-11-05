@@ -12,12 +12,21 @@
     set: function (k, v) { try { localStorage.setItem(k, v); } catch (e) { /* 無痕模式等情況 */ } }
   };
 
+  // 網址基底：第二版為空字串，封存的 2018 版為 /2018（由 build-site.rb 寫在 <html data-base>）
+  var BASE = root.getAttribute('data-base') || '';
+
   // ---------- 舊版單頁網址：/#錨點、/all.html#錨點 → 對應的章節頁 ----------
+  // ids.json 的值是含基底的完整路徑；第二版首頁另外查 2018 版的對照表（data-legacy-ids），舊單頁網站的連結仍然有效
   if ((body.classList.contains('is-home') || body.classList.contains('is-legacy')) && location.hash.length > 1) {
     var target = decodeURIComponent(location.hash.slice(1));
-    fetch('/ids.json').then(function (r) { return r.json(); }).then(function (ids) {
-      var slug = ids[target];
-      if (slug) location.replace('/' + slug + '.html#' + encodeURIComponent(target));
+    var lookup = function (url) {
+      return fetch(url).then(function (r) { return r.ok ? r.json() : {}; }).then(function (ids) { return ids[target]; });
+    };
+    var legacyIds = root.getAttribute('data-legacy-ids');
+    lookup(BASE + '/ids.json').then(function (path) {
+      return path || (legacyIds ? lookup(legacyIds) : null);
+    }).then(function (path) {
+      if (path) location.replace(path + '#' + encodeURIComponent(target));
     }).catch(function () {});
   }
 
@@ -154,7 +163,14 @@
   function loadProgress() {
     var p = null;
     try { p = JSON.parse(store.get('me-progress') || 'null'); } catch (e) { p = null; }
-    return p && typeof p === 'object' ? p : {};
+    if (!p || typeof p !== 'object') return {};
+    // 2018 版搬到 /2018/ 之前的紀錄（/ch08、/preface、/glossary）改用新路徑
+    Object.keys(p).forEach(function (k) {
+      if (!/^\/(ch\d\d|preface|glossary)$/.test(k)) return;
+      if (!p['/2018' + k]) p['/2018' + k] = p[k];
+      delete p[k];
+    });
+    return p;
   }
 
   function currentSection() {
@@ -203,11 +219,14 @@
   }
 
   // 首頁：「繼續閱讀」指向最近讀的一章；那章已讀完就改指下一章
+  // 第二版與 2018 版同一個網域、共用同一份紀錄，只看本書目錄裡的章節
   var resume = $('[data-resume]');
   var cards = $$('.toc-cards a');
   if (resume) {
     var lastKey = null;
+    var bookKeys = cards.map(function (a) { return pathKey(a.getAttribute('href')); });
     Object.keys(progress).forEach(function (k) {
+      if (bookKeys.indexOf(k) < 0) return;
       if (progress[k].r > 0.01 && (!lastKey || progress[k].at > progress[lastKey].at)) lastKey = k;
     });
     if (lastKey) {
@@ -383,7 +402,7 @@
   function loadIndex() {
     if (!loading) {
       status.textContent = '正在載入搜尋資料…';
-      loading = fetch('/search-index.json').then(function (r) { return r.json(); }).then(function (data) {
+      loading = fetch(BASE + '/search-index.json').then(function (r) { return r.json(); }).then(function (data) {
         for (var i = 0; i + 1 < data.t2s.length; i += 2) t2s[data.t2s[i]] = data.t2s[i + 1];
         synonyms = data.synonyms.map(function (g) { return g.map(norm); });
         index = data.entries.map(function (e) { return { e: e, t: norm(e.t), x: norm(e.x) }; });

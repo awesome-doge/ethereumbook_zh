@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" data-base="" data-legacy-ids="/2018/ids.json">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>第 5 章　錢包｜精通以太坊（第二版）繁體中文版</title>
+<meta name="description" content="錢包技術：非確定性與階層確定性（HD）錢包、助記詞與種子、錢包的最佳實踐與安全性，以及帳戶抽象、社交恢復與 ENS 等改善使用者體驗的做法。">
+<link rel="canonical" href="https://mastering-ethereum.doge.tg/chapters/wallets.html">
+<meta name="author" content="Andreas M. Antonopoulos, Gavin Wood, Carlo Parisi, Alessandro Mazza, Niccolò Pozzolini">
+<meta name="theme-color" content="#f8f9fc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14151b" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="sitemap" type="application/xml" href="/sitemap.xml">
+<meta property="og:site_name" content="精通以太坊第二版繁體中文版">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第 5 章　錢包｜精通以太坊（第二版）繁體中文版">
+<meta property="og:description" content="錢包技術：非確定性與階層確定性（HD）錢包、助記詞與種子、錢包的最佳實踐與安全性，以及帳戶抽象、社交恢復與 ENS 等改善使用者體驗的做法。">
+<meta property="og:url" content="https://mastering-ethereum.doge.tg/chapters/wallets.html">
+<meta property="og:image" content="https://mastering-ethereum.doge.tg/assets/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="zh_TW">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="prev" href="/chapters/cryptography.html">
+<link rel="next" href="/chapters/transactions.html">
+<script>
+(function(){try{var d=document.documentElement,s=localStorage,t=s.getItem('me-theme'),z=s.getItem('me-size'),f=s.getItem('me-font');if(t&&t!=='auto')d.setAttribute('data-theme',t);if(z)d.style.setProperty('--fs',z+'px');if(f)d.setAttribute('data-font',f)}catch(e){}})();
+</script>
+<link rel="stylesheet" href="/assets/site.css?v=ad2df01e33">
+<link rel="stylesheet" href="/assets/code.css?v=c94d007c0c">
+<script defer src="/assets/site.js?v=33af8366a0"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Chapter","@id":"https://mastering-ethereum.doge.tg/chapters/wallets.html#chapter","name":"第 5 章　錢包","headline":"第 5 章　錢包｜精通以太坊（第二版）","description":"錢包技術：非確定性與階層確定性（HD）錢包、助記詞與種子、錢包的最佳實踐與安全性，以及帳戶抽象、社交恢復與 ENS 等改善使用者體驗的做法。","url":"https://mastering-ethereum.doge.tg/chapters/wallets.html","inLanguage":"zh-TW","position":6,"dateModified":"2026-11-06T03:30:53+08:00","isPartOf":{"@id":"https://mastering-ethereum.doge.tg/#book"},"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true},{"@type":"Book","@id":"https://mastering-ethereum.doge.tg/#book","name":"精通以太坊（第二版）","alternateName":["Mastering Ethereum, 2nd Edition","精通以太坊第二版"],"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"inLanguage":"zh-TW","publisher":{"@type":"Organization","name":"O'Reilly Media"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true,"url":"https://mastering-ethereum.doge.tg/","image":"https://mastering-ethereum.doge.tg/assets/og-cover.png","translationOfWork":{"@type":"Book","name":"Mastering Ethereum, 2nd Edition","inLanguage":"en","url":"https://github.com/ethereumbook/ethereumbook"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"精通以太坊（第二版）","item":"https://mastering-ethereum.doge.tg/"},{"@type":"ListItem","position":2,"name":"第 5 章　錢包","item":"https://mastering-ethereum.doge.tg/chapters/wallets.html"}]}]}</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZVVQYEKMPF"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-ZVVQYEKMPF');</script>
+</head>
+<body class="is-chapter">
+<a class="skip-link" href="#main">跳到主要內容</a>
+<header class="topbar">
+  <button class="icon-btn" type="button" data-action="toggle-nav" aria-controls="sidebar" aria-expanded="false" aria-label="開啟目錄">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+  </button>
+  <a class="brand" href="/" aria-label="精通以太坊（第二版） 首頁">
+    <span class="brand-mark" aria-hidden="true">Ξ</span><span class="brand-text">精通以太坊</span>
+  </a>
+  <p class="topbar-title"><span class="topbar-label">第 5 章</span>錢包</p>
+  <div class="topbar-actions">
+    <button class="icon-btn search-btn" type="button" data-action="search" aria-label="搜尋全書（快捷鍵 /）">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <span class="search-btn-text">搜尋</span><kbd>/</kbd>
+    </button>
+    <button class="icon-btn" type="button" data-action="settings" aria-controls="settings" aria-expanded="false" aria-label="閱讀設定">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19 9 5l5 14M5.8 14.5h6.4M15 19l3-8 3 8M15.9 16.5h4.2"/></svg>
+    </button>
+  </div>
+  <div class="progress" aria-hidden="true"><span></span></div>
+</header>
+
+<div class="settings" id="settings" hidden>
+  <div class="settings-group" role="group" aria-label="主題">
+    <span class="settings-label">主題</span>
+    <div class="seg">
+      <button type="button" data-theme-set="auto">自動</button>
+      <button type="button" data-theme-set="light">淺色</button>
+      <button type="button" data-theme-set="sepia">護眼</button>
+      <button type="button" data-theme-set="dark">深色</button>
+    </div>
+  </div>
+  <div class="settings-group" role="group" aria-label="字級">
+    <span class="settings-label">字級</span>
+    <div class="seg">
+      <button type="button" data-size="-1" aria-label="縮小字級">A−</button>
+      <output class="size-value" aria-live="polite">18</output>
+      <button type="button" data-size="1" aria-label="放大字級">A+</button>
+    </div>
+  </div>
+  <div class="settings-group" role="group" aria-label="字型">
+    <span class="settings-label">字型</span>
+    <div class="seg">
+      <button type="button" data-font-set="sans">黑體</button>
+      <button type="button" data-font-set="serif">明體</button>
+    </div>
+  </div>
+</div>
+
+<div class="shell">
+  <nav class="sidebar" id="sidebar" aria-label="全書目錄">
+    <div class="sidebar-head">
+      <a href="/" class="sidebar-book">精通以太坊（第二版）</a>
+      <span class="sidebar-sub">繁體中文版</span>
+    </div>
+    <ol class="book-toc">
+      <li>
+        <a href="/chapters/preface.html"><span class="toc-label">前言</span></a>
+      </li>
+      <li>
+        <a href="/chapters/what-is-ethereum.html"><span class="toc-label">第 1 章</span>什麼是以太坊？</a>
+      </li>
+      <li>
+        <a href="/chapters/ethereum-basics.html"><span class="toc-label">第 2 章</span>以太坊基礎</a>
+      </li>
+      <li>
+        <a href="/chapters/nodes.html"><span class="toc-label">第 3 章</span>以太坊節點</a>
+      </li>
+      <li>
+        <a href="/chapters/cryptography.html"><span class="toc-label">第 4 章</span>密碼學</a>
+      </li>
+      <li class="is-current">
+        <a href="/chapters/wallets.html" aria-current="page"><span class="toc-label">第 5 章</span>錢包</a>
+        <ol class="section-toc">
+          <li><a href="#ch05-overview-of-wallet-technologies">5.1. 錢包技術概觀</a></li>
+          <li><a href="#ch05-wallet-best-practices">5.2. 錢包的最佳實踐</a></li>
+          <li><a href="#ch05-security">5.3. 安全</a></li>
+          <li><a href="#ch05-improving-on-user-experience">5.4. 改善使用者體驗</a></li>
+          <li><a href="#ch05-conclusion">5.5. 結語</a></li>
+        </ol>
+      </li>
+      <li>
+        <a href="/chapters/transactions.html"><span class="toc-label">第 6 章</span>交易</a>
+      </li>
+      <li>
+        <a href="/chapters/solidity.html"><span class="toc-label">第 7 章</span>智能合約與 Solidity</a>
+      </li>
+      <li>
+        <a href="/chapters/vyper.html"><span class="toc-label">第 8 章</span>智能合約與 Vyper</a>
+      </li>
+      <li>
+        <a href="/chapters/smart-contract-security.html"><span class="toc-label">第 9 章</span>智能合約安全</a>
+      </li>
+      <li>
+        <a href="/chapters/tokens.html"><span class="toc-label">第 10 章</span>代幣</a>
+      </li>
+      <li>
+        <a href="/chapters/oracles.html"><span class="toc-label">第 11 章</span>預言機</a>
+      </li>
+      <li>
+        <a href="/chapters/dapps.html"><span class="toc-label">第 12 章</span>去中心化應用</a>
+      </li>
+      <li>
+        <a href="/chapters/defi.html"><span class="toc-label">第 13 章</span>去中心化金融</a>
+      </li>
+      <li>
+        <a href="/chapters/evm.html"><span class="toc-label">第 14 章</span>以太坊虛擬機</a>
+      </li>
+      <li>
+        <a href="/chapters/consensus.html"><span class="toc-label">第 15 章</span>共識</a>
+      </li>
+      <li>
+        <a href="/chapters/scaling.html"><span class="toc-label">第 16 章</span>以太坊擴容</a>
+      </li>
+      <li>
+        <a href="/chapters/zero-knowledge-proofs.html"><span class="toc-label">第 17 章</span>零知識證明</a>
+      </li>
+    </ol>
+    <div class="sidebar-foot">
+      <a href="https://github.com/awesome-doge/ethereumbook_zh" rel="noopener">GitHub 原始碼</a>
+    </div>
+  </nav>
+  <div class="scrim" data-action="close-nav" hidden></div>
+
+  <main id="main" class="main" tabindex="-1">
+<article class="chapter" aria-labelledby="ch05">
+  <nav class="breadcrumb" aria-label="導覽路徑"><a href="/">精通以太坊（第二版）</a><span aria-hidden="true">/</span><span>第 5 章</span></nav>
+  <header class="chapter-head">
+    <p class="chapter-label">第 5 章</p>
+    <h1 id="ch05">錢包</h1>
+    <p class="chapter-meta">約 48 分鐘閱讀 · 5 個小節</p>
+  </header>
+  <div class="prose">
+<div class="sect1">
+
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>錢包</em>這個詞在以太坊中被用來描述好幾種不同的東西。從高層次來看，錢包是一個軟體應用程式，是使用者操作以太坊的主要介面。錢包控管使用者資金的存取、管理金鑰與地址、追蹤餘額，並建立與簽署交易。此外，有些以太坊錢包還能與合約互動，例如 ERC-20 代幣。</p>
+</div>
+<div class="paragraph">
+<p>從程式設計師的角度來看，<em>錢包</em>這個詞的意思比較狹義，指的是用來儲存與管理使用者金鑰的系統。每個錢包都有一個金鑰管理元件。對某些錢包來說，這就是它的全部。其他錢包則屬於一個廣泛得多的類別，也就是<em>瀏覽器</em>，它們是以太坊去中心化應用（DApp）的介面，我們會在第 12 章更詳細地探討。被混在<em>錢包</em>這個詞底下的各種類別之間，並沒有明確的界線。</p>
+</div>
+<div class="paragraph">
+<p>在本章中，我們會把錢包看成存放私鑰的容器，以及管理這些金鑰的系統。</p>
+</div>
+<div class="sect2">
+<h2 id="ch05-overview-of-wallet-technologies"><a class="anchor" href="#ch05-overview-of-wallet-technologies" aria-label="本節連結"></a>5.1. 錢包技術概觀</h2>
+<div class="paragraph">
+<p>本節概述用來打造好用、安全又有彈性的以太坊錢包的各種技術。</p>
+</div>
+<div class="paragraph">
+<p>設計錢包時的一個關鍵考量，是在便利與隱私之間取得平衡。最便利的以太坊錢包，是只有一把私鑰與一個地址、任何用途都重複使用的錢包。可惜的是，這種做法是隱私的惡夢，因為任何人都能輕易追蹤並關聯你所有的交易。每筆交易都使用新的金鑰對隱私最好，卻會變得非常難以管理。正確的平衡很難拿捏，這正是好的錢包設計如此重要的原因。</p>
+</div>
+<div class="paragraph">
+<p>關於以太坊，一個常見的誤解是以為以太坊錢包裡裝著以太幣（ether）或代幣。事實上，嚴格來說，錢包裡只有金鑰。以太幣或其他代幣是記錄在以太坊區塊鏈上的。使用者用錢包裡的金鑰簽署交易，藉此控制網路上的代幣。從某種意義上說，以太坊錢包是一個<em>鑰匙圈</em>。話雖如此，既然錢包持有的金鑰是把以太幣或代幣轉給別人時唯一需要的東西，實務上這個區別其實沒那麼重要。</p>
+</div>
+<div class="paragraph">
+<p>這個差異真正重要的地方，在於思維的轉換：從傳統銀行的中心化系統（只有你和銀行看得到你帳戶裡的錢，而你只需要說服銀行你想移動資金，就能完成一筆交易），轉換到區塊鏈平台的去中心化系統（每個人都看得到一個帳戶的以太幣餘額，雖然他們大概不知道帳戶的擁有者是誰；而且每個人都必須確信擁有者想要移動資金，交易才會生效）。實務上，這表示有一種獨立的方式可以查詢帳戶餘額，不需要透過它的錢包。此外，如果你越來越不喜歡一開始使用的錢包應用程式，也可以把帳戶的管理從目前的錢包搬到另一個錢包。</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class="icon">
+<div class="title">備註</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>以太坊錢包裡裝的是金鑰，不是以太幣或代幣。錢包就像鑰匙圈，裡面是一對對的私鑰與公鑰。使用者用私鑰簽署交易，藉此證明他們擁有這些以太幣。以太幣則儲存在區塊鏈上。</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="paragraph">
+<p>錢包主要有兩種類型，差別在於錢包裡的金鑰彼此之間是否有關聯。</p>
+</div>
+<div class="paragraph">
+<p>第一種是<em>非確定性錢包</em>，其中每把金鑰都是從不同的隨機數獨立產生的，金鑰之間彼此沒有關聯。這種錢包也稱為 <em>JBOK 錢包</em>，名稱來自「just a bunch of keys」（只是一堆金鑰）這句話。</p>
+</div>
+<div class="paragraph">
+<p>第二種是<em>確定性錢包</em>，其中所有金鑰都是從單一的主金鑰衍生而來，這把主金鑰稱為<em>種子</em>。這種錢包裡的所有金鑰彼此都有關聯，只要有原本的種子，就能重新產生這些金鑰。確定性錢包使用好幾種不同的金鑰衍生方法，其中最常見的是樹狀結構，如「階層確定性錢包（BIP-32/BIP-44）」一節所述。</p>
+</div>
+<div class="paragraph">
+<p>為了讓確定性錢包稍微更能抵禦資料遺失的意外，例如手機被偷或掉進馬桶，種子通常會被編碼成一串單字（英文或其他語言），讓你抄寫下來，以備意外發生時使用。這些單字稱為錢包的<em>助記詞</em>。當然，如果有人拿到你的助記詞，他們也能重建你的錢包，進而取得你的以太幣與智能合約。因此，請非常、非常小心地保管你的復原單字清單！絕對不要以電子形式儲存它，不要存成電腦或手機裡的檔案。把它寫在紙上，存放在安全、穩妥的地方。</p>
+</div>
+<div class="paragraph">
+<p>接下來幾節會從高層次逐一介紹這些錢包技術。</p>
+</div>
+<div class="sect3">
+<h3 id="ch05-nondeterministic-random-wallets"><a class="anchor" href="#ch05-nondeterministic-random-wallets" aria-label="本節連結"></a>5.1.1. 非確定性（隨機）錢包</h3>
+<div class="paragraph">
+<p>在第一個以太坊錢包（為以太坊預售而製作）中，每個錢包檔案只儲存一把隨機產生的私鑰。這類錢包正逐漸被確定性錢包取代，因為這些「舊式」錢包在許多方面都比較差。例如，為了在使用以太坊時盡可能保護隱私，避免重複使用以太坊地址被認為是好的做法，也就是每次收款都使用新的地址（這需要一把新的私鑰）。你還可以更進一步，每筆交易都使用新的地址，不過如果你經常處理代幣，這樣做可能會很昂貴。要遵循這種做法，非確定性錢包就必須定期增加金鑰清單，也就表示你必須定期備份。如果你在來得及備份錢包之前就遺失了資料（硬碟故障、飲料打翻、手機被偷），你就會失去對資金與智能合約的存取權。「type 0」非確定性錢包最難處理，因為它們會以「即時」（just in time）的方式，為每個新地址建立一個新的錢包檔案。</p>
+</div>
+<div class="paragraph">
+<p>儘管如此，許多以太坊客戶端（包括 Geth）都使用 <em>keystore 檔案</em>。這是一個 JSON 編碼的檔案，裡面只有一把（隨機產生的）私鑰，並以密碼短語加密，提供額外的安全性。這個 JSON 檔案的內容看起來像這樣：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="json"><span class="p">{</span><span class="w">
+    </span><span class="nl">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"001d3f1ef827552ae1114027bd3ecf1f086ba0f9"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"crypto"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"cipher"</span><span class="p">:</span><span class="w"> </span><span class="s2">"aes-128-ctr"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"ciphertext"</span><span class="p">:</span><span class="w">
+            </span><span class="s2">"233a9f4d236ed0c13394b504b6da5df02587c8bf1ad8946f6f2b58f055507ece"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"cipherparams"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"iv"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d10c6ec5bae81b6cb9144de81037fa15"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"kdf"</span><span class="p">:</span><span class="w"> </span><span class="s2">"scrypt"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"kdfparams"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"dklen"</span><span class="p">:</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"n"</span><span class="p">:</span><span class="w"> </span><span class="mi">262144</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"p"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"r"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"salt"</span><span class="p">:</span><span class="w">
+                </span><span class="s2">"99d37a47c7c9429c66976f643f386a61b78b97f3246adca89abe4245d2788407"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"mac"</span><span class="p">:</span><span class="w"> </span><span class="s2">"594c8df1c8ee0ded8255a50caf07e8c12061fd859f4b7c76ab704b17c957e842"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4fcb2ba4-ccdb-424f-89d5-26cce304bf9c"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+</span><span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>keystore 格式使用 <em>金鑰衍生函數</em>（key derivation function，KDF），也稱為 <em>密碼延展演算法</em>（password-stretching algorithm），可以防範暴力破解、字典攻擊與彩虹表（rainbow table）攻擊。簡單地說，私鑰並不是直接用密碼短語加密的，而是先把密碼短語反覆雜湊，將它「延展」（stretched）。這個雜湊函數會重複執行 262,144 輪，在 keystore 的 JSON 中可以看到這個值，也就是參數 <code>crypto.kdfparams.n</code>。想要暴力破解密碼短語的攻擊者，每嘗試一個密碼短語，都必須進行 262,144 輪雜湊運算。這會讓攻擊慢到一定程度，只要密碼短語夠複雜、夠長，攻擊就不可行。</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tbody><tr>
+<td class="icon">
+<div class="title">提示</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>除了簡單的測試之外，不建議使用非確定性錢包。除了最基本的情況以外，它們都太難備份與使用。請改用以業界標準為基礎的階層確定性（hierarchical deterministic）錢包，並以助記詞種子作為備份。</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+</div>
+<div class="sect3">
+<h3 id="ch05-deterministic-seeded-wallets"><a class="anchor" href="#ch05-deterministic-seeded-wallets" aria-label="本節連結"></a>5.1.2. 確定性（種子）錢包</h3>
+<div class="paragraph">
+<p>確定性錢包，或稱「種子」錢包，所包含的私鑰全都是從單一的主金鑰（也就是種子）衍生而來。種子是一個隨機產生的數字，它會與其他資料結合，例如索引編號或「鏈碼」（chain code）（見「擴展公鑰與擴展私鑰」一節），用來衍生出任意數量的私鑰。在確定性錢包中，種子就足以恢復所有衍生出來的金鑰，因此只要在建立錢包時備份一次，就足以保護錢包中所有的資金與智能合約。種子也足以用來匯出或匯入錢包，讓所有金鑰都能輕鬆地在不同的錢包實作之間遷移。</p>
+</div>
+<div class="paragraph">
+<p>這種設計讓種子的安全變得極為重要，因為只需要種子就能取得整個錢包的存取權。另一方面，能把安全上的心力集中在單一一份資料上，也可以看成是一項優點。</p>
+</div>
+</div>
+<div class="sect3">
+<h3 id="ch05-hierarchical-deterministic-wallets-bip-32bip-44"><a class="anchor" href="#ch05-hierarchical-deterministic-wallets-bip-32bip-44" aria-label="本節連結"></a>5.1.3. 階層確定性錢包（BIP-32/BIP-44）</h3>
+<div class="paragraph">
+<p>確定性錢包的發展，是為了能輕鬆地從單一種子衍生出許多金鑰。目前，最先進的確定性錢包形式之一，是比特幣 BIP-32 標準所定義的<em>階層確定性（HD）錢包</em>。HD 錢包所包含的金鑰是以樹狀結構衍生的：父金鑰可以衍生出一系列子金鑰，每把子金鑰又可以衍生出一系列孫金鑰，依此類推。圖 5-1 呈現了這個樹狀結構。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<picture><source type="image/webp" srcset="/images/ch5/maet_0501.webp"><img src="/images/ch5/maet_0501.png" alt="HD wallet: a tree of keys generated from a single seed" width="1207" height="829" loading="lazy" decoding="async"></picture>
+</div>
+<div class="title">圖 5-1. HD 錢包：從單一種子產生的金鑰樹</div>
+</div>
+<div class="paragraph">
+<p>與較簡單的確定性錢包相比，HD 錢包有幾項關鍵優勢。第一，樹狀結構可以用來表達額外的組織意義，例如用某個特定的子金鑰分支接收入帳的款項，另一個分支則用來接收付款後找回的零錢。金鑰分支也可以用在企業環境中，把不同的分支分配給不同的部門、子公司、特定職能或會計科目。</p>
+</div>
+<div class="paragraph">
+<p>HD 錢包的第二項優勢，是使用者不需要取得對應的私鑰，就能建立一系列公鑰。這讓 HD 錢包可以用在不安全的伺服器上，或作為僅供觀察（watch-only）或只能收款的錢包使用；在這些情況下，錢包並沒有能動用資金的私鑰。</p>
+</div>
+</div>
+<div class="sect3">
+<h3 id="ch05-seeds-and-mnemonic-codes-bip-39"><a class="anchor" href="#ch05-seeds-and-mnemonic-codes-bip-39" aria-label="本節連結"></a>5.1.4. 種子與助記詞（BIP-39）</h3>
+<div class="paragraph">
+<p>要把私鑰編碼起來以便安全地備份與取回，有許多種方法。目前偏好的方法，是使用一串單字，只要按照正確的順序組合起來，就能唯一地重建私鑰。這有時稱為<em>助記詞</em>，這種做法已經由 BIP-39 標準化。如今，許多以太坊錢包（以及其他加密貨幣的錢包）都採用這個標準，可以用可互通的助記詞匯入與匯出種子，以進行備份與恢復。</p>
+</div>
+<div class="paragraph">
+<p>為了看出這種做法為什麼會流行起來，我們來看一個例子：</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>FCCF1AB3329FD5DA3DA9577511F8F137 ← seed in hexadecimal
+wolf juice proud gown wool unfair
+wall cliff insect more detail hub ← seed using BIP-39 representation</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>實際上，抄寫十六進位序列時出錯的機率高得令人無法接受。相較之下，已知的單字清單就容易處理得多，主要是因為書寫單字（特別是英文單字）時有很高的冗餘度。如果不小心記成了 <em>inzect</em>，等到需要恢復錢包時，很快就能判斷出 <em>inzect</em> 不是有效的英文單字，應該改用 <em>insect</em>。我們之所以談到要把種子的某種表示形式抄寫下來，是因為這是管理 HD 錢包時的好做法：資料遺失時（無論是意外還是失竊）需要種子才能恢復錢包，所以保留一份備份是非常明智的。不過，種子必須極度保密，因此應該小心避免數位備份——這就是為什麼建議用紙筆備份。</p>
+</div>
+<div class="paragraph">
+<p>總而言之，用復原單字清單來編碼 HD 錢包的種子，是最簡單的方式，可以安全地匯出一組私鑰、抄寫下來、記錄在紙上、無誤地讀出，並匯入另一個錢包。</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h2 id="ch05-wallet-best-practices"><a class="anchor" href="#ch05-wallet-best-practices" aria-label="本節連結"></a>5.2. 錢包的最佳實踐</h2>
+<div class="paragraph">
+<p>隨著加密貨幣錢包技術日漸成熟，出現了一些業界標準，讓錢包能廣泛互通，而且容易使用、安全又有彈性。這些標準也讓錢包能從單一的助記詞，為多種不同的加密貨幣衍生金鑰。這些標準是：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>助記詞，以 BIP-39 為基礎</p>
+</li>
+<li>
+<p>HD 錢包，以 BIP-32 為基礎</p>
+</li>
+<li>
+<p>多用途的 HD 錢包結構，以 BIP-43 為基礎</p>
+</li>
+<li>
+<p>多幣種與多帳戶錢包，以 BIP-44 為基礎</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>這些標準可能會隨著未來的發展而改變或被淘汰，但就目前而言，它們構成了一組環環相扣的技術，已經成為大多數區塊鏈平台及其加密貨幣事實上的錢包標準。</p>
+</div>
+<div class="paragraph">
+<p>許多軟體與硬體錢包都採用了這些標準，使得這些錢包全都能互通。使用者可以把在其中一個錢包產生的助記詞匯出，再匯入另一個錢包，恢復所有的金鑰與地址。</p>
+</div>
+<div class="paragraph">
+<p>支援這些標準的軟體錢包包括 Rabby Wallet、MetaMask 與 Phantom 等。支援這些標準的硬體錢包則有 Ledger 與 Trezor 的各種型號。</p>
+</div>
+<div class="paragraph">
+<p>接下來幾節會詳細探討這些技術。</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tbody><tr>
+<td class="icon">
+<div class="title">提示</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>如果你要實作以太坊錢包，應該把它做成 HD 錢包，用助記詞編碼種子作為備份，並遵循 BIP-32、BIP-39、BIP-43 與 BIP-44 標準，如接下來幾節所述。</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="sect3">
+<h3 id="ch05-mnemonic-code-words-bip-39"><a class="anchor" href="#ch05-mnemonic-code-words-bip-39" aria-label="本節連結"></a>5.2.1. 助記詞（BIP-39）</h3>
+<div class="paragraph">
+<p>助記詞是一串單字，編碼了一個隨機數，這個隨機數會作為種子，用來衍生出確定性錢包。這串單字就足以重建種子，並由此重建錢包與所有衍生出來的金鑰。以助記詞實作確定性錢包的錢包應用程式，在第一次建立錢包時，會向使用者顯示一串 12 到 24 個單字。這串單字就是錢包的備份，可以在同一個或任何相容的錢包應用程式中，用來恢復並重建所有的金鑰。如同我們前面說明的，助記詞清單容易閱讀，也容易正確抄寫，讓使用者更容易備份錢包。</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class="icon">
+<div class="title">備註</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>助記詞經常與 <em>腦錢包</em>（brainwallet）混淆，但兩者並不相同。主要的差別在於，腦錢包是由使用者自己選擇的單字組成，而助記詞則是由錢包隨機產生、再呈現給使用者。這個重要的差異讓助記詞安全得多，因為人類是非常糟糕的隨機性來源。或許更重要的是，<em>腦錢包</em> 這個名稱暗示這些單字必須背下來，這是個糟糕透頂的主意，等於是讓你在需要備份時偏偏沒有備份可用。</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="paragraph">
+<p>助記詞是由 BIP-39 定義的。請注意，BIP-39 只是助記詞標準的一種實作。比特幣錢包 Electrum 使用另一個標準，單字集也不一樣，而且出現得比 BIP-39 還早。BIP-39 是由硬體錢包 Trezor 背後的公司提出的，與 Electrum 的實作並不相容。不過，BIP-39 現在已經獲得業界廣泛支援，有數十種可互通的實作，應該被視為事實上的業界標準。此外，BIP-39 可以用來產生支援以太坊的多幣種錢包，Electrum 的種子則不行。</p>
+</div>
+<div class="paragraph">
+<p>BIP-39 定義了助記詞與種子的建立方式，我們在這裡分成九個步驟說明。為了清楚起見，整個過程分為兩部分：步驟 1 到 6 列在「產生助記詞」中，步驟 7 到 9 則列在「從助記詞到種子」中。</p>
+</div>
+<div class="sect4">
+<h4 id="ch05-generating-mnemonic-words"><a class="anchor" href="#ch05-generating-mnemonic-words" aria-label="本節連結"></a>產生助記詞</h4>
+<div class="paragraph">
+<p>錢包會依照 BIP-39 定義的標準化流程，自動產生助記詞。錢包從一個熵（entropy）來源開始，加上校驗和（checksum），再依照下列步驟把熵對應到一份單字清單：</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>建立一個長度為 128 到 256 位元、在密碼學上隨機的序列 <em>S</em>。</p>
+</li>
+<li>
+<p>取 <em>S</em> 的 SHA-256 雜湊值的前（<em>S</em> 的長度 ÷ 32）個位元，作為 <em>S</em> 的校驗和。</p>
+</li>
+<li>
+<p>把校驗和加到隨機序列 <em>S</em> 的尾端。</p>
+</li>
+<li>
+<p>把序列與校驗和串接起來的結果，切分成每段 11 個位元。</p>
+</li>
+<li>
+<p>把每個 11 位元的值，對應到預先定義、共 2,048 個單字的字典中的一個單字。</p>
+</li>
+<li>
+<p>依照順序，用這串單字組成助記詞。</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>圖 5-2 呈現了如何用熵產生助記詞。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<picture><source type="image/webp" srcset="/images/ch5/maet_0502.webp"><img src="/images/ch5/maet_0502.png" alt="Generating mnemonic words" width="922" height="1146" loading="lazy" decoding="async"></picture>
+</div>
+<div class="title">圖 5-2. 產生助記詞</div>
+</div>
+<div class="paragraph">
+<p>表 5-1 列出熵資料的大小與助記詞單字數之間的關係。</p>
+</div>
+<div class="table-wrap" tabindex="0"><table class="tableblock frame-all grid-all stretch">
+<caption class="title">表 5-1. 助記詞：熵與單字數</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">熵（位元）</th>
+<th class="tableblock halign-left valign-top">校驗和（位元）</th>
+<th class="tableblock halign-left valign-top">熵 + 校驗和（位元）</th>
+<th class="tableblock halign-left valign-top">助記詞長度（單字數）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">128</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">132</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">12</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">160</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">165</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">15</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">192</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">198</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">18</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">224</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">7</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">231</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">21</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">256</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">264</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">24</p></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="sect4">
+<h4 id="ch05-from-mnemonic-to-seed"><a class="anchor" href="#ch05-from-mnemonic-to-seed" aria-label="本節連結"></a>從助記詞到種子</h4>
+<div class="paragraph">
+<p>助記詞代表長度為 128 到 256 位元的熵。接著，這個熵會透過金鑰延展（key stretching）函數 PBKDF2，衍生出一個更長的（512 位元）種子。<sup class="footnote">[<a id="_footnoteref_7" class="footnote" href="#_footnotedef_7" title="查看註腳">7</a>]</sup>產生的種子會用來建立確定性錢包，並衍生出錢包的金鑰。</p>
+</div>
+<div class="paragraph">
+<p>金鑰延展函數有兩個參數：助記詞與鹽值（salt）。在金鑰延展函數中使用鹽值的目的，是讓人難以建立一張可用於暴力破解攻擊的查詢表。在 BIP-39 標準中，鹽值還有另一個用途：它讓我們可以加入一個密碼短語，作為保護種子的額外安全因素，我們會在下一節詳細說明。</p>
+</div>
+<div class="paragraph">
+<p>接續上一節，這個流程還有下列步驟：</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="7">
+<li>
+<p>PBKDF2 金鑰延展函數的第一個參數，是步驟 6 產生的助記詞。</p>
+</li>
+<li>
+<p>PBKDF2 金鑰延展函數的第二個參數是<em>鹽值</em>。鹽值由字串常數 <code>"mnemonic"</code> 串接上使用者可選擇提供的密碼短語組成。</p>
+</li>
+<li>
+<p>PBKDF2 使用 HMAC-SHA512 演算法，對助記詞與鹽值這兩個參數進行 2,048 輪雜湊運算來延展它們，最後輸出一個 512 位元的值。這個 512 位元的值就是種子。</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>圖 5-3 呈現了如何用助記詞產生種子。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<picture><source type="image/webp" srcset="/images/ch5/maet_0503.webp"><img src="/images/ch5/maet_0503.png" alt="From mnemonic to seed" width="1422" height="846" loading="lazy" decoding="async"></picture>
+</div>
+<div class="title">圖 5-3. 從助記詞到種子</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class="icon">
+<div class="title">備註</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>金鑰延展函數經過 2,048 輪雜湊運算，對於針對助記詞或密碼短語的暴力破解攻擊，算是有一定效果的防護。它讓嘗試超過幾千種密碼短語與助記詞組合的（運算）成本變得很高，而可能衍生出的種子數量卻極為龐大（2<sup>512</sup>，大約 10<sup>154</sup>）——遠遠超過可觀測宇宙中的原子數量（大約 10<sup>80</sup>）。</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="paragraph">
+<p>表 5-2、5-3 與 5-4 列出了一些助記詞及其產生的種子的範例。</p>
+</div>
+<div class="table-wrap" tabindex="0"><table class="tableblock frame-all grid-all stretch">
+<caption class="title">表 5-2. 不使用密碼短語的 128 位元熵助記詞，及其產生的種子</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>熵</strong></p></td>
+<td class="tableblock halign-left valign-top long-token"><p class="tableblock">0c1e24e5917779d297e14d45f14e1a1a</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>助記詞</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">army van defense carry jealous true garbage claim echo media make crunch</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>密碼短語</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">（無）</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>種子</strong></p></td>
+<td class="tableblock halign-left valign-top long-token"><p class="tableblock">5b56c417303faa3fcba7e57400e120a0ca83ec5a4fc9ffba757fbe63fbd77a89a1a3be4c67196f57c39…​</p></td>
+</tr>
+</tbody>
+</table></div>
+<div class="table-wrap" tabindex="0"><table class="tableblock frame-all grid-all stretch">
+<caption class="title">表 5-3. 使用密碼短語的 128 位元熵助記詞，及其產生的種子</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>熵</strong></p></td>
+<td class="tableblock halign-left valign-top long-token"><p class="tableblock">0c1e24e5917779d297e14d45f14e1a1a</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>助記詞</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">army van defense carry jealous true garbage claim echo media make crunch</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>密碼短語</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SuperDuperSecret</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>種子</strong></p></td>
+<td class="tableblock halign-left valign-top long-token"><p class="tableblock">3b5df16df2157104cfdd22830162a5e170c0161653e3afe6c88defeefb0818c793dbb28ab3ab091897d0…​</p></td>
+</tr>
+</tbody>
+</table></div>
+<div class="table-wrap" tabindex="0"><table class="tableblock frame-all grid-all stretch">
+<caption class="title">表 5-4. 不使用密碼短語的 256 位元熵助記詞，及其產生的種子</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>熵</strong></p></td>
+<td class="tableblock halign-left valign-top long-token"><p class="tableblock">2041546864449caff939d32d574753fe684d3c947c3346713dd8423e74abcf8c</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>助記詞</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">cake apple borrow silk endorse fitness top denial coil riot stay wolf luggage oxygen faint major edit measure invite love trap field dilemma oblige</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>密碼短語</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">（無）</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>種子</strong></p></td>
+<td class="tableblock halign-left valign-top long-token"><p class="tableblock">3269bce2674acbd188d4f120072b13b088a0ecf87c6e4cae41657a0bb78f5315b33b3a04356e53d062e5…​</p></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="sect4">
+<h4 id="ch05-optional-passphrase-in-bip-39"><a class="anchor" href="#ch05-optional-passphrase-in-bip-39" aria-label="本節連結"></a>BIP-39 的選用密碼短語</h4>
+<div class="paragraph">
+<p>BIP-39 標準允許在衍生種子時使用一個選用的密碼短語。如果不使用密碼短語，助記詞會以由常數字串 <code>"mnemonic"</code> 構成的鹽值進行延展，讓任何一組助記詞都產生一個特定的 512 位元種子。如果使用了密碼短語，延展函數就會從同一組助記詞產生一個<em>不同的</em>種子。事實上，對同一組助記詞而言，每一個可能的密碼短語都會產生不同的種子。基本上，並沒有「錯誤」的密碼短語。所有密碼短語都是有效的，它們都會產生不同的種子，構成一個由可能的、尚未啟用的錢包所組成的龐大集合。可能的錢包集合是如此龐大（2<sup>512</sup>），只要密碼短語足夠複雜、足夠長，實際上就不可能以暴力破解或意外猜中某個正在使用中的錢包。</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tbody><tr>
+<td class="icon">
+<div class="title">提示</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>BIP-39 中沒有「錯誤」的密碼短語。每個密碼短語都會對應到某個錢包；除非之前用過，否則那個錢包會是空的。</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="paragraph">
+<p>選用的密碼短語帶來兩個重要的特性：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>第二個因素（某個要記住的東西），讓助記詞本身單獨存在時毫無用處，保護助記詞備份不會被小偷利用</p>
+</li>
+<li>
+<p>一種合理推諉（plausible deniability）的形式，或稱「脅迫錢包」（duress wallet），也就是用某個選定的密碼短語通往一個只有少量資金的錢包，藉此讓攻擊者忽略存放了大部分資金的「真正」錢包</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>不過，必須注意的是，使用密碼短語也會帶來遺失的風險：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>如果錢包擁有者失能或過世，而且沒有其他人知道密碼短語，種子就毫無用處，錢包裡存放的所有資金都會永遠遺失。</p>
+</li>
+<li>
+<p>反過來說，如果擁有者把密碼短語備份在和種子相同的地方，就失去了第二個因素的意義。</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>雖然密碼短語非常有用，但只應該搭配一套經過周詳規劃的備份與恢復流程來使用，並考慮到擁有者過世後，繼承人能否取回這些加密貨幣。</p>
+</div>
+</div>
+<div class="sect4">
+<h4 id="ch05-working-with-mnemonic-codes"><a class="anchor" href="#ch05-working-with-mnemonic-codes" aria-label="本節連結"></a>使用助記詞</h4>
+<div class="paragraph">
+<p>BIP-39 已經在許多不同的程式語言中實作成函式庫，例如：</p>
+</div>
+<div class="paragraph">
+<p><strong>python-mnemonic</strong></p>
+</div>
+<div class="paragraph">
+<p>由提出 BIP-39 的 SatoshiLabs 團隊以 Python 撰寫的標準參考實作</p>
+</div>
+<div class="paragraph">
+<p><strong>ConsenSys/eth-lightwallet</strong></p>
+</div>
+<div class="paragraph">
+<p>適用於節點與瀏覽器的輕量級 JavaScript 以太坊錢包（支援 BIP-39）</p>
+</div>
+<div class="paragraph">
+<p><strong>npm/bip39</strong></p>
+</div>
+<div class="paragraph">
+<p>比特幣 BIP-39 的 JavaScript 實作</p>
+</div>
+<div class="paragraph">
+<p>另外還有一個以獨立網頁實作的 BIP-39 產生器（圖 5-4），對測試與實驗非常有用。<a href="https://iancoleman.io/bip39/" rel="noopener" target="_blank">Mnemonic Code Converter</a> 可以產生助記詞、種子與擴展私鑰。它可以在瀏覽器中離線使用，也可以線上存取。</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class="icon">
+<div class="title">備註</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>本章會一再強調這一點，因為這是種子安全最關鍵的規則：無論在任何情況下，都絕對不要以數位形式儲存你的種子短語（seed phrase）。</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="imageblock">
+<div class="content">
+<picture><source type="image/webp" srcset="/images/ch5/maet_0504.webp"><img src="/images/ch5/maet_0504.png" alt="The BIP-39 generator web page" width="487" height="347" loading="lazy" decoding="async"></picture>
+</div>
+<div class="title">圖 5-4. BIP-39 產生器網頁</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h3 id="ch05-creating-an-hd-wallet-from-the-seed"><a class="anchor" href="#ch05-creating-an-hd-wallet-from-the-seed" aria-label="本節連結"></a>5.2.2. 從種子建立 HD 錢包</h3>
+<div class="paragraph">
+<p>HD 錢包是從單一的<em>根種子</em>建立的，根種子是一個 128、256 或 512 位元的隨機數。如上一節詳細說明的，這個種子最常是從助記詞產生的。</p>
+</div>
+<div class="paragraph">
+<p>HD 錢包中的每一把金鑰，都是從這個根種子確定性地衍生出來的，因此可以在任何相容的 HD 錢包中，從這個種子重建整個 HD 錢包。這讓包含數千、甚至數百萬把金鑰的 HD 錢包，只要轉移衍生出根種子的那組助記詞，就能輕鬆地匯出、備份、還原與匯入。</p>
+</div>
+</div>
+<div class="sect3">
+<h3 id="ch05-hd-wallets-bip-32"><a class="anchor" href="#ch05-hd-wallets-bip-32" aria-label="本節連結"></a>5.2.3. HD 錢包（BIP-32）</h3>
+<div class="paragraph">
+<p>大多數 HD 錢包都遵循 BIP-32 標準，它已經成為確定性金鑰產生方式事實上的業界標準。我們不會在這裡討論 BIP-32 的所有細節，只會介紹理解它如何用在錢包中所需的部分。最重要的是衍生出來的金鑰之間可以具有的樹狀階層關係，如圖 5-1 所示。此外，也必須理解擴展金鑰與強化（hardened）金鑰的概念，接下來幾節會加以說明。</p>
+</div>
+<div class="paragraph">
+<p>許多軟體函式庫都提供了 BIP-32 的實作，彼此可以互通的就有數十種。它們大多是為比特幣錢包設計的，而比特幣錢包實作地址的方式不同，但它們與以太坊相容 BIP-32 的錢包使用相同的金鑰衍生實作。你可以使用為以太坊設計的實作，或是改寫比特幣的實作，加上一個以太坊地址編碼函式庫。</p>
+</div>
+<div class="paragraph">
+<p>另外還有一個以獨立網頁實作的 BIP-32 產生器，對 BIP-32 的測試與實驗非常有用。</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tbody><tr>
+<td class="icon">
+<div class="title">警告</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>這個獨立的 BIP-32 產生器網站沒有使用 HTTPS。這是為了提醒你，使用這個工具並不安全，它只能用來測試。你不應該把這個網站產生的金鑰用在真正的資金上。</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="sect4">
+<h4 id="ch05-extended-public-and-private-keys"><a class="anchor" href="#ch05-extended-public-and-private-keys" aria-label="本節連結"></a>擴展公鑰與擴展私鑰</h4>
+<div class="paragraph">
+<p>在 BIP-32 的術語中，金鑰可以被「擴展」。只要經過適當的數學運算，這些擴展過的「父」金鑰就能用來衍生「子」金鑰，進而產生前面所描述的金鑰與地址階層。父金鑰不一定要位在樹的頂端，它可以從樹狀階層中的任何位置挑選出來。擴展一把金鑰，就是取金鑰本身，再在後面附加一個特殊的 <em>鏈碼</em>。鏈碼是一個 256 位元的二進位字串，會與每把金鑰混合，以產生子金鑰。</p>
+</div>
+<div class="paragraph">
+<p>如果這把金鑰是私鑰，它就會成為一把<em>擴展私鑰</em>，以前綴 <code>xprv</code> 區分：</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>xprv9s21ZrQH143K2JF8RafpqtKiTbsbaxEeUaMnNHsm5o6wCW3z8ySyH4UxFVSfZ8n7ESu7fgir8i...</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><em>擴展公鑰</em>則以前綴 <code>xpub</code> 區分：</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>xpub661MyMwAqRbcEnKbXcCqD2GT1di5zQxVqoHPAgHNe8dv5JP8gWmDproS6kFHJnLZd23tWevhdn...</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>HD 錢包一個非常有用的特性，是能在<em>不</em>擁有私鑰的情況下，從父公鑰衍生出子公鑰。這讓我們有兩種方式可以衍生子公鑰：直接從子私鑰衍生，或是從父公鑰衍生。因此，擴展公鑰可以用來衍生出 HD 錢包結構中該分支的所有公鑰（而且<em>只有</em>公鑰）。</p>
+</div>
+<div class="paragraph">
+<p>利用這條捷徑，可以打造出極為安全的「只有公鑰」部署：伺服器或應用程式持有一份擴展公鑰，但完全沒有任何私鑰。這種部署可以產生無限多的公鑰與以太坊地址，卻無法動用送到這些地址的任何資金。與此同時，在另一台更安全的伺服器上，擴展私鑰可以衍生出所有對應的私鑰，用來簽署交易並動用資金。</p>
+</div>
+<div class="paragraph">
+<p>這種方法一個常見的應用，是把擴展公鑰安裝在提供電子商務應用程式的網頁伺服器上。網頁伺服器可以使用公鑰衍生函數，為每一筆交易（例如每個顧客的購物車）建立一個新的以太坊地址，而且伺服器上不會有任何可能被竊取的私鑰。如果沒有 HD 錢包，唯一的做法就是在另一台安全的伺服器上產生數千個以太坊地址，再預先載入到電子商務伺服器上。這種做法很麻煩，而且需要持續維護，以確保伺服器不會用完金鑰——這就是為什麼大家偏好使用 HD 錢包的擴展公鑰。</p>
+</div>
+<div class="paragraph">
+<p>這個方案另一個常見的應用是冷儲存（cold storage）或硬體錢包。在這種情境下，擴展私鑰可以存放在硬體錢包中，擴展公鑰則可以保持在線上。使用者可以隨意建立「收款」地址，而私鑰則安全地存放在離線環境中。要動用資金時，使用者可以在離線簽署的以太坊客戶端中使用擴展私鑰，或是在硬體錢包裝置上簽署交易。</p>
+</div>
+</div>
+<div class="sect4">
+<h4 id="ch05-hardened-child-key-derivation"><a class="anchor" href="#ch05-hardened-child-key-derivation" aria-label="本節連結"></a>強化子金鑰衍生</h4>
+<div class="paragraph">
+<p>能從擴展公鑰（也就是 <code>xpub</code>）衍生出一整個公鑰分支非常有用，但也伴隨著潛在的風險。取得 <code>xpub</code> 並不能取得子私鑰。然而，由於 <code>xpub</code> 包含了鏈碼（用來從父公鑰衍生子公鑰），如果某把子私鑰為人所知或不知怎麼地外洩了，就可以把它和鏈碼一起用來衍生出其他所有的子私鑰。只要外洩一把子私鑰，再加上父金鑰的鏈碼，就會暴露所有子金鑰的私鑰。更糟的是，子私鑰加上父金鑰的鏈碼，還可以用來推導出父私鑰。</p>
+</div>
+<div class="paragraph">
+<p>為了應對這個風險，HD 錢包使用另一種衍生函數，稱為<em>強化衍生</em>，它會「切斷」父公鑰與子鏈碼之間的關係。強化衍生函數使用父私鑰（而不是父公鑰）來衍生子鏈碼。這在父子序列中建立了一道「防火牆」，這樣的鏈碼無法被用來危及父私鑰或兄弟私鑰。</p>
+</div>
+<div class="paragraph">
+<p>簡單地說，如果你想利用 <code>xpub</code> 的便利性來衍生公鑰分支，又不想讓自己暴露在鏈碼外洩的風險之下，就應該從強化父金鑰衍生，而不是從一般的父金鑰衍生。最佳實踐是讓主金鑰的第一層子金鑰一律以強化衍生產生，以防止主金鑰遭到危害。</p>
+</div>
+</div>
+<div class="sect4">
+<h4 id="ch05-index-numbers-for-normal-and-hardened-derivation"><a class="anchor" href="#ch05-index-numbers-for-normal-and-hardened-derivation" aria-label="本節連結"></a>一般衍生與強化衍生的索引編號</h4>
+<div class="paragraph">
+<p>能從一把父金鑰衍生出不只一把子金鑰，顯然是很理想的。為了做到這一點，會使用索引編號。每個索引編號透過特殊的子金鑰衍生函數與父金鑰結合後，都會得到一把不同的子金鑰。BIP-32 父金鑰到子金鑰的衍生函數所使用的索引編號，是一個 32 位元的整數。為了容易區分透過一般（非強化）衍生函數衍生的金鑰與透過強化衍生衍生的金鑰，這個索引編號被分成兩個範圍。介於 0 與 2<sup>31</sup>–1 之間的索引編號（0x0 到 0x7FFFFFFF）<em>只</em>用於一般衍生；介於 2<sup>31</sup> 與 2<sup>32</sup>–1 之間的索引編號（0x80000000 到 0xFFFFFFFF）<em>只</em>用於強化衍生。因此，如果索引編號小於 2<sup>31</sup>，子金鑰就是一般的；如果索引編號大於或等於 2<sup>31</sup>，子金鑰就是強化的。</p>
+</div>
+<div class="paragraph">
+<p>為了讓索引編號更容易閱讀與顯示，強化子金鑰的索引編號會從零開始顯示，但加上一個撇號。因此，第一把一般子金鑰顯示為 0，而第一把強化子金鑰（索引 0x80000000）則顯示為 0′。依序來看，第二把強化金鑰的索引是 0x80000001，會顯示為 1′，以此類推。當你看到 HD 錢包的索引 <em>i</em>′，它的意思就是 2<sup>31</sup> + <em>i</em>。</p>
+</div>
+</div>
+<div class="sect4">
+<h4 id="ch05-hd-wallet-key-identifier-path"><a class="anchor" href="#ch05-hd-wallet-key-identifier-path" aria-label="本節連結"></a>HD 錢包的金鑰識別碼（路徑）</h4>
+<div class="paragraph">
+<p>HD 錢包中的金鑰是用「路徑」命名慣例來識別的，樹的每一層以斜線（<code>/</code>）字元分隔（見表 5-5）。從主私鑰衍生出來的私鑰以 <code>m</code> 開頭，從主公鑰衍生出來的公鑰則以 <code>M</code> 開頭。因此，主私鑰的第一把子私鑰是 <code>m/0</code>，第一把子公鑰是 <code>M/0</code>，第一把子金鑰的第二把孫金鑰是 <code>m/0/1</code>，依此類推。</p>
+</div>
+<div class="paragraph">
+<p>金鑰的「家譜」是從右往左讀，一直讀到衍生出它的主金鑰為止。例如，識別碼 <code>m/x/y/z</code> 描述的是金鑰 <code>m/x/y</code> 的第 <em>z</em> 把子金鑰；後者是金鑰 <code>m/x</code> 的第 <em>y</em> 把子金鑰，而它又是 <code>m</code> 的第 <em>x</em> 把子金鑰。</p>
+</div>
+<div class="table-wrap" tabindex="0"><table class="tableblock frame-all grid-all stretch">
+<caption class="title">表 5-5. HD 錢包路徑範例</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">HD 路徑</th>
+<th class="tableblock halign-left valign-top">所描述的金鑰</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">m/0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">主私鑰（m）的第一把（0）子私鑰</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">m/0/0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">第一把子金鑰（m/0）的第一把孫私鑰</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">m/0'/0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">第一把強化子金鑰（m/0'）的第一把一般孫金鑰</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">m/1/0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">第二把子金鑰（m/1）的第一把孫私鑰</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">M/23/17/0/0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">第 24 把子金鑰的第 18 把孫金鑰的第一把曾孫金鑰的第一把玄孫公鑰</p></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div class="sect3">
+<h3 id="ch05-navigating-the-hd-wallet-tree-structure"><a class="anchor" href="#ch05-navigating-the-hd-wallet-tree-structure" aria-label="本節連結"></a>5.2.4. 在 HD 錢包的樹狀結構中導覽</h3>
+<div class="paragraph">
+<p>HD 錢包的樹狀結構極為靈活。但另一方面，它也允許無上限的複雜度：每把父擴展金鑰都可以有四十億把子金鑰——二十億把一般子金鑰，以及二十億把強化子金鑰。這些子金鑰中的每一把，又可以再有四十億把子金鑰，依此類推。這棵樹想要多深就可以多深，世代數可能無窮無盡。有了這麼大的可能性，要在這些非常龐大的樹中導覽，就會變得相當困難。</p>
+</div>
+<div class="paragraph">
+<p>有兩份 BIP 為 HD 錢包樹的結構訂定標準，提供了一種管理這種潛在複雜度的方式。BIP-43 提議把第一個強化子金鑰索引當作特殊的識別碼，用來表示這個樹狀結構的「用途」（purpose）。依照 BIP-43，HD 錢包應該只使用樹的一個第一層分支，並以索引編號來界定錢包的用途，藉此識別樹中其餘部分的結構與命名空間。更具體地說，只使用分支 <code>m/i′/...</code> 的 HD 錢包，是用來表示某個特定的用途，而這個用途由索引編號 <em>i</em> 來識別。</p>
+</div>
+<div class="paragraph">
+<p>BIP-44 延伸了這個規格，提出一種多幣種、多帳戶的結構，以把「用途」編號設為 <code>44′</code> 來表示。所有遵循 BIP-44 結構的 HD 錢包，都可以從它們只使用樹的一個分支 <code>m/44′/*</code> 這一點辨識出來。BIP-44 規定這個結構由五個預先定義的樹層級組成：</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>m / purpose′ / coin_type′ / account′ / change / address_index</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>第一層 <code>purpose′</code> 一律設為 <code>44′</code>。第二層 <code>coin_type′</code> 指定加密貨幣的幣種，讓 HD 錢包可以支援多幣種，每一種貨幣在第二層底下都有自己的子樹。標準文件 SLIP-0044 定義了好幾種貨幣，例如以太坊是 <code>m/44′/60′</code>，Ethereum Classic 是 <code>m/44′/61′</code>，比特幣是 <code>m/44′/0′</code>，而所有貨幣的測試網路都是 <code>m/44′/1′</code>。</p>
+</div>
+<div class="paragraph">
+<p>樹的第三層是 <code>account′</code>，讓使用者可以把錢包細分成各自獨立的邏輯子帳戶，用於會計或組織上的用途。例如，一個 HD 錢包可能包含兩個以太坊帳戶：<code>m/44′/60′/0′</code> 與 <code>m/44′/60′/1′</code>。每個帳戶都是自己那棵子樹的根。</p>
+</div>
+<div class="paragraph">
+<p>由於 BIP-44 原本是為比特幣設計的，它有一個與以太坊世界無關的「怪癖」。在路徑的第四層 <code>change</code>，HD 錢包有兩棵子樹：一棵用來建立收款地址，另一棵用來建立找零地址（change address）。以太坊只使用「收款」路徑，因為它不像比特幣那樣需要找零地址。請注意，前面幾層使用的是強化衍生，這一層則使用一般衍生。這是為了讓樹的帳戶層可以匯出擴展公鑰，在不安全的環境中使用。</p>
+</div>
+<div class="paragraph">
+<p>HD 錢包會把可用的地址衍生為第四層的子金鑰，因此樹的第五層就是 <code>address_index</code>。例如，主要帳戶中用於以太坊收款的第三個收款地址，會是 <code>M/44′/60′/0′/0/2</code>。表 5-6 列出了更多範例。</p>
+</div>
+<div class="table-wrap" tabindex="0"><table class="tableblock frame-all grid-all stretch">
+<caption class="title">表 5-6. BIP-44 HD 錢包結構範例</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">HD 路徑</th>
+<th class="tableblock halign-left valign-top">所描述的金鑰</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">M/44′/60′/0′/0/2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">主要以太坊帳戶的第三把收款公鑰</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">M/44′/0′/3′/1/14</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">第四個比特幣帳戶的第 15 把找零地址公鑰</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">m/44′/2′/0′/0/1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Litecoin 主帳戶中的第二把私鑰，用於簽署交易</p></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div class="sect2">
+<h2 id="ch05-security"><a class="anchor" href="#ch05-security" aria-label="本節連結"></a>5.3. 安全</h2>
+<div class="paragraph">
+<p>我們先來介紹安全性與恢復難易度之間的取捨。把這兩個概念推到極端：最安全的種子是什麼？是沒有人能恢復的種子，連你自己也不行。所以，如果種子建立之後，所有的副本（實體或數位）都被銷毀了，那就是世界上最安全的種子。這不太好，因為你也無法恢復它，但技術上它是最安全的。</p>
+</div>
+<div class="paragraph">
+<p>反過來說，就恢復的難易度而言，最容易恢復的種子是什麼？就是把種子短語寫得到處都是的種子，例如把它刺青在身上，任何人都看得到。這樣的種子會非常容易恢復，卻一點也不安全。</p>
+</div>
+<div class="paragraph">
+<p>在自我託管（self-custody）的情況下，你為自己的 操作安全（operational security，OpSec）所做的任何選擇，很可能不是提高種子短語的安全性，就是提高它的恢復難易度。提高安全性通常會降低恢復的容易程度，反之亦然。有時候，你可能會讓兩者同時降低，這是應該避免的。</p>
+</div>
+<div class="paragraph">
+<p>即使是高安全性的系統，也沒有任何設定是百分之百安全的。你可以盡一切努力打造一個完美的系統，但仍然會有漏洞。其中最有意思的一種是私鑰碰撞：基本上就是產生了一個已經被使用過的種子。由於硬體錢包中的種子是離線產生的，而且並沒有記錄已產生種子的資料庫，技術上確實有可能產生同一個錢包兩次。這種事發生的機率小到天文數字的程度（你連續兩次中樂透的機率還比較高），但仍然是有可能的。</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tbody><tr>
+<td class="icon">
+<div class="title">警告</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>種子安全通常沒有什麼緊急性可言：你的種子要嘛已經被偷了，那你早已身陷麻煩；要嘛就是沒有被偷。比特幣錢包尤其如此。以太坊大致也是這樣，但有些情況下，快速行動可以挽救資金——例如撤銷對危險智能合約的授權。如果你收到任何與你的種子有關的緊急訊息，那很可能是詐騙。</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="paragraph">
+<p>用複雜的安全機制來隱藏種子，並不是最佳實踐。這類機制乍看之下也許萬無一失，但這個領域的專業人士往往能用適當的工具恢復這類種子。而如果複雜到連專業人士都無法恢復，那麼你在需要的時候，很可能也無法恢復。</p>
+</div>
+<div class="paragraph">
+<p>另一個不是最佳實踐的做法，是依靠隱晦來求取安全。你的系統應該盡可能少有「秘密」的元件，而種子本身就是最主要的那一個。如果揭露系統的某些部分就會讓整個系統崩潰，那它就不安全。</p>
+</div>
+<div class="paragraph">
+<p>最佳實踐是跟著大多數人的做法走。試圖發明新的系統，或者更糟的是，一切從零開始打造，都是錯的。這樣做並不安全，而且大多數人也沒有這樣做的技術能力。保持簡單。簡單絕對是一種最佳實踐。</p>
+</div>
+<div class="paragraph">
+<p>備份你的種子，大概是最重要的最佳實踐。無論是硬體錢包還是瀏覽器錢包，備份都是不可或缺的。存放備份的地方應該：(a) 能承受天然災害；(b) 與你的硬體錢包在地理上分開；(c) 位在安全的地方；(d) 使用能看出是否遭人拆封的包裝。把種子分散寫在多張紙上並不是最佳實踐，這只會帶來虛假的安全感。</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tbody><tr>
+<td class="icon">
+<div class="title">提示</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>如果你沒有安全的地方可以存放種子，可以考慮使用密碼短語。密碼短語在產生金鑰的過程中會與你的種子結合，因而多提供一層保護。你甚至可以用數位形式儲存密碼短語，因為沒有種子，它就毫無用處。如果有人拿到了你的種子，卻沒有拿到你的密碼短語，他們在一段時間內將無法取得你的資金；之所以只是一段時間，是因為攻擊者如果擁有種子，就可以用暴力破解密碼短語。</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="paragraph">
+<p>每個人的需求都不一樣，安全要求也會隨之不同。但你應該始終遵循最佳實踐。你的需求可能會隨著時間改變，所以要保持警覺，必要時調整你的 OpSec。</p>
+</div>
+<div class="paragraph">
+<p>設定好硬體錢包之後，測試一下你能不能恢復種子。至少每 12 個月做一次，確保你的備份有效而且取得得到。</p>
+</div>
+<div class="paragraph">
+<p>安全的系統看起來是什麼樣子？一個值得信任的硬體錢包（例如 Trezor）、至少一份安全的備份（絕對不以數位形式儲存），以及一份在你發生意外時的遺產繼承計畫。</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class="icon">
+<div class="title">備註</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>遺產繼承是一個非常複雜的主題。我們推薦閱讀 Pamela Morgan 的 <em>Cryptoasset Inheritance Planning: A Simple Guide for Owners</em>（Merkle Bloom 出版）。</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+</div>
+<div class="sect2">
+<h2 id="ch05-improving-on-user-experience"><a class="anchor" href="#ch05-improving-on-user-experience" aria-label="本節連結"></a>5.4. 改善使用者體驗</h2>
+<div class="paragraph">
+<p>如同我們前面提到的，從高層次來看，錢包是一個軟體應用程式，是使用者操作以太坊的主要介面。所以對以太坊的大多數使用者來說，錢包就是使用者體驗的大部分。多年來，錢包並沒有真正的改善。例如，在本書寫作時最受歡迎的瀏覽器錢包是 MetaMask，它從問世以來並沒有太大的演進；緊追在後的 Rabby 則是最近才出現的。接下來，我們會探討幾項可能大幅改善使用者體驗的錢包更新。</p>
+</div>
+<div class="sect3">
+<h3 id="ch05-account-abstraction"><a class="anchor" href="#ch05-account-abstraction" aria-label="本節連結"></a>5.4.1. 帳戶抽象</h3>
+<div class="paragraph">
+<p>以太坊上的帳戶抽象（account abstraction，AA）是一種讓使用者帳戶更有彈性、更容易使用的方式。如第 2 章所述，以太坊一般有兩種帳戶：外部擁有帳戶（EOA）與智能合約帳戶。帳戶抽象結合了這兩種帳戶的優點。它讓一般帳戶（EOA）的行為更像智能合約，也就是說，使用者可以為自己帳戶的運作方式設定自訂規則，例如加上安全功能，或允許多個人簽署交易。</p>
+</div>
+<div class="paragraph">
+<p>有了帳戶抽象，以太坊就能變得更好用、更有彈性。例如，你可以在不只依賴私鑰的情況下恢復遺失的帳戶，或是用任何代幣（而不只是以太幣）支付交易手續費。</p>
+</div>
+<div class="paragraph">
+<p>實作帳戶抽象的提案有很多個。主要的區別在於，有一群提案試圖在不改變以太坊協議的情況下實作帳戶抽象；另一群提案則會在 Pectra 升級中實作，最終將改變以太坊協議。</p>
+</div>
+<div class="paragraph">
+<p>我們來看看與帳戶抽象有關的主要以太坊改進提案（EIP）與以太坊徵求意見（Ethereum Requests for Comments，ERC）。請記住，這些提案演進得非常快，到本書出版時，帳戶抽象的發展樣貌可能已經大不相同。儘管如此，探討哪些已經實作、哪些預計在不久的將來實作，仍然很有用。</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tbody><tr>
+<td class="icon">
+<div class="title">提示</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>了解 ERC、EIP 與 rollup 改進提案（Rollup Improvement Proposal，RIP）之間的差異很重要。基本上，EIP 與 RIP 是以以太坊網路本身的變更為核心的改進，而 ERC 則是與應用相關的變更，對網路的核心能力沒有任何影響。</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="sect4">
+<h4 id="ch05-erc-4337"><a class="anchor" href="#ch05-erc-4337" aria-label="本節連結"></a>ERC-4337</h4>
+<div class="paragraph">
+<p>ERC-4337 是以太坊區塊鏈上的一項進展，目標是讓使用者帳戶更多用途、更安全、更好用。不同於一般會改變以太坊協議的升級，ERC-4337 是透過智能合約與鏈外元件來引入新功能。截至 2024 年 9 月，帳戶抽象在鏈上的主要實作就是 ERC-4337。</p>
+</div>
+<div class="paragraph">
+<p>如同我們在第 2 章所說的，傳統的以太坊帳戶分成兩種：只由私鑰控制的 EOA，以及透過智能合約運作的合約帳戶。EOA 因為簡單又經濟，是當今使用者錢包的主流；然而，它們的功能也很有限，而且容易有安全風險。遺失私鑰可能意味著永遠失去資金，而且 EOA 無法自訂安全功能，例如多重簽章設定或帳戶恢復選項。合約帳戶可以納入這些安全措施以及更多功能，但它們的複雜性與較高的交易手續費，使得一般使用者沒有廣泛採用。ERC-4337 克服了這個問題，讓 EOA 能像智能合約一樣運作，結合了 EOA 的簡單與合約帳戶的安全和彈性。<sup class="footnote">[<a id="_footnoteref_8" class="footnote" href="#_footnotedef_8" title="查看註腳">8</a>]</sup></p>
+</div>
+<div class="paragraph">
+<p>ERC-4337 的實作引入了 <em>UserOperation</em>，用不同的方式處理交易，如圖 5-5 所示。使用者不是直接把每筆交易廣播到區塊鏈上，而是把 UserOperation 送到一個高階的記憶池，交易會暫時存放在那裡。稱為 <em>打包者</em>（bundler）的特殊參與者，會收集並處理這些 UserOperation，把它們打包成一筆以太坊交易。這個過程減少了網路壅塞，讓多個操作能以更有效率、打包在一起的方式處理。ERC-4337 也建立了一個稱為 <em>代付者</em>（paymaster）的新角色。一般來說，以太坊交易需要以 ETH 支付 gas 費用，但代付者讓使用者可以用其他代幣支付 gas 費用，甚至可以由第三方贊助者代為支付。這項轉變消除了一道重大的障礙，對可能沒有持有 ETH 的新手來說尤其如此，讓以太坊網路更具包容性、更容易使用。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<picture><source type="image/webp" srcset="/images/ch5/maet_0505.webp"><img src="/images/ch5/maet_0505.png" alt="ERC-4337 implementation diagram" width="1439" height="1140" loading="lazy" decoding="async"></picture>
+</div>
+<div class="title">圖 5-5. ERC-4337 實作示意圖</div>
+</div>
+<div class="paragraph">
+<p>UserOperation 不使用存放 EOA 待處理交易的傳統公開記憶池，而是被送到專門的 <em>UserOperation 記憶池</em>：一個專為這些操作設計的高階記憶池。打包者會監看 UserOperation 記憶池，收集多個 UserOperation，把它們打包成一筆「傳統」交易。它們首先透過 EntryPoint 的方法驗證每個 UserOperation 是否有效。驗證之後，打包者會繞過一般的記憶池，把這筆打包好的交易直接送進下一個被提議的區塊。打包者可以自己擔任區塊建構者，也可以與區塊建構者合作，把交易加入區塊鏈。</p>
+</div>
+</div>
+<div class="sect4">
+<h4 id="ch05-eip-2938"><a class="anchor" href="#ch05-eip-2938" aria-label="本節連結"></a>EIP-2938</h4>
+<div class="paragraph">
+<p>ERC-4337 著重在不改變以太坊核心的前提下，透過智能合約在高層次實現帳戶抽象；EIP-2938 則更進一步，提議把帳戶抽象直接嵌入協議層本身。這種較低層次的做法從根本上改變了以太坊虛擬機（EVM）對待帳戶的方式，讓使用者、智能合約與應用程式之間的互動更加直接、更有彈性。透過 EIP-2938，使用者可以不經由傳統的 EOA 來處理操作，不再依賴以私鑰為基礎的帳戶，並直接在以太坊的協議層級上支援更多樣的帳戶管理系統，例如多重簽章帳戶或社交恢復（social recovery）帳戶。</p>
+</div>
+<div class="paragraph">
+<p>EIP-2938 與一些既有帳戶抽象提案的主要差異，在於它著重把抽象直接整合進協議，而不是疊加在協議之上。有了 EIP-2938，以太坊將支援「操作」而不是「交易」，每個操作都可以代表一種更多用途、可自訂的交易類型。EIP-2938 可以把以太坊的交易重新定義為可程式化的物件，支援更廣泛的使用情境。透過把帳戶與交易本質上視為可程式化的，它把以太坊的用途擴展到標準的付款與合約互動之外，完美契合網路上正在打造的日益複雜的應用程式。</p>
+</div>
+</div>
+<div class="sect4">
+<h4 id="ch05-rip-7560"><a class="anchor" href="#ch05-rip-7560" aria-label="本節連結"></a>RIP-7560</h4>
+<div class="paragraph">
+<p>RIP-7560 提案把 EIP-2938 與 ERC-4337 整合成一種原生帳戶抽象的統一做法，把以太坊交易的範圍拆分成驗證、執行與交易後處理三個步驟。透過把交易驗證拆分成授權與支付 gas 費用兩個不同的流程，它讓一個合約可以替另一個帳戶的交易支付 gas 費用。這種做法在朝完全原生帳戶抽象的目標邁進的同時，也維持了與 ERC-4337 生態系的相容性。</p>
+</div>
+<div class="paragraph">
+<p>ERC-4337 在應用層引入了帳戶抽象，但由於它是協議外的設計，也帶來了一些限制。這些缺點包括額外的 gas 成本、有限的抗審查性、對非標準 RPC 方法的依賴，以及限制了與既有合約預期之間相容性的種種約束。EIP-2938 所提議的原生帳戶抽象，則把這些功能直接建構進協議中，是更穩健的替代方案。不過，EIP-2938 與 ERC-4337 的結構並不完全一致，而 ERC-4337 已經在不改變協議的情況下經過廣泛的測試與實作。</p>
+</div>
+<div class="paragraph">
+<p>這項提案結合了 EIP-2938 內建於協議層級的功能，以及從 ERC-4337 獲得的實務經驗，集兩種做法之長。這種混合做法的目標是降低 gas 成本、讓交易更能抵抗審查而提高其可靠性，並確保與現有及未來的以太坊合約相容。逐步從 EOA 轉移到智能合約帳戶，也能降低與私鑰相關的風險，讓以太坊更安全、更容易使用。重要的是，這樣的設計確保已經在使用 ERC-4337 的人，可以順利採用這些新功能。</p>
+</div>
+<div class="paragraph">
+<p>圖 5-6 呈現了 RIP-7560 所描述的帳戶抽象交易流程。這個流程納入了幾個負責驗證、部署與執行的關鍵合約，形成一種精簡、模組化的做法，用來管理以太坊區塊鏈上的使用者帳戶與交易。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<picture><source type="image/webp" srcset="/images/ch5/maet_0506.webp"><img src="/images/ch5/maet_0506.png" alt="RIP-7560 transaction flow" width="1443" height="1982" loading="lazy" decoding="async"></picture>
+</div>
+<div class="title">圖 5-6. RIP-7560 交易流程</div>
+</div>
+<div class="paragraph">
+<p>流程一開始，由 Nonce Manager Contract 檢查 nonce，確保這筆交易是唯一的，而且沒有被重放過。這是維護交易完整性的關鍵步驟，因為它能防止雙重支付或意外的重複執行。如果 nonce 有效，系統就繼續往下進行；否則，交易就會被中止。</p>
+</div>
+<div class="paragraph">
+<p>接著，流程會檢查使用者的 Account Contract（一個智能錢包）是否已經存在。如果不存在，Deployer Contract 就會介入建立這個錢包，讓使用者能參與交易。一旦部署完成，或是它原本就已經存在，Account Contract 本身就會執行驗證檢查，確認這筆交易是正當的，而且符合合約的邏輯。這確保了只有經過授權的動作才能繼續進行，為每位使用者的錢包增添一層安全性與自訂能力。</p>
+</div>
+<div class="paragraph">
+<p>這個流程一個有趣的特點，是可以選擇讓代付者 Contract 參與。如果有指定，這個合約可以支付這筆交易的 gas 費用，或提供其他的付款方式。有代付者參與時，它會經過自己的驗證流程，以確保它能正當地支付交易成本。這種彈性讓代付（sponsorship）模式成為可能，也可能減輕使用者在交易手續費上的負擔。</p>
+</div>
+<div class="paragraph">
+<p>所有驗證都完成之後，以太坊執行層（execution layer）就會開始處理這筆交易。執行期間會使用一個 Execution Frame 來處理交易的細節，並監控交易的進度。執行之後，如果有代付者參與，它會進行必要的後續處理，完成這筆交易的代付。</p>
+</div>
+</div>
+<div class="sect4">
+<h4 id="ch05-eip-5806"><a class="anchor" href="#ch05-eip-5806" aria-label="本節連結"></a>EIP-5806</h4>
+<div class="paragraph">
+<p>EIP-5806 引入了一種新的交易類型，讓 EOA 能透過「delegate call」機制執行自訂的程式碼。</p>
+</div>
+<div class="paragraph">
+<p>目前，EOA 只能部署合約或送出「call」交易，限制了使用者與區塊鏈的互動。這項限制影響了易用性，因為 EOA 無法執行像是把多個動作批次合併成一筆交易，或是執行複雜操作之類的工作。雖然帳戶抽象可以解決這些問題，但它的採用路徑仍不明朗，而且由於成本以及無法轉移的資產託管，並不是所有使用者都能遷移。</p>
+</div>
+<div class="paragraph">
+<p>這項提案提供了一種直截了當的方式，只需對 EVM 做最少的修改，並沿用大家熟悉的安全標準，就能讓 EOA 執行自訂的程式碼。透過允許 EOA 把呼叫委託給特定的合約，使用者能獲得更多的控制權與彈性，得以進行多重呼叫（multicall）批次處理或安全的代幣轉帳等複雜操作。不同於其他帳戶抽象提案，這種做法的目標是在不取代既有抽象方法的前提下改善 EOA 的使用者體驗，使它成為在不久的將來增強 EOA 功能的一個容易採用的選項。</p>
+</div>
+</div>
+<div class="sect4">
+<h4 id="ch05-eip-3074"><a class="anchor" href="#ch05-eip-3074" aria-label="本節連結"></a>EIP-3074</h4>
+<div class="paragraph">
+<p>EIP-3074 引入了 <code>AUTH</code> 與 <code>AUTHCALL</code> 兩個操作碼，讓 EOA 能把交易的控制權委託給一個「代呼叫合約」（invoker）合約。使用者簽署一則包含代呼叫合約與一個承諾（交易數值的雜湊值）的訊息，確保代呼叫合約只會處理經過授權的交易。重放保護由代呼叫合約負責，使用者必須信任這個合約不會有惡意行為。這項提案改善了交易的批次處理，並讓帳戶委託更有彈性。</p>
+</div>
+<div class="paragraph">
+<p><code>AUTH</code> 讓使用者授予某個智能合約代表自己行事的權限。它使用數位簽章（ECDSA）來驗證這項授權，再把使用者的地址儲存起來供之後的交易使用。<code>AUTHCALL</code> 則讓經過授權的智能合約執行交易，例如發送代幣或與其他合約互動。舉例來說，如果你想把 10 DAI 兌換（swap）成 ETH，你可以用一個簽章授權代呼叫合約（使用 <code>AUTH</code>）。代呼叫合約會使用 <code>AUTHCALL</code> 授權 Uniswap 動用你的 DAI，然後執行兌換。</p>
+</div>
+<div class="paragraph">
+<p>最初，重放保護以及 value、gas 與其他 <code>AUTHCALL</code> 引數等欄位也都需要簽署。後來設計演變成把這些工作委託給代呼叫合約合約，因此使用者是否信任代呼叫合約就變得至關重要。使用者可以透過對特定呼叫屬性進行雜湊，對這些屬性做出「承諾」。只有在承諾的值（例如用於重放保護的 nonce）與使用者的承諾相符時，代呼叫合約才會通過驗證，如圖 5-7 所示。這確保代呼叫合約處理的正是使用者所授權的內容。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<picture><source type="image/webp" srcset="/images/ch5/maet_0507.webp"><img src="/images/ch5/maet_0507.png" alt="EIP-3074 commitment validation" width="596" height="385" loading="lazy" decoding="async"></picture>
+</div>
+<div class="title">圖 5-7. EIP-3074 的承諾驗證</div>
+</div>
+<div class="paragraph">
+<p>承諾雜湊讓代呼叫合約能執行各種規則，例如允許平行的 nonce，或是把多個呼叫綁在同一個簽章之下。這讓多重呼叫流程成為可能，例如把 ERC-20 的授權與轉帳合併成一筆交易，如圖 5-8 所示。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<picture><source type="image/webp" srcset="/images/ch5/maet_0508.webp"><img src="/images/ch5/maet_0508.png" alt="EIP-3074 multicall flow" width="1212" height="773" loading="lazy" decoding="async"></picture>
+</div>
+<div class="title">圖 5-8. EIP-3074 的多重呼叫流程</div>
+</div>
+<div class="paragraph">
+<p>此外，它還支援把 EOA 的控制權委託給其他金鑰：只要用受託者的地址與一份存取政策簽署一則承諾訊息，代呼叫合約在代表 EOA 轉發呼叫之前就會驗證它，如圖 5-9 所示。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<picture><source type="image/webp" srcset="/images/ch5/maet_0509.webp"><img src="/images/ch5/maet_0509.png" alt="EIP-3074 delegation flow" width="1294" height="864" loading="lazy" decoding="async"></picture>
+</div>
+<div class="title">圖 5-9. EIP-3074 的委託流程</div>
+</div>
+</div>
+<div class="sect4">
+<h4 id="ch05-eip-5003"><a class="anchor" href="#ch05-eip-5003" aria-label="本節連結"></a>EIP-5003</h4>
+<div class="paragraph">
+<p>EIP-5003 引入了 <code>AUTHUSURP</code> 操作碼，允許在透過 EIP-3074 授權的地址上部署程式碼，實際上等於移除了原本 EOA 的簽署金鑰（與 EIP-3607 一起使用時）。傳統的 EOA 在以太坊上掌控了大量的價值，卻面臨種種限制：沒有簡單的方法可以輪替金鑰、為了效率而批次處理交易，或是在不持有 ETH 的情況下使用 gas 代付。合約帳戶與帳戶抽象解決了這些問題，讓使用者可以自訂安全功能、驗證方式、支出上限、金鑰輪替、社交恢復等等。然而，這些好處大多只限於透過智能合約錢包與應用層方案（例如 ERC-4337 所提出的方案）主動採用新標準的使用者。這使得大量從以太坊誕生以來就一直使用 EOA 的既有使用者，在安全性與易用性上只得到有限的改善。</p>
+</div>
+<div class="paragraph">
+<p>雖然 EIP-3074 提供了一個初步的解決方案，讓 EOA 能把簽署權限委託給合約帳戶，卻沒有進一步讓 EOA 完全撤銷原本的簽署金鑰。這個缺口帶來了安全風險：即使權限已經委託出去，原本的私鑰仍然是潛在的弱點。一旦私鑰遭到危害，整個帳戶仍然處於風險之中，因為目前對於已暴露的私鑰並沒有撤銷的選項。如果使用者的私鑰外洩了，無論是意外還是遭到惡意攻擊，唯一的選擇就是建立一個新錢包，再辛苦地把資產一一遷移過去；這是一個昂貴的過程，而且由於某些資產在既有的智能合約中無法移動，往往無法完整遷移。</p>
+</div>
+<div class="paragraph">
+<p>有了這項 EIP，<code>AUTHUSURP</code> 為 EOA 持有者提供了一條安全的轉移路徑。它讓 EOA 能把控制權完全轉移給智能合約，移除原本金鑰的權限，從而消除它帶來的安全威脅。</p>
+</div>
+</div>
+<div class="sect4">
+<h4 id="ch05-eip-7702"><a class="anchor" href="#ch05-eip-7702" aria-label="本節連結"></a>EIP-7702</h4>
+<div class="paragraph">
+<p>EIP-7702 是預計在 2025 年初於 Pectra 中實作的主要帳戶抽象 EIP。（附註：本章寫於 2024 年 9 月與 10 月，所以我們使用未來式。）EIP-7702 在 EIP-2718 之下引入了一種「設定程式碼交易」（set code transaction），讓 EOA 能把某些程式碼委託出去，由經過授權的地址代表它執行。</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class="icon">
+<div class="title">備註</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>EIP-2718 為以太坊引入了一種「型別化交易封裝」（typed transaction envelope）格式，讓協議支援多種交易類型。這種標準化的格式允許向後相容的交易升級，在維持既有結構的同時，能以新的交易類型進行未來的改進。第 6 章會更詳細地說明這一點。這項 EIP 也調整了 EIP-3607 的限制，允許帶有委託指定標記的 EOA 發出交易。<sup class="footnote">[<a id="_footnoteref_9" class="footnote" href="#_footnotedef_9" title="查看註腳">9</a>]</sup>它讓 EOA 能安全地進行委託，為以太坊增添更好的帳戶管理能力。</p>
+</div>
+<div class="paragraph">
+<p>這裡出現了一個問題：使用者應該如何指定他們想在帳戶中執行的程式碼？主要的選項是把位元組碼直接放進交易中，或是引用一個指向程式碼的指標。最簡單的指標，就是某段部署在鏈上的程式碼的地址。直接指定程式碼，可以讓 EOA 在交易的 calldata 中執行任意程式碼。簽署程式碼指標時需要考慮的一點，是這個地址在另一條鏈上是否也指向預期的程式碼；錢包維護者可以把單一的 EIP-7702 授權訊息寫死在程式中，以確保跨鏈的程式碼一致。</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="paragraph">
+<p>有一個重要的安全考量必須說明。一旦程式碼被嵌入 EOA，每當 EOA 的程式碼發出呼叫時，EIP-7702 交易就可能讓 <code>msg.sender == tx.origin</code> 成立，也就是交易的建立者同時也是廣播交易的地址。如果沒有 EIP-7702，這種情況只會發生在交易最外層的執行層級。由於 EIP-7702 會讓交易的代付成為可能，這種情況在其他的執行層級中也會發生。因此，這項 EIP 打破了這個不變條件（invariant），影響到含有 <code>require(msg.sender == tx.origin)</code> 檢查的智能合約。這項檢查至少有三個用途：</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>驗證 <code>msg.sender</code> 是一個 EOA（因為 <code>tx.origin</code> 一定是 EOA）。這個不變條件不受執行層級深度的影響；只要呼叫的深度是 1，仍然可以確保 <code>tx.origin</code> 就是 <code>msg.sender</code>。</p>
+</li>
+<li>
+<p>防範原子性（atomic）三明治攻擊，例如閃電貸，這類攻擊仰賴在同一筆原子性交易中、於目標合約執行的前後改變狀態。這項保護會因為這項 EIP 而失效。不過，把 <code>tx.origin</code> 用於這個目的，一般被認為是不好的做法，而且礦工本來就能透過選擇性地納入交易來繞過它。</p>
+</li>
+<li>
+<p>防範重入。</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>以太坊主網的合約中可以看到前兩種用途的例子，其中第一種比較常見（而且不受這項 EIP 影響）。然而，第三種情況在這項 EIP 之下會變得更容易受到攻擊，不過提案的作者在初步審查時，並沒有發現任何依賴 <code>tx.origin</code> 來防範重入的實例。</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tbody><tr>
+<td class="icon">
+<div class="title">提示</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>不同於這項 EIP 的先前版本與類似的提案，委託指定隨時都可以撤銷，只要使用帳戶目前的 nonce，簽署並送出一份指向新地址的 EIP-7702 授權即可。如果沒有採取這樣的行動，委託就會無限期地維持有效。</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="paragraph">
+<p>為 EOA 增加功能上的改進、提升易用性，並在某些情況下提升安全性，引起了相當大的興趣。其中一個關鍵的應用是交易的代付，讓使用者不需要持有 ETH 來支付 gas 費用，也能進行交易。在傳統的以太坊交易中，gas 費用是以 ETH 支付的，這對只持有其他代幣的使用者，或剛進入這個生態系的新手來說，可能很不方便。EIP-7702 引入了一種模式，讓交易手續費可以暫時或永久地由第三方支付，使用者不需要 ETH 也能完成交易。這可以簡化新使用者的上手過程，讓對特定 DApp 或代幣感興趣的新使用者，不必管理 ETH 也能更容易地使用以太坊應用。</p>
+</div>
+<div class="paragraph">
+<p>傳統的以太坊帳戶只仰賴單一的私鑰，所以遺失私鑰就意味著失去對帳戶與資產的存取權。EIP-7702 的結構支援各種恢復機制，讓使用者在遺失私鑰時能重新取得存取權。恢復機制對重視安全的使用者，以及剛接觸區塊鏈、可能覺得金鑰管理令人卻步的人來說，特別有價值。可能的恢復選項包括多重簽章與社交恢復，讓選定的聯絡人協助恢復帳戶；這是以太坊帳戶在安全性與易用性上的一大進步。</p>
+</div>
+<div class="paragraph">
+<p>EIP-7702 也引入了批次處理與權限降級（privilege deescalation）。批次處理讓多個動作能在單一的原子性交易中處理，使用者可以一步（而不是兩步）完成複雜的工作流程，例如先進行 ERC-20 授權、接著動用代幣。權限降級則提供權限受限的子金鑰，只授權特定的動作，例如花費特定的金額，或只與某些應用程式互動，藉此在遭到危害時把暴露的範圍降到最低，以提升安全性。</p>
+</div>
+<div class="paragraph">
+<p>這項 EIP 也修改了傳統上規範帳戶餘額與 nonce 行為的不變條件。它打破了兩項預期：EOA 帳戶的餘額只會因為從該帳戶發出的交易而減少，以及 EOA 的 nonce 在交易開始執行之後就不會再遞增。這些改變會影響記憶池的設計以及其他 EIP。不過，由於這些帳戶都靜態地列在外層交易中，可以調整交易的傳播規則，避免轉發互相衝突的交易。它確實與 ERC-4337 及 RIP-7560 具有向前相容性。除了其他好處之外，它還讓 EOA 能透過既有的 EntryPoint 機制，偽裝成與 ERC-4337 打包相容的合約。</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class="icon">
+<div class="title">備註</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>狀態轉換相關修改的一個普遍設計目標，是盡量減少 EIP 中的特殊情況。這項 EIP 早期的版本，曾經拒絕為清除帳戶的委託指定加入特殊情況。一般來說，委託給 0x0 的帳戶，行為就像真正的 EOA；然而，與該帳戶互動的大多數操作都會產生額外的成本。這筆額外的成本可能會影響這項 EIP 整體的採用。基於這些原因，最後還是納入了一種機制，讓使用者可以把 EOA 恢復到原本的狀態。</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="paragraph">
+<p>這項 EIP 涉及多項安全考量，這些都是實作方的責任，應該審慎評估。除了前面提到的 <code>tx.origin</code> 問題之外，還有三項關鍵考量：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>讓 EOA 能像智能合約一樣行事，會為交易的傳播帶來挑戰。傳統上，EOA 只能透過交易發送價值。有了這項 EIP，任何人都可以在任何時候於交易中呼叫 EOA 的委託程式碼，使得節點無法靜態地驗證餘額；基本上，這讓節點更難驗證一個地址的餘額。</p>
+</li>
+<li>
+<p>智能合約錢包的開發者必須考慮在帳戶中設定程式碼、卻不執行它所帶來的影響。通常，合約是以 initcode 部署的，以確定性的方式初始化儲存槽（storage slot）。這項 EIP 在委託時省略了 initcode 的執行，所以開發者必須驗證初始的 calldata，以防止觀察者搶先交易，用他們自己控制的帳戶完成設定。</p>
+</li>
+<li>
+<p>重放保護（例如 nonce 的處理）應該由受託者實作並經過簽署。如果沒有這一點，惡意的行為者就可以重複使用簽章，取得對簽署者 EOA 幾乎完全的控制權。</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h4 id="ch05-the-future-of-account-abstraction"><a class="anchor" href="#ch05-the-future-of-account-abstraction" aria-label="本節連結"></a>帳戶抽象的未來</h4>
+<div class="paragraph">
+<p>以太坊上的帳戶抽象是一個複雜但前景看好的構想，未來有許多可能的發展路徑。每個提案都提供了一種不同的方式，讓使用者的互動更簡單、更安全。有些提案改進了先前的提案，例如 EIP-5003 建立在 EIP-3074 的基礎上；另一些提案，例如 EIP-5806，則是獨立存在，甚至不具備向後相容性。這種多樣性反映出大家正在尋找最佳的解決方案，最終的方向很可能取決於使用者認為哪些選項最容易使用、最有效。雖然確切的未來還不明朗，但帳戶抽象確實很有希望改善使用以太坊的體驗。</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h3 id="ch05-social-recovery"><a class="anchor" href="#ch05-social-recovery" aria-label="本節連結"></a>5.4.2. 社交恢復</h3>
+<div class="paragraph">
+<p>與社交恢復相關的主要 EIP 是 EIP-2429。EIP-2429 的標題是「Secret Multisig Recovery」，它引入了一種機制，讓使用者可以指定值得信任的個人或實體作為「守護者」（guardian），藉此重新取得對錢包的存取權。如果使用者遺失了私鑰，就可以請這些守護者協助恢復對錢包的控制。守護者只會在恢復過程中參與，以限制他們的權力，如圖 5-10 所示。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<picture><source type="image/webp" srcset="/images/ch5/maet_0510.webp"><img src="/images/ch5/maet_0510.png" alt="Social recovery flow" width="1136" height="690" loading="lazy" decoding="async"></picture>
+</div>
+<div class="title">圖 5-10. 社交恢復流程</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class="icon">
+<div class="title">備註</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Vitalik Buterin 在 2021 年發表了一篇文章，我們直接引用其中的一句話：「這就引出了我偏好的錢包保護方法：社交恢復。」我們不知道情況是否已經改變，但社交恢復也許仍然是 Buterin 偏好的方法。</p>
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="paragraph">
+<p>在一般使用時，社交恢復錢包的運作就像一般錢包一樣，使用者可以用自己的簽署金鑰簽署交易。如果金鑰遺失了，社交恢復就會啟動，讓使用者聯絡守護者，由他們簽署一筆交易，更新錢包的簽署金鑰。守護者可以是值得信任的個人、裝置或機構。守護者可以保持匿名，而且為了防範攻擊，他們的身分不會儲存在鏈上。如果使用者過世，守護者可以協調合作，取回使用者的資金。</p>
+</div>
+</div>
+<div class="sect3">
+<h3 id="ch05-ens"><a class="anchor" href="#ch05-ens" aria-label="本節連結"></a>5.4.3. ENS</h3>
+<div class="paragraph">
+<p>以太坊域名服務（Ethereum Name Service，ENS）就像是 Web3 版本的傳統網域名稱，只不過它不是連結到網站，而是把人類可讀的名稱連結到以太坊地址。這讓處理冗長複雜的區塊鏈地址變得容易許多。例如，你不必把加密貨幣送到像 <code>0xd8dA6BF...</code> 這樣的地址，只要送到像 <code>vitalik.eth</code> 這樣的名稱就可以了。這簡化了交易，讓整個過程不再那麼令人生畏，對加密貨幣的新手來說尤其如此。</p>
+</div>
+<div class="paragraph">
+<p>如果把 ENS 和 Web2 的世界相比，它類似於 DNS 的運作方式。DNS 把（難以記住的）IP 位址對應到像 <code>google.com</code> 這樣的網址，讓你造訪網站時不必記住一串數字。不過，ENS 與 DNS 之間有一個關鍵的差異：ENS 是去中心化的。一旦你擁有了某個 <code>.eth</code> 名稱，就沒有任何中心化的機構能控制它。在 Web2 中，網域名稱是由註冊商管理的，可能會遭到審查、停用或限制。在 ENS 中，你完全透過自己的以太坊錢包控制自己的名稱，這表示你的 <code>.eth</code> 名稱就和持有它的錢包一樣安全。</p>
+</div>
+<div class="paragraph">
+<p>當你在傳送或接收加密貨幣時，使用像 <code>andreas.eth</code> 這樣的名稱，而不是冗長複雜的以太坊地址，會讓一切更順暢、更安全。它降低了輸入地址時出錯的機率，否則這可能是交易中的一大風險。</p>
+</div>
+<div class="paragraph">
+<p>ENS 另一個很酷的地方，是它提供了一種數位身分的感覺。就像為你的網站擁有一個網域名稱一樣，擁有一個獨一無二的 <code>.eth</code> 名稱，可以作為你在區塊鏈上的公開身分。</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h2 id="ch05-conclusion"><a class="anchor" href="#ch05-conclusion" aria-label="本節連結"></a>5.5. 結語</h2>
+<div class="paragraph">
+<p>錢包是任何面向使用者的區塊鏈應用的基礎。錢包讓使用者能管理一組組的金鑰與地址。錢包也讓使用者能證明自己對以太幣的所有權，並透過數位簽章來授權交易，我們會在第 6 章看到這一點。</p>
+</div>
+</div>
+</div>
+</div><section class="footnotes" aria-labelledby="footnotes-title"><h2 id="footnotes-title">註腳</h2><ol><li id="_footnotedef_7" value="7">譯註：依照下面的步驟 7 到 9，PBKDF2 實際的輸入是助記詞本身（步驟 7）與鹽值，而不是把助記詞還原成熵之後再輸入。 <a class="fn-back" href="#_footnoteref_7" aria-label="返回內文">↩</a></li><li id="_footnotedef_8" value="8">譯註：嚴格來說，ERC-4337 並不會讓既有的 EOA 本身變成智能合約，而是讓使用者改用智能合約帳戶（下文提到的打包者會把 UserOperation 包進一般交易送出）。本章「EIP-5003」一節也提到，帳戶抽象的好處主要限於透過智能合約錢包與 ERC-4337 這類應用層方案主動採用新標準的使用者，長期使用 EOA 的既有使用者受惠有限。 <a class="fn-back" href="#_footnoteref_8" aria-label="返回內文">↩</a></li><li id="_footnotedef_9" value="9">譯註：這句的「這項 EIP」指的是 EIP-7702，不是本備註開頭的 EIP-2718；委託指定是 EIP-7702 引入的機制（見本章 EIP-7702 一節與其後的提示框）。 <a class="fn-back" href="#_footnoteref_9" aria-label="返回內文">↩</a></li></ol></section>
+  </div>
+  <nav class="pager" aria-label="章節導覽">
+    <a class="pager-link prev" href="/chapters/cryptography.html" rel="prev"><span class="pager-dir">← 上一章</span><span class="pager-title">第 4 章　密碼學</span></a>
+    <a class="pager-link next" href="/chapters/transactions.html" rel="next"><span class="pager-dir">下一章 →</span><span class="pager-title">第 6 章　交易</span></a>
+  </nav>
+  <p class="edit-link"><a href="https://github.com/awesome-doge/ethereumbook_zh/blob/master/zh-tw/chapter_5.md" rel="noopener">在 GitHub 上檢視或改善本章翻譯</a></p>
+</article>
+
+  </main>
+
+  <aside class="rail" aria-label="本章內容">
+    <p class="rail-title">本章內容</p>
+    <ol>
+      <li><a href="#ch05-overview-of-wallet-technologies">5.1. 錢包技術概觀</a></li>
+      <li><a href="#ch05-wallet-best-practices">5.2. 錢包的最佳實踐</a></li>
+      <li><a href="#ch05-security">5.3. 安全</a></li>
+      <li><a href="#ch05-improving-on-user-experience">5.4. 改善使用者體驗</a></li>
+      <li><a href="#ch05-conclusion">5.5. 結語</a></li>
+    </ol>
+  </aside>
+</div>
+
+<footer class="site-footer">
+  <p>原著《Mastering Ethereum》第二版由 Andreas M. Antonopoulos、Gavin Wood、Carlo Parisi、Alessandro Mazza 與 Niccolò Pozzolini 撰寫，O'Reilly Media 出版。繁體中文翻譯：Dr. Awesome Doge。</p>
+  <p>本書內容以 <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh_TW" rel="license noopener">CC BY-NC-ND 4.0</a> 授權釋出（原書出版 12 個月後轉為 CC BY-SA 4.0，本譯本屆時隨之更新） · <a href="https://github.com/awesome-doge/ethereumbook_zh" rel="noopener">GitHub</a> · <a href="https://github.com/awesome-doge/ethereumbook_zh/issues" rel="noopener">回報翻譯問題</a> · <a href="https://github.com/ethereumbook/ethereumbook" rel="noopener">英文原著</a></p>
+</footer>
+
+<dialog class="search" id="search" aria-label="搜尋全書">
+  <form method="dialog" class="search-form" role="search">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input type="search" id="search-input" placeholder="搜尋全書，例如：智能合約、gas、ERC20" autocomplete="off" spellcheck="false" aria-label="搜尋關鍵字">
+    <button type="submit" class="search-close" value="close" aria-label="關閉搜尋">Esc</button>
+  </form>
+  <p class="search-status" aria-live="polite"></p>
+  <ol class="search-results"></ol>
+</dialog>
+</body>
+</html>
