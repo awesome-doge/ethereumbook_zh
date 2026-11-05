@@ -7,7 +7,7 @@
 #   ruby scripts/md2adoc.rb upstream build/2nd-en              # 英文原稿
 #   ruby scripts/md2adoc.rb zh-tw build/2nd-zh --ref upstream  # 譯稿：標題 ID 依位置取自英文原稿
 #
-# 需要 pandoc 3.x（以 3.9.0.2 驗證）。實際的轉換規則在 scripts/md2adoc/filter.lua。
+# 需要 pandoc 3.x（以 3.9.0.2 與 3.13 驗證；CI 固定 3.13，見 .github/workflows/gh-pages.yml）。實際的轉換規則在 scripts/md2adoc/filter.lua。
 # 章節 ID：前言 preface-chap，第 N 章 chNN；小節 ID 為「章節 ID-英文標題的 pandoc 自動 ID」，
 # 譯稿沿用英文原稿同一位置標題的 ID，網址與交互參照因此不受翻譯影響。
 

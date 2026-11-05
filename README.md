@@ -58,8 +58,9 @@
 # 安裝
 gem install asciidoctor rouge nokogiri
 brew install webp            # 選用：圖片另外輸出 WebP（Linux：apt install webp）
+brew install pandoc          # 第二版譯稿 Markdown → AsciiDoc 需要 pandoc 3.x（CI 固定 3.13）
 
-# 構建線上閱讀網站到 output/，並檢查連結、錨點與 sitemap
+# 構建整個網站到 output/（第二版在根部、2018 草稿譯本在 output/2018/、舊網址轉址頁），並檢查連結、錨點與 sitemap
 ruby scripts/build-site.rb output
 ruby scripts/check-site.rb output
 python3 -m http.server 8000 --directory output   # 本機預覽 http://localhost:8000
