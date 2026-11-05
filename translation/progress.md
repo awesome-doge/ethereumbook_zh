@@ -6,22 +6,22 @@
 | 檔案 | 章節 | 英文字數 | 狀態 | 譯者 | 上游 commit | 備註 |
 |---|---|---:|---|---|---|---|
 | `preface.md` | 前言 | 2,251 | 待審 | Claude（代理初稿） | `5907a8c` | 原稿 Carlo 的 Twitter 連結網址前多一個空白（照原樣保留） |
-| `chapter_1.md` | 什麼是以太坊 | 4,936 | 待審 | Claude（代理初稿） | `5907a8c` | 4 個 TODO-term 待回填；譯註 1 則（Serenity 子階段五個與六個不一致）|
-| `chapter_2.md` | 以太坊基礎 | 6,716 | 待審 | Claude（代理初稿） | `5907a8c` | 4 個 TODO-term 待回填；譯註 2 則（參數名稱、10^12 與 10^17 不一致）|
-| `chapter_3.md` | 以太坊節點 | 5,828 | 待審 | Claude（代理初稿） | `5907a8c` | 8 個 TODO-term 待回填；譯註 1 則（Reth 之後應為 cd ../..，已驗證）|
-| `chapter_4.md` | 密碼學 | 12,572 | 待審 | Claude（代理初稿） | `5907a8c` | 20 個 TODO-term 待回填；譯註 2 則（n = 2^28 漏次方、verifier 應為 prover）|
-| `chapter_5.md` | 錢包 | 10,528 | 待審 | Claude（代理初稿） | `5907a8c` | 31 個 TODO-term 待回填；譯註 3 則（PBKDF2 輸入、ERC-4337 說法矛盾、EIP 編號）|
-| `chapter_6.md` | 交易 | 12,234 | 待審 | Claude（代理初稿） | `5907a8c` | 12 個 TODO-term 待回填；譯註 2 則（0x 空酬載、參數名稱）；原文筆誤數處記在筆記 |
-| `chapter_7.md` | 智能合約與 Solidity | 11,485 | 待審 | Claude（代理初稿） | `5907a8c` | 9 個 TODO-term 待回填；譯註 12 則（多為第二版改了範例、內文沒跟著改）|
+| `chapter_1.md` | 什麼是以太坊 | 4,936 | 待審 | Claude（代理初稿） | `5907a8c` | 4 個 TODO-term 已回填；譯註 1 則（Serenity 子階段五個與六個不一致）|
+| `chapter_2.md` | 以太坊基礎 | 6,716 | 待審 | Claude（代理初稿） | `5907a8c` | 4 個 TODO-term 已回填；譯註 2 則（參數名稱、10^12 與 10^17 不一致）|
+| `chapter_3.md` | 以太坊節點 | 5,828 | 待審 | Claude（代理初稿） | `5907a8c` | 8 個 TODO-term 已回填；譯註 1 則（Reth 之後應為 cd ../..，已驗證）|
+| `chapter_4.md` | 密碼學 | 12,572 | 待審 | Claude（代理初稿） | `5907a8c` | 20 個 TODO-term 已回填；譯註 2 則（n = 2^28 漏次方、verifier 應為 prover）|
+| `chapter_5.md` | 錢包 | 10,528 | 待審 | Claude（代理初稿） | `5907a8c` | 31 個 TODO-term 已回填；譯註 3 則（PBKDF2 輸入、ERC-4337 說法矛盾、EIP 編號）|
+| `chapter_6.md` | 交易 | 12,234 | 待審 | Claude（代理初稿） | `5907a8c` | 12 個 TODO-term 已回填；譯註 2 則（0x 空酬載、參數名稱）；原文筆誤數處記在筆記 |
+| `chapter_7.md` | 智能合約與 Solidity | 11,485 | 待審 | Claude（代理初稿） | `5907a8c` | 9 個 TODO-term 已回填；譯註 12 則（多為第二版改了範例、內文沒跟著改）|
 | `chapter_8.md` | 智能合約與 Vyper | 2,946 | 待審 | Claude（初稿） | `5907a8c` | 第 2 階段試譯；原稿第 219 行的大數字中間多一個空格，譯稿已修正（位數已核對：2²⁵⁵ ÷ 10¹⁸，共 59 位） |
-| `chapter_9.md` | 智能合約安全 | 13,759 | 待審 | Claude（代理初稿） | `5907a8c` | 26 個 TODO-term 待回填；譯註 2 則（SHA-3 與 keccak256、uint256 的數量級）；原文小錯數處記在筆記 |
-| `chapter_10.md` | 代幣 | 9,910 | 待審 | Claude（代理初稿） | `5907a8c` | 16 個 TODO-term 待回填；譯註 2 則（事件名稱大小寫、交互參照位置）|
-| `chapter_11.md` | 預言機 | 4,692 | 待審 | Claude（代理初稿） | `5907a8c` | 20 個 TODO-term 待回填；譯註 1 則（提到的 Solidity 實作一節是第一版殘留）|
-| `chapter_12.md` | 去中心化應用 | 4,465 | 待審 | Claude（代理初稿） | `5907a8c` | 8 個 TODO-term 待回填；譯註 2 則（原稿程式碼錯誤、node.js 連結）；2 則外部事實移到筆記待查證 |
+| `chapter_9.md` | 智能合約安全 | 13,759 | 待審 | Claude（代理初稿） | `5907a8c` | 26 個 TODO-term 已回填；譯註 2 則（SHA-3 與 keccak256、uint256 的數量級）；原文小錯數處記在筆記 |
+| `chapter_10.md` | 代幣 | 9,910 | 待審 | Claude（代理初稿） | `5907a8c` | 16 個 TODO-term 已回填；譯註 2 則（事件名稱大小寫、交互參照位置）|
+| `chapter_11.md` | 預言機 | 4,692 | 待審 | Claude（代理初稿） | `5907a8c` | 20 個 TODO-term 已回填；譯註 1 則（提到的 Solidity 實作一節是第一版殘留）|
+| `chapter_12.md` | 去中心化應用 | 4,465 | 待審 | Claude（代理初稿） | `5907a8c` | 8 個 TODO-term 已回填；譯註 2 則（原稿程式碼錯誤、node.js 連結）；2 則外部事實移到筆記待查證 |
 | `chapter_13.md` | 去中心化金融 | 6,084 | 待審 | Claude（初稿） | `5907a8c` | 第 2 階段試譯；新增 61 個金融與 DeFi 用語 |
-| `chapter_14.md` | 以太坊虛擬機 | 13,064 | 待審 | Claude（代理初稿） | `5907a8c` | 9 個 TODO-term 待回填；譯註 2 則（1,714 筆轉帳、0x61/0x62 差兩個位元）；原文 gas 上限前後數字不一致 |
-| `chapter_15.md` | 共識 | 10,749 | 待審 | Claude（代理初稿） | `5907a8c` | 26 個 TODO-term 待回填；譯註 2 則（被合理化的是目標檢查點、surround vote 說明位置）；圖 15-18 的說明疑似放錯圖 |
-| `chapter_16.md` | 以太坊擴容 | 9,331 | 待審 | Claude（代理初稿） | `5907a8c` | 43 個 TODO-term 待回填；譯註 2 則（圖號應為 16-7、16-8；BLS12-318 筆誤）|
-| `chapter_17.md` | 零知識證明 | 7,726 | 待審 | Claude（代理初稿） | `5907a8c` | 23 個 TODO-term 待回填（statement 最需定案）；譯註 4 則；23 段 MathML 與原稿逐字相同 |
+| `chapter_14.md` | 以太坊虛擬機 | 13,064 | 待審 | Claude（代理初稿） | `5907a8c` | 9 個 TODO-term 已回填；譯註 2 則（1,714 筆轉帳、0x61/0x62 差兩個位元）；原文 gas 上限前後數字不一致 |
+| `chapter_15.md` | 共識 | 10,749 | 待審 | Claude（代理初稿） | `5907a8c` | 26 個 TODO-term 已回填；譯註 2 則（被合理化的是目標檢查點、surround vote 說明位置）；圖 15-18 的說明疑似放錯圖 |
+| `chapter_16.md` | 以太坊擴容 | 9,331 | 待審 | Claude（代理初稿） | `5907a8c` | 43 個 TODO-term 已回填；譯註 2 則（圖號應為 16-7、16-8；BLS12-318 筆誤）|
+| `chapter_17.md` | 零知識證明 | 7,726 | 待審 | Claude（代理初稿） | `5907a8c` | 23 個 TODO-term 已回填（statement 定為「陳述」）；譯註 4 則；23 段 MathML 與原稿逐字相同 |
 
 狀態：未開始 → 翻譯中 → 待審 → 已審 → 定稿。

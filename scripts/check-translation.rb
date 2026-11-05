@@ -65,22 +65,22 @@ def structure(path)
     when Hash
       c = node['c']
       case node['t']
-      when 'Header' then s[:headings] << c[0]; s[:prose] << text_of(c[2]); walk.call(c[2])
+      when 'Header' then s[:headings] << c[0]; s[:prose] << text_of(c[2]); walk.call(c[2], ctx)
       when 'CodeBlock' then s[:codes] << [c[0][1].join(','), c[1]]
       when 'Code' then s[:inline_codes] << c[1]
-      when 'Link' then s[:links] << c[2][0]; walk.call(c[1])
+      when 'Link' then s[:links] << c[2][0]; walk.call(c[1], ctx)
       when 'Image' then s[:images] << c[2][0]
       when 'Note'
         # 「譯註：」開頭的註腳是譯者加的，不列入與原稿的比對（裡面的段落也不算）
         unless text_of(c).strip.start_with?('譯註')
           s[:footnotes] += 1
-          walk.call(c)
+          walk.call(c, ctx)
         end
       when 'Table'
         body_rows = c[4].sum { |tb| tb[3].size }
         cols = c[2].size
         s[:tables] << [cols, c[3][1].size + body_rows]
-        walk.call(c)
+        walk.call(c, ctx.merge(table: true))
       when 'BlockQuote'
         first = c.first
         if first && first['t'] == 'Para' && first['c'].first&.dig('t') == 'Strong'
@@ -88,14 +88,16 @@ def structure(path)
           s[:admonitions][{ '備註' => 'Note', '提示' => 'Tip', '警告' => 'Warning' }.fetch(kind, kind)] += 1 if
             %w[Note Tip Warning 備註 提示 警告].include?(kind)
         end
-        walk.call(c)
+        walk.call(c, ctx)
       when 'Para', 'Plain'
         s[:paragraphs] += 1
         t = text_of(c)
         s[:figcaps] += 1 if t.match?(/\A(Figure \d+-\d+\. |圖 ?\d+-\d+(\. |．))/)
-        s[:prose] << t
-        walk.call(c)
-      else walk.call(c)
+        # 未翻譯檢查不看：表格儲存格（助記詞、雜湊等資料）、只有圖片的段落（替代文字保留英文）、以〈〉標示的英文篇名
+        image_only = c.size == 1 && c[0]['t'] == 'Image'
+        s[:prose] << t unless ctx[:table] || image_only || t.strip.match?(/\A〈.*〉[。．.]?\z/)
+        walk.call(c, ctx)
+      else walk.call(c, ctx)
       end
     end
   end

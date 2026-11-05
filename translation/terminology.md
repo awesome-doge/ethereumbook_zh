@@ -3,7 +3,7 @@
 本表規定第二版繁體中文譯本的術語譯法，翻譯時優先查閱本表。
 與《精通比特幣》第三版譯本共通的術語（金鑰、簽章、雜湊、記憶池、默克爾樹、完整節點、測試網路……）沿用同樣的譯法，兩本書讀起來才一致。
 
-> 狀態：**平行翻譯前定案**（2026-11-03）。全書起草 254 條，兩章試譯新增 93 條，再從第 7、9、14 章抽取 98 條，現共 446 條。候選詞取自上游全部 18 個檔案的縮寫、首次以斜體或粗體出現的術語與各級標題；2018 草稿譯本的用詞只當參考。
+> 狀態：**平行翻譯前定案**（2026-11-03）。全書起草 254 條，兩章試譯新增 93 條，再從第 7、9、14 章抽取 98 條，共 446 條；2026-11-06 全書譯完後補入 counterparty risk，並回填 TODO-term 新增 220 條，現共 667 條。候選詞取自上游全部 18 個檔案的縮寫、首次以斜體或粗體出現的術語與各級標題；2018 草稿譯本的用詞只當參考。
 > 2026-11-03 已決定：slot、epoch 保留英文；attestation 譯「見證投票」；prover／verifier 譯「證明方／驗證方」；原文的 you 譯「你」；revert 譯「回復」；gossip protocol 譯「gossip 協議」；justified 譯「已合理化」。
 > 標為 `[待定]` 的條目請在試譯階段決定，定案後改成 `[固定]`、`[並列]` 或 `[保留]`。平行翻譯開始前，本表不應再有 `[待定]`。
 
@@ -563,3 +563,230 @@
 | Merkle proof | 默克爾證明 | | | [固定] |
 | trie | 前綴樹 | | | [並列] |
 | Merkle Patricia trie (MPT) | 默克爾帕特里夏前綴樹（MPT） | | | [並列] |
+
+## 全書翻譯新增（2026-11-06 回填 TODO-term 時定案）
+
+第 3 階段平行翻譯時標記的 TODO-term，全書譯完後統一決定並回填譯稿。storage slot、hook、statement、canonical chain 由使用者定案，其餘採譯者建議，跨章不一致的三條（storage slot、commit-reveal scheme、operator）已統一或註明依語境。
+
+| 英文 | 譯名 | 不用 | 說明 | 狀態 |
+|------|------|------|------|------|
+| storage slot | 儲存槽 | | 第 5、6、9、16 章；使用者定案 | [並列] |
+| allowlist | 允許清單 | | 第 9、10、16 章 | [並列] |
+| atomic | 原子性 | | 第 5、7、10 章 | [並列] |
+| checksum | 校驗和 | | 第 4、5、6 章 | [並列] |
+| double spend | 雙重支付 | | 第 4、15、16 章 | [並列] |
+| soundness | 可靠性 | | 第 4、16、17 章 | [並列] |
+| sponsorship | 代付 | | 第 5、6、10 章 | [並列] |
+| byzantine fault tolerance | 拜占庭容錯 | | 第 1、15 章 | [並列] |
+| challenge window | 挑戰期 | | 第 11、16 章 | [並列] |
+| check-effect-interaction pattern | 檢查—生效—互動模式 | | 第 9、10 章 | [並列] |
+| client diversity | 客戶端多樣性 | | 第 3、16 章 | [並列] |
+| commit-reveal scheme | 承諾—揭示機制 | | 第 9、11 章 | [並列] |
+| cryptographic primitive | 密碼學基本元件 | | 第 1、4 章 | [並列] |
+| difficulty bomb | 難度炸彈 | | 第 1、15 章 | [並列] |
+| fee market | 手續費市場 | | 第 6、16 章 | [並列] |
+| guardian | 守護者 | | 第 5、11 章 | [並列] |
+| hook | 鉤子 | | 第 9、10 章；使用者定案 | [並列] |
+| invariant | 不變條件 | | 第 5、7 章 | [並列] |
+| key stretching | 金鑰延展 | | 第 4、5 章 | [並列] |
+| liveness | 活性 | | 第 15、16 章 | [並列] |
+| operator | 操作者／營運者 | | 第 10、16 章；依語境：節點操作者、rollup 營運者 | [並列] |
+| preimage | 原像 | | 第 4、9 章 | [並列] |
+| relayer | 中繼者 | | 第 9、11 章 | [並列] |
+| salt | 鹽值 | | 第 5、11 章 | [並列] |
+| searcher | 搜尋者 | | 第 14、16 章 | [並列] |
+| seed phrase | 種子短語 | | 第 2、5 章 | [並列] |
+| typed transaction envelope | 型別化交易封裝 | | 第 5、6 章 | [並列] |
+| vault | 金庫 | | 第 9、10 章 | [並列] |
+| accountable safety | 可究責的安全性 | | 第 15 章 | [並列] |
+| address poisoning | 地址投毒 | | 第 2 章 | [並列] |
+| aggregator | 聚合者 | | 第 16 章 | [並列] |
+| airdrop | 空投 | | 第 9 章 | [並列] |
+| asymmetric cryptography | 非對稱密碼學 | | 第 4 章 | [並列] |
+| attestation（一般意義） | 認證 | | 第 11 章；一般意義的證明文件。共識層的 attestation 仍譯「見證投票」 | [並列] |
+| attester | 見證投票者 | | 第 15 章 | [並列] |
+| attestor | 認證方 | | 第 11 章 | [並列] |
+| authenticity proof | 真實性證明 | | 第 11 章 | [並列] |
+| base contract | 基礎合約 | | 第 7 章 | [並列] |
+| based rollup | based rollup | | 第 16 章 | [保留] |
+| bilinear pairing | 雙線性配對 | | 第 4 章 | [並列] |
+| block space | 區塊空間 | | 第 16 章 | [並列] |
+| block tree | 區塊樹 | | 第 15 章 | [並列] |
+| blockchain indexer | 區塊鏈索引器 | | 第 12 章 | [並列] |
+| blocklist | 封鎖清單 | | 第 10 章 | [並列] |
+| bond | 保證金 | | 第 16 章 | [並列] |
+| booster rollup | booster rollup | | 第 16 章 | [保留] |
+| brainwallet | 腦錢包 | | 第 5 章 | [並列] |
+| bug bounty | 漏洞賞金 | | 第 9 章 | [並列] |
+| bundle | 交易包 | | 第 9 章 | [並列] |
+| bundler | 打包者 | | 第 5 章 | [並列] |
+| burner wallet | 拋棄式錢包 | | 第 12 章 | [並列] |
+| callback | 回呼 | | 第 9 章 | [並列] |
+| canonical chain | 主鏈 | | 第 15 章；使用者定案 | [並列] |
+| canonical state | 主鏈狀態 | | 第 16 章 | [並列] |
+| ceremony | 儀式 | | 第 17 章 | [並列] |
+| chain code | 鏈碼 | | 第 5 章 | [並列] |
+| change address | 找零地址 | | 第 5 章 | [並列] |
+| checkpoint sync | 檢查點同步 | | 第 3 章 | [並列] |
+| cold storage | 冷儲存 | | 第 5 章 | [並列] |
+| collision-resistant | 抗碰撞 | | 第 17 章 | [並列] |
+| commit-reveal | 承諾—揭示 | | 第 4 章 | [並列] |
+| completeness | 完備性 | | 第 17 章 | [並列] |
+| computation trace | 計算軌跡 | | 第 17 章 | [並列] |
+| computational binding | 計算綁定性 | | 第 4 章 | [並列] |
+| content hash | 內容雜湊 | | 第 12 章 | [並列] |
+| content-addressable | 內容定址 | | 第 12 章 | [並列] |
+| crowdsale | 群眾募資 | | 第 10 章 | [並列] |
+| cryptoeconomic | 密碼經濟 | | 第 16 章 | [並列] |
+| custom error | 自訂錯誤 | | 第 7 章 | [並列] |
+| daemon | 常駐程式 | | 第 11 章 | [並列] |
+| data availability committee | 資料可用性委員會 | | 第 16 章 | [並列] |
+| data feed | 資料源 | | 第 11 章 | [並列] |
+| data payload | 資料酬載 | | 第 3 章 | [並列] |
+| dead share | 無效份額 | | 第 9 章 | [並列] |
+| decimal offset | 小數位偏移量 | | 第 9 章 | [並列] |
+| decision problem | 判定問題 | | 第 17 章 | [並列] |
+| deposit contract | 存款合約 | | 第 15 章 | [並列] |
+| dot product | 內積 | | 第 17 章 | [並列] |
+| double vote | 雙重投票 | | 第 15 章 | [並列] |
+| double-signing | 雙重簽署 | | 第 4 章 | [並列] |
+| duress wallet | 脅迫錢包 | | 第 5 章 | [並列] |
+| economic finality | 經濟最終性 | | 第 15 章 | [並列] |
+| enclave | 安全隔離區 | | 第 11 章 | [並列] |
+| encrypted mempool | 加密記憶池 | | 第 16 章 | [並列] |
+| equivocating block | 重複提議的區塊 | | 第 15 章 | [並列] |
+| execution trace | 執行軌跡 | | 第 17 章 | [並列] |
+| exit window | 退出期 | | 第 16 章 | [並列] |
+| extension node | 延伸節點 | | 第 16 章 | [並列] |
+| factory contract | 工廠合約 | | 第 14 章 | [並列] |
+| finality gadget | 最終性元件 | | 第 15 章 | [並列] |
+| frontend-as-a-service | 前端即服務 | | 第 12 章 | [並列] |
+| function signature | 函式簽章 | | 第 7 章 | [並列] |
+| gas observability | gas 可觀測性 | | 第 14 章 | [並列] |
+| gas war | gas 競價戰 | | 第 16 章 | [並列] |
+| global singleton | 全域單例 | | 第 2 章 | [並列] |
+| hardened | 強化 | | 第 5 章 | [並列] |
+| hash collision | 雜湊碰撞 | | 第 4 章 | [並列] |
+| head of the chain | 鏈頭 | | 第 15 章 | [並列] |
+| heaviest chain rule | 最重鏈規則 | | 第 4 章 | [並列] |
+| history expiry | 歷史過期 | | 第 16 章 | [並列] |
+| history pruning | 歷史資料修剪 | | 第 3 章 | [並列] |
+| homomorphic encryption | 同態加密 | | 第 4 章 | [並列] |
+| hub | 樞紐鏈 | | 第 11 章 | [並列] |
+| hypervisor | 虛擬機器監視器 | | 第 14 章 | [並列] |
+| immediate-read | 即時讀取 | | 第 11 章 | [並列] |
+| indexer | 索引器 | | 第 12 章 | [並列] |
+| inner node | 內部節點 | | 第 16 章 | [並列] |
+| internal transaction | 內部交易 | | 第 2 章 | [並列] |
+| invoker | 代呼叫合約 | | 第 5 章 | [並列] |
+| jumpdest map | JUMPDEST 對照表 | | 第 14 章 | [並列] |
+| jwt secret | JWT 共用祕密 | | 第 3 章 | [並列] |
+| key derivation function | 金鑰衍生函數 | | 第 5 章 | [並列] |
+| key exchange protocol | 金鑰交換協議 | | 第 4 章 | [並列] |
+| longest chain rule | 最長鏈規則 | | 第 4 章 | [並列] |
+| magic bytes | 魔術位元組 | | 第 14 章 | [並列] |
+| max effective balance | 最大有效餘額 | | 第 15 章 | [並列] |
+| meme coin | 迷因幣 | | 第 10 章 | [並列] |
+| message call | 訊息呼叫 | | 第 7 章 | [並列] |
+| metaconsensus | 元共識 | | 第 15 章 | [並列] |
+| metadata | 詮釋資料 | | 第 10 章 | [並列] |
+| mixer | 混幣器 | | 第 17 章 | [並列] |
+| mixing service | 混幣服務 | | 第 12 章 | [並列] |
+| multicall | 多重呼叫 | | 第 5 章 | [並列] |
+| multiparty computation | 多方計算 | | 第 17 章 | [並列] |
+| multiproof | 多點證明 | | 第 4 章 | [並列] |
+| mutability | 狀態可變性 | | 第 7 章 | [並列] |
+| native rollup | 原生 rollup | | 第 16 章 | [並列] |
+| opening | 開啟證明 | | 第 16 章 | [並列] |
+| operational security | 操作安全 | | 第 5 章 | [並列] |
+| optimistic concurrency | 樂觀並行控制 | | 第 16 章 | [並列] |
+| order-flow auction | 訂單流拍賣 | | 第 16 章 | [並列] |
+| override | 覆寫 | | 第 7 章 | [並列] |
+| pairing-based cryptography | 基於配對的密碼學 | | 第 16 章 | [並列] |
+| parachain | 平行鏈 | | 第 11 章 | [並列] |
+| partial-sum list | 部分和串列 | | 第 17 章 | [並列] |
+| password-stretching algorithm | 密碼延展演算法 | | 第 5 章 | [並列] |
+| paymaster | 代付者 | | 第 5 章 | [並列] |
+| payment channel | 支付通道 | | 第 6 章 | [並列] |
+| perpetual futures | 永續合約 | | 第 9 章 | [並列] |
+| pin | 釘選 | | 第 12 章 | [並列] |
+| plausible deniability | 合理推諉 | | 第 5 章 | [並列] |
+| plausible liveness | 合理的活性 | | 第 15 章 | [並列] |
+| postquantum security | 後量子安全 | | 第 17 章 | [並列] |
+| practical byzantine fault tolerance | 實用拜占庭容錯 | | 第 15 章 | [並列] |
+| price feed | 價格資料源 | | 第 11 章 | [並列] |
+| private mempool | 私有記憶池 | | 第 6 章 | [並列] |
+| privilege deescalation | 權限降級 | | 第 5 章 | [並列] |
+| proposer boost | 提議者加權 | | 第 15 章 | [並列] |
+| provider | 節點服務供應商 | | 第 7 章 | [並列] |
+| proving key / verification key | 證明金鑰／驗證金鑰 | | 第 17 章 | [並列] |
+| prune | 修剪 | | 第 3 章 | [並列] |
+| publish-subscribe | 發布—訂閱 | | 第 11 章 | [並列] |
+| pull-over-push pattern | 拉取優於推送模式 | | 第 9 章 | [並列] |
+| push data | 推入資料 | | 第 14 章 | [並列] |
+| rainbow table | 彩虹表 | | 第 5 章 | [並列] |
+| random oracle | 隨機預言機 | | 第 17 章 | [並列] |
+| recovery identifier | 復原識別碼 | | 第 6 章 | [並列] |
+| registry | 註冊表 | | 第 10 章 | [並列] |
+| remote client | 遠端客戶端 | | 第 3 章 | [並列] |
+| request-response | 請求—回應 | | 第 11 章 | [並列] |
+| reversion | 回復 | | 第 15 章 | [並列] |
+| rollup improvement proposal | rollup 改進提案 | | 第 5 章 | [並列] |
+| safety | 安全性 | | 第 15 章 | [並列] |
+| satisfying assignment | 滿足賦值 | | 第 17 章 | [並列] |
+| scalability trilemma | 擴容三難 | | 第 16 章 | [並列] |
+| scalable transparent argument of knowledge | 可擴展的透明知識論證 | | 第 17 章 | [並列] |
+| schelling point | 謝林點 | | 第 11 章 | [並列] |
+| security council | 安全委員會 | | 第 16 章 | [並列] |
+| security through obscurity | 以隱匿求安全 | | 第 9 章 | [並列] |
+| self-custody | 自我託管 | | 第 5 章 | [並列] |
+| self-sovereign id | 自主身分 | | 第 11 章 | [並列] |
+| set code transaction | 設定程式碼交易 | | 第 5 章 | [並列] |
+| settlement layer | 結算層 | | 第 16 章 | [並列] |
+| share | 份額 | | 第 9 章 | [並列] |
+| sibling | 兄弟節點 | | 第 16 章 | [並列] |
+| sidecar | 附帶資料 | | 第 6 章 | [並列] |
+| signature malleability | 簽章延展性 | | 第 9 章 | [並列] |
+| single-slot finality | 單一 slot 最終性 | | 第 15 章 | [並列] |
+| snap sync | 快照同步 | | 第 3 章 | [並列] |
+| social recovery | 社交恢復 | | 第 5 章 | [並列] |
+| solo staker | 獨立質押者 | | 第 17 章 | [並列] |
+| spender | 支用者 | | 第 10 章 | [並列] |
+| stack-scheduling algorithm | 堆疊排程演算法 | | 第 14 章 | [並列] |
+| state bloat | 狀態膨脹 | | 第 16 章 | [並列] |
+| state rent | 狀態租金 | | 第 16 章 | [並列] |
+| statement（零知識證明） | 陳述 | | 第 17 章；使用者定案。程式語言的 statement 仍譯「陳述式」 | [並列] |
+| stem | 主幹 | | 第 16 章 | [並列] |
+| subcontainer | 子容器 | | 第 14 章 | [並列] |
+| succinct noninteractive argument of knowledge | 簡潔非互動式知識論證 | | 第 17 章 | [並列] |
+| suffix | 後綴 | | 第 16 章 | [並列] |
+| supermajority | 絕對多數 | | 第 15 章 | [並列] |
+| supermajority link | 絕對多數連結 | | 第 15 章 | [並列] |
+| surround vote | 環繞投票 | | 第 15 章 | [並列] |
+| test vector | 測試向量 | | 第 4 章 | [並列] |
+| timelock | 時間鎖 | | 第 9 章 | [並列] |
+| timing games | 時機賽局 | | 第 15 章 | [並列] |
+| total value locked | 總鎖倉價值 | | 第 16 章 | [並列] |
+| toxic waste | 有毒廢料 | | 第 17 章 | [並列] |
+| training wheels | 輔助輪 | | 第 16 章 | [並列] |
+| transcript | 協議紀錄 | | 第 17 章 | [並列] |
+| transparent | 透明 | | 第 17 章 | [並列] |
+| transpiler | 轉譯器 | | 第 16 章 | [並列] |
+| trapdoor function | 陷門函數 | | 第 4 章 | [並列] |
+| unspent transaction output | 未花費交易輸出 | | 第 6 章 | [並列] |
+| utility currency | 功能型貨幣 | | 第 1 章 | [並列] |
+| utility token | 效用型代幣 | | 第 10 章 | [並列] |
+| validium | validium | | 第 16 章 | [保留] |
+| vector commitment | 向量承諾 | | 第 16 章 | [並列] |
+| verification path | 驗證路徑 | | 第 17 章 | [並列] |
+| versioned hash | 版本化雜湊 | | 第 6 章 | [並列] |
+| vesting schedule | 歸屬時程 | | 第 10 章 | [並列] |
+| virtual offset | 虛擬偏移量 | | 第 9 章 | [並列] |
+| wargame | 攻防闖關遊戲 | | 第 9 章 | [並列] |
+| warm access / cold access | 暖存取／冷存取 | | 第 6 章 | [並列] |
+| watch-only | 僅供觀察 | | 第 5 章 | [並列] |
+| watcher | 監看者 | | 第 16 章 | [並列] |
+| white hat / black hat | 白帽／黑帽 | | 第 9 章 | [並列] |
+| withdrawal pattern | 提領模式 | | 第 9 章 | [並列] |
+| zerofier | 零化多項式 | | 第 4 章 | [並列] |
+| zk coprocessor | ZK 協同處理器 | | 第 11 章 | [並列] |

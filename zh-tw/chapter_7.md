@@ -38,7 +38,7 @@
 
 重要的是，合約*只有在被交易呼叫時才會執行*。以太坊上的所有智能合約，歸根究柢都是因為某筆由 EOA 發起的交易而執行的。一個合約可以呼叫另一個合約，而後者又可以再呼叫另一個合約，依此類推；但這條執行鏈上的第一個合約，一定是被 EOA 發出的交易所呼叫的。合約絕不會「自己」執行，也不會「在背景」執行。在交易直接觸發，或作為合約呼叫鏈的一部分間接觸發執行之前，合約實際上一直處於休眠狀態。另外值得一提的是，智能合約在任何意義上都不是「平行」執行的——以太坊世界電腦可以視為一台單執行緒的機器。
 
-不論交易呼叫了多少合約，也不論這些合約被呼叫時做了什麼，交易都是 *atomic* TODO-term: atomic（建議：原子性）的。交易會完整地執行，而且只有在所有執行都成功終止時，全域狀態（合約、帳戶等）的任何變更才會被記錄下來。*成功終止*的意思是：程式在沒有錯誤的情況下執行，並且執行到了結尾。如果執行因為錯誤而失敗，它的所有效果（狀態的變更）都會被「復原」，就像這筆交易從未執行過一樣。失敗的交易仍然會被記錄為曾經嘗試過，而執行時花在 gas 上的以太幣（ether）也會從發起帳戶中扣除，但除此之外，它對合約或帳戶的狀態沒有任何影響。
+不論交易呼叫了多少合約，也不論這些合約被呼叫時做了什麼，交易都是 *原子性*（atomic）的。交易會完整地執行，而且只有在所有執行都成功終止時，全域狀態（合約、帳戶等）的任何變更才會被記錄下來。*成功終止*的意思是：程式在沒有錯誤的情況下執行，並且執行到了結尾。如果執行因為錯誤而失敗，它的所有效果（狀態的變更）都會被「復原」，就像這筆交易從未執行過一樣。失敗的交易仍然會被記錄為曾經嘗試過，而執行時花在 gas 上的以太幣（ether）也會從發起帳戶中扣除，但除此之外，它對合約或帳戶的狀態沒有任何影響。
 
 前面提過，合約的程式碼一旦部署就不能再更改。過去，合約可以被刪除：從它的地址移除程式碼與內部狀態（儲存空間），留下一個空白帳戶。刪除之後，任何送到該地址的交易都不會執行任何程式碼，因為已經沒有程式碼了。這種刪除是透過一個名為 `SELFDESTRUCT` 的 EVM 操作碼完成的；它會提供 gas 退款，藉此提供誘因，讓大家刪除已儲存的狀態、釋放網路資源。不過，由於 `SELFDESTRUCT` 操作需要對帳戶狀態做出重大的變更，尤其是移除所有的程式碼與儲存空間，2023 年的以太坊改進提案（EIP）[EIP-6780](https://oreil.ly/5LcZo) 棄用了這項操作。隨著以太坊路線圖上即將到來的升級，這項操作將不再可行。
 
@@ -345,9 +345,9 @@ Solidity 智能合約的變數有三種作用域：
 
 合約在 EVM 中執行時，可以存取一小組全域物件，包括 `block`、`msg` 與 `tx` 物件。此外，Solidity 也把一些 EVM 操作碼以預先定義的函式形式提供出來。本節要探討在 Solidity 智能合約中可以存取的變數與函式。
 
-#### 交易／message call 環境
+#### 交易／訊息呼叫環境
 
-`msg` 物件是啟動這次合約執行的交易呼叫（由 EOA 發起）或 message call TODO-term: message call（建議：訊息呼叫）（由合約發起）。它包含許多實用的屬性：
+`msg` 物件是啟動這次合約執行的交易呼叫（由 EOA 發起）或訊息呼叫（message call）（由合約發起）。它包含許多實用的屬性：
 
 **msg.sender**
 
@@ -449,7 +449,7 @@ blob 交易的基本費用，會動態調整。這是 EIP-4844 為了有效率�
 
 **address.call(payload)**
 
-低階的 `CALL` 函式，可以建構帶有資料內容的任意 message call。發生錯誤時回傳 `false`。請小心：接收者可能（意外或惡意地）用光你所有的 gas，讓你的合約因為 gas 耗盡（out of gas，OOG）例外而停止；請務必檢查 `call` 的回傳值。
+低階的 `CALL` 函式，可以建構帶有資料內容的任意訊息呼叫。發生錯誤時回傳 `false`。請小心：接收者可能（意外或惡意地）用光你所有的 gas，讓你的合約因為 gas 耗盡（out of gas，OOG）例外而停止；請務必檢查 `call` 的回傳值。
 
 **address.delegatecall(payload)**
 
@@ -584,11 +584,11 @@ payable 函式是可以接受轉入款項的函式。沒有宣告為 `payable` �
 
 **receive()**
 
-`receive` 函式讓我們的合約能夠接收以太幣。當合約收到一個 calldata 為空的呼叫時，它就會被觸發，通常是在單純轉帳以太幣的時候（例如使用 `.send()` 或 `.transfer()` 轉帳）。它以 `receive() external payable { ... }` 宣告；雖然它不能有任何引數，也不能回傳值，但它可以是 virtual、可以 override TODO-term: override（建議：覆寫）其他函式，也可以有修飾符。
+`receive` 函式讓我們的合約能夠接收以太幣。當合約收到一個 calldata 為空的呼叫時，它就會被觸發，通常是在單純轉帳以太幣的時候（例如使用 `.send()` 或 `.transfer()` 轉帳）。它以 `receive() external payable { ... }` 宣告；雖然它不能有任何引數，也不能回傳值，但它可以是 virtual、可以覆寫（override）其他函式，也可以有修飾符。
 
 **fallback()**
 
-當合約被呼叫時所帶的資料不符合任何其他 function signature TODO-term: function signature（建議：函式簽章）時，就會執行 `fallback` 函式。我們可以用 `fallback() external [payable]` 或 `fallback(bytes calldata input) external [payable] returns (bytes memory output)` 宣告它。如果 `fallback` 函式包含輸入參數，這個參數會包含送到合約的全部資料（相當於 `msg.data`）。和 `receive` 函式一樣，`fallback` 函式可以是 payable、可以是 virtual、可以 override 其他函式，也可以有修飾符。現在，它主要用來實作*代理模式*：一種讓智能合約可以升級的設計模式。
+當合約被呼叫時所帶的資料不符合任何其他函式簽章（function signature）時，就會執行 `fallback` 函式。我們可以用 `fallback() external [payable]` 或 `fallback(bytes calldata input) external [payable] returns (bytes memory output)` 宣告它。如果 `fallback` 函式包含輸入參數，這個參數會包含送到合約的全部資料（相當於 `msg.data`）。和 `receive` 函式一樣，`fallback` 函式可以是 payable、可以是 virtual、可以 override 其他函式，也可以有修飾符。現在，它主要用來實作*代理模式*：一種讓智能合約可以升級的設計模式。
 
 > **備註**
 >
@@ -653,7 +653,7 @@ function changeOwner(address newOwner) public onlyOwner {
 
 ### 合約繼承
 
-Solidity 的 `contract` 物件支援*繼承*，這是一種為 base contract TODO-term: base contract（建議：基礎合約）擴充額外功能的機制。要使用繼承，就用關鍵字 `is` 指定父合約：
+Solidity 的 `contract` 物件支援*繼承*，這是一種為基礎合約（base contract）擴充額外功能的機制。要使用繼承，就用關鍵字 `is` 指定父合約：
 
 ```solidity
 contract Child is Parent {
@@ -675,7 +675,7 @@ contract Child is Parent1, Parent2 {
 
 在 `Faucet` 合約中，我們引進了針對擁有者的存取控制，擁有者在建構時指定。這項功能相當通用：許多合約都會有。我們可以把它定義成一個通用的合約，再用繼承把它擴充到 `Faucet` 合約。為了讓範例更豐富，我們在存取控制之外，再加上可暫停的功能。
 
-我們先定義一個 base contract `Owned`，它有一個 `owner` 變數，並在合約的建構子中設定這個變數：
+我們先定義一個基礎合約 `Owned`，它有一個 `owner` 變數，並在合約的建構子中設定這個變數：
 
 ```solidity
 contract Owned {
@@ -692,7 +692,7 @@ contract Owned {
 }
 ```
 
-接著，我們定義一個繼承 `Owned` 的 base contract `Pausable`：
+接著，我們定義一個繼承 `Owned` 的基礎合約 `Pausable`：
 
 ```solidity
 contract Pausable is Owned {
@@ -776,11 +776,11 @@ contract Faucet is Pausable {
 
 > **備註**
 >
-> 在 Solidity 中 override 函式時，我們只能讓可見性變得更開放——具體來說，我們可以把它從 external 改成 public，但不能反過來。至於 mutability TODO-term: mutability（建議：狀態可變性），我們可以把限制收緊，例如從 nonpayable 改成 view 或 pure（就像我們對 `unpause` 所做的），或從 view 改成 pure。但有一個重大的例外：如果函式標示為 payable，就必須維持 payable——我們不能把它改成其他任何設定。
+> 在 Solidity 中 override 函式時，我們只能讓可見性變得更開放——具體來說，我們可以把它從 external 改成 public，但不能反過來。至於狀態可變性（mutability），我們可以把限制收緊，例如從 nonpayable 改成 view 或 pure（就像我們對 `unpause` 所做的），或從 view 改成 pure。但有一個重大的例外：如果函式標示為 payable，就必須維持 payable——我們不能把它改成其他任何設定。
 
 ### 多重繼承
 
-在 Solidity 中使用多重繼承時，Solidity 會依靠一種稱為 C3 線性化的演算法，來決定合約被繼承的順序。這個演算法確保繼承順序嚴格且可預測，有助於避免循環繼承之類的問題。用最簡單的方式來說，它決定的是尋找函式時檢查 base contract 的順序，而這個順序是由右到左。也就是說，最右邊的合約被視為「衍生程度最高」的合約。例如，在合約宣告 `contract C is A, B { }` 中，合約 B 的衍生程度比合約 A 高。
+在 Solidity 中使用多重繼承時，Solidity 會依靠一種稱為 C3 線性化的演算法，來決定合約被繼承的順序。這個演算法確保繼承順序嚴格且可預測，有助於避免循環繼承之類的問題。用最簡單的方式來說，它決定的是尋找函式時檢查基礎合約的順序，而這個順序是由右到左。也就是說，最右邊的合約被視為「衍生程度最高」的合約。例如，在合約宣告 `contract C is A, B { }` 中，合約 B 的衍生程度比合約 A 高。
 
 除了使用 C3 線性化之外，Solidity 還設有其他的防護措施。其中一條關鍵的規則是：如果多個合約有相同的函式，我們就必須明確指出要 override 哪些合約。我們來看一個例子：
 
@@ -858,7 +858,7 @@ contract Derived3 is Derived1, Derived2 {
 
 當合約因為錯誤而終止時，所有的狀態變更（變數、餘額等的變更）都會被回復；如果呼叫了不只一個合約，這種回復會沿著合約呼叫鏈一路往上進行。這確保了交易是 *atomic* 的，也就是說，交易不是成功完成，就是對狀態沒有任何影響、被完全回復。
 
-`assert` 與 `require` 函式的運作方式相同：它們會評估一個條件，如果條件為假，就以錯誤停止執行。依照慣例，`assert` 用在預期結果為真的時候，也就是說，我們用 `assert` 測試內部的條件。相較之下，`require` 用來測試輸入（例如函式的引數或交易的欄位），設定我們對這些條件的預期。失敗的 assert 會以 Panic(0x01) 回復，並保留未使用的 gas。請用 assert 檢查內部的 invariant TODO-term: invariant（建議：不變條件），用 require 驗證輸入與前置條件。
+`assert` 與 `require` 函式的運作方式相同：它們會評估一個條件，如果條件為假，就以錯誤停止執行。依照慣例，`assert` 用在預期結果為真的時候，也就是說，我們用 `assert` 測試內部的條件。相較之下，`require` 用來測試輸入（例如函式的引數或交易的欄位），設定我們對這些條件的預期。失敗的 assert 會以 Panic(0x01) 回復，並保留未使用的 gas。請用 assert 檢查內部的不變條件（invariant），用 require 驗證輸入與前置條件。
 
 我們在函式修飾符 `onlyOwner` 中使用了 `require`，用來測試訊息的發送者是否為合約的擁有者：
 
@@ -872,7 +872,7 @@ require(msg.sender == owner);
 require(msg.sender == owner, "Only the contract owner can call this function");
 ```
 
-`revert` 函式會停止合約的執行，並回復所有的狀態變更。它有兩種用法：一種是當作陳述式，直接傳入 custom error TODO-term: custom error（建議：自訂錯誤），不加括號；另一種是當作函式，加上括號並接受一個字串引數。就 gas 成本而言，custom error 便宜得多；而錯誤字串與 custom error 都會記錄在交易日誌中：
+`revert` 函式會停止合約的執行，並回復所有的狀態變更。它有兩種用法：一種是當作陳述式，直接傳入自訂錯誤（custom error），不加括號；另一種是當作函式，加上括號並接受一個字串引數。就 gas 成本而言，自訂錯誤便宜得多；而錯誤字串與自訂錯誤都會記錄在交易日誌中：
 
 ```solidity
 revert();
@@ -1028,7 +1028,7 @@ npm i ethers
 
 **圖 7-1.** Etherscan 上的 USDT ABI 區段
 
-現在，我們來談談要如何連上以太坊網路。我們需要一個 WebSocket provider TODO-term: provider（建議：節點服務供應商），因為我們要監聽事件，而這需要持續的連線。你可以選擇付費的 provider（比較可靠、速度也比較快），也可以選擇在 [ChainList](https://chainlist.org) 之類的網站上找到的免費公開 provider。以我們的範例來說，公開的 provider 就夠用了，雖然它們可能有流量限制。
+現在，我們來談談要如何連上以太坊網路。我們需要一個 WebSocket 節點服務供應商（provider），因為我們要監聽事件，而這需要持續的連線。你可以選擇付費的 provider（比較可靠、速度也比較快），也可以選擇在 [ChainList](https://chainlist.org) 之類的網站上找到的免費公開 provider。以我們的範例來說，公開的 provider 就夠用了，雖然它們可能有流量限制。
 
 > **備註**
 >
