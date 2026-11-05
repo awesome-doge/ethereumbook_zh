@@ -205,6 +205,9 @@ local function structure(blocks)
 
     if img then
       img.src = img.src:gsub('^%./', '')
+      -- 替代文字含逗號時要加引號，否則 Asciidoctor 會把逗號後面當成寬度等參數（第 15 章）
+      local alt = stringify(img.caption)
+      if alt:find(',') and not alt:find('"') then img.caption = { pandoc.Str('"' .. alt .. '"') } end
       local cap = nxt and caption_inlines(nxt, 'figure', true)
       local caption = cap and { long = { pandoc.Plain(cap) } } or { long = {} }
       out:insert(pandoc.Figure({ pandoc.Plain { img } }, caption))
@@ -307,6 +310,8 @@ return {
     end,
   },
   { Blocks = structure },
+  -- 連結文字本身是網址時，gfm 會把它再解析成一個內層連結；先攤平成文字
+  { Link = function(el) el.content = el.content:walk({ Link = function(l) return l.content end }) return el end },
   inline_pass,
   { RawInline = reject_html, RawBlock = reject_html },
   {

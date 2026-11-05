@@ -56,7 +56,7 @@
 | contract account | 合約帳戶 | | | [固定] |
 | smart account | 智能帳戶 | | 帳戶抽象 | [固定] |
 | account abstraction (AA) | 帳戶抽象（AA） | | | [並列] |
-| address | 地址 | 位址 | | [固定] |
+| address | 地址 | | 以太坊地址一律寫「地址」；網路的 IP address 照台灣慣例寫「IP 位址」 | [固定] |
 | balance | 餘額 | | | [固定] |
 | nonce | nonce | | 帳戶的交易計數，不要譯成「隨機數」 | [保留] |
 | state | 狀態 | | | [固定] |
@@ -488,6 +488,7 @@
 | product-market fit | 產品市場契合 | | | [固定] |
 | derivative / derivative token | 衍生品／衍生代幣 | | | [固定] |
 | systemic risk | 系統性風險 | | | [固定] |
+| counterparty risk | 交易對手風險 | | 2026-11-06 補入（第 10 章） | [固定] |
 | tokenization | 代幣化 | | | [固定] |
 | fractionalization | 分割持有 | | | [固定] |
 | risk-free rate | 無風險利率 | | | [固定] |

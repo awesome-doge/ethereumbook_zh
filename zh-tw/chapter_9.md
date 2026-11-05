@@ -1,0 +1,1049 @@
+# 第 9 章　智能合約安全
+
+安全性是撰寫智能合約時最重要的考量之一。在智能合約程式設計的領域裡，錯誤的代價高昂，而且很容易被利用。本章會介紹安全方面的最佳實踐與設計模式，以及*安全反模式*，也就是可能讓智能合約出現漏洞的做法與模式。
+
+和其他程式一樣，智能合約會完全照著寫下的內容執行，而那不一定是程式設計師的本意。此外，所有智能合約都是公開的，任何使用者只要建立一筆交易，就能與它們互動。任何漏洞都可能被利用，而造成的損失幾乎總是無法挽回。因此，遵循最佳實踐、使用經過充分測試的設計模式至關重要。
+
+你可以把穩健的開發方式，想成安全「瑞士起司模型」的第一層。每一層防護都像一片瑞士起司：單獨一片都不完美，但疊在一起就能構成更堅固的防線。最前面的第一層，是遵循紮實的開發實踐：使用可靠的設計模式、寫出清楚且意圖明確的程式碼，並主動避開已知的陷阱。這個基礎層讓我們在保護合約、避免漏洞時，有最好的起點。在這之上，測試、程式碼審查與 bug bounty TODO-term: bug bounty（建議：漏洞賞金）等其他層會再增添保護，但一切都從我們的開發實踐開始。
+
+## 安全最佳實踐
+
+*防禦式程式設計*是一種特別適合智能合約的程式設計風格。它強調以下幾點，這些全都是最佳實踐：
+
+**極簡／簡單**
+
+甚至在動手寫程式之前，就值得先退一步，問問每個元件是否真的必要。設計能不能再簡化？某些資料結構是否帶來了不必要的攻擊面？架構定案之後，我們仍然應該用批判的眼光重新檢視程式碼，尋找減少行數、消除邊界情況或拿掉非必要功能的機會。越簡單的合約，越容易推理、測試與審計。雖然有些去中心化金融（DeFi）協議確實會合理地成長到幾千行，但當有人吹噓自己的程式碼庫有多龐大時，仍然值得抱持懷疑。程式碼越多，往往代表錯誤越多，而不是價值越多。
+
+**程式碼重複使用**
+
+盡量不要重新發明輪子。如果已經有函式庫或合約能完成你所需的大部分功能，就重複使用它。例如，[OpenZeppelin](https://www.openzeppelin.com) 提供了一套被廣泛採用、經過徹底測試，並由社群持續審查的合約。在你自己的程式碼中，則要遵循 DRY 原則：不要重複你自己（don’t repeat yourself）。如果你發現某段程式碼重複出現不只一次，就問問自己能不能把它寫成函式或函式庫來重複使用。在許多部署中經過實戰考驗的程式碼，幾乎總是比你剛寫好的東西更安全，不論你對自己的程式碼多有信心。小心「非我所創」（not invented here）症候群，也就是忍不住想從頭打造某個功能或元件來「改進」它。這麼做的安全風險往往大於改進帶來的價值。重複使用不是偷懶，而是聰明的防禦式工程。
+
+**程式碼品質**
+
+智能合約程式碼毫不留情，每一個錯誤都可能造成金錢損失。你不應該用對待一般用途程式設計的方式，來對待智能合約程式設計。用 Solidity 寫去中心化應用（DApp），和用 JavaScript 做網頁小工具完全不同。你應該像在航太工程或任何同樣容不得錯誤的領域那樣，採用嚴謹的工程與軟體開發方法。程式碼一旦「發射」，你能用來修正問題的手段就很少了。即使程式碼可以升級，萬一出了差錯，你能反應的時間通常也非常短。如果有人比你先發現專案裡的錯誤，漏洞利用很可能在一筆或少數幾筆交易內就完成，也就是說，損害在幾秒之內就已造成，你根本來不及介入。
+
+**可讀性／可審計性**
+
+你的程式碼應該清楚易懂。越容易閱讀，就越容易審計。智能合約是公開的：每個人都能讀取它的位元組碼，而任何技術夠好的人都能對它進行逆向工程。因此，以公開的方式進行開發、採用協作與開放原始碼的方法是有好處的，這樣能匯集開發者社群的集體智慧，並受益於開放原始碼開發所能達到的最高共同水準。你應該寫出文件完整、容易閱讀的程式碼，並遵循以太坊社群慣用的風格與命名規範。
+
+**測試覆蓋率**
+
+能測試的都要測試。智能合約在公開的執行環境中運作，任何人都能用任何他們想要的輸入來執行它們。你永遠不應該假設輸入（例如函式引數）格式正確、範圍恰當，或者用意良善。在讓程式碼繼續執行之前，要檢查所有引數，確認它們都在預期範圍內，而且格式正確。
+
+## 安全風險與反模式
+
+身為智能合約程式設計師，你應該熟悉最常見的安全風險，才能察覺並避開那些會讓合約暴露在這些風險下的程式設計模式。接下來幾節，我們會介紹各種安全風險、漏洞如何產生的範例，以及可以用來因應的對策或預防方案。
+
+和 Web2 的安全一樣，以下這些反模式經常被組合起來進行漏洞利用。真實世界的漏洞利用通常比本章的範例更複雜。
+
+### 重入
+
+以太坊智能合約的特色之一，是能夠呼叫並使用其他外部合約的程式碼。合約通常也會處理以太幣（ether），因此經常把以太幣傳送到各種外部使用者地址。這些操作需要合約發出外部呼叫。這些外部呼叫可能被攻擊者劫持，攻擊者可以強迫合約執行更多程式碼（透過 callback TODO-term: callback（建議：回呼）：可能是 fallback 函式，或某種 hook TODO-term: hook（建議：掛鉤），通常是 `transfer`），包括回頭呼叫合約本身。2016 年那場惡名昭彰、至今仍讓人記憶猶新的 The DAO 駭客攻擊，用的就是這類攻擊。即使過了這麼多年，[我們仍然看到大量利用這個漏洞的攻擊](https://oreil.ly/87VUR)，儘管它相當容易發現，修正的成本也很低。
+
+#### 漏洞
+
+這類攻擊發生在攻擊者設法在另一個合約執行期間、該合約還沒更新完狀態之前取得控制權的時候。由於合約仍在處理過程中，它還沒有更新狀態（例如關鍵變數）。攻擊者便可以在這個脆弱的時刻「重新進入」合約，利用不一致的狀態觸發原本不該發生、也未曾預期的動作。這種重新進入讓攻擊者能繞過防護措施、操縱資料或掏空資金，原因全在於合約還沒有完全進入安全、一致的狀態。
+
+沒有實際的例子，重入可能不太好理解。請看範例 9-1 這個簡單的有漏洞合約，它是一個以太坊 vault TODO-term: vault（建議：金庫），讓存款人每週最多只能提領 1 ETH。
+
+**範例 9-1. EtherStore：有重入漏洞的合約**
+
+```solidity
+1 contract EtherStore {
+2      uint256 public withdrawalLimit = 1 ether;
+3      mapping(address => uint256) public lastWithdrawTime;
+4    mapping(address => uint256) balances;
+5
+6    function depositFunds() public payable{
+7      balances[msg.sender] += msg.value;
+8    }
+9
+10    function withdrawFunds() public {
+11        require(block.timestamp >= lastWithdrawTime[msg.sender] + 1 weeks);
+12        uint256 _amt = balances[msg.sender];
+13        if(_amt > withdrawalLimit){
+14            _amt = withdrawalLimit;
+15        }
+16      (bool res, ) = address(msg.sender).call{value: _amt}("");
+17        require(res, "Transfer failed");
+18      balances[msg.sender] -= _amt; // assume Solidity <0.8: underflow wraps (exploitable); Solidity >=0.8: reverts here
+19        lastWithdrawTime[msg.sender] = block.timestamp;
+20    }
+21 }
+```
+
+這個合約有兩個公開函式：`depositFunds` 與 `withdrawFunds`。`depositFunds` 函式只是增加傳送者的餘額。`withdrawFunds` 函式讓傳送者提領自己的餘額，而且依設計，只有在過去一週內沒有提領過時才會成功。
+
+漏洞在第 16 行，合約在這裡把使用者要求的以太幣數量傳送給使用者。假設有個攻擊者建立了範例 9-2 的合約。
+
+**範例 9-2. Attack.sol：用來利用 EtherStore 合約重入漏洞的合約**
+
+```solidity
+1 contract Attack {
+2  EtherStore public etherStore;
+3
+4  // initialize the etherStore variable with the contract address
+5  constructor(address _etherStoreAddress) {
+6      etherStore = EtherStore(_etherStoreAddress);
+7  }
+8
+9  function attackEtherStore() public payable {
+10      // attack to the nearest ether
+11      require(msg.value >= 1 ether, "no bal");
+12      // send eth to the depositFunds() function
+13      etherStore.depositFunds{value: 1 ether}();
+14      // start the magic
+15      etherStore.withdrawFunds();
+16  }
+17
+18  function collectEther() public {
+19      payable(msg.sender).transfer(address(this).balance);
+20  }
+21
+22  // receive function - the fallback() function would have worked out too
+23  receive() external payable {
+24      if (address(etherStore).balance >= 1 ether) {
+25          // reentrant call to victim contract
+26          etherStore.withdrawFunds();
+27      }
+28  }
+29 }
+```
+
+漏洞利用會怎麼發生呢？首先，攻擊者會建立這個惡意合約（假設地址是 `0x0...123`），並以 `EtherStore` 的合約地址作為建構子唯一的參數。這會初始化公開變數 `etherStore`，讓它指向要攻擊的合約。
+
+接著攻擊者會呼叫 `attackEtherStore` 函式，並附上大於或等於 1 的以太幣數量，暫時假設是 1 ETH。在這個例子中，我們也假設已經有其他許多使用者把以太幣存進這個合約，所以它目前的餘額是 10 ETH。接下來會發生以下事情：
+
+- *Attack.sol* 第 13 行：會以 `1 ether` 的 `msg.value`（以及大量 gas）呼叫 `EtherStore` 合約的 `depositFunds` 函式。傳送者（`msg.sender`）是惡意合約（`0x0...123`）。因此，`balances[0x0..123] = 1 ether`。
+- *Attack.sol* 第 15 行：惡意合約接著呼叫 `EtherStore` 合約的 `withdrawFunds` 函式。由於之前沒有提領過，這次呼叫會通過條件檢查（`EtherStore` 合約的第 11 行）。
+- *EtherStore.sol* 第 16 行：合約把 `1 ether` 傳回惡意合約。
+- *Attack.sol* 第 23 行：付給惡意合約的款項接著會觸發執行 `receive` 函式。
+- *Attack.sol* 第 24 行：`EtherStore` 合約的總餘額原本是 10 ETH，現在是 9 ETH，所以這個 `if` 陳述式的條件成立。
+- *Attack.sol* 第 26 行：fallback 函式再次呼叫 `EtherStore` 的 `withdrawFunds` 函式，*重新進入* `EtherStore` 合約。
+- *EtherStore.sol* 第 10 行：在第二次呼叫 `withdrawFunds` 時，由於第 18 行還沒執行，攻擊合約的餘額仍然是 1 ETH。因此我們仍然有 `balances[0x0..123] = 1 ether`。`lastWithdrawTime` 變數也是如此。條件檢查再次通過。
+- *EtherStore.sol* 第 16 行：攻擊合約又提領了 `1 ether`。
+- 不斷重新進入 EtherStore 合約，直到 `EtherStore.balance >= 1` 不再成立為止，這是由 *Attack.sol* 的第 24 行決定的。
+- *Attack.sol* 第 24 行：一旦 `EtherStore` 合約中剩下不到 1 ETH，這個 `if` 陳述式的條件就不成立。接著，`EtherStore` 合約的第 17–19 行才得以執行（每一次對 `withdrawFunds` 函式的呼叫都會執行一遍）。
+- *EtherStore.sol* 第 18 與 19 行：設定 `balances` 與 `lastWithdrawTime` 這兩個 mapping，執行結束。
+
+最終的結果是，攻擊者在單一一筆交易中，就把 `EtherStore` 合約裡所有的以太幣都提領出來了。
+
+被 fallback 函式攔截的原生以太幣轉帳，雖然是重入攻擊的常見途徑，卻不是唯一可能引入這種風險的機制。有些代幣標準，例如 ERC-721 與 ERC-777，包含的 callback 機制也可能促成重入攻擊。例如，ERC-721 的 `safeTransfer` 函式會確保把代幣轉移給合約時，會呼叫接收方的 `onERC721Received` 函式。同樣地，ERC-777 代幣允許在轉帳期間透過 `tokensReceived` 函式觸發 hook。
+
+#### 超越典型的重入模式
+重入攻擊不只限於單一函式或合約。典型的重入，是在同一個函式執行完之前重新進入它；但還有一些更難察覺的變形，例如跨函式重入、跨合約重入，以及其中最棘手的唯讀重入。
+唯讀重入利用的是依賴其他合約 view 函式的合約。這些函式不會修改狀態，但會回傳其他合約所依賴的資料，而且通常沒有重入防護。問題發生在重入呼叫讓攻擊者能暫時把目標合約置於不一致的狀態，進而利用另一個合約（受害者）透過 view 函式查詢這個不穩定的狀態。
+我們來看看整個過程如何進行：
+1. 攻擊者的合約與一個可以被重入的有漏洞合約互動，姑且稱它為合約 A。這個合約持有其他協議所依賴的資料。
+2. 合約 A 觸發對攻擊者合約的 callback，讓攻擊者合約的邏輯得以執行。
+3. 仍在 fallback 之中時，攻擊者的合約呼叫另一個協議，也就是合約 B；合約 B 與合約 A 相連，並依賴合約 A 提供的資料。
+4. 合約 B 沒有察覺任何問題，從合約 A 讀取資料。然而，合約 A 的狀態已經過時，因為它還沒更新完。
+等這個循環結束時，攻擊者已經利用合約 A 過時的資料攻破了合約 B，接著讓合約 A 中的 callback 與原始呼叫照常完成。整個過程如圖 9-1 所示。
+![Read-only reentrancy](images/ch9/maet_0901.png)
+
+**圖 9-1.** 唯讀重入
+
+這裡的關鍵在於，合約 B 信任合約 A 的資料，但合約 A 的狀態還沒跟上，讓攻擊者得以利用這段落差。這類攻擊比較難防範，因為開發者通常不會用重入鎖保護 view 函式，認為它們不修改狀態，所以很安全。
+唯讀重入告訴我們：即使是唯讀的函式，一旦被外部合約所依賴，也可能很危險。
+
+#### 預防技術
+
+要防止重入問題，第一個應該遵循的最佳實踐，是在撰寫智能合約時堅守 check-effect-interaction pattern TODO-term: check-effect-interaction pattern（建議：檢查—生效—互動模式）。這個模式的重點，是確保所有對狀態變數的修改，都在與外部合約互動之前完成。例如在 *EtherStore.sol* 合約中，修改狀態變數的那幾行程式碼，應該出現在任何外部呼叫之前。目標是確保任何與外部地址互動的程式碼，都是函式中最後執行的部分。這樣一來，外部合約在重新進入時就無法干擾內部狀態，因為必要的更新都已經完成了。
+
+另一個有用的技術是使用重入鎖。*重入鎖*是一個簡單的狀態變數，在合約執行某個函式時「鎖住」合約，防止其他外部呼叫中途插入。這可以用類似下面的修飾符來實作：
+
+```solidity
+contract EtherStore {
+    bool lock;
+      uint256 public withdrawalLimit = 1 ether;
+      mapping(address => uint256) public lastWithdrawTime;
+    mapping(address => uint256) balances;
+
+      modifier nonReentrant {
+      require(!lock, "Can't reenter");
+      lock = true;
+      _;
+      lock = false;
+    }
+
+    function withdrawFunds() public nonReentrant{
+        [...]
+    }
+}
+```
+
+在這個例子中，`nonReentrant` 修飾符利用 lock 變數，防止 `withdrawFunds` 函式在仍在執行時被重新進入。`nonReentrant` 修飾符會在函式開始時鎖住合約，並在函式結束後解鎖。不過，我們不該重新發明輪子。與其自己打造重入鎖，不如依賴經過充分測試的函式庫，例如 OpenZeppelin 的 ReentrancyGuard。這些函式庫提供安全且經過 gas 最佳化的解決方案。
+
+> **備註**
+>
+> 隨著 Solidity 0.8.24 在以太坊上支援暫時儲存空間，OpenZeppelin 推出了 ReentrancyGuardTransient。這是 ReentrancyGuard 的新變體，利用暫時儲存空間大幅降低 gas 成本。由 [EIP-1153](https://oreil.ly/fRvKl) 啟用的暫時儲存空間，提供了一種更便宜的方式，來儲存只在單一交易期間需要的資料，非常適合用於重入鎖與類似的暫時性邏輯。不過，ReentrancyGuardTransient 只能用在支援 EIP-1153 的鏈上，所以在實作之前，請先確認你的目標鏈支援這項功能。
+
+還有一種做法，是使用 Solidity 內建的 `transfer` 與 `send` 函式來傳送以太幣。這些函式只轉發有限的 gas（2,300 單位），通常不足以讓接收合約發出重入呼叫，因此是防範重入的簡單方法。不過它們有明顯的缺點。如果接收方是一個在 fallback 或 receive 函式中含有非惡意邏輯的智能合約，轉帳就可能失敗，甚至可能讓資金被鎖住。隨著 EIP-7702 的推出，這個風險變得更加切身：EIP-7702 允許外部擁有帳戶（EOA）附加程式碼，包括 fallback 邏輯。隨著越來越多 EOA 採用這項能力，使用 `transfer` 或 `send` 的交易，在正常執行時就更可能因為 gas 不足而回復。從安全的角度來看，這種做法也經不起未來的考驗：如果未來的硬分叉降低了某些操作的 gas 成本，2,300 單位可能就足以重入，打破先前被認為安全的假設。所以，雖然 `transfer` 與 `send` 在少數情況下仍然有用，我們必須謹慎使用，不能把它們當成主要的防線。
+
+唯讀重入與跨合約重入值得特別留意：這類漏洞利用可能很棘手，因為它們可能牽涉兩個獨立的協議，使協調防範變得困難。當我們的專案依賴外部協議提供資料時，就必須深入了解兩者結合後的邏輯如何運作。即使每個專案單獨來看都是安全的，整合時仍可能冒出漏洞。
+
+#### 真實案例：The DAO 攻擊
+
+重入在 2016 年的 The DAO 攻擊中扮演了重要角色，那也是以太坊早期發展階段的重大駭客攻擊之一。當時，該合約持有超過 1.5 億美元，占以太幣流通供給量的 15%。為了撤銷這次駭客攻擊造成的影響，以太坊社群最終選擇進行硬分叉，讓以太坊區塊鏈一分為二。結果，Ethereum Classic（ETC）延續了原本的鏈，而採用新規則撤銷這次駭客攻擊的分叉版本，則成為我們今天所知的以太坊。
+
+#### 真實案例：Libertify
+
+一個以重入作為唯一攻擊途徑的近期漏洞利用案例，是 2023 年 7 月的 Libertify 事件：這個 DeFi 協議遭到攻破，損失 40 萬美元。我們來看看遭利用的函式程式碼，了解事情是怎麼發生的：
+
+```solidity
+function _deposit(
+    uint256 assets,
+    address receiver,
+    bytes calldata data,
+    uint256 nav
+) private returns (uint256 shares) {
+        /*
+        validations
+    */
+    uint256 returnAmount = 0;
+    uint256 swapAmount = 0;
+    if (BASIS_POINT_MAX > invariant) {
+        swapAmount = assetsToToken1(assets);
+        returnAmount = userSwap( // External call
+            data,
+            address(this),
+            swapAmount,
+            address(asset),
+            address(other)
+        );
+    }
+    uint256 supply = totalSupply(); // State update
+    if (0 < supply) {
+        uint256 valueToken0 = getValueInNumeraire(
+            asset,
+            assets - swapAmount,
+            MathUpgradeable.Rounding.Down
+        );
+        uint256 valueToken1 = getValueInNumeraire(
+            other,
+            returnAmount,
+            MathUpgradeable.Rounding.Down
+        );
+        shares = supply.mulDiv(
+            valueToken0 + valueToken1,
+            nav,
+            MathUpgradeable.Rounding.Down
+        );
+    } else {
+        shares = INITIAL_SHARE;
+    }
+    uint256 feeAmount = shares.mulDiv(
+        entryFee, BASIS_POINT_MAX, MathUpgradeable.Rounding.Down
+    );
+    _mint(receiver, shares - feeAmount);
+    _mint(owner(), feeAmount);
+}
+```
+
+這是重入問題的經典範例，如今已經很少看到這麼直白的案例了！核心問題在於缺乏重入防護。`userSwap()` 函式讓攻擊者能在原始呼叫更新 `totalSupply` 之前，重新進入 `deposit()` 函式。這表示攻擊者可以鑄造比實際應得更多的 share TODO-term: share（建議：份額），藉此利用合約獲利。
+
+### DELEGATECALL
+
+`CALL` 與 `DELEGATECALL` 操作碼能協助以太坊開發者把程式碼模組化。對合約的標準外部訊息呼叫是由 `CALL` 操作碼處理的，它會在*被呼叫*合約的執行環境中執行程式碼。相對地，`DELEGATECALL` 執行的是另一個合約的程式碼，但執行環境是*發起呼叫*的合約。這表示儲存空間、`msg.sender` 與 `msg.value` 都維持不變。理解 `DELEGATECALL` 的一個好方法，是把它想成發起呼叫的合約暫時借用被呼叫合約的位元組碼，當成自己的程式碼來執行。這讓代理合約與函式庫這類強大的模式成為可能：可重複使用的邏輯只要部署一次，就能在許多合約中重複使用。雖然這兩個操作碼的差異簡單又直觀，但使用 `DELEGATECALL` 可能導致細微而出乎意料的行為，尤其是在儲存空間的配置方面。延伸閱讀請參考 Loi.Luu [在 Ethereum Stack Exchange 上關於這個主題的提問](https://oreil.ly/GJOUl)，以及 [Solidity 文件](https://oreil.ly/gA7vg)。
+
+#### 漏洞
+
+由於 `DELEGATECALL` 會保留執行環境，要打造沒有漏洞的自訂函式庫，並不像你想的那麼容易。函式庫本身的程式碼可以是安全、沒有漏洞的；然而當它在另一個應用程式的執行環境中執行時，就可能出現新的漏洞。我們用費波那契數來看一個相當複雜的例子。請看範例 9-3 的函式庫，它可以產生費波那契數列，以及形式類似的數列。（注意：這段程式碼修改自 [*https://oreil.ly/EHjOb*](https://oreil.ly/EHjOb)。）
+
+**範例 9-3. FibonacciLib：有缺陷的自訂函式庫實作**
+
+```solidity
+1 // library contract - calculates Fibonacci-like numbers
+2 contract FibonacciLib {
+3     // initializing the standard Fibonacci sequence
+4     uint256 public start;
+5     uint256 public calculatedFibNumber;
+6
+7     // modify the zeroth number in the sequence
+8     function setStart(uint256 _start) public {
+9         start = _start;
+10     }
+11
+12     function setFibonacci(uint256 n) public {
+13         calculatedFibNumber = fibonacci(n);
+14     }
+15
+16     function fibonacci(uint256 n) internal view returns (uint) {
+17         if (n == 0) return start;
+18         else if (n == 1) return start + 1;
+19         else return fibonacci(n - 1) + fibonacci(n - 2);
+20     }
+21 }
+```
+
+這個函式庫提供一個函式，可以產生數列中第 *n* 個費波那契數。它讓使用者可以更改數列的起始數字（`start`），並計算這個新數列中第 *n* 個類費波那契數。
+
+現在來看一個使用這個函式庫的合約：
+
+```solidity
+contract FibonacciBalance {
+    address public fibonacciLibrary;
+    // the current Fibonacci number to withdraw
+    uint256 public calculatedFibNumber;
+    // the starting Fibonacci sequence number
+    uint256 public start = 3;
+    uint256 public withdrawalCounter;
+    // the Fibonacci function selector
+    bytes4 constant fibSig = bytes4(keccak256("setFibonacci(uint256)"));
+    // constructor - loads the contract with ether
+    constructor(address _fibonacciLibrary) payable {
+        fibonacciLibrary = _fibonacciLibrary;
+    }
+    function withdraw() public {
+        withdrawalCounter += 1;
+        // calculate the Fibonacci number for the current withdrawal user
+        // this sets calculatedFibNumber
+        (bool success, ) = fibonacciLibrary.delegatecall(
+            abi.encodeWithSelector(fibSig, withdrawalCounter)
+        );
+        require(success, "Delegatecall failed");
+        payable(msg.sender).transfer(calculatedFibNumber * 1 ether);
+    }
+    // allow users to call Fibonacci library functions
+    fallback() external {
+        (bool success, ) = fibonacciLibrary.delegatecall(msg.data);
+        require(success, "Delegatecall failed");
+    }
+}
+```
+
+這個合約讓參與者可以從合約中提領以太幣，提領的數量等於參與者的提領順序所對應的費波那契數：也就是說，第一位參與者拿到 1 ETH，第二位也拿到 1 ETH，第三位拿到 2 ETH，第四位拿到 3 ETH，第五位 5 ETH，依此類推（直到合約的餘額少於要提領的費波那契數為止）。
+
+這個合約中有幾個元素可能需要說明。首先，有一個看起來很有意思的變數：`fibSig`。它保存的是字串 `"setFibonacci(uint256)"` 的 Keccak-256 雜湊值的前 4 個位元組。這稱為[*函式選擇器*](https://oreil.ly/u9uaH)，會放進 calldata，用來指定要呼叫智能合約的哪一個函式。第 18 行的 `delegatecall` 就是用它來指定我們要執行 `setFibonacci(uint256)` 函式。calldata 中也包含我們傳給函式的參數。其次，我們假設 FibonacciLib 函式庫的地址已經在建構子中正確設定。
+
+你能找出這個合約中的錯誤嗎？如果你部署這個合約、存入以太幣，然後呼叫 `withdraw`，它很可能會回復。
+
+你可能已經注意到，函式庫與發起呼叫的主合約都使用了狀態變數 `start`。在函式庫合約中，`start` 用來指定費波那契數列的起點，值是 `0`；而在發起呼叫的合約中，它的值是 `3`。你可能也注意到，`FibonacciBalance` 合約的 fallback 函式會把所有呼叫都轉給函式庫合約，因此函式庫合約的 `setStart` 函式也能被呼叫。回想一下，我們保留的是合約的狀態，所以這個函式看起來似乎能讓你改變本地 `FibonacciBalance` 合約中 `start` 變數的狀態。如果是這樣，你就能提領更多以太幣，因為計算出來的 `calculatedFibNumber` 取決於 `start` 變數（從函式庫合約中可以看出這一點）。實際上，`setStart` 函式並不會（也不能）修改 `FibonacciBalance` 合約中的 `start` 變數。這個合約底層的漏洞，遠比只是修改 `start` 變數嚴重得多。
+
+在討論真正的問題之前，我們先稍微繞個路，了解狀態變數實際上是如何儲存在合約中的。*狀態變數*或*儲存變數*（在各筆交易之間持續存在的變數）會依照它們在合約中出現的順序，依序放進 *slot* TODO-term: storage slot（建議：儲存 slot）。（這裡有一些複雜之處；想更完整地了解，請參考 [Solidity 文件](https://oreil.ly/LzV7L)。）
+
+舉例來說，我們來看函式庫合約。它有兩個狀態變數：`start` 與 `calculatedFibNumber`。第一個變數 `start` 儲存在合約儲存空間的 `slot[0]`（也就是第一個 slot）。第二個變數 `calculatedFibNumber` 則放在下一個可用的儲存 slot，也就是 `slot[1]`。`setStart` 函式接受一個輸入，並把 `start` 設成輸入的值。因此，這個函式會把 `slot[0]` 設成我們在 `setStart` 函式中提供的任何輸入。同樣地，`setFibonacci` 函式會把 `calculatedFibNumber` 設成 `fibonacci(n)` 的結果。這同樣只是把儲存空間的 `slot[1]` 設成 `fibonacci(n)` 的值。
+
+現在來看 `FibonacciBalance` 合約。儲存空間的 `slot[0]` 現在對應的是 `fibonacciLibrary` 地址，而 `slot[1]` 對應的是 `calculatedFibNumber`。漏洞就發生在這個錯誤的對應中：`delegatecall` *會保留合約的執行環境*。這表示透過 `delegatecall` 執行的程式碼，會作用在發起呼叫的合約的狀態（也就是儲存空間）上。
+
+現在請注意，在 `withdraw` 的第 18 行，我們執行了 `fibonacciLibrary.delegatecall(abi.encodeWithSelector(fibSig, withdrawalCounter))`。這會呼叫 `setFibonacci` 函式；如我們所討論的，它會修改儲存空間的 `slot[1]`，而在目前的執行環境中，那就是 `calculatedFibNumber`。這符合預期（也就是執行之後，`calculatedFibNumber` 被修改了）。然而，回想一下，`FibonacciLib` 合約中的 `start` 變數位於儲存空間的 `slot[0]`，而在目前的合約中，那是 `fibonacciLibrary` 地址。這表示 `fibonacci` 函式會給出意料之外的結果。這是因為它引用的是 `start`（`slot[0]`），而在目前的呼叫環境中，那是 `fibonacciLibrary` 地址（當作 `uint` 解讀時，通常是一個相當大的數字）。因此，`withdraw` 函式很可能會回復，因為合約裡不會有 `uint(fibonacciLibrary)` 數量的以太幣，而那正是 `calculatedFibNumber` 會回傳的值。
+
+更糟的是，`FibonacciBalance` 合約允許使用者透過第 25 行的 fallback 函式，呼叫 `fibonacciLibrary` 的所有函式。如我們先前所討論的，這也包括 `setStart` 函式。我們討論過，這個函式讓任何人都能修改或設定儲存空間的 `slot[0]`。在這個情況下，儲存空間的 `slot[0]` 就是 `fibonacciLibrary` 地址。因此，攻擊者可以建立一個惡意合約，把它的地址轉換成 `uint256`（在 Python 中用 `int('<address>',16)` 就能輕易做到），然後呼叫 `setStart(<attack_contract_address_as_uint>)`。這會把 `fibonacciLibrary` 改成攻擊合約的地址。之後，每當有使用者呼叫 `withdraw` 或 fallback 函式時，執行的都會是惡意合約（它可以竊取合約的全部餘額），因為我們已經修改了 `fibonacciLibrary` 實際指向的地址。這種攻擊合約的範例如下：
+
+```solidity
+contract Attack {
+    uint256 private storageSlot0; // corresponds to fibonacciLibrary
+    uint256 private storageSlot1; // corresponds to calculatedFibNumber
+    // fallback - this will run if a specified function is not found
+    fallback() external {
+        storageSlot1 = 0; // we set calculatedFibNumber to 0, so if withdraw
+        // is called we don’t send out any ether
+        payable(<attacker_address>).transfer(this.balance); // we take all the ether
+    }
+}
+```
+
+請注意，這個攻擊合約透過改變儲存空間的 `slot[1]` 來修改 `calculatedFibNumber`。原則上，攻擊者可以修改他們選擇的任何其他儲存 slot，對這個合約發動各式各樣的攻擊。我們鼓勵你把這些合約放進 [Remix](https://remix.ethereum.org)，透過這些 `delegatecall` 函式，嘗試不同的攻擊合約與狀態變化。
+
+同樣重要的是，當我們說 `delegatecall` 會保留狀態時，指的不是合約的變數名稱，而是這些名稱實際指向的儲存 slot。從這個例子可以看到，一個簡單的錯誤，就可能讓攻擊者劫持整個合約與其中的以太幣。
+
+#### 預防技術
+
+Solidity 提供了 `library` 關鍵字來實作函式庫合約（詳見[文件](https://oreil.ly/K7kF1)）。這能確保函式庫合約是無狀態的，而且無法自毀。強制函式庫無狀態，可以減輕本節所示範的儲存空間執行環境的複雜性。無狀態的函式庫也能防止攻擊者直接修改函式庫的狀態，藉此影響依賴該函式庫程式碼的合約。一般的經驗法則是：使用 `DELEGATECALL` 時，要仔細留意函式庫合約與發起呼叫的合約可能處於什麼樣的呼叫環境，並且盡可能打造無狀態的函式庫。
+
+#### 真實案例：Parity 多重簽章錢包（第二次駭客攻擊）
+
+第二次 Parity 多重簽章錢包駭客攻擊是一個例子，說明寫得很好的函式庫程式碼，如果在預期的執行環境之外執行，也可能被利用。關於這次駭客攻擊，已經有不少很好的說明，例如「[Parity Multisig Hacked. Again](https://oreil.ly/OLt5Q)」。作為這些參考資料的補充，我們來探究一下遭利用的合約。
+
+由於這次漏洞利用已經是七年前的事了，以下的程式碼片段已更新為近期 Solidity 版本的語法，讓它們更容易閱讀與理解。
+
+函式庫合約如下：
+
+```solidity
+1 contract WalletLibrary is WalletEvents {
+2
+3   ...
+4
+5   // throw unless the contract is not yet initialized.
+6   modifier only_uninitialized { if (m_numOwners > 0) revert(); _; }
+7
+8   // constructor - just pass on the owner array to multiowned and
+9   // the limit to daylimit
+10   function initWallet(address[] memory _owners, uint256 _required, uint256
+11        _daylimit) public only_uninitialized {
+12     initDaylimit(_daylimit);
+13     initMultiowned(_owners, _required);
+14   }
+15
+16   // kills the contract sending everything to `_to`.
+17   function kill(address _to) onlymanyowners(keccak256(msg.data)) external {
+18     selfdestruct(_to);
+19   }
+20
+21   ...
+22
+23 }
+```
+
+錢包合約則是這樣：
+
+```solidity
+1 contract Wallet is WalletEvents {
+2
+3   ...
+4
+5   // METHODS
+6
+7   // gets called when no other function matches
+8   fallback() external payable {
+9     // just being sent some cash?
+10     if (msg.value > 0)
+11       Deposit(msg.sender, msg.value);
+12     else if (msg.data.length > 0)
+13       _walletLibrary.delegatecall(msg.data);
+14   }
+15
+16   ...
+17
+18   // FIELDS
+19   address constant _walletLibrary =
+20     0xcafecafecafecafecafecafecafecafecafecafe;
+21 }
+```
+
+請注意，`Wallet` 合約基本上是透過 delegatecall，把所有呼叫都轉給 `WalletLibrary` 合約。這段程式碼中的常數 `_walletLibrary` 地址只是佔位符，代表實際部署的 `WalletLibrary` 合約（實際地址是 `0x863DF6BFa4469f3ead0bE8f9F2AAE51c91A907b4`）。
+
+這些合約原本的設計，是要有一個簡單、低成本、可部署的 `Wallet` 合約，而它的程式碼主體與主要功能都放在 `WalletLibrary` 合約中。不幸的是，`WalletLibrary` 合約本身也是一個合約，並維護自己的狀態。你看得出這為什麼可能是個問題嗎？
+
+任何人都可以直接對 `WalletLibrary` 合約本身發送呼叫。具體來說，`WalletLibrary` 合約可以被初始化，並因此有了擁有者。事實上，就有一位使用者這麼做了：他在 `WalletLibrary` 合約上呼叫 `initWallet` 函式，成為函式庫合約的擁有者。同一位使用者隨後呼叫了 `kill` 函式。由於這位使用者是函式庫合約的擁有者，修飾符的檢查通過，函式庫合約就此自毀。由於所有現存的 `Wallet` 合約都引用這個函式庫合約，而且沒有任何方法可以更改這個引用，它們的所有功能，包括提領以太幣的能力，都隨著 `WalletLibrary` 合約一起消失了。結果，所有這類 Parity 多重簽章錢包中的以太幣，都在瞬間遺失，從此永久無法取回。
+
+> **備註**
+>
+> 這位攻擊者後來[出現在 GitHub 上](https://oreil.ly/VVgnm)，留下了一句令人難忘的留言：「我不小心把它殺掉了（I accidentally killed it）。」他聲稱自己是以太坊的新手，當時只是在試玩智能合約。
+
+### 熵的假象
+
+以太坊區塊鏈上的所有交易，都是*確定性的狀態轉換*操作。這表示每一筆交易都以可計算的方式修改以太坊生態系的全域狀態，沒有任何不確定性。這帶來一個根本性的結果：以太坊內部沒有熵（entropy）或隨機性的來源。在早期，找到一種去中心化的方式來產生隨機性是一大挑戰。但多年下來，我們已經發展出一些可靠的解決方案。
+
+#### 漏洞
+
+開發者在以太坊上建構智能合約時，經常需要隨機性的來源，無論是用於遊戲、樂透，還是其他需要不可預測性的功能。挑戰在於，以太坊作為一條區塊鏈，本質上是確定性的：每個節點都必須得出相同的結果，才能維持共識。所以，要引入真正的隨機性，需要一點創意。
+
+許多開發者採用的一種做法，是把區塊變數（例如區塊雜湊值、時間戳記或區塊編號）當作產生隨機數的種子。這些值看起來或許是隨機的，但實際上是由提議目前區塊的驗證者控制的。例如，想像有一個去中心化應用，遊戲的結果取決於下一個區塊的雜湊值是否以偶數結尾。驗證者就可以操縱這個過程：如果他們即將提議一個區塊，而雜湊值不符合他們想要的結果，他們可以改變交易順序之類的，讓區塊雜湊值變成對自己有利的樣子。
+
+從區塊變數推導隨機性時，驗證者的操縱並不是唯一的風險。其他智能合約也能得知這些區塊變數的值，因此它們可以只在結果有利時，才與有漏洞的合約互動。
+
+#### 預防技術
+
+和過去相比，以太坊開發者現在有了產生隨機性的可靠方法：`PREVRANDAO` 與*可驗證隨機函數*（verifiable random function，VRF）。
+
+VRF 是一種密碼學證明，確保所產生的隨機性公平、沒有偏差。有多家供應商支援 VRF，例如 Chainlink。VRF 會產生一個隨機數，並附上一個證明其公平性的證明。任何人都能驗證這個證明，確保隨機性是安全的。VRF 已經成為在智能合約中安全取得隨機性的標準去中心化解決方案。
+
+另一個可靠的選擇是 `PREVRANDAO` 操作碼，它是在以太坊轉換到權益證明（PoS）時引進的。這個操作碼用來取得 `PREVRANDAO` 值，這個值來自 Randao 流程，而 Randao 是權益證明區塊產生過程中不可或缺的一環。基本上，Randao 是驗證者共同產生隨機性的集體行動，每個驗證者各自貢獻一部分資料。`PREVRANDAO` 就是前一個區塊這個流程的結果，可以作為可靠的隨機性來源。它之所以值得信賴，是因為要操縱 `PREVRANDAO` 的值，必須掌控相當多的驗證者，使這種攻擊既不切實際，在經濟上也不可行。開發者可以在合約中使用這個值，但要記得，`PREVRANDAO` 代表的是前一個區塊的值，而這個值已經是已知的。為了避免這個值在承諾當下就能被預測，智能合約應該改為承諾某個未來區塊的 `PREVRANDAO` 值。這樣一來，在做出承諾時，這個值還不會是已知的。
+
+> **警告**
+>
+> 如果攻擊者掌控了一個 epoch 最後幾個 slot 所指派的提議者，Randao 就可能被操縱。要判斷 `PREVRANDAO` 是否適合用來在你的智能合約中產生隨機性，你應該仔細權衡操縱它的成本與好處。雖然竄改 Randao 的代價可能很高，但如果你的合約涉及高價值的資產，改用去中心化的預言機方案會比較安全。
+
+由於 `PREVRANDAO` 與 VRF 這類解決方案已有大量文件、也容易取得，如今已經很少看到開發者用不安全的區塊變數當作隨機性來源。不過，當有人圖方便走捷徑，或開發者不知道有這些工具時，錯誤仍然會發生。
+
+#### 真實案例：Fomo3D
+
+Fomo3D 是一款以太坊樂透遊戲，玩家購買「key」來延長計時器，競相成為計時器歸零時的最後一位買家，以贏得獎池。它有一個隨機性很差的 airdrop TODO-term: airdrop（建議：空投）功能，如以下程式碼所示：
+
+```solidity
+function airdrop()
+        private
+        view
+        returns(bool)
+    {
+        uint256 seed = uint256(keccak256(abi.encodePacked(
+
+            (block.timestamp).add
+            (block.difficulty).add
+            ((uint256(keccak256(abi.encodePacked
+            (block.coinbase)))) / (block.timestamp)).add
+            (block.gaslimit).add
+            ((uint256(keccak256(abi.encodePacked
+            (msg.sender)))) / (block.timestamp)).add
+            (block.number)
+        )));
+        if((seed - ((seed / 1000) * 1000)) < airDropTracker_) {
+            return(true);
+        } else {
+            return(false);
+        }
+    }
+```
+
+惡意合約可以事先知道用來計算種子的值，因此可以只在會中獎時才觸發 `airdrop` 函式。這個合約會遭到利用，一點也不令人意外。
+
+### 未檢查的 CALL 回傳值
+
+在 Solidity 中執行外部呼叫的方式有好幾種。把以太幣傳送到外部帳戶，通常是透過 `transfer` 方法來執行。不過也可以使用 `send` 函式；至於用途更廣的外部呼叫，則可以在 Solidity 中直接使用 `CALL` 操作碼。`call` 與 `send` 函式會回傳一個布林值，表示呼叫成功或失敗。因此，這些函式有一個簡單但需要注意的地方：如果（由 `call` 或 `send` 發起的）外部呼叫失敗，執行這些函式的交易並不會回復，函式只會回傳 `false`。常見的錯誤是，開發者以為外部呼叫失敗時交易會回復，因此沒有檢查回傳值。
+
+#### 漏洞
+
+請看範例 9-4 的合約。
+
+**範例 9-4. 有漏洞的 Lotto 合約**
+
+```solidity
+1 contract Lotto {
+2
+3     bool public payedOut;
+4     address public winner;
+5     uint256 public winAmount;
+6
+7     // ... extra functionality here
+8
+9     function sendToWinner() public {
+10         require(!payedOut);
+11         payable(winner).send(winAmount);
+12         payedOut = true;
+13     }
+14
+15     function withdrawLeftOver() public {
+16         require(payedOut);
+17         payable(msg.sender).send(address(this).balance);
+18     }
+19 }
+```
+
+這是一個類似樂透的合約，`winner` 會收到 `winAmount` 的以太幣，通常還會剩下一點餘額，讓任何人提領。漏洞出現在第 11 行，那裡使用了 `send`，卻沒有檢查回應。在這個簡單的例子中，如果 `winner` 的交易失敗（無論是因為 gas 耗盡，或因為它是一個故意在 fallback 函式中拋出例外的合約），不論以太幣是否已經送出，`payedOut` 都會被設成 `true`。在這種情況下，任何人都能透過 `withdrawLeftOver` 函式提領 `winner` 的獎金。
+
+#### 預防技術
+
+第一道防線永遠是檢查 `send` 函式與低階呼叫的回傳值，沒有例外。如今，任何靜態分析工具都會標示出這個問題，很難被忽略。
+
+傳送以太幣時，我們需要仔細考慮該用哪一種方法。如果希望交易在失敗時自動回復，`transfer` 看起來可能很吸引人，因為它預設就會處理失敗。但由於 `send` 與 `transfer` 都只轉發 2,300 單位的 gas，只要接收方（無論是合約，或者在 EIP-7702 之後，甚至是 EOA）有任何 fallback 邏輯，它們就很容易失敗。在這個不斷演變的情況下，比較安全也比較有彈性的做法，是改用 `call`，明確檢查它的回傳值，並據此處理錯誤。這讓我們能完全掌控要轉發多少 gas，也讓合約能與更多種類的接收方相容。
+
+#### 真實案例：Etherpot 與 King of the Ether
+
+[Etherpot](https://oreil.ly/_-iC-) 是一個智能合約樂透，和範例 9-4 的合約沒有太大不同。這個合約失敗的主要原因，是錯誤地使用了區塊雜湊值（只有最近 256 個區塊的雜湊值可以使用；請參閱「預先定義的全域變數與函式」）。不過，這個合約也有未檢查 `call` 回傳值的問題。
+
+請看範例 9-5 中的 `cash` 函式：同樣地，以下的程式碼片段已更新為近期 Solidity 版本的語法。
+
+**範例 9-5. Lotto.sol：程式碼片段**
+
+```solidity
+1 function cash(uint256 roundIndex, uint256 subpotIndex) public {
+2    uint256 subpotsCount = getSubpotsCount(roundIndex);
+3    if(subpotIndex>=subpotsCount)
+4        return;
+5    uint256 decisionBlockNumber = getDecisionBlockNumber(roundIndex,subpotIndex);
+6    if(decisionBlockNumber>block.number)
+7        return;
+8    if(rounds[roundIndex].isCashed[subpotIndex])
+9        return;
+10    //Subpots can only be cashed once. This is to prevent double payouts
+11    address winner = calculateWinner(roundIndex,subpotIndex);
+12    uint256 subpot = getSubpot(roundIndex);
+13    payable(winner).send(subpot);
+14    rounds[roundIndex].isCashed[subpotIndex] = true;
+15    //Mark the round as cashed
+16 }
+```
+
+請注意，第 13 行沒有檢查 `send` 函式的回傳值，而下一行接著就設定了一個布林值，表示已經把資金送給贏家。這個錯誤可能導致一種狀態：贏家並沒有收到以太幣，合約的狀態卻顯示贏家已經收到款項。
+
+這個錯誤更嚴重的版本，發生在 [King of the Ether](https://oreil.ly/4zLMH) 合約中。有人針對這個合約寫了一份很棒的[事後檢討](https://oreil.ly/U8ckx)，詳細說明如何利用未檢查、失敗的 `send` 來攻擊這個合約。
+
+#### ERC-20 的情況
+
+在 Solidity 中處理 ERC-20 代幣時，單純檢查代幣轉帳的回傳值，並不足以確保互動是安全的。這是因為並非所有 ERC-20 代幣都嚴格遵循 ERC-20 標準，尤其是較舊的代幣。有些代幣在操作失敗時，不會直接回復或拋出例外，而是在轉帳結束時回傳一個布林值。有些代幣甚至可能完全不回傳任何值，導致用標準方法與它們互動時出現模稜兩可的行為。Tether（USDT）就是一個廣泛流通、卻沒有完全符合 ERC-20 標準的知名代幣。
+
+為了減輕這個問題，我們會使用 OpenZeppelin 的 SafeERC20 這類函式庫。這個函式庫會包裝標準的 ERC-20 操作（例如 `transfer`、`transferFrom` 與 `approve`），妥善處理這些差異。如果代幣回傳 `false`，函式庫會確保交易回復；如果代幣沒有回傳值，只要沒有發生回復，函式庫就會假設操作成功。
+
+### 競爭條件與搶先交易
+
+要真正理解這個漏洞，我們先簡單回顧一下以太坊的交易如何運作。當我們送出一筆交易時，它會被廣播到節點網路，並放進記憶池，也就是待處理交易的等候室。接著，驗證者會從記憶池中挑選這些交易來建構區塊。區塊內的交易會依照特定順序依序執行，而且由於每一筆交易都會改變區塊鏈的全域狀態，交易的結果可能因為它在區塊中的位置而不同。這種交易排序非常重要，因為它可能大幅影響交易執行的結果。
+
+> **備註**
+>
+> 實務上，要控制交易在區塊中的位置，大多取決於付了多少錢。最初，你只要出更高的 gas 價格，就能影響排序。如今，由於 Flashbots 基礎設施實作了提議者與建構者分離（PBS；目前還不是以太坊原生的機制），使用者可以把一組交易按特定順序打包成 bundle TODO-term: bundle（建議：交易包）提交，並透過鏈外的中繼系統競標它們被納入區塊的機會。這些流程，包括舊有的、以記憶池為基礎的系統，以及新的、以建構者為基礎的系統，在第 6 章有更詳細的介紹。
+
+#### 漏洞
+
+*搶先交易*是利用這種依序執行的特性，以對搶先交易者有利的方式把其他交易插進區塊的做法。基本上，就是有人監看可能影響市場或特定合約的待處理交易，然後提交自己的交易，搶在原始交易之前被處理。這麼做，他們就能利用待處理交易所透露的資訊獲利，而這往往是以原始傳送者的損失為代價。重要的是，我們的程式碼必須考慮到這種動態，設計成能承受區塊內交易順序的變化。
+
+我們用一個簡單的例子，來看看這會怎麼運作。請看範例 9-6 中的合約。
+
+**範例 9-6. FindThisHash：有搶先交易漏洞的合約**
+
+```solidity
+contract FindThisHash {
+    bytes32 constant public hash =
+      0xb5b5b97fafd9855eec9b41f74dfb6c38f5951141f9a3ecd7f44d5479b630ee0a;
+    constructor() payable {} // load with ether
+    function solve(string memory solution) public {
+        // If you can find the pre-image of the hash, receive 1000 ether
+        require(hash == keccak256(abi.encodePacked(solution)));
+        payable(msg.sender).transfer(1000 ether);
+    }
+}
+```
+
+假設這個合約有 1,000 ETH。能找出 SHA-3 雜湊值 `0xb5b5b97fafd9855eec9b41f74dfb6c38f5951141f9a3ecd7f44d​5479b630ee0a` 的 preimage TODO-term: preimage（建議：原像）的使用者，就可以提交答案，取走這 1,000 ETH。[^tn1]假設有一位使用者想出答案是 `Ethereum!`，便以 `Ethereum!` 作為參數呼叫 `solve`。不幸的是，有個攻擊者在記憶池中發現了這筆交易，確認它是有效的，然後提交一筆等效的交易，並讓它在區塊中有更高的優先順序。由於攻擊者的交易會先被處理，原本的交易就會回復。
+
+[^tn1]: 譯註：程式碼實際使用的是 `keccak256`。如第 4 章所述，以太坊使用的 Keccak-256 與最終定案的 FIPS-202 SHA-3 標準並不相同，對同樣的輸入會產生不同的雜湊值；以太坊文件與程式碼中提到的「SHA-3」，幾乎都是指 Keccak-256。
+
+#### 預防技術
+
+搶先交易漏洞可能以各種形式出現，通常取決於智能合約或協議的具體邏輯。只要某個操作能透過交易排序被利用，就存在搶先交易漏洞。因此，解決方案通常是針對特定問題量身打造的。例如，自動造市商（automated market maker，AMM）協議處理這個問題的方式，是讓使用者在兌換（swap）時設定一個必須收到的最低代幣數量。這雖然無法完全防止搶先交易，卻能大幅限制攻擊者可以榨取的潛在利潤，減少損害，並保護使用者免於極端的滑價（slippage）。
+
+另一種通用技術是使用 commit-reveal scheme TODO-term: commit-reveal scheme（建議：承諾—揭露機制）。在這種做法中，使用者會先提交一筆包含隱藏資訊的交易，這些資訊通常以雜湊值表示（承諾階段）。這筆交易被納入區塊後，使用者再送出第二筆交易，揭露實際的資料（揭露階段）。這個方法能有效防止搶先交易，因為攻擊者要等到為時已晚，才看得到第一筆交易的細節。不過，代價是需要兩筆獨立的交易，這意味著更高的成本與額外的延遲。除了使用者體驗較差之外，交易之間必要的延遲，在對時間敏感的應用中也可能是實際的限制。
+
+#### 真實案例：AMM 與 minAmountOut
+
+我們來看一個常見的真實搶先交易漏洞。當整合 AMM 協議的智能合約在執行兌換時，沒有設定要收到的最低代幣數量，就會出現這個漏洞，讓這些兌換容易遭受搶先交易攻擊。如果要收到的最低代幣數量沒有正確設定（或設得太低），兌換交易就容易遭受三明治攻擊，這是搶先交易的一種特定形式。
+
+三明治攻擊的過程如下：搶先交易者監看記憶池中的待處理交易，發現我們有一筆沒有強制最低輸出數量的兌換交易。攻擊者就在我們的兌換之前送出一筆買入交易，人為抬高代幣價格。接著，我們的交易以這個被抬高的價格成交，拿到的代幣比預期的少。不僅如此，我們的交易還會進一步推高價格。緊接著，攻擊者以這個更高的價格賣出代幣，讓價格回落，並從我們的交易所造成的價差中獲利。這個策略把我們的交易「夾」在他們的兩筆交易之間，因此稱為*三明治攻擊*。要修正這個問題，整合 AMM 的智能合約需要從可信的來源（例如預言機，甚至是以時間加權平均價格（TWAP）為基礎的預言機）取得真實的資產價格，接著計算並強制執行精確的最低輸出數量，再進行兌換。
+
+### 阻斷服務
+
+這個類別非常廣泛，但基本上是指使用者能讓合約或其中一部分在一段時間內無法運作，某些情況下甚至永久無法運作的攻擊。這可能讓資金永遠困在這些合約中，就像「真實案例：Parity 多重簽章錢包（第二次駭客攻擊）」中所描述的情況。
+
+#### 漏洞
+
+合約變得無法運作的方式有很多種。這裡我們只強調幾種比較不明顯、可能導致阻斷服務（denial of service，DoS）漏洞的 Solidity 程式寫法。
+
+#### 遍歷可由外部操控的 mapping 或陣列
+
+這種模式通常出現在擁有者想透過類似 `distribute` 的函式，把代幣分發給投資人的時候，如範例 9-7 的合約。
+
+**範例 9-7. DistributeTokens 合約**
+
+```solidity
+1 contract DistributeTokens {
+2     address public owner; // gets set somewhere
+3     address[] investors; // array of investors
+4     uint[] investorTokens; // the amount of tokens each investor gets
+5
+6     // ... extra functionality, including transfertoken()
+7
+8     function invest() public payable {
+9         investors.push(msg.sender);
+10         investorTokens.push(msg.value * 5); // 5 times the wei sent
+11         }
+12
+13     function distribute() public {
+14         require(msg.sender == owner); // only owner
+15         for(uint256 i = 0; i < investors.length; i++) {
+16             // here transferToken(to,amount) transfers "amount" of
+17             // tokens to the address "to"
+18             transferToken(investors[i],investorTokens[i]);
+19         }
+20     }
+21 }
+```
+
+請注意，這個合約中的迴圈遍歷的是一個可以被人為膨脹的陣列。攻擊者可以建立許多使用者帳戶，讓 `investors` 陣列變得非常大。風險不只在於迴圈本身，也在於迴圈內操作（例如 `transferToken` 或任何其他邏輯）累積起來的 gas 成本。每多一次迭代，就會增加總共使用的 gas；如果陣列變得夠大，完成迴圈所需的 gas 就可能超過區塊 gas 上限。到了那個地步，`distribute` 函式實際上就無法使用了。
+
+> **備註**
+>
+> 這種阻斷服務不只限於會改變狀態的函式。即使是唯讀的 view 函式，如果會遍歷大型陣列，也可能變得無法存取。雖然呼叫它們不會在鏈上消耗 gas，但 RPC 端點會對 `eth_call` 的執行自行設定任意的 gas 上限。所以，如果 view 函式執行的邏輯多到超過這些限制，RPC 呼叫就會失敗。
+
+#### 依賴外部呼叫來推進狀態
+
+有時候，合約的寫法會讓進入新狀態需要把以太幣傳送到某個地址，或等待來自外部來源的輸入。當外部呼叫失敗，或因外部原因而受阻時，這些模式就可能導致阻斷服務。以傳送以太幣為例，使用者可以建立一個不接受以太幣的合約。如果合約必須傳送以太幣才能進入新狀態，由於以太幣永遠無法送到這位使用者那個不接受以太幣的合約，合約就永遠無法進入新狀態。
+
+#### 意料之外的問題
+
+阻斷服務問題可能以意想不到的方式冒出來，而且不一定牽涉惡意攻擊。有時候，合約的功能只是被無法預見的事件打亂。例如，如果智能合約依賴擁有者的私鑰來呼叫特定的特權函式，而那把金鑰遺失或外洩，我們就麻煩了。沒有那把金鑰，這些關鍵函式就永遠無法存取，可能讓整個合約的運作停擺。想像一個 initial coin offering（ICO）TODO-term: initial coin offering (ICO)（建議：首次代幣發行（ICO））合約，擁有者必須呼叫某個函式來完成這次銷售。如果金鑰遺失，就沒有人能呼叫它，代幣將永遠被鎖住。
+
+另一個意外干擾的例子，來自在合約不知情、也非其本意的情況下被送進來的以太幣。以太幣可以透過一種叫做 `selfdestruct`（現已棄用）的方法「強行」送進合約，甚至可以在合約部署到預先確定的地址之前，就先把以太幣送到那個地址。如果合約假設自己透過自身的函式掌握了所有收到的以太幣的帳目，它可能不知道該如何處理這些不請自來的資金，導致非預期的行為。這就像銀行帳戶裡突然多了一筆你沒預料到的錢：有時候是好事，但也可能代表你的帳戶餘額對不上，而任何依賴那個精確數字的系統都可能開始出問題。
+
+#### 預防技術
+
+由於阻斷服務問題有各種不同的形式，解決方案通常也要視情況而定。
+
+可能觸及區塊 gas 上限的長串清單是相當常見的情況，所以我們可以提供一些處理上的建議。以第一個例子來說，合約不應該遍歷可以被外部使用者人為操控的資料結構。建議採用 withdrawal pattern TODO-term: withdrawal pattern（建議：提領模式），讓每位投資人各自呼叫 `withdraw` 函式來領取代幣（pull-over-push pattern TODO-term: pull-over-push pattern（建議：拉取優於推送模式））。對於需要遍歷長串清單的函式，一個好的解決方案是實作分頁功能。
+
+針對阻斷服務的通用解決方案，是盡可能研究所有可能出錯的地方，並實作防護措施。
+
+#### 真實案例：ZKsync Era 上 Gemholic 的資金遭鎖定
+
+正如我們剛才所說，最意想不到的錯誤也可能導致智能合約出現阻斷服務問題。一個近期的例子是 Gemholic，這個專案把智能合約部署在以太坊第二層（L2）方案 ZKsync Era 上。Gemholic 遇到了一個大問題：它無法取用在代幣銷售中募得的 921 ETH（約 170 萬美元）。根本原因是什麼？這個智能合約依賴 `transfer()` 函式，而 ZKsync Era 並不支援這個函式。雖然 ZKsync Era 相容於大部分的以太坊虛擬機（EVM）功能，卻不是完全的 EVM 等價，也就是說，有些功能（例如 `transfer()`）無法像在以太坊主網上那樣運作。這種不相容讓 Gemholic 的資金被困住，因為智能合約無法如預期般提領以太幣。幸好，ZKsync 的團隊出手介入，開發出他們所說的「優雅的解決方案」來解鎖資金，讓 Gemholic 能再次取用這些資金。可惜的是，這個「優雅的解決方案」的具體細節至今仍未公開。
+
+### 浮點數與精度
+
+在撰寫本書時，Solidity v0.8.29 還沒有完整支援定點數與浮點數。這個設計選擇源自區塊鏈對確定性的根本需求：網路中的每個節點，都必須從相同的輸入得出完全相同的結果，才能維持共識。不幸的是，浮點運算在不同的硬體架構之間，本質上就不具確定性，相同的計算可能產生些微不同的結果。
+
+由於區塊鏈應用需要絕對的確定性，以避免網路分叉並維持安全性，Solidity 迫使開發者用整數型別來實作浮點數的表示法。雖然這種做法比較繁瑣，實作不正確時也容易出錯，但它能確保財務計算與智能合約邏輯在網路中的所有節點上都產生完全相同的結果。
+
+#### 漏洞
+
+Solidity 還沒有完整支援定點數。定點數可以宣告，但不能對它賦值，也不能用它來賦值，這表示開發者必須用標準的整數資料型別自行實作。開發者在這個過程中可能會遇到許多陷阱，我們會在本節中試著點出其中一些。先從一個程式碼範例開始（範例 9-8）。
+
+**範例 9-8. FunWithNumbers**
+
+```solidity
+1 contract FunWithNumbers {
+2    uint256 constant public tokensPerEth = 10;
+3    uint256 constant public weiPerEth = 1e18;
+4    mapping(address => uint) public balances;
+5
+6    function buyTokens() public payable {
+7        // convert wei to eth, then multiply by token rate
+8        uint256 tokens = msg.value/weiPerEth*tokensPerEth;
+9        balances[msg.sender] += tokens;
+10    }
+11
+12    function sellTokens(uint256 tokens) public {
+13        require(balances[msg.sender] >= tokens);
+14        uint256 eth = tokens/tokensPerEth;
+15        balances[msg.sender] -= tokens;
+16        payable(msg.sender).transfer(eth*weiPerEth);
+17    }
+18 }
+```
+
+這個簡單的代幣買賣合約有一些明顯的問題。雖然買賣代幣的數學計算是正確的，但缺少浮點數會導致錯誤的結果。例如，在第 8 行購買代幣時，如果數值小於 1 ETH，第一步的除法結果就會是 0，使最後乘法的結果也是 `0`（例如，200 wei 除以 `1e18` 的 `weiPerEth` 等於 0）。同樣地，賣出代幣時，任何少於 10 個的代幣數量，也都會得到 0 ETH。事實上，這裡的捨入一律是無條件捨去，所以賣出 29 個代幣只會得到 2 ETH（29 個代幣 / 10 `tokensPerEth` = 2.9，無條件捨去後是 2）。
+
+這個合約的問題在於，精度只到最接近的以太幣（也就是 1e18 wei）。當你處理 [ERC-20](https://oreil.ly/YzzyU) 代幣的小數位、需要更高的精度時，這就會變得很棘手。在實際情況中，精度損失看起來或許很小，卻很容易被放大並遭到利用。例如，閃電貸讓攻擊者不必預先付出任何成本就能借到大量資金，使得即使是微小的不一致也可能被利用。
+
+#### 預防技術
+
+在智能合約中保持正確的精度非常重要，尤其是在處理反映經濟決策的比率與費率時。你應該確保所使用的任何比率或費率，都允許分數中有很大的分子。例如，我們在範例中使用了費率 `tokensPerEth`。如果改用 `weiPerTokens` 會更好，因為那會是一個很大的數字。要計算對應的代幣數量，我們可以用 `msg.value/weiPerTokens`。這樣能得到更精確的結果。
+
+另一個策略是留意運算的順序。在我們的範例中，購買代幣的計算是 `msg.value/weiPerEth*tokenPerEth`。請注意，除法發生在乘法之前。和某些語言不同，Solidity 保證會依照運算寫下的順序執行。如果這個計算先做乘法、再做除法，也就是 `msg.value*tokenPerEth/weiPerEth`，這個範例就能達到更高的精度。
+
+最後，在為數字定義任意精度時，一個好方法是先把數值轉換成更高的精度，執行所有數學運算，最後再轉換回輸出所需的精度。通常會使用 `uint256`，因為它對 gas 的使用最有效率；它的範圍大約有 60 個數量級，其中一部分可以專門用於數學運算的精度。[^tn2]在 Solidity 中最好讓所有變數都保持高精度，再到外部應用程式中轉換回較低的精度。ERC-20 代幣合約中的 `decimals` 變數基本上就是這樣運作的：當我們在 MetaMask 上傳送 1,000 USDT 時，實際上傳送的是 1,000,000,000 單位的 USDT，也就是 1,000 乘以 USDT 的小數位數（1e6）。
+
+[^tn2]: 譯註：`uint256` 的最大值是 2^256 − 1，約為 1.16 × 10^77，所以整個範圍大約是 77 個數量級，而不是 60 個；扣掉 18 位小數的精度之後，剩下的整數部分約為 59 個數量級，原文的「60」或許指的是這一部分。
+
+為了示範如何以更高的精度處理數學運算，我們來介紹 Wad 與 Ray 數學。*Wad* 代表一個有 18 位小數精度的十進位數字，正好對應以太幣等 ERC-20 代幣常見的 18 位小數。這讓它非常適合用來表示代幣餘額，確保計算過程中有足夠的準確度。另一方面，*Ray* 更進一步，有 27 位小數精度，適合用來計算非常接近零的比率。第一個 Solidity 定點數學函式庫 DS-Math，提供了處理這些高精度數字的架構。
+
+MakerDAO 的開發者最初是為了自己專案的需求，才創造了 Wad 與 Ray。由於以太幣採用 18 位小數的標準，而且大多數 ERC-20 代幣也遵循這個慣例（雖然例外很多），Wad 非常適合作為主要的金融單位，而 Ray 則保留給需要精確分數調整的情況。雖然 DS-Math 開創了這種做法，但現在已有更多函式庫可以用來在 Solidity 中進行精確的數學運算。Aave 的 WadRayMath、Solmate 的 FixedPointMathLib，以及 OpenZeppelin 的 Math 函式庫，都只是如今眾多選擇中的幾個。
+
+#### 真實案例：ERC-4626 通膨攻擊
+
+接下來，我們會用 OpenZeppelin 的 ERC-4626 實作的簡化版本，來看一個在實際環境中經常被利用的精度損失漏洞。ERC-4626 是一個代幣化 vault 的標準，讓使用者可以把資產（例如 USDT）存入 vault，並取得代表自己在 vault 資產中所占比例的 share。範例 9-9 就是我們要使用的合約的簡化版本。
+
+**範例 9-9. OpenZeppelin 原始 ERC4626 實作的簡化版本**
+
+```solidity
+1 abstract contract ERC4626 is ERC20, IERC4626 {
+2    using Math for uint256;
+3    IERC20 private immutable _asset;
+4
+5    constructor(IERC20 asset_) {
+6        _asset = asset_;
+7    }
+8
+9    function totalAssets() public view returns (uint256) {
+10        return _asset.balanceOf(address(this));
+11    }
+12    function deposit(address receiver, uint256 assets) public {
+13        uint256 shares = _convertToShares(assets, Math.Rounding.Down);
+14        SafeERC20.safeTransferFrom(_asset, msg.sender, address(this), assets);
+15        _mint(receiver, shares);
+16        emit Deposit(msg.sender, receiver, assets, shares);
+17    }
+18    function _withdraw(address receiver, uint256 assets) public {
+19        uint256 shares = _convertToShares(assets, Math.Rounding.Up);
+20        _burn(msg.sender, shares);
+21        SafeERC20.safeTransfer(_asset, receiver, assets);
+22        emit Withdraw(msg.sender, receiver, msg.sender, assets, shares);
+23    }
+24    function _convertToShares(uint256 assets, Math.Rounding rounding) internal view
+      returns (uint256) {
+25        uint256 supply = totalSupply();
+26        return
+27            (assets == 0 || supply == 0)
+28                ? assets
+29                : assets.mulDiv(supply, totalAssets(), rounding); // (assets * supply) /
+                  totalAssets()
+30    }
+31    function _convertToAssets(uint256 shares, Math.Rounding rounding) public view returns
+      (uint256) {
+32        uint256 supply = totalSupply();
+33        return
+34            (supply == 0)
+35                ? shares
+36                : shares.mulDiv(totalAssets(), supply, rounding); // (shares * totalAssets())
+                  / supply
+37    }
+38 }
+```
+
+現在，我們來看看攻擊是如何進行的。
+
+有個攻擊者密切關注新建立的 ERC-4626 vault，看到一個剛冒出來。他立刻存入極少的金額，只有一個單位的 vault 資產，為自己鑄造一個 share。此時，vault 中的總資產只有 1（因為攻擊者只存了這麼多），而 share 的總供給量也是 1（因為攻擊者鑄造了一個 share）。
+
+接下來就是狡猾的地方了。攻擊者現在等待另一位使用者存入一筆可觀的金額，假設是 1,000 USDT。但在這筆正當的交易成交之前，攻擊者搶先介入，直接把 1,000 USDT 轉進 vault 合約，搶先交易這筆存款。重點是，攻擊者並沒有使用 vault 的 `deposit` 函式，只是呼叫 `USDT.transfer()`。這筆 1,000 USDT 的「捐贈」把 vault 的 `totalAssets()` 灌大到 1000e6 + 1，而 share 的 `totalSupply()` 仍然是 1。請記住，1,000 USDT 實際上是以 1,000e6 計算的，也就是 1,000 乘以 USDT 的小數位數（1e6）。
+
+當受害者的存款終於被處理時，智能合約會試著計算要為使用者鑄造多少 share。請記得，計算 share 的公式是：
+
+(assets × supply) / `totalAssets()`
+
+在我們的例子中，受害者存入 1,000e6 USDT，公式就變成：
+
+1,000e6 × 1 / (1,000e6 + 1) = 0.999
+
+由於採用無條件捨去的機制，結果是零個 share。受害者存了 1,000 USDT，卻什麼也沒拿到。
+
+與此同時，仍然持有一個 share 的攻擊者，現在可以銷毀這個 share，提領 vault 的全部餘額，也就是 2,000 USDT。攻擊者帶走了所有資金，受害者則兩手空空。
+
+> **備註**
+>
+> OpenZeppelin 後來更新了它的 ERC-4626 實作，同時引進 virtual offset TODO-term: virtual offset（建議：虛擬偏移量）與 decimal offset TODO-term: decimal offset（建議：小數位偏移量）來防止這種攻擊。decimal offset 會增加 vault share 所使用的小數位數，有助於減少捨入誤差，讓精度損失攻擊比較無利可圖。virtual offset 則在匯率計算中加入虛擬的資產與 share，限制攻擊者操縱初始兌換率的能力，並保護 vault 不受 dead share TODO-term: dead share（建議：無效份額）的產生所影響。
+
+### 價格操縱
+
+準確的資產定價，是 DeFi 協議順利運作的關鍵。這些系統依賴價格預言機來提供目前的資產價值。你可以把*預言機*想成一種資料來源，負責把真實世界的資訊提供給智能合約。價格操縱攻擊瞄準的就是這些預言機，也就是說，目標不是智能合約的程式碼本身，而是合約所依賴的資料。這種操縱可能大幅改變 DeFi 協議的行為，創造出平常不會存在的套利機會。結果呢？攻擊者可以利用這個系統賺取可觀的利潤。
+
+#### 漏洞
+
+想像一個簡單的情境：攻擊者找到一個借貸協議，它的定價依賴一個不安全的預言機。攻擊者操縱某項資產的價格，讓它看起來比實際更低，藉此借到超出應有額度的該項資產。接著，他們以真實的市場價格賣出借來的資產，從中獲利。這個漏洞的根源，在於依賴可以被操縱的鏈上價格指標來決定資產價格。這種操縱通常會利用*閃電貸*來放大：閃電貸是即時、不需要抵押品的貸款，必須在同一個交易區塊內償還。
+
+#### 預防技術
+
+當我們需要決定價格時，最好的選擇是使用去中心化的預言機，例如 Chainlink、RedStone、Pyth 等等。由於這些預言機是去中心化的，攻擊者必須控制網路中超過 50% 的節點，因此要攻破它們困難得多。不過它們也有自己的限制，例如不見得支援每一種資產。在這種情況下，我們可以改用時間加權平均價格（TWAP）預言機。
+
+TWAP 預言機從鏈上資料推導資產價格，並增加了一些安全性。它們的運作方式，是計算某項資產在一段既定時間內（例如過去五分鐘）的平均價格。由於計算時排除了目前的區塊，TWAP 預言機能有效防範閃電貸攻擊。然而，面對資金雄厚的攻擊者，TWAP 預言機並不是完全不受操縱。這裡的關鍵是調整時間長度：時間越長，攻擊者操縱價格所需的資金就越多。但時間越長，也代表 TWAP 價格可能與實際市場價格偏離得越多。因此，根據專案的具體需求與風險狀況來微調 TWAP 非常重要。
+
+無論使用哪一種預言機，我們都不應該盲目信任它所提供的資料。定期將預言機資料與其他來源比對，是很好的做法。例如，我們可以寫一個腳本，把預言機價格與其他來源的價格比較，並標示出任何明顯的差異。如果發現這樣的差異，就可以暫停協議，避免問題進一步擴大。
+
+#### 原型範例：依賴 AMM 的鏈上資料
+
+有漏洞的預言機模組往往是協議本身的一部分，我們在這個例子中就會看到。一個常見的漏洞利用情境，是智能合約直接從 Uniswap 這類鏈上 AMM 協議推導資產價格。想像一個 Uniswap V2 池，儲備是 4,000 USDC 與 1 ETH。智能合約可能會假設 1 ETH 值 4,000 USDC。然而，如果這個推算出來的價格被用在後續會改變狀態的操作上，這個假設就可能非常危險。在這種情況下，攻擊者可以用閃電貸執行一筆大額兌換，改變池子的餘額，從而改變推算出來的 ETH 價格。依賴這個被操縱價格的有漏洞協議，就會遭到攻擊者利用。
+
+幸好，這個特定的攻擊途徑已經廣為人知。雖然它不像過去那樣經常被利用，卻仍然出現在備受矚目的事件中。例如，2025 年 5 月，Mobius Token 遭到利用，損失 210 萬美元。雖然直接的觸發原因是 `mint` 函式中錯誤地乘以 `10^18`，但這個合約還有另一個同樣嚴重的獨立漏洞：它依賴鏈上指標來計算 BNB/USDT 價格，因此容易遭到操縱。即使沒有那個數學錯誤，這個合約也會在短時間內遭到利用。你可能會好奇，這樣的程式碼怎麼會被部署到正式環境，最後還保管了這麼多的 total value locked（TVL）TODO-term: total value locked (TVL)（建議：總鎖倉價值（TVL））。團隊選擇不公開合約的原始碼，以為把它藏起來就能確保安全，這再次提醒我們，security through obscurity TODO-term: security through obscurity（建議：以隱匿求安全）是行不通的，尤其是在利害關係這麼大的時候。
+
+> **備註**
+>
+> 只有當這些從鏈上資料推算出的價格被用在會改變狀態的操作上時，使用它們才有風險。如果價格只是用來提供資訊，例如前端用來擷取資料的 view 函式，那麼這種攻擊就不可行。然而，如果外部合約從這樣的 view 函式取得價格，再把它用在會改變狀態的操作上，它就容易遭到操縱。
+
+#### 真實案例：Mango Markets
+
+在 Mango Markets 的漏洞利用事件中，一名交易者利用平台的價格操縱漏洞，榨取了超過 1.16 億美元。攻擊者用兩個錢包中的 1,000 萬美元，以每單位 3.8 美分的價格開了 4.83 億單位的 Mango perpetual futures TODO-term: perpetual futures（建議：永續合約）（MNGO-PERP）。接著，他們在三個不同的交易所買進價值 400 萬美元的 MNGO，讓預言機回報的價格上漲了 2,300%。攻擊者以這個被灌大的 perp 部位作為抵押品，從 Mango Markets 借走 1.16 億美元，留下大筆呆帳，然後帶著資金遠走高飛。正如價格操縱型漏洞利用常見的情況，這並不是駭客攻擊，而是對系統機制的操縱：攻擊者在沒有破壞任何底層程式碼的情況下，利用了 Mango 的流動性。
+
+#### 與攻擊者談判
+攻擊者與協議經常直接在鏈上談判，決定攻擊者應該歸還多少被盜資金，以換取協議同意放棄任何指控。這種約定雖然常見，在法庭上卻可能沒什麼法律效力。通常，協議會給攻擊者大約 10% 的賞金，也就是說，如果攻擊者歸還 90% 的被盜資金，協議就同意不再追究。雖然這類談判很常見，但這個案例的發展特別引人注目。
+漏洞利用發生後，攻擊者向 Mango Markets 的去中心化自治組織（DAO）提出一項交易：如果社群同意承擔先前為了拯救另一個 Solana 專案 Solend 而背負的部分呆帳，他就歸還大部分的被盜資金。對此，Mango 團隊提出了第二項提案：攻擊者歸還最多 6,700 萬美元，同時保留 4,700 萬美元，作為某種 bug bounty。這項協議包括放棄與呆帳相關的任何求償，並承諾在代幣歸還後，不提出刑事告訴，也不凍結攻擊者的資金。第一項提案遭到否決，第二項則獲得通過。於是 Mango Markets 在 10 月 15 日發推文表示，價值 6,700 萬美元的資產確實已經歸還。
+事情在其中一名攻擊者於 Twitter 上公開身分後，出現了法律上的轉折：他把這次漏洞利用稱為「獲利極高的交易策略」，並聲稱一切都是在協議預期的設計範圍內完成的。但美國當局不這麼看，以市場操縱的罪名逮捕了他。Mango Markets 接著提起民事訴訟，主張這項協議是在脅迫下達成的，應屬無效，並求償 4,700 萬美元。由於 DAO 在法律上還是相對新的概念，這個案件引起了許多關注，並可能為去中心化組織如何處理法律糾紛立下先例。
+在一個完美體現加密貨幣世界狂野法律環境的轉折中，這名攻擊者在 2025 年 5 月其實贏了他的詐欺案：法官裁定，你無法詐欺一個沒有服務條款的無需許可協議。但最精彩的還在後頭：當局在最初調查 Mango Markets 案時搜查了他的裝置，發現超過 1,200 張兒童性虐待的圖片與影片，他目前正因此服刑四年多。這證明了，即使是再高明的 DeFi 漏洞利用，也救不了你違反基本人性尊嚴的罪行。
+
+### 不當的輸入驗證
+
+不當的輸入驗證是一個經常被忽略的重大漏洞。當來自使用者或外部來源的輸入沒有經過適當驗證時，對智能合約造成的後果可能差異很大，從小問題到重大的資金損失都有可能。適當的輸入驗證有助於防範兩種情況：一是可能操縱合約行為的惡意行為者，二是使用者或管理員的無心之過，否則這些錯誤可能導致資金損失。如果我們沒有採取正確的預防措施，一個看似無害的疏忽，就可能在合約執行時造成重大問題。
+
+#### 漏洞
+
+說穿了，不當的輸入驗證，就是智能合約在處理收到的資料或參數之前，沒有徹底檢查它們。如果我們不確保某些值符合特定條件，就等於為使用者的無心之過與潛在的攻擊敞開大門。使用者可能不小心輸入錯誤的資料，而攻擊者則可能刻意餵給合約意料之外的資料。這可能繞過預期的邏輯，導致意料之外的狀態變化，讓合約的行為變得無法預測。
+
+這種漏洞的一個簡單例子，是 setter 函式在把某個地址設為資金接收者之前，沒有確認它不是零地址。如果我們不小心把零地址設為接收者，送到零地址的資金就會永遠被鎖住，再也無法取回。
+
+智能合約開發中一個常見又危險的迷思，是以為把原始碼保密，就能以某種方式防止它被利用。我們在本章前面已經討論過為什麼 security through obscurity 行不通，這個原則同樣適用於輸入驗證。開發者有時會讓函式不受保護，以為只要不公開程式碼，就不會被發現。但攻擊者能夠、也確實會對合約位元組碼進行逆向工程，找出敏感且不受保護的函式。例如，好幾個閉源的最大可提取價值（MEV）機器人，就曾因為不受保護的閃電貸 callback 而遭到利用，造成數百萬美元的損失。把程式碼藏起來，並不會把風險藏起來。
+
+#### 預防技術
+
+那麼，我們要如何防範不當的輸入驗證呢？第一步很簡單：永遠不要假設我們收到的輸入是有效的。無論輸入來自 EOA、另一個合約，有時甚至來自同一個合約，都應該經過嚴格的檢查。我們需要驗證的不只是輸入的長度，還有邊界情況與邊界條件，例如最小值與最大值。一個不該忽略的經典邊界情況是零值。
+
+可重複使用的驗證邏輯，是撰寫安全又容易維護的智能合約的關鍵。我們可以視情況使用修飾符或內部函式來實作這些驗證區塊。修飾符特別適合用一致、宣告式的方式，為多個函式附加前置條件或後置條件。例如，我們可以用修飾符確保函式的輸入不是零地址，或在執行敏感操作之前，檢查呼叫者是否有正確的權限。內部函式也能達到同樣的目標，有時還更有彈性，尤其是當驗證依賴複雜的邏輯，或需要回傳值的時候。
+
+#### 存取控制
+說到權限，實作穩健的存取控制非常重要：`msg.sender` 是一個參數，就應該被當成參數看待。雖然自訂邏輯也是一種選擇，但使用 OpenZeppelin 這類可信賴的函式庫，有助於我們安全地管理存取權限，同時把複雜度降到最低。
+對於只需要由單一實體完全掌控的簡單專案，開發者可以使用 OpenZeppelin 的 Ownable 合約，它會指定單一的「擁有者」，賦予其對關鍵函式的權限。為了提高安全性，我們建議使用 Ownable2Step。這個版本包含兩步驟的所有權轉移流程，有助於防止意外失去所有權。
+對於更複雜的需求，OpenZeppelin 的 AccessControl 讓我們可以建立多個角色，每個角色擁有不同的權限。以角色為基礎的存取控制，讓我們能把特定任務指派給不同的使用者，非常適合大型專案。
+在實作適當的存取控制之前，我們需要先檢驗自己對於「誰可能呼叫外部與公開函式」的所有假設。智能合約在公開且免信任的環境中運作，所以我們不能假設只有預期中的實體才會與合約互動。事實上，我們應該始終假設攻擊者會試圖呼叫這些函式，觸發非預期的行為。
+
+#### 原型範例：任意呼叫
+
+最常見的漏洞利用涉及任意呼叫。在這種情況下，有漏洞的智能合約允許攻擊者提供一個要被呼叫的地址。如此一來，合約實際上會執行攻擊者想要的任何呼叫。利用這一點的一種可能方式，是回傳經過操縱的值，誘騙合約轉出它不該轉出的代幣。
+
+請看這段有漏洞的收益聚合器協議的範例程式碼：
+
+```solidity
+contract Aggregator {
+    function stake( ... ) external {
+        ...
+    }
+    function claimMultipleStakingRewards(address[] calldata _claimContracts) external {
+        uint256 totalRewards;
+        for (uint256 i = 0; i < _claimContracts.length; i++) {
+            totalRewards += IClaimContract(_claimContracts[i]).claimStakingRewards(
+            msg.sender
+            );
+        }
+        IERC20(stakingToken).transfer(msg.sender, totalRewards);
+    }
+}
+```
+
+它的目標很簡單：`claimMultipleStakingRewards` 函式會遍歷使用者提供的質押合約地址陣列，在每個地址上呼叫 `claimStakingRewards` 函式，並加總所有獎勵。最後，它把累積的獎勵送到使用者的地址。問題在於，合約並沒有檢查 `_claimContracts` 中的地址是否真的指向可信的質押合約。這就為任意的外部呼叫打開了大門。
+
+例如，攻擊者可以部署像這樣的合約：
+
+```solidity
+contract Attack {
+    function claimStakingRewards(address ) external pure returns (uint256) {
+        return 1_000_000 ether; // fabricated reward
+    }
+}
+```
+
+這個惡意合約假裝成質押合約，並直接回傳一個灌水的獎勵值。當 `Aggregator` 在它上面呼叫 `claimStakingRewards` 時，就會被騙，以為呼叫者應得大量代幣。在沒有額外檢查的情況下，`Aggregator` 會盲目地把這個值加進總額，並把真正的代幣轉給攻擊者。只要用一個基本的 allowlist TODO-term: allowlist（建議：允許清單），確保只有可信的合約能出現在 `claimMultipleStakingRewards` 中，就能避免這種情況。
+
+### 簽章重放攻擊
+
+以太坊上的簽章非常實用，因為它讓我們能在鏈外授權各種動作，減少昂貴的鏈上交易。例如，如果你要授權某人代表你執行特定動作，像是轉移代幣或使用智能合約中的某項功能，你可以簽署一則鏈外訊息，賦予他們這個權限。合約接著會驗證簽章並執行該動作，而你不需要直接在鏈上互動。這也讓免 gas 交易成為可能：你在鏈外簽署，再由 relayer TODO-term: relayer（建議：中繼者）把它提交到鏈上，並支付 gas 費用。智能合約可以驗證這些簽章，確保動作經過安全的授權，而不需要持續的鏈上互動。
+
+然而，一份資料一旦經過簽署，照理說應該只能使用一次。如果經過簽署的交易可以被重複使用，就會為重放攻擊打開大門：攻擊者重放簽章，多次執行同樣的動作，例如在未經許可的情況下轉移資金或改變合約狀態。智能合約的設計必須防止這種情況，確保每一則經過簽署的訊息都是獨一無二、無法被重放的。
+
+#### 漏洞
+
+我們來看一個容易遭受重放攻擊的合約範例（範例 9-10）。
+
+**範例 9-10. Token：容易遭受簽章重放攻擊的合約**
+
+```solidity
+1 contract Token {
+2    mapping(address => uint256) public balances;
+3    struct Signature {
+4        bytes32 r;
+5        bytes32 s;
+6        uint8 v;
+7    }
+8    event Transfer(address indexed from, address indexed to, uint256 amount);
+9    function transfer(uint256[] memory _amount, address[] memory _from, address[]
+     memory _to,  Signature memory _signature) public {
+10        bytes32 messageHash = keccak256(abi.encodePacked(_from, _to, _amount));
+11        address signer = ecrecover(messageHash, _signature.v, _signature.r, _signature.s);
+12        for(uint256 i = 0; i < _from.length; i++){
+13            address __from = _from[i];
+14            address __to = _to[i];
+15            uint256 __amount = _amount[i];
+16            require(balances[__from] >= _amount[i], "Insufficient balance");
+17            require(signer == _from[i], "Invalid signature");
+18            balances[__from] -= __amount;
+19            balances[__to] += __amount;
+20            emit Transfer(__from, __to, __amount);
+21        }
+22    }
+23 }
+```
+
+乍看之下，這似乎是一個很方便的合約函式。它讓任何持有有效簽章的人都能執行多筆轉帳，而簽署者不需要支付 gas。管理員可以在鏈外簽署資料，再由其他人（也許是某個服務）替他們把交易提交到鏈上。無論如何，處理簽章並不簡單，而這段非常短的程式碼就包含了相當多的問題。
+
+最明顯的問題是，沒有任何機制能防止有人一再重複使用同一個簽章。由於沒有任何方法追蹤簽章是否已經用過，攻擊者只要不斷重複這筆交易，直到受害者的餘額被掏空為止。修正方法相當簡單：我們需要在被簽署的資料中加入一個 *nonce*（只能使用一次的值，通常是每筆交易都會遞增的計數器）。驗證簽章的合約負責檢查所提供的 nonce 先前沒有被用過。這也能確保每個簽章都是獨一無二的，防止重放。以太坊交易本身就是基於這個理由而使用 nonce。
+
+這裡另一個嚴重的問題是 signature malleability TODO-term: signature malleability（建議：簽章延展性）。當一個密碼學簽章可以被修改，針對同一則底層訊息產生另一個不同但仍然有效的簽章時，就會發生這個問題。合約中使用的內建 `ecrecover` 函式就有這個問題。攻擊者可以微調一個有效的簽章，產生另一個同樣有效的簽章，即使底層被簽署的訊息完全相同。為了避免這種情況，開發者應該使用更安全的簽章驗證方法，例如 OpenZeppelin ECDSA 函式庫所提供的方法。正因為簽章可以被這樣竄改，你不應該把簽章當成唯一識別碼，例如用來防止重放攻擊；請堅持使用 nonce。
+
+我們已經處理了簽章可能被操縱的問題，但如果被簽署的資料也能被操縱呢？在這個合約中，它確實可以。問題出在使用了 `abi.encodePacked`，人們常因為它的編碼精簡、需要的記憶體較少而選用它。但這種效率是有代價的，我們接下來就要探討。具體來說，`abi.encodePacked` 會直接串接原始位元組，而不加入長度資訊或邊界，這表示不同組的輸入最後可能產生相同的輸出。以下就是實際可能發生的情況。
+
+為了簡化起見，假設金額占 8 位元（兩個十六進位數字），地址占 12 位元（三個十六進位數字）。假設參數如下：
+
+```solidity
+_from = [0x001, 0x002]
+_to = [0x003, 0x003]
+_amount = [0x64, 0x64]
+```
+
+當我們使用 `abi.encodePacked` 時，它會把這些值組合成 `0x0010020030036464`。但棘手的地方來了：如果我們把 `0x002` 從 `_from` 移到 `_to`，`abi.encodePacked` 仍然會產生和之前完全相同的輸出：
+
+```solidity
+_from = [0x001]
+_to = [0x002, 0x003, 0x003]
+_amount = [0x64, 0x64]
+```
+
+對於這組新的值，`abi.encodePacked` 會回傳相同的輸出：`0x0010020030036464`。這表示使用者 `0x002` 可以使用這個有效的簽章，卻更改輸入參數 `_from` 與 `_to`，誘騙合約以為唯一要執行的轉帳是從 `0x001` 轉給 `0x002`。範例中使用的程式碼在驗證輸入方面做得非常糟糕，才會出現這種問題。無論如何，這說明了在對陣列這類動態資料型別產生簽章時，應該避免使用 `encodePacked`。在這些情況下，我們應該使用 `abi.encode`，即使串接動態資料，它也能產生沒有歧義的輸出，有效防止這類攻擊。
+
+等等，還有一個問題。如果這個合約部署在多條鏈上，會發生什麼事？同一個簽章在所有這些鏈上都會有效，造成跨鏈重放攻擊的機會。攻擊者可以監看使用者在某條鏈上的活動，然後在其他鏈上重複使用他們的簽章。為了防止這種情況，我們需要在被簽署的訊息中加入情境資料，至少要包含 `chainId`。視使用情境而定，你可能還會加入合約地址或它的版本。幸好，我們不必從頭想出新的解決方案：EIP-712 這個標準允許具備情境感知的簽章，解決了這個問題。它也改善了使用者體驗，向使用者顯示他們要簽署的內容的可讀資訊，而不是一串令人困惑的位元組字串。
+
+#### 預防技術
+
+為了防止重放攻擊與其他漏洞，我們需要確保每個簽章都是獨一無二、安全，而且只能使用一次。透過 nonce、安全的簽章處理，以及具備情境感知的簽章，我們就能輕鬆做到這一點。
+
+nonce 用來確保唯一性。在每則被簽署的訊息中加入 nonce，就能防止攻擊者重複使用簽章。驗證簽章的合約會確保所使用的 nonce 是唯一的。簽章一旦被使用，它的 nonce 就會失效，阻止重放的企圖。
+
+驗證簽章時，我們應該避免直接使用內建的 `ecrecover` 函式，改用 OpenZeppelin 的 ECDSA 函式庫，它不受 signature malleability 的影響。我們也永遠不應該把簽章當成唯一識別碼，因為簽章可能被操縱。
+
+對動態資料進行簽署時，使用 `abi.encode` 而不是 `abi.encodePacked`，可以適當地區隔各個輸入，防止輸入被操縱，確保它們不會被竄改或誤解。
+
+最後，只要處理簽章，我們都應該實作 EIP-712。除了加入情境感知（例如加入 `chainId` 來防止跨鏈重放）之外，EIP-712 也改善了使用者體驗，讓使用者能看到他們要簽署的資料清楚而有意義的呈現，而不是一串難以理解的位元組字串。這不僅讓交易更容易理解，也能提升使用者的安全性，使網路釣魚攻擊更難得逞，因為使用者更能辨認出可疑的請求。
+
+#### 真實案例：TCH 代幣
+
+2024 年 5 月，TCH 代幣因為一個常見的 signature malleability 漏洞而遭到利用。問題出在某個合約的 `burnToken` 函式，它透過驗證簽章來授權代幣銷毀。為了防止簽章重放攻擊，這個合約把用過的簽章儲存在一個 mapping 中。然而，只要簽章被竄改，這個防禦就能被繞過。
+
+攻擊者的做法是收集先前提交過的簽章，並修改簽章中的 `v` 與 `s` 值。雖然簽章被修改了，它仍然能通過 `ecrecover` 的驗證。由於修改後的簽章與原本的不同，它不會被認定為已經使用過，新版本也會被儲存到 mapping 中。靠著這個伎倆，攻擊者得以一再銷毀 PancakeSwap 流動性交易對所持有的大量 TCH 代幣。這讓攻擊者能操縱池中的代幣價格，並從自己造成的價格波動中獲利。
+
+### 智能合約的設定錯誤
+
+設定錯誤是那種嚴格來說並不算漏洞、卻仍然可能對智能合約造成嚴重後果的隱性問題。在你寫好智能合約、也完成審計之後，工作並沒有結束；你還需要部署、維護，有時還要升級它。設定錯誤往往就發生在這些階段。例如，DeFi 協議有大量的參數，只要其中任何一個設定錯誤，就可能造成重大損失。不幸的是，這類問題很難發現，即使在審計中也一樣，因為審計人員經常忽略部署與升級腳本。所以，雖然設定錯誤本身不是漏洞，卻可能為漏洞打開缺口，因此在部署與管理階段格外謹慎至關重要。
+
+設定錯誤的問題五花八門，很難分類，所以我們不打算一一列舉，而是直接來看幾個真實案例，了解可能出什麼差錯。
+
+#### 真實案例：yUSDT
+
+我們來看一個最簡單的設定錯誤案例：Yearn Finance 的 yUSDT 代幣中有一個設定錯誤的儲存變數，導致它在 2023 年 4 月遭到利用。yUSDT 代幣原本應該透過投資以 USDT 為基礎的衍生品來產生收益，但由於設定錯誤，它實際上使用了另一個代幣（IUSDC）作為標的資產。誇張的是，這個錯誤超過一千天都沒有被發現。這個設定錯誤讓攻擊者能夠操縱系統、從池中榨取價值，並幾乎免費地鑄造 yUSDT。結果，yUSDT 的價值跌到零，攻擊者則帶走了 1,160 萬美元的利潤。
+
+#### 真實案例：Ronin Bridge
+
+2024 年 8 月，Ronin Bridge 在一次合約升級後僅僅一小時就遭到駭客攻擊。根本原因是升級過程中的一個失誤：一個重要的變數 `_totalOperatorWeight` 沒有被初始化。這個變數原本應該在 `initializeV3` 函式中設定，但升級時只呼叫了 `initializeV4`，跳過了前一個版本必要的設定。這個疏忽讓合約暴露在風險之下。在這個案例中，一個 white hat TODO-term: white hat / black hat（建議：白帽／黑帽）MEV 機器人搶先交易了這次攻擊，並歸還了被盜的 4,000 ETH，但這凸顯了徹底審查與測試升級程序的重要性。
+
+> **備註**
+>
+> 如果你以為合約升級後不久就發生駭客攻擊只是巧合，那你就錯了。black hat 與 white hat 都密切監看著合約升級：black hat 尋找可以利用的弱點，white hat 則試圖阻止攻擊。團隊經常低估即使是很小的程式碼變更所帶來的安全風險，因而跳過審計流程。不幸的是，要破壞一個合約並不需要太多，而且正如這個案例所示，漏洞不一定在智能合約本身，有時是在升級的執行方式上。
+
+#### 真實案例：Sonne Finance
+
+Sonne Finance 在 2024 年 5 月遭駭的根本原因，不只是典型的協議錯誤，而是它啟用市場的流程有缺陷。和許多協議一樣，Sonne 知道 Compound v2 中存在的「空市場」漏洞：一個已開放卻沒有資金的市場，可能被利用來掏空整個協議。這個漏洞的標準修正方式，是在啟用市場時以原子化的方式把資金存入市場，避免市場在任何時間點是空的。
+
+Sonne 已經有因應這個問題的計畫。它打算新增市場、存入資金，然後開放市場供人使用，這三個動作都透過 timelock TODO-term: timelock（建議：時間鎖）執行。如果按照正確的順序執行，這個流程本來是可行的。問題在於，Sonne 把每個步驟都排成治理 timelock 控制器中各自獨立的交易，這表示它們的執行順序並沒有被強制。Sonne 團隊讓所有人都能取得治理的 `EXECUTOR_ROLE`，任何使用者都可以在 timelock 到期後執行治理交易。雖然這種設定並不尋常，但本身並沒有問題；然而在這個特定的情況下，它卻造成了毀滅性的後果。它讓任何人都能在 timelock 到期後，不按順序執行這些動作。
+
+攻擊者只是執行了所有排入佇列的 timelock 動作，而沒有等待資金存入，留下一個空的、有漏洞的市場處於開放狀態。攻擊者利用這個沒有資金的市場，從協議中掏空了 2,000 萬美元。
+
+這裡的重點是，當治理動作需要依照特定順序執行才能確保安全時，就應該讓它們成為原子操作。例如，如果使用的是 OpenZeppelin Timelock，就應該用 `scheduleBatch()` 而不是 `schedule()` 來排程。Sonne 的錯誤在於允許這些動作分別排入佇列，因而讓它們暴露在風險之下。
+
+#### 預防技術
+
+為了避免設定錯誤的問題，以及我們討論過的那些代價高昂的錯誤，我們需要在智能合約的整個生命週期中採取積極主動的做法，尤其是在部署、升級與任何關鍵的治理動作上。我們應該始終確保部署與升級腳本經過徹底的測試與審計。我們需要做的不只是審計程式碼本身，還要密切注意那些會動到主網的腳本，確保流程的每個環節都在接近實際環境的條件下測試過。
+
+## 合約函式庫
+
+現有可供重複使用的程式碼非常多，既有部署在鏈上、可供呼叫的函式庫，也有鏈外的程式碼範本函式庫。在以太坊中，最廣泛使用的資源是 [OpenZeppelin 套件](https://oreil.ly/OSSoV)，這是一個豐富的合約函式庫，涵蓋各種代幣的實作、不同的代理架構，以及合約中常見的簡單行為，例如 `Ownable`、`Pausable` 或 `ReentrancyGuard`。這個儲存庫中的合約經過大量測試，有些甚至成了事實上的標準實作。它們可以免費使用，由 [OpenZeppelin](https://www.openzeppelin.com) 與日益增加的外部貢獻者一起建構與維護。
+
+其他值得注意的合約函式庫，包括 Paradigm 的 [Solmate](https://oreil.ly/yTuU9) 與 Vectorized 的 [Solady](https://oreil.ly/zqpib)。Solmate 在設計上比較有自己的主張，而 Solady 則主要專注於 gas 最佳化。
+
+## 其他資源
+
+由於智能合約安全涵蓋了非常深入而細膩的內容，以下列出一些資源，讓好奇的讀者能進一步學習這個非常進階的主題：
+
+**Cyfrin Updraft Smart Contract Security and Auditing**
+
+為期 24 小時的完整課程（超過 270 堂課）
+
+**Secureum Bootcamp**
+
+為期三個月、專注於以太坊智能合約安全審計的密集訓練營
+
+**Ethernaut**
+
+OpenZeppelin 推出、以 Solidity 為基礎的 wargame TODO-term: wargame（建議：攻防闖關遊戲），玩家透過駭入一關關的智能合約來學習常見的漏洞
+
+**Damn Vulnerable DeFi**
+
+一個 CTF（capture the flag）平台，有 18 道挑戰，涵蓋閃電貸、價格預言機、治理、非同質化代幣（NFT）等主題
+
+**Capture the Ether**
+
+經典的 CTF 式以太坊安全遊戲
+
+**QuillCTF**
+
+QuillAudits 推出的以太坊安全謎題集
+
+**Paradigm CTF**
+
+由 Paradigm 主辦、每年舉行一次的線上 CTF 競賽，對象是經驗豐富的智能合約駭客，題目非常進階，反映最前沿的漏洞利用手法；官方通常會發布解答與解題報告，因此它也是很好的學習資源
+
+## 結語
+
+隨著不斷更新，Solidity 編譯器現在已經能減輕整數溢位與預設可見性這類風險。因此，我們得以移除本書第一版提到的一些較舊的陷阱，把篇幅用來專注於更新、更切身相關的漏洞。無論如何，在智能合約領域工作的開發者，仍有許多需要知道與理解的事。只要在智能合約的設計與程式撰寫上遵循最佳實踐，你就能避開許多嚴重的陷阱與圈套。
+
+或許最根本的軟體安全原則，就是盡可能重複使用可信賴的程式碼。在密碼學中，這一點重要到被濃縮成一句格言：「不要自己發明密碼學（Don’t roll your own crypto）。」以智能合約來說，這意味著盡可能善用那些經過社群徹底審查、可以免費取得的函式庫。
