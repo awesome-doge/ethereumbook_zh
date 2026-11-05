@@ -1,7 +1,7 @@
 # 精通以太坊 — Mastering Ethereum 繁體中文版
 
 <p align="center">
-  <img src="images/cover.png" width="320" alt="Mastering Ethereum Cover" />
+  <img src="2018/images/cover.png" width="320" alt="Mastering Ethereum Cover" />
 </p>
 
 <p align="center">
@@ -28,27 +28,27 @@
 
 | 章節 | 主題 |
 |------|------|
-| [前言](preface.asciidoc) | 封面上的蜜蜂有什麼含義？ |
-| [術語](glossary.asciidoc) | 快速術語表 |
-| [第 1 章](ch01.asciidoc) | 什麼是以太坊 |
-| [第 2 章](ch02.asciidoc) | 以太坊基礎 |
-| [第 3 章](ch03.asciidoc) | 以太坊客戶端 |
-| [第 4 章](ch04.asciidoc) | 以太坊測試網 |
-| [第 5 章](ch05.asciidoc) | 密鑰和地址 |
-| [第 6 章](ch06.asciidoc) | 錢包 |
-| [第 7 章](ch07.asciidoc) | 交易 |
-| [第 8 章](ch08.asciidoc) | 智能合約 |
-| [第 9 章](ch09.asciidoc) | 開發工具、框架和庫 |
-| [第 10 章](ch10.asciidoc) | 代幣 (Tokens) |
-| [第 11 章](ch11.asciidoc) | 去中心化應用 (DApps) |
-| [第 12 章](ch12.asciidoc) | 預言機 (Oracles) |
-| [第 13 章](ch13.asciidoc) | 燃氣 (Gas) |
-| [第 14 章](ch14.asciidoc) | 以太坊虛擬機 (EVM) |
-| [第 15 章](ch15.asciidoc) | 共識 |
-| [第 16 章](ch16.asciidoc) | Vyper |
-| [第 17 章](ch17.asciidoc) | DevP2P 協議 |
-| [附錄 A](ch18.asciidoc) | 以太坊標準 |
-| [附錄 B](ch19.asciidoc) | 以太坊分叉歷史 |
+| [前言](2018/preface.asciidoc) | 封面上的蜜蜂有什麼含義？ |
+| [術語](2018/glossary.asciidoc) | 快速術語表 |
+| [第 1 章](2018/ch01.asciidoc) | 什麼是以太坊 |
+| [第 2 章](2018/ch02.asciidoc) | 以太坊基礎 |
+| [第 3 章](2018/ch03.asciidoc) | 以太坊客戶端 |
+| [第 4 章](2018/ch04.asciidoc) | 以太坊測試網 |
+| [第 5 章](2018/ch05.asciidoc) | 密鑰和地址 |
+| [第 6 章](2018/ch06.asciidoc) | 錢包 |
+| [第 7 章](2018/ch07.asciidoc) | 交易 |
+| [第 8 章](2018/ch08.asciidoc) | 智能合約 |
+| [第 9 章](2018/ch09.asciidoc) | 開發工具、框架和庫 |
+| [第 10 章](2018/ch10.asciidoc) | 代幣 (Tokens) |
+| [第 11 章](2018/ch11.asciidoc) | 去中心化應用 (DApps) |
+| [第 12 章](2018/ch12.asciidoc) | 預言機 (Oracles) |
+| [第 13 章](2018/ch13.asciidoc) | 燃氣 (Gas) |
+| [第 14 章](2018/ch14.asciidoc) | 以太坊虛擬機 (EVM) |
+| [第 15 章](2018/ch15.asciidoc) | 共識 |
+| [第 16 章](2018/ch16.asciidoc) | Vyper |
+| [第 17 章](2018/ch17.asciidoc) | DevP2P 協議 |
+| [附錄 A](2018/ch18.asciidoc) | 以太坊標準 |
+| [附錄 B](2018/ch19.asciidoc) | 以太坊分叉歷史 |
 
 ## 構建
 
@@ -66,7 +66,7 @@ python3 -m http.server 8000 --directory output   # 本機預覽 http://localhost
 
 # 構建 PDF（需要額外安裝）
 gem install asciidoctor-pdf
-asciidoctor-pdf -a pdf-theme=pdf-theme.yml book.asciidoc
+asciidoctor-pdf -a pdf-theme=pdf-theme.yml 2018/book.asciidoc   # 2018 草稿譯本
 ```
 
 網站的版型、樣式與互動在 `web/`：`web/chapters.yml` 設定各章網址代稱與 SEO 描述，`web/templates/` 是頁面版型，`web/assets/` 是樣式與腳本，`web/search-synonyms.yml` 是全書搜尋的同義詞。

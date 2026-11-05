@@ -54,7 +54,7 @@ BOOKS = {
     license_name: 'CC BY-NC-ND 4.0', license_url: 'https://creativecommons.org/licenses/by-nc-nd/4.0/',
     epub: "#{RELEASES_URL}/download/Mastering-Ethereum-Traditional-Chinese.epub",
     pdf: "#{RELEASES_URL}/download/Mastering-Ethereum-Traditional-Chinese.pdf",
-    chapters: 'chapters.yml', home: 'home', path_prefix: '/', images_root: ROOT,
+    chapters: 'chapters.yml', home: 'home', path_prefix: '/', images_root: File.join(ROOT, '2018'),
     legacy: true, preview: false, ga: 'G-ZVVQYEKMPF',
     original_name: 'Mastering Ethereum: Building Smart Contracts and DApps',
     alternate_names: ['Mastering Ethereum: Building Smart Contracts and DApps', '精通以太坊 Mastering Ethereum'],
@@ -98,8 +98,9 @@ PREVIEW = PROFILE[:preview]      # 不公開預覽：全站 noindex、robots 拒
 def h(str) = CGI.escapeHTML(str.to_s)
 def plain(html) = Nokogiri::HTML5.fragment(html.to_s).text.gsub(/\s+/, ' ').strip
 
-def git_date(*paths)
-  out = `git -C #{ROOT} log -1 --format=%cI -- #{paths.map { |p| "'#{p}'" }.join(' ')} 2>/dev/null`.strip
+# 最後一次修改內容的時間：--follow 只看新增與修改，2018 版原稿搬到 2018/ 的那次改名不算
+def git_date(path)
+  out = `git -C #{ROOT} log -1 --follow --diff-filter=AM --format=%cI -- '#{path}' 2>/dev/null`.strip
   out.empty? ? Time.now.iso8601 : out
 end
 
@@ -130,7 +131,7 @@ book_file =
            '--ref', File.join(ROOT, 'upstream'), exception: true)
     File.join(tmp, 'book.adoc')
   else
-    File.join(ROOT, 'book.asciidoc')
+    File.join(ROOT, '2018', 'book.asciidoc')
   end
 
 doc = Asciidoctor.load_file(
@@ -186,6 +187,8 @@ pages = sections.map do |sec|
     md = source.sub(/\.adoc\z/, '.md')
     translated = File.exist?(File.join(ROOT, 'zh-tw', md))
     source = translated ? "zh-tw/#{md}" : "upstream/#{md}"
+  elsif source
+    source = "2018/#{source}"
   end
   Page.new(
     id: sec.id, slug: cfg['slug'], label: cfg['label'] || label,
@@ -397,7 +400,7 @@ used_images.each do |src, file|
 end
 
 # 舊版網站的分享圖片網址，社群平台的快取可能仍會引用
-FileUtils.cp(File.join(ROOT, 'images', 'cover.png'), File.join(OUT, 'images', 'cover.png')) if LEGACY_2018
+FileUtils.cp(File.join(ROOT, '2018', 'images', 'cover.png'), File.join(OUT, 'images', 'cover.png')) if LEGACY_2018
 
 Dir.glob(File.join(WEB, 'static', '*'), File::FNM_DOTMATCH).each do |f|
   next if File.directory?(f)
