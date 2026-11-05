@@ -29,5 +29,7 @@
 
 ## 其他
 
+- [PDF 電子書下載](https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-2nd-Traditional-Chinese.pdf)
+- [EPUB 電子書下載](https://github.com/awesome-doge/ethereumbook_zh/releases/latest/download/Mastering-Ethereum-2nd-Traditional-Chinese.epub)
 - [翻譯專案原始碼](https://github.com/awesome-doge/ethereumbook_zh)
 - [英文原著](https://github.com/ethereumbook/ethereumbook)
