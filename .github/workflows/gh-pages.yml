@@ -5,6 +5,12 @@ on:
     branches:
       - master
 
+env:
+  # 第二版的譯稿以 pandoc 轉成 AsciiDoc（scripts/md2adoc.rb）。標題 ID 依賴 pandoc 的自動 ID 規則，
+  # 換版本可能改變網址錨點，所以固定版本，與本機開發用的版本一致；升級時連同 translation/ids-snapshot.json 一起確認
+  PANDOC_VERSION: '3.13'
+  PANDOC_SHA256: 7e3736f255090296ca5d1a14291a76b9b3c43cd385011b1621a4d0c16091a70f
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -25,8 +31,16 @@ jobs:
         gem install rouge nokogiri --no-document
         sudo apt-get update -qq && sudo apt-get install -y --no-install-recommends webp
 
+    - name: Install pandoc ${{ env.PANDOC_VERSION }}
+      run: |
+        deb="pandoc-${PANDOC_VERSION}-1-amd64.deb"
+        curl -fsSL -o "/tmp/$deb" "https://github.com/jgm/pandoc/releases/download/${PANDOC_VERSION}/$deb"
+        echo "${PANDOC_SHA256}  /tmp/$deb" | sha256sum -c -
+        sudo dpkg -i "/tmp/$deb"
+        pandoc --version | head -1
+
     - name: Build site
-      # 每章一頁的線上閱讀網站，加上首頁、搜尋索引、sitemap 與 llms.txt（見 scripts/build-site.rb）
+      # 整個網站：第二版在根部、2018 草稿譯本在 /2018/、舊網址轉址頁，加上搜尋索引、sitemap 與 llms.txt（見 scripts/build-site.rb）
       run: STRICT_LINKS=1 WRITE_CNAME=1 ruby scripts/build-site.rb output
 
     - name: Check site

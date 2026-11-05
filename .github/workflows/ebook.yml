@@ -1,9 +1,19 @@
 name: Build & Release eBooks
 
+# 產生第二版的 PDF 與 EPUB。2018 草稿譯本的電子書凍結在 v2.0.0 release，不再重建。
+
 on:
   push:
     tags:
       - 'v*'
+
+env:
+  # 與 gh-pages.yml 相同的固定版本（見該檔說明）
+  PANDOC_VERSION: '3.13'
+  PANDOC_SHA256: 7e3736f255090296ca5d1a14291a76b9b3c43cd385011b1621a4d0c16091a70f
+  BOOK_DIR: build/2nd
+  PDF_NAME: Mastering-Ethereum-2nd-Traditional-Chinese.pdf
+  EPUB_NAME: Mastering-Ethereum-2nd-Traditional-Chinese.epub
 
 jobs:
   build-ebooks:
@@ -26,6 +36,22 @@ jobs:
         gem install asciidoctor-epub3 -v '~> 2.1'
         gem install rouge
 
+    - name: Install pandoc ${{ env.PANDOC_VERSION }}
+      run: |
+        deb="pandoc-${PANDOC_VERSION}-1-amd64.deb"
+        curl -fsSL -o "/tmp/$deb" "https://github.com/jgm/pandoc/releases/download/${PANDOC_VERSION}/$deb"
+        echo "${PANDOC_SHA256}  /tmp/$deb" | sha256sum -c -
+        sudo dpkg -i "/tmp/$deb"
+        pandoc --version | head -1
+
+    - name: Convert translation to AsciiDoc
+      # zh-tw/ 的譯稿轉成 AsciiDoc；還沒翻譯的章節改用 upstream/ 英文原稿。
+      # 圖片來源是 upstream/images/。book.adoc 的 :imagesdir: 是 upstream/ 的絕對路徑，asciidoctor-epub3
+      # 會把絕對路徑當成相對於文件目錄而找不到圖片，所以把圖片複製到 book.adoc 旁邊，建置時以 -a imagesdir= 改用相對路徑
+      run: |
+        ruby scripts/md2adoc.rb zh-tw "$BOOK_DIR" --ref upstream
+        cp -R upstream/images "$BOOK_DIR/images"
+
     - name: Extract CJK Fonts
       run: |
         FONT_DIR="$(gem environment gemdir)/gems/asciidoctor-pdf-$(gem list asciidoctor-pdf --exact | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')/data/fonts"
@@ -36,51 +62,52 @@ jobs:
         ls -lh "$FONT_DIR"/notosanstc-* "$FONT_DIR"/mplus1code-*
 
     - name: Build PDF
+      # 第二版目前沒有封面圖，暫不設定 front-cover-image
       run: |
         mkdir -p output
-        # 先用自訂主題嘗試
         asciidoctor-pdf \
-          -a pdf-theme=pdf-theme.yml \
+          -a imagesdir= \
+          -a pdf-theme="$PWD/pdf-theme.yml" \
           -a pdf-fontsdir=GEM_FONTS_DIR \
           -a scripts=cjk \
           -a allow-uri-read \
-          -a front-cover-image=image:cover.jpg[fit=contain] \
-          -D output book.asciidoc 2>&1 | tee /tmp/pdf-build.log
-        mv output/book.pdf "output/Mastering-Ethereum-Traditional-Chinese.pdf"
-        # 驗證 PDF 有文字內容
-        PAGE_COUNT=$(grep -c '/Type /Page' output/Mastering-Ethereum-Traditional-Chinese.pdf || echo 0)
-        FILE_SIZE=$(stat -c%s output/Mastering-Ethereum-Traditional-Chinese.pdf)
+          -o "output/$PDF_NAME" "$BOOK_DIR/book.adoc" 2>&1 | tee /tmp/pdf-build.log
+        # 驗證 PDF 有內容
+        PAGE_COUNT=$(grep -c '/Type /Page' "output/$PDF_NAME" || echo 0)
+        FILE_SIZE=$(stat -c%s "output/$PDF_NAME")
         echo "Pages: $PAGE_COUNT, Size: $FILE_SIZE bytes"
 
     - name: Build EPUB
+      # 第二版目前沒有封面圖，暫不設定 ebook-cover-image
       run: |
         # 複製 gem 預設樣式並附加自訂覆蓋
         EPUB_STYLES="$(gem environment gemdir)/gems/asciidoctor-epub3-$(gem list asciidoctor-epub3 --exact | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')/data/styles"
         cp -r "$EPUB_STYLES" epub-build-styles
         cat epub-styles/epub3-css3-only.css >> epub-build-styles/epub3-css3-only.scss
         asciidoctor-epub3 \
-          -a ebook-cover-image=cover.jpg \
-          -a epub3-stylesdir=epub-build-styles \
-          -D output book.asciidoc
-        mv output/book.epub "output/Mastering-Ethereum-Traditional-Chinese.epub"
+          -a imagesdir= \
+          -a epub3-stylesdir="$PWD/epub-build-styles" \
+          -o "output/$EPUB_NAME" "$BOOK_DIR/book.adoc"
 
     - name: Upload Artifacts
       uses: actions/upload-artifact@v4
       with:
         name: ebooks
-        path: output/Mastering-Ethereum-Traditional-Chinese.*
+        path: |
+          output/${{ env.PDF_NAME }}
+          output/${{ env.EPUB_NAME }}
 
     - name: Create Release
       uses: softprops/action-gh-release@v2
       with:
-        name: "${{ github.ref_name }} — 精通以太坊 繁體中文版"
+        name: "${{ github.ref_name }} — 精通以太坊（第二版）繁體中文版"
         files: |
-          output/Mastering-Ethereum-Traditional-Chinese.pdf
-          output/Mastering-Ethereum-Traditional-Chinese.epub
+          output/${{ env.PDF_NAME }}
+          output/${{ env.EPUB_NAME }}
         body: |
-          ## 精通以太坊 — Mastering Ethereum 繁體中文版
+          ## 精通以太坊（第二版）— Mastering Ethereum, 2nd Edition 繁體中文版
 
-          由 Andreas M. Antonopoulos 和 Gavin Wood 著作，Dr. Awesome Doge 翻譯。
+          由 Andreas M. Antonopoulos、Gavin Wood、Carlo Parisi、Alessandro Mazza 與 Niccolò Pozzolini 著作，Dr. Awesome Doge 翻譯。
 
           ### 下載
           - **PDF** — 適合電腦、平板閱讀和列印 (A4)
@@ -88,5 +115,7 @@ jobs:
 
           ### 線上閱讀
           [mastering-ethereum.doge.tg](https://mastering-ethereum.doge.tg/)
+
+          2018 年草稿譯本（第一版）的電子書請見 [v2.0.0](https://github.com/awesome-doge/ethereumbook_zh/releases/tag/v2.0.0)，線上版封存於 [mastering-ethereum.doge.tg/2018/](https://mastering-ethereum.doge.tg/2018/)。
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
