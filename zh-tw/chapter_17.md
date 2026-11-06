@@ -57,7 +57,7 @@
 
 細心的讀者可能已經發現它完美適用於以太坊的哪個地方了：區塊執行與狀態更新，換句話說，就是*以太坊虛擬機（EVM）的狀態轉換函數*。每個新區塊都會處理其中包含的所有交易，藉此更新當前的狀態。圖 17-1 很好地呈現了這一點。
 
-![EVM state transition function](images/ch17/maet_1701.png)
+![EVM 狀態轉換函數](images/ch17/maet_1701.png)
 
 圖 17-1. EVM 狀態轉換函數
 
@@ -906,7 +906,7 @@ w = [0, 1, 2, 7]
 
 現在，我們需要對所有 `w′` 值做出承諾，並把承諾傳給驗證方，確保萬一我們提供偽造的 `w′` 值作弊，就能輕易被發現。圖 17-2 顯示了以所有 `w′` 值作為葉節點所建立的默克爾樹。
 
-![Merkle tree commitment](images/ch17/maet_1702.png)
+![以 w′ 值建立的默克爾樹](images/ch17/maet_1702.png)
 
 圖 17-2. 以 `w′` 值建立的默克爾樹
 
@@ -1042,7 +1042,7 @@ w = [0, 1, 2, 7]
 
 建立默克爾樹時，我們不再只用 `w′` 每個元素確切值的雜湊作為樹的葉節點，而是再加上一個不會提供給驗證方的隨機字串。圖 17-3 顯示了用這種新方法建立的默克爾樹。
 
-![Merkle tree with randomness](images/ch17/maet_1703.png)
+![為了零知識性質而加入隨機性的默克爾樹](images/ch17/maet_1703.png)
 
 圖 17-3. 為了零知識性質而加入隨機性的默克爾樹
 
@@ -1110,7 +1110,7 @@ Fiat-Shamir 啟發法是一種協議，能把互動式零知識證明系統轉�
 
 圖 17-4 顯示了驗證方在驗證零知識證明的有效性之前，先確認挑戰經過正確計算的過程。
 
-![Verifier verification process](images/ch17/maet_1704.png)
+![Fiat-Shamir 啟發法讓協議變成非互動式](images/ch17/maet_1704.png)
 
 圖 17-4. Fiat-Shamir 啟發法讓協議變成非互動式
 
@@ -1160,7 +1160,7 @@ STARK 代表「*可擴展的透明知識論證*」（scalable transparent argume
 
 圖 17-5 以精簡的視覺化方式，呈現了 zk-EVM 與 zk-VM 框架的核心要素。
 
-![zk-EVM and zk-VM comparison](images/ch17/maet_1705.png)
+![zk-EVM 與 zk-VM 框架的比較](images/ch17/maet_1705.png)
 
 圖 17-5. zk-EVM 與 zk-VM 框架的比較
 

@@ -93,7 +93,7 @@ def structure(path)
         s[:paragraphs] += 1
         t = text_of(c)
         s[:figcaps] += 1 if t.match?(/\A(Figure \d+-\d+\. |圖 ?\d+-\d+(\. |．))/)
-        # 未翻譯檢查不看：表格儲存格（助記詞、雜湊等資料）、只有圖片的段落（替代文字保留英文）、以〈〉標示的英文篇名
+        # 未翻譯檢查不看：表格儲存格（助記詞、雜湊等資料）、只有圖片的段落、以〈〉標示的英文篇名
         image_only = c.size == 1 && c[0]['t'] == 'Image'
         s[:prose] << t unless ctx[:table] || image_only || t.strip.match?(/\A〈.*〉[。．.]?\z/)
         walk.call(c, ctx)

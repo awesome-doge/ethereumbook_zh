@@ -90,7 +90,7 @@ transaction = tx_type || tx_payload
 
 區塊 gas 上限（幾乎）一直都是在特定區塊、以固定的整數值提高：1,000 萬、1,250 萬、1,500 萬與 3,000 萬，如圖 6-1 所示。事實上，雖然驗證者（以及舊的工作量證明（PoW）共識協議下的礦工）可以在每個區塊稍微調整 gas 目標，進而直接影響 gas 上限，但區塊 gas 上限是非常關鍵的數值，大家通常都會遵循核心開發者的建議。
 
-![Block gas limit evolution over time](images/ch6/maet_0601.png)
+![區塊 gas 上限的演變](images/ch6/maet_0601.png)
 
 **圖 6-1.** 區塊 gas 上限的演變
 
@@ -190,7 +190,7 @@ blob 使用一種新的 gas：*blob gas*。它與一般的 gas 完全分開、�
 
 底層細節相當複雜，有興趣的話，我們建議閱讀 [以太坊改進提案（EIP）官方網站](https://oreil.ly/W_28X)。不過整體概念雖然簡單，卻非常強大。EIP-7702 讓 EOA 可以替自己指派一個*委託指定*。這個委託指定指向一個（已部署在以太坊主網上的）智能合約；當有交易送往這個 EOA 時，它會執行指定地址上的程式碼，就好像那是這個 EOA 自己的程式碼一樣，如圖 6-2 所示。
 
-![EIP-7702 delegation designator](images/ch6/maet_0602.png)
+![EIP-7702 的委託機制](images/ch6/maet_0602.png)
 
 **圖 6-2.** EIP-7702 的委託機制
 
@@ -268,7 +268,7 @@ $ cast balance 0x7e41354AfE84800680ceB104c5Fc99eCB98A25f0 --rpc-url https://ethe
 
 要取得一些免費的 Sepolia ETH，你可以使用線上的水龍頭。我們會使用 Google Cloud Web3 水龍頭，它會發放 0.05 ETH，如圖 6-3 所示。前往 [Ethereum Sepolia 水龍頭](https://cloud.google.com/application/web3/faucet/ethereum/sepolia)，貼上你的地址，然後按下「Receive 0.05 Sepolia ETH」按鈕。你應該很快就會收到 0.05 ETH。
 
-![Google Cloud Web3 faucet interface](images/ch6/maet_0603.png)
+![Google Cloud Web3 水龍頭](images/ch6/maet_0603.png)
 
 **圖 6-3.** Google Cloud Web3 水龍頭
 
@@ -466,7 +466,7 @@ $ cast send --account example vitalik.eth --value 0.001ether --rpc-url https://e
 
 [^tn1]: 譯註：空的資料酬載是長度為零的位元組序列，寫成 `0x`；`0x00` 則是一個值為零的位元組，並不是空的。本章「反序列化交易」一節解碼交易欄位時，也把 `0x` 列為「空的資料酬載」。
 
-![Transaction with only value](images/ch6/maet_0604.png)
+![只有金額的交易（付款）](images/ch6/maet_0604.png)
 
 **圖 6-4.** 只有金額的交易（付款）
 
@@ -478,7 +478,7 @@ $ cast send --account example vitalik.eth 0x0001 --value 0.001ether --rpc-url ht
 
 從圖 6-5 可以看到，input data 現在有內容了，也就是 `0x0001`。
 
-![Transaction with value and data](images/ch6/maet_0605.png)
+![同時有金額與資料的交易](images/ch6/maet_0605.png)
 
 **圖 6-5.** 同時有金額與資料的交易
 
@@ -490,7 +490,7 @@ $ cast send --account example vitalik.eth 0x0001 --rpc-url https://ethereum-sepo
 
 圖 6-6 是一個確認畫面，顯示這筆交易送出的金額為零以太幣，資料酬載則是 `0x0001`。
 
-![Transaction with only data](images/ch6/maet_0606.png)
+![只有資料的交易（呼叫）](images/ch6/maet_0606.png)
 
 **圖 6-6.** 只有資料的交易（呼叫）
 
@@ -502,7 +502,7 @@ $ cast send --account example vitalik.eth --rpc-url https://ethereum-sepolia-rpc
 
 圖 6-7 是我們這筆送出零以太幣、酬載為空的交易。
 
-![Transaction with neither value nor data](images/ch6/maet_0607.png)
+![既沒有金額也沒有資料的交易](images/ch6/maet_0607.png)
 
 **圖 6-7.** 既沒有金額也沒有資料的交易
 
@@ -608,7 +608,7 @@ $ cast send --account example --rpc-url https://ethereum-sepolia-rpc.publicnode.
 
 合約發布之後，我們就可以在 Etherscan 區塊瀏覽器上看到它，如圖 6-8 所示。
 
-![Contract creation on Etherscan](images/ch6/maet_0608.png)
+![Etherscan 上建立合約的交易](images/ch6/maet_0608.png)
 
 **圖 6-8.** Etherscan 上建立合約的交易
 
@@ -660,7 +660,7 @@ $ cast send --account example $CONTRACT_ADDRESS \
 
 過了一會兒，兩筆交易都能在 Etherscan 上看到，如圖 6-9 所示。
 
-![Contract interactions on Etherscan](images/ch6/maet_0609.png)
+![存入合約與從合約提款的交易](images/ch6/maet_0609.png)
 
 **圖 6-9.** 存入合約與從合約提款的交易
 
@@ -1096,7 +1096,7 @@ K2 = r–1 (sR′ – zG)
 2. 把未簽署的交易傳到一台「實體隔離」的離線裝置上進行簽署（例如透過 QR 碼或 USB 隨身碟）。
 3. 把已簽署的交易傳（回）連線的裝置，以便在以太坊區塊鏈上廣播（例如透過 QR 碼或 USB 隨身碟）。
 
-![Offline signing workflow](images/ch6/maet_0610.png)
+![離線簽署流程](images/ch6/maet_0610.png)
 
 **圖 6-10.** 離線簽署流程
 
@@ -1180,13 +1180,13 @@ MEV 指的是區塊生產者透過策略性地決定下列事項，能從一個�
 
 一位使用者送出一筆交易（tx1），買進一千個 xyz 代幣，如圖 6-11 所示。假設 xyz 代幣的價格是 1,000 美元，所以這位使用者要買進價值 100 萬美元的代幣。這股買壓會把代幣的價格推高到 1,010 美元。
 
-![User submitting a large buy transaction](images/ch6/maet_0611.png)
+![MEV 介入之前的使用者交易](images/ch6/maet_0611.png)
 
 **圖 6-11.** MEV 介入之前的使用者交易
 
 但驗證者看到了一個搶先交易 tx1 來賺錢的機會。他們建立了兩筆交易：tx0 與 tx2，其中 tx0 是買進 10 個 xyz 代幣的買單，tx2 則是賣出同樣數量的賣單。驗證者把這兩筆交易分別排在使用者的 tx1 正前方與正後方，如圖 6-12 所示。別忘了，驗證者之所以能這麼做，是因為他們正是實際建立區塊的角色，所以可以自由決定區塊中交易的順序。
 
-![Validator sandwiching user transaction](images/ch6/maet_0612.png)
+![驗證者發動的三明治攻擊](images/ch6/maet_0612.png)
 
 **圖 6-12.** 驗證者發動的三明治攻擊
 
@@ -1220,7 +1220,7 @@ MEV、提議者與建構者分離，以及私有記憶池，已經徹底改變�
 
 能以智能合約實作多重簽章交易，展現了以太坊的彈性。目前，Gnosis Safe 已經成為建立多重簽章帳戶的事實標準。這套久經實戰考驗的智能合約，被主要的協議與去中心化自治組織（DAO）廣泛使用；截至 2024 年 11 月，它保護了超過 60 億美元的 ETH，以及價值超過 740 億美元的 ERC-20 代幣，如圖 6-13 所示。
 
-![Gnosis Safe value secured over time](images/ch6/maet_0613.png)
+![Gnosis Safe 保護了數十億美元的價值](images/ch6/maet_0613.png)
 
 **圖 6-13.** Gnosis Safe 保護了數十億美元的價值
 

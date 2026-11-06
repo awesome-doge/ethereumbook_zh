@@ -76,6 +76,22 @@ indexable.each do |page, doc|
   errors << "#{page}: canonical 應為 #{expected}，實際為 #{canonical}" if canonical && canonical != expected
 end
 
+# 轉址頁的 canonical 與 meta refresh 必須指向同一頁，而且目的地要可索引：
+# 兩者不一致，或轉進 noindex 頁，搜尋引擎累積在舊網址上的排名就會流失
+docs.each do |page, doc|
+  refresh = doc.at_css('meta[http-equiv="refresh"]')&.[]('content')
+  next unless refresh
+
+  target = refresh[/url=(\S+)/, 1].to_s
+  canonical = doc.at_css('link[rel="canonical"]')&.[]('href')
+  errors << "#{page}: 轉址目標 #{target} 與 canonical #{canonical} 不一致" unless canonical == SITE_URL + target
+  dest = target.end_with?('/') ? "#{target}index.html" : target
+  if indexable.key?(dest) then nil
+  elsif docs.key?(dest) then errors << "#{page}: 轉址目標 #{target} 不可索引"
+  else errors << "#{page}: 轉址目標 #{target} 不存在"
+  end
+end
+
 # 根部的 sitemap 要列出所有可索引的頁面（整站建置時合併了第二版與 /2018/ 的 2018 版）
 sitemap = Nokogiri::XML(File.read(File.join(DIR, 'sitemap.xml'))).remove_namespaces!
 listed = sitemap.css('loc').map(&:text).to_set

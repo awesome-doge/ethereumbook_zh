@@ -84,7 +84,7 @@ Phantom 這個錢包支援以太坊，以及其他以太坊虛擬機（EVM）網
 
 打開 Google Chrome 瀏覽器，前往[擴充功能](https://oreil.ly/0rOvX)頁面。搜尋「MetaMask」，然後點擊狐狸的標誌。你應該會看到類似圖 2-1 的畫面。
 
-![The detail page of the MetaMask Chrome extension](images/ch2/maet_0201.png)
+![MetaMask Chrome 擴充功能的詳細資訊頁面](images/ch2/maet_0201.png)
 
 圖 2-1. MetaMask Chrome 擴充功能的詳細資訊頁面
 
@@ -104,7 +104,7 @@ Phantom 這個錢包支援以太坊，以及其他以太坊虛擬機（EVM）網
 
 安裝好 MetaMask 後，你應該會在瀏覽器的工具列上看到一個新圖示（狐狸頭）。點擊它就可以開始。系統會要求你接受條款與細則，接著輸入一組密碼，建立你的新以太坊錢包（見圖 2-2）。
 
-![The password page of the MetaMask Chrome extension](images/ch2/maet_0202.png)
+![MetaMask Chrome 擴充功能的密碼頁面](images/ch2/maet_0202.png)
 
 圖 2-2. MetaMask Chrome 擴充功能的密碼頁面
 
@@ -114,7 +114,7 @@ Phantom 這個錢包支援以太坊，以及其他以太坊虛擬機（EVM）網
 
 設定好密碼後，MetaMask 會為你產生一個錢包，並顯示由 12 個英文單字組成的*助記詞備份*（見圖 2-3）。萬一 MetaMask 或你的電腦出了什麼狀況，你可以在任何相容的錢包中用這些單字恢復對資金的存取權。這種恢復方式不需要密碼，只要有這 12 個單字就夠了。
 
-![The mnemonic backup of your wallet created by MetaMask](images/ch2/maet_0203.png)
+![MetaMask 為你建立的錢包助記詞備份](images/ch2/maet_0203.png)
 
 圖 2-3. MetaMask 為你建立的錢包助記詞備份
 
@@ -124,7 +124,7 @@ Phantom 這個錢包支援以太坊，以及其他以太坊虛擬機（EVM）網
 
 確認已經把助記詞安全地保存好之後，你就能看到自己以太坊帳戶的詳細資訊，如圖 2-4 所示。
 
-![Your Ethereum account in MetaMask](images/ch2/maet_0204.png)
+![你在 MetaMask 中的以太坊帳戶](images/ch2/maet_0204.png)
 
 圖 2-4. 你在 MetaMask 中的以太坊帳戶
 
@@ -170,13 +170,13 @@ Holesky 測試網路是以太坊用於質押、基礎設施與協議開發的進
 
 點擊左上角的以太坊圖示，把 MetaMask 切換到 Sepolia Test Network：打開「Show test networks」選項，再點擊 Sepolia，如圖 2-5 所示。
 
-![MetaMask networks](images/ch2/maet_0205.png)
+![MetaMask 的網路選單](images/ch2/maet_0205.png)
 
 圖 2-5. MetaMask 的網路選單
 
 點擊 Buy，然後前往[這份清單](https://oreil.ly/VE0t0)中的任何一個水龍頭。決定要用哪個水龍頭之後——它們其實都差不多——你就可以在測試網路上申請以太幣，如圖 2-6 所示。
 
-![MetaMask Sepolia test faucet](images/ch2/maet_0206.png)
+![MetaMask 的 Sepolia 測試水龍頭](images/ch2/maet_0206.png)
 
 圖 2-6. MetaMask 的 Sepolia 測試水龍頭
 
@@ -186,13 +186,13 @@ Holesky 測試網路是以太坊用於質押、基礎設施與協議開發的進
 
 幾秒鐘後，Sepolia 網路就會處理這筆新交易，你的 MetaMask 錢包會顯示 0.05 ETH 的餘額（實際金額取決於水龍頭願意發送多少以太幣）。現在，在瀏覽器擴充功能中點開第一筆交易，再點擊「View on block explorer」，如圖 2-7 所示。這會帶你前往*區塊瀏覽器*，也就是一種讓你以視覺化方式瀏覽、探索區塊、地址與交易的網站。
 
-![Transaction viewed from MetaMask](images/ch2/maet_0207.png)
+![從 MetaMask 檢視交易](images/ch2/maet_0207.png)
 
 圖 2-7. 從 MetaMask 檢視交易
 
 MetaMask 使用的是 [Etherscan 區塊瀏覽器](https://etherscan.io)，這是比較熱門的以太坊區塊瀏覽器之一。圖 2-8 顯示了包含 Sepolia 測試水龍頭付款的那筆交易。
 
-![Etherscan Sepolia block explorer](images/ch2/maet_0208.png)
+![Etherscan 的 Sepolia 區塊瀏覽器](images/ch2/maet_0208.png)
 
 圖 2-8. Etherscan 的 Sepolia 區塊瀏覽器
 
@@ -204,7 +204,7 @@ MetaMask 使用的是 [Etherscan 區塊瀏覽器](https://etherscan.io)，這是
 
 從 Sepolia 測試水龍頭收到第一筆測試用以太幣後，你可以試著把一些以太幣傳回水龍頭或任何其他地址，練習傳送以太幣。在這個例子中，我們要試著把一些測試網路以太幣傳送給 Vitalik Buterin，如圖 2-9 所示。
 
-![Sending 0.05 ether to an address](images/ch2/maet_0209.png)
+![傳送 0.05 ETH 到某個地址](images/ch2/maet_0209.png)
 
 圖 2-9. 傳送 0.05 ETH 到某個地址
 
@@ -224,7 +224,7 @@ MetaMask 使用的是 [Etherscan 區塊瀏覽器](https://etherscan.io)，這是
 
 到目前為止，你已經成了用 MetaMask 收發測試用以太幣的專家。你的錢包已經收過、也付過款項。你可以用 [*sepolia.etherscan.io* 區塊瀏覽器](http://sepolia.etherscan.io)查看所有這些交易。你可以複製錢包地址，貼到區塊瀏覽器的搜尋框，也可以讓 MetaMask 替你開啟該頁面。在 MetaMask 中，你的帳戶圖示旁邊有一個顯示三個點的按鈕。點擊它，就會出現與帳戶相關的選項選單（見圖 2-10）。
 
-![MetaMask account context menu](images/ch2/maet_0210.png)
+![MetaMask 的帳戶內容選單](images/ch2/maet_0210.png)
 
 圖 2-10. MetaMask 的帳戶內容選單
 
@@ -234,7 +234,7 @@ MetaMask 使用的是 [Etherscan 區塊瀏覽器](https://etherscan.io)，這是
 
 選擇「View account on Etherscan」，在區塊瀏覽器中開啟顯示你帳戶交易紀錄的網頁，如圖 2-11 所示。
 
-![Address transaction history on Etherscan](images/ch2/maet_0211.png)
+![Etherscan 上的地址交易紀錄](images/ch2/maet_0211.png)
 
 圖 2-11. Etherscan 上的地址交易紀錄
 
@@ -372,25 +372,25 @@ Solidity 編譯器有獨立的可執行檔版本，也包含在各種框架中�
 
 第一次載入 Remix 時，它會開啟一個名為 *Storage.sol* 的範例合約。我們不需要它，所以點擊分頁角落的 `x` 把它關掉，如圖 2-12 所示。
 
-![Closing the default example tab](images/ch2/maet_0212.png)
+![關閉預設的範例分頁](images/ch2/maet_0212.png)
 
 圖 2-12. 關閉預設的範例分頁
 
 現在，如圖 2-13 所示建立一個新檔案，命名為 *Faucet.sol*。
 
-![Creating a new contract](images/ch2/maet_0213.png)
+![建立新合約](images/ch2/maet_0213.png)
 
 圖 2-13. 建立新合約
 
 開啟新分頁後，把範例 *Faucet.sol* 的程式碼複製貼上，如圖 2-14 所示。
 
-![Copying the Faucet example code into the new contract](images/ch2/maet_0214.png)
+![把 Faucet 範例程式碼複製到新合約中](images/ch2/maet_0214.png)
 
 圖 2-14. 把 Faucet 範例程式碼複製到新合約中
 
 把 *Faucet.sol* 合約載入 Remix IDE 之後，前往 Remix 的編譯區，點擊 Compile *Faucet.sol*。如果一切順利，你會看到一個綠色方框（見圖 2-15）。
 
-![Remix successfully compiles the Faucet.sol contract](images/ch2/maet_0215.png)
+![Remix 成功編譯 Faucet.sol 合約](images/ch2/maet_0215.png)
 
 圖 2-15. Remix 成功編譯 *Faucet.sol* 合約
 
@@ -420,7 +420,7 @@ Solidity 編譯器現在已經把我們的 *Faucet.sol* 編譯成 EVM 位元組�
 
 首先，切換到 Run 分頁，在 Environment 下拉選單中選擇 Injected Web3。這會把 Remix IDE 連接到 MetaMask 錢包，並透過 MetaMask 連上 Sepolia 測試網路。完成之後，你可以在 Environment 下方看到 Sepolia。此外，Account 選擇框會顯示你錢包的地址（見圖 2-16）。
 
-![Remix IDE Run tab with Injected Web3 environment selected](images/ch2/maet_0216.png)
+![選擇了 Injected Web3 環境的 Remix IDE Run 分頁](images/ch2/maet_0216.png)
 
 圖 2-16. 選擇了 Injected Web3 環境的 Remix IDE Run 分頁
 
@@ -428,7 +428,7 @@ Solidity 編譯器現在已經把我們的 *Faucet.sol* 編譯成 EVM 位元組�
 
 Remix 會建構這筆特殊的「建立」交易，MetaMask 則會請你核准，如圖 2-17 所示。你會注意到，這筆建立合約的交易裡沒有以太幣，但有一些位元組的資料（也就是編譯好的合約），而且會消耗一些以 gwei 計的 gas。點擊 Submit 核准這筆交易。
 
-![MetaMask showing the contract creation transaction](images/ch2/maet_0217.png)
+![MetaMask 顯示建立合約的交易](images/ch2/maet_0217.png)
 
 圖 2-17. MetaMask 顯示建立合約的交易
 
@@ -436,7 +436,7 @@ Remix 會建構這筆特殊的「建立」交易，MetaMask 則會請你核准�
 
 合約建立之後，會出現在 Run 分頁的底部（見圖 2-18）。
 
-![The Faucet contract is alive!](images/ch2/maet_0218.png)
+![Faucet 合約上線了！](images/ch2/maet_0218.png)
 
 圖 2-18. Faucet 合約上線了！
 
@@ -450,13 +450,13 @@ Remix 會建構這筆特殊的「建立」交易，MetaMask 則會請你核准�
 
 現在區塊鏈上已經記錄了我們的合約，而且我們看得到它有一個以太坊地址。我們到 [*sepolia.etherscan.io* 區塊瀏覽器](http://sepolia.etherscan.io)看看，合約長什麼樣子。在 Remix IDE 中，點擊合約名稱旁邊的圖示，複製合約地址（見圖 2-19）。
 
-![Copying the contract address from Remix](images/ch2/maet_0219.png)
+![從 Remix 複製合約地址](images/ch2/maet_0219.png)
 
 圖 2-19. 從 Remix 複製合約地址
 
 讓 Remix 保持開啟，我們稍後還會回來。現在，用瀏覽器前往 [*sepolia.etherscan.io*](http://sepolia.etherscan.io)，把地址貼到搜尋框中。你應該會看到這個合約的以太坊地址紀錄，如圖 2-20 所示。
 
-![Viewing the Faucet contract address in the Etherscan block explorer](images/ch2/maet_0220.png)
+![在 Etherscan 區塊瀏覽器中查看 Faucet 合約地址](images/ch2/maet_0220.png)
 
 圖 2-20. 在 Etherscan 區塊瀏覽器中查看 Faucet 合約地址
 
@@ -466,7 +466,7 @@ Remix 會建構這筆特殊的「建立」交易，MetaMask 則會請你核准�
 
 我們的水龍頭需要資金！我們的第一個任務，是用 MetaMask 傳送以太幣給這個合約。合約地址應該還在你的剪貼簿裡（如果沒有，就從 Remix 再複製一次）。打開 MetaMask，傳送 0.01 ETH 給它，做法和傳送到其他任何以太坊地址完全一樣（見圖 2-21）。
 
-![Sending 0.01 ether to the contract address](images/ch2/maet_0221.png)
+![傳送 0.01 ETH 到合約地址](images/ch2/maet_0221.png)
 
 圖 2-21. 傳送 0.01 ETH 到合約地址
 
@@ -484,7 +484,7 @@ Remix 會建構這筆特殊的「建立」交易，MetaMask 則會請你核准�
 
 回到 Remix 分頁，查看 Run 分頁上的合約。你應該會看到一個標示為「withdraw」的紅色方框，旁邊有一個標示為「uint256 \_withdrawAmount, address \_to」的輸入欄位（見圖 2-22）。
 
-![The withdraw function of Faucet.sol in Remix](images/ch2/maet_0222.png)
+![Remix 中 Faucet.sol 的 withdraw 函式](images/ch2/maet_0222.png)
 
 圖 2-22. Remix 中 *Faucet.sol* 的 withdraw 函式
 
@@ -502,19 +502,19 @@ Remix 會建構這筆特殊的「建立」交易，MetaMask 則會請你核准�
 
 在 `_withdrawAmount` 方框中輸入 `"1000000000000"`（包括引號），從 MetaMask 複製貼上你 Account 1 的地址，然後點擊 transact 按鈕。（你看到的按鈕也可能叫 withdraw。圖 2-23 顯示的是函式的展開檢視；如果你的檢視沒有展開，按鈕就會叫「withdraw」。）
 
-![Click transact in Remix to create a withdrawal transaction](images/ch2/maet_0223.png)
+![在 Remix 中點擊 transact，建立提領交易](images/ch2/maet_0223.png)
 
 圖 2-23. 在 Remix 中點擊 transact，建立提領交易
 
 MetaMask 會跳出一個交易視窗，請你核准。點擊 Submit，把你的提領呼叫送到合約（見圖 2-24）。
 
-![MetaMask transaction to call the withdraw function](images/ch2/maet_0224.png)
+![呼叫 withdraw 函式的 MetaMask 交易](images/ch2/maet_0224.png)
 
 圖 2-24. 呼叫 withdraw 函式的 MetaMask 交易
 
 等一分鐘左右，再重新載入 Etherscan 區塊瀏覽器，就能在 `Faucet` 合約的地址紀錄中看到這筆交易（見圖 2-25）。
 
-![Etherscan shows the transaction calling the withdraw function](images/ch2/maet_0225.png)
+![Etherscan 顯示呼叫 withdraw 函式的交易](images/ch2/maet_0225.png)
 
 圖 2-25. Etherscan 顯示呼叫 withdraw 函式的交易
 
@@ -526,7 +526,7 @@ MetaMask 會跳出一個交易視窗，請你核准。點擊 Submit，把你的�
 
     _to.transfer(_withdrawAmount);
 
-![Etherscan shows the internal transaction transferring ether out from the contract](images/ch2/maet_0226.png)
+![Etherscan 顯示把以太幣從合約轉出的內部交易](images/ch2/maet_0226.png)
 
 圖 2-26. Etherscan 顯示把以太幣從合約轉出的內部交易
 

@@ -215,7 +215,7 @@ ERC-20 支援兩種不同的流程。第一種是直截了當、只需一筆交�
 
 第二種是需要兩筆交易的流程，先用 `approve`，再用 `transferFrom`。這個流程讓代幣擁有者可以把控制權委託給另一個地址。它最常用來把控制權委託給某個合約以分發代幣，但交易所也可以使用。例如，如果一家公司正在為 首次代幣發行（initial coin offering，ICO）銷售代幣，它可以 `approve` 一個群眾募資（crowdsale）合約地址，讓它分發一定數量的代幣。接著，群眾募資合約就可以從代幣合約擁有者的餘額中，以 `transferFrom` 把代幣轉給每一位購買者，如圖 10-1 所示。
 
-![The two-step approve and transferFrom workflow of ERC-20 tokens](images/ch10/maet_1001.png)
+![ERC-20 代幣兩步驟的 approve 與 transferFrom 流程](images/ch10/maet_1001.png)
 
 **圖 10-1.** ERC-20 代幣兩步驟的 `approve` 與 `transferFrom` 流程
 

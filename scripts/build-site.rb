@@ -53,7 +53,9 @@ REPO_URL = 'https://github.com/awesome-doge/ethereumbook_zh'
 RELEASES_2018_URL = "#{REPO_URL}/releases/download/v2.0.0"
 ORIGINAL_URL = 'https://github.com/ethereumbook/ethereumbook'
 SECOND_EDITION_URL = 'https://masteringethereum.xyz'
-OG_IMAGE = '/assets/og-cover.png'
+# IndexNow（Bing、Yandex、Naver、Seznam 等共用的即時收錄通知）的金鑰。金鑰本來就要公開放在網站根部，不是密碼；
+# scripts/indexnow.rb 用同一把金鑰送出網址
+INDEXNOW_KEY = 'f754010eab71705805b3e144bbdef1dd'
 
 BOOKS = {
   '2018' => {
@@ -63,11 +65,14 @@ BOOKS = {
     license_name: 'CC BY-NC-ND 4.0', license_url: 'https://creativecommons.org/licenses/by-nc-nd/4.0/',
     epub: "#{RELEASES_2018_URL}/Mastering-Ethereum-Traditional-Chinese.epub",
     pdf: "#{RELEASES_2018_URL}/Mastering-Ethereum-Traditional-Chinese.pdf",
+    og_image: '/assets/og-cover.png',
     chapters: 'chapters.yml', home: 'home', path_prefix: '/', images_root: File.join(ROOT, '2018'),
     base: '/2018', legacy: true, ga: 'G-ZVVQYEKMPF',
     original_name: 'Mastering Ethereum: Building Smart Contracts and DApps',
     alternate_names: ['Mastering Ethereum: Building Smart Contracts and DApps', '精通以太坊 Mastering Ethereum'],
-    description: '《精通以太坊》（Mastering Ethereum）繁體中文全文，免費線上閱讀。' \
+    # 首頁標題標明是 2018 草稿譯本，讓「精通以太坊」這類搜尋落在第二版首頁，而不是這裡
+    home_title: '精通以太坊 2018 草稿譯本（第一版）繁體中文版',
+    description: '《精通以太坊》（Mastering Ethereum）2018 年草稿的繁體中文全文，內容已過時，第二版譯本見本站首頁。' \
                  '從密鑰、地址、錢包與交易，到智能合約、Solidity、Vyper、代幣、DApp、預言機、EVM 與共識，完整解說以太坊的技術原理。'
   },
   '2nd' => {
@@ -81,12 +86,15 @@ BOOKS = {
     # 第二版電子書由 ebook.yml 在推送 v* tag 時發布；第二版是最新的版本，用 releases/latest 跟著最新一次 release
     epub: "#{REPO_URL}/releases/latest/download/Mastering-Ethereum-2nd-Traditional-Chinese.epub",
     pdf: "#{REPO_URL}/releases/latest/download/Mastering-Ethereum-2nd-Traditional-Chinese.pdf",
+    og_image: '/assets/og-cover-2nd.png',   # 第二版沒有封面圖，用 scripts/og/make-og-2nd.py 產生的文字版面
     chapters: 'chapters-2nd.yml', home: 'home-2nd', path_prefix: '/chapters/', images_root: File.join(ROOT, 'upstream'),
     base: '', legacy: false, ga: 'G-ZVVQYEKMPF',
     original_name: 'Mastering Ethereum, 2nd Edition',
     alternate_names: ['Mastering Ethereum, 2nd Edition', '精通以太坊第二版'],
-    description: '《精通以太坊》（Mastering Ethereum）第二版繁體中文譯本，免費線上閱讀。' \
-                 '從密碼學、錢包與交易，到智能合約、安全、代幣、DeFi、EVM、權益證明、擴容與零知識證明。'
+    # 首頁標題與描述帶上「PDF／EPUB 下載」：「精通以太坊 pdf」是這本書最常見的搜尋之一
+    home_title: '精通以太坊（第二版）繁體中文版｜免費線上閱讀與 PDF、EPUB 下載',
+    description: '《精通以太坊》（Mastering Ethereum）第二版繁體中文譯本，免費線上閱讀，也提供 PDF 與 EPUB 電子書下載。' \
+                 '從密碼學、錢包與交易，到智能合約（Solidity、Vyper）與安全、代幣、DeFi、EVM、權益證明、擴容與零知識證明。'
   }
 }.freeze
 
@@ -112,15 +120,18 @@ if BOOK == 'all'
   # 舊網址轉址頁：/ch08.html#錨點 → /2018/ch08.html#錨點。GitHub Pages 沒有伺服器端轉址，
   # 用 canonical、meta refresh（不支援 JS 時）加上保留 #錨點 的 JS。不加 noindex：Google 把立即的 meta refresh
   # 當成永久轉址，noindex 與 canonical 同時出現反而是互相矛盾的訊號。
-  # /all.html#錨點 先轉到 /2018/all.html#錨點，再由 site.js 依 2018 版的 ids.json 轉到對應章節。
+  # /all.html 是舊站曝光最多的網址（搜尋「精通以太坊」），轉到第二版首頁；canonical 與 meta refresh 必須指向同一頁，
+  # 否則 Google 會無所適從。只有帶 #錨點 的舊連結才轉到 /2018/all.html#錨點，再由 site.js 依 2018 版的 ids.json 轉到對應章節。
   redirect = ERB.new(File.read(File.join(WEB, 'templates', 'redirect.html.erb')), trim_mode: '-')
+  hash_target = nil
   YAML.load_file(File.join(WEB, BOOKS['2018'][:chapters])).each do |c|
     target = "#{BOOKS['2018'][:base]}/#{c['slug']}.html"
     canonical = SITE_URL + target
     File.write(File.join(OUT, "#{c['slug']}.html"), redirect.result(binding))
   end
-  target = "#{BOOKS['2018'][:base]}/all.html"
-  canonical = SITE_URL + ARCHIVE_2018
+  target = '/'
+  hash_target = "#{BOOKS['2018'][:base]}/all.html"
+  canonical = "#{SITE_URL}/"
   File.write(File.join(OUT, 'all.html'), redirect.result(binding))
 
   # 社群平台快取裡的舊分享圖網址
@@ -147,6 +158,7 @@ HOME_URL = SITE_URL + HOME_PATH
 SITE_NAME = PROFILE[:site_name]
 BOOK_TITLE = PROFILE[:book_title]
 BOOK_FULL_TITLE = PROFILE[:book_full_title]
+OG_IMAGE = PROFILE[:og_image]
 AUTHORS = PROFILE[:authors]
 CREDIT = PROFILE[:credit]
 EPUB_URL = PROFILE[:epub]
@@ -227,6 +239,7 @@ abort "#{PROFILE[:chapters]} 有不存在的章節 ID：#{missing.join(', ')}" u
 
 Page = Struct.new(:id, :slug, :label, :title, :title_html, :description, :source, :html,
                   :toc, :footnotes, :ids, :minutes, :search, :lastmod, :prev, :next, :has_math, :translated,
+                  :second_edition,
                   keyword_init: true) do
   def file = "#{PATH_PREFIX}#{slug}.html"   # 相對於輸出目錄
   def path = BASE + file
@@ -262,7 +275,7 @@ pages = sections.map do |sec|
     id: sec.id, slug: cfg['slug'], label: cfg['label'] || label,
     title: cfg['title'] || plain(sec.title), title_html: cfg['title'] || sec.title,
     description: cfg['description'], source: source, translated: translated,
-    html: html, footnotes: footnotes
+    html: html, footnotes: footnotes, second_edition: cfg['second_edition']
   )
 end
 pages.each_cons(2) { |a, b| a.next = b; b.prev = a }
@@ -481,12 +494,14 @@ end
 # manifest 的起始網址、範圍與圖示都加上基底：封存在 /2018/ 的 2018 版是獨立的 app，不會開到第二版
 manifest = JSON.parse(File.read(File.join(WEB, 'static', 'manifest.webmanifest')))
 manifest['name'] = SITE_NAME
+manifest['description'] = "《#{BOOK_FULL_TITLE}》繁體中文版，免費線上閱讀。"
 manifest['start_url'] = manifest['scope'] = HOME_PATH
 manifest['icons'].each { |icon| icon['src'] = BASE + icon['src'] }
 File.write(File.join(OUT, 'manifest.webmanifest'), "#{JSON.pretty_generate(manifest)}\n")
 
 # robots.txt 只在網站根部有效
 if BASE.empty?
+  File.write(File.join(OUT, "#{INDEXNOW_KEY}.txt"), INDEXNOW_KEY)
   File.write(File.join(OUT, 'robots.txt'),
              "# #{SITE_NAME}\n# 全站開放索引（內容以 #{LICENSE_NAME} 授權，轉載請註明出處）。\n\n" \
              "User-agent: *\nAllow: /\n\nSitemap: #{SITE_URL}/sitemap.xml\n")
@@ -505,7 +520,7 @@ NOT_FOUND = template('404')
 EDITION_NOTICE = template('edition-notice')
 
 # 本譯本翻自 2018 年草稿，首頁與各章都標示內容已過時，並指向原書第二版
-def edition_notice(compact: false) = EDITION_NOTICE.result(binding)
+def edition_notice(compact: false, page: nil) = EDITION_NOTICE.result(binding)
 
 BOOK_LD = {
   '@type' => 'Book',
@@ -589,7 +604,7 @@ home_ld = {
   ]
 }
 File.write(File.join(OUT, 'index.html'), render_page(
-  content: HOME.result(binding), title: "#{BOOK_TITLE}繁體中文版｜免費線上閱讀", description: home_description,
+  content: HOME.result(binding), title: PROFILE[:home_title], description: home_description,
   canonical: HOME_URL, og_type: 'book', jsonld: home_ld, pages: pages, body_class: 'is-home'
 ))
 

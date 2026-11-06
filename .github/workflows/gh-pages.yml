@@ -43,11 +43,27 @@ jobs:
       # 整個網站：第二版在根部、2018 草稿譯本在 /2018/、舊網址轉址頁，加上搜尋索引、sitemap 與 llms.txt（見 scripts/build-site.rb）
       run: STRICT_LINKS=1 WRITE_CNAME=1 ruby scripts/build-site.rb output
 
+    - name: Check translation
+      # 譯稿與上游原稿的結構比對、術語表與禁用詞
+      run: ruby scripts/check-translation.rb --strict
+
     - name: Check site
-      run: ruby scripts/check-site.rb output
+      run: |
+        ruby scripts/check-site.rb output
+        python3 scripts/md2adoc/leaks.py output
+
+    - name: Fetch deployed sitemap
+      # 部署前先取下線上的 sitemap，部署後只把 lastmod 改變的網址通知搜尋引擎
+      run: curl -fsSL -o /tmp/sitemap-before.xml https://mastering-ethereum.doge.tg/sitemap.xml || true
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v4
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./output
+
+    - name: Notify search engines (IndexNow)
+      # Bing、Yandex 等搜尋引擎即時收錄；GitHub Pages 部署要一點時間，先等金鑰檔與新頁面上線
+      run: |
+        sleep 90
+        ruby scripts/indexnow.rb output/sitemap.xml /tmp/sitemap-before.xml

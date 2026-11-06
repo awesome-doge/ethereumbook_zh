@@ -10,7 +10,7 @@
 - 一個中心化的資料庫，用來儲存應用的資料
 - 一個唯一的前端，讓使用者存取應用
 
-![General architecture of a legacy application](images/ch12/maet_1201.png)
+![傳統應用的一般架構](images/ch12/maet_1201.png)
 
 圖 12-1. 傳統應用的一般架構
 
@@ -22,7 +22,7 @@ DApp 有兩個明確的目標：不要有單點故障，以及成為一個即使
 - 智能合約也可以存放資料，作為真正的資料庫，收集所有必要的使用者資訊。
 - 人們可以透過官方前端存取應用；如果主要的前端因為任何原因無法運作，也很容易換成另一個替代前端（甚至是社群製作的）。
 
-![General architecture of a DApp](images/ch12/maet_1202.png)
+![DApp 的一般架構](images/ch12/maet_1202.png)
 
 圖 12-2. DApp 的一般架構
 
@@ -177,7 +177,7 @@ DApp 的前端可以用任何知名的 Web2 框架打造，例如 React、Angula
 
 圖 12-3 呈現了一個完整（簡化過）的 DApp 架構。
 
-![Complete DApp architecture](images/ch12/maet_1203.png)
+![完整的 DApp 架構](images/ch12/maet_1203.png)
 
 圖 12-3. 完整的 DApp 架構
 
@@ -323,7 +323,7 @@ yarn start
 
 現在複製 localhost 的網址，打開瀏覽器，貼上連結。你應該會看到前端畫面，如圖 12-4 所示。
 
-![Scaffold-ETH frontend](images/ch12/maet_1204.png)
+![Scaffold-ETH 的前端](images/ch12/maet_1204.png)
 
 圖 12-4. Scaffold-ETH 的前端
 
@@ -338,21 +338,21 @@ yarn start
 
 拋棄式錢包是開發工作流程中的殺手級功能，因為你不必每次都打開你的 Web3 錢包、把它連上網站。等你準備好了，仍然可以這麼做：只要點選下拉選單，選擇 Disconnect；接著點選 Connect Wallet，再從清單中選擇你偏好的錢包，如圖 12-5、圖 12-6 與圖 12-7 所示。
 
-![Disconnect burner wallet](images/ch12/maet_1205.png)
+![中斷拋棄式錢包的連線](images/ch12/maet_1205.png)
 
 圖 12-5. 中斷拋棄式錢包的連線
 
-![Connect Wallet button](images/ch12/maet_1206.png)
+![Connect Wallet 按鈕](images/ch12/maet_1206.png)
 
 圖 12-6. Connect Wallet 按鈕
 
-![Choose wallet](images/ch12/maet_1207.png)
+![選擇錢包](images/ch12/maet_1207.png)
 
 圖 12-7. 選擇錢包
 
 第二個殺手級功能是 Debug Contracts 頁面。要打開它，只要點選頁面中央的 Debug Contracts 連結。使用預設範例時，你現在應該會看到類似圖 12-8 的畫面。
 
-![Debug Contracts section](images/ch12/maet_1208.png)
+![Debug Contracts 頁面](images/ch12/maet_1208.png)
 
 圖 12-8. Debug Contracts 頁面
 
@@ -360,7 +360,7 @@ yarn start
 
 我們來做個小示範。首先，我們需要為拋棄式錢包注入資金，之後才能送出一些交易，與已部署的合約互動。要做到這一點，你只需要點選最右邊的按鈕，如圖 12-9 所示。你幾乎會立刻收到一些 ETH，並看到你的 ETH 餘額增加。
 
-![Grab funds button](images/ch12/maet_1209.png)
+![Grab funds 按鈕](images/ch12/maet_1209.png)
 
 圖 12-9. Grab funds 按鈕
 
@@ -368,13 +368,13 @@ yarn start
 
 圖 12-10 呈現了按下 Send 按鈕之前的合約狀態。你可以看到合約持有 0 ETH，greeting 是「Building Unstoppable Apps!!!」，premium 是 false，而 totalCounter 等於 0。
 
-![Contract state before transaction](images/ch12/maet_1210.png)
+![交易之前的合約狀態](images/ch12/maet_1210.png)
 
 圖 12-10. 交易之前的合約狀態
 
 圖 12-11 呈現了送出交易之後的合約狀態。你馬上可以看到，合約現在持有 0.1 ETH，greeting 是「hello world」，premium 是 true，而 totalCounter 等於 1。
 
-![Contract state after transaction](images/ch12/maet_1211.png)
+![交易之後的合約狀態](images/ch12/maet_1211.png)
 
 圖 12-11. 交易之後的合約狀態
 
@@ -454,7 +454,7 @@ $ yarn vercel:yolo
 
 如果你到自己的 Vercel 個人頁面，現在就能看到剛建立的專案。如圖 12-12 所示，那裡有一個 Domains 欄位，你可以在其中找到 Vercel 自動為你產生的網站網域。
 
-![Vercel project page](images/ch12/maet_1212.png)
+![Vercel 的專案頁面](images/ch12/maet_1212.png)
 
 圖 12-12. Vercel 的專案頁面
 
@@ -532,7 +532,7 @@ $ yarn ipfs
 
 圖 12-13 簡要地呈現了打造一個完全去中心化應用所需的工程技術堆疊。
 
-![DApp engineering stack](images/ch12/maet_1213.png)
+![DApp 完整工程技術堆疊的簡要概覽](images/ch12/maet_1213.png)
 
 圖 12-13. DApp 完整工程技術堆疊的簡要概覽
 

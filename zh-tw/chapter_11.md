@@ -74,7 +74,7 @@
 
 我們從最簡單的預言機類型開始。即時讀取預言機提供的資料只用於當下的決定，例如「ethereumbook.info 的地址是什麼？」或「這個人滿 18 歲了嗎？」，如圖 11-1 所示。
 
-![Immediate-read oracle](images/ch11/maet_1101.png)
+![即時讀取預言機](images/ch11/maet_1101.png)
 
 圖 11-1. 即時讀取預言機
 
@@ -88,7 +88,7 @@
 
 下一種設定是發布—訂閱：預言機實際上為預期會變動（可能既規律又頻繁）的資料提供一種廣播服務，由鏈上的智能合約輪詢，或由鏈下的常駐程式（daemon）監看是否有更新，如圖 11-2 所示。
 
-![Publish-subscribe oracle](images/ch11/maet_1102.png)
+![發布—訂閱預言機](images/ch11/maet_1102.png)
 
 圖 11-2. 發布—訂閱預言機
 
@@ -104,7 +104,7 @@
 
 請求—回應這一類最複雜：資料空間太過龐大、無法存放在智能合約中，而使用者每次預期只需要整個資料集的一小部分，如圖 11-3 所示。對提供資料的企業來說，這也是一種適用的模式。
 
-![Request-response oracle](images/ch11/maet_1103.png)
+![請求—回應預言機](images/ch11/maet_1103.png)
 
 圖 11-3. 請求—回應預言機
 
@@ -182,7 +182,7 @@ Chainlink 提出了一種去中心化預言機網路，由三個關鍵的智能�
 
 在熱門的跨鏈專案中，LayerZero 提供了一個在區塊鏈之間進行輕量級訊息傳遞的框架。它專注於訊息的「傳輸」與「驗證」，目標是提供一個更有效率、更有彈性的互通層。LayerZero 的設計圍繞著兩個關鍵的鏈下實體：預言機（Oracle）與中繼者（Relayer），兩者合作驗證跨鏈交易，如圖 11-4 所示。
 
-![LayerZero cross-chain architecture](images/ch11/maet_1104.png)
+![LayerZero 的跨鏈架構](images/ch11/maet_1104.png)
 
 圖 11-4. LayerZero 的跨鏈架構
 
@@ -190,7 +190,7 @@ Chainlink 提出了一種去中心化預言機網路，由三個關鍵的智能�
 
 另一個知名專案 Wormhole，最初是為了讓資產主要能在 Solana 與以太坊之間轉移而誕生的，後來擴展到其他網路，例如幣安智能鏈（Binance Smart Chain，BSC）、Hyperliquid 與 Avalanche。Wormhole 的做法建立在一個由守護者（guardian）組成的網路上：這些守護者監看單一鏈上的事件，並簽署訊息來證實這些事件。一旦有足夠的守護者簽署，這份認證就被視為有效，對應的事件（例如一筆代幣轉帳）便能在目標鏈上獲得承認，如圖 11-5 所示。這套機制不只能用於代幣跨鏈，還能處理更複雜的任務，例如跨鏈治理提案與非同質化代幣（NFT）的轉移。Wormhole 藉由結合多個守護者的安全性，試圖降低單點故障的風險；不過，這也需要謹慎地挑選並維護守護者集合。
 
-![Wormhole cross-chain architecture](images/ch11/maet_1105.png)
+![Wormhole 的跨鏈架構](images/ch11/maet_1105.png)
 
 圖 11-5. Wormhole 的跨鏈架構
 

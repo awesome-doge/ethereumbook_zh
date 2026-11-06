@@ -2,13 +2,25 @@
 <html lang="zh-Hant-TW">
 <head>
 <meta charset="utf-8">
+<%- if target == '/' -%>
+<title>精通以太坊（第二版）繁體中文版</title>
+<%- else -%>
 <title>頁面已移至 2018 年草稿譯本</title>
+<%- end -%>
 <link rel="canonical" href="<%= canonical %>">
+<%- if hash_target -%>
+<script>location.replace(location.hash ? <%= JSON.generate(hash_target) %> + location.hash : <%= JSON.generate(target) %>);</script>
+<%- else -%>
 <script>location.replace(<%= JSON.generate(target) %> + location.hash);</script>
+<%- end -%>
 <meta http-equiv="refresh" content="0; url=<%= target %>">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
+<%- if target == '/' -%>
+<p>本頁已移至<a href="/">《精通以太坊》第二版繁體中文譯本首頁</a>，頁面會自動轉過去。2018 年草稿譯本封存於 <a href="<%= ARCHIVE_2018 %>"><%= h ARCHIVE_2018 %></a>。</p>
+<%- else -%>
 <p>2018 年草稿譯本已移至 <a href="<%= target %>"><%= h target %></a>，頁面會自動轉過去。第二版的繁體中文譯本請見<a href="/">首頁</a>。</p>
+<%- end -%>
 </body>
 </html>

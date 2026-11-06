@@ -58,7 +58,7 @@ Uniswap 與 Compound 這類去中心化金融（DeFi）應用的爆發，為以�
 
 以太坊的第一層當初並不是設計來有效率地應付這種程度的需求。不過，2021 年引進的 EIP-1559 改變了手續費的運作方式：它引進了可變的區塊大小與新的 gas 定價機制，減少了網路活動頻繁時 gas 費用的暴漲。L2 方案日益普及，讓以太坊能把相當一部分的運算負擔卸載出去，進一步降低了 gas 費用。最近推出的 EIP-4844（proto-danksharding）則大幅降低了手續費，特別是 L2 rollup 的手續費，讓使用者更負擔得起以太坊交易。儘管有這些改進，以太坊的交易成本仍高於大多數其他區塊鏈（見圖 16-1）。
 
-![Gas cost comparison across blockchains](images/ch16/maet_1601.png)
+![各區塊鏈的 gas 成本比較](images/ch16/maet_1601.png)
 
 圖 16-1. 各區塊鏈的 gas 成本比較
 
@@ -76,7 +76,7 @@ Uniswap 與 Compound 這類去中心化金融（DeFi）應用的爆發，為以�
 
 客戶端多樣性（client diversity）也有幫助。雖然 Geth 一直是最主要的以太坊客戶端（見圖 16-2），但 Nethermind、Erigon 與 Besu 等替代客戶端都導入了提升儲存效率的最佳化。例如，Erigon 專精於更有效率地處理歷史資料，減輕完整節點的負擔。
 
-![Ethereum client distribution](images/ch16/maet_1602.png)
+![以太坊客戶端的分布](images/ch16/maet_1602.png)
 
 圖 16-2. 以太坊客戶端的分布
 
@@ -110,7 +110,7 @@ MEV 之所以會出現，是因為交易不一定會按照送出的順序處理�
 
 但事情沒有把 gas 上限調高那麼簡單。較大的區塊需要更長的時間在網路中傳播，讓以太坊更容易發生鏈分裂。它們也會提高完整節點的硬體需求，讓我們更接近中心化。因此，gas 上限的提高是逐步、謹慎地進行的，在提升吞吐量與維持網路健康之間取得平衡（見圖 16-3）。
 
-![Historical gas limit changes](images/ch16/maet_1603.png)
+![gas 上限的歷史變化](images/ch16/maet_1603.png)
 
 圖 16-3. gas 上限的歷史變化
 
@@ -218,7 +218,7 @@ ZK rollup 原本很適合代幣轉帳或兌換（swap）這類簡單的工作，
 
 *validium* 不把交易資料存放在以太坊上，而是把驗證 L2 鏈狀態的證明發布到以太坊，如圖 16-4 所示。基本上，validium 就是一種使用替代資料可用性方案（例如 Celestia、Avail 或 EigenLayer）的 rollup。
 
-![Validium architecture](images/ch16/maet_1604.png)
+![validium 的架構](images/ch16/maet_1604.png)
 
 圖 16-4. validium 的架構
 
@@ -272,7 +272,7 @@ booster rollup 則是直接為任何在 L1 上執行的 DApp 增加額外的區�
 
 以太坊近期的分片提案（包括 danksharding 與 proto-danksharding）與大多數其他分片方案的一個關鍵差異，在於以太坊以 rollup 為中心的策略。以太坊的分片並不是直接擴大交易容量，而是著重於為核心協議不加以解讀的大型資料「blob」提供更多空間。（至於這些 blob，我們會在後面的一節更詳細地探討。）驗證這些資料 blob 的一項重要條件，是檢查它們是否仍然可以取得——也就是能否從網路上取回。L2 rollup 協議接著就會利用這些資料 blob 來實現高吞吐量的交易，如圖 16-5 所示。
 
-![Danksharding architecture](images/ch16/maet_1605.png)
+![Danksharding 的架構](images/ch16/maet_1605.png)
 
 圖 16-5. Danksharding 的架構
 
@@ -360,7 +360,7 @@ rollup 會在鏈上發布對其交易資料的密碼學承諾，同時透過資�
 
 正如名稱所示，Verkle 樹使用 *向量承諾*：具體來說就是 KZG 多項式承諾，這是一種密碼學承諾，能有效率地證明大型資料集中特定位置的資料值，而不必揭露整個資料集。它們的擴展性比默克爾樹目前使用的雜湊好得多，計算速度也更快，如圖 16-6 所示。在默克爾樹中，我們只有默克爾根（雜湊值）；而在 Verkle 樹中，我們還有向量承諾。
 
-![Merkle tree versus Verkle tree](images/ch16/maet_1606.png)
+![默克爾樹與 Verkle 樹的比較](images/ch16/maet_1606.png)
 
 圖 16-6. 默克爾樹與 Verkle 樹的比較
 
@@ -368,7 +368,7 @@ rollup 會在鏈上發布對其交易資料的密碼學承諾，同時透過資�
 
 默克爾樹讓以太坊節點不必下載整條區塊鏈，就能驗證一小部分的資料。然而，當默克爾樹變得非常大時，證明（驗證資料所需的資訊）的大小也會大幅成長。這些龐大的證明會拖慢網路，隨著以太坊持續擴容，也會讓效率難以維持，如圖 16-7 所示。
 
-![Merkle tree proof size](images/ch16/maet_1607.png)
+![默克爾樹的證明大小](images/ch16/maet_1607.png)
 
 圖 16-7. 默克爾樹的證明大小
 
@@ -376,7 +376,7 @@ rollup 會在鏈上發布對其交易資料的密碼學承諾，同時透過資�
 
 Verkle 樹大幅縮小了這些證明的大小，解決了這個問題。Verkle 樹使用一種稱為向量承諾的密碼學方法，證明的大小不會隨著資料量增加而變大。向量承諾讓你能用非常短小、精簡的證明來證明大量的資料。這表示即使以太坊的區塊鏈變得更大，證明仍然維持小巧、有效率，如圖 16-8 所示。
 
-![Verkle tree proof size](images/ch16/maet_1608.png)
+![Verkle 樹的證明大小](images/ch16/maet_1608.png)
 
 圖 16-8. Verkle 樹的證明大小
 
@@ -396,7 +396,7 @@ Verkle 樹的證明大小則小得多：
 
 Verkle 樹把資料組織成（鍵，值）配對，其中每個鍵是 32 個位元組，由 31 個位元組的「主幹」（stem）與 1 個位元組的「後綴」（suffix）組成，如圖 16-9 所示。鍵的格式之所以這樣設計，是為了讓位置相近的儲存位置擁有相同的主幹與不同的後綴，讓存取「相鄰」儲存位置的成本更低。
 
-![Verkle tree key structure](images/ch16/maet_1609.png)
+![Verkle 樹的鍵結構](images/ch16/maet_1609.png)
 
 圖 16-9. Verkle 樹的鍵結構
 

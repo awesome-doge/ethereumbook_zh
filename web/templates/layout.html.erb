@@ -55,7 +55,9 @@
 <%- end -%>
 <%- if GA_ID -%>
 <script async src="https://www.googletagmanager.com/gtag/js?id=<%= GA_ID %>"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','<%= GA_ID %>');</script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','<%= GA_ID %>');
+// 電子書下載：GA 的加強型評估不認得 .epub，下載連結又在 GitHub 上，所以自己送事件
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href$=".pdf"],a[href$=".epub"]');if(a)gtag('event','ebook_download',{format:a.href.split('.').pop(),link_url:a.href});});</script>
 <%- end -%>
 </head>
 <body class="<%= body_class %>">

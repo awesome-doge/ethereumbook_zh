@@ -35,7 +35,7 @@
 
 圖 1-1 以圖形呈現區塊鏈的各個組成元件。
 
-![Components of a blockchain](images/ch1/maet_0101.png)
+![區塊鏈的組成元件](images/ch1/maet_0101.png)
 
 **圖 1-1.** 區塊鏈的組成元件
 

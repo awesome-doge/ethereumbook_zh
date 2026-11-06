@@ -17,7 +17,7 @@ EVM 採用*堆疊式架構*，把所有記憶體中的值都存放在堆疊上�
 
 執行期間還可以取用一組環境變數與資料。本章稍後會更詳細地介紹它們。
 
-![EVM architecture and execution context](images/ch14/maet_1401.png)
+![EVM 的架構與執行環境](images/ch14/maet_1401.png)
 
 圖 14-1. EVM 的架構與執行環境
 
@@ -261,7 +261,7 @@ EVM 的工作，是依照以太坊協議的定義，計算智能合約程式碼�
 
 讓我們從零開始建立一棵二元默克爾樹（最簡單的默克爾樹形式），讓你更熟悉它。我們從八塊資料開始，你可以把它們想成八個不同的英文單字。我們用特定的雜湊函數計算每一塊資料的雜湊值（如第 4 章所述，以太坊使用 Keccak-256 雜湊函數），得到默克爾樹的葉節點，在圖 14-2 中標示為 hash_1、hash_2 等等。接著，我們把每一對葉節點串接起來，再計算一次雜湊，得到 hash_12、hash_34 等等。我們把串接與計算雜湊的過程再重複兩次，直到得到單一的最終結果，也就是我們的默克爾根：hash_12345678。
 
-![A binary merkle tree](images/ch14/maet_1402.png)
+![二元默克爾樹](images/ch14/maet_1402.png)
 
 圖 14-2. 二元默克爾樹
 
@@ -271,7 +271,7 @@ EVM 的工作，是依照以太坊協議的定義，計算智能合約程式碼�
 
 讓我們用前面的例子實際看看。假設我們想證明 data_1 包含在資料集中。最單純的做法是提供整個資料集，從 data_1 到 data_8，總共八項。如果用默克爾樹，我們只需要提供 hash_2、hash_34 與 hash_5678。這樣一來，任何人都能自己算出默克爾根，再與我們一開始算出的（公開分享的）默克爾根比較。如果兩者相符，你就能完全確定 data_1 屬於最初的資料集，如圖 14-3 所示。
 
-![The Merkle proof to verify that data_1 is contained in the tree](images/ch14/maet_1403.png)
+![驗證 data_1 包含在樹中的默克爾證明](images/ch14/maet_1403.png)
 
 圖 14-3. 驗證 data_1 包含在樹中的默克爾證明
 
@@ -288,7 +288,7 @@ EVM 的工作，是依照以太坊協議的定義，計算智能合約程式碼�
 
 用數學的說法，默克爾樹的複雜度是 O(log(n))，而單純做法則是線性的 O(n)，如圖 14-4 所示。
 
-![Merkle tree complexity comparison](images/ch14/maet_1404.png)
+![O(n) 線性複雜度（上）與 O(log(n)) 複雜度（下）的比較](images/ch14/maet_1404.png)
 
 圖 14-4. O(n) 線性複雜度（上）與 O(log(n)) 複雜度（下）的比較
 
@@ -314,7 +314,7 @@ car → Schumacher
 
 car 的十六進位編碼是 (0x) 6 3 6 1 7 2，因此你要從默克爾根開始走到第 6 個子節點，再往下走到第 3 個子節點，一直重複這個過程，直到抵達最終的值，讀出與這個鍵對應的值（在這個例子中是 Schumacher），如圖 14-5 所示。
 
-![Merkle-Patricia trie example](images/ch14/maet_1405.png)
+![把鍵值項目 car --> Schumacher 編碼進默克爾帕特里夏前綴樹](images/ch14/maet_1405.png)
 
 圖 14-5. 把鍵值項目 car --> Schumacher 編碼進默克爾帕特里夏前綴樹
 
@@ -348,7 +348,7 @@ car 的十六進位編碼是 (0x) 6 3 6 1 7 2，因此你要從默克爾根開�
 
 EVM 可以透過不同種類的操作碼，把項目推入堆疊或從堆疊彈出，也可以調整堆疊中元素的順序，如圖 14-6 所示。
 
-![EVM stack operations](images/ch14/maet_1406.png)
+![EVM 堆疊依照後進先出的順序進行操作](images/ch14/maet_1406.png)
 
 圖 14-6. EVM 堆疊依照後進先出的順序進行操作
 
@@ -358,7 +358,7 @@ EVM 記憶體是一種以位元組為單位定址的資料結構：本質上就�
 
 雖然可以對記憶體讀寫單一位元組，但大多數操作都需要讀寫更大塊的資料，通常是 32 位元組一塊，如圖 14-7 所示。
 
-![EVM memory operations](images/ch14/maet_1407.png)
+![EVM 記憶體是揮發性、以位元組為單位定址的資料結構](images/ch14/maet_1407.png)
 
 圖 14-7. EVM 記憶體是揮發性、以位元組為單位定址的資料結構
 
@@ -370,7 +370,7 @@ EVM 記憶體是一種以位元組為單位定址的資料結構：本質上就�
 
 EVM 儲存空間是一種鍵值資料結構，其中的鍵（通常稱為 *slot*）與值都是 32 位元組長。這是每個智能合約的持久記憶：存在裡面的所有值，都會跨越不同的交易與區塊無限期地保留下來。每個智能合約都只能存取與修改自己的儲存空間；如果你存取一個沒有任何值的 slot，它一律會回傳 0，而不會丟出任何錯誤。圖 14-8 非常簡略地呈現了兩個合約的儲存空間。
 
-![EVM storage](images/ch14/maet_1408.png)
+![EVM 儲存空間是採用鍵值資料結構的永久記憶](images/ch14/maet_1408.png)
 
 圖 14-8. EVM 儲存空間是採用鍵值資料結構的永久記憶
 
@@ -412,73 +412,73 @@ calldata 是一種不可變更的資料結構，內容一律是送給下一個*�
 
 讓我們看看 EVM 如何執行這些操作碼，以及堆疊、記憶體與儲存空間如何被操作。圖 14-9 是 EVM 的初始狀態。
 
-![EVM initial state](images/ch14/maet_1409.png)
+![EVM 的初始狀態](images/ch14/maet_1409.png)
 
 圖 14-9. EVM 的初始狀態
 
 第一個操作碼把 0x42 推入堆疊（圖 14-10）。注意，所有 PUSH 操作碼都是從位元組碼本身接下來的位元組取得（要推入的）資料。
 
-![EVM after PUSH1 0x42](images/ch14/maet_1410.png)
+![執行 PUSH1 0x42 之後的 EVM](images/ch14/maet_1410.png)
 
 圖 14-10. 執行 PUSH1 0x42 之後的 EVM
 
 接著，PUSH0 把 0x00 推入堆疊（圖 14-11）。
 
-![EVM after PUSH0](images/ch14/maet_1411.png)
+![執行 PUSH0 之後的 EVM](images/ch14/maet_1411.png)
 
 圖 14-11. 執行 PUSH0 之後的 EVM
 
 MSTORE 從堆疊彈出兩個項目，把第一個解讀為偏移量（以位元組為單位），第二個解讀為要從該偏移量開始寫入記憶體的值。注意，記憶體中在位元組 0x42 之前有許多前導零（31 個等於零的位元組）。這是正確的，因為堆疊中的每個值都是 32 位元組的值。大多數時候，我們書寫時可以忽略前導零（在圖 14-12 中，你看到的項目是 0x42），但你應該隨時記得它們是 32 位元組的值。
 
-![EVM after MSTORE](images/ch14/maet_1412.png)
+![執行 MSTORE 之後的 EVM](images/ch14/maet_1412.png)
 
 圖 14-12. 執行 MSTORE 之後的 EVM
 
 然後，又有一個 PUSH0 把 0x00 推入堆疊（圖 14-13）。
 
-![EVM after PUSH0](images/ch14/maet_1413.png)
+![執行 PUSH0 之後的 EVM](images/ch14/maet_1413.png)
 
 圖 14-13. 執行 PUSH0 之後的 EVM
 
 CALLDATALOAD 從堆疊取出一個元素，解讀為偏移量，回傳 calldata 中從該偏移量開始的 32 位元組值，再把它推入堆疊。在這裡，它回傳的是 0xab（注意，所有前導零都不影響數值，可以忽略），如圖 14-14 所示。
 
-![EVM after CALLDATALOAD](images/ch14/maet_1414.png)
+![執行 CALLDATALOAD 之後的 EVM](images/ch14/maet_1414.png)
 
 圖 14-14. 執行 CALLDATALOAD 之後的 EVM
 
 PUSH1 把 0xab 推入堆疊（圖 14-15）。
 
-![EVM after PUSH1 0xab](images/ch14/maet_1415.png)
+![執行 PUSH1 0xab 之後的 EVM](images/ch14/maet_1415.png)
 
 圖 14-15. 執行 PUSH1 0xab 之後的 EVM
 
 EQ 從堆疊彈出兩個項目並加以比較，相等就回傳 1，否則回傳 0。在這個例子中，兩個值相等，因此回傳 0x01，如圖 14-16 所示。
 
-![EVM after EQ](images/ch14/maet_1416.png)
+![執行 EQ 之後的 EVM](images/ch14/maet_1416.png)
 
 圖 14-16. 執行 EQ 之後的 EVM
 
 再一次，PUSH0 把 0x00 推入堆疊（圖 14-17）。
 
-![EVM after PUSH0](images/ch14/maet_1417.png)
+![執行 PUSH0 之後的 EVM](images/ch14/maet_1417.png)
 
 圖 14-17. 執行 PUSH0 之後的 EVM
 
 MLOAD 從堆疊取出一個元素，解讀為偏移量，從記憶體中該偏移量開始讀取 32 個位元組，再把結果推入堆疊（圖 14-18）。
 
-![EVM after MLOAD](images/ch14/maet_1418.png)
+![執行 MLOAD 之後的 EVM](images/ch14/maet_1418.png)
 
 圖 14-18. 執行 MLOAD 之後的 EVM
 
 現在，SSTORE 從堆疊彈出兩個項目，把第一個解讀為 slot，第二個解讀為要存到合約儲存空間中該 slot 編號的值，如圖 14-19 所示。
 
-![EVM after SSTORE](images/ch14/maet_1419.png)
+![執行 SSTORE 之後的 EVM](images/ch14/maet_1419.png)
 
 圖 14-19. 執行 SSTORE 之後的 EVM
 
 最後是 STOP 操作碼，它會停止執行，EVM 也順利返回，如圖 14-20 所示。
 
-![EVM after STOP](images/ch14/maet_1420.png)
+![執行 STOP 之後的 EVM](images/ch14/maet_1420.png)
 
 圖 14-20. 執行 STOP 之後的 EVM
 
@@ -706,7 +706,7 @@ address = keccak256(0xff ++ sender_address ++ salt ++ keccak256(init_code))[12:]
 
 本節會使用 Heimdall 產生圖 14-21。取得 `Faucet.sol` 的執行期位元組碼後，我們可以把它交給 Heimdall，看看 EVM 指令長什麼樣子。
 
-![Disassembling the Faucet runtime bytecode](images/ch14/maet_1421.png)
+![反組譯 Faucet 的執行期位元組碼](images/ch14/maet_1421.png)
 
 圖 14-21. 反組譯 Faucet 的執行期位元組碼
 
@@ -774,13 +774,13 @@ $ cat cfg.dot
 
 這個指令會把檔案的完整內容印在螢幕上。把它複製下來，打開一個[*控制流程圖*（control flow graph，CFG）線上產生器](https://oreil.ly/swOsK)，貼到網頁的左側，如圖 14-22 所示。
 
-![The control flow graph (CFG) of the Faucet.sol contract](images/ch14/maet_1422.png)
+![Faucet.sol 合約的控制流程圖（CFG）](images/ch14/maet_1422.png)
 
 圖 14-22. Faucet.sol 合約的控制流程圖（CFG）
 
 圖 14-23 是 `Faucet.sol` 合約一開頭的位元組碼。如你所見，它的開頭和前面的 `Example.sol` 合約是同樣的模式：`PUSH1 0x80 PUSH1 0x40 MSTORE`。
 
-![A zoom-in into the first part of the CFG graph](images/ch14/maet_1423.png)
+![放大 CFG 圖的第一部分](images/ch14/maet_1423.png)
 
 圖 14-23. 放大 CFG 圖的第一部分
 
@@ -832,7 +832,7 @@ jumpi(label, cond) // Jump to "label" if "cond" is true
 
 在 `0x20` 處，兩個 `JUMPDEST` 指令之後就只剩一個 `STOP` 指令，因為我們雖然宣告了 fallback 函式，卻讓它保持空白。如圖 14-24 所示，如果我們沒有實作 fallback 函式，合約就會改成丟出例外。
 
-![JUMPI instruction leading to fallback function](images/ch14/maet_1424.png)
+![通往 fallback 函式的 JUMPI 指令](images/ch14/maet_1424.png)
 
 圖 14-24. 通往 fallback 函式的 JUMPI 指令
 
@@ -1058,7 +1058,7 @@ transaction fee = total gas used × gas price paid (in ether)
 
 從歷史上看，區塊 gas 上限都是在協議升級時一次提高的，如圖 14-25 所示。而它的值通常會設定在核心開發者建議的水準，在這個水準下，我們能確定所有客戶端都能應付交易負載，並及時處理區塊。
 
-![Block gas limit history](images/ch14/maet_1425.png)
+![以太坊平均 gas 上限圖表](images/ch14/maet_1425.png)
 
 圖 14-25. 以太坊平均 gas 上限圖表
 
@@ -1214,7 +1214,7 @@ JUMPDEST 分析是分析合約、找出哪些跳躍目的地有效、哪些無�
 
 EVM 會快速掃過整段位元組碼，建立一份對照表，把每個 `0x5b` 位元組標記為有效或無效的跳躍目的地，如圖 14-26 所示。
 
-![Jumpdest analysis map](images/ch14/maet_1426.png)
+![客戶端建立 JUMPDEST 對照表，區分有效與無效的跳躍目的地](images/ch14/maet_1426.png)
 
 圖 14-26. 客戶端建立 JUMPDEST 對照表，區分有效與無效的跳躍目的地
 
@@ -1314,7 +1314,7 @@ Error: Stack too deep. Try compiling with `--via-ir` (cli) or the equivalent `vi
 
 為了更清楚地呈現這個問題，你可以看看圖 14-27，圖中詳細列出了每一步的堆疊組成。你很容易就能看出，執行到最後時，變數 `i` 位於深度 17 的位置。編譯器不允許區域變數或參數在函式的作用域中無法輕鬆存取，因此會丟出「stack too deep」錯誤。
 
-![Stack too deep visualization](images/ch14/maet_1427.png)
+![每一步的堆疊組成](images/ch14/maet_1427.png)
 
 圖 14-27. 每一步的堆疊組成
 
@@ -1362,7 +1362,7 @@ JUMPDEST 分析，以及所有與 gas 及程式碼自省有關的操作碼，都
 
 為此，EOF 新增了 `CALLF`、`RETF` 與 `JUMPF` 三個操作碼，以及一個*回傳堆疊*（與 EVM 平常的運算元堆疊完全分開）。具體來說，需要回傳堆疊，是為了在跳進函式之前保存執行資訊，這樣才能在不遺失資料的情況下返回呼叫者。圖 14-28 能幫助你更清楚地了解它的運作方式。
 
-![EOF function calls with return stack](images/ch14/maet_1428.png)
+![EOF 引進了函式（程式碼區段）的概念](images/ch14/maet_1428.png)
 
 圖 14-28. EOF 引進了函式（程式碼區段）的概念
 

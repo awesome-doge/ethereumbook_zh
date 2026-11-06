@@ -1,7 +1,7 @@
 <article class="chapter" aria-labelledby="<%= h page.id %>">
   <nav class="breadcrumb" aria-label="導覽路徑"><a href="<%= HOME_PATH %>"><%= BOOK_TITLE %></a><span aria-hidden="true">/</span><span><%= h page.label %></span></nav>
 <%- if LEGACY_2018 -%>
-<%= edition_notice(compact: true) %>
+<%= edition_notice(compact: true, page: page) %>
 <%- elsif !page.translated -%>
   <aside class="edition-notice" role="note" aria-label="翻譯進度"><p><strong>本章尚未翻譯：</strong>以下暫時顯示英文原稿。</p></aside>
 <%- end -%>

@@ -116,7 +116,7 @@ f8f8a2f43c8376ccb0871305060d7b27b0554d2cc72bccf41b2705608452f315
 >
 > 以太坊使用的橢圓曲線與比特幣完全相同，稱為 `secp256k1`。因此，許多比特幣的橢圓曲線函式庫與工具都能重複使用。
 
-![An elliptic curve](images/ch4/maet_0401.png)
+![一條橢圓曲線](images/ch4/maet_0401.png)
 
 圖 4-1. 一條橢圓曲線
 
@@ -136,7 +136,7 @@ y^2 mod p = (x^3 + 7) mod p
 
 因為這條曲線定義在質數階的有限體上，而不是實數上，所以它看起來就像散布在二維平面上的一堆點，很難具體想像。不過，它的數學與實數上的橢圓曲線完全相同。舉例來說，圖 4-2 顯示同一條橢圓曲線在一個小得多、質數階為 17 的有限體上的樣子，呈現為網格上的一組點。以太坊的 `secp256k1` 橢圓曲線，可以想成是一個大到難以想像的網格上，一組複雜得多的點。
 
-![Elliptic curve over a finite field](images/ch4/maet_0402.png)
+![橢圓曲線密碼學：將 F(p) 上的橢圓曲線視覺化，p=17](images/ch4/maet_0402.png)
 
 圖 4-2. 橢圓曲線密碼學：將 F(p) 上的橢圓曲線視覺化，p=17
 
@@ -168,13 +168,13 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 從幾何上來看，第三個點 P3 的算法是在 P1 與 P2 之間畫一條直線。這條直線會與橢圓曲線恰好再相交於另一個地方（相當神奇）。把這個點稱為 P3′ = (x, y)。接著對 x 軸做鏡射，就得到 P3 = (x, –y)，如圖 4-3 所示。
 
-![Elliptic curve addition](images/ch4/maet_0403.png)
+![橢圓曲線加法：將橢圓曲線上的兩個點相加](images/ch4/maet_0403.png)
 
 圖 4-3. 橢圓曲線加法：將橢圓曲線上的兩個點相加
 
 如果 P1 與 P2 是同一個點，那麼 P1 與 P2「之間」的直線就應該延伸為曲線在 P1 這一點的切線。這條切線會與曲線恰好相交於一個新的點，如圖 4-4 所示。你可以用微積分的技巧來決定切線的斜率。奇妙的是，即使我們只關心曲線上兩個座標都是整數的點，這些技巧依然有效！
 
-![Elliptic curve tangent](images/ch4/maet_0404.png)
+![橢圓曲線加法：將一個點與自己相加](images/ch4/maet_0404.png)
 
 圖 4-4. 橢圓曲線加法：將一個點與自己相加
 
@@ -182,7 +182,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 在某些情況下（例如 P1 與 P2 的 x 值相同但 y 值不同，如圖 4-5 所示），這條直線會是完全垂直的，此時 P3 = 無窮遠點。
 
-![Point at infinity](images/ch4/maet_0405.png)
+![橢圓曲線加法：一種結果為無窮遠點的特殊情況](images/ch4/maet_0405.png)
 
 圖 4-5. 橢圓曲線加法：一種結果為無窮遠點的特殊情況
 
@@ -612,7 +612,7 @@ e(pk, H(m)) = e(sk * g1,H(m)) = ← pk = sk * g1
 
 現在我們可以舉個簡單的例子，示範驗證者在「實際生活」中如何使用 BLS 演算法，以及簽章聚合如何發揮作用。圖 4-6 描繪了一個情境：有三個驗證者想對某個區塊（區塊 A）表達他們的投票。於是他們投下票、簽署選票，並彼此分享。
 
-![BLS signature aggregation example](images/ch4/maet_0406.png)
+![BLS 簽章聚合：三個驗證者投票並簽署](images/ch4/maet_0406.png)
 
 圖 4-6. BLS 簽章聚合：三個驗證者投票並簽署
 
@@ -620,13 +620,13 @@ e(pk, H(m)) = e(sk * g1,H(m)) = ← pk = sk * g1
 
 這不僅節省空間，也大幅減少所有以太坊節點驗證全部已簽署選票時所需的時間與計算量，因為節點可以直接驗證聚合後的選票，而不必逐一驗證每一張已簽署的選票。BLS 密碼學的神奇之處在於，聚合後的結果和一般的簽章沒有兩樣：也就是說，驗證聚合簽章的有效性，並不比驗證單一簽章的有效性困難。因此，必須驗證的已簽署選票數量大幅減少，而驗證每個簽章所需的計算量不變，完整節點必須執行的總計算量（也就是總時間）就遠低於沒有 BLS 聚合簽章時的情況，如圖 4-7 所示。
 
-![BLS aggregation efficiency](images/ch4/maet_0407.png)
+![BLS 簽章聚合縮短了驗證時間](images/ch4/maet_0407.png)
 
 圖 4-7. BLS 簽章聚合縮短了驗證時間
 
 如果有驗證者不遵守規則呢？如果驗證者做出惡意行為，例如 double-signing，也就是同時投票給兩個不同的區塊，協議就能偵測到這種行為，並對驗證者施以相應的懲罰，如圖 4-8 所示。
 
-![BLS slashing detection](images/ch4/maet_0408.png)
+![BLS 簽章讓惡意的驗證者能被偵測出來](images/ch4/maet_0408.png)
 
 圖 4-8. BLS 簽章讓惡意的驗證者能被偵測出來
 
@@ -726,7 +726,7 @@ d = 3 ← depth of the required Merkle tree
 
 圖 4-9 顯示把多項式承諾方案套用在這個例子上的情形，以默克爾根作為核心的 cryptographic primitive。
 
-![Merkle tree polynomial commitment](images/ch4/maet_0409.png)
+![使用默克爾樹的多項式承諾](images/ch4/maet_0409.png)
 
 圖 4-9. 使用默克爾樹的多項式承諾
 
@@ -775,7 +775,7 @@ KZG 承諾方案需要一個*可信設定*。你可以把它看成一個由密�
 
 以太坊的 KZG 可信設定儀式有超過 140,000 名不同的參與者，如圖 4-10 所示。
 
-![KZG trusted setup ceremony](images/ch4/maet_0410.png)
+![以太坊 KZG 可信設定儀式的參與者](images/ch4/maet_0410.png)
 
 圖 4-10. 以太坊 KZG 可信設定儀式的參與者
 
@@ -981,7 +981,7 @@ A = (1, 0)
 B = (2, 1)
 ```
 
-![Two points on a coordinate plane](images/ch4/maet_0411.png)
+![兩個不同的點 A 與 B](images/ch4/maet_0411.png)
 
 圖 4-11. 兩個不同的點 A 與 B
 
@@ -995,7 +995,7 @@ I(x) = x – 1
 
 圖 4-12 更清楚地說明了這一點。
 
-![Line through two points](images/ch4/maet_0412.png)
+![通過點 A 與 B 的插值多項式（直線）](images/ch4/maet_0412.png)
 
 圖 4-12. 通過點 A 與 B 的插值多項式（直線）
 
@@ -1042,31 +1042,31 @@ q(s)Z(s) = p(s) – I(s)
 
 一開始是證明方，他知道某些資料。他立刻把這些資料編碼成一個多項式，如圖 4-13 所示。
 
-![Prover encodes data as polynomial](images/ch4/maet_0413.png)
+![證明方把資料編碼成多項式 p](images/ch4/maet_0413.png)
 
 圖 4-13. 證明方把資料編碼成多項式 p
 
 證明方的目標，是讓驗證方相信自己知道某筆資料，而這筆資料現在已經編碼成一個多項式。不過，證明方不想洩漏整個資料集，而是希望驗證方能驗證關於這筆資料的特定宣稱。具體來說，證明方希望驗證方確認這個多項式在特定的點上的值等於預期的值，如圖 4-14 所示。
 
-![Prover wants to prove specific evaluations](images/ch4/maet_0414.png)
+![證明方想證明多項式在特定點上的求值結果](images/ch4/maet_0414.png)
 
 圖 4-14. 證明方想證明多項式在特定點上的求值結果
 
 為了達成這個目標，證明方計算這個多項式的 KZG 承諾，並傳送給驗證方，如圖 4-15 所示。
 
-![Prover computes and sends commitment](images/ch4/maet_0415.png)
+![證明方計算 KZG 承諾 C，並傳送給驗證方](images/ch4/maet_0415.png)
 
 圖 4-15. 證明方計算 KZG 承諾 C，並傳送給驗證方
 
 接著，證明方需要針對所有想向驗證方證明的求值結果，計算 KZG 證明，如圖 4-16 所示。
 
-![Prover computes KZG proofs](images/ch4/maet_0416.png)
+![證明方計算多項式各個求值結果的 KZG 證明，並傳送給驗證方](images/ch4/maet_0416.png)
 
 圖 4-16. 證明方計算多項式各個求值結果的 KZG 證明，並傳送給驗證方
 
 現在輪到驗證方了。為了確定證明方是誠實的，驗證方需要使用證明方先前傳來的資訊，再加上可信設定，計算橢圓曲線 pairing 檢查，如圖 4-17 所示。
 
-![Verifier checks the proofs](images/ch4/maet_0417.png)
+![驗證方透過橢圓曲線 pairing 運算，檢查求值結果是否有效](images/ch4/maet_0417.png)
 
 圖 4-17. 驗證方透過橢圓曲線 pairing 運算，檢查求值結果是否有效
 

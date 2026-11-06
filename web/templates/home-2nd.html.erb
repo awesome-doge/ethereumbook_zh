@@ -48,4 +48,27 @@
       <%- end -%>
     </ol>
   </section>
+
+  <%- ch = ->(slug, text) { %(<a href="#{pages.find { |p| p.slug == slug }.path}">#{text}</a>) } -%>
+  <section class="home-about" aria-labelledby="new-title">
+    <h2 id="new-title">第二版新增了什麼</h2>
+    <p>第一版寫於 2018 年，當時以太坊還在用工作量證明挖礦。第二版配合 2022 年的合併（The Merge）全面改寫：<%= ch.('consensus', '權益證明與共識') %>、<%= ch.('nodes', '執行層與共識層客戶端') %>、<%= ch.('wallets', '帳戶抽象與社交恢復') %>、<%= ch.('transactions', 'EIP-1559 手續費、blob 交易與 EIP-7702') %>，並新增四個完整章節：<%= ch.('smart-contract-security', '智能合約安全') %>、<%= ch.('defi', '去中心化金融（DeFi）') %>、<%= ch.('scaling', '以太坊擴容（rollup 與資料可用性）') %>，以及<%= ch.('zero-knowledge-proofs', '零知識證明') %>。</p>
+
+    <h2 id="audience-title">這本書適合誰</h2>
+    <p>本書適合所有想深入了解以太坊的人。<%= ch.('what-is-ethereum', '前兩章') %>是循序漸進的入門介紹，適合新手；第 3 章以後包含許多寫給程式設計師的技術主題與範例：<%= ch.('cryptography', '私鑰、公鑰與地址的密碼學') %>、<%= ch.('solidity', '用 Solidity 撰寫智能合約') %>與 <%= ch.('vyper', 'Vyper') %>、<%= ch.('tokens', 'ERC-20 與 ERC-721 代幣') %>、<%= ch.('oracles', '預言機') %>、<%= ch.('dapps', '去中心化應用') %>，以及<%= ch.('evm', '以太坊虛擬機（EVM）與位元組碼') %>。</p>
+
+    <%- if PDF_URL -%>
+    <h2 id="download-title">下載電子書</h2>
+    <p>全書也有 <a href="<%= PDF_URL %>" rel="noopener">PDF</a>（A4 排版，適合電腦、平板與列印）與 <a href="<%= EPUB_URL %>" rel="noopener">EPUB</a>（適合 Kindle、Apple Books、Kobo 等閱讀器）兩種格式，免費下載。</p>
+    <%- end -%>
+
+    <h2 id="about-title">關於這個譯本</h2>
+    <p>《精通以太坊》第二版（<i lang="en"><%= h PROFILE[:original_name] %></i>）由 <%= AUTHORS.join('、') %> 撰寫，O'Reilly Media 於 2025 年出版，原著以 <a href="<%= LICENSE_URL %>deed.zh_TW" rel="license noopener"><%= LICENSE_NAME %></a> 授權公開。本站是 Dr. Awesome Doge 翻譯的繁體中文（臺灣）譯本，同樣以 <%= LICENSE_NAME %> 釋出<%= LICENSE_NOTE %>。譯稿與建置程式都在 <a href="<%= REPO_URL %>" rel="noopener">GitHub</a>，發現翻譯錯誤或技術問題，歡迎提交修正。</p>
+
+    <h2 id="series-title">同一譯者的其他譯作</h2>
+    <ul>
+      <li><a href="https://bitcoinbook-3nd-zh.doge.tg/" rel="noopener">精通比特幣（第三版）繁體中文版</a>：金鑰、地址、交易、腳本、挖礦與共識、Taproot 與閃電網路</li>
+      <li><a href="https://lnbook-zh.doge.tg/" rel="noopener">精通閃電網路繁體中文版</a>：比特幣的第二層支付網路，支付通道、HTLC 與洋蔥路由</li>
+    </ul>
+  </section>
 </div>
