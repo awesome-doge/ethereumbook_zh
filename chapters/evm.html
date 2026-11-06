@@ -20,7 +20,7 @@
 <meta property="og:title" content="第 14 章　以太坊虛擬機｜精通以太坊（第二版）繁體中文版">
 <meta property="og:description" content="以太坊虛擬機（EVM）：與其他技術的比較、指令集、以太坊狀態與默克爾帕特里夏前綴樹、EVM 各組件的實際運作，以及 Solidity 如何編譯成位元組碼。">
 <meta property="og:url" content="https://mastering-ethereum.doge.tg/chapters/evm.html">
-<meta property="og:image" content="https://mastering-ethereum.doge.tg/assets/og-cover.png">
+<meta property="og:image" content="https://mastering-ethereum.doge.tg/assets/og-cover-2nd.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="zh_TW">
@@ -33,9 +33,11 @@
 <link rel="stylesheet" href="/assets/site.css?v=ad2df01e33">
 <link rel="stylesheet" href="/assets/code.css?v=c94d007c0c">
 <script defer src="/assets/site.js?v=33af8366a0"></script>
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Chapter","@id":"https://mastering-ethereum.doge.tg/chapters/evm.html#chapter","name":"第 14 章　以太坊虛擬機","headline":"第 14 章　以太坊虛擬機｜精通以太坊（第二版）","description":"以太坊虛擬機（EVM）：與其他技術的比較、指令集、以太坊狀態與默克爾帕特里夏前綴樹、EVM 各組件的實際運作，以及 Solidity 如何編譯成位元組碼。","url":"https://mastering-ethereum.doge.tg/chapters/evm.html","inLanguage":"zh-TW","position":15,"dateModified":"2026-11-06T03:30:53+08:00","isPartOf":{"@id":"https://mastering-ethereum.doge.tg/#book"},"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true},{"@type":"Book","@id":"https://mastering-ethereum.doge.tg/#book","name":"精通以太坊（第二版）","alternateName":["Mastering Ethereum, 2nd Edition","精通以太坊第二版"],"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"inLanguage":"zh-TW","publisher":{"@type":"Organization","name":"O'Reilly Media"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true,"url":"https://mastering-ethereum.doge.tg/","image":"https://mastering-ethereum.doge.tg/assets/og-cover.png","translationOfWork":{"@type":"Book","name":"Mastering Ethereum, 2nd Edition","inLanguage":"en","url":"https://github.com/ethereumbook/ethereumbook"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"精通以太坊（第二版）","item":"https://mastering-ethereum.doge.tg/"},{"@type":"ListItem","position":2,"name":"第 14 章　以太坊虛擬機","item":"https://mastering-ethereum.doge.tg/chapters/evm.html"}]}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Chapter","@id":"https://mastering-ethereum.doge.tg/chapters/evm.html#chapter","name":"第 14 章　以太坊虛擬機","headline":"第 14 章　以太坊虛擬機｜精通以太坊（第二版）","description":"以太坊虛擬機（EVM）：與其他技術的比較、指令集、以太坊狀態與默克爾帕特里夏前綴樹、EVM 各組件的實際運作，以及 Solidity 如何編譯成位元組碼。","url":"https://mastering-ethereum.doge.tg/chapters/evm.html","inLanguage":"zh-TW","position":15,"dateModified":"2026-11-06T18:11:04+08:00","isPartOf":{"@id":"https://mastering-ethereum.doge.tg/#book"},"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true},{"@type":"Book","@id":"https://mastering-ethereum.doge.tg/#book","name":"精通以太坊（第二版）","alternateName":["Mastering Ethereum, 2nd Edition","精通以太坊第二版"],"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"inLanguage":"zh-TW","publisher":{"@type":"Organization","name":"O'Reilly Media"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true,"url":"https://mastering-ethereum.doge.tg/","image":"https://mastering-ethereum.doge.tg/assets/og-cover-2nd.png","translationOfWork":{"@type":"Book","name":"Mastering Ethereum, 2nd Edition","inLanguage":"en","url":"https://github.com/ethereumbook/ethereumbook"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"精通以太坊（第二版）","item":"https://mastering-ethereum.doge.tg/"},{"@type":"ListItem","position":2,"name":"第 14 章　以太坊虛擬機","item":"https://mastering-ethereum.doge.tg/chapters/evm.html"}]}]}</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZVVQYEKMPF"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-ZVVQYEKMPF');</script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-ZVVQYEKMPF');
+// 電子書下載：GA 的加強型評估不認得 .epub，下載連結又在 GitHub 上，所以自己送事件
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href$=".pdf"],a[href$=".epub"]');if(a)gtag('event','ebook_download',{format:a.href.split('.').pop(),link_url:a.href});});</script>
 </head>
 <body class="is-chapter">
 <a class="skip-link" href="#main">跳到主要內容</a>
@@ -222,7 +224,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch14/maet_1401.webp"><img src="/images/ch14/maet_1401.png" alt="EVM architecture and execution context" width="1445" height="1986" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch14/maet_1401.webp"><img src="/images/ch14/maet_1401.png" alt="EVM 的架構與執行環境" width="1445" height="1986" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 14-1. EVM 的架構與執行環境</div>
 </div>
@@ -553,7 +555,7 @@ GASLIMIT   //Get the block's gas limit</pre>
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch14/maet_1402.webp"><img src="/images/ch14/maet_1402.png" alt="A binary merkle tree" width="1446" height="819" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch14/maet_1402.webp"><img src="/images/ch14/maet_1402.png" alt="二元默克爾樹" width="1446" height="819" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 14-2. 二元默克爾樹</div>
 </div>
@@ -568,7 +570,7 @@ GASLIMIT   //Get the block's gas limit</pre>
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch14/maet_1403.webp"><img src="/images/ch14/maet_1403.png" alt="The Merkle proof to verify that data++_++1 is contained in the tree" width="1446" height="815" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch14/maet_1403.webp"><img src="/images/ch14/maet_1403.png" alt="驗證 data++_++1 包含在樹中的默克爾證明" width="1446" height="815" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 14-3. 驗證 data_1 包含在樹中的默克爾證明</div>
 </div>
@@ -610,7 +612,7 @@ GASLIMIT   //Get the block's gas limit</pre>
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch14/maet_1404.webp"><img src="/images/ch14/maet_1404.png" alt="Merkle tree complexity comparison" width="1306" height="1018" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch14/maet_1404.webp"><img src="/images/ch14/maet_1404.png" alt="O(n) 線性複雜度（上）與 O(log(n)) 複雜度（下）的比較" width="1306" height="1018" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 14-4. O(n) 線性複雜度（上）與 O(log(n)) 複雜度（下）的比較</div>
 </div>
@@ -648,7 +650,7 @@ GASLIMIT   //Get the block's gas limit</pre>
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch14/maet_1405.webp"><img src="/images/ch14/maet_1405.png" alt="Merkle-Patricia trie example" width="1446" height="936" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch14/maet_1405.webp"><img src="/images/ch14/maet_1405.png" alt="把鍵值項目 car --++&gt;++ Schumacher 編碼進默克爾帕特里夏前綴樹" width="1446" height="936" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 14-5. 把鍵值項目 car --&gt; Schumacher 編碼進默克爾帕特里夏前綴樹</div>
 </div>
@@ -699,7 +701,7 @@ GASLIMIT   //Get the block's gas limit</pre>
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch14/maet_1406.webp"><img src="/images/ch14/maet_1406.png" alt="EVM stack operations" width="1023" height="1411" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch14/maet_1406.webp"><img src="/images/ch14/maet_1406.png" alt="EVM 堆疊依照後進先出的順序進行操作" width="1023" height="1411" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 14-6. EVM 堆疊依照後進先出的順序進行操作</div>
 </div>
@@ -714,7 +716,7 @@ GASLIMIT   //Get the block's gas limit</pre>
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch14/maet_1407.webp"><img src="/images/ch14/maet_1407.png" alt="EVM memory operations" width="1264" height="1025" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch14/maet_1407.webp"><img src="/images/ch14/maet_1407.png" alt="EVM 記憶體是揮發性、以位元組為單位定址的資料結構" width="1264" height="1025" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 14-7. EVM 記憶體是揮發性、以位元組為單位定址的資料結構</div>
 </div>
@@ -740,7 +742,7 @@ GASLIMIT   //Get the block's gas limit</pre>
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch14/maet_1408.webp"><img src="/images/ch14/maet_1408.png" alt="EVM storage" width="1067" height="1319" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch14/maet_1408.webp"><img src="/images/ch14/maet_1408.png" alt="EVM 儲存空間是採用鍵值資料結構的永久記憶" width="1067" height="1319" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 14-8. EVM 儲存空間是採用鍵值資料結構的永久記憶</div>
 </div>
@@ -805,7 +807,7 @@ GASLIMIT   //Get the block's gas limit</pre>
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch14/maet_1409.webp"><img src="/images/ch14/maet_1409.png" alt="EVM initial state" width="1436" height="713" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch14/maet_1409.webp"><img src="/images/ch14/maet_1409.png" alt="EVM 的初始狀態" width="1436" height="713" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 14-9. EVM 的初始狀態</div>
 </div>
@@ -814,7 +816,7 @@ GASLIMIT   //Get the block's gas limit</pre>
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch14/maet_1410.webp"><img src="/images/ch14/maet_1410.png" alt="EVM after PUSH1 0x42" width="1436" height="713" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch14/maet_1410.webp"><img src="/images/ch14/maet_1410.png" alt="執行 PUSH1 0x42 之後的 EVM" width="1436" height="713" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 14-10. 執行 PUSH1 0x42 之後的 EVM</div>
 </div>
@@ -823,7 +825,7 @@ GASLIMIT   //Get the block's gas limit</pre>
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch14/maet_1411.webp"><img src="/images/ch14/maet_1411.png" alt="EVM after PUSH0" width="1436" height="713" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch14/maet_1411.webp"><img src="/images/ch14/maet_1411.png" alt="執行 PUSH0 之後的 EVM" width="1436" height="713" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 14-11. 執行 PUSH0 之後的 EVM</div>
 </div>
@@ -832,7 +834,7 @@ GASLIMIT   //Get the block's gas limit</pre>
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch14/maet_1412.webp"><img src="/images/ch14/maet_1412.png" alt="EVM after MSTORE" width="1436" height="871" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch14/maet_1412.webp"><img src="/images/ch14/maet_1412.png" alt="執行 MSTORE 之後的 EVM" width="1436" height="871" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 14-12. 執行 MSTORE 之後的 EVM</div>
 </div>
@@ -841,7 +843,7 @@ GASLIMIT   //Get the block's gas limit</pre>
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch14/maet_1413.webp"><img src="/images/ch14/maet_1413.png" alt="EVM after PUSH0" width="1436" height="755" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch14/maet_1413.webp"><img src="/images/ch14/maet_1413.png" alt="執行 PUSH0 之後的 EVM" width="1436" height="755" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 14-13. 執行 PUSH0 之後的 EVM</div>
 </div>
@@ -850,7 +852,7 @@ GASLIMIT   //Get the block's gas limit</pre>
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch14/maet_1414.webp"><img src="/images/ch14/maet_1414.png" alt="EVM after CALLDATALOAD" width="1436" height="813" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch14/maet_1414.webp"><img src="/images/ch14/maet_1414.png" alt="執行 CALLDATALOAD 之後的 EVM" width="1436" height="813" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 14-14. 執行 CALLDATALOAD 之後的 EVM</div>
 </div>
@@ -859,7 +861,7 @@ GASLIMIT   //Get the block's gas limit</pre>
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch14/maet_1415.webp"><img src="/images/ch14/maet_1415.png" alt="EVM after PUSH1 0xab" width="1436" height="759" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch14/maet_1415.webp"><img src="/images/ch14/maet_1415.png" alt="執行 PUSH1 0xab 之後的 EVM" width="1436" height="759" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 14-15. 執行 PUSH1 0xab 之後的 EVM</div>
 </div>
@@ -868,7 +870,7 @@ GASLIMIT   //Get the block's gas limit</pre>
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch14/maet_1416.webp"><img src="/images/ch14/maet_1416.png" alt="EVM after EQ" width="1436" height="875" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch14/maet_1416.webp"><img src="/images/ch14/maet_1416.png" alt="執行 EQ 之後的 EVM" width="1436" height="875" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 14-16. 執行 EQ 之後的 EVM</div>
 </div>
@@ -877,7 +879,7 @@ GASLIMIT   //Get the block's gas limit</pre>
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch14/maet_1417.webp"><img src="/images/ch14/maet_1417.png" alt="EVM after PUSH0" width="1436" height="755" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch14/maet_1417.webp"><img src="/images/ch14/maet_1417.png" alt="執行 PUSH0 之後的 EVM" width="1436" height="755" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 14-17. 執行 PUSH0 之後的 EVM</div>
 </div>
@@ -886,7 +888,7 @@ GASLIMIT   //Get the block's gas limit</pre>
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch14/maet_1418.webp"><img src="/images/ch14/maet_1418.png" alt="EVM after MLOAD" width="1436" height="813" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch14/maet_1418.webp"><img src="/images/ch14/maet_1418.png" alt="執行 MLOAD 之後的 EVM" width="1436" height="813" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 14-18. 執行 MLOAD 之後的 EVM</div>
 </div>
@@ -895,7 +897,7 @@ GASLIMIT   //Get the block's gas limit</pre>
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch14/maet_1419.webp"><img src="/images/ch14/maet_1419.png" alt="EVM after SSTORE" width="1436" height="930" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch14/maet_1419.webp"><img src="/images/ch14/maet_1419.png" alt="執行 SSTORE 之後的 EVM" width="1436" height="930" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 14-19. 執行 SSTORE 之後的 EVM</div>
 </div>
@@ -904,7 +906,7 @@ GASLIMIT   //Get the block's gas limit</pre>
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch14/maet_1420.webp"><img src="/images/ch14/maet_1420.png" alt="EVM after STOP" width="1436" height="846" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch14/maet_1420.webp"><img src="/images/ch14/maet_1420.png" alt="執行 STOP 之後的 EVM" width="1436" height="846" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 14-20. 執行 STOP 之後的 EVM</div>
 </div>
@@ -1202,7 +1204,7 @@ contract Faucet {
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch14/maet_1421.webp"><img src="/images/ch14/maet_1421.png" alt="Disassembling the Faucet runtime bytecode" width="475" height="350" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch14/maet_1421.webp"><img src="/images/ch14/maet_1421.png" alt="反組譯 Faucet 的執行期位元組碼" width="475" height="350" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 14-21. 反組譯 Faucet 的執行期位元組碼</div>
 </div>
@@ -1301,7 +1303,7 @@ heimdall 0.8.4</code></pre>
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch14/maet_1422.webp"><img src="/images/ch14/maet_1422.png" alt="The control flow graph (CFG) of the Faucet.sol contract" width="1386" height="1002" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch14/maet_1422.webp"><img src="/images/ch14/maet_1422.png" alt="Faucet.sol 合約的控制流程圖（CFG）" width="1386" height="1002" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 14-22. Faucet.sol 合約的控制流程圖（CFG）</div>
 </div>
@@ -1310,7 +1312,7 @@ heimdall 0.8.4</code></pre>
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch14/maet_1423.webp"><img src="/images/ch14/maet_1423.png" alt="A zoom-in into the first part of the CFG graph" width="618" height="865" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch14/maet_1423.webp"><img src="/images/ch14/maet_1423.png" alt="放大 CFG 圖的第一部分" width="618" height="865" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 14-23. 放大 CFG 圖的第一部分</div>
 </div>
@@ -1379,7 +1381,7 @@ JUMPI</pre>
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch14/maet_1424.webp"><img src="/images/ch14/maet_1424.png" alt="JUMPI instruction leading to fallback function" width="640" height="865" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch14/maet_1424.webp"><img src="/images/ch14/maet_1424.png" alt="通往 fallback 函式的 JUMPI 指令" width="640" height="865" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 14-24. 通往 fallback 函式的 JUMPI 指令</div>
 </div>
@@ -1721,7 +1723,7 @@ refunded ether = remaining gas × gas price</pre>
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch14/maet_1425.webp"><img src="/images/ch14/maet_1425.png" alt="Block gas limit history" width="852" height="525" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch14/maet_1425.webp"><img src="/images/ch14/maet_1425.png" alt="以太坊平均 gas 上限圖表" width="852" height="525" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 14-25. 以太坊平均 gas 上限圖表</div>
 </div>
@@ -1952,7 +1954,7 @@ refunded ether = remaining gas × gas price</pre>
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch14/maet_1426.webp"><img src="/images/ch14/maet_1426.png" alt="Jumpdest analysis map" width="1234" height="759" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch14/maet_1426.webp"><img src="/images/ch14/maet_1426.png" alt="客戶端建立 JUMPDEST 對照表，區分有效與無效的跳躍目的地" width="1234" height="759" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 14-26. 客戶端建立 JUMPDEST 對照表，區分有效與無效的跳躍目的地</div>
 </div>
@@ -2091,7 +2093,7 @@ Error: Stack too deep. Try compiling with `--via-ir` (cli) or the equivalent `vi
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch14/maet_1427.webp"><img src="/images/ch14/maet_1427.png" alt="Stack too deep visualization" width="1423" height="1979" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch14/maet_1427.webp"><img src="/images/ch14/maet_1427.png" alt="每一步的堆疊組成" width="1423" height="1979" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 14-27. 每一步的堆疊組成</div>
 </div>
@@ -2162,7 +2164,7 @@ Data                             000102030405060708090a0b0c0d0e0f101112131415161
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch14/maet_1428.webp"><img src="/images/ch14/maet_1428.png" alt="EOF function calls with return stack" width="1440" height="1525" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch14/maet_1428.webp"><img src="/images/ch14/maet_1428.png" alt="EOF 引進了函式（程式碼區段）的概念" width="1440" height="1525" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 14-28. EOF 引進了函式（程式碼區段）的概念</div>
 </div>

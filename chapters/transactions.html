@@ -20,7 +20,7 @@
 <meta property="og:title" content="第 6 章　交易｜精通以太坊（第二版）繁體中文版">
 <meta property="og:description" content="以太坊交易的結構：nonce、gas、接收者、value 與 data，合約建立交易、數位簽章與實際簽署交易，以及各種交易類型的序列化。">
 <meta property="og:url" content="https://mastering-ethereum.doge.tg/chapters/transactions.html">
-<meta property="og:image" content="https://mastering-ethereum.doge.tg/assets/og-cover.png">
+<meta property="og:image" content="https://mastering-ethereum.doge.tg/assets/og-cover-2nd.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="zh_TW">
@@ -33,9 +33,11 @@
 <link rel="stylesheet" href="/assets/site.css?v=ad2df01e33">
 <link rel="stylesheet" href="/assets/code.css?v=c94d007c0c">
 <script defer src="/assets/site.js?v=33af8366a0"></script>
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Chapter","@id":"https://mastering-ethereum.doge.tg/chapters/transactions.html#chapter","name":"第 6 章　交易","headline":"第 6 章　交易｜精通以太坊（第二版）","description":"以太坊交易的結構：nonce、gas、接收者、value 與 data，合約建立交易、數位簽章與實際簽署交易，以及各種交易類型的序列化。","url":"https://mastering-ethereum.doge.tg/chapters/transactions.html","inLanguage":"zh-TW","position":7,"dateModified":"2026-11-06T03:30:53+08:00","isPartOf":{"@id":"https://mastering-ethereum.doge.tg/#book"},"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true},{"@type":"Book","@id":"https://mastering-ethereum.doge.tg/#book","name":"精通以太坊（第二版）","alternateName":["Mastering Ethereum, 2nd Edition","精通以太坊第二版"],"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"inLanguage":"zh-TW","publisher":{"@type":"Organization","name":"O'Reilly Media"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true,"url":"https://mastering-ethereum.doge.tg/","image":"https://mastering-ethereum.doge.tg/assets/og-cover.png","translationOfWork":{"@type":"Book","name":"Mastering Ethereum, 2nd Edition","inLanguage":"en","url":"https://github.com/ethereumbook/ethereumbook"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"精通以太坊（第二版）","item":"https://mastering-ethereum.doge.tg/"},{"@type":"ListItem","position":2,"name":"第 6 章　交易","item":"https://mastering-ethereum.doge.tg/chapters/transactions.html"}]}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Chapter","@id":"https://mastering-ethereum.doge.tg/chapters/transactions.html#chapter","name":"第 6 章　交易","headline":"第 6 章　交易｜精通以太坊（第二版）","description":"以太坊交易的結構：nonce、gas、接收者、value 與 data，合約建立交易、數位簽章與實際簽署交易，以及各種交易類型的序列化。","url":"https://mastering-ethereum.doge.tg/chapters/transactions.html","inLanguage":"zh-TW","position":7,"dateModified":"2026-11-06T18:11:04+08:00","isPartOf":{"@id":"https://mastering-ethereum.doge.tg/#book"},"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true},{"@type":"Book","@id":"https://mastering-ethereum.doge.tg/#book","name":"精通以太坊（第二版）","alternateName":["Mastering Ethereum, 2nd Edition","精通以太坊第二版"],"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"inLanguage":"zh-TW","publisher":{"@type":"Organization","name":"O'Reilly Media"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true,"url":"https://mastering-ethereum.doge.tg/","image":"https://mastering-ethereum.doge.tg/assets/og-cover-2nd.png","translationOfWork":{"@type":"Book","name":"Mastering Ethereum, 2nd Edition","inLanguage":"en","url":"https://github.com/ethereumbook/ethereumbook"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"精通以太坊（第二版）","item":"https://mastering-ethereum.doge.tg/"},{"@type":"ListItem","position":2,"name":"第 6 章　交易","item":"https://mastering-ethereum.doge.tg/chapters/transactions.html"}]}]}</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZVVQYEKMPF"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-ZVVQYEKMPF');</script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-ZVVQYEKMPF');
+// 電子書下載：GA 的加強型評估不認得 .epub，下載連結又在 GitHub 上，所以自己送事件
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href$=".pdf"],a[href$=".epub"]');if(a)gtag('event','ebook_download',{format:a.href.split('.').pop(),link_url:a.href});});</script>
 </head>
 <body class="is-chapter">
 <a class="skip-link" href="#main">跳到主要內容</a>
@@ -350,7 +352,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch6/maet_0601.webp"><img src="/images/ch6/maet_0601.png" alt="Block gas limit evolution over time" width="852" height="525" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch6/maet_0601.webp"><img src="/images/ch6/maet_0601.png" alt="區塊 gas 上限的演變" width="852" height="525" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 6-1. 區塊 gas 上限的演變</div>
 </div>
@@ -516,7 +518,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch6/maet_0602.webp"><img src="/images/ch6/maet_0602.png" alt="EIP-7702 delegation designator" width="767" height="396" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch6/maet_0602.webp"><img src="/images/ch6/maet_0602.png" alt="EIP-7702 的委託機制" width="767" height="396" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 6-2. EIP-7702 的委託機制</div>
 </div>
@@ -650,7 +652,7 @@ Enter keystore password:
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch6/maet_0603.webp"><img src="/images/ch6/maet_0603.png" alt="Google Cloud Web3 faucet interface" width="1496" height="812" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch6/maet_0603.webp"><img src="/images/ch6/maet_0603.png" alt="Google Cloud Web3 水龍頭" width="1496" height="812" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 6-3. Google Cloud Web3 水龍頭</div>
 </div>
@@ -963,7 +965,7 @@ to                      0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045</code></pre>
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch6/maet_0604.webp"><img src="/images/ch6/maet_0604.png" alt="Transaction with only value" width="1440" height="1494" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch6/maet_0604.webp"><img src="/images/ch6/maet_0604.png" alt="只有金額的交易（付款）" width="1440" height="1494" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 6-4. 只有金額的交易（付款）</div>
 </div>
@@ -980,7 +982,7 @@ to                      0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045</code></pre>
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch6/maet_0605.webp"><img src="/images/ch6/maet_0605.png" alt="Transaction with value and data" width="1440" height="1576" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch6/maet_0605.webp"><img src="/images/ch6/maet_0605.png" alt="同時有金額與資料的交易" width="1440" height="1576" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 6-5. 同時有金額與資料的交易</div>
 </div>
@@ -997,7 +999,7 @@ to                      0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045</code></pre>
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch6/maet_0606.webp"><img src="/images/ch6/maet_0606.png" alt="Transaction with only data" width="1442" height="1539" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch6/maet_0606.webp"><img src="/images/ch6/maet_0606.png" alt="只有資料的交易（呼叫）" width="1442" height="1539" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 6-6. 只有資料的交易（呼叫）</div>
 </div>
@@ -1014,7 +1016,7 @@ to                      0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045</code></pre>
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch6/maet_0607.webp"><img src="/images/ch6/maet_0607.png" alt="Transaction with neither value nor data" width="1444" height="1458" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch6/maet_0607.webp"><img src="/images/ch6/maet_0607.png" alt="既沒有金額也沒有資料的交易" width="1444" height="1458" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 6-7. 既沒有金額也沒有資料的交易</div>
 </div>
@@ -1181,7 +1183,7 @@ Binary:
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch6/maet_0608.webp"><img src="/images/ch6/maet_0608.png" alt="Contract creation on Etherscan" width="1438" height="935" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch6/maet_0608.webp"><img src="/images/ch6/maet_0608.png" alt="Etherscan 上建立合約的交易" width="1438" height="935" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 6-8. Etherscan 上建立合約的交易</div>
 </div>
@@ -1245,7 +1247,7 @@ authorizationList</code></pre>
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch6/maet_0609.webp"><img src="/images/ch6/maet_0609.png" alt="Contract interactions on Etherscan" width="1440" height="641" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch6/maet_0609.webp"><img src="/images/ch6/maet_0609.png" alt="存入合約與從合約提款的交易" width="1440" height="641" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 6-9. 存入合約與從合約提款的交易</div>
 </div>
@@ -1936,7 +1938,7 @@ Transaction Receipt:  TransactionReceipt <span class="o">{</span>
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch6/maet_0610.webp"><img src="/images/ch6/maet_0610.png" alt="Offline signing workflow" width="1127" height="523" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch6/maet_0610.webp"><img src="/images/ch6/maet_0610.png" alt="離線簽署流程" width="1127" height="523" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 6-10. 離線簽署流程</div>
 </div>
@@ -2104,7 +2106,7 @@ Transaction Receipt:  TransactionReceipt <span class="o">{</span>
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch6/maet_0611.webp"><img src="/images/ch6/maet_0611.png" alt="User submitting a large buy transaction" width="853" height="315" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch6/maet_0611.webp"><img src="/images/ch6/maet_0611.png" alt="MEV 介入之前的使用者交易" width="853" height="315" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 6-11. MEV 介入之前的使用者交易</div>
 </div>
@@ -2113,7 +2115,7 @@ Transaction Receipt:  TransactionReceipt <span class="o">{</span>
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch6/maet_0612.webp"><img src="/images/ch6/maet_0612.png" alt="Validator sandwiching user transaction" width="853" height="482" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch6/maet_0612.webp"><img src="/images/ch6/maet_0612.png" alt="驗證者發動的三明治攻擊" width="853" height="482" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 6-12. 驗證者發動的三明治攻擊</div>
 </div>
@@ -2165,7 +2167,7 @@ Transaction Receipt:  TransactionReceipt <span class="o">{</span>
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch6/maet_0613.webp"><img src="/images/ch6/maet_0613.png" alt="Gnosis Safe value secured over time" width="1440" height="976" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch6/maet_0613.webp"><img src="/images/ch6/maet_0613.png" alt="Gnosis Safe 保護了數十億美元的價值" width="1440" height="976" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 6-13. Gnosis Safe 保護了數十億美元的價值</div>
 </div>

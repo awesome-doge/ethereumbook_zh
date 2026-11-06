@@ -20,7 +20,7 @@
 <meta property="og:title" content="第 15 章　共識｜精通以太坊（第二版）繁體中文版">
 <meta property="og:description" content="以太坊的共識：工作量證明與權益證明、權益證明的術語、LMD-GHOST 與 Casper FFG、檢查點的生命週期、Gasper 的實際運作，以及相關爭議。">
 <meta property="og:url" content="https://mastering-ethereum.doge.tg/chapters/consensus.html">
-<meta property="og:image" content="https://mastering-ethereum.doge.tg/assets/og-cover.png">
+<meta property="og:image" content="https://mastering-ethereum.doge.tg/assets/og-cover-2nd.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="zh_TW">
@@ -33,9 +33,11 @@
 <link rel="stylesheet" href="/assets/site.css?v=ad2df01e33">
 <link rel="stylesheet" href="/assets/code.css?v=c94d007c0c">
 <script defer src="/assets/site.js?v=33af8366a0"></script>
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Chapter","@id":"https://mastering-ethereum.doge.tg/chapters/consensus.html#chapter","name":"第 15 章　共識","headline":"第 15 章　共識｜精通以太坊（第二版）","description":"以太坊的共識：工作量證明與權益證明、權益證明的術語、LMD-GHOST 與 Casper FFG、檢查點的生命週期、Gasper 的實際運作，以及相關爭議。","url":"https://mastering-ethereum.doge.tg/chapters/consensus.html","inLanguage":"zh-TW","position":16,"dateModified":"2026-11-06T03:14:10+08:00","isPartOf":{"@id":"https://mastering-ethereum.doge.tg/#book"},"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true},{"@type":"Book","@id":"https://mastering-ethereum.doge.tg/#book","name":"精通以太坊（第二版）","alternateName":["Mastering Ethereum, 2nd Edition","精通以太坊第二版"],"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"inLanguage":"zh-TW","publisher":{"@type":"Organization","name":"O'Reilly Media"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true,"url":"https://mastering-ethereum.doge.tg/","image":"https://mastering-ethereum.doge.tg/assets/og-cover.png","translationOfWork":{"@type":"Book","name":"Mastering Ethereum, 2nd Edition","inLanguage":"en","url":"https://github.com/ethereumbook/ethereumbook"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"精通以太坊（第二版）","item":"https://mastering-ethereum.doge.tg/"},{"@type":"ListItem","position":2,"name":"第 15 章　共識","item":"https://mastering-ethereum.doge.tg/chapters/consensus.html"}]}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Chapter","@id":"https://mastering-ethereum.doge.tg/chapters/consensus.html#chapter","name":"第 15 章　共識","headline":"第 15 章　共識｜精通以太坊（第二版）","description":"以太坊的共識：工作量證明與權益證明、權益證明的術語、LMD-GHOST 與 Casper FFG、檢查點的生命週期、Gasper 的實際運作，以及相關爭議。","url":"https://mastering-ethereum.doge.tg/chapters/consensus.html","inLanguage":"zh-TW","position":16,"dateModified":"2026-11-06T18:11:04+08:00","isPartOf":{"@id":"https://mastering-ethereum.doge.tg/#book"},"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true},{"@type":"Book","@id":"https://mastering-ethereum.doge.tg/#book","name":"精通以太坊（第二版）","alternateName":["Mastering Ethereum, 2nd Edition","精通以太坊第二版"],"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"inLanguage":"zh-TW","publisher":{"@type":"Organization","name":"O'Reilly Media"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true,"url":"https://mastering-ethereum.doge.tg/","image":"https://mastering-ethereum.doge.tg/assets/og-cover-2nd.png","translationOfWork":{"@type":"Book","name":"Mastering Ethereum, 2nd Edition","inLanguage":"en","url":"https://github.com/ethereumbook/ethereumbook"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"精通以太坊（第二版）","item":"https://mastering-ethereum.doge.tg/"},{"@type":"ListItem","position":2,"name":"第 15 章　共識","item":"https://mastering-ethereum.doge.tg/chapters/consensus.html"}]}]}</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZVVQYEKMPF"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-ZVVQYEKMPF');</script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-ZVVQYEKMPF');
+// 電子書下載：GA 的加強型評估不認得 .epub，下載連結又在 GitHub 上，所以自己送事件
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href$=".pdf"],a[href$=".epub"]');if(a)gtag('event','ebook_download',{format:a.href.split('.').pop(),link_url:a.href});});</script>
 </head>
 <body class="is-chapter">
 <a class="skip-link" href="#main">跳到主要內容</a>
@@ -245,7 +247,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch15/maet_1501.webp"><img src="/images/ch15/maet_1501.png" alt="Block tree structure" width="1193" height="351" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch15/maet_1501.webp"><img src="/images/ch15/maet_1501.png" alt="區塊樹的結構" width="1193" height="351" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 15-1. 區塊樹的結構</div>
 </div>
@@ -366,7 +368,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch15/maet_1502.webp"><img src="/images/ch15/maet_1502.png" alt="Vote propagation to ancestors" width="809" height="493" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch15/maet_1502.webp"><img src="/images/ch15/maet_1502.png" alt="投票傳遞給祖先區塊" width="809" height="493" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 15-2. 投票傳遞給祖先區塊</div>
 </div>
@@ -375,7 +377,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch15/maet_1503.webp"><img src="/images/ch15/maet_1503.png" alt="Branch definition" width="470" height="114" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch15/maet_1503.webp"><img src="/images/ch15/maet_1503.png" alt="分支的定義" width="470" height="114" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 15-3. 分支的定義</div>
 </div>
@@ -387,7 +389,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch15/maet_1504.webp"><img src="/images/ch15/maet_1504.png" alt="Branch score calculation example" width="1045" height="348" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch15/maet_1504.webp"><img src="/images/ch15/maet_1504.png" alt="分支分數的計算範例" width="1045" height="348" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 15-4. 分支分數的計算範例</div>
 </div>
@@ -396,7 +398,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch15/maet_1505.webp"><img src="/images/ch15/maet_1505.png" alt="Complex branch scoring" width="1048" height="559" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch15/maet_1505.webp"><img src="/images/ch15/maet_1505.png" alt="複雜的分支計分" width="1048" height="559" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 15-5. 複雜的分支計分</div>
 </div>
@@ -416,7 +418,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch15/maet_1506.webp"><img src="/images/ch15/maet_1506.png" alt="Latest message driven example" width="809" height="493" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch15/maet_1506.webp"><img src="/images/ch15/maet_1506.png" alt="Latest message driven 的範例" width="809" height="493" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 15-6. Latest message driven 的範例</div>
 </div>
@@ -431,7 +433,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch15/maet_1507.webp"><img src="/images/ch15/maet_1507.png" alt="LMD-GHOST scenario" width="1048" height="559" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch15/maet_1507.webp"><img src="/images/ch15/maet_1507.png" alt="LMD-GHOST 的情境" width="1048" height="559" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 15-7. LMD-GHOST 的情境</div>
 </div>
@@ -453,7 +455,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch15/maet_1508.webp"><img src="/images/ch15/maet_1508.png" alt="Branch scores computed" width="1048" height="559" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch15/maet_1508.webp"><img src="/images/ch15/maet_1508.png" alt="計算完成的分支分數" width="1048" height="559" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 15-8. 計算完成的分支分數</div>
 </div>
@@ -469,7 +471,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch15/maet_1509.webp"><img src="/images/ch15/maet_1509.png" alt="LMD-GHOST step 1" width="1048" height="559" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch15/maet_1509.webp"><img src="/images/ch15/maet_1509.png" alt="LMD-GHOST 步驟 1" width="1048" height="559" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 15-9. LMD-GHOST 步驟 1</div>
 </div>
@@ -491,7 +493,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch15/maet_1510.webp"><img src="/images/ch15/maet_1510.png" alt="LMD-GHOST step 2" width="1048" height="559" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch15/maet_1510.webp"><img src="/images/ch15/maet_1510.png" alt="LMD-GHOST 步驟 2" width="1048" height="559" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 15-10. LMD-GHOST 步驟 2</div>
 </div>
@@ -513,7 +515,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch15/maet_1511.webp"><img src="/images/ch15/maet_1511.png" alt="LMD-GHOST step 3" width="1048" height="559" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch15/maet_1511.webp"><img src="/images/ch15/maet_1511.png" alt="LMD-GHOST 步驟 3" width="1048" height="559" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 15-11. LMD-GHOST 步驟 3</div>
 </div>
@@ -522,7 +524,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch15/maet_1512.webp"><img src="/images/ch15/maet_1512.png" alt="LMD-GHOST step 4" width="1048" height="559" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch15/maet_1512.webp"><img src="/images/ch15/maet_1512.png" alt="LMD-GHOST 步驟 4" width="1048" height="559" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 15-12. LMD-GHOST 步驟 4</div>
 </div>
@@ -558,7 +560,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch15/maet_1513.webp"><img src="/images/ch15/maet_1513.png" alt="Block proposal reward" width="950" height="691" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch15/maet_1513.webp"><img src="/images/ch15/maet_1513.png" alt="區塊提議的獎勵" width="950" height="691" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 15-13. 區塊提議的獎勵</div>
 </div>
@@ -567,7 +569,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch15/maet_1514.webp"><img src="/images/ch15/maet_1514.png" alt="Block proposal slashing" width="790" height="676" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch15/maet_1514.webp"><img src="/images/ch15/maet_1514.png" alt="區塊提議的罰沒" width="790" height="676" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 15-14. 區塊提議的罰沒</div>
 </div>
@@ -599,7 +601,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch15/maet_1515.webp"><img src="/images/ch15/maet_1515.png" alt="Attestation reward" width="803" height="304" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch15/maet_1515.webp"><img src="/images/ch15/maet_1515.png" alt="見證投票的獎勵" width="803" height="304" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 15-15. 見證投票的獎勵</div>
 </div>
@@ -608,7 +610,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch15/maet_1516.webp"><img src="/images/ch15/maet_1516.png" alt="Attestation slashing" width="1095" height="595" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch15/maet_1516.webp"><img src="/images/ch15/maet_1516.png" alt="見證投票的罰沒" width="1095" height="595" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 15-16. 見證投票的罰沒</div>
 </div>
@@ -639,7 +641,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch15/maet_1517.webp"><img src="/images/ch15/maet_1517.png" alt="Epochs and checkpoints" width="1436" height="380" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch15/maet_1517.webp"><img src="/images/ch15/maet_1517.png" alt="Epoch 與檢查點" width="1436" height="380" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 15-17. Epoch 與檢查點</div>
 </div>
@@ -671,7 +673,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch15/maet_1518.webp"><img src="/images/ch15/maet_1518.png" alt="Justification process" width="588" height="471" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch15/maet_1518.webp"><img src="/images/ch15/maet_1518.png" alt="合理化的過程" width="588" height="471" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 15-18. 合理化的過程<sup class="footnote">[<a id="_footnoteref_43" class="footnote" href="#_footnotedef_43" title="查看註腳">43</a>]</sup></div>
 </div>
@@ -683,7 +685,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch15/maet_1519.webp"><img src="/images/ch15/maet_1519.png" alt="Finalization process" width="1381" height="250" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch15/maet_1519.webp"><img src="/images/ch15/maet_1519.png" alt="最終確定的過程" width="1381" height="250" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 15-19. 最終確定的過程</div>
 </div>
@@ -708,7 +710,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch15/maet_1520.webp"><img src="/images/ch15/maet_1520.png" alt="No double-voting rule" width="719" height="898" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch15/maet_1520.webp"><img src="/images/ch15/maet_1520.png" alt="禁止雙重投票的規則" width="719" height="898" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 15-20. 禁止雙重投票的規則</div>
 </div>
@@ -717,7 +719,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch15/maet_1521.webp"><img src="/images/ch15/maet_1521.png" alt="No surround vote rule" width="719" height="856" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch15/maet_1521.webp"><img src="/images/ch15/maet_1521.png" alt="禁止環繞投票的規則" width="719" height="856" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 15-21. 禁止環繞投票的規則</div>
 </div>
@@ -757,7 +759,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch15/maet_1522.webp"><img src="/images/ch15/maet_1522.png" alt="Validator pool" width="1157" height="626" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch15/maet_1522.webp"><img src="/images/ch15/maet_1522.png" alt="驗證者池" width="1157" height="626" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 15-22. 驗證者池</div>
 </div>
@@ -766,7 +768,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch15/maet_1523.webp"><img src="/images/ch15/maet_1523.png" alt="Validators divided into groups" width="1157" height="672" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch15/maet_1523.webp"><img src="/images/ch15/maet_1523.png" alt="分組的驗證者" width="1157" height="672" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 15-23. 分組的驗證者</div>
 </div>
@@ -792,7 +794,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch15/maet_1524.webp"><img src="/images/ch15/maet_1524.png" alt="Epoch representation" width="1436" height="380" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch15/maet_1524.webp"><img src="/images/ch15/maet_1524.png" alt="Epoch 的示意" width="1436" height="380" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 15-24. Epoch 的示意</div>
 </div>
@@ -812,7 +814,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch15/maet_1525.webp"><img src="/images/ch15/maet_1525.png" alt="Justification round" width="1012" height="512" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch15/maet_1525.webp"><img src="/images/ch15/maet_1525.png" alt="合理化的一輪" width="1012" height="512" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 15-25. 合理化的一輪</div>
 </div>
@@ -824,7 +826,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch15/maet_1526.webp"><img src="/images/ch15/maet_1526.png" alt="Finalization round" width="1257" height="512" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch15/maet_1526.webp"><img src="/images/ch15/maet_1526.png" alt="最終確定的一輪" width="1257" height="512" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 15-26. 最終確定的一輪</div>
 </div>
@@ -868,7 +870,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch15/maet_1527.webp"><img src="/images/ch15/maet_1527.png" alt="Four validators scenario" width="838" height="553" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch15/maet_1527.webp"><img src="/images/ch15/maet_1527.png" alt="四個驗證者的情境" width="838" height="553" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 15-27. 四個驗證者的情境</div>
 </div>
@@ -883,7 +885,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch15/maet_1528.webp"><img src="/images/ch15/maet_1528.png" alt="Network delay scenario step 1" width="838" height="553" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch15/maet_1528.webp"><img src="/images/ch15/maet_1528.png" alt="網路延遲情境：步驟 1" width="838" height="553" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 15-28. 網路延遲情境：步驟 1</div>
 </div>
@@ -895,7 +897,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch15/maet_1529.webp"><img src="/images/ch15/maet_1529.png" alt="Network delay scenario step 2" width="838" height="553" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch15/maet_1529.webp"><img src="/images/ch15/maet_1529.png" alt="網路延遲情境：步驟 2" width="838" height="553" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 15-29. 網路延遲情境：步驟 2</div>
 </div>
@@ -918,7 +920,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch15/maet_1530.webp"><img src="/images/ch15/maet_1530.png" alt="Without justification step" width="1422" height="839" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch15/maet_1530.webp"><img src="/images/ch15/maet_1530.png" alt="沒有合理化步驟的情況" width="1422" height="839" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 15-30. 沒有合理化步驟的情況</div>
 </div>
@@ -937,7 +939,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch15/maet_1531.webp"><img src="/images/ch15/maet_1531.png" alt="Gasper mock network" width="692" height="547" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch15/maet_1531.webp"><img src="/images/ch15/maet_1531.png" alt="Gasper 模擬網路" width="692" height="547" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 15-31. Gasper 模擬網路</div>
 </div>
@@ -952,7 +954,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch15/maet_1532.webp"><img src="/images/ch15/maet_1532.png" alt="Simplified epoch structure" width="474" height="390" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch15/maet_1532.webp"><img src="/images/ch15/maet_1532.png" alt="簡化的 epoch 結構" width="474" height="390" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 15-32. 簡化的 epoch 結構</div>
 </div>
@@ -961,7 +963,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch15/maet_1533.webp"><img src="/images/ch15/maet_1533.png" alt="Block 1 proposal" width="519" height="501" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch15/maet_1533.webp"><img src="/images/ch15/maet_1533.png" alt="提議區塊 1" width="519" height="501" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 15-33. 提議區塊 1</div>
 </div>
@@ -976,7 +978,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch15/maet_1534.webp"><img src="/images/ch15/maet_1534.png" alt="Block 2 proposal" width="474" height="501" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch15/maet_1534.webp"><img src="/images/ch15/maet_1534.png" alt="提議區塊 2" width="474" height="501" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 15-34. 提議區塊 2</div>
 </div>
@@ -1026,7 +1028,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch15/maet_1535.webp"><img src="/images/ch15/maet_1535.png" alt="Block 3 proposal" width="522" height="501" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch15/maet_1535.webp"><img src="/images/ch15/maet_1535.png" alt="提議區塊 3" width="522" height="501" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 15-35. 提議區塊 3</div>
 </div>
@@ -1041,7 +1043,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch15/maet_1536.webp"><img src="/images/ch15/maet_1536.png" alt="Block 4 proposal - new epoch" width="474" height="505" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch15/maet_1536.webp"><img src="/images/ch15/maet_1536.png" alt="提議區塊 4：新的 epoch" width="474" height="505" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 15-36. 提議區塊 4：新的 epoch</div>
 </div>
@@ -1097,7 +1099,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch15/maet_1537.webp"><img src="/images/ch15/maet_1537.png" alt="Block 1 justified" width="723" height="398" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch15/maet_1537.webp"><img src="/images/ch15/maet_1537.png" alt="區塊 1 已合理化" width="723" height="398" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 15-37. 區塊 1 已合理化</div>
 </div>
@@ -1106,7 +1108,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch15/maet_1538.webp"><img src="/images/ch15/maet_1538.png" alt="Block 7 proposal - epoch 3" width="474" height="714" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch15/maet_1538.webp"><img src="/images/ch15/maet_1538.png" alt="提議區塊 7：epoch 3" width="474" height="714" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 15-38. 提議區塊 7：epoch 3</div>
 </div>
@@ -1156,7 +1158,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch15/maet_1539.webp"><img src="/images/ch15/maet_1539.png" alt="Block 4 justified, block 1 finalized" width="723" height="710" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch15/maet_1539.webp"><img src="/images/ch15/maet_1539.png" alt="區塊 4 已合理化，區塊 1 已最終確定" width="723" height="710" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 15-39. 區塊 4 已合理化，區塊 1 已最終確定</div>
 </div>
@@ -1188,7 +1190,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch15/maet_1540.webp"><img src="/images/ch15/maet_1540.png" alt="Timing game strategy" width="1238" height="714" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch15/maet_1540.webp"><img src="/images/ch15/maet_1540.png" alt="Timing game 的策略" width="1238" height="714" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 15-40. Timing game 的策略</div>
 </div>
@@ -1203,7 +1205,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch15/maet_1541.webp"><img src="/images/ch15/maet_1541.png" alt="Timing game risk visualization" width="1891" height="952" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch15/maet_1541.webp"><img src="/images/ch15/maet_1541.png" alt="Timing game 的風險示意" width="1891" height="952" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 15-41. Timing game 的風險示意</div>
 </div>
@@ -1235,7 +1237,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch15/maet_1542.webp"><img src="/images/ch15/maet_1542.png" alt="Majority client bug scenario" width="1229" height="541" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch15/maet_1542.webp"><img src="/images/ch15/maet_1542.png" alt="多數客戶端出錯的情境" width="1229" height="541" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 15-42. 多數客戶端出錯的情境</div>
 </div>
@@ -1247,7 +1249,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch15/maet_1543.webp"><img src="/images/ch15/maet_1543.png" alt="Recovery from bug requires justification" width="1228" height="576" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch15/maet_1543.webp"><img src="/images/ch15/maet_1543.png" alt="從錯誤中復原需要合理化" width="1228" height="576" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 15-43. 從錯誤中復原需要合理化</div>
 </div>
@@ -1268,7 +1270,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch15/maet_1544.webp"><img src="/images/ch15/maet_1544.png" alt="Current execution client distribution" width="920" height="1194" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch15/maet_1544.webp"><img src="/images/ch15/maet_1544.png" alt="目前執行層客戶端的分布" width="920" height="1194" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 15-44. 目前執行層客戶端的分布</div>
 </div>
@@ -1277,7 +1279,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch15/maet_1545.webp"><img src="/images/ch15/maet_1545.png" alt="Current consensus client distribution" width="920" height="1194" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch15/maet_1545.webp"><img src="/images/ch15/maet_1545.png" alt="目前共識層客戶端的分布" width="920" height="1194" loading="lazy" decoding="async"></picture>
 </div>
 <div class="title">圖 15-45. 目前共識層客戶端的分布</div>
 </div>

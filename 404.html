@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>找不到頁面｜精通以太坊（第二版）</title>
-<meta name="description" content="《精通以太坊》（Mastering Ethereum）第二版繁體中文譯本，免費線上閱讀。從密碼學、錢包與交易，到智能合約、安全、代幣、DeFi、EVM、權益證明、擴容與零知識證明。">
+<meta name="description" content="《精通以太坊》（Mastering Ethereum）第二版繁體中文譯本，免費線上閱讀，也提供 PDF 與 EPUB 電子書下載。從密碼學、錢包與交易，到智能合約（Solidity、Vyper）與安全、代幣、DeFi、EVM、權益證明、擴容與零知識證明。">
 <meta name="robots" content="noindex">
 <meta name="author" content="Andreas M. Antonopoulos, Gavin Wood, Carlo Parisi, Alessandro Mazza, Niccolò Pozzolini">
 <meta name="theme-color" content="#f8f9fc" media="(prefers-color-scheme: light)">
@@ -22,7 +22,9 @@
 <link rel="stylesheet" href="/assets/code.css?v=c94d007c0c">
 <script defer src="/assets/site.js?v=33af8366a0"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZVVQYEKMPF"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-ZVVQYEKMPF');</script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-ZVVQYEKMPF');
+// 電子書下載：GA 的加強型評估不認得 .epub，下載連結又在 GitHub 上，所以自己送事件
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href$=".pdf"],a[href$=".epub"]');if(a)gtag('event','ebook_download',{format:a.href.split('.').pop(),link_url:a.href});});</script>
 </head>
 <body class="is-404">
 <a class="skip-link" href="#main">跳到主要內容</a>
