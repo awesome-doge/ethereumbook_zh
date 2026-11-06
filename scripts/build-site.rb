@@ -92,7 +92,7 @@ BOOKS = {
     original_name: 'Mastering Ethereum, 2nd Edition',
     alternate_names: ['Mastering Ethereum, 2nd Edition', '精通以太坊第二版'],
     # 首頁標題與描述帶上「PDF／EPUB 下載」：「精通以太坊 pdf」是這本書最常見的搜尋之一
-    home_title: '精通以太坊（第二版）繁體中文版｜免費線上閱讀與 PDF、EPUB 下載',
+    home_title: '精通以太坊（第二版）繁體中文版｜免費線上閱讀・PDF 下載',
     description: '《精通以太坊》（Mastering Ethereum）第二版繁體中文譯本，免費線上閱讀，也提供 PDF 與 EPUB 電子書下載。' \
                  '從密碼學、錢包與交易，到智能合約（Solidity、Vyper）與安全、代幣、DeFi、EVM、權益證明、擴容與零知識證明。'
   }
