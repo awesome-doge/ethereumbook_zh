@@ -579,9 +579,9 @@
 | sponsorship | 代付 | | 第 5、6、10 章 | [並列] |
 | byzantine fault tolerance | 拜占庭容錯 | | 第 1、15 章 | [並列] |
 | challenge window | 挑戰期 | | 第 11、16 章 | [並列] |
-| check-effect-interaction pattern | 檢查—生效—互動模式 | | 第 9、10 章 | [並列] |
+| check-effect-interaction pattern | 「檢查、生效、互動」模式 | | 第 9、10 章 | [並列] |
 | client diversity | 客戶端多樣性 | | 第 3、16 章 | [並列] |
-| commit-reveal scheme | 承諾—揭示機制 | | 第 9、11 章 | [並列] |
+| commit-reveal scheme | 承諾／揭示機制 | | 第 9、11 章 | [並列] |
 | cryptographic primitive | 密碼學基本元件 | | 第 1、4 章 | [並列] |
 | difficulty bomb | 難度炸彈 | | 第 1、15 章 | [並列] |
 | fee market | 手續費市場 | | 第 6、16 章 | [並列] |
@@ -630,7 +630,7 @@
 | checkpoint sync | 檢查點同步 | | 第 3 章 | [並列] |
 | cold storage | 冷儲存 | | 第 5 章 | [並列] |
 | collision-resistant | 抗碰撞 | | 第 17 章 | [並列] |
-| commit-reveal | 承諾—揭示 | | 第 4 章 | [並列] |
+| commit-reveal | 承諾／揭示 | | 第 4 章 | [並列] |
 | completeness | 完備性 | | 第 17 章 | [並列] |
 | computation trace | 計算軌跡 | | 第 17 章 | [並列] |
 | computational binding | 計算綁定性 | | 第 4 章 | [並列] |
@@ -721,7 +721,7 @@
 | provider | 節點服務供應商 | | 第 7 章 | [並列] |
 | proving key / verification key | 證明金鑰／驗證金鑰 | | 第 17 章 | [並列] |
 | prune | 修剪 | | 第 3 章 | [並列] |
-| publish-subscribe | 發布—訂閱 | | 第 11 章 | [並列] |
+| publish-subscribe | 發布／訂閱 | | 第 11 章 | [並列] |
 | pull-over-push pattern | 拉取優於推送模式 | | 第 9 章 | [並列] |
 | push data | 推入資料 | | 第 14 章 | [並列] |
 | rainbow table | 彩虹表 | | 第 5 章 | [並列] |
@@ -729,7 +729,7 @@
 | recovery identifier | 復原識別碼 | | 第 6 章 | [並列] |
 | registry | 註冊表 | | 第 10 章 | [並列] |
 | remote client | 遠端客戶端 | | 第 3 章 | [並列] |
-| request-response | 請求—回應 | | 第 11 章 | [並列] |
+| request-response | 請求／回應 | | 第 11 章 | [並列] |
 | reversion | 回復 | | 第 15 章 | [並列] |
 | rollup improvement proposal | rollup 改進提案 | | 第 5 章 | [並列] |
 | safety | 安全性 | | 第 15 章 | [並列] |

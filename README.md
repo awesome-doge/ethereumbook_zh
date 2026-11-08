@@ -1,4 +1,4 @@
-# 精通以太坊（第二版）— Mastering Ethereum, 2nd Edition 繁體中文版
+# 精通以太坊（第二版）Mastering Ethereum, 2nd Edition 繁體中文版
 
 <p align="center">
   <img src="web/assets/og-cover-2nd.png" width="600" alt="精通以太坊第二版繁體中文版" />

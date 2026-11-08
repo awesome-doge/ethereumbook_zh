@@ -274,7 +274,8 @@ local inline_pass = {
       return el.content
     end
     local url = el.target
-    if not url:match(SAFE_URL) then url = '++' .. url .. '++' end
+    -- 含 -- 的網址也要包起來，否則 Asciidoctor 會把 -- 換成破折號（oreil.ly/JW--z）
+    if not url:match(SAFE_URL) or url:find('--', 1, true) then url = '++' .. url .. '++' end
     if stringify(el.content) == el.target then return raw('link:' .. url .. '[]') end
     return wrap('link:' .. url .. '[', el.content, ']')
   end,

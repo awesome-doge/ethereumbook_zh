@@ -33,7 +33,8 @@ MAINLAND = {
 }.freeze
 
 # 風格決定（translation/style-guide.md）
-STYLE = { '您' => '你' }.freeze
+# 破折號是照抄英文 em dash 的翻譯腔：改用逗號、括號、冒號或拆成兩句；成對的術語用全形斜線（發布／訂閱）
+STYLE = { '您' => '你', '—' => '逗號、括號、冒號、拆句或全形斜線' }.freeze
 
 def ast(path)
   out, err, st = Open3.capture3('pandoc', '-f', 'gfm-tex_math_dollars', '-t', 'json', path)
