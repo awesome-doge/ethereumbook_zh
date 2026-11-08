@@ -33,7 +33,7 @@
 <link rel="stylesheet" href="/assets/site.css?v=ad2df01e33">
 <link rel="stylesheet" href="/assets/code.css?v=c94d007c0c">
 <script defer src="/assets/site.js?v=33af8366a0"></script>
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Chapter","@id":"https://mastering-ethereum.doge.tg/chapters/tokens.html#chapter","name":"第 10 章　代幣","headline":"第 10 章　代幣｜精通以太坊（第二版）","description":"以太坊上的代幣：代幣的用途、同質化與交易對手風險、ERC-20、ERC-721（NFT）與 ERC-1155 標準，以及代幣介面標準的擴充。","url":"https://mastering-ethereum.doge.tg/chapters/tokens.html","inLanguage":"zh-TW","position":11,"dateModified":"2026-11-08T20:37:00+08:00","isPartOf":{"@id":"https://mastering-ethereum.doge.tg/#book"},"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true},{"@type":"Book","@id":"https://mastering-ethereum.doge.tg/#book","name":"精通以太坊（第二版）","alternateName":["Mastering Ethereum, 2nd Edition","精通以太坊第二版"],"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"inLanguage":"zh-TW","publisher":{"@type":"Organization","name":"O'Reilly Media"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true,"url":"https://mastering-ethereum.doge.tg/","image":"https://mastering-ethereum.doge.tg/assets/og-cover-2nd.png","translationOfWork":{"@type":"Book","name":"Mastering Ethereum, 2nd Edition","inLanguage":"en","url":"https://github.com/ethereumbook/ethereumbook"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"精通以太坊（第二版）","item":"https://mastering-ethereum.doge.tg/"},{"@type":"ListItem","position":2,"name":"第 10 章　代幣","item":"https://mastering-ethereum.doge.tg/chapters/tokens.html"}]}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Chapter","@id":"https://mastering-ethereum.doge.tg/chapters/tokens.html#chapter","name":"第 10 章　代幣","headline":"第 10 章　代幣｜精通以太坊（第二版）","description":"以太坊上的代幣：代幣的用途、同質化與交易對手風險、ERC-20、ERC-721（NFT）與 ERC-1155 標準，以及代幣介面標準的擴充。","url":"https://mastering-ethereum.doge.tg/chapters/tokens.html","inLanguage":"zh-TW","position":11,"dateModified":"2026-11-08T21:51:28+08:00","isPartOf":{"@id":"https://mastering-ethereum.doge.tg/#book"},"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true},{"@type":"Book","@id":"https://mastering-ethereum.doge.tg/#book","name":"精通以太坊（第二版）","alternateName":["Mastering Ethereum, 2nd Edition","精通以太坊第二版"],"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"inLanguage":"zh-TW","publisher":{"@type":"Organization","name":"O'Reilly Media"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true,"url":"https://mastering-ethereum.doge.tg/","image":"https://mastering-ethereum.doge.tg/assets/og-cover-2nd.png","translationOfWork":{"@type":"Book","name":"Mastering Ethereum, 2nd Edition","inLanguage":"en","url":"https://github.com/ethereumbook/ethereumbook"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"精通以太坊（第二版）","item":"https://mastering-ethereum.doge.tg/"},{"@type":"ListItem","position":2,"name":"第 10 章　代幣","item":"https://mastering-ethereum.doge.tg/chapters/tokens.html"}]}]}</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZVVQYEKMPF"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-ZVVQYEKMPF');
 // 電子書下載：GA 的加強型評估不認得 .epub，下載連結又在 GitHub 上，所以自己送事件
@@ -292,7 +292,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <div class="sect2">
 <h2 id="ch10-counterparty-risk"><a class="anchor" href="#ch10-counterparty-risk" aria-label="本節連結"></a>10.3. 交易對手風險</h2>
 <div class="paragraph">
-<p><em>交易對手風險</em>（counterparty risk）是指交易的<em>另一方</em>無法履行義務的風險。有些類型的交易因為牽涉兩方以上，而承擔額外的交易對手風險。例如，如果你持有某種貴金屬的存單，並把它賣給某人，這筆交易至少有三方：賣方、買方，以及貴金屬的託管機構。總要有人持有實體資產；這個人必然成為交易履行的一方，也為任何牽涉這項資產的交易增添了交易對手風險。一般來說，當資產是透過交換所有權代幣的方式間接交易時，就會多出來自資產託管機構的交易對手風險。他們真的持有這項資產嗎？他們會依據代幣（例如憑證、契據、產權證明或數位代幣）的轉移，承認（或允許）所有權的移轉嗎？在代表資產的數位代幣世界裡，就像在非數位世界中一樣，重要的是弄清楚是誰持有代幣所代表的資產，以及這項標的資產適用哪些規則。</p>
+<p><em>交易對手風險</em>（counterparty risk）是指交易的<em>另一方</em>無法履行義務的風險。有些類型的交易因為牽涉兩方以上，而承擔額外的交易對手風險。例如，如果你持有某種貴金屬的存單，並把它賣給某人，這筆交易至少有三方：賣方、買方，以及貴金屬的託管機構。總要有人持有實體資產；這個人必然成為交易履行的一方，也為任何牽涉這項資產的交易增添了交易對手風險。一般來說，當資產是透過交換所有權代幣的方式間接交易時，就會多出來自資產託管機構的交易對手風險。他們真的持有這項資產嗎？他們會依據代幣（例如憑證、契據、產權證明或數位代幣）的轉移，承認（或允許）所有權的移轉嗎？在代表資產的數位代幣世界裡，就像在非數位世界中一樣，都得先弄清楚誰持有代幣所代表的資產，以及這項標的資產適用哪些規則。</p>
 </div>
 </div>
 <div class="sect2">
@@ -319,7 +319,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <p>實務上，這兩類之間的界線經常很模糊。許多效用型代幣大體上仍然是投機標的，使用者持有它們比較像是持有資產，而不是存取憑證。類似股權的代幣也許授予治理權，卻往往缺乏確保有意義參與的機制。有些專案把代幣深深整合進自己的經濟模型，但這仍是例外，而不是常態。</p>
 </div>
 <div class="paragraph">
-<p>這帶出了一個問題：代幣本質上就是壞東西嗎？完全不是。在建立社群、為社群提供誘因，或驅動 DAO 的去中心化治理上，代幣可以非常有效。但現實是，大多數代幣推出的主要動機是獲利，而不是效用。如果你正在考慮推出代幣或投資某個代幣，值得問自己一些尖銳的問題：這個代幣在協議中真的發揮了必要的作用，還是只是募資工具？沒有它，這個專案是不是也一樣能運作？誠實回答這些問題，可以幫助你分辨真正的創新與行銷驅動的炒作。</p>
+<p>這帶出了一個問題：代幣本身就是壞東西嗎？並不是。在建立社群、為社群提供誘因，或驅動 DAO 的去中心化治理上，代幣可以非常有效。但現實是，大多數代幣推出的主要動機是獲利，而不是效用。如果你正在考慮推出代幣或投資某個代幣，值得問自己一些尖銳的問題：這個代幣在協議中真的發揮了必要的作用，還是只是募資工具？沒有它，這個專案是不是也一樣能運作？誠實回答這些問題，可以幫助你分辨真正的創新與行銷驅動的炒作。</p>
 </div>
 <div class="paragraph">
 <p>很明顯，代幣的版圖仍在演變，代幣本身無所謂好壞；它們的價值取決於如何設計與實作。挑戰在於把有意義的和沒有意義的區分開來，並抵擋下一個迷因幣（meme coin）的誘惑。</p>
@@ -363,7 +363,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <p>Vitalik Buterin 曾提出，代幣是以太坊這類通用可程式化區塊鏈最明顯、也最有用的應用之一。事實上，在以太坊的第一年，常常可以看到 Buterin 等人穿著印有以太坊標誌、背面印著智能合約範例的 T 恤。這件 T 恤有好幾種版本，但最常見的那款印的是一個代幣的實作。</p>
 </div>
 <div class="paragraph">
-<p>在深入探討如何在以太坊上建立代幣之前，必須先對代幣在以太坊上如何運作有個概觀。代幣和以太幣不同，因為以太坊協議對代幣一無所知。發送以太幣是以太坊平台內在的動作，發送甚至擁有代幣則不是。以太坊帳戶的以太幣餘額是在協議層處理的，而以太坊帳戶的代幣餘額則是在智能合約層處理的。要在以太坊上建立新的代幣，你必須建立一個新的智能合約。智能合約部署之後，就由它處理一切，包括所有權、轉帳與存取權。你可以用任何你想要的方式撰寫智能合約來執行所有必要的動作，但遵循現有的標準大概是最明智的做法。接下來我們就來看看這些標準。</p>
+<p>講怎麼在以太坊上建立代幣之前，得先大致了解代幣在以太坊上如何運作。代幣和以太幣不同，因為以太坊協議對代幣一無所知。發送以太幣是以太坊平台內在的動作，發送甚至擁有代幣則不是。以太坊帳戶的以太幣餘額是在協議層處理的，而以太坊帳戶的代幣餘額則是在智能合約層處理的。要在以太坊上建立新的代幣，你必須建立一個新的智能合約。智能合約部署之後，就由它處理一切，包括所有權、轉帳與存取權。你可以用任何你想要的方式撰寫智能合約來執行所有必要的動作，但遵循現有的標準大概是最明智的做法。接下來我們就來看看這些標準。</p>
 </div>
 </div>
 <div class="sect2">
@@ -791,7 +791,7 @@ contract METokenInteraction is Script {
 </div>
 </div>
 <div class="paragraph">
-<p>重要的是要使用部署時用的同一把私鑰，這樣才能確保 <code>msg.sender</code> 對應到持有初始代幣供給量的部署者地址。</p>
+<p>務必使用部署時用的同一把私鑰，這樣才能確保 <code>msg.sender</code> 對應到持有初始代幣供給量的部署者地址。</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1175,7 +1175,7 @@ Script ran successfully.
 </td>
 <td class="content">
 <div class="paragraph">
-<p><code>extcodesize</code> 回傳儲存在指定地址上的位元組碼大小。過去，這是 EOA 與智能合約的主要差別：EOA 沒有程式碼，合約則有。但這個假設已經不再成立。有了 EIP-7702，EOA 現在也可以附加程式碼，讓這條界線完全模糊了。 還有一個重要的邊界情況：在合約的建構子階段，它的程式碼還沒有儲存到鏈上。以太坊虛擬機（EVM）要等建構子執行完畢，才會把合約的位元組碼寫入該地址。所以，如果你在合約的建構子內對它自己的地址（或對另一個尚未完成部署的合約）呼叫 <code>extcodesize</code>，即使該地址最終會有程式碼，它也會回傳 <code>0</code>。因此，如果一個地址沒有程式碼，它可能是 EOA，也可能是仍在建構中的合約；如果它有程式碼，則可能是已部署的合約，也可能是使用自訂程式碼內容的 EOA。簡而言之，這項檢查已經無法可靠地告訴我們某個地址是不是合約。</p>
+<p><code>extcodesize</code> 回傳儲存在指定地址上的位元組碼大小。過去，這是 EOA 與智能合約的主要差別：EOA 沒有程式碼，合約則有。但這個假設已經不再成立。有了 EIP-7702，EOA 現在也可以附加程式碼，讓這條界線完全模糊了。 還有一個重要的邊界情況：在合約的建構子階段，它的程式碼還沒有儲存到鏈上。以太坊虛擬機（EVM）要等建構子執行完畢，才會把合約的位元組碼寫入該地址。所以，如果你在合約的建構子內對它自己的地址（或對另一個尚未完成部署的合約）呼叫 <code>extcodesize</code>，即使該地址最終會有程式碼，它也會回傳 <code>0</code>。因此，如果一個地址沒有程式碼，它可能是 EOA，也可能是仍在建構中的合約；如果它有程式碼，則可能是已部署的合約，也可能是使用自訂程式碼內容的 EOA。總之，這項檢查已經無法可靠地告訴我們某個地址是不是合約。</p>
 </div>
 </td>
 </tr>
@@ -1209,7 +1209,7 @@ Script ran successfully.
 <div class="sect3">
 <h3 id="ch10-erc-777-the-future-that-could-have-been"><a class="anchor" href="#ch10-erc-777-the-future-that-could-have-been" aria-label="本節連結"></a>10.8.5. ERC-777：原本可能實現的未來</h3>
 <div class="paragraph">
-<p>ERC-777 引入了 <em>鉤子</em>（hook），也就是在代幣轉帳期間觸發的函式，為代幣互動帶來全新的做法。這些鉤子與 ERC-20 完全相容，確保現有系統可以無縫地與 ERC-777 代幣互動。</p>
+<p>ERC-777 引入了 <em>鉤子</em>（hook），也就是在代幣轉帳期間觸發的函式，為代幣互動帶來全新的做法。這些鉤子與 ERC-20 完全相容，現有系統不必修改就能與 ERC-777 代幣互動。</p>
 </div>
 <div class="paragraph">
 <p>發送者的鉤子 <code>tokensToSend</code> 會在代幣離開帳戶之前執行，讓發送者可以加入記錄日誌或條件檢查之類的邏輯。另一方面，接收者的鉤子 <code>tokensReceived</code> 則會在代幣進入帳戶時啟動。ERC-777 鉤子架構的核心是 ERC-1820 註冊表（registry），它記錄哪些地址實作了所需的鉤子：發送者的 <code>tokensToSend</code> 與接收者的 <code>tokensReceived</code>。這確保只有在雙方都準備好處理轉帳時，轉帳才會成功，從而避免代幣遺失之類的常見問題。</p>
@@ -1260,7 +1260,7 @@ Script ran successfully.
 <p>ERC-777 代幣整合所造成的重入事件中，最惡名昭彰的是 2020 年 4 月的 Uniswap v1 事件。去中心化交易所（DEX）協議 Uniswap 因為 ERC-777 的鉤子，不慎讓自己的儲備暴露在漏洞利用之下。攻擊者可以在操作進行到一半時回頭呼叫 Uniswap 合約，利用代幣儲備與以太幣儲備之間的落差把資金抽走。雖然這個漏洞是 Uniswap 與 ERC-777 互動的方式所特有的，但它鮮明地提醒了我們這些鉤子帶來的風險。</p>
 </div>
 <div class="paragraph">
-<p>另一個值得注意的問題是阻斷服務（DoS）攻擊的可能性。假設某個合約要把 ERC-777 代幣分發給多個帳戶。如果其中一個接收者是惡意合約，被設計成在 <code>tokensReceived</code> 鉤子中回復交易，整個分發過程就會被阻擋。</p>
+<p>另一個問題是可能遭受阻斷服務（DoS）攻擊。假設某個合約要把 ERC-777 代幣分發給多個帳戶。如果其中一個接收者是惡意合約，被設計成在 <code>tokensReceived</code> 鉤子中回復交易，整個分發過程就會被阻擋。</p>
 </div>
 <div class="paragraph">
 <p>這些風險凸顯了為什麼整合 ERC-777 不像把 ERC-20 換掉那麼簡單。開發者需要採用最佳實踐，例如使用重入鎖來降低漏洞的風險。</p>
@@ -1275,7 +1275,7 @@ Script ran successfully.
 <p>然而，以太坊社群變得猶豫不決。潛在的阻斷服務與重入情境投下了長長的陰影。開發者害怕整合 ERC-777 的複雜度與風險，即使只要有適當的預防措施，這些風險是可以控制的。我們沒有迎接這個挑戰，而是固守熟悉卻有限的 ERC-20。我們錯過了一個機會，沒能擁抱一個讓代幣更貼近以太坊理念、同時提供更優越功能的標準。</p>
 </div>
 <div class="paragraph">
-<p>說到底，ERC-777 的鉤子並不是罪魁禍首，不當的實作才是。只要多花一點心力、遵守安全的程式設計實踐，ERC-777 就能為更無縫的以太坊生態系鋪路。想深入研究這個議題，建議閱讀 OpenZeppelin 函式庫<a href="https://oreil.ly/J4p9B" rel="noopener" target="_blank">關於棄用 ERC-777 的討論</a>。</p>
+<p>說到底，ERC-777 的鉤子並不是罪魁禍首，不當的實作才是。只要多花一點心力、遵守安全的程式設計實踐，ERC-777 就能讓以太坊上的代幣互動更順暢。想進一步了解這個議題，建議閱讀 OpenZeppelin 函式庫<a href="https://oreil.ly/J4p9B" rel="noopener" target="_blank">關於棄用 ERC-777 的討論</a>。</p>
 </div>
 </div>
 </div>
@@ -1395,7 +1395,7 @@ uint256 id, uint256 value);
 <p>代幣標準是實作的<em>最低</em>規格。也就是說，要符合例如 ERC-20 的標準，你至少必須實作 ERC-20 標準所規定的函式與行為。你也可以自由地實作不屬於標準的函式，來<em>增加</em>功能。</p>
 </div>
 <div class="paragraph">
-<p>這些標準的主要目的，是促進合約之間的<em>互通性</em>。如此一來，所有錢包、交易所、使用者介面與其他基礎設施元件，都能以可預測的方式與任何遵循這份規格的合約<em>介接</em>。換句話說，如果你部署了一個遵循 ERC-20 標準的合約，所有現有的錢包使用者都能無縫地開始交易你的代幣，不需要升級錢包，你也不必費任何心力。</p>
+<p>這些標準的主要目的，是促進合約之間的<em>互通性</em>。如此一來，所有錢包、交易所、使用者介面與其他基礎設施元件，都能以可預測的方式與任何遵循這份規格的合約<em>介接</em>。換句話說，如果你部署了一個遵循 ERC-20 標準的合約，所有現有的錢包使用者都能直接開始交易你的代幣，不需要升級錢包，你也不必費任何心力。</p>
 </div>
 <div class="paragraph">
 <p>這些標準的用意是<em>描述性</em>的，而不是<em>規範性</em>的。你要如何實作那些函式由你決定；合約的內部運作與標準無關。標準有一些功能上的要求，規範特定情況下的行為，但並不規定實作方式。例如，ERC-20 規定成功的轉帳要更新餘額並發出 Transfer 事件，但並不規定實作這些要求所用的內部資料結構或記帳邏輯。</p>
@@ -1526,7 +1526,7 @@ IERC165) returns (bool) {
 <div class="sect2">
 <h2 id="ch10-extensions-to-token-interface-standards"><a class="anchor" href="#ch10-extensions-to-token-interface-standards" aria-label="本節連結"></a>10.12. 代幣介面標準的擴充</h2>
 <div class="paragraph">
-<p>到目前為止討論的代幣標準，為建立與管理代幣提供了基本的功能。然而，它們刻意保持精簡，為專案留下擴充與調整的空間，以符合特定需求。隨著時間推移，許多專案以這些標準為基礎，加入了提升易用性、安全性與彈性的功能。以太坊智能合約的主要函式庫 OpenZeppelin，已經成為這類擴充的首選來源。我們來探索 ERC-20、ERC-721 與 ERC-1155 代幣幾個最值得注意的擴充。</p>
+<p>到目前為止討論的代幣標準，為建立與管理代幣提供了基本的功能。然而，它們刻意保持精簡，為專案留下擴充與調整的空間，以符合特定需求。隨著時間推移，許多專案以這些標準為基礎，加入了提升易用性、安全性與彈性的功能。以太坊智能合約的主要函式庫 OpenZeppelin，已經成為這類擴充的首選來源。我們來探索 ERC-20、ERC-721 與 ERC-1155 代幣幾個最有代表性的擴充。</p>
 </div>
 <div class="paragraph">
 <p>以 ERC-20 為例，我們看到了銷毀機制的加入。銷毀讓代幣可以永久退出流通、減少供給量，這對通縮模型，或需要刻意控制供給量的代幣經濟學很有用。反過來說，有些專案會加入上限，為總供給量設下硬性限制，確保鑄造的代幣永遠不會超過預先定義的門檻。</p>
@@ -1550,7 +1550,7 @@ IERC165) returns (bool) {
 <div class="sect2">
 <h2 id="ch10-conclusion"><a class="anchor" href="#ch10-conclusion" aria-label="本節連結"></a>10.13. 結語</h2>
 <div class="paragraph">
-<p>代幣不只是數位貨幣；它們可以代表治理權、存取憑證、身分與真實世界資產。代幣之所以能如此多元，要歸功於 ERC-20、ERC-721 與 ERC-1155 這些標準，它們確保了錢包、交易所與 DApp 之間無縫的互通性，創造出更有效率、更緊密相連的區塊鏈生態系。在本章中，我們看了不同類型的代幣與代幣標準，你也建立了自己的第一個代幣與相關應用程式。</p>
+<p>代幣不只是數位貨幣；它們可以代表治理權、存取憑證、身分與真實世界資產。代幣之所以能如此多元，要歸功於 ERC-20、ERC-721 與 ERC-1155 這些標準。有了它們，錢包、交易所與 DApp 才能彼此互通，區塊鏈生態也因此更有效率、連結得更緊密。在本章中，我們看了不同類型的代幣與代幣標準，你也建立了自己的第一個代幣與相關應用程式。</p>
 </div>
 </div>
 </div>

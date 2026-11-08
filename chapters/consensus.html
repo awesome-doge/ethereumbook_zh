@@ -33,7 +33,7 @@
 <link rel="stylesheet" href="/assets/site.css?v=ad2df01e33">
 <link rel="stylesheet" href="/assets/code.css?v=c94d007c0c">
 <script defer src="/assets/site.js?v=33af8366a0"></script>
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Chapter","@id":"https://mastering-ethereum.doge.tg/chapters/consensus.html#chapter","name":"第 15 章　共識","headline":"第 15 章　共識｜精通以太坊（第二版）","description":"以太坊的共識：工作量證明與權益證明、權益證明的術語、LMD-GHOST 與 Casper FFG、檢查點的生命週期、Gasper 的實際運作，以及相關爭議。","url":"https://mastering-ethereum.doge.tg/chapters/consensus.html","inLanguage":"zh-TW","position":16,"dateModified":"2026-11-08T20:37:00+08:00","isPartOf":{"@id":"https://mastering-ethereum.doge.tg/#book"},"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true},{"@type":"Book","@id":"https://mastering-ethereum.doge.tg/#book","name":"精通以太坊（第二版）","alternateName":["Mastering Ethereum, 2nd Edition","精通以太坊第二版"],"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"inLanguage":"zh-TW","publisher":{"@type":"Organization","name":"O'Reilly Media"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true,"url":"https://mastering-ethereum.doge.tg/","image":"https://mastering-ethereum.doge.tg/assets/og-cover-2nd.png","translationOfWork":{"@type":"Book","name":"Mastering Ethereum, 2nd Edition","inLanguage":"en","url":"https://github.com/ethereumbook/ethereumbook"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"精通以太坊（第二版）","item":"https://mastering-ethereum.doge.tg/"},{"@type":"ListItem","position":2,"name":"第 15 章　共識","item":"https://mastering-ethereum.doge.tg/chapters/consensus.html"}]}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Chapter","@id":"https://mastering-ethereum.doge.tg/chapters/consensus.html#chapter","name":"第 15 章　共識","headline":"第 15 章　共識｜精通以太坊（第二版）","description":"以太坊的共識：工作量證明與權益證明、權益證明的術語、LMD-GHOST 與 Casper FFG、檢查點的生命週期、Gasper 的實際運作，以及相關爭議。","url":"https://mastering-ethereum.doge.tg/chapters/consensus.html","inLanguage":"zh-TW","position":16,"dateModified":"2026-11-08T21:51:28+08:00","isPartOf":{"@id":"https://mastering-ethereum.doge.tg/#book"},"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true},{"@type":"Book","@id":"https://mastering-ethereum.doge.tg/#book","name":"精通以太坊（第二版）","alternateName":["Mastering Ethereum, 2nd Edition","精通以太坊第二版"],"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"inLanguage":"zh-TW","publisher":{"@type":"Organization","name":"O'Reilly Media"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true,"url":"https://mastering-ethereum.doge.tg/","image":"https://mastering-ethereum.doge.tg/assets/og-cover-2nd.png","translationOfWork":{"@type":"Book","name":"Mastering Ethereum, 2nd Edition","inLanguage":"en","url":"https://github.com/ethereumbook/ethereumbook"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"精通以太坊（第二版）","item":"https://mastering-ethereum.doge.tg/"},{"@type":"ListItem","position":2,"name":"第 15 章　共識","item":"https://mastering-ethereum.doge.tg/chapters/consensus.html"}]}]}</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZVVQYEKMPF"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-ZVVQYEKMPF');
 // 電子書下載：GA 的加強型評估不認得 .epub，下載連結又在 GitHub 上，所以自己送事件
@@ -406,7 +406,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <p>看完上一個例子，應該就很清楚：一個區塊的分數不只影響那個區塊本身，也會影響它所有的祖先，因為分數會往回傳遞給之前所有的分支。這背後的想法是：如果一個驗證者（以見證投票的形式）投票支持某個區塊成為鏈頭，它也就認定這個區塊所有的祖先都是有效的，而且屬於正確的鏈。</p>
 </div>
 <div class="paragraph">
-<p>現在，我們終於可以深入探討 LMD-GHOST 實際上如何運作，以及它如何選出要被視為鏈頭的區塊。我們先從它的名字開始分析。LMD-GHOST 由兩個縮寫組成：<em>latest message driven</em>（最新訊息驅動）與 <em>greediest heaviest observed subtree</em>（最貪婪的最重觀察子樹）。</p>
+<p>現在終於可以來看 LMD-GHOST 實際上如何運作，以及它如何選出要被視為鏈頭的區塊。我們先從它的名字開始分析。LMD-GHOST 由兩個縮寫組成：<em>latest message driven</em>（最新訊息驅動）與 <em>greediest heaviest observed subtree</em>（最貪婪的最重觀察子樹）。</p>
 </div>
 <div class="sect3">
 <h3 id="ch15-latest-message-driven"><a class="anchor" href="#ch15-latest-message-driven" aria-label="本節連結"></a>15.5.1. Latest Message Driven</h3>
@@ -581,13 +581,13 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 </td>
 <td class="content">
 <div class="paragraph">
-<p>值得注意的是，明確的懲罰是以太坊權益證明共識協議與比特幣工作量證明之間的一大差異。比特幣礦工的區塊如果成為最重鏈的一部分，就會獲得獎勵。如果他們為同一個區塊高度建立了不只一個區塊，並不會受到任何明確的懲罰。</p>
+<p>明確的懲罰是以太坊權益證明共識協議與比特幣工作量證明之間的一大差異。比特幣礦工的區塊如果成為最重鏈的一部分，就會獲得獎勵。如果他們為同一個區塊高度建立了不只一個區塊，並不會受到任何明確的懲罰。</p>
 </div>
 <div class="paragraph">
 <p>你可能會好奇為什麼。這是因為基於工作量證明的系統需要付出一些工作（也就是工作量證明本身）才能建立有效的區塊。如果礦工建立了不只一個區塊，他們只是在浪費時間和金錢，因為最終只會有一個區塊留在最重鏈上，所以他們也只會因為其中一個區塊獲得獎勵。</p>
 </div>
 <div class="paragraph">
-<p>以太坊的權益證明協議不需要驗證者執行工作量證明來建立有效的區塊。這表示對驗證者來說，建立不只一個區塊幾乎不需要成本。這就是為什麼我們需要明確地懲罰任何試圖以這種方式作弊的人。</p>
+<p>以太坊的權益證明協議不需要驗證者執行工作量證明來建立有效的區塊。這表示對驗證者來說，建立不只一個區塊幾乎不需要成本。所以我們需要明確地懲罰任何試圖以這種方式作弊的人。</p>
 </div>
 </td>
 </tr>
@@ -626,13 +626,13 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <p>Casper FFG 是一種元共識（metaconsensus）協議。它是一個疊加層，可以在底層的共識協議之上執行，為底層協議加上最終性。</p>
 </div>
 <div class="paragraph">
-<p>在以太坊的權益證明共識中，底層協議是 LMD-GHOST，而它並不提供最終性。最終性確保區塊一旦在鏈上被確認，就無法被逆轉：它們會永遠是鏈的一部分。所以本質上，Casper FFG 的功能就是一個最終性元件，我們用它來為 LMD-GHOST 加上最終性。</p>
+<p>在以太坊的權益證明共識中，底層協議是 LMD-GHOST，而它並不提供最終性。最終性確保區塊一旦在鏈上被確認，就無法被逆轉：它們會永遠是鏈的一部分。所以說到底，Casper FFG 就是一個最終性元件，我們用它來為 LMD-GHOST 加上最終性。</p>
 </div>
 <div class="paragraph">
 <p>Casper FFG 利用了權益證明協議中的一個事實：我們知道參與者是誰，也就是管理質押以太幣的驗證者。這表示我們可以用計票來判斷何時已經看到誠實驗證者的多數票，或者更精確地說，看到管理多數質押的驗證者的投票。在接下來的所有內容中，每個驗證者的投票都依其管理的質押價值加權，但為了簡單起見，我們不會每次都明講這一點。</p>
 </div>
 <div class="paragraph">
-<p>Casper FFG 和所有傳統的 拜占庭容錯（Byzantine fault tolerant，BFT）協議一樣，只要出錯或懷有敵意的驗證者少於三分之一，就能確保最終性。一旦誠實驗證者的多數宣告某個區塊為最終的，所有誠實驗證者都會同意，讓這個區塊無法逆轉。藉由要求誠實驗證者占總數的三分之二以上，系統確保共識準確反映誠實多數的看法。值得注意的是，Casper FFG 與傳統 BFT 協議不同的地方在於，即使超過三分之一的驗證者遭到攻破，它仍提供經濟最終性（economic finality）（更多細節請見「可究責的安全性與合理的活性」一節）。</p>
+<p>Casper FFG 和所有傳統的 拜占庭容錯（Byzantine fault tolerant，BFT）協議一樣，只要出錯或懷有敵意的驗證者少於三分之一，就能確保最終性。一旦誠實驗證者的多數宣告某個區塊為最終的，所有誠實驗證者都會同意，讓這個區塊無法逆轉。藉由要求誠實驗證者占總數的三分之二以上，系統確保共識準確反映誠實多數的看法。Casper FFG 與傳統 BFT 協議不同的地方在於，即使超過三分之一的驗證者遭到攻破，它仍提供經濟最終性（economic finality）（更多細節請見「可究責的安全性與合理的活性」一節）。</p>
 </div>
 <div class="sect3">
 <h3 id="ch15-epochs-and-checkpoints"><a class="anchor" href="#ch15-epochs-and-checkpoints" aria-label="本節連結"></a>15.6.1. Epoch 與檢查點</h3>
@@ -841,7 +841,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 </td>
 <td class="content">
 <div class="paragraph">
-<p>另外值得一提的是，從外部的觀點來看，由於投票會隨著 epoch 的進行而逐步累積，在沒有重大鏈重組的前提下，我們可能在 12.8 分鐘結束之前，就看到某個檢查點很可能會被最終確定的跡象。不過，協議內正式的合理化與最終確定動作，只會在 epoch 結束時才發生。</p>
+<p>另外，從外部的觀點來看，由於投票會隨著 epoch 的進行而逐步累積，在沒有重大鏈重組的前提下，我們可能在 12.8 分鐘結束之前，就看到某個檢查點很可能會被最終確定的跡象。不過，協議內正式的合理化與最終確定動作，只會在 epoch 結束時才發生。</p>
 </div>
 </td>
 </tr>
@@ -1002,7 +1002,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <p>所以驗證者 B 執行 LMD-GHOST 的結果是區塊 1。他們現在可以在區塊 1 之上發布區塊 2。在區塊 2 中，驗證者 B 也會存入所有他們看過、但還沒有收錄在先前區塊中的見證投票。所以他們存入了那三個投給區塊 1 的見證投票。</p>
 </div>
 <div class="paragraph">
-<p>區塊 2 在網路中傳播，發布後不久，驗證者 A 和 C 就收到了它。請記得，LMD-GHOST 會同時使用透過點對點（P2P）網路分享的投票與收錄在區塊中的投票，而 Casper FFG 只考慮收錄在區塊中的投票。所以，如果驗證者已經透過 P2P 網路分享 LMD-GHOST 的投票，把這些投票收錄進區塊並不會影響 LMD-GHOST 的結果；但這對 Casper FFG 來說至關重要，因為這是驗證者得知這些投票的唯一途徑。</p>
+<p>區塊 2 在網路中傳播，發布後不久，驗證者 A 和 C 就收到了它。請記得，LMD-GHOST 會同時使用透過點對點（P2P）網路分享的投票與收錄在區塊中的投票，而 Casper FFG 只考慮收錄在區塊中的投票。所以，如果驗證者已經透過 P2P 網路分享 LMD-GHOST 的投票，把這些投票收錄進區塊並不會影響 LMD-GHOST 的結果；但對 Casper FFG 來說不可或缺，因為這是驗證者得知這些投票的唯一途徑。</p>
 </div>
 <div class="paragraph">
 <p>同樣地，所有驗證者都發出一次見證投票，投給他們認為鏈上最新的 head 區塊。由於他們的局部看法中都有區塊 2，他們全都投票支持區塊 2 成為鏈頭。接著，他們發布這些見證投票，讓所有驗證者都能看到。</p>

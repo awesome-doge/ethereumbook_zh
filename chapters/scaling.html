@@ -33,7 +33,7 @@
 <link rel="stylesheet" href="/assets/site.css?v=ad2df01e33">
 <link rel="stylesheet" href="/assets/code.css?v=c94d007c0c">
 <script defer src="/assets/site.js?v=33af8366a0"></script>
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Chapter","@id":"https://mastering-ethereum.doge.tg/chapters/scaling.html#chapter","name":"第 16 章　以太坊擴容","headline":"第 16 章　以太坊擴容｜精通以太坊（第二版）","description":"以太坊擴容：擴容三難、gas 成本與網路壅塞、狀態成長與 MEV 等第一層的限制，以及 rollup、Danksharding、Proto-Danksharding 與無狀態以太坊等解決方案。","url":"https://mastering-ethereum.doge.tg/chapters/scaling.html","inLanguage":"zh-TW","position":17,"dateModified":"2026-11-08T20:37:00+08:00","isPartOf":{"@id":"https://mastering-ethereum.doge.tg/#book"},"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true},{"@type":"Book","@id":"https://mastering-ethereum.doge.tg/#book","name":"精通以太坊（第二版）","alternateName":["Mastering Ethereum, 2nd Edition","精通以太坊第二版"],"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"inLanguage":"zh-TW","publisher":{"@type":"Organization","name":"O'Reilly Media"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true,"url":"https://mastering-ethereum.doge.tg/","image":"https://mastering-ethereum.doge.tg/assets/og-cover-2nd.png","translationOfWork":{"@type":"Book","name":"Mastering Ethereum, 2nd Edition","inLanguage":"en","url":"https://github.com/ethereumbook/ethereumbook"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"精通以太坊（第二版）","item":"https://mastering-ethereum.doge.tg/"},{"@type":"ListItem","position":2,"name":"第 16 章　以太坊擴容","item":"https://mastering-ethereum.doge.tg/chapters/scaling.html"}]}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Chapter","@id":"https://mastering-ethereum.doge.tg/chapters/scaling.html#chapter","name":"第 16 章　以太坊擴容","headline":"第 16 章　以太坊擴容｜精通以太坊（第二版）","description":"以太坊擴容：擴容三難、gas 成本與網路壅塞、狀態成長與 MEV 等第一層的限制，以及 rollup、Danksharding、Proto-Danksharding 與無狀態以太坊等解決方案。","url":"https://mastering-ethereum.doge.tg/chapters/scaling.html","inLanguage":"zh-TW","position":17,"dateModified":"2026-11-08T21:51:28+08:00","isPartOf":{"@id":"https://mastering-ethereum.doge.tg/#book"},"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true},{"@type":"Book","@id":"https://mastering-ethereum.doge.tg/#book","name":"精通以太坊（第二版）","alternateName":["Mastering Ethereum, 2nd Edition","精通以太坊第二版"],"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"inLanguage":"zh-TW","publisher":{"@type":"Organization","name":"O'Reilly Media"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true,"url":"https://mastering-ethereum.doge.tg/","image":"https://mastering-ethereum.doge.tg/assets/og-cover-2nd.png","translationOfWork":{"@type":"Book","name":"Mastering Ethereum, 2nd Edition","inLanguage":"en","url":"https://github.com/ethereumbook/ethereumbook"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"精通以太坊（第二版）","item":"https://mastering-ethereum.doge.tg/"},{"@type":"ListItem","position":2,"name":"第 16 章　以太坊擴容","item":"https://mastering-ethereum.doge.tg/chapters/scaling.html"}]}]}</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZVVQYEKMPF"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-ZVVQYEKMPF');
 // 電子書下載：GA 的加強型評估不認得 .epub，下載連結又在 GitHub 上，所以自己送事件
@@ -195,7 +195,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <div class="sect2">
 <h2 id="ch16-the-problems-of-ethereums-layer-1"><a class="anchor" href="#ch16-the-problems-of-ethereums-layer-1" aria-label="本節連結"></a>16.1. 以太坊第一層的問題</h2>
 <div class="paragraph">
-<p>要完整理解以太坊在擴容上的挑戰，我們需要把問題拆成四大項：擴容三難（scalability trilemma）、gas 成本與網路壅塞、狀態成長與儲存，以及區塊傳播與最大可提取價值（MEV）。這些問題並不是以太坊獨有的，其他鏈也會以不同形式遇到，只是以太坊的熱門程度把它們放大了。我們就逐一深入探討。</p>
+<p>要完整理解以太坊在擴容上的挑戰，我們需要把問題拆成四大項：擴容三難（scalability trilemma）、gas 成本與網路壅塞、狀態成長與儲存，以及區塊傳播與最大可提取價值（MEV）。這些問題並不是以太坊獨有的，其他鏈也會以不同形式遇到，只是以太坊的熱門程度把它們放大了。下面逐一說明。</p>
 </div>
 <div class="sect3">
 <h3 id="ch16-the-scalability-trilemma"><a class="anchor" href="#ch16-the-scalability-trilemma" aria-label="本節連結"></a>16.1.1. 擴容三難</h3>
@@ -281,7 +281,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <p>以太坊不只是用來交易；它是一台<em>全域狀態機</em>，持續追蹤帳戶餘額、智能合約資料、DeFi 部位、NFT 以及其他鏈上活動。傳統資料庫可以封存或刪除舊紀錄，以太坊則不同，它在設計上就要保留完整的歷史，以確保透明度與可驗證性。問題在哪？隨著以太坊成長，它需要儲存的資料越來越多，儲存的負擔也越來越重。</p>
 </div>
 <div class="paragraph">
-<p>目前，以太坊狀態正以驚人的速度膨脹。所謂狀態，基本上就是所有活躍帳戶、合約餘額與儲存槽（storage slot）的集合。每個新的智能合約都會讓狀態增加，每一筆交易也都會修改它。完整節點在驗證網路完整性上扮演關鍵角色，必須儲存並持續更新這些資料。隨著狀態成長，個人要在沒有昂貴硬體的情況下執行完整節點會越來越困難，引發了對去中心化的擔憂。</p>
+<p>目前，以太坊狀態正以驚人的速度膨脹。所謂狀態，基本上就是所有活躍帳戶、合約餘額與儲存槽（storage slot）的集合。每個新的智能合約都會讓狀態增加，每一筆交易也都會修改它。完整節點負責驗證網路的完整性，必須儲存並持續更新這些資料。隨著狀態成長，個人要在沒有昂貴硬體的情況下執行完整節點會越來越困難，引發了對去中心化的擔憂。</p>
 </div>
 <div class="paragraph">
 <p>封存節點面臨的挑戰更大。這些節點不只儲存目前的狀態，還儲存以太坊完整的歷史紀錄，包括過去的每一筆交易與每一次合約執行。這些資料的總量高達數 TB，需要可觀的儲存容量與頻寬。有能力執行這類節點的人越來越少，也讓人不禁要問：以後由誰來保存以太坊的長期歷史？</p>
@@ -381,7 +381,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <p>以太坊的狀態，包括所有帳戶餘額、智能合約儲存空間以及其他鏈上資料的集合，只會不斷成長。每個新合約都會增加資料，而一旦有東西寫入以太坊的狀態，就會永遠留在那裡。這對去中心化與可驗證性很好，對可擴展性卻很糟。完整節點必須儲存並處理所有這些資料，而狀態越大，執行節點的成本就越高。</p>
 </div>
 <div class="paragraph">
-<p>目前，完整節點的以太坊狀態大小約為 1.2 TB，但儲存完整歷史狀態與交易資料的封存節點則需要超過 21 TB 的儲存空間。如此龐大的資料量讓個人越來越難執行封存節點，使這個角色集中在少數資金雄厚的實體手上。值得一提的是，Erigon 與 Reth 這兩個執行層客戶端經過最佳化，需要的儲存空間較少，兩者的封存節點都只需要大約 2 TB。</p>
+<p>目前，完整節點的以太坊狀態大小約為 1.2 TB，但儲存完整歷史狀態與交易資料的封存節點則需要超過 21 TB 的儲存空間。如此龐大的資料量讓個人越來越難執行封存節點，使這個角色集中在少數資金雄厚的實體手上。不過，Erigon 與 Reth 這兩個執行層客戶端經過最佳化，需要的儲存空間較少，兩者的封存節點都只需要大約 2 TB。</p>
 </div>
 <div class="paragraph">
 <p>狀態過期與歷史過期經常被混為一談，但它們處理的是不同的問題。<em>狀態過期</em>的目標是縮小以太坊需要持續維護的狀態，做法是要求智能合約定期為它們占用的儲存空間支付租金。如果合約不付租金，它就會變得無法存取，直到有人明確付費讓它復活為止。這能大幅減緩狀態成長，讓完整節點更容易運作。</p>
@@ -402,7 +402,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <p>PBS 是緩解 MEV 最有希望的解決方案之一。目前，驗證者既提議區塊也建構區塊，代表他們完全掌控交易的排序。PBS 把這兩個角色分開，藉此改變這種情況：驗證者仍然提議區塊，但實際的區塊建構則透過競爭性的拍賣，外包給專門的建構者。這消除了驗證者從事 MEV 提取的直接誘因，也讓交易的收錄更加透明。</p>
 </div>
 <div class="paragraph">
-<p>PBS 已經以 MEV-Boost 的形式經過實際測試，MEV-Boost 讓驗證者能把區塊建構外包給出價最高的人。不過，重要的是要了解，MEV-Boost 與 PBS 並不會消除 MEV；它們只會讓 MEV 更透明、更公平。MEV 仍會存在，因為驅動套利、搶先交易與三明治攻擊的根本誘因不會消失。PBS 的作用是確保 MEV 的取得過程更開放、公平且具競爭性，而不是讓少數內部人士從不透明的 MEV 策略中獲益。長期來說，還需要在 PBS 之外整合其他解決方案，例如訂單流拍賣（order-flow auction）、加密記憶池（encrypted mempool），以及其他 MEV 緩解技術，才能進一步減少它的負面影響。</p>
+<p>PBS 已經以 MEV-Boost 的形式經過實際測試，MEV-Boost 讓驗證者能把區塊建構外包給出價最高的人。不過要知道，MEV-Boost 與 PBS 並不會消除 MEV；它們只會讓 MEV 更透明、更公平。MEV 仍會存在，因為驅動套利、搶先交易與三明治攻擊的根本誘因不會消失。PBS 的作用是確保 MEV 的取得過程更開放、公平且具競爭性，而不是讓少數內部人士從不透明的 MEV 策略中獲益。長期來說，還需要在 PBS 之外整合其他解決方案，例如訂單流拍賣（order-flow auction）、加密記憶池（encrypted mempool），以及其他 MEV 緩解技術，才能進一步減少它的負面影響。</p>
 </div>
 </div>
 </div>
@@ -495,7 +495,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <p>現實是，最前沿的密碼學是有風險的。我們以 Zcash 為例。Zcash 採用了論文〈Succinct Non-Interactive Zero Knowledge for a von Neumann Architecture〉中提出的部分實作，這篇論文描述了 Zcash 最初上線時所使用的 zk-SNARK 建構方式。</p>
 </div>
 <div class="paragraph">
-<p>2018 年，在這篇論文發表多年、經過數十次同儕審查之後，當時受雇於 Zcash 的密碼學家 Ariel Gabizon 發現了一個細微的密碼學缺陷，它會造成偽造漏洞，本質上就是一種雙重支付（double spend）攻擊。這個漏洞在 Zcash 的 Sapling 升級中修正了，而且似乎沒有被任何人利用過，但它在一篇非常公開、廣受引用的論文中潛伏了好幾年，才終於有人注意到。</p>
+<p>2018 年，在這篇論文發表多年、經過數十次同儕審查之後，當時受雇於 Zcash 的密碼學家 Ariel Gabizon 發現了一個細微的密碼學缺陷，它會造成偽造漏洞，也就是一種雙重支付（double spend）攻擊。這個漏洞在 Zcash 的 Sapling 升級中修正了，而且似乎沒有被任何人利用過，但它在一篇非常公開、廣受引用的論文中潛伏了好幾年，才終於有人注意到。</p>
 </div>
 <div class="paragraph">
 <p>在本章中，我們把零知識證明描述為高度安全、值得信賴的。一般來說確實如此，但如果從不質疑這個假設，它就會變得很危險。</p>
@@ -544,7 +544,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <div class="sect4">
 <h4 id="ch16-based-rollups"><a class="anchor" href="#ch16-based-rollups" aria-label="本節連結"></a>Based Rollup</h4>
 <div class="paragraph">
-<p><em>based rollup</em> 仰賴 L1 區塊鏈原生的排序能力。這種設計能無縫整合，善用 L1 的去中心化、活性（liveness）與安全特性。</p>
+<p><em>based rollup</em> 仰賴 L1 區塊鏈原生的排序能力。這種設計與 L1 緊密整合，直接沿用 L1 的去中心化、活性（liveness）與安全特性。</p>
 </div>
 <div class="paragraph">
 <p>與傳統的 rollup 相比，based rollup 採用更簡單的排序方式。大多數 rollup 都自己實作排序器，based rollup 則直接利用底層第一層的排序器。基本上，主要的差別在於 L1 的驗證者就是這個 rollup 的排序器，而不是像樂觀 rollup 那樣使用外部的排序器。</p>
@@ -605,7 +605,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 </td>
 <td class="content">
 <div class="paragraph">
-<p>既然這是我們第一次提到分片，簡單介紹一下這個概念是合理的。請記住，這是一個還可以深入研究許多的主題。它超出了本書的範圍，但仍然是個有趣的主題。</p>
+<p>既然第一次提到分片，就先簡單介紹一下這個概念。這個主題還有很多可以研究的地方，雖然超出了本書的範圍，但相當有趣。</p>
 </div>
 <div class="paragraph">
 <p>分片的基本概念是把網路分成不同的部分，讓每個分片處理一部分的交易，藉此提升效能、降低成本。</p>
@@ -723,7 +723,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <div class="sect3">
 <h3 id="ch16-stateless-ethereum"><a class="anchor" href="#ch16-stateless-ethereum" aria-label="本節連結"></a>16.2.6. 無狀態以太坊</h3>
 <div class="paragraph">
-<p>能在普通的硬體上執行以太坊節點，對實現真正的去中心化至關重要。這是因為執行節點讓使用者能透過密碼學檢查，獨立驗證區塊鏈的資訊，而不必仰賴第三方。執行節點也讓使用者不必透過中間人，就能把交易直接提交到以太坊的點對點（P2P）網路。如果這些好處只有擁有昂貴設備的使用者才能享有，就不可能實現真正的去中心化。因此，以太坊節點對處理能力與記憶體的需求必須降到最低，最好能在手機、微型電腦這類日常硬體上執行，或是在家用電腦上不著痕跡地執行。</p>
+<p>能在普通的硬體上執行以太坊節點，是真正去中心化的前提。這是因為執行節點讓使用者能透過密碼學檢查，獨立驗證區塊鏈的資訊，而不必仰賴第三方。執行節點也讓使用者不必透過中間人，就能把交易直接提交到以太坊的點對點（P2P）網路。如果這些好處只有擁有昂貴設備的使用者才能享有，就不可能實現真正的去中心化。因此，以太坊節點對處理能力與記憶體的需求必須降到最低，最好能在手機、微型電腦這類日常硬體上執行，或是在家用電腦上不著痕跡地執行。</p>
 </div>
 <div class="paragraph">
 <p>如今，龐大的磁碟空間需求是阻礙更多人執行以太坊節點的主要障礙。主要原因在於必須儲存以太坊龐大的狀態資料，而這些資料對正確處理新的區塊與交易很重要。</p>
@@ -742,7 +742,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 </td>
 <td class="content">
 <div class="paragraph">
-<p>在接下來的小節中，我們會說明弱無狀態性與強無狀態性。另外值得一提的是，正如我們剛才所說，這些並不是實現「無狀態以太坊」的唯一途徑；這裡的無狀態性，基本上指的是改變以太坊節點管理狀態資料的方式。另一種做法是使用 Helios 這類輕客戶端。Helios 能把一個不受信任、中心化的 RPC 端點，轉換成供使用者使用、安全且無法被操縱的本地 RPC。它輕巧到能在行動裝置上執行，只需要非常少的儲存空間。</p>
+<p>在接下來的小節中，我們會說明弱無狀態性與強無狀態性。另外，正如我們剛才所說，這些並不是實現「無狀態以太坊」的唯一途徑；這裡的無狀態性，基本上指的是改變以太坊節點管理狀態資料的方式。另一種做法是使用 Helios 這類輕客戶端。Helios 能把一個不受信任、中心化的 RPC 端點，轉換成供使用者使用、安全且無法被操縱的本地 RPC。它輕巧到能在行動裝置上執行，只需要非常少的儲存空間。</p>
 </div>
 </td>
 </tr>
@@ -760,7 +760,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <div class="sect4">
 <h4 id="ch16-verkle-trees"><a class="anchor" href="#ch16-verkle-trees" aria-label="本節連結"></a>Verkle 樹</h4>
 <div class="paragraph">
-<p><em>Verkle 樹</em>這個名稱結合了「向量承諾」（vector commitment）與「默克爾樹」（Merkle tree，第 14 章已經說明過）。Verkle 樹對實現無狀態的以太坊客戶端不可或缺，這種客戶端不必在本地儲存整個以太坊狀態，就能驗證區塊。它們仰賴的是見證，<sup class="footnote">[<a id="_footnoteref_54" class="footnote" href="#_footnotedef_54" title="查看註腳">54</a>]</sup>並附上確認見證有效的密碼學證明。見證的大小必須很小，這一點至關重要，因為節點必須在以太坊 12 秒的 slot 內有效率地散布並處理見證。目前以默克爾樹為基礎的狀態資料結構產生的見證太大，不適合用於無狀態驗證。Verkle 樹大幅縮小了見證的大小，解決了這個問題。</p>
+<p><em>Verkle 樹</em>這個名稱結合了「向量承諾」（vector commitment）與「默克爾樹」（Merkle tree，第 14 章已經說明過）。Verkle 樹對實現無狀態的以太坊客戶端不可或缺，這種客戶端不必在本地儲存整個以太坊狀態，就能驗證區塊。它們仰賴的是見證，<sup class="footnote">[<a id="_footnoteref_54" class="footnote" href="#_footnotedef_54" title="查看註腳">54</a>]</sup>並附上確認見證有效的密碼學證明。見證一定要夠小，因為節點必須在以太坊 12 秒的 slot 內有效率地散布並處理見證。目前以默克爾樹為基礎的狀態資料結構產生的見證太大，不適合用於無狀態驗證。Verkle 樹大幅縮小了見證的大小，解決了這個問題。</p>
 </div>
 <div class="paragraph">
 <p>正如名稱所示，Verkle 樹使用 <em>向量承諾</em>：具體來說就是 KZG 多項式承諾，這是一種密碼學承諾，能有效率地證明大型資料集中特定位置的資料值，而不必揭露整個資料集。它們的擴展性比默克爾樹目前使用的雜湊好得多，計算速度也更快，如圖 16-6 所示。在默克爾樹中，我們只有默克爾根（雜湊值）；而在 Verkle 樹中，我們還有向量承諾。</p>

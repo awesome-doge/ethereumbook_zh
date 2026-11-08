@@ -33,7 +33,7 @@
 <link rel="stylesheet" href="/assets/site.css?v=ad2df01e33">
 <link rel="stylesheet" href="/assets/code.css?v=c94d007c0c">
 <script defer src="/assets/site.js?v=33af8366a0"></script>
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Chapter","@id":"https://mastering-ethereum.doge.tg/chapters/defi.html#chapter","name":"第 13 章　去中心化金融","headline":"第 13 章　去中心化金融｜精通以太坊（第二版）","description":"去中心化金融（DeFi）：與傳統金融的比較，去中心化交易所、借貸市場、穩定幣、流動性質押、真實世界資產與跨鏈橋等基本元件，以及 DeFi 的風險與挑戰。","url":"https://mastering-ethereum.doge.tg/chapters/defi.html","inLanguage":"zh-TW","position":14,"dateModified":"2026-11-06T18:11:04+08:00","isPartOf":{"@id":"https://mastering-ethereum.doge.tg/#book"},"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true},{"@type":"Book","@id":"https://mastering-ethereum.doge.tg/#book","name":"精通以太坊（第二版）","alternateName":["Mastering Ethereum, 2nd Edition","精通以太坊第二版"],"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"inLanguage":"zh-TW","publisher":{"@type":"Organization","name":"O'Reilly Media"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true,"url":"https://mastering-ethereum.doge.tg/","image":"https://mastering-ethereum.doge.tg/assets/og-cover-2nd.png","translationOfWork":{"@type":"Book","name":"Mastering Ethereum, 2nd Edition","inLanguage":"en","url":"https://github.com/ethereumbook/ethereumbook"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"精通以太坊（第二版）","item":"https://mastering-ethereum.doge.tg/"},{"@type":"ListItem","position":2,"name":"第 13 章　去中心化金融","item":"https://mastering-ethereum.doge.tg/chapters/defi.html"}]}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Chapter","@id":"https://mastering-ethereum.doge.tg/chapters/defi.html#chapter","name":"第 13 章　去中心化金融","headline":"第 13 章　去中心化金融｜精通以太坊（第二版）","description":"去中心化金融（DeFi）：與傳統金融的比較，去中心化交易所、借貸市場、穩定幣、流動性質押、真實世界資產與跨鏈橋等基本元件，以及 DeFi 的風險與挑戰。","url":"https://mastering-ethereum.doge.tg/chapters/defi.html","inLanguage":"zh-TW","position":14,"dateModified":"2026-11-08T21:51:28+08:00","isPartOf":{"@id":"https://mastering-ethereum.doge.tg/#book"},"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true},{"@type":"Book","@id":"https://mastering-ethereum.doge.tg/#book","name":"精通以太坊（第二版）","alternateName":["Mastering Ethereum, 2nd Edition","精通以太坊第二版"],"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"inLanguage":"zh-TW","publisher":{"@type":"Organization","name":"O'Reilly Media"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true,"url":"https://mastering-ethereum.doge.tg/","image":"https://mastering-ethereum.doge.tg/assets/og-cover-2nd.png","translationOfWork":{"@type":"Book","name":"Mastering Ethereum, 2nd Edition","inLanguage":"en","url":"https://github.com/ethereumbook/ethereumbook"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"精通以太坊（第二版）","item":"https://mastering-ethereum.doge.tg/"},{"@type":"ListItem","position":2,"name":"第 13 章　去中心化金融","item":"https://mastering-ethereum.doge.tg/chapters/defi.html"}]}]}</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZVVQYEKMPF"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-ZVVQYEKMPF');
 // 電子書下載：GA 的加強型評估不認得 .epub，下載連結又在 GitHub 上，所以自己送事件
@@ -271,7 +271,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <p>Uniswap V2 等許多熱門的 DEX 使用恆定乘積公式 <em>x × y = k</em>，其中 <em>x</em> 與 <em>y</em> 是流動性池中兩種代幣的數量，<em>k</em> 是一個常數。代幣的價格由池中代幣數量的比例決定。例如，如果一個池子裡有 100 USDC 和 10 ETH，1 ETH 的價格就是 100 ÷ 10 = 10 USDC。如果池子因為交易變成 200 USDC 和 10 ETH，1 ETH 的價格就變成 200 ÷ 10 = 20 USDC。</p>
 </div>
 <div class="paragraph">
-<p>這個公式是理解池子如何運作的簡化方式。提供流動性時，你扮演的是造市商的角色。使用者從池子買入 ETH 時，你就是賣出 ETH、收取 USDC；使用者賣出 ETH 時，你就是買入 ETH、付出 USDC。作為回報，你可以賺取交易手續費。然而，這個過程會讓你面臨無常損失：當池中代幣的價格與你存入時相比發生變化，就會出現無常損失。如果 ETH 的價格大幅上漲或下跌，即使你收取了手續費，你在池中持有的資產價值，仍可能低於單純持有原本那些代幣的價值。</p>
+<p>這個公式是理解池子如何運作的簡化方式。提供流動性時，你就是造市商。使用者從池子買入 ETH 時，你就是賣出 ETH、收取 USDC；使用者賣出 ETH 時，你就是買入 ETH、付出 USDC。作為回報，你可以賺取交易手續費。然而，這個過程會讓你面臨無常損失：當池中代幣的價格與你存入時相比發生變化，就會出現無常損失。如果 ETH 的價格大幅上漲或下跌，即使你收取了手續費，你在池中持有的資產價值，仍可能低於單純持有原本那些代幣的價值。</p>
 </div>
 <div class="paragraph">
 <p>這種開放性也為 DEX 帶來了重大挑戰。由於任何人都能建立區塊鏈並推出 DEX，現在各條區塊鏈上已經有超過一百個 DEX（實際數量可能多得多）。數量如此之多，造成流動性分散，使得兌換（swap，也就是使用者把一種加密貨幣換成另一種）的效率，不如在流動性集中的平台上那麼好。這種分散可能導致較高的<em>滑價</em>（slippage），也就是預期的交易價格與實際成交價格之間的差距。流動性不足時就會出現高滑價，使交易以比預期更不利的價格成交。</p>
@@ -302,7 +302,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 </ol>
 </div>
 <div class="paragraph">
-<p>這就是為什麼固定價格或線性曲線本質上不適合 AMM：它們會讓池子被完全掏空。</p>
+<p>所以固定價格或線性曲線天生就不適合 AMM：它們會讓池子被完全掏空。</p>
 </div>
 <div class="paragraph">
 <p><strong>雙曲線的解法</strong></p>
@@ -361,7 +361,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <p>正是這種漸近的特性讓 AMM 安全。交易規模相對於池子越大，兌換率就越差。這就產生了<em>滑價</em>，也就是預期價格與實際成交價格之間的差距，自然會抑制那些會大幅耗盡池子的交易。</p>
 </div>
 <div class="paragraph">
-<p>雙曲線確保了流動性池能自我保護：一種代幣越稀少，價格就越高，形成一道經濟上的屏障，防止池子被完全掏空。正是這個優雅的數學性質，讓 Uniswap 的簡單公式在實現免信任、無需許可的交易上具有革命性的意義。</p>
+<p>雙曲線確保了流動性池能自我保護：一種代幣越稀少，價格就越高，形成一道經濟上的屏障，防止池子被完全掏空。Uniswap 的公式雖然簡單，卻因為這個優雅的數學性質，讓免信任、無需許可的交易得以實現。</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -601,7 +601,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 </tbody></table>
 </div>
 <div class="paragraph">
-<p><em>跨鏈橋</em>（bridge）是一種專門的協議，用來促成資產與資料在不同區塊鏈之間轉移，如圖 13-6 所示。它們扮演連接器的角色，讓代幣與其他數位資產能從一條鏈移動到另一條鏈。例如，如果你想把代幣從以太坊轉移到幣安智能鏈（Binance Smart Chain，BSC），就會使用跨鏈橋。</p>
+<p><em>跨鏈橋</em>（bridge）是一種專門的協議，用來促成資產與資料在不同區塊鏈之間轉移，如圖 13-6 所示。它們就像連接器，讓代幣與其他數位資產能從一條鏈移動到另一條鏈。例如，如果你想把代幣從以太坊轉移到幣安智能鏈（Binance Smart Chain，BSC），就會使用跨鏈橋。</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -668,7 +668,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <p>智能合約風險比較容易一概而論：智能合約可能遭駭，託管機構也可能心懷不軌或犯錯。經濟風險則比較複雜，而且每一種 DeFi 基本元件或協議各有不同。例如，借貸市場的風險是清算，如果市場沒有使用適當的預言機，有時可能會發生錯誤的清算。在 DEX 提供流動性的風險是無常損失。對穩定幣或流動性質押來說，主要的風險則是脫鉤。</p>
 </div>
 <div class="paragraph">
-<p>在使用 DeFi 協議之前，了解其中涉及的所有風險至關重要。除了風險之外，DeFi 也面臨重大的挑戰。許多協議只是分叉自既有的協議，試圖對既有業者發動「吸血鬼攻擊」，卻沒有提供真正的創新。這不僅分散了流動性與使用者，也削弱了整個生態系的整體效能。</p>
+<p>使用 DeFi 協議之前，一定要先了解其中的所有風險。除了風險之外，DeFi 也面臨重大的挑戰。許多協議只是分叉自既有的協議，試圖對既有業者發動「吸血鬼攻擊」，卻沒有提供真正的創新。這不僅分散了流動性與使用者，也削弱了整個生態系的整體效能。</p>
 </div>
 <div class="paragraph">
 <p>流動性對大多數協議來說都不可或缺。這些協議在市場熱絡時也許運作良好，在市場低迷時卻往往大幅衰退。大多數 DeFi 協議無法自給自足，往往只有在使用者能獲得獎勵時才運作得起來，原因可能是使用者對產品本身並沒有真正的興趣，也可能是成本高於收益。</p>

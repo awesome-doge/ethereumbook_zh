@@ -33,7 +33,7 @@
 <link rel="stylesheet" href="/assets/site.css?v=ad2df01e33">
 <link rel="stylesheet" href="/assets/code.css?v=c94d007c0c">
 <script defer src="/assets/site.js?v=33af8366a0"></script>
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Chapter","@id":"https://mastering-ethereum.doge.tg/chapters/vyper.html#chapter","name":"第 8 章　智能合約與 Vyper","headline":"第 8 章　智能合約與 Vyper｜精通以太坊（第二版）","description":"智能合約與 Vyper：Vyper 如何以刻意省略功能來減少漏洞、與 Solidity 的比較、裝飾符、函式與變數順序、編譯，以及在編譯器層級防止溢位。","url":"https://mastering-ethereum.doge.tg/chapters/vyper.html","inLanguage":"zh-TW","position":9,"dateModified":"2026-11-03T14:43:31+08:00","isPartOf":{"@id":"https://mastering-ethereum.doge.tg/#book"},"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true},{"@type":"Book","@id":"https://mastering-ethereum.doge.tg/#book","name":"精通以太坊（第二版）","alternateName":["Mastering Ethereum, 2nd Edition","精通以太坊第二版"],"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"inLanguage":"zh-TW","publisher":{"@type":"Organization","name":"O'Reilly Media"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true,"url":"https://mastering-ethereum.doge.tg/","image":"https://mastering-ethereum.doge.tg/assets/og-cover-2nd.png","translationOfWork":{"@type":"Book","name":"Mastering Ethereum, 2nd Edition","inLanguage":"en","url":"https://github.com/ethereumbook/ethereumbook"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"精通以太坊（第二版）","item":"https://mastering-ethereum.doge.tg/"},{"@type":"ListItem","position":2,"name":"第 8 章　智能合約與 Vyper","item":"https://mastering-ethereum.doge.tg/chapters/vyper.html"}]}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Chapter","@id":"https://mastering-ethereum.doge.tg/chapters/vyper.html#chapter","name":"第 8 章　智能合約與 Vyper","headline":"第 8 章　智能合約與 Vyper｜精通以太坊（第二版）","description":"智能合約與 Vyper：Vyper 如何以刻意省略功能來減少漏洞、與 Solidity 的比較、裝飾符、函式與變數順序、編譯，以及在編譯器層級防止溢位。","url":"https://mastering-ethereum.doge.tg/chapters/vyper.html","inLanguage":"zh-TW","position":9,"dateModified":"2026-11-08T21:51:28+08:00","isPartOf":{"@id":"https://mastering-ethereum.doge.tg/#book"},"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true},{"@type":"Book","@id":"https://mastering-ethereum.doge.tg/#book","name":"精通以太坊（第二版）","alternateName":["Mastering Ethereum, 2nd Edition","精通以太坊第二版"],"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"inLanguage":"zh-TW","publisher":{"@type":"Organization","name":"O'Reilly Media"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true,"url":"https://mastering-ethereum.doge.tg/","image":"https://mastering-ethereum.doge.tg/assets/og-cover-2nd.png","translationOfWork":{"@type":"Book","name":"Mastering Ethereum, 2nd Edition","inLanguage":"en","url":"https://github.com/ethereumbook/ethereumbook"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"精通以太坊（第二版）","item":"https://mastering-ethereum.doge.tg/"},{"@type":"ListItem","position":2,"name":"第 8 章　智能合約與 Vyper","item":"https://mastering-ethereum.doge.tg/chapters/vyper.html"}]}]}</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZVVQYEKMPF"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-ZVVQYEKMPF');
 // 電子書下載：GA 的加強型評估不認得 .epub，下載連結又在 GitHub 上，所以自己送事件
@@ -198,7 +198,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <p>Vyper 讓不安全的程式碼更難寫出來的做法之一，是刻意省略 Solidity 的部分功能。這項設計取捨源自 Vyper「安全第一」的原則，也受到 Python 清楚、簡潔風格的啟發。考慮用 Vyper 開發智能合約的人，有必要了解 Vyper 缺少哪些功能，以及為什麼缺少。本節會逐一介紹這些功能，並說明省略它們的理由。</p>
 </div>
 <div class="paragraph">
-<p>雖然 Vyper 為了減少歧義而精簡了功能，它仍然隨著開發者與審計人員的實際需求不斷演進。例如，最初「合約只放在單一檔案裡」的理念有助於把可審計性發揮到最大，但隨著協議變得越來越龐大、複雜，這個理念最後成了瓶頸。為了解決這個問題，現在的 Vyper 引進了一套完善的模組系統，讓開發者能把合約拆成多個檔案，同時仍然嚴格控管狀態的存取與程式碼的重複使用。這套模組系統依循的是組合的原則，而不是傳統的繼承，在結構與可讀性之間取得了更好的平衡。在去中心化金融（DeFi）協議與質押系統這類對可靠性要求很高的場景中，Vyper 的角色越來越重要，因為這些領域的開發者特別重視程式碼的清晰與容易審計。</p>
+<p>雖然 Vyper 為了減少歧義而精簡了功能，它仍然隨著開發者與審計人員的實際需求持續改進。例如，最初「合約只放在單一檔案裡」的理念有助於把可審計性發揮到最大，但隨著協議變得越來越龐大、複雜，這個理念最後成了瓶頸。為了解決這個問題，現在的 Vyper 引進了一套完善的模組系統，讓開發者能把合約拆成多個檔案，同時仍然嚴格控管狀態的存取與程式碼的重複使用。這套模組系統依循的是組合的原則，而不是傳統的繼承，在結構與可讀性之間取得了更好的平衡。在去中心化金融（DeFi）協議與質押系統這類對可靠性要求很高的場景中，Vyper 的角色越來越重要，因為這些領域的開發者特別重視程式碼的清晰與容易審計。</p>
 </div>
 <div class="sect3">
 <h3 id="ch08-modifiers"><a class="anchor" href="#ch08-modifiers" aria-label="本節連結"></a>8.2.1. 修飾符</h3>
@@ -393,7 +393,7 @@ back_to_small: uint8 = convert(large_value, uint8)   # Bounds-checked downcast</
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Vyper 0.2.15、0.2.16 與 0.3.0 版的這項不可重入功能有一個嚴重的錯誤，在 2023 年中被發現，並被用來攻擊 Curve 協議。我們會在第 9 章更深入探討重入漏洞。</p>
+<p>Vyper 0.2.15、0.2.16 與 0.3.0 版的這項不可重入功能有一個嚴重的錯誤，在 2023 年中被發現，並被用來攻擊 Curve 協議。第 9 章會進一步討論重入漏洞。</p>
 </div>
 </td>
 </tr>
@@ -491,7 +491,7 @@ stored_data: public(uint256)</pre>
 <p>內建的溢位防護一直是 Vyper 的核心功能之一，能降低溢位錯誤的風險；這類錯誤在智能合約開發的歷史上屢見不鮮。Vyper 的溢位防護相當全面：它內建了等同於 SafeMath 的防護，處理整數運算必要的例外情況，確保加、減、乘、除等運算預設就是安全的，並在發生溢位或下溢時拋出例外。此外，每當載入常值、把值傳入函式，或指派變數時，Vyper 都會以值域限制（clamp）強制執行數值的上下限。</p>
 </div>
 <div class="paragraph">
-<p>值得一提的是，近期的 Solidity 版本（0.8.0 及之後）也在編譯器層級加入了原生的溢位檢查，類似 Vyper 從一開始就提供的功能。也就是說，現在 Solidity 的算術運算會自動包含溢位檢查，不需要再額外使用 SafeMath 這類函式庫，大幅降低了溢位錯誤的風險。這項改變雖然讓 Solidity 更接近 Vyper「安全第一」的做法，但 Vyper 的實作仍然更全面，包括值域限制，以及在整個語言中更一致的邊界檢查。關鍵的差異在於理念：Vyper 從設計之初就把溢位防護當成核心原則，而 Solidity 則是為了解決過去的漏洞，才把它當成改進加進去。這種做法上的差異，反映出 Vyper 更廣泛的堅持：讓不安全的程式碼預設就更難寫出來。</p>
+<p>順帶一提，近期的 Solidity 版本（0.8.0 及之後）也在編譯器層級加入了原生的溢位檢查，類似 Vyper 從一開始就提供的功能。也就是說，現在 Solidity 的算術運算會自動包含溢位檢查，不需要再額外使用 SafeMath 這類函式庫，大幅降低了溢位錯誤的風險。這項改變雖然讓 Solidity 更接近 Vyper「安全第一」的做法，但 Vyper 的實作仍然更全面，包括值域限制，以及在整個語言中更一致的邊界檢查。關鍵的差異在於理念：Vyper 從設計之初就把溢位防護當成核心原則，而 Solidity 則是為了解決過去的漏洞，才把它當成改進加進去。這種做法上的差異，反映出 Vyper 更廣泛的堅持：讓不安全的程式碼預設就更難寫出來。</p>
 </div>
 </div>
 <div class="sect2">
@@ -556,7 +556,7 @@ log SimpleEvent()</pre>
 <p>不過，我們也必須認清，凡事都有取捨。Vyper 嚴格的設計原則雖然提升了安全性與程式碼的清晰度，卻也限制了開發者在其他語言中可能享有的部分彈性。此外，Vyper 的使用與發展程度都不如 Solidity，開發者能用的資源、函式庫與工具也比較少。對於想尋求社群支援、現成解決方案與完整文件的人來說，這可能會是個挑戰。</p>
 </div>
 <div class="paragraph">
-<p>接下來，我們會更深入探討智能合約的安全。讀完智能合約可能出現的各種安全問題之後，Vyper 設計上的一些細節，也許會變得更加清楚。</p>
+<p>下一章要專門談智能合約的安全。讀完智能合約可能出現的各種安全問題之後，Vyper 設計上的一些細節，也許會變得更加清楚。</p>
 </div>
 </div>
 </div>

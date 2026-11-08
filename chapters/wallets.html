@@ -33,7 +33,7 @@
 <link rel="stylesheet" href="/assets/site.css?v=ad2df01e33">
 <link rel="stylesheet" href="/assets/code.css?v=c94d007c0c">
 <script defer src="/assets/site.js?v=33af8366a0"></script>
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Chapter","@id":"https://mastering-ethereum.doge.tg/chapters/wallets.html#chapter","name":"第 5 章　錢包","headline":"第 5 章　錢包｜精通以太坊（第二版）","description":"錢包技術：非確定性與階層確定性（HD）錢包、助記詞與種子、錢包的最佳實踐與安全性，以及帳戶抽象、社交恢復與 ENS 等改善使用者體驗的做法。","url":"https://mastering-ethereum.doge.tg/chapters/wallets.html","inLanguage":"zh-TW","position":6,"dateModified":"2026-11-08T20:37:00+08:00","isPartOf":{"@id":"https://mastering-ethereum.doge.tg/#book"},"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true},{"@type":"Book","@id":"https://mastering-ethereum.doge.tg/#book","name":"精通以太坊（第二版）","alternateName":["Mastering Ethereum, 2nd Edition","精通以太坊第二版"],"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"inLanguage":"zh-TW","publisher":{"@type":"Organization","name":"O'Reilly Media"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true,"url":"https://mastering-ethereum.doge.tg/","image":"https://mastering-ethereum.doge.tg/assets/og-cover-2nd.png","translationOfWork":{"@type":"Book","name":"Mastering Ethereum, 2nd Edition","inLanguage":"en","url":"https://github.com/ethereumbook/ethereumbook"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"精通以太坊（第二版）","item":"https://mastering-ethereum.doge.tg/"},{"@type":"ListItem","position":2,"name":"第 5 章　錢包","item":"https://mastering-ethereum.doge.tg/chapters/wallets.html"}]}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Chapter","@id":"https://mastering-ethereum.doge.tg/chapters/wallets.html#chapter","name":"第 5 章　錢包","headline":"第 5 章　錢包｜精通以太坊（第二版）","description":"錢包技術：非確定性與階層確定性（HD）錢包、助記詞與種子、錢包的最佳實踐與安全性，以及帳戶抽象、社交恢復與 ENS 等改善使用者體驗的做法。","url":"https://mastering-ethereum.doge.tg/chapters/wallets.html","inLanguage":"zh-TW","position":6,"dateModified":"2026-11-08T21:51:28+08:00","isPartOf":{"@id":"https://mastering-ethereum.doge.tg/#book"},"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true},{"@type":"Book","@id":"https://mastering-ethereum.doge.tg/#book","name":"精通以太坊（第二版）","alternateName":["Mastering Ethereum, 2nd Edition","精通以太坊第二版"],"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"inLanguage":"zh-TW","publisher":{"@type":"Organization","name":"O'Reilly Media"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true,"url":"https://mastering-ethereum.doge.tg/","image":"https://mastering-ethereum.doge.tg/assets/og-cover-2nd.png","translationOfWork":{"@type":"Book","name":"Mastering Ethereum, 2nd Edition","inLanguage":"en","url":"https://github.com/ethereumbook/ethereumbook"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"精通以太坊（第二版）","item":"https://mastering-ethereum.doge.tg/"},{"@type":"ListItem","position":2,"name":"第 5 章　錢包","item":"https://mastering-ethereum.doge.tg/chapters/wallets.html"}]}]}</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZVVQYEKMPF"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-ZVVQYEKMPF');
 // 電子書下載：GA 的加強型評估不認得 .epub，下載連結又在 GitHub 上，所以自己送事件
@@ -328,7 +328,7 @@ wall cliff insect more detail hub ← seed using BIP-39 representation</pre>
 <p>實際上，抄寫十六進位序列時出錯的機率高得令人無法接受。相較之下，已知的單字清單就容易處理得多，主要是因為書寫單字（特別是英文單字）時有很高的冗餘度。如果不小心記成了 <em>inzect</em>，等到需要恢復錢包時，很快就能判斷出 <em>inzect</em> 不是有效的英文單字，應該改用 <em>insect</em>。我們之所以談到要把種子的某種表示形式抄寫下來，是因為這是管理 HD 錢包時的好做法：資料遺失時（無論是意外還是失竊）需要種子才能恢復錢包，所以保留一份備份是非常明智的。不過，種子必須極度保密，因此應該小心避免數位備份，這也是建議用紙筆備份的原因。</p>
 </div>
 <div class="paragraph">
-<p>總而言之，用復原單字清單來編碼 HD 錢包的種子，是最簡單的方式，可以安全地匯出一組私鑰、抄寫下來、記錄在紙上、無誤地讀出，並匯入另一個錢包。</p>
+<p>所以，用復原單字清單來編碼 HD 錢包的種子，是最簡單的方式，可以安全地匯出一組私鑰、抄寫下來、記錄在紙上、無誤地讀出，並匯入另一個錢包。</p>
 </div>
 </div>
 </div>
@@ -1045,7 +1045,7 @@ wall cliff insect more detail hub ← seed using BIP-39 representation</pre>
 <p>ERC-4337 著重在不改變以太坊核心的前提下，透過智能合約在高層次實現帳戶抽象；EIP-2938 則更進一步，提議把帳戶抽象直接嵌入協議層本身。這種較低層次的做法從根本上改變了以太坊虛擬機（EVM）對待帳戶的方式，讓使用者、智能合約與應用程式之間的互動更加直接、更有彈性。透過 EIP-2938，使用者可以不經由傳統的 EOA 來處理操作，不再依賴以私鑰為基礎的帳戶，並直接在以太坊的協議層級上支援更多樣的帳戶管理系統，例如多重簽章帳戶或社交恢復（social recovery）帳戶。</p>
 </div>
 <div class="paragraph">
-<p>EIP-2938 與一些既有帳戶抽象提案的主要差異，在於它著重把抽象直接整合進協議，而不是疊加在協議之上。有了 EIP-2938，以太坊將支援「操作」而不是「交易」，每個操作都可以代表一種更多用途、可自訂的交易類型。EIP-2938 可以把以太坊的交易重新定義為可程式化的物件，支援更廣泛的使用情境。透過把帳戶與交易本質上視為可程式化的，它把以太坊的用途擴展到標準的付款與合約互動之外，完美契合網路上正在打造的日益複雜的應用程式。</p>
+<p>EIP-2938 與一些既有帳戶抽象提案的主要差異，在於它著重把抽象直接整合進協議，而不是疊加在協議之上。有了 EIP-2938，以太坊將支援「操作」而不是「交易」，每個操作都可以代表一種更多用途、可自訂的交易類型。EIP-2938 可以把以太坊的交易重新定義為可程式化的物件，支援更廣泛的使用情境。帳戶與交易一旦可以程式化，以太坊的用途就不再限於一般的付款與合約互動，也更能配合網路上越來越複雜的應用程式。</p>
 </div>
 </div>
 <div class="sect4">
@@ -1057,7 +1057,7 @@ wall cliff insect more detail hub ← seed using BIP-39 representation</pre>
 <p>ERC-4337 在應用層引入了帳戶抽象，但由於它是協議外的設計，也帶來了一些限制。這些缺點包括額外的 gas 成本、有限的抗審查性、對非標準 RPC 方法的依賴，以及限制了與既有合約預期之間相容性的種種約束。EIP-2938 所提議的原生帳戶抽象，則把這些功能直接建構進協議中，是更穩健的替代方案。不過，EIP-2938 與 ERC-4337 的結構並不完全一致，而 ERC-4337 已經在不改變協議的情況下經過廣泛的測試與實作。</p>
 </div>
 <div class="paragraph">
-<p>這項提案結合了 EIP-2938 內建於協議層級的功能，以及從 ERC-4337 獲得的實務經驗，集兩種做法之長。這種混合做法的目標是降低 gas 成本、讓交易更能抵抗審查而提高其可靠性，並確保與現有及未來的以太坊合約相容。逐步從 EOA 轉移到智能合約帳戶，也能降低與私鑰相關的風險，讓以太坊更安全、更容易使用。重要的是，這樣的設計確保已經在使用 ERC-4337 的人，可以順利採用這些新功能。</p>
+<p>這項提案結合了 EIP-2938 內建於協議層級的功能，以及從 ERC-4337 獲得的實務經驗，集兩種做法之長。這種混合做法的目標是降低 gas 成本、讓交易更能抵抗審查而提高其可靠性，並確保與現有及未來的以太坊合約相容。逐步從 EOA 轉移到智能合約帳戶，也能降低與私鑰相關的風險，讓以太坊更安全、更容易使用。而且這樣的設計讓已經在使用 ERC-4337 的人，也能順利採用這些新功能。</p>
 </div>
 <div class="paragraph">
 <p>圖 5-6 呈現了 RIP-7560 所描述的帳戶抽象交易流程。這個流程納入了幾個負責驗證、部署與執行的關鍵合約，形成一種精簡、模組化的做法，用來管理以太坊區塊鏈上的使用者帳戶與交易。</p>
@@ -1102,7 +1102,7 @@ wall cliff insect more detail hub ← seed using BIP-39 representation</pre>
 <p><code>AUTH</code> 讓使用者授予某個智能合約代表自己行事的權限。它使用數位簽章（ECDSA）來驗證這項授權，再把使用者的地址儲存起來供之後的交易使用。<code>AUTHCALL</code> 則讓經過授權的智能合約執行交易，例如發送代幣或與其他合約互動。舉例來說，如果你想把 10 DAI 兌換（swap）成 ETH，你可以用一個簽章授權代呼叫合約（使用 <code>AUTH</code>）。代呼叫合約會使用 <code>AUTHCALL</code> 授權 Uniswap 動用你的 DAI，然後執行兌換。</p>
 </div>
 <div class="paragraph">
-<p>最初，重放保護以及 value、gas 與其他 <code>AUTHCALL</code> 引數等欄位也都需要簽署。後來設計演變成把這些工作委託給代呼叫合約合約，因此使用者是否信任代呼叫合約就變得至關重要。使用者可以透過對特定呼叫屬性進行雜湊，對這些屬性做出「承諾」。只有在承諾的值（例如用於重放保護的 nonce）與使用者的承諾相符時，代呼叫合約才會通過驗證，如圖 5-7 所示。這確保代呼叫合約處理的正是使用者所授權的內容。</p>
+<p>最初，重放保護以及 value、gas 與其他 <code>AUTHCALL</code> 引數等欄位也都需要簽署。後來設計演變成把這些工作委託給代呼叫合約，因此使用者是否信任代呼叫合約就成了關鍵。使用者可以透過對特定呼叫屬性進行雜湊，對這些屬性做出「承諾」。只有在承諾的值（例如用於重放保護的 nonce）與使用者的承諾相符時，代呼叫合約才會通過驗證，如圖 5-7 所示。這確保代呼叫合約處理的正是使用者所授權的內容。</p>
 </div>
 <div class="imageblock">
 <div class="content">

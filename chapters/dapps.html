@@ -33,7 +33,7 @@
 <link rel="stylesheet" href="/assets/site.css?v=ad2df01e33">
 <link rel="stylesheet" href="/assets/code.css?v=c94d007c0c">
 <script defer src="/assets/site.js?v=33af8366a0"></script>
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Chapter","@id":"https://mastering-ethereum.doge.tg/chapters/dapps.html#chapter","name":"第 12 章　去中心化應用","headline":"第 12 章　去中心化應用｜精通以太坊（第二版）","description":"去中心化應用（DApp）：智能合約後端、資料儲存與網頁前端，一個基本的 DApp 範例，以及如何讓應用進一步去中心化。","url":"https://mastering-ethereum.doge.tg/chapters/dapps.html","inLanguage":"zh-TW","position":13,"dateModified":"2026-11-06T18:11:04+08:00","isPartOf":{"@id":"https://mastering-ethereum.doge.tg/#book"},"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true},{"@type":"Book","@id":"https://mastering-ethereum.doge.tg/#book","name":"精通以太坊（第二版）","alternateName":["Mastering Ethereum, 2nd Edition","精通以太坊第二版"],"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"inLanguage":"zh-TW","publisher":{"@type":"Organization","name":"O'Reilly Media"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true,"url":"https://mastering-ethereum.doge.tg/","image":"https://mastering-ethereum.doge.tg/assets/og-cover-2nd.png","translationOfWork":{"@type":"Book","name":"Mastering Ethereum, 2nd Edition","inLanguage":"en","url":"https://github.com/ethereumbook/ethereumbook"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"精通以太坊（第二版）","item":"https://mastering-ethereum.doge.tg/"},{"@type":"ListItem","position":2,"name":"第 12 章　去中心化應用","item":"https://mastering-ethereum.doge.tg/chapters/dapps.html"}]}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Chapter","@id":"https://mastering-ethereum.doge.tg/chapters/dapps.html#chapter","name":"第 12 章　去中心化應用","headline":"第 12 章　去中心化應用｜精通以太坊（第二版）","description":"去中心化應用（DApp）：智能合約後端、資料儲存與網頁前端，一個基本的 DApp 範例，以及如何讓應用進一步去中心化。","url":"https://mastering-ethereum.doge.tg/chapters/dapps.html","inLanguage":"zh-TW","position":13,"dateModified":"2026-11-08T21:51:28+08:00","isPartOf":{"@id":"https://mastering-ethereum.doge.tg/#book"},"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true},{"@type":"Book","@id":"https://mastering-ethereum.doge.tg/#book","name":"精通以太坊（第二版）","alternateName":["Mastering Ethereum, 2nd Edition","精通以太坊第二版"],"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"inLanguage":"zh-TW","publisher":{"@type":"Organization","name":"O'Reilly Media"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true,"url":"https://mastering-ethereum.doge.tg/","image":"https://mastering-ethereum.doge.tg/assets/og-cover-2nd.png","translationOfWork":{"@type":"Book","name":"Mastering Ethereum, 2nd Edition","inLanguage":"en","url":"https://github.com/ethereumbook/ethereumbook"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"精通以太坊（第二版）","item":"https://mastering-ethereum.doge.tg/"},{"@type":"ListItem","position":2,"name":"第 12 章　去中心化應用","item":"https://mastering-ethereum.doge.tg/chapters/dapps.html"}]}]}</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZVVQYEKMPF"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-ZVVQYEKMPF');
 // 電子書下載：GA 的加強型評估不認得 .epub，下載連結又在 GitHub 上，所以自己送事件
@@ -253,7 +253,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <div class="sect2">
 <h2 id="ch12-backend-smart-contract"><a class="anchor" href="#ch12-backend-smart-contract" aria-label="本節連結"></a>12.2. 後端（智能合約）</h2>
 <div class="paragraph">
-<p>在 DApp 中，核心的業務邏輯與資料儲存被寫進智能合約，在以太坊區塊鏈上執行，而不是放在中心化的伺服器上。區塊鏈扮演去中心化後端的角色：交易的執行、狀態的變化與紀錄的保存，都由網路以免信任的方式強制執行，而不是由單一實體負責。</p>
+<p>在 DApp 中，核心的業務邏輯與資料儲存被寫進智能合約，在以太坊區塊鏈上執行，而不是放在中心化的伺服器上。區塊鏈就是去中心化的後端：交易的執行、狀態的變化與紀錄的保存，都由網路以免信任的方式強制執行，而不是由單一實體負責。</p>
 </div>
 <div class="paragraph">
 <p>使用者不需要信任任何中心化團隊就能存取 DApp，因為他們可以預期以太坊網路永遠正常運作，不論哪一天、哪個時刻，都會處理他們所有的交易，並正確更新智能合約的狀態。</p>
@@ -267,7 +267,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <div class="sect3">
 <h3 id="ch12-the-tornado-cash-saga"><a class="anchor" href="#ch12-the-tornado-cash-saga" aria-label="本節連結"></a>12.2.1. Tornado Cash 事件始末</h3>
 <div class="paragraph">
-<p>這裡值得一提 Tornado Cash 的故事。Tornado Cash 是一個去中心化的混幣服務（mixing service），讓任何人在任何地方，都能把可追蹤或「受污染」的加密貨幣與其他人的加密貨幣混在一起，切斷資金真正的發送者與接收者之間的所有關聯，藉此模糊回溯到原始來源的軌跡。</p>
+<p>這裡要提一下 Tornado Cash 的故事。Tornado Cash 是一個去中心化的混幣服務（mixing service），讓任何人在任何地方，都能把可追蹤或「受污染」的加密貨幣與其他人的加密貨幣混在一起，切斷資金真正的發送者與接收者之間的所有關聯，藉此模糊回溯到原始來源的軌跡。</p>
 </div>
 <div class="paragraph">
 <p>2022 年 8 月 8 日，美國財政部海外資產控制辦公室（Office of Foreign Assets Control）將 Tornado Cash 列入制裁名單，實際上等於禁止美國公民與公司使用它。這個平台被控洗錢的加密貨幣超過 70 億美元。兩天後的 8 月 10 日，Tornado Cash 的開發者之一 Alexey Pertsev 在阿姆斯特丹被捕，而他唯一的罪名就是打造了這個平台本身。官方的 GitHub 儲存庫被移除，開發者的帳號也被停權。截至 2024 年 12 月，官方網站仍然無法存取。</p>
@@ -448,7 +448,7 @@ contract MyWhitelistNFT is ERC721, Ownable {
 <p>打造 DApp 前端的一種天真做法，是只直接從鏈上讀取資料來更新所有元件。例如，如果你需要顯示某個帳戶持有的一些代幣餘額，你可以查詢區塊鏈取得答案，並在每個新區塊重複這個步驟。</p>
 </div>
 <div class="paragraph">
-<p>這種天真做法的主要問題是，你的網站會變得非常慢，使用者與這樣的前端互動可能會非常挫折。這就是為什麼如前所述，開發者常在 DApp 架構中使用中心化的資料儲存元件，盡量減少與鏈的互動：這會讓整體的使用者體驗更好。所以，你最後通常會得到一個依賴某些中心化元件的前端，但你永遠可以到區塊鏈上再次核對，驗證所有資訊。最終，如果你不信任某個 DApp 的官方前端，或單純就是不喜歡它，你也可以為它打造自己的替代前端。</p>
+<p>這種天真做法的主要問題是，你的網站會變得非常慢，使用者與這樣的前端互動可能會非常挫折。所以如前所述，開發者常在 DApp 架構中使用中心化的資料儲存元件，盡量減少與鏈的互動：這會讓整體的使用者體驗更好。所以，你最後通常會得到一個依賴某些中心化元件的前端，但你永遠可以到區塊鏈上再次核對，驗證所有資訊。最終，如果你不信任某個 DApp 的官方前端，或單純就是不喜歡它，你也可以為它打造自己的替代前端。</p>
 </div>
 <div class="paragraph">
 <p>圖 12-3 呈現了一個完整（簡化過）的 DApp 架構。</p>
@@ -848,7 +848,7 @@ deploying "YourContract" (tx: 0x8ec9ba16869588c2826118a0043f63bc679a4e947f739e80
 <p>在上一節，我們把 DApp 部署到了 Vercel。雖然 Vercel 是託管 DApp 最熱門的方案之一，它卻不是去中心化的服務。所有東西都放在它自有的伺服器上，這表示 Vercel 可能依照它的政策審查任何使用者，也能追蹤每個與你的 DApp 互動的人的 IP 地址。</p>
 </div>
 <div class="paragraph">
-<p>為了讓 DApp 更加去中心化，我們可以把前端託管在 IPFS 這類方案上；IPFS 是一個由節點組成的全球點對點網路。有一項新興的服務值得一提：<code>eth.limo</code>。它的目標是讓網站既有主流網站（通常透過中心化平台提供）的使用者體驗，又有 IPFS 等技術提供的穩健性與去中心化。</p>
+<p>為了讓 DApp 更加去中心化，我們可以把前端託管在 IPFS 這類方案上；IPFS 是一個由節點組成的全球點對點網路。新出現的 <code>eth.limo</code> 服務，目標就是讓網站既有主流網站（通常透過中心化平台提供）的使用者體驗，又有 IPFS 等技術提供的穩健性與去中心化。</p>
 </div>
 <div class="sect3">
 <h3 id="ch12-decentralized-websites"><a class="anchor" href="#ch12-decentralized-websites" aria-label="本節連結"></a>12.6.1. 去中心化網站</h3>
@@ -898,7 +898,7 @@ deploying "YourContract" (tx: 0x8ec9ba16869588c2826118a0043f63bc679a4e947f739e80
 <p>必須一提的是，<code>eth.limo</code> 是另一個可能中心化的第三方，可能在沒有任何預警的情況下停止運作。萬一發生這種情況，你的 DApp 仍然可以透過 IPFS 連上，但 <code>.eth.limo</code> 網址將不再把使用者導向它們。</p>
 </div>
 <div class="paragraph">
-<p>如果你有興趣，想深入了解這個打造完全去中心化網站的方案，可以在它的<a href="https://eth.limo" rel="noopener" target="_blank">官方網站</a>找到更多細節。</p>
+<p>如果你有興趣，想進一步了解這個建立完全去中心化網站的方案，可以在它的<a href="https://eth.limo" rel="noopener" target="_blank">官方網站</a>找到更多細節。</p>
 </div>
 </div>
 <div class="sect3">
@@ -975,7 +975,7 @@ deploying "YourContract" (tx: 0x8ec9ba16869588c2826118a0043f63bc679a4e947f739e80
 <div class="sect2">
 <h2 id="ch12-conclusion"><a class="anchor" href="#ch12-conclusion" aria-label="本節連結"></a>12.8. 結語</h2>
 <div class="paragraph">
-<p>在這一章，我們探討了如何運用現代工具簡化開發工作流程，從零開始打造一個基本的 DApp。在下一章，我們會深入探討以太坊上一些最重要的 DApp 與 DApp 類別，它們共同構成了所謂的去中心化金融（DeFi）。</p>
+<p>在這一章，我們探討了如何運用現代工具簡化開發工作流程，從零開始打造一個基本的 DApp。下一章會介紹以太坊上一些最重要的 DApp 與 DApp 類別，它們共同構成了所謂的去中心化金融（DeFi）。</p>
 </div>
 </div>
 </div>
