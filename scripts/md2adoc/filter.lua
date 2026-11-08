@@ -207,7 +207,9 @@ local function structure(blocks)
       img.src = img.src:gsub('^%./', '')
       -- 替代文字含逗號時要加引號，否則 Asciidoctor 會把逗號後面當成寬度等參數（第 15 章）
       local alt = stringify(img.caption)
-      if alt:find(',') and not alt:find('"') then img.caption = { pandoc.Str('"' .. alt .. '"') } end
+      if alt:find(',') and not alt:find('"') then alt = '"' .. alt .. '"' end
+      -- 替代文字是屬性值，不會套用 ++ 跳脫；交給 pandoc 會在 data_1 這種字裡插入 ++_++ 而原樣外漏（圖 14-3）
+      img.caption = { pandoc.RawInline('asciidoc', (alt:gsub('%]', '\\]'))) }
       local cap = nxt and caption_inlines(nxt, 'figure', true)
       local caption = cap and { long = { pandoc.Plain(cap) } } or { long = {} }
       out:insert(pandoc.Figure({ pandoc.Plain { img } }, caption))
