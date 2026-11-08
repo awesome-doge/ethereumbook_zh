@@ -33,7 +33,7 @@
 <link rel="stylesheet" href="/assets/site.css?v=ad2df01e33">
 <link rel="stylesheet" href="/assets/code.css?v=c94d007c0c">
 <script defer src="/assets/site.js?v=33af8366a0"></script>
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Chapter","@id":"https://mastering-ethereum.doge.tg/chapters/nodes.html#chapter","name":"第 3 章　以太坊節點","headline":"第 3 章　以太坊節點｜精通以太坊（第二版）","description":"以太坊節點：以太坊網路、是否該執行完整節點、執行層與共識層客戶端的安裝與同步、JSON-RPC 介面，以及遠端客戶端。","url":"https://mastering-ethereum.doge.tg/chapters/nodes.html","inLanguage":"zh-TW","position":4,"dateModified":"2026-11-06T18:11:04+08:00","isPartOf":{"@id":"https://mastering-ethereum.doge.tg/#book"},"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true},{"@type":"Book","@id":"https://mastering-ethereum.doge.tg/#book","name":"精通以太坊（第二版）","alternateName":["Mastering Ethereum, 2nd Edition","精通以太坊第二版"],"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"inLanguage":"zh-TW","publisher":{"@type":"Organization","name":"O'Reilly Media"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true,"url":"https://mastering-ethereum.doge.tg/","image":"https://mastering-ethereum.doge.tg/assets/og-cover-2nd.png","translationOfWork":{"@type":"Book","name":"Mastering Ethereum, 2nd Edition","inLanguage":"en","url":"https://github.com/ethereumbook/ethereumbook"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"精通以太坊（第二版）","item":"https://mastering-ethereum.doge.tg/"},{"@type":"ListItem","position":2,"name":"第 3 章　以太坊節點","item":"https://mastering-ethereum.doge.tg/chapters/nodes.html"}]}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Chapter","@id":"https://mastering-ethereum.doge.tg/chapters/nodes.html#chapter","name":"第 3 章　以太坊節點","headline":"第 3 章　以太坊節點｜精通以太坊（第二版）","description":"以太坊節點：以太坊網路、是否該執行完整節點、執行層與共識層客戶端的安裝與同步、JSON-RPC 介面，以及遠端客戶端。","url":"https://mastering-ethereum.doge.tg/chapters/nodes.html","inLanguage":"zh-TW","position":4,"dateModified":"2026-11-08T20:37:00+08:00","isPartOf":{"@id":"https://mastering-ethereum.doge.tg/#book"},"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true},{"@type":"Book","@id":"https://mastering-ethereum.doge.tg/#book","name":"精通以太坊（第二版）","alternateName":["Mastering Ethereum, 2nd Edition","精通以太坊第二版"],"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"inLanguage":"zh-TW","publisher":{"@type":"Organization","name":"O'Reilly Media"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true,"url":"https://mastering-ethereum.doge.tg/","image":"https://mastering-ethereum.doge.tg/assets/og-cover-2nd.png","translationOfWork":{"@type":"Book","name":"Mastering Ethereum, 2nd Edition","inLanguage":"en","url":"https://github.com/ethereumbook/ethereumbook"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"精通以太坊（第二版）","item":"https://mastering-ethereum.doge.tg/"},{"@type":"ListItem","position":2,"name":"第 3 章　以太坊節點","item":"https://mastering-ethereum.doge.tg/chapters/nodes.html"}]}]}</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZVVQYEKMPF"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-ZVVQYEKMPF');
 // 電子書下載：GA 的加強型評估不認得 .epub，下載連結又在 GitHub 上，所以自己送事件
@@ -183,7 +183,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <p>以太坊節點是一個軟體應用程式，它實作以太坊規格，並透過點對點（P2P）網路與其他以太坊節點通訊。</p>
 </div>
 <div class="paragraph">
-<p>起初，一個節點只要執行單一客戶端，就能完整實作成為以太坊生態系一員的所有要求。2022 年 9 月 15 日，合併（The Merge）硬分叉發生，把共識協議從基於工作量證明（proof of work，PoW）的機制，改成 Gasper 這個新的、基於權益證明（proof of stake，PoS）的共識協議。這也帶來了關注點的分離——共識與執行分開——並催生了一種新的以太坊客戶端：共識層客戶端。</p>
+<p>起初，一個節點只要執行單一客戶端，就能完整實作成為以太坊生態系一員的所有要求。2022 年 9 月 15 日，合併（The Merge）硬分叉發生，把共識協議從基於工作量證明（proof of work，PoW）的機制，改成 Gasper 這個新的、基於權益證明（proof of stake，PoS）的共識協議。這也帶來了關注點的分離，讓共識與執行各自獨立，並催生了一種新的以太坊客戶端：共識層客戶端。</p>
 </div>
 <div class="paragraph">
 <p>因此，在本書寫作時，一個以太坊節點必須同時執行兩套軟體，才能與最新的規格相容，如圖 3-1 所示。兩者的定義如下：</p>
@@ -206,7 +206,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 </div>
 </div>
 <div class="paragraph">
-<p>不同的以太坊客戶端——無論是執行層客戶端還是共識層客戶端——只要遵循參考規格與標準化的通訊協議，就能互相協作。雖然這些客戶端由不同的團隊、用不同的程式語言實作，但它們都「說」同一種協議、遵守同一套規則。因此，它們都可以用來運作同一個以太坊網路，並與之互動。</p>
+<p>不同的以太坊客戶端，無論是執行層還是共識層客戶端，只要遵循參考規格與標準化的通訊協議，就能互相協作。雖然這些客戶端由不同的團隊、用不同的程式語言實作，但它們都「說」同一種協議、遵守同一套規則。因此，它們都可以用來運作同一個以太坊網路，並與之互動。</p>
 </div>
 <div class="paragraph">
 <p>以太坊是一個開源專案，所有主要客戶端的原始碼都以開源授權（例如 LGPL v3.0）釋出，可以免費下載，並用於任何用途。不過，開源的意義不只是免費使用。它也代表以太坊是由開放的志願者社群開發，任何人都可以修改。看的人越多，程式碼就越值得信任。</p>
@@ -358,7 +358,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 </div>
 <div class="paragraph">
 <p><strong>完整節點</strong><br>
-會丟棄歷史狀態與交易收據的以太坊節點——通常是你啟動節點時的預設選項</p>
+會丟棄歷史狀態與交易收據的以太坊節點，通常是你啟動節點時的預設選項</p>
 </div>
 </td>
 </tr>
@@ -437,7 +437,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <div class="ulist">
 <ul>
 <li>
-<p>測試網路節點需要同步與儲存的資料少得多——依網路而定，大約 100–300 GB（截至 2025 年 6 月）。</p>
+<p>測試網路節點需要同步與儲存的資料少得多，依網路而定，大約 100 到 300 GB（截至 2025 年 6 月）。</p>
 </li>
 <li>
 <p>測試網路節點只要幾個小時就能完整同步。</p>
@@ -517,7 +517,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <div class="sect3">
 <h3 id="ch03-hardware-requirements-for-a-full-node"><a class="anchor" href="#ch03-hardware-requirements-for-a-full-node" aria-label="本節連結"></a>3.3.1. 完整節點的硬體需求</h3>
 <div class="paragraph">
-<p>開始之前，你應該先確定自己的電腦有足夠的資源來執行以太坊完整節點。你需要至少 2 TB 的磁碟空間，來儲存以太坊區塊鏈的完整副本。如果你也想在以太坊測試網路上執行完整節點，還需要至少額外的 100–400 GB。下載 2 TB 的區塊鏈資料可能要花很長的時間，所以建議你使用高速的網際網路連線。</p>
+<p>開始之前，你應該先確定自己的電腦有足夠的資源來執行以太坊完整節點。你需要至少 2 TB 的磁碟空間，來儲存以太坊區塊鏈的完整副本。如果你也想在以太坊測試網路上執行完整節點，還需要至少額外的 100 到 400 GB。下載 2 TB 的區塊鏈資料可能要花很長的時間，所以建議你使用高速的網際網路連線。</p>
 </div>
 <div class="paragraph">
 <p>同步以太坊區塊鏈需要非常大量的輸入／輸出（I/O）。最好使用固態硬碟（SSD）。如果你使用的是傳統機械硬碟（HDD），至少需要 8 GB 的 RAM 作為快取。否則，你可能會發現系統速度太慢，跟不上進度，無法完整同步。</p>
@@ -547,7 +547,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <div class="ulist">
 <ul>
 <li>
-<p>4 核心以上的高速 CPU——時脈比核心數更重要</p>
+<p>4 核心以上的高速 CPU（時脈比核心數更重要）</p>
 </li>
 <li>
 <p>16 GB 以上的 RAM</p>
@@ -571,7 +571,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 </td>
 <td class="content">
 <div class="paragraph">
-<p>這裡列出的磁碟大小需求，是假設你以預設設定執行節點，也就是會從區塊鏈中「修剪」（prune）掉舊的狀態資料。如果你改為執行完整的「封存」節點，把所有狀態都保留在磁碟上，依客戶端而定，很可能需要超過 2 TB（最多到 12–15 TB）的磁碟空間。執行節點之前，務必到客戶端的官方網站查閱最新的硬體需求。</p>
+<p>這裡列出的磁碟大小需求，是假設你以預設設定執行節點，也就是會從區塊鏈中「修剪」（prune）掉舊的狀態資料。如果你改為執行完整的「封存」節點，把所有狀態都保留在磁碟上，依客戶端而定，很可能需要超過 2 TB（最多可達 12 至 15 TB）的磁碟空間。執行節點之前，務必到客戶端的官方網站查閱最新的硬體需求。</p>
 </div>
 </td>
 </tr>
@@ -659,7 +659,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 </div>
 </div>
 <div class="paragraph">
-<p>最後，你應該會有兩個根資料夾——<em>ethereum-node1</em> 與 <em>ethereum-node2</em>——每個根資料夾裡各有兩個子資料夾：<em>execution</em> 與 <em>consensus</em>。</p>
+<p>最後，你應該會有 <em>ethereum-node1</em> 與 <em>ethereum-node2</em> 兩個根資料夾，每個根資料夾裡各有兩個子資料夾：<em>execution</em> 與 <em>consensus</em>。</p>
 </div>
 <div class="paragraph">
 <p>你也需要安裝 <a href="https://golang.org/" rel="noopener" target="_blank">Go</a> 與 <a href="https://www.rust-lang.org/" rel="noopener" target="_blank">Rust</a>。可以到它們的官方網站查看安裝指南。</p>
@@ -1149,7 +1149,7 @@ Jun 08 17:03:29.001 INFO Synced                                  slot: 9253515, 
 <div class="sect2">
 <h2 id="ch03-the-first-synchronization-of-ethereum-based-blockchains"><a class="anchor" href="#ch03-the-first-synchronization-of-ethereum-based-blockchains" aria-label="本節連結"></a>3.4. 基於以太坊的區塊鏈的初次同步</h2>
 <div class="paragraph">
-<p>一般來說，同步以太坊區塊鏈時，你的客戶端會下載並驗證從最開始——也就是從創世區塊——以來的每一個區塊與每一筆交易。雖然以這種方式完整同步區塊鏈是可行的，但同步會花非常久的時間，而且資源需求很高（它會需要多得多的 RAM；如果你沒有高速的儲存裝置，更是會花上非常久的時間）。</p>
+<p>一般來說，同步以太坊區塊鏈時，你的客戶端會下載並驗證從最開始（也就是創世區塊）以來的每一個區塊與每一筆交易。雖然以這種方式完整同步區塊鏈是可行的，但同步會花非常久的時間，而且資源需求很高（它會需要多得多的 RAM；如果你沒有高速的儲存裝置，更是會花上非常久的時間）。</p>
 </div>
 <div class="paragraph">
 <p>2016 年底，許多基於以太坊的區塊鏈都遭受了阻斷服務（denial of service，DoS）攻擊。受影響的區塊鏈在進行完整同步時，往往會同步得很慢。例如，在以太坊上，新的客戶端會快速推進，直到抵達第 2,283,397 號區塊。這個區塊是在 2016 年 9 月 18 日挖出的，標誌著 DoS 攻擊的開始。從這個區塊到第 2,700,031 號區塊（2016 年 11 月 26 日），交易的驗證會變得極度緩慢，而且非常耗用記憶體與 I/O。結果是，在 2016 年當時的硬體上，每個區塊的驗證時間超過一分鐘。以太坊透過硬分叉實施了一系列升級，修補 DoS 攻擊所利用的底層漏洞。這些升級也清理了區塊鏈，移除了由垃圾交易建立的大約 2,000 萬個空帳戶。</p>
@@ -1333,7 +1333,7 @@ Jun 08 17:03:29.001 INFO Synced                                  slot: 9253515, 
 </ul>
 </div>
 <div class="paragraph">
-<p>遠端客戶端通常會連上在別處執行的完整節點——例如由你在本機電腦或網頁伺服器上執行，或由第三方在其伺服器上執行——藉此提供完整節點以太坊客戶端的部分功能，而不需要在本機同步一份以太坊區塊鏈的副本。</p>
+<p>遠端客戶端通常會連上在別處執行的完整節點，藉此提供完整節點以太坊客戶端的部分功能，而不需要在本機同步一份以太坊區塊鏈的副本。這個完整節點可能是你自己在本機電腦或網頁伺服器上執行的，也可能是第三方在其伺服器上執行的。</p>
 </div>
 <div class="paragraph">
 <p>我們來看看幾個最熱門的遠端客戶端，以及它們提供的功能。</p>

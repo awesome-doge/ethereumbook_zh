@@ -33,7 +33,7 @@
 <link rel="stylesheet" href="/assets/site.css?v=ad2df01e33">
 <link rel="stylesheet" href="/assets/code.css?v=c94d007c0c">
 <script defer src="/assets/site.js?v=33af8366a0"></script>
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Chapter","@id":"https://mastering-ethereum.doge.tg/chapters/cryptography.html#chapter","name":"第 4 章　密碼學","headline":"第 4 章　密碼學｜精通以太坊（第二版）","description":"以太坊的密碼學：公開金鑰密碼學、私鑰與公鑰、橢圓曲線、雜湊函數與以太坊地址，以及驗證者使用的 BLS 簽章與 KZG 承諾。","url":"https://mastering-ethereum.doge.tg/chapters/cryptography.html","inLanguage":"zh-TW","position":5,"dateModified":"2026-11-06T18:11:04+08:00","isPartOf":{"@id":"https://mastering-ethereum.doge.tg/#book"},"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true},{"@type":"Book","@id":"https://mastering-ethereum.doge.tg/#book","name":"精通以太坊（第二版）","alternateName":["Mastering Ethereum, 2nd Edition","精通以太坊第二版"],"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"inLanguage":"zh-TW","publisher":{"@type":"Organization","name":"O'Reilly Media"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true,"url":"https://mastering-ethereum.doge.tg/","image":"https://mastering-ethereum.doge.tg/assets/og-cover-2nd.png","translationOfWork":{"@type":"Book","name":"Mastering Ethereum, 2nd Edition","inLanguage":"en","url":"https://github.com/ethereumbook/ethereumbook"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"精通以太坊（第二版）","item":"https://mastering-ethereum.doge.tg/"},{"@type":"ListItem","position":2,"name":"第 4 章　密碼學","item":"https://mastering-ethereum.doge.tg/chapters/cryptography.html"}]}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Chapter","@id":"https://mastering-ethereum.doge.tg/chapters/cryptography.html#chapter","name":"第 4 章　密碼學","headline":"第 4 章　密碼學｜精通以太坊（第二版）","description":"以太坊的密碼學：公開金鑰密碼學、私鑰與公鑰、橢圓曲線、雜湊函數與以太坊地址，以及驗證者使用的 BLS 簽章與 KZG 承諾。","url":"https://mastering-ethereum.doge.tg/chapters/cryptography.html","inLanguage":"zh-TW","position":5,"dateModified":"2026-11-08T20:37:00+08:00","isPartOf":{"@id":"https://mastering-ethereum.doge.tg/#book"},"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true},{"@type":"Book","@id":"https://mastering-ethereum.doge.tg/#book","name":"精通以太坊（第二版）","alternateName":["Mastering Ethereum, 2nd Edition","精通以太坊第二版"],"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"inLanguage":"zh-TW","publisher":{"@type":"Organization","name":"O'Reilly Media"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true,"url":"https://mastering-ethereum.doge.tg/","image":"https://mastering-ethereum.doge.tg/assets/og-cover-2nd.png","translationOfWork":{"@type":"Book","name":"Mastering Ethereum, 2nd Edition","inLanguage":"en","url":"https://github.com/ethereumbook/ethereumbook"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"精通以太坊（第二版）","item":"https://mastering-ethereum.doge.tg/"},{"@type":"ListItem","position":2,"name":"第 4 章　密碼學","item":"https://mastering-ethereum.doge.tg/chapters/cryptography.html"}]}]}</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZVVQYEKMPF"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-ZVVQYEKMPF');
 // 電子書下載：GA 的加強型評估不認得 .epub，下載連結又在 GitHub 上，所以自己送事件
@@ -308,7 +308,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 </td>
 <td class="content">
 <div class="paragraph">
-<p>以太坊協議中沒有任何加密——以太坊網路運作時傳送的所有訊息，每個人都能（也必須能夠）讀取。因此，私鑰只用來產生驗證交易所需的數位簽章。</p>
+<p>以太坊協議中沒有任何加密。以太坊網路運作時傳送的所有訊息，每個人都能（也必須能夠）讀取。因此，私鑰只用來產生驗證交易所需的數位簽章。</p>
 </div>
 </td>
 </tr>
@@ -328,7 +328,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 </td>
 <td class="content">
 <div class="paragraph">
-<p>以太坊私鑰就只是一個數字。隨機挑選私鑰的方法之一，是準備一枚硬幣、一支鉛筆和一張紙：擲硬幣 256 次，你就得到了一把隨機私鑰的二進位數字，可以用在以太坊錢包中（大概可以——請見接下來的段落）。接著就能從私鑰產生公鑰與地址。</p>
+<p>以太坊私鑰就只是一個數字。隨機挑選私鑰的方法之一，是準備一枚硬幣、一支鉛筆和一張紙：擲硬幣 256 次，你就得到了一把隨機私鑰的二進位數字，可以用在以太坊錢包中（大概可以，請見接下來的段落）。接著就能從私鑰產生公鑰與地址。</p>
 </div>
 </td>
 </tr>
@@ -338,7 +338,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <p>產生金鑰的第一步，也是最重要的一步，是找到一個安全的<em>熵</em>（entropy）來源，也就是隨機性的來源。建立以太坊私鑰，基本上就是在 1 到 2^256 之間挑一個數字。只要這個數字無法預測、不是確定性的，用什麼方法挑選都無所謂。以太坊軟體會使用底層作業系統的<em>隨機數產生器</em>（random number generator，RNG）來產生 256 個隨機位元。作業系統的 RNG 通常會以人為的隨機來源來初始化，所以你可能會被要求晃動滑鼠幾秒鐘，或在鍵盤上隨意按幾個鍵。另一種做法是利用電腦麥克風通道上的宇宙輻射雜訊。</p>
 </div>
 <div class="paragraph">
-<p>更精確地說，私鑰可以是任何非零的數字，上限是一個略小於 2^256 的極大數字——一個 78 位數的龐大數字，大約是 1.158 × 10^77。這個數字的前 38 位與 2^256 相同，它被定義為以太坊所使用的橢圓曲線的階。要建立私鑰，我們會隨機挑選一個 256 位元的數字，並檢查它是否在有效範圍內。在程式設計上，通常的做法是把一串更長的隨機位元（從密碼學上安全的隨機來源收集而來）輸入 Keccak-256 或 SHA-256 這類 256 位元的雜湊演算法，兩者都會方便地產生一個 256 位元的數字。如果結果落在有效範圍內，我們就得到一把合適的私鑰；否則，只要用另一個隨機數再試一次就行了。</p>
+<p>更精確地說，私鑰可以是任何非零的數字，上限是一個略小於 2^256 的極大數字，有 78 位數，大約是 1.158 × 10^77。這個數字的前 38 位與 2^256 相同，它被定義為以太坊所使用的橢圓曲線的階。要建立私鑰，我們會隨機挑選一個 256 位元的數字，並檢查它是否在有效範圍內。在程式設計上，通常的做法是把一串更長的隨機位元（從密碼學上安全的隨機來源收集而來）輸入 Keccak-256 或 SHA-256 這類 256 位元的雜湊演算法，兩者都會方便地產生一個 256 位元的數字。如果結果落在有效範圍內，我們就得到一把合適的私鑰；否則，只要用另一個隨機數再試一次就行了。</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -348,14 +348,14 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 </td>
 <td class="content">
 <div class="paragraph">
-<p>以太坊私鑰空間的大小——2^256——是一個大到難以想像的數字。以十進位表示大約是 10^77，也就是一個 78 位數。相較之下，可觀測宇宙估計含有 10^80 個原子。因此，私鑰的數量幾乎足以讓宇宙中的每一個原子都擁有一個以太坊帳戶。如果你隨機挑選一把私鑰，任何人都不可能猜到它，或自己剛好挑中同一把。</p>
+<p>以太坊私鑰空間的大小是 2^256，一個大到難以想像的數字。以十進位表示大約是 10^77，也就是一個 78 位數。相較之下，可觀測宇宙估計含有 10^80 個原子。因此，私鑰的數量幾乎足以讓宇宙中的每一個原子都擁有一個以太坊帳戶。如果你隨機挑選一把私鑰，任何人都不可能猜到它，或自己剛好挑中同一把。</p>
 </div>
 </td>
 </tr>
 </tbody></table>
 </div>
 <div class="paragraph">
-<p>請注意，產生私鑰的過程是離線進行的；它不需要與以太坊網路通訊——事實上，根本不需要與任何人通訊。因此，要挑出一個其他人永遠不會挑到的數字，這個數字必須是真正隨機的。如果你自己決定數字，別人剛好試到它（然後捲走你的以太幣）的機會太高了。使用不好的 RNG（例如大多數程式語言中偽隨機的 <code>rand</code> 函式）更糟，因為它的結果更明顯，也更容易重現。就像線上帳戶的密碼一樣，私鑰必須讓人無法猜到。幸好你永遠不需要記住自己的私鑰，所以可以用最好的方法來挑選它：真正的隨機性。</p>
+<p>請注意，產生私鑰的過程是離線進行的；它不需要與以太坊網路通訊，事實上根本不需要與任何人通訊。因此，要挑出一個其他人永遠不會挑到的數字，這個數字必須是真正隨機的。如果你自己決定數字，別人剛好試到它（然後捲走你的以太幣）的機會太高了。使用不好的 RNG（例如大多數程式語言中偽隨機的 <code>rand</code> 函式）更糟，因為它的結果更明顯，也更容易重現。就像線上帳戶的密碼一樣，私鑰必須讓人無法猜到。幸好你永遠不需要記住自己的私鑰，所以可以用最好的方法來挑選它：真正的隨機性。</p>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -688,7 +688,7 @@ y = 83b5c38e5e2b0c8529d7fa3f64d46daa1ece2d9ac14cab9477d042c84c32ccd0</pre>
 <div class="sect2">
 <h2 id="ch04-cryptographic-hash-functions"><a class="anchor" href="#ch04-cryptographic-hash-functions" aria-label="本節連結"></a>4.5. 密碼學雜湊函數</h2>
 <div class="paragraph">
-<p>以太坊處處都用到密碼學雜湊函數。事實上，幾乎所有的密碼學系統都大量使用雜湊函數——密碼學家 Bruce Schneier 就說過：「單向雜湊函數比加密演算法更像是現代密碼學的主力。」</p>
+<p>以太坊處處都用到密碼學雜湊函數。事實上，幾乎所有的密碼學系統都大量使用雜湊函數。密碼學家 Bruce Schneier 就說過：「單向雜湊函數比加密演算法更像是現代密碼學的主力。」</p>
 </div>
 <div class="paragraph">
 <p>本節將討論雜湊函數，探討它們的基本性質，並說明這些性質為什麼讓雜湊函數在現代密碼學的許多領域都如此有用。我們在這裡介紹雜湊函數，是因為以太坊把公鑰轉換成地址的過程中會用到它。雜湊函數也可以用來產生數位指紋，協助驗證資料。</p>
@@ -756,7 +756,7 @@ y = 83b5c38e5e2b0c8529d7fa3f64d46daa1ece2d9ac14cab9477d042c84c32ccd0</pre>
 <p>偽隨機數產生器</p>
 </li>
 <li>
-<p>訊息承諾，也就是承諾—揭示（commit-reveal）機制</p>
+<p>訊息承諾，也就是承諾／揭示（commit-reveal）機制</p>
 </li>
 <li>
 <p>唯一識別碼</p>
@@ -935,7 +935,7 @@ SHA3("") = a7ffc6f8bf1ed76651c14756a061d662f580ff4de43b49fa82d80a4b80f8434a</pre
 </div>
 </div>
 <div class="paragraph">
-<p>你看得出差別嗎？十六進位編碼字母表中的英文字母（A–F），現在有些是大寫，有些是小寫。</p>
+<p>你看得出差別嗎？十六進位編碼字母表中的英文字母（A 到 F），現在有些是大寫，有些是小寫。</p>
 </div>
 <div class="paragraph">
 <p>ERC-55 實作起來相當簡單。我們先計算小寫十六進位地址的 Keccak-256 雜湊值。這個雜湊值就像地址的數位指紋，可以當作方便的校驗和。輸入（地址）的任何微小變化，都應該使得到的雜湊值（checksum）大幅改變，讓我們能有效地偵測錯誤。接著，地址的雜湊值會被編碼進地址本身的大小寫中。我們一步一步來拆解：</p>
@@ -1187,7 +1187,7 @@ N = 1,000,000 → 2,600 messages per second</pre>
 <div class="quoteblock">
 <blockquote>
 <div class="paragraph">
-<p>如果你把橢圓曲線點看成單向加密過的數字——<code>encrypt(p) = p * G = P</code>，其中 G 是生成點——那麼傳統的橢圓曲線數學讓你能檢查這些數字的線性約束（例如，如果 <code>P = G * p</code>、<code>Q = G * q</code> 且 <code>R = G * r</code>，檢查 <code>5 * P + 7 * Q = 11 * R</code> 其實就是在檢查 <code>5 * p + 7 * q = 11 * r</code>），而 pairing 則讓你能檢查二次約束（例如，檢查 <code>e(P, Q) * e(G, G * 5) = 1</code> 其實就是在檢查 <code>p * q + 1 * 5 = 0</code>）。</p>
+<p>如果你把橢圓曲線點看成單向加密過的數字（<code>encrypt(p) = p * G = P</code>，其中 G 是生成點），那麼傳統的橢圓曲線數學讓你能檢查這些數字的線性約束（例如，如果 <code>P = G * p</code>、<code>Q = G * q</code> 且 <code>R = G * r</code>，檢查 <code>5 * P + 7 * Q = 11 * R</code> 其實就是在檢查 <code>5 * p + 7 * q = 11 * r</code>），而 pairing 則讓你能檢查二次約束（例如，檢查 <code>e(P, Q) * e(G, G * 5) = 1</code> 其實就是在檢查 <code>p * q + 1 * 5 = 0</code>）。</p>
 </div>
 </blockquote>
 </div>

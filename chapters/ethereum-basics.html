@@ -33,7 +33,7 @@
 <link rel="stylesheet" href="/assets/site.css?v=ad2df01e33">
 <link rel="stylesheet" href="/assets/code.css?v=c94d007c0c">
 <script defer src="/assets/site.js?v=33af8366a0"></script>
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Chapter","@id":"https://mastering-ethereum.doge.tg/chapters/ethereum-basics.html#chapter","name":"第 2 章　以太坊基礎","headline":"第 2 章　以太坊基礎｜精通以太坊（第二版）","description":"以太坊入門實作：以太幣單位、選擇錢包、MetaMask 入門、外部擁有帳戶與合約，並撰寫、編譯、部署一個發放測試以太幣的水龍頭合約。","url":"https://mastering-ethereum.doge.tg/chapters/ethereum-basics.html","inLanguage":"zh-TW","position":3,"dateModified":"2026-11-06T18:11:04+08:00","isPartOf":{"@id":"https://mastering-ethereum.doge.tg/#book"},"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true},{"@type":"Book","@id":"https://mastering-ethereum.doge.tg/#book","name":"精通以太坊（第二版）","alternateName":["Mastering Ethereum, 2nd Edition","精通以太坊第二版"],"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"inLanguage":"zh-TW","publisher":{"@type":"Organization","name":"O'Reilly Media"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true,"url":"https://mastering-ethereum.doge.tg/","image":"https://mastering-ethereum.doge.tg/assets/og-cover-2nd.png","translationOfWork":{"@type":"Book","name":"Mastering Ethereum, 2nd Edition","inLanguage":"en","url":"https://github.com/ethereumbook/ethereumbook"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"精通以太坊（第二版）","item":"https://mastering-ethereum.doge.tg/"},{"@type":"ListItem","position":2,"name":"第 2 章　以太坊基礎","item":"https://mastering-ethereum.doge.tg/chapters/ethereum-basics.html"}]}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Chapter","@id":"https://mastering-ethereum.doge.tg/chapters/ethereum-basics.html#chapter","name":"第 2 章　以太坊基礎","headline":"第 2 章　以太坊基礎｜精通以太坊（第二版）","description":"以太坊入門實作：以太幣單位、選擇錢包、MetaMask 入門、外部擁有帳戶與合約，並撰寫、編譯、部署一個發放測試以太幣的水龍頭合約。","url":"https://mastering-ethereum.doge.tg/chapters/ethereum-basics.html","inLanguage":"zh-TW","position":3,"dateModified":"2026-11-08T20:37:00+08:00","isPartOf":{"@id":"https://mastering-ethereum.doge.tg/#book"},"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true},{"@type":"Book","@id":"https://mastering-ethereum.doge.tg/#book","name":"精通以太坊（第二版）","alternateName":["Mastering Ethereum, 2nd Edition","精通以太坊第二版"],"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"inLanguage":"zh-TW","publisher":{"@type":"Organization","name":"O'Reilly Media"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true,"url":"https://mastering-ethereum.doge.tg/","image":"https://mastering-ethereum.doge.tg/assets/og-cover-2nd.png","translationOfWork":{"@type":"Book","name":"Mastering Ethereum, 2nd Edition","inLanguage":"en","url":"https://github.com/ethereumbook/ethereumbook"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"精通以太坊（第二版）","item":"https://mastering-ethereum.doge.tg/"},{"@type":"ListItem","position":2,"name":"第 2 章　以太坊基礎","item":"https://mastering-ethereum.doge.tg/chapters/ethereum-basics.html"}]}]}</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZVVQYEKMPF"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-ZVVQYEKMPF');
 // 電子書下載：GA 的加強型評估不認得 .epub，下載連結又在 GitHub 上，所以自己送事件
@@ -294,7 +294,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <p><em>錢包</em>這個詞已經有了很多種意思，不過這些定義彼此相關，在日常使用上，說穿了幾乎都是同一回事。我們會用<em>錢包</em>一詞，指稱幫助你管理以太坊帳戶的軟體應用程式。簡單地說，以太坊錢包就是你通往以太坊系統的入口。它保管你的金鑰，並能代替你建立、廣播交易。選擇以太坊錢包可能不太容易，因為選項很多，功能與設計各不相同。有些比較適合初學者，有些比較適合專家。以太坊平台本身仍在持續改進，「最好」的錢包往往就是那些能跟上平台升級所帶來的變化的錢包。</p>
 </div>
 <div class="paragraph">
-<p>不過別擔心！如果你選了一個錢包，卻不喜歡它的運作方式——或是一開始很喜歡，後來想試試別的——你可以很輕鬆地換錢包。你只需要發一筆交易，把資金從舊錢包轉到新錢包，或是把私鑰匯出、再匯入新錢包即可。</p>
+<p>不過別擔心！如果你選了一個錢包，卻不喜歡它的運作方式，或是一開始很喜歡、後來想試試別的，都可以很輕鬆地換錢包。你只需要發一筆交易，把資金從舊錢包轉到新錢包，或是把私鑰匯出、再匯入新錢包即可。</p>
 </div>
 <div class="paragraph">
 <p>請記住，錢包應用程式必須能存取你的私鑰才能運作，所以只從你信任的來源下載、使用錢包應用程式是非常重要的。幸好一般來說，錢包應用程式越熱門，可能就越值得信任。儘管如此，避免「把所有雞蛋放在同一個籃子裡」，把你的以太坊帳戶分散在幾個錢包與種子短語（seed phrase）中，仍是良好的做法。</p>
@@ -324,10 +324,10 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <div class="sect2">
 <h2 id="ch02-control-and-responsibility"><a class="anchor" href="#ch02-control-and-responsibility" aria-label="本節連結"></a>2.3. 控制權與責任</h2>
 <div class="paragraph">
-<p>像以太坊這樣的開放區塊鏈之所以重要，是因為它們以<em>去中心化</em>系統的方式運作。這有很多層意義，但其中一個關鍵面向是：以太坊的每一位使用者都能夠——而且應該——自己掌控自己的<em>私鑰</em>，私鑰控制著資金與智能合約的存取權。我們有時把資金與智能合約存取權的組合稱為<em>帳戶</em>或<em>錢包</em>。這些詞在功能上可能變得相當複雜，我們之後會更詳細地說明。不過就基本原則而言，事情很簡單：一把私鑰就等於一個「帳戶」。有些使用者選擇透過第三方託管機構（例如線上的中心化交易所），放棄對自己私鑰的控制權。在本書中，我們會教你如何掌握並管理自己的私鑰。</p>
+<p>像以太坊這樣的開放區塊鏈之所以重要，是因為它們以<em>去中心化</em>系統的方式運作。這有很多層意義，但其中一個關鍵面向是：以太坊的每一位使用者不但能夠，也應該自己掌控自己的<em>私鑰</em>，私鑰控制著資金與智能合約的存取權。我們有時把資金與智能合約存取權的組合稱為<em>帳戶</em>或<em>錢包</em>。這些詞在功能上可能變得相當複雜，我們之後會更詳細地說明。不過就基本原則而言，事情很簡單：一把私鑰就等於一個「帳戶」。有些使用者選擇透過第三方託管機構（例如線上的中心化交易所），放棄對自己私鑰的控制權。在本書中，我們會教你如何掌握並管理自己的私鑰。</p>
 </div>
 <div class="paragraph">
-<p>有控制權，就有重大的責任。如果你弄丟了私鑰，就會失去對資金與合約的存取權。沒有人能幫你取回存取權——你的資金會永遠被鎖住。以下幾個提示可以幫助你承擔這份責任：</p>
+<p>有控制權，就有重大的責任。如果你弄丟了私鑰，就會失去對資金與合約的存取權。沒有人能幫你取回存取權，你的資金會永遠被鎖住。以下幾個提示可以幫助你承擔這份責任：</p>
 </div>
 <div class="ulist">
 <ul>
@@ -356,7 +356,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <p>公開的區塊瀏覽器是一種簡單的方法，讓你能獨立查看某筆交易是否已被網路接受；雖然這些資訊本來就公開在區塊鏈上，區塊瀏覽器卻讓取得這些資訊變得極為容易。不過這種便利會對你的隱私造成負面影響，因為你會向區塊瀏覽器透露自己的地址，而它們可能會追蹤你。</p>
 </li>
 <li>
-<p>公開的區塊瀏覽器通常是可靠的，但並非總是如此——不要盲目信任它們。</p>
+<p>公開的區塊瀏覽器通常是可靠的，但並非總是如此，不要盲目信任它們。</p>
 </li>
 <li>
 <p>不要把錢傳送到本書中出現的任何地址。這些地址的私鑰都列在書裡，任何人都可能立刻把錢拿走。</p>
@@ -543,7 +543,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <div class="title">圖 2-5. MetaMask 的網路選單</div>
 </div>
 <div class="paragraph">
-<p>點擊 Buy，然後前往<a href="https://oreil.ly/VE0t0" rel="noopener" target="_blank">這份清單</a>中的任何一個水龍頭。決定要用哪個水龍頭之後——它們其實都差不多——你就可以在測試網路上申請以太幣，如圖 2-6 所示。</p>
+<p>點擊 Buy，然後前往<a href="https://oreil.ly/VE0t0" rel="noopener" target="_blank">這份清單</a>中的任何一個水龍頭。選好水龍頭之後（它們其實都差不多），你就可以在測試網路上申請以太幣，如圖 2-6 所示。</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -598,7 +598,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <div class="title">圖 2-9. 傳送 0.05 ETH 到某個地址</div>
 </div>
 <div class="paragraph">
-<p>糟糕！你大概注意到了，這筆交易無法完成——MetaMask 說你的餘額不足。乍看之下這可能讓人困惑：你有 0.05 ETH，想傳送 0.05 ETH，MetaMask 為什麼說你的資金不足？</p>
+<p>糟糕！你大概注意到了，這筆交易無法完成，MetaMask 說你的餘額不足。乍看之下這可能讓人困惑：你有 0.05 ETH，想傳送 0.05 ETH，MetaMask 為什麼說你的資金不足？</p>
 </div>
 <div class="paragraph">
 <p>答案在於 gas 的成本。每一筆以太坊交易都需要支付一筆手續費，由網路收取，作為驗證這筆交易的代價。以太坊的手續費是以一種叫做 <em>gas</em> 的虛擬貨幣計價的。你用以太幣支付 gas，這筆費用是交易的一部分。</p>
@@ -698,7 +698,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <p>你大概猜到還有另一種帳戶。另一種帳戶就是<em>合約帳戶</em>。合約帳戶擁有智能合約程式碼，這是單純的外部擁有帳戶所沒有的。此外，合約帳戶沒有私鑰，而是由其智能合約程式碼的邏輯擁有（並控制）；這段程式碼是在建立合約帳戶時記錄在以太坊區塊鏈上、由 EVM 執行的軟體程式。</p>
 </div>
 <div class="paragraph">
-<p>合約和外部擁有帳戶一樣有地址，也和外部擁有帳戶一樣能收發以太幣。不過，當交易的目的地是合約地址時，這筆交易會讓該合約在 EVM 中<em>執行</em>，並以這筆交易——以及交易中的資料——作為輸入。除了以太幣之外，交易還可以包含<em>資料</em>，指出要執行合約中的哪一個函式，以及要傳給該函式哪些參數。交易就是透過這種方式<em>呼叫</em>合約內的函式。</p>
+<p>合約和外部擁有帳戶一樣有地址，也和外部擁有帳戶一樣能收發以太幣。不過，當交易的目的地是合約地址時，這筆交易會讓該合約在 EVM 中<em>執行</em>，並以這筆交易和交易中的資料作為輸入。除了以太幣之外，交易還可以包含<em>資料</em>，指出要執行合約中的哪一個函式，以及要傳給該函式哪些參數。交易就是透過這種方式<em>呼叫</em>合約內的函式。</p>
 </div>
 <div class="paragraph">
 <p>請注意，由於合約帳戶沒有私鑰，它無法<em>發起</em>交易。只有外部擁有帳戶能發起交易，但合約可以透過呼叫其他合約來<em>回應</em>交易，建構出複雜的執行路徑。</p>
@@ -835,7 +835,7 @@ contract Faucet {
 </div>
 </div>
 <div class="paragraph">
-<p>這裡發生了幾件有趣的事。<code>transfer</code> 是一個內建函式，會把以太幣從目前的合約轉到另一個指定的地址——在這個例子中就是 <code>_to</code> 地址。<code>transfer</code> 函式只接受一個引數：金額。我們傳入的是 <code>_withdrawAmount</code> 的值，也就是前幾行宣告的 <code>withdraw</code> 函式的參數。</p>
+<p>這裡發生了幾件有趣的事。<code>transfer</code> 是一個內建函式，會把以太幣從目前的合約轉到另一個指定的地址，在這個例子中就是 <code>_to</code> 地址。<code>transfer</code> 函式只接受一個引數：金額。我們傳入的是 <code>_withdrawAmount</code> 的值，也就是前幾行宣告的 <code>withdraw</code> 函式的參數。</p>
 </div>
 <div class="paragraph">
 <p>之所以能這樣做，是因為 <code>_to</code> 地址被定義成 payable。內建函式 <code>transfer</code> 與 <code>send</code> 只能在 payable 地址上呼叫。這裡是程式碼的第二個缺陷：如果是外部擁有帳戶呼叫 <code>withdraw</code> 函式，使用 <code>transfer</code> 完全沒有問題；但如果是另一個合約觸發這個函式，就會出問題。在那種情況下，交易可能會失敗，因為 <code>transfer</code> 函式最多只能使用 2,300 gas，而多次合約呼叫很可能會超過這個上限。要修正這個問題，可以改用內建的 <code>call</code> 函式，取代 <code>transfer</code> 與 <code>send</code>。不過，這個內建函式必須妥善處理，才不會造成安全缺陷。目前，我們先保留內建的 <code>transfer</code> 函式不動。</p>
@@ -973,7 +973,7 @@ ffffffffffffffffffffffff82169050919050565b5f61010a826100e1565b9050919050565b6101
 <div class="title">圖 2-18. Faucet 合約上線了！</div>
 </div>
 <div class="paragraph">
-<p>請注意，<code>Faucet</code> 合約現在有了自己的地址：Remix 顯示為「Faucet at 0x4E7…6EA46」（不過你的地址——那串隨機的字母與數字——會不一樣）。</p>
+<p>請注意，<code>Faucet</code> 合約現在有了自己的地址：Remix 顯示為「Faucet at 0x4E7…6EA46」（不過你的地址，也就是那串隨機的字母與數字，會不一樣）。</p>
 </div>
 </div>
 <div class="sect2">

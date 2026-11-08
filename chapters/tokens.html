@@ -33,7 +33,7 @@
 <link rel="stylesheet" href="/assets/site.css?v=ad2df01e33">
 <link rel="stylesheet" href="/assets/code.css?v=c94d007c0c">
 <script defer src="/assets/site.js?v=33af8366a0"></script>
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Chapter","@id":"https://mastering-ethereum.doge.tg/chapters/tokens.html#chapter","name":"第 10 章　代幣","headline":"第 10 章　代幣｜精通以太坊（第二版）","description":"以太坊上的代幣：代幣的用途、同質化與交易對手風險、ERC-20、ERC-721（NFT）與 ERC-1155 標準，以及代幣介面標準的擴充。","url":"https://mastering-ethereum.doge.tg/chapters/tokens.html","inLanguage":"zh-TW","position":11,"dateModified":"2026-11-06T18:11:04+08:00","isPartOf":{"@id":"https://mastering-ethereum.doge.tg/#book"},"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true},{"@type":"Book","@id":"https://mastering-ethereum.doge.tg/#book","name":"精通以太坊（第二版）","alternateName":["Mastering Ethereum, 2nd Edition","精通以太坊第二版"],"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"inLanguage":"zh-TW","publisher":{"@type":"Organization","name":"O'Reilly Media"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true,"url":"https://mastering-ethereum.doge.tg/","image":"https://mastering-ethereum.doge.tg/assets/og-cover-2nd.png","translationOfWork":{"@type":"Book","name":"Mastering Ethereum, 2nd Edition","inLanguage":"en","url":"https://github.com/ethereumbook/ethereumbook"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"精通以太坊（第二版）","item":"https://mastering-ethereum.doge.tg/"},{"@type":"ListItem","position":2,"name":"第 10 章　代幣","item":"https://mastering-ethereum.doge.tg/chapters/tokens.html"}]}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Chapter","@id":"https://mastering-ethereum.doge.tg/chapters/tokens.html#chapter","name":"第 10 章　代幣","headline":"第 10 章　代幣｜精通以太坊（第二版）","description":"以太坊上的代幣：代幣的用途、同質化與交易對手風險、ERC-20、ERC-721（NFT）與 ERC-1155 標準，以及代幣介面標準的擴充。","url":"https://mastering-ethereum.doge.tg/chapters/tokens.html","inLanguage":"zh-TW","position":11,"dateModified":"2026-11-08T20:37:00+08:00","isPartOf":{"@id":"https://mastering-ethereum.doge.tg/#book"},"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true},{"@type":"Book","@id":"https://mastering-ethereum.doge.tg/#book","name":"精通以太坊（第二版）","alternateName":["Mastering Ethereum, 2nd Edition","精通以太坊第二版"],"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"inLanguage":"zh-TW","publisher":{"@type":"Organization","name":"O'Reilly Media"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true,"url":"https://mastering-ethereum.doge.tg/","image":"https://mastering-ethereum.doge.tg/assets/og-cover-2nd.png","translationOfWork":{"@type":"Book","name":"Mastering Ethereum, 2nd Edition","inLanguage":"en","url":"https://github.com/ethereumbook/ethereumbook"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"精通以太坊（第二版）","item":"https://mastering-ethereum.doge.tg/"},{"@type":"ListItem","position":2,"name":"第 10 章　代幣","item":"https://mastering-ethereum.doge.tg/chapters/tokens.html"}]}]}</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZVVQYEKMPF"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-ZVVQYEKMPF');
 // 電子書下載：GA 的加強型評估不認得 .epub，下載連結又在 GitHub 上，所以自己送事件
@@ -298,7 +298,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <div class="sect2">
 <h2 id="ch10-tokens-and-intrinsicality"><a class="anchor" href="#ch10-tokens-and-intrinsicality" aria-label="本節連結"></a>10.4. 代幣與內在性</h2>
 <div class="paragraph">
-<p><em>內在</em>（intrinsic）一詞源自拉丁文的 <em>intra</em>，意思是「來自內部」。有些代幣代表的是區塊鏈內在的數位物品。這些數位資產和代幣本身一樣，受共識規則管轄。這帶來一個重要的意涵：代表內在資產的代幣不會帶來額外的交易對手風險。如果你持有某隻 CryptoKitty 的金鑰，就沒有其他人替你保管那隻 CryptoKitty——你直接擁有它。區塊鏈的共識規則適用於此，你對私鑰的擁有（也就是控制權）就等同於對這項資產的擁有，中間沒有任何中介。</p>
+<p><em>內在</em>（intrinsic）一詞源自拉丁文的 <em>intra</em>，意思是「來自內部」。有些代幣代表的是區塊鏈內在的數位物品。這些數位資產和代幣本身一樣，受共識規則管轄。這帶來一個重要的意涵：代表內在資產的代幣不會帶來額外的交易對手風險。如果你持有某隻 CryptoKitty 的金鑰，就沒有其他人替你保管那隻 CryptoKitty，而是由你直接擁有它。區塊鏈的共識規則適用於此，你對私鑰的擁有（也就是控制權）就等同於對這項資產的擁有，中間沒有任何中介。</p>
 </div>
 <div class="paragraph">
 <p>相反地，許多代幣被用來代表<em>外在</em>（extrinsic）的事物，例如不動產、公司的有表決權股份、商標、金條與債券。這些不在區塊鏈「之內」的物品，其所有權由法律、慣例與政策管轄，與管轄代幣的共識規則是分開的。換句話說，代幣的發行者與擁有者可能仍然仰賴現實世界中的非智能合約。因此，這些外在資產會帶來額外的交易對手風險，因為它們由託管機構持有、登記在外部的登記處，或受區塊鏈環境之外的法律與政策控制。</p>
@@ -542,7 +542,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <p>在第 9 章中，我們完整探討了 ERC-20 代幣傳統的 <code>transfer</code> 與 <code>transferFrom</code> 流程的來龍去脈。<sup class="footnote">[<a id="_footnoteref_27" class="footnote" href="#_footnotedef_27" title="查看註腳">27</a>]</sup>雖然這些方法一直是代幣轉帳的骨幹，但它們並非沒有限制。直接轉帳需要代幣擁有者提交一筆鏈上交易。在 approve 加 transferFrom 的流程中，擁有者提交第一筆 approve 交易，支用者或被授權的合約則提交後續的 transferFrom。因此，擁有者需要原生加密貨幣來支付授權的費用，對於沒有原生資金的新錢包來說，這可能是一大障礙。</p>
 </div>
 <div class="paragraph">
-<p>這正是 ERC-2612 派上用場的地方。它是 ERC-20 代幣標準的一項巧妙擴充，讓使用者不必親自碰觸區塊鏈，就能授權代幣轉帳。運作方式如下：你不需要發送一筆鏈上交易來授權轉帳，只要用錢包簽署必要的資料——例如接收者的地址、代幣數量、到期時間與 nonce。這會產生一個簽章，而需要執行轉帳的人（不論是接收者或其他人）可以把這個簽章提交給代幣合約的 <code>permit</code> 方法。合約會讀取簽章、驗證它並處理授權，整個過程中你都不需要為第一步支付 gas。這種方式既有效率又安全，也省去了流程中的許多麻煩。</p>
+<p>這正是 ERC-2612 派上用場的地方。它是 ERC-20 代幣標準的一項巧妙擴充，讓使用者不必親自碰觸區塊鏈，就能授權代幣轉帳。運作方式如下：你不需要發送一筆鏈上交易來授權轉帳，只要用錢包簽署必要的資料，例如接收者的地址、代幣數量、到期時間與 nonce。這會產生一個簽章，而需要執行轉帳的人（不論是接收者或其他人）可以把這個簽章提交給代幣合約的 <code>permit</code> 方法。合約會讀取簽章、驗證它並處理授權，整個過程中你都不需要為第一步支付 gas。這種方式既有效率又安全，也省去了流程中的許多麻煩。</p>
 </div>
 <div class="paragraph">
 <p>要讓 ERC-2612 運作，代幣開發者需要擴充自己的 ERC-20 合約來加入這項功能。一旦加入，它會為使用者帶來兩個主要好處。第一，它簡化了整個流程：使用者不必為每一筆轉帳逐一授權，只要一個簽章就能授予權限。第二，因為減少了所需的交易數量，可以節省 gas 成本。</p>
@@ -668,7 +668,7 @@ contract METokenDeployer is Script {
 </td>
 <td class="content">
 <div class="paragraph">
-<p>腳本檔名的 <em>.s.sol</em> 後綴是 Foundry 的命名慣例，用來快速辨認檔案的用途。這不是必要條件——把腳本檔放在 script 資料夾裡就夠了——但這是非常好的做法，在開發過程中會派上用場。測試檔的 <em>.t.sol</em> 後綴也是同樣的道理。</p>
+<p>腳本檔名的 <em>.s.sol</em> 後綴是 Foundry 的命名慣例，用來快速辨認檔案的用途。這不是必要條件，把腳本檔放在 script 資料夾裡就夠了，但這是非常好的做法，在開發過程中會派上用場。測試檔的 <em>.t.sol</em> 後綴也是同樣的道理。</p>
 </div>
 </td>
 </tr>
@@ -1135,7 +1135,7 @@ Script ran successfully.
 <p>我們來仔細看看 <code>approve</code> 與 <code>transferFrom</code> 模式。對新手來說，<code>approve</code>-<code>transferFrom</code> 這套機制特別容易造成誤解。許多人以為轉移代幣是單一操作，所以遇到兩步驟的流程時，會覺得困惑又違反直覺。更糟的是，<code>approve</code> 這個動作看似無害，卻可能是個陷阱。使用者授權某個合約時，可能在不知情的情況下授予了無上限的權限，讓惡意人士日後得以把他們的代幣掏空。這種認知落差讓網路釣魚攻擊更容易得逞，也凸顯出這套機制的設計與新手預期的區塊鏈互動方式並不一致。</p>
 </div>
 <div class="paragraph">
-<p>再來看另一個問題。要發送以太幣或使用任何以太坊合約，你需要以太幣來支付 gas。要發送代幣，你<em>也需要以太幣</em>。你不能用代幣支付交易的 gas，代幣合約也不能替你支付 gas。例如，假設你透過交易所把一些比特幣換成某種代幣。你在一個會追蹤該代幣合約、顯示你餘額的錢包裡「收到」了這個代幣。它看起來和錢包裡其他加密貨幣沒什麼兩樣。但試著發送這個代幣時，錢包就會告訴你需要以太幣才能這麼做。你可能會很困惑——畢竟，收到這個代幣時並不需要以太幣。也許你根本沒有以太幣。也許你甚至不知道這個代幣是以太坊上的 ERC-20 代幣，還以為它是擁有自己區塊鏈的加密貨幣。假象就此破滅。</p>
+<p>再來看另一個問題。要發送以太幣或使用任何以太坊合約，你需要以太幣來支付 gas。要發送代幣，你<em>也需要以太幣</em>。你不能用代幣支付交易的 gas，代幣合約也不能替你支付 gas。例如，假設你透過交易所把一些比特幣換成某種代幣。你在一個會追蹤該代幣合約、顯示你餘額的錢包裡「收到」了這個代幣。它看起來和錢包裡其他加密貨幣沒什麼兩樣。但試著發送這個代幣時，錢包就會告訴你需要以太幣才能這麼做。你可能會很困惑，畢竟收到這個代幣時並不需要以太幣。也許你根本沒有以太幣。也許你甚至不知道這個代幣是以太坊上的 ERC-20 代幣，還以為它是擁有自己區塊鏈的加密貨幣。假象就此破滅。</p>
 </div>
 <div class="paragraph">
 <p>我們可以利用 ERC-2612 的 <code>permit</code> 函式，以及 EIP-4337 與 EIP-7702 等智能錢包所提供的 gas 費用代付（sponsorship）功能，部分解決這個問題。ERC-2612 讓你透過簽署鏈外訊息來設定代幣的授權額度，省去鏈上的授權交易。EIP-4337 與其他智能錢包架構，則讓第三方替你支付 gas 費用，再由你以 ERC-20 代幣償還。挑戰在於，採用 ERC-2612 的代幣有限，而智能錢包也還沒有普及。</p>
@@ -1209,7 +1209,7 @@ Script ran successfully.
 <div class="sect3">
 <h3 id="ch10-erc-777-the-future-that-could-have-been"><a class="anchor" href="#ch10-erc-777-the-future-that-could-have-been" aria-label="本節連結"></a>10.8.5. ERC-777：原本可能實現的未來</h3>
 <div class="paragraph">
-<p>ERC-777 引入了 <em>鉤子</em>（hook）——在代幣轉帳期間觸發的函式——為代幣互動帶來全新的做法。這些鉤子與 ERC-20 完全相容，確保現有系統可以無縫地與 ERC-777 代幣互動。</p>
+<p>ERC-777 引入了 <em>鉤子</em>（hook），也就是在代幣轉帳期間觸發的函式，為代幣互動帶來全新的做法。這些鉤子與 ERC-20 完全相容，確保現有系統可以無縫地與 ERC-777 代幣互動。</p>
 </div>
 <div class="paragraph">
 <p>發送者的鉤子 <code>tokensToSend</code> 會在代幣離開帳戶之前執行，讓發送者可以加入記錄日誌或條件檢查之類的邏輯。另一方面，接收者的鉤子 <code>tokensReceived</code> 則會在代幣進入帳戶時啟動。ERC-777 鉤子架構的核心是 ERC-1820 註冊表（registry），它記錄哪些地址實作了所需的鉤子：發送者的 <code>tokensToSend</code> 與接收者的 <code>tokensReceived</code>。這確保只有在雙方都準備好處理轉帳時，轉帳才會成功，從而避免代幣遺失之類的常見問題。</p>
@@ -1218,7 +1218,7 @@ Script ran successfully.
 <p>鉤子也簡化了交易。使用 ERC-20 時，把代幣轉給合約往往需要繁瑣的兩步驟流程：先 <code>approve</code>，再 <code>transferFrom</code>。ERC-777 免除了這個流程，透過鉤子讓交易得以原子性（atomic）地完成。它有效率、直覺，而且坦白說，早就該出現了。</p>
 </div>
 <div class="paragraph">
-<p>ERC-777 另一個有趣的特色是它的操作者（operator）機制，讓被授權的地址——通常是交易所或支付處理商這類智能合約——可以代替持有者發送與銷毀代幣。持有者可以隨時授予或撤銷操作者的授權，完全掌控在任何時刻有哪些第三方可以代為管理自己的代幣。每一次授權或撤銷都會發出一個事件，讓授權的變動一目了然。</p>
+<p>ERC-777 另一個有趣的特色是它的操作者（operator）機制，讓被授權的地址（通常是交易所或支付處理商這類智能合約）可以代替持有者發送與銷毀代幣。持有者可以隨時授予或撤銷操作者的授權，完全掌控在任何時刻有哪些第三方可以代為管理自己的代幣。每一次授權或撤銷都會發出一個事件，讓授權的變動一目了然。</p>
 </div>
 <div class="paragraph">
 <p>ERC-777 的合約介面規格如下：</p>
@@ -1337,7 +1337,7 @@ Script ran successfully.
 <p>想像你是一位遊戲開發者。你想建立一個系統，讓玩家可以收集金幣（同質化）、獨一無二的寶劍（非同質化），以及可以成堆消耗的藥水（半同質化）。使用 ERC-20 或 ERC-721，每一種代幣都需要一個獨立的智能合約。每多一個合約都會增加 gas 成本與複雜度，因為你還得管理這些合約之間的權限與互動。ERC-1155 解決了這個問題，讓我們只需部署一個合約，就能管理多種代幣類型。每種代幣類型都有一個唯一的 ID，合約可以為任何代幣類型組合處理所有操作，包括轉帳、餘額與詮釋資料的擷取。這種精簡的做法減少了重複與交易成本，使 ERC-1155 成為廣泛採用的標準。</p>
 </div>
 <div class="paragraph">
-<p>ERC-1155 的批次操作是一大特色，讓我們可以在單一交易中轉移或查詢多個代幣，既節省 gas，也讓這個標準更具可擴展性。此外，ERC-1155 也包含安全機制，以避免代幣被鎖住之類的問題。把代幣轉給智能合約時，接收合約必須實作 <code>IERC1155Receiver</code> 介面，否則交易就會回復。這些鉤子讓代幣轉帳期間可以進行進階的互動。例如，合約可以實作收到代幣時要執行的自訂邏輯，像是更新遊戲內的排行榜或觸發某個事件。然而，正如在 ERC-777 中看到的，如果沒有小心處理這些鉤子，它們可能引入重入攻擊之類的漏洞。開發者在實作 ERC-1155 代幣時，必須確保有適當的防護措施，例如使用 檢查—生效—互動模式（checks-effects-interactions pattern）與重入鎖，來保護自己的合約。</p>
+<p>ERC-1155 的批次操作是一大特色，讓我們可以在單一交易中轉移或查詢多個代幣，既節省 gas，也讓這個標準更具可擴展性。此外，ERC-1155 也包含安全機制，以避免代幣被鎖住之類的問題。把代幣轉給智能合約時，接收合約必須實作 <code>IERC1155Receiver</code> 介面，否則交易就會回復。這些鉤子讓代幣轉帳期間可以進行進階的互動。例如，合約可以實作收到代幣時要執行的自訂邏輯，像是更新遊戲內的排行榜或觸發某個事件。然而，正如在 ERC-777 中看到的，如果沒有小心處理這些鉤子，它們可能引入重入攻擊之類的漏洞。開發者在實作 ERC-1155 代幣時，必須確保有適當的防護措施，例如使用「檢查、生效、互動」模式（checks-effects-interactions pattern）與重入鎖，來保護自己的合約。</p>
 </div>
 <div class="paragraph">
 <p>ERC-1155 的合約介面規格如下：</p>

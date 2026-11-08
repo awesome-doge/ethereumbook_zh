@@ -33,7 +33,7 @@
 <link rel="stylesheet" href="/assets/site.css?v=ad2df01e33">
 <link rel="stylesheet" href="/assets/code.css?v=c94d007c0c">
 <script defer src="/assets/site.js?v=33af8366a0"></script>
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Chapter","@id":"https://mastering-ethereum.doge.tg/chapters/evm.html#chapter","name":"第 14 章　以太坊虛擬機","headline":"第 14 章　以太坊虛擬機｜精通以太坊（第二版）","description":"以太坊虛擬機（EVM）：與其他技術的比較、指令集、以太坊狀態與默克爾帕特里夏前綴樹、EVM 各組件的實際運作，以及 Solidity 如何編譯成位元組碼。","url":"https://mastering-ethereum.doge.tg/chapters/evm.html","inLanguage":"zh-TW","position":15,"dateModified":"2026-11-06T18:11:04+08:00","isPartOf":{"@id":"https://mastering-ethereum.doge.tg/#book"},"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true},{"@type":"Book","@id":"https://mastering-ethereum.doge.tg/#book","name":"精通以太坊（第二版）","alternateName":["Mastering Ethereum, 2nd Edition","精通以太坊第二版"],"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"inLanguage":"zh-TW","publisher":{"@type":"Organization","name":"O'Reilly Media"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true,"url":"https://mastering-ethereum.doge.tg/","image":"https://mastering-ethereum.doge.tg/assets/og-cover-2nd.png","translationOfWork":{"@type":"Book","name":"Mastering Ethereum, 2nd Edition","inLanguage":"en","url":"https://github.com/ethereumbook/ethereumbook"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"精通以太坊（第二版）","item":"https://mastering-ethereum.doge.tg/"},{"@type":"ListItem","position":2,"name":"第 14 章　以太坊虛擬機","item":"https://mastering-ethereum.doge.tg/chapters/evm.html"}]}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Chapter","@id":"https://mastering-ethereum.doge.tg/chapters/evm.html#chapter","name":"第 14 章　以太坊虛擬機","headline":"第 14 章　以太坊虛擬機｜精通以太坊（第二版）","description":"以太坊虛擬機（EVM）：與其他技術的比較、指令集、以太坊狀態與默克爾帕特里夏前綴樹、EVM 各組件的實際運作，以及 Solidity 如何編譯成位元組碼。","url":"https://mastering-ethereum.doge.tg/chapters/evm.html","inLanguage":"zh-TW","position":15,"dateModified":"2026-11-08T20:37:00+08:00","isPartOf":{"@id":"https://mastering-ethereum.doge.tg/#book"},"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true},{"@type":"Book","@id":"https://mastering-ethereum.doge.tg/#book","name":"精通以太坊（第二版）","alternateName":["Mastering Ethereum, 2nd Edition","精通以太坊第二版"],"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"inLanguage":"zh-TW","publisher":{"@type":"Organization","name":"O'Reilly Media"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true,"url":"https://mastering-ethereum.doge.tg/","image":"https://mastering-ethereum.doge.tg/assets/og-cover-2nd.png","translationOfWork":{"@type":"Book","name":"Mastering Ethereum, 2nd Edition","inLanguage":"en","url":"https://github.com/ethereumbook/ethereumbook"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"精通以太坊（第二版）","item":"https://mastering-ethereum.doge.tg/"},{"@type":"ListItem","position":2,"name":"第 14 章　以太坊虛擬機","item":"https://mastering-ethereum.doge.tg/chapters/evm.html"}]}]}</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZVVQYEKMPF"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-ZVVQYEKMPF');
 // 電子書下載：GA 的加強型評估不認得 .epub，下載連結又在 GitHub 上，所以自己送事件
@@ -238,7 +238,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <p>EVM 運作的範圍則有限得多：它只是一個計算引擎，因此只提供計算與儲存的抽象，例如和 Java 虛擬機（JVM）規格類似。從高層次來看，JVM 的設計是要提供一個與底層主機作業系統或硬體無關的執行環境，讓程式能在各式各樣的系統上相容執行。Java、Scala（使用 JVM）或 C#（使用 .NET）這類高階程式語言，會被編譯成各自虛擬機的位元組碼指令集。同樣地，EVM 也執行自己的位元組碼指令集（下一節會介紹），Solidity、Vyper 與 Yul 這類較高階的智能合約程式語言，都會編譯成這套指令集。</p>
 </div>
 <div class="paragraph">
-<p>因此，EVM 沒有排程能力，因為執行順序是在它外部安排的：以太坊客戶端會逐一處理已驗證區塊中的交易，決定哪些智能合約需要執行，以及執行的順序。從這個角度來看，以太坊世界電腦和 JavaScript 一樣是單執行緒的。EVM 也沒有任何「系統介面」處理或「硬體支援」——根本沒有實體機器可以對接。以太坊世界電腦完全是虛擬的。</p>
+<p>因此，EVM 沒有排程能力，因為執行順序是在它外部安排的：以太坊客戶端會逐一處理已驗證區塊中的交易，決定哪些智能合約需要執行，以及執行的順序。從這個角度來看，以太坊世界電腦和 JavaScript 一樣是單執行緒的。EVM 也沒有任何「系統介面」處理或「硬體支援」，因為根本沒有實體機器可以對接。以太坊世界電腦完全是虛擬的。</p>
 </div>
 </div>
 <div class="sect2">
@@ -478,7 +478,7 @@ GASLIMIT   //Get the block's gas limit</pre>
 <p>EVM 的工作，是依照以太坊協議的定義，計算智能合約程式碼執行所產生的有效狀態轉換，藉此更新以太坊狀態。因為這一點，以太坊被描述為<em>基於交易的狀態機</em>，反映出外部參與者（也就是帳戶持有人與驗證者）是透過建立、接受與排序交易來發起狀態轉換的。在這裡，值得先想一想以太坊狀態是由什麼組成的。</p>
 </div>
 <div class="paragraph">
-<p>最上層是以太坊的<em>世界狀態</em>。世界狀態是以太坊地址（160 位元的值）到帳戶的映射。往下一層，每個以太坊地址代表一個帳戶，帳戶包含以太幣（ether）餘額（以帳戶擁有的 wei 數量儲存）、nonce（如果是 EOA，代表從這個帳戶成功送出的交易數；如果是合約帳戶，代表它建立的合約數）、帳戶的儲存空間（只有智能合約使用的永久資料儲存區），以及帳戶的程式碼（同樣只有智能合約帳戶才有）。傳統上，EOA 一定沒有程式碼，儲存空間也是空的。然而，在 2025 年 5 月的 Pectra 升級中啟用的以太坊改進提案（EIP）<a href="https://eips.ethereum.org/EIPS/eip-7702" rel="noopener" target="_blank">EIP-7702</a>，允許 EOA 把程式碼的執行委託給智能合約，改變了這個前提。EOA 選擇委託時，它的程式碼欄位會被設成 23 位元組的<em>委託指定</em>，格式是 <code>0xef0100 || address</code>，其中 <code>address</code> 是目標合約的 20 位元組地址。依照 <a href="https://eips.ethereum.org/EIPS/eip-3541" rel="noopener" target="_blank">EIP-3541</a>，<code>0xef</code> 這個位元組是禁用的操作碼，因此這個指定不會和可部署的合約程式碼混淆。EVM 遇到對已委託 EOA 的呼叫時，會載入目標地址的程式碼，在該 EOA 的環境中執行。這表示對已委託的 EOA 執行 <code>EXTCODESIZE</code> 會回傳 23（委託指定的大小），而在委託的程式碼中執行 <code>CODESIZE</code> 則會回傳目標合約程式碼的大小。EOA 執行委託的程式碼時也可以使用儲存空間，不過協議建議採用以太坊徵求意見（ERC）<a href="https://eips.ethereum.org/EIPS/eip-7201" rel="noopener" target="_blank">ERC-7201</a> 定義的命名空間儲存配置，以免在不同的委託合約之間遷移時發生衝突。重要的是，已委託的 EOA 仍然可以發起交易——它們依然是能簽署與送出交易的 EOA，只是現在多了智能合約的能力。只要委託給零地址（<code>0x0000000000000000000000000000000000000000</code>），就能清除委託。</p>
+<p>最上層是以太坊的<em>世界狀態</em>。世界狀態是以太坊地址（160 位元的值）到帳戶的映射。往下一層，每個以太坊地址代表一個帳戶，帳戶包含以太幣（ether）餘額（以帳戶擁有的 wei 數量儲存）、nonce（如果是 EOA，代表從這個帳戶成功送出的交易數；如果是合約帳戶，代表它建立的合約數）、帳戶的儲存空間（只有智能合約使用的永久資料儲存區），以及帳戶的程式碼（同樣只有智能合約帳戶才有）。傳統上，EOA 一定沒有程式碼，儲存空間也是空的。然而，在 2025 年 5 月的 Pectra 升級中啟用的以太坊改進提案（EIP）<a href="https://eips.ethereum.org/EIPS/eip-7702" rel="noopener" target="_blank">EIP-7702</a>，允許 EOA 把程式碼的執行委託給智能合約，改變了這個前提。EOA 選擇委託時，它的程式碼欄位會被設成 23 位元組的<em>委託指定</em>，格式是 <code>0xef0100 || address</code>，其中 <code>address</code> 是目標合約的 20 位元組地址。依照 <a href="https://eips.ethereum.org/EIPS/eip-3541" rel="noopener" target="_blank">EIP-3541</a>，<code>0xef</code> 這個位元組是禁用的操作碼，因此這個指定不會和可部署的合約程式碼混淆。EVM 遇到對已委託 EOA 的呼叫時，會載入目標地址的程式碼，在該 EOA 的環境中執行。這表示對已委託的 EOA 執行 <code>EXTCODESIZE</code> 會回傳 23（委託指定的大小），而在委託的程式碼中執行 <code>CODESIZE</code> 則會回傳目標合約程式碼的大小。EOA 執行委託的程式碼時也可以使用儲存空間，不過協議建議採用以太坊徵求意見（ERC）<a href="https://eips.ethereum.org/EIPS/eip-7201" rel="noopener" target="_blank">ERC-7201</a> 定義的命名空間儲存配置，以免在不同的委託合約之間遷移時發生衝突。重要的是，已委託的 EOA 仍然可以發起交易。它們依然是能簽署與送出交易的 EOA，只是現在多了智能合約的能力。只要委託給零地址（<code>0x0000000000000000000000000000000000000000</code>），就能清除委託。</p>
 </div>
 <div class="paragraph">
 <p>當一筆交易需要執行智能合約程式碼時，系統會建立一個 EVM 實例，並帶入與目前正在建立的區塊、正在處理的這筆交易有關的所有必要資訊。具體來說，EVM 的程式碼 ROM 會載入被呼叫的合約帳戶的程式碼，程式計數器設為零，儲存空間從合約帳戶的儲存空間載入，記憶體全部設為零，所有區塊與環境變數也都會設定好。其中一個關鍵變數是這次執行的可用 gas，它會設為發送者在交易一開始支付的 gas 數量（詳見「執行期間的 gas 計算」一節）。隨著程式碼執行，可用 gas 會依照已執行操作的 gas 成本遞減。如果可用 gas 在任何時候小於零，就會發生 <em>gas 耗盡</em>（out-of-gas，OOG）例外：執行立即停止，交易也隨之作廢。以太坊狀態不會有任何變更，唯一的例外是發送者的 nonce 會遞增，而且他的以太幣餘額會減少，用來支付給區塊受益人，作為執行程式碼直到停止點所耗用資源的費用。在這個階段，你可以把 EVM 想成在以太坊世界狀態的沙盒副本上執行；如果執行因為任何原因無法完成，這個沙盒版本就會被完全丟棄。不過，如果執行順利完成，真正的世界狀態就會更新成與沙盒版本一致，包括被呼叫合約的儲存資料的任何變更、新建立的任何合約，以及發起的任何以太幣餘額轉移。</p>
@@ -605,7 +605,7 @@ GASLIMIT   //Get the block's gas limit</pre>
 </tbody></table>
 </div>
 <div class="paragraph">
-<p>注意，我們只用了三項資料；如果不用默克爾樹、採取最單純的做法，就需要八項。而這只是個玩具範例——資料量很大時，節省的幅度會大得多。</p>
+<p>注意，我們只用了三項資料；如果不用默克爾樹、採取最單純的做法，就需要八項。而這只是個玩具範例，資料量很大時，節省的幅度會大得多。</p>
 </div>
 <div class="paragraph">
 <p>用數學的說法，默克爾樹的複雜度是 O(log(n))，而單純做法則是線性的 O(n)，如圖 14-4 所示。</p>
@@ -650,9 +650,9 @@ GASLIMIT   //Get the block's gas limit</pre>
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch14/maet_1405.webp"><img src="/images/ch14/maet_1405.png" alt="把鍵值項目 car --++&gt;++ Schumacher 編碼進默克爾帕特里夏前綴樹" width="1446" height="936" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch14/maet_1405.webp"><img src="/images/ch14/maet_1405.png" alt="把鍵值項目 car → Schumacher 編碼進默克爾帕特里夏前綴樹" width="1446" height="936" loading="lazy" decoding="async"></picture>
 </div>
-<div class="title">圖 14-5. 把鍵值項目 car --&gt; Schumacher 編碼進默克爾帕特里夏前綴樹</div>
+<div class="title">圖 14-5. 把鍵值項目 car → Schumacher 編碼進默克爾帕特里夏前綴樹</div>
 </div>
 <div class="paragraph">
 <p>具體來說，以太坊使用四棵默克爾帕特里夏前綴樹：</p>
@@ -931,7 +931,7 @@ GASLIMIT   //Get the block's gas limit</pre>
 <p>我們已經在第 7 章介紹過 Solidity。現在，我們要看看它如何被編譯成 EVM 能夠解讀的 EVM 位元組碼。</p>
 </div>
 <div class="paragraph">
-<p>把 Solidity 原始碼檔案編譯成 EVM 位元組碼有好幾種方法。在第 2 章，我們用的是線上的 Remix 編譯器。本章則會使用命令列的 <code>solc</code> 執行檔。要在你的電腦上安裝 Solidity，請<a href="https://oreil.ly/JW—​z" rel="noopener" target="_blank">依照這些步驟</a>。</p>
+<p>把 Solidity 原始碼檔案編譯成 EVM 位元組碼有好幾種方法。在第 2 章，我們用的是線上的 Remix 編譯器。本章則會使用命令列的 <code>solc</code> 執行檔。要在你的電腦上安裝 Solidity，請<a href="https://oreil.ly/JW--z" rel="noopener" target="_blank">依照這些步驟</a>。</p>
 </div>
 <div class="paragraph">
 <p>要列出所有選項，請執行以下指令：</p>
@@ -1549,7 +1549,7 @@ SHR</pre>
 <p>因為停機問題，以太坊世界電腦有可能被要求執行一個永遠不會停止的程式，不論是出於意外還是惡意。我們已經說明過，以太坊就像一臺單執行緒的機器，沒有任何排程器；因此一旦它卡在無窮迴圈裡，以太坊就無法使用了。</p>
 </div>
 <div class="paragraph">
-<p>不過，gas 提供了解決辦法：如果執行了預先指定的最大計算量之後，執行仍然沒有結束，EVM 就會停止這個程式的執行。這讓 EVM 成為一臺準圖靈完備的機器：它可以執行你交給它的任何程式，但前提是程式要在特定的計算量內終止。在以太坊中，這個上限並不是固定的——你可以付費把它提高到某個最大值（稱為<em>區塊 gas 上限</em>），而大家也可以隨著時間同意提高這個最大值。儘管如此，在任何時刻都存在一個上限，執行時消耗太多 gas 的交易就會被停止。</p>
+<p>不過，gas 提供了解決辦法：如果執行了預先指定的最大計算量之後，執行仍然沒有結束，EVM 就會停止這個程式的執行。這讓 EVM 成為一臺準圖靈完備的機器：它可以執行你交給它的任何程式，但前提是程式要在特定的計算量內終止。在以太坊中，這個上限並不是固定的，你可以付費把它提高到某個最大值（稱為<em>區塊 gas 上限</em>），而大家也可以隨著時間同意提高這個最大值。儘管如此，在任何時刻都存在一個上限，執行時消耗太多 gas 的交易就會被停止。</p>
 </div>
 <div class="paragraph">
 <p>接下來幾節，我們會介紹 gas，詳細探討它如何運作。</p>

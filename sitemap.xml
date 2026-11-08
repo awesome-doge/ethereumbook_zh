@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://mastering-ethereum.doge.tg/</loc><lastmod>2026-11-06T18:11:04+08:00</lastmod></url>
-  <url><loc>https://mastering-ethereum.doge.tg/chapters/preface.html</loc><lastmod>2026-11-06T02:54:36+08:00</lastmod></url>
+  <url><loc>https://mastering-ethereum.doge.tg/</loc><lastmod>2026-11-08T20:37:00+08:00</lastmod></url>
+  <url><loc>https://mastering-ethereum.doge.tg/chapters/preface.html</loc><lastmod>2026-11-08T20:37:00+08:00</lastmod></url>
   <url><loc>https://mastering-ethereum.doge.tg/chapters/what-is-ethereum.html</loc><lastmod>2026-11-06T18:11:04+08:00</lastmod></url>
-  <url><loc>https://mastering-ethereum.doge.tg/chapters/ethereum-basics.html</loc><lastmod>2026-11-06T18:11:04+08:00</lastmod></url>
-  <url><loc>https://mastering-ethereum.doge.tg/chapters/nodes.html</loc><lastmod>2026-11-06T18:11:04+08:00</lastmod></url>
-  <url><loc>https://mastering-ethereum.doge.tg/chapters/cryptography.html</loc><lastmod>2026-11-06T18:11:04+08:00</lastmod></url>
-  <url><loc>https://mastering-ethereum.doge.tg/chapters/wallets.html</loc><lastmod>2026-11-06T18:11:04+08:00</lastmod></url>
+  <url><loc>https://mastering-ethereum.doge.tg/chapters/ethereum-basics.html</loc><lastmod>2026-11-08T20:37:00+08:00</lastmod></url>
+  <url><loc>https://mastering-ethereum.doge.tg/chapters/nodes.html</loc><lastmod>2026-11-08T20:37:00+08:00</lastmod></url>
+  <url><loc>https://mastering-ethereum.doge.tg/chapters/cryptography.html</loc><lastmod>2026-11-08T20:37:00+08:00</lastmod></url>
+  <url><loc>https://mastering-ethereum.doge.tg/chapters/wallets.html</loc><lastmod>2026-11-08T20:37:00+08:00</lastmod></url>
   <url><loc>https://mastering-ethereum.doge.tg/chapters/transactions.html</loc><lastmod>2026-11-06T18:11:04+08:00</lastmod></url>
-  <url><loc>https://mastering-ethereum.doge.tg/chapters/solidity.html</loc><lastmod>2026-11-06T18:11:04+08:00</lastmod></url>
+  <url><loc>https://mastering-ethereum.doge.tg/chapters/solidity.html</loc><lastmod>2026-11-08T20:37:00+08:00</lastmod></url>
   <url><loc>https://mastering-ethereum.doge.tg/chapters/vyper.html</loc><lastmod>2026-11-03T14:43:31+08:00</lastmod></url>
-  <url><loc>https://mastering-ethereum.doge.tg/chapters/smart-contract-security.html</loc><lastmod>2026-11-06T18:11:04+08:00</lastmod></url>
-  <url><loc>https://mastering-ethereum.doge.tg/chapters/tokens.html</loc><lastmod>2026-11-06T18:11:04+08:00</lastmod></url>
-  <url><loc>https://mastering-ethereum.doge.tg/chapters/oracles.html</loc><lastmod>2026-11-06T18:11:04+08:00</lastmod></url>
+  <url><loc>https://mastering-ethereum.doge.tg/chapters/smart-contract-security.html</loc><lastmod>2026-11-08T20:37:00+08:00</lastmod></url>
+  <url><loc>https://mastering-ethereum.doge.tg/chapters/tokens.html</loc><lastmod>2026-11-08T20:37:00+08:00</lastmod></url>
+  <url><loc>https://mastering-ethereum.doge.tg/chapters/oracles.html</loc><lastmod>2026-11-08T20:37:00+08:00</lastmod></url>
   <url><loc>https://mastering-ethereum.doge.tg/chapters/dapps.html</loc><lastmod>2026-11-06T18:11:04+08:00</lastmod></url>
   <url><loc>https://mastering-ethereum.doge.tg/chapters/defi.html</loc><lastmod>2026-11-06T18:11:04+08:00</lastmod></url>
-  <url><loc>https://mastering-ethereum.doge.tg/chapters/evm.html</loc><lastmod>2026-11-06T18:11:04+08:00</lastmod></url>
-  <url><loc>https://mastering-ethereum.doge.tg/chapters/consensus.html</loc><lastmod>2026-11-06T18:11:04+08:00</lastmod></url>
-  <url><loc>https://mastering-ethereum.doge.tg/chapters/scaling.html</loc><lastmod>2026-11-06T18:11:04+08:00</lastmod></url>
-  <url><loc>https://mastering-ethereum.doge.tg/chapters/zero-knowledge-proofs.html</loc><lastmod>2026-11-06T18:11:04+08:00</lastmod></url>
+  <url><loc>https://mastering-ethereum.doge.tg/chapters/evm.html</loc><lastmod>2026-11-08T20:37:00+08:00</lastmod></url>
+  <url><loc>https://mastering-ethereum.doge.tg/chapters/consensus.html</loc><lastmod>2026-11-08T20:37:00+08:00</lastmod></url>
+  <url><loc>https://mastering-ethereum.doge.tg/chapters/scaling.html</loc><lastmod>2026-11-08T20:37:00+08:00</lastmod></url>
+  <url><loc>https://mastering-ethereum.doge.tg/chapters/zero-knowledge-proofs.html</loc><lastmod>2026-11-08T20:37:00+08:00</lastmod></url>
   <url><loc>https://mastering-ethereum.doge.tg/2018/</loc><lastmod>2026-11-03T12:29:30+08:00</lastmod></url>
   <url><loc>https://mastering-ethereum.doge.tg/2018/preface.html</loc><lastmod>2023-05-20T14:11:48+08:00</lastmod></url>
   <url><loc>https://mastering-ethereum.doge.tg/2018/glossary.html</loc><lastmod>2026-03-29T19:27:26+08:00</lastmod></url>

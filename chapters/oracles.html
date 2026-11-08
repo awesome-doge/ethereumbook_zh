@@ -33,7 +33,7 @@
 <link rel="stylesheet" href="/assets/site.css?v=ad2df01e33">
 <link rel="stylesheet" href="/assets/code.css?v=c94d007c0c">
 <script defer src="/assets/site.js?v=33af8366a0"></script>
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Chapter","@id":"https://mastering-ethereum.doge.tg/chapters/oracles.html#chapter","name":"第 11 章　預言機","headline":"第 11 章　預言機｜精通以太坊（第二版）","description":"預言機：為什麼智能合約需要外部資料、使用案例、設計模式、資料驗證、計算型與去中心化預言機，以及跨鏈訊息協議。","url":"https://mastering-ethereum.doge.tg/chapters/oracles.html","inLanguage":"zh-TW","position":12,"dateModified":"2026-11-06T18:11:04+08:00","isPartOf":{"@id":"https://mastering-ethereum.doge.tg/#book"},"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true},{"@type":"Book","@id":"https://mastering-ethereum.doge.tg/#book","name":"精通以太坊（第二版）","alternateName":["Mastering Ethereum, 2nd Edition","精通以太坊第二版"],"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"inLanguage":"zh-TW","publisher":{"@type":"Organization","name":"O'Reilly Media"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true,"url":"https://mastering-ethereum.doge.tg/","image":"https://mastering-ethereum.doge.tg/assets/og-cover-2nd.png","translationOfWork":{"@type":"Book","name":"Mastering Ethereum, 2nd Edition","inLanguage":"en","url":"https://github.com/ethereumbook/ethereumbook"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"精通以太坊（第二版）","item":"https://mastering-ethereum.doge.tg/"},{"@type":"ListItem","position":2,"name":"第 11 章　預言機","item":"https://mastering-ethereum.doge.tg/chapters/oracles.html"}]}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Chapter","@id":"https://mastering-ethereum.doge.tg/chapters/oracles.html#chapter","name":"第 11 章　預言機","headline":"第 11 章　預言機｜精通以太坊（第二版）","description":"預言機：為什麼智能合約需要外部資料、使用案例、設計模式、資料驗證、計算型與去中心化預言機，以及跨鏈訊息協議。","url":"https://mastering-ethereum.doge.tg/chapters/oracles.html","inLanguage":"zh-TW","position":12,"dateModified":"2026-11-08T20:37:00+08:00","isPartOf":{"@id":"https://mastering-ethereum.doge.tg/#book"},"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true},{"@type":"Book","@id":"https://mastering-ethereum.doge.tg/#book","name":"精通以太坊（第二版）","alternateName":["Mastering Ethereum, 2nd Edition","精通以太坊第二版"],"author":[{"@type":"Person","name":"Andreas M. Antonopoulos","url":"https://aantonop.com"},{"@type":"Person","name":"Gavin Wood"},{"@type":"Person","name":"Carlo Parisi"},{"@type":"Person","name":"Alessandro Mazza"},{"@type":"Person","name":"Niccolò Pozzolini"}],"translator":{"@type":"Person","name":"Dr. Awesome Doge"},"inLanguage":"zh-TW","publisher":{"@type":"Organization","name":"O'Reilly Media"},"license":"https://creativecommons.org/licenses/by-nc-nd/4.0/","isAccessibleForFree":true,"url":"https://mastering-ethereum.doge.tg/","image":"https://mastering-ethereum.doge.tg/assets/og-cover-2nd.png","translationOfWork":{"@type":"Book","name":"Mastering Ethereum, 2nd Edition","inLanguage":"en","url":"https://github.com/ethereumbook/ethereumbook"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"精通以太坊（第二版）","item":"https://mastering-ethereum.doge.tg/"},{"@type":"ListItem","position":2,"name":"第 11 章　預言機","item":"https://mastering-ethereum.doge.tg/chapters/oracles.html"}]}]}</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZVVQYEKMPF"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-ZVVQYEKMPF');
 // 電子書下載：GA 的加強型評估不認得 .epub，下載連結又在 GitHub 上，所以自己送事件
@@ -284,7 +284,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <p>資料一旦在智能合約中可供取用，其他智能合約就能透過訊息呼叫，呼叫預言機智能合約的 <code>retrieve</code> 函式來存取它；以太坊節點或具備網路功能的客戶端也可以直接存取。</p>
 </div>
 <div class="paragraph">
-<p>設定預言機的三種主要方式可以分為即時讀取（immediate-read）、發布—訂閱（publish-subscribe）與請求—回應（request-response）。</p>
+<p>設定預言機的三種主要方式可以分為即時讀取（immediate-read）、發布／訂閱（publish-subscribe）與請求／回應（request-response）。</p>
 </div>
 <div class="sect3">
 <h3 id="ch11-immediate-read"><a class="anchor" href="#ch11-immediate-read" aria-label="本節連結"></a>11.3.1. 即時讀取（Immediate-Read）</h3>
@@ -308,15 +308,15 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 </div>
 </div>
 <div class="sect3">
-<h3 id="ch11-publish-subscribe"><a class="anchor" href="#ch11-publish-subscribe" aria-label="本節連結"></a>11.3.2. 發布—訂閱（Publish-Subscribe）</h3>
+<h3 id="ch11-publish-subscribe"><a class="anchor" href="#ch11-publish-subscribe" aria-label="本節連結"></a>11.3.2. 發布／訂閱（Publish-Subscribe）</h3>
 <div class="paragraph">
-<p>下一種設定是發布—訂閱：預言機實際上為預期會變動（可能既規律又頻繁）的資料提供一種廣播服務，由鏈上的智能合約輪詢，或由鏈下的常駐程式（daemon）監看是否有更新，如圖 11-2 所示。</p>
+<p>下一種設定是發布／訂閱：預言機實際上為預期會變動（可能既規律又頻繁）的資料提供一種廣播服務，由鏈上的智能合約輪詢，或由鏈下的常駐程式（daemon）監看是否有更新，如圖 11-2 所示。</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch11/maet_1102.webp"><img src="/images/ch11/maet_1102.png" alt="發布—訂閱預言機" width="907" height="339" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch11/maet_1102.webp"><img src="/images/ch11/maet_1102.png" alt="發布／訂閱預言機" width="907" height="339" loading="lazy" decoding="async"></picture>
 </div>
-<div class="title">圖 11-2. 發布—訂閱預言機</div>
+<div class="title">圖 11-2. 發布／訂閱預言機</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -340,21 +340,21 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 </div>
 </div>
 <div class="sect3">
-<h3 id="ch11-request-response"><a class="anchor" href="#ch11-request-response" aria-label="本節連結"></a>11.3.3. 請求—回應（Request-Response）</h3>
+<h3 id="ch11-request-response"><a class="anchor" href="#ch11-request-response" aria-label="本節連結"></a>11.3.3. 請求／回應（Request-Response）</h3>
 <div class="paragraph">
-<p>請求—回應這一類最複雜：資料空間太過龐大、無法存放在智能合約中，而使用者每次預期只需要整個資料集的一小部分，如圖 11-3 所示。對提供資料的企業來說，這也是一種適用的模式。</p>
+<p>請求／回應這一類最複雜：資料空間太過龐大、無法存放在智能合約中，而使用者每次預期只需要整個資料集的一小部分，如圖 11-3 所示。對提供資料的企業來說，這也是一種適用的模式。</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<picture><source type="image/webp" srcset="/images/ch11/maet_1103.webp"><img src="/images/ch11/maet_1103.png" alt="請求—回應預言機" width="1440" height="422" loading="lazy" decoding="async"></picture>
+<picture><source type="image/webp" srcset="/images/ch11/maet_1103.webp"><img src="/images/ch11/maet_1103.png" alt="請求／回應預言機" width="1440" height="422" loading="lazy" decoding="async"></picture>
 </div>
-<div class="title">圖 11-3. 請求—回應預言機</div>
+<div class="title">圖 11-3. 請求／回應預言機</div>
 </div>
 <div class="paragraph">
 <p>實務上，這種預言機可以實作成一套系統，由鏈上的智能合約，以及用來監看請求、擷取並回傳資料的鏈下基礎設施組成。去中心化應用請求資料，通常是一個包含好幾個步驟的非同步過程。在這個模式中，首先由一個外部擁有帳戶（EOA）與去中心化應用進行交易，進而與預言機智能合約中定義的某個函式互動。這個函式向預言機發起請求，相關的引數會詳細說明所請求的資料，另外還可能附上回呼函式與排程參數等補充資訊。這筆交易通過驗證之後，就可以觀察到這個預言機請求：它可能是預言機合約發出的 EVM 事件，也可能是一次狀態變化。接著就能取出這些引數，用來實際查詢鏈下的資料來源。預言機也可能要求支付處理請求的費用、回呼所需的 gas 費用，以及存取所請求資料的權限。最後，產生的資料由預言機的所有者簽署，證實這份資料在特定時間點的有效性，再透過一筆交易交付給發出請求的去中心化應用；交付的方式可以是直接送達，也可以經由預言機合約，如圖 11-3 所示。視排程參數而定，預言機可能還會定期廣播更多交易來更新資料（例如每日收盤的價格資訊）。</p>
 </div>
 <div class="paragraph">
-<p>請求—回應預言機的步驟可以歸納如下：</p>
+<p>請求／回應預言機的步驟可以歸納如下：</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -385,10 +385,10 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <p>此外還有各式各樣的其他做法；例如，可以直接向一個 EOA 請求資料、由它直接回傳，省去預言機智能合約。同樣地，請求與回應也可以發給一個具備物聯網功能的硬體感測器，並由它回傳。因此，預言機可以是人、軟體或硬體。</p>
 </div>
 <div class="paragraph">
-<p>這裡描述的請求—回應模式常見於主從式架構。雖然這是一種實用的訊息傳遞模式，讓應用程式能進行雙向對話，但在某些情況下可能並不合適。例如，一個需要從預言機取得利率的智能債券，在請求—回應<sup class="footnote">[<a id="_footnoteref_30" class="footnote" href="#_footnotedef_30" title="查看註腳">30</a>]</sup> 模式下可能必須每天請求一次資料，才能確保利率永遠正確。由於利率不常變動，這裡採用發布—訂閱模式可能更合適，尤其是考慮到以太坊有限的頻寬。</p>
+<p>這裡描述的請求／回應模式常見於主從式架構。雖然這是一種實用的訊息傳遞模式，讓應用程式能進行雙向對話，但在某些情況下可能並不合適。例如，一個需要從預言機取得利率的智能債券，在請求／回應<sup class="footnote">[<a id="_footnoteref_30" class="footnote" href="#_footnotedef_30" title="查看註腳">30</a>]</sup> 模式下可能必須每天請求一次資料，才能確保利率永遠正確。由於利率不常變動，這裡採用發布／訂閱模式可能更合適，尤其是考慮到以太坊有限的頻寬。</p>
 </div>
 <div class="paragraph">
-<p>發布—訂閱這種模式中，發布者（在這裡就是預言機）不直接把訊息傳給接收者，而是把發布的訊息分成不同的類別。訂閱者可以表明對一個或多個類別有興趣，只取得自己感興趣的訊息。在這種模式下，預言機可以在利率每次變動時，把它寫進自己的內部儲存空間。多個已訂閱的 DApp 只要從預言機合約讀取即可，從而減少對網路頻寬的影響，同時把儲存成本降到最低。</p>
+<p>發布／訂閱這種模式中，發布者（在這裡就是預言機）不直接把訊息傳給接收者，而是把發布的訊息分成不同的類別。訂閱者可以表明對一個或多個類別有興趣，只取得自己感興趣的訊息。在這種模式下，預言機可以在利率每次變動時，把它寫進自己的內部儲存空間。多個已訂閱的 DApp 只要從預言機合約讀取即可，從而減少對網路頻寬的影響，同時把儲存成本降到最低。</p>
 </div>
 <div class="paragraph">
 <p>在廣播或群播模式中，預言機會把所有訊息發布到一個頻道上，訂閱的合約則以各種訂閱方式監聽這個頻道。例如，預言機可能把訊息發布到一個加密貨幣匯率頻道。如果某個訂閱的智能合約需要時間序列，比如用來計算移動平均，它可以請求頻道的完整內容；另一個合約可能只需要最新的匯率來計算現貨價格。當預言機不需要知道訂閱合約的身分時，就適合採用廣播模式。</p>
@@ -398,7 +398,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <div class="sect2">
 <h2 id="ch11-data-authentication"><a class="anchor" href="#ch11-data-authentication" aria-label="本節連結"></a>11.4. 資料認證</h2>
 <div class="paragraph">
-<p>假設 DApp 所查詢的資料來源既具權威性又值得信任（這可不是個小假設），仍然有一個懸而未決的問題：既然預言機與請求—回應機制可能由不同的實體營運，我們要如何信任這個機制？資料在傳輸途中遭到竄改的可能性確實存在，因此鏈下的方法能夠證實回傳資料的完整性至關重要。資料認證的兩種常見做法是 <em>真實性證明</em>（authenticity proof）與<em>可信執行環境</em>（trusted execution environment，TEE）。</p>
+<p>假設 DApp 所查詢的資料來源既具權威性又值得信任（這可不是個小假設），仍然有一個懸而未決的問題：既然預言機與請求／回應機制可能由不同的實體營運，我們要如何信任這個機制？資料在傳輸途中遭到竄改的可能性確實存在，因此鏈下的方法能夠證實回傳資料的完整性至關重要。資料認證的兩種常見做法是 <em>真實性證明</em>（authenticity proof）與<em>可信執行環境</em>（trusted execution environment，TEE）。</p>
 </div>
 <div class="paragraph">
 <p>真實性證明仰賴密碼學上的保證，確保資料從來源到區塊鏈的途中沒有被更改。這類證明把信任的依據從傳輸機制轉移到一個可驗證的認證方（attestor）身上，例如資料提供者、安全的第三方，甚至是一個去中心化的節點網路。智能合約在鏈上驗證密碼學簽章或零知識認證，就能確認收到的資訊確實來自正確的權威來源、沒有遭到竄改，而且往往不需要原始資料來源實作特殊的簽署邏輯。</p>
@@ -459,7 +459,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <p>雖然中心化的資料預言機或計算預言機足以應付許多應用，但它們是以太坊網路中的單點故障。為了確保資料可用性（data availability），並建立一個由各自獨立的資料提供者組成、搭配鏈上資料聚合系統的網路，已經有人圍繞去中心化預言機的概念提出了多種方案。</p>
 </div>
 <div class="paragraph">
-<p>Chainlink 提出了一種去中心化預言機網路，由三個關鍵的智能合約（信譽合約、訂單撮合合約與聚合合約），以及一個鏈下的資料提供者登記處組成。信譽合約用來追蹤資料提供者的表現，其中的分數則用來填入鏈下的登記處。訂單撮合合約利用信譽合約，從各個預言機的投標中做出選擇，接著敲定一份服務水準協議，內容包括查詢參數與所需的預言機數量。這表示購買者不需要直接與個別的預言機交易。聚合合約收集多個預言機的回應（以承諾—揭示機制（commit-reveal scheme）提交），計算出查詢的最終集體結果，最後再把結果回饋給信譽合約。</p>
+<p>Chainlink 提出了一種去中心化預言機網路，由三個關鍵的智能合約（信譽合約、訂單撮合合約與聚合合約），以及一個鏈下的資料提供者登記處組成。信譽合約用來追蹤資料提供者的表現，其中的分數則用來填入鏈下的登記處。訂單撮合合約利用信譽合約，從各個預言機的投標中做出選擇，接著敲定一份服務水準協議，內容包括查詢參數與所需的預言機數量。這表示購買者不需要直接與個別的預言機交易。聚合合約收集多個預言機的回應（以承諾／揭示機制（commit-reveal scheme）提交），計算出查詢的最終集體結果，最後再把結果回饋給信譽合約。</p>
 </div>
 <div class="paragraph">
 <p>這種去中心化做法的主要挑戰之一，是如何制定聚合函數。Chainlink 提議計算加權後的回應，讓每個預言機的回應都能回報一個有效性分數。在這裡偵測無效的分數並不簡單，因為它所依據的前提是：離群的資料點（以偏離同儕回應的程度來衡量）是不正確的。依據某個預言機回應在所有回應分布中的位置來計算有效性分數，可能會讓正確的答案比平均的答案受到更多懲罰。因此，Chainlink 提供一組標準的聚合合約，但也允許指定自訂的聚合合約。</p>
